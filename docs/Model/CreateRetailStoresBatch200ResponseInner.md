@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **external_code** | **string** | Внешний код Точки продаж | [optional] [readonly]
 **updated** | **string** | Момент последнего обновления Точки продаж | [optional] [readonly]
 **meta** | [**\OpenAPI\Client\Model\Meta**](Meta.md) |  | [optional]
-**organization** | [**\OpenAPI\Client\Model\Organization**](.md) |  | [optional]
+**organization** | [**\OpenAPI\Client\Model\Organization**](Organization.md) |  | [optional]
 **store** | [**\OpenAPI\Client\Model\Store**](Store.md) |  | [optional]
 **group** | [**\OpenAPI\Client\Model\Group**](Group.md) |  | [optional]
 **owner** | [**\OpenAPI\Client\Model\Employee**](Employee.md) | Метаданные владельца (сотрудника) | [optional]

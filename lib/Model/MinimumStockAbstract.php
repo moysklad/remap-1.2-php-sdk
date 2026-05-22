@@ -58,9 +58,7 @@ class MinimumStockAbstract implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPITypes = [
         'type' => 'string',
-        'inherited' => 'bool',
-        'quantity' => 'float',
-        'store_balances' => '\OpenAPI\Client\Model\StoreBalanceList'
+        'inherited' => 'bool'
     ];
 
     /**
@@ -72,9 +70,7 @@ class MinimumStockAbstract implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPIFormats = [
         'type' => null,
-        'inherited' => null,
-        'quantity' => 'float',
-        'store_balances' => null
+        'inherited' => null
     ];
 
     /**
@@ -84,9 +80,7 @@ class MinimumStockAbstract implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static array $openAPINullables = [
         'type' => false,
-        'inherited' => true,
-        'quantity' => false,
-        'store_balances' => false
+        'inherited' => true
     ];
 
     /**
@@ -176,9 +170,7 @@ class MinimumStockAbstract implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $attributeMap = [
         'type' => 'type',
-        'inherited' => 'inherited',
-        'quantity' => 'quantity',
-        'store_balances' => 'storeBalances'
+        'inherited' => 'inherited'
     ];
 
     /**
@@ -188,9 +180,7 @@ class MinimumStockAbstract implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $setters = [
         'type' => 'setType',
-        'inherited' => 'setInherited',
-        'quantity' => 'setQuantity',
-        'store_balances' => 'setStoreBalances'
+        'inherited' => 'setInherited'
     ];
 
     /**
@@ -200,9 +190,7 @@ class MinimumStockAbstract implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $getters = [
         'type' => 'getType',
-        'inherited' => 'getInherited',
-        'quantity' => 'getQuantity',
-        'store_balances' => 'getStoreBalances'
+        'inherited' => 'getInherited'
     ];
 
     /**
@@ -281,8 +269,6 @@ class MinimumStockAbstract implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('inherited', $data ?? [], null);
-        $this->setIfExists('quantity', $data ?? [], null);
-        $this->setIfExists('store_balances', $data ?? [], null);
 
         // Initialize discriminator property with the model name.
         $this->container['type'] = static::$openAPIModelName;
@@ -325,10 +311,6 @@ class MinimumStockAbstract implements ModelInterface, ArrayAccess, \JsonSerializ
                 $this->container['type'],
                 implode("', '", $allowedValues)
             );
-        }
-
-        if (!is_null($this->container['quantity']) && ($this->container['quantity'] < 0)) {
-            $invalidProperties[] = "invalid value for 'quantity', must be bigger than or equal to 0.";
         }
 
         return $invalidProperties;
@@ -413,65 +395,6 @@ class MinimumStockAbstract implements ModelInterface, ArrayAccess, \JsonSerializ
             }
         }
         $this->container['inherited'] = $inherited;
-
-        return $this;
-    }
-
-    /**
-     * Gets quantity
-     *
-     * @return float|null
-     */
-    public function getQuantity()
-    {
-        return $this->container['quantity'];
-    }
-
-    /**
-     * Sets quantity
-     *
-     * @param float|null $quantity Количество неснижаемого остатка
-     *
-     * @return self
-     */
-    public function setQuantity($quantity)
-    {
-        if (is_null($quantity)) {
-            throw new \InvalidArgumentException('non-nullable quantity cannot be null');
-        }
-
-        if (($quantity < 0)) {
-            throw new \InvalidArgumentException('invalid value for $quantity when calling MinimumStockAbstract., must be bigger than or equal to 0.');
-        }
-
-        $this->container['quantity'] = $quantity;
-
-        return $this;
-    }
-
-    /**
-     * Gets store_balances
-     *
-     * @return \OpenAPI\Client\Model\StoreBalanceList|null
-     */
-    public function getStoreBalances()
-    {
-        return $this->container['store_balances'];
-    }
-
-    /**
-     * Sets store_balances
-     *
-     * @param \OpenAPI\Client\Model\StoreBalanceList|null $store_balances store_balances
-     *
-     * @return self
-     */
-    public function setStoreBalances($store_balances)
-    {
-        if (is_null($store_balances)) {
-            throw new \InvalidArgumentException('non-nullable store_balances cannot be null');
-        }
-        $this->container['store_balances'] = $store_balances;
 
         return $this;
     }

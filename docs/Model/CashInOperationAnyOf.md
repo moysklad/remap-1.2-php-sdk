@@ -31,7 +31,7 @@ Name | Type | Description | Notes
 **invoiced_sum** | **float** | Сумма счетов покупателю | [optional] [readonly]
 **organization** | [**\OpenAPI\Client\Model\Organization**](Organization.md) |  | [optional]
 **organization_account** | [**\OpenAPI\Client\Model\Account**](Account.md) | Метаданные счета юрлица | [optional]
-**agent** | [**\OpenAPI\Client\Model\Counterparty**](Counterparty.md) |  | [optional]
+**agent** | [**\OpenAPI\Client\Model\CustomerOrderAgent**](CustomerOrderAgent.md) |  | [optional]
 **agent_account** | [**\OpenAPI\Client\Model\Account**](Account.md) | Метаданные счета контрагента | [optional]
 **store** | [**\OpenAPI\Client\Model\Store**](Store.md) | Метаданные склада | [optional]
 **state** | [**\OpenAPI\Client\Model\State**](State.md) | Метаданные статуса заказа | [optional]

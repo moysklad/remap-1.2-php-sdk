@@ -58,6 +58,7 @@ class Pack implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'meta' => '\OpenAPI\Client\Model\Meta',
         'id' => 'string',
         'uom' => '\OpenAPI\Client\Model\Uom',
         'quantity' => 'float',
@@ -72,6 +73,7 @@ class Pack implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'meta' => null,
         'id' => 'uuid',
         'uom' => null,
         'quantity' => 'float',
@@ -84,10 +86,11 @@ class Pack implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'meta' => false,
         'id' => false,
         'uom' => false,
         'quantity' => false,
-        'barcodes' => false
+        'barcodes' => true
     ];
 
     /**
@@ -176,6 +179,7 @@ class Pack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'meta' => 'meta',
         'id' => 'id',
         'uom' => 'uom',
         'quantity' => 'quantity',
@@ -188,6 +192,7 @@ class Pack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'meta' => 'setMeta',
         'id' => 'setId',
         'uom' => 'setUom',
         'quantity' => 'setQuantity',
@@ -200,6 +205,7 @@ class Pack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'meta' => 'getMeta',
         'id' => 'getId',
         'uom' => 'getUom',
         'quantity' => 'getQuantity',
@@ -263,6 +269,7 @@ class Pack implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('uom', $data ?? [], null);
         $this->setIfExists('quantity', $data ?? [], null);
@@ -314,6 +321,33 @@ class Pack implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets meta
+     *
+     * @return \OpenAPI\Client\Model\Meta|null
+     */
+    public function getMeta()
+    {
+        return $this->container['meta'];
+    }
+
+    /**
+     * Sets meta
+     *
+     * @param \OpenAPI\Client\Model\Meta|null $meta meta
+     *
+     * @return self
+     */
+    public function setMeta($meta)
+    {
+        if (is_null($meta)) {
+            throw new \InvalidArgumentException('non-nullable meta cannot be null');
+        }
+        $this->container['meta'] = $meta;
+
+        return $this;
+    }
 
     /**
      * Gets id
@@ -421,7 +455,14 @@ class Pack implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setBarcodes($barcodes)
     {
         if (is_null($barcodes)) {
-            throw new \InvalidArgumentException('non-nullable barcodes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'barcodes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('barcodes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['barcodes'] = $barcodes;
 

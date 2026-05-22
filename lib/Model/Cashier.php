@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class Cashier implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $parentId, string $id) : Cashier {
+        $o = new Cashier();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('cashier');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'retailstore' . '/' . $parentId . '/' . 'cashiers' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.

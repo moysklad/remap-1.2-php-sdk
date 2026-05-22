@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class Move implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $id) : Move {
+        $o = new Move();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('move');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'move' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.

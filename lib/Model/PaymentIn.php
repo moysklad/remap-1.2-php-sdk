@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class PaymentIn implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $id) : PaymentIn {
+        $o = new PaymentIn();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('paymentin');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'paymentin' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.

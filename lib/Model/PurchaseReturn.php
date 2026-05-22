@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class PurchaseReturn implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $id) : PurchaseReturn {
+        $o = new PurchaseReturn();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('purchasereturn');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'purchasereturn' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.

@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class Currency implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $id) : Currency {
+        $o = new Currency();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('currency');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'currency' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.

@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $id) : Bundle {
+        $o = new Bundle();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('bundle');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'bundle' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.
@@ -191,13 +202,13 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
         'product_folder' => true,
         'images' => true,
         'files' => true,
-        'barcodes' => false,
-        'packs' => false,
-        'sale_prices' => false,
+        'barcodes' => true,
+        'packs' => true,
+        'sale_prices' => true,
         'buy_price' => false,
         'min_price' => false,
         'overhead' => false,
-        'attributes' => false,
+        'attributes' => true,
         'components' => false
     ];
 
@@ -1578,7 +1589,14 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setBarcodes($barcodes)
     {
         if (is_null($barcodes)) {
-            throw new \InvalidArgumentException('non-nullable barcodes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'barcodes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('barcodes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['barcodes'] = $barcodes;
 
@@ -1605,7 +1623,14 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setPacks($packs)
     {
         if (is_null($packs)) {
-            throw new \InvalidArgumentException('non-nullable packs cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'packs');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('packs', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['packs'] = $packs;
 
@@ -1632,7 +1657,14 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setSalePrices($sale_prices)
     {
         if (is_null($sale_prices)) {
-            throw new \InvalidArgumentException('non-nullable sale_prices cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'sale_prices');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('sale_prices', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['sale_prices'] = $sale_prices;
 
@@ -1740,7 +1772,14 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'attributes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('attributes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['attributes'] = $attributes;
 

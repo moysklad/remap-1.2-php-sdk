@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class CommissionReportOut implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $id) : CommissionReportOut {
+        $o = new CommissionReportOut();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('commissionreportout');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'commissionreportout' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.

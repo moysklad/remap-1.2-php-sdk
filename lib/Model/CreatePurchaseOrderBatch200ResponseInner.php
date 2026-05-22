@@ -202,16 +202,16 @@ class CreatePurchaseOrderBatch200ResponseInner implements ModelInterface, ArrayA
         'project' => true,
         'owner' => true,
         'group' => false,
-        'attributes' => false,
+        'attributes' => true,
         'files' => true,
         'rate' => false,
         'positions' => false,
         'internal_order' => true,
-        'customer_orders' => false,
-        'invoices_in' => false,
-        'supplies' => false,
-        'payments' => false,
-        'production_tasks' => false,
+        'customer_orders' => true,
+        'invoices_in' => true,
+        'supplies' => true,
+        'payments' => true,
+        'production_tasks' => true,
         'errors' => false
     ];
 
@@ -1660,7 +1660,14 @@ class CreatePurchaseOrderBatch200ResponseInner implements ModelInterface, ArrayA
     public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'attributes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('attributes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['attributes'] = $attributes;
 
@@ -1809,7 +1816,14 @@ class CreatePurchaseOrderBatch200ResponseInner implements ModelInterface, ArrayA
     public function setCustomerOrders($customer_orders)
     {
         if (is_null($customer_orders)) {
-            throw new \InvalidArgumentException('non-nullable customer_orders cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'customer_orders');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('customer_orders', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['customer_orders'] = $customer_orders;
 
@@ -1836,7 +1850,14 @@ class CreatePurchaseOrderBatch200ResponseInner implements ModelInterface, ArrayA
     public function setInvoicesIn($invoices_in)
     {
         if (is_null($invoices_in)) {
-            throw new \InvalidArgumentException('non-nullable invoices_in cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'invoices_in');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('invoices_in', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['invoices_in'] = $invoices_in;
 
@@ -1863,7 +1884,14 @@ class CreatePurchaseOrderBatch200ResponseInner implements ModelInterface, ArrayA
     public function setSupplies($supplies)
     {
         if (is_null($supplies)) {
-            throw new \InvalidArgumentException('non-nullable supplies cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'supplies');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('supplies', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['supplies'] = $supplies;
 
@@ -1890,7 +1918,14 @@ class CreatePurchaseOrderBatch200ResponseInner implements ModelInterface, ArrayA
     public function setPayments($payments)
     {
         if (is_null($payments)) {
-            throw new \InvalidArgumentException('non-nullable payments cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'payments');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('payments', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['payments'] = $payments;
 
@@ -1917,7 +1952,14 @@ class CreatePurchaseOrderBatch200ResponseInner implements ModelInterface, ArrayA
     public function setProductionTasks($production_tasks)
     {
         if (is_null($production_tasks)) {
-            throw new \InvalidArgumentException('non-nullable production_tasks cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'production_tasks');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('production_tasks', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['production_tasks'] = $production_tasks;
 

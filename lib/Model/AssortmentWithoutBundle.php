@@ -99,7 +99,6 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
         'payment_item_type' => 'string',
         'tax_system' => 'string',
         'attributes' => '\OpenAPI\Client\Model\AttributeAbstract[]',
-        'minimum_balance' => 'float',
         'minimum_stock' => '\OpenAPI\Client\Model\MinimumStockAbstract',
         'min_price' => '\OpenAPI\Client\Model\MinPrice',
         'weighed' => 'bool',
@@ -110,6 +109,9 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
         'ppe_type' => 'string',
         'product' => '\OpenAPI\Client\Model\Product',
         'characteristics' => '\OpenAPI\Client\Model\VariantCharacteristicValue[]',
+        'assortment' => '\OpenAPI\Client\Model\Assortment',
+        'expiry_date' => 'string',
+        'label' => 'string',
         'stock' => 'float',
         'reserve' => 'float',
         'in_transit' => 'float',
@@ -149,7 +151,7 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
         'owner' => null,
         'updated' => null,
         'weight' => 'float',
-        'volume' => 'float',
+        'volume' => 'double',
         'buy_price' => null,
         'sale_prices' => null,
         'supplier' => null,
@@ -165,7 +167,6 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
         'payment_item_type' => null,
         'tax_system' => null,
         'attributes' => null,
-        'minimum_balance' => 'float',
         'minimum_stock' => null,
         'min_price' => null,
         'weighed' => null,
@@ -176,6 +177,9 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
         'ppe_type' => null,
         'product' => null,
         'characteristics' => null,
+        'assortment' => null,
+        'expiry_date' => null,
+        'label' => null,
         'stock' => 'double',
         'reserve' => 'double',
         'in_transit' => 'double',
@@ -215,31 +219,33 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
         'weight' => false,
         'volume' => false,
         'buy_price' => true,
-        'sale_prices' => false,
+        'sale_prices' => true,
         'supplier' => true,
         'country' => true,
         'uom' => true,
         'product_folder' => true,
-        'images' => true,
+        'images' => false,
         'files' => true,
-        'barcodes' => false,
-        'packs' => false,
+        'barcodes' => true,
+        'packs' => true,
         'tracking_type' => false,
         'tnved' => false,
         'payment_item_type' => false,
         'tax_system' => false,
-        'attributes' => false,
-        'minimum_balance' => false,
+        'attributes' => true,
         'minimum_stock' => true,
         'min_price' => false,
         'weighed' => false,
         'on_tap' => false,
         'partial_disposal' => false,
-        'things' => false,
+        'things' => true,
         'sync_id' => false,
         'ppe_type' => false,
         'product' => false,
-        'characteristics' => false,
+        'characteristics' => true,
+        'assortment' => false,
+        'expiry_date' => false,
+        'label' => false,
         'stock' => false,
         'reserve' => false,
         'in_transit' => false,
@@ -373,7 +379,6 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
         'payment_item_type' => 'paymentItemType',
         'tax_system' => 'taxSystem',
         'attributes' => 'attributes',
-        'minimum_balance' => 'minimumBalance',
         'minimum_stock' => 'minimumStock',
         'min_price' => 'minPrice',
         'weighed' => 'weighed',
@@ -384,6 +389,9 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
         'ppe_type' => 'ppeType',
         'product' => 'product',
         'characteristics' => 'characteristics',
+        'assortment' => 'assortment',
+        'expiry_date' => 'expiryDate',
+        'label' => 'label',
         'stock' => 'stock',
         'reserve' => 'reserve',
         'in_transit' => 'inTransit',
@@ -437,7 +445,6 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
         'payment_item_type' => 'setPaymentItemType',
         'tax_system' => 'setTaxSystem',
         'attributes' => 'setAttributes',
-        'minimum_balance' => 'setMinimumBalance',
         'minimum_stock' => 'setMinimumStock',
         'min_price' => 'setMinPrice',
         'weighed' => 'setWeighed',
@@ -448,6 +455,9 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
         'ppe_type' => 'setPpeType',
         'product' => 'setProduct',
         'characteristics' => 'setCharacteristics',
+        'assortment' => 'setAssortment',
+        'expiry_date' => 'setExpiryDate',
+        'label' => 'setLabel',
         'stock' => 'setStock',
         'reserve' => 'setReserve',
         'in_transit' => 'setInTransit',
@@ -501,7 +511,6 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
         'payment_item_type' => 'getPaymentItemType',
         'tax_system' => 'getTaxSystem',
         'attributes' => 'getAttributes',
-        'minimum_balance' => 'getMinimumBalance',
         'minimum_stock' => 'getMinimumStock',
         'min_price' => 'getMinPrice',
         'weighed' => 'getWeighed',
@@ -512,6 +521,9 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
         'ppe_type' => 'getPpeType',
         'product' => 'getProduct',
         'characteristics' => 'getCharacteristics',
+        'assortment' => 'getAssortment',
+        'expiry_date' => 'getExpiryDate',
+        'label' => 'getLabel',
         'stock' => 'getStock',
         'reserve' => 'getReserve',
         'in_transit' => 'getInTransit',
@@ -616,7 +628,6 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('payment_item_type', $data ?? [], null);
         $this->setIfExists('tax_system', $data ?? [], null);
         $this->setIfExists('attributes', $data ?? [], null);
-        $this->setIfExists('minimum_balance', $data ?? [], null);
         $this->setIfExists('minimum_stock', $data ?? [], null);
         $this->setIfExists('min_price', $data ?? [], null);
         $this->setIfExists('weighed', $data ?? [], null);
@@ -627,6 +638,9 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('ppe_type', $data ?? [], null);
         $this->setIfExists('product', $data ?? [], null);
         $this->setIfExists('characteristics', $data ?? [], null);
+        $this->setIfExists('assortment', $data ?? [], null);
+        $this->setIfExists('expiry_date', $data ?? [], null);
+        $this->setIfExists('label', $data ?? [], null);
         $this->setIfExists('stock', $data ?? [], null);
         $this->setIfExists('reserve', $data ?? [], null);
         $this->setIfExists('in_transit', $data ?? [], null);
@@ -700,6 +714,10 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
             $invalidProperties[] = "invalid value for 'tnved', the character length must be smaller than or equal to 255.";
         }
 
+        if (!is_null($this->container['label']) && (mb_strlen($this->container['label']) > 255)) {
+            $invalidProperties[] = "invalid value for 'label', the character length must be smaller than or equal to 255.";
+        }
+
         return $invalidProperties;
     }
 
@@ -755,7 +773,7 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets id
      *
-     * @param string|null $id ID партии
+     * @param string|null $id ID Партии
      *
      * @return self
      */
@@ -836,7 +854,7 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets archived
      *
-     * @param bool|null $archived Добавлена ли Модификация в архив
+     * @param bool|null $archived Добавлена ли Партия в архив
      *
      * @return self
      */
@@ -890,7 +908,7 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets name
      *
-     * @param string|null $name Наименование Модификации
+     * @param string|null $name Наименование Партии
      *
      * @return self
      */
@@ -921,7 +939,7 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets code
      *
-     * @param string|null $code Код Модификации
+     * @param string|null $code Код Партии
      *
      * @return self
      */
@@ -952,7 +970,7 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets external_code
      *
-     * @param string|null $external_code Внешний код Модификации
+     * @param string|null $external_code Внешний код Партии
      *
      * @return self
      */
@@ -1041,7 +1059,7 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets description
      *
-     * @param string|null $description Описание Модификации
+     * @param string|null $description Описание Партии
      *
      * @return self
      */
@@ -1523,7 +1541,14 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
     public function setSalePrices($sale_prices)
     {
         if (is_null($sale_prices)) {
-            throw new \InvalidArgumentException('non-nullable sale_prices cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'sale_prices');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('sale_prices', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['sale_prices'] = $sale_prices;
 
@@ -1679,21 +1704,14 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets images
      *
-     * @param \OpenAPI\Client\Model\ImageList|null $images Массив метаданных Изображений
+     * @param \OpenAPI\Client\Model\ImageList|null $images Массив метаданных Изображений товара, к которому относится данная партия
      *
      * @return self
      */
     public function setImages($images)
     {
         if (is_null($images)) {
-            array_push($this->openAPINullablesSetToNull, 'images');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('images', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable images cannot be null');
         }
         $this->container['images'] = $images;
 
@@ -1747,14 +1765,21 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets barcodes
      *
-     * @param \OpenAPI\Client\Model\Barcode[]|null $barcodes Штрихкоды Модификации
+     * @param \OpenAPI\Client\Model\Barcode[]|null $barcodes Штрихкоды Партии
      *
      * @return self
      */
     public function setBarcodes($barcodes)
     {
         if (is_null($barcodes)) {
-            throw new \InvalidArgumentException('non-nullable barcodes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'barcodes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('barcodes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['barcodes'] = $barcodes;
 
@@ -1781,7 +1806,14 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
     public function setPacks($packs)
     {
         if (is_null($packs)) {
-            throw new \InvalidArgumentException('non-nullable packs cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'packs');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('packs', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['packs'] = $packs;
 
@@ -1913,45 +1945,23 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets attributes
      *
-     * @param \OpenAPI\Client\Model\AttributeAbstract[]|null $attributes Дополнительные поля
+     * @param \OpenAPI\Client\Model\AttributeAbstract[]|null $attributes Коллекция доп. полей Партии
      *
      * @return self
      */
     public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'attributes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('attributes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['attributes'] = $attributes;
-
-        return $this;
-    }
-
-    /**
-     * Gets minimum_balance
-     *
-     * @return float|null
-     * @deprecated
-     */
-    public function getMinimumBalance()
-    {
-        return $this->container['minimum_balance'];
-    }
-
-    /**
-     * Sets minimum_balance
-     *
-     * @param float|null $minimum_balance Неснижаемый остаток (устаревшее)
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setMinimumBalance($minimum_balance)
-    {
-        if (is_null($minimum_balance)) {
-            throw new \InvalidArgumentException('non-nullable minimum_balance cannot be null');
-        }
-        $this->container['minimum_balance'] = $minimum_balance;
 
         return $this;
     }
@@ -2118,7 +2128,14 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
     public function setThings($things)
     {
         if (is_null($things)) {
-            throw new \InvalidArgumentException('non-nullable things cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'things');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('things', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['things'] = $things;
 
@@ -2226,9 +2243,103 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
     public function setCharacteristics($characteristics)
     {
         if (is_null($characteristics)) {
-            throw new \InvalidArgumentException('non-nullable characteristics cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'characteristics');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('characteristics', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['characteristics'] = $characteristics;
+
+        return $this;
+    }
+
+    /**
+     * Gets assortment
+     *
+     * @return \OpenAPI\Client\Model\Assortment|null
+     * @deprecated
+     */
+    public function getAssortment()
+    {
+        return $this->container['assortment'];
+    }
+
+    /**
+     * Sets assortment
+     *
+     * @param \OpenAPI\Client\Model\Assortment|null $assortment assortment
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setAssortment($assortment)
+    {
+        if (is_null($assortment)) {
+            throw new \InvalidArgumentException('non-nullable assortment cannot be null');
+        }
+        $this->container['assortment'] = $assortment;
+
+        return $this;
+    }
+
+    /**
+     * Gets expiry_date
+     *
+     * @return string|null
+     */
+    public function getExpiryDate()
+    {
+        return $this->container['expiry_date'];
+    }
+
+    /**
+     * Sets expiry_date
+     *
+     * @param string|null $expiry_date Срок годности Партии
+     *
+     * @return self
+     */
+    public function setExpiryDate($expiry_date)
+    {
+        if (is_null($expiry_date)) {
+            throw new \InvalidArgumentException('non-nullable expiry_date cannot be null');
+        }
+        $this->container['expiry_date'] = $expiry_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets label
+     *
+     * @return string|null
+     */
+    public function getLabel()
+    {
+        return $this->container['label'];
+    }
+
+    /**
+     * Sets label
+     *
+     * @param string|null $label Метка Партии
+     *
+     * @return self
+     */
+    public function setLabel($label)
+    {
+        if (is_null($label)) {
+            throw new \InvalidArgumentException('non-nullable label cannot be null');
+        }
+        if ((mb_strlen($label) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $label when calling AssortmentWithoutBundle., must be smaller than or equal to 255.');
+        }
+
+        $this->container['label'] = $label;
 
         return $this;
     }

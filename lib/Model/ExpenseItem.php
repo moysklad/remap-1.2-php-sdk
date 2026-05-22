@@ -35,7 +35,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * ExpenseItem Class Doc Comment
  *
  * @category Class
- * @description Статья расхода
+ * @description Статья расходов
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class ExpenseItem implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $id) : ExpenseItem {
+        $o = new ExpenseItem();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('expenseitem');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'expenseitem' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.
@@ -59,7 +70,13 @@ class ExpenseItem implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'meta' => '\OpenAPI\Client\Model\Meta',
-        'id' => 'string'
+        'id' => 'string',
+        'account_id' => 'string',
+        'code' => 'string',
+        'description' => 'string',
+        'external_code' => 'string',
+        'name' => 'string',
+        'updated' => 'string'
     ];
 
     /**
@@ -71,7 +88,13 @@ class ExpenseItem implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'meta' => null,
-        'id' => 'uuid'
+        'id' => 'uuid',
+        'account_id' => 'uuid',
+        'code' => null,
+        'description' => null,
+        'external_code' => null,
+        'name' => null,
+        'updated' => null
     ];
 
     /**
@@ -81,7 +104,13 @@ class ExpenseItem implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'meta' => false,
-        'id' => false
+        'id' => false,
+        'account_id' => false,
+        'code' => false,
+        'description' => false,
+        'external_code' => false,
+        'name' => false,
+        'updated' => false
     ];
 
     /**
@@ -171,7 +200,13 @@ class ExpenseItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'meta' => 'meta',
-        'id' => 'id'
+        'id' => 'id',
+        'account_id' => 'accountId',
+        'code' => 'code',
+        'description' => 'description',
+        'external_code' => 'externalCode',
+        'name' => 'name',
+        'updated' => 'updated'
     ];
 
     /**
@@ -181,7 +216,13 @@ class ExpenseItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'meta' => 'setMeta',
-        'id' => 'setId'
+        'id' => 'setId',
+        'account_id' => 'setAccountId',
+        'code' => 'setCode',
+        'description' => 'setDescription',
+        'external_code' => 'setExternalCode',
+        'name' => 'setName',
+        'updated' => 'setUpdated'
     ];
 
     /**
@@ -191,7 +232,13 @@ class ExpenseItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'meta' => 'getMeta',
-        'id' => 'getId'
+        'id' => 'getId',
+        'account_id' => 'getAccountId',
+        'code' => 'getCode',
+        'description' => 'getDescription',
+        'external_code' => 'getExternalCode',
+        'name' => 'getName',
+        'updated' => 'getUpdated'
     ];
 
     /**
@@ -253,6 +300,12 @@ class ExpenseItem implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('account_id', $data ?? [], null);
+        $this->setIfExists('code', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('external_code', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('updated', $data ?? [], null);
     }
 
     /**
@@ -281,6 +334,22 @@ class ExpenseItem implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        if (!is_null($this->container['code']) && (mb_strlen($this->container['code']) > 255)) {
+            $invalidProperties[] = "invalid value for 'code', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['description']) && (mb_strlen($this->container['description']) > 4096)) {
+            $invalidProperties[] = "invalid value for 'description', the character length must be smaller than or equal to 4096.";
+        }
+
+        if (!is_null($this->container['external_code']) && (mb_strlen($this->container['external_code']) > 255)) {
+            $invalidProperties[] = "invalid value for 'external_code', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 255)) {
+            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
+        }
 
         return $invalidProperties;
     }
@@ -337,7 +406,7 @@ class ExpenseItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param string|null $id ID статьи расхода
+     * @param string|null $id ID Статьи расходов
      *
      * @return self
      */
@@ -347,6 +416,184 @@ class ExpenseItem implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets account_id
+     *
+     * @return string|null
+     */
+    public function getAccountId()
+    {
+        return $this->container['account_id'];
+    }
+
+    /**
+     * Sets account_id
+     *
+     * @param string|null $account_id ID учетной записи
+     *
+     * @return self
+     */
+    public function setAccountId($account_id)
+    {
+        if (is_null($account_id)) {
+            throw new \InvalidArgumentException('non-nullable account_id cannot be null');
+        }
+        $this->container['account_id'] = $account_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets code
+     *
+     * @return string|null
+     */
+    public function getCode()
+    {
+        return $this->container['code'];
+    }
+
+    /**
+     * Sets code
+     *
+     * @param string|null $code Код Статьи расходов
+     *
+     * @return self
+     */
+    public function setCode($code)
+    {
+        if (is_null($code)) {
+            throw new \InvalidArgumentException('non-nullable code cannot be null');
+        }
+        if ((mb_strlen($code) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $code when calling ExpenseItem., must be smaller than or equal to 255.');
+        }
+
+        $this->container['code'] = $code;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description Описание Статьи расходов
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        }
+        if ((mb_strlen($description) > 4096)) {
+            throw new \InvalidArgumentException('invalid length for $description when calling ExpenseItem., must be smaller than or equal to 4096.');
+        }
+
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets external_code
+     *
+     * @return string|null
+     */
+    public function getExternalCode()
+    {
+        return $this->container['external_code'];
+    }
+
+    /**
+     * Sets external_code
+     *
+     * @param string|null $external_code Внешний код Статьи расходов
+     *
+     * @return self
+     */
+    public function setExternalCode($external_code)
+    {
+        if (is_null($external_code)) {
+            throw new \InvalidArgumentException('non-nullable external_code cannot be null');
+        }
+        if ((mb_strlen($external_code) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $external_code when calling ExpenseItem., must be smaller than or equal to 255.');
+        }
+
+        $this->container['external_code'] = $external_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string|null $name Наименование Статьи расходов
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+        if ((mb_strlen($name) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling ExpenseItem., must be smaller than or equal to 255.');
+        }
+
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets updated
+     *
+     * @return string|null
+     */
+    public function getUpdated()
+    {
+        return $this->container['updated'];
+    }
+
+    /**
+     * Sets updated
+     *
+     * @param string|null $updated Момент последнего обновления сущности
+     *
+     * @return self
+     */
+    public function setUpdated($updated)
+    {
+        if (is_null($updated)) {
+            throw new \InvalidArgumentException('non-nullable updated cannot be null');
+        }
+        $this->container['updated'] = $updated;
 
         return $this;
     }

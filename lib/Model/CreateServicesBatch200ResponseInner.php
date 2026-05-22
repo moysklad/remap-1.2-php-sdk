@@ -157,14 +157,14 @@ class CreateServicesBatch200ResponseInner implements ModelInterface, ArrayAccess
         'owner' => true,
         'updated' => false,
         'buy_price' => false,
-        'sale_prices' => false,
+        'sale_prices' => true,
         'uom' => true,
         'product_folder' => true,
         'files' => true,
-        'barcodes' => false,
+        'barcodes' => true,
         'payment_item_type' => false,
         'tax_system' => false,
-        'attributes' => false,
+        'attributes' => true,
         'min_price' => false,
         'sync_id' => false,
         'errors' => false
@@ -1124,7 +1124,14 @@ class CreateServicesBatch200ResponseInner implements ModelInterface, ArrayAccess
     public function setSalePrices($sale_prices)
     {
         if (is_null($sale_prices)) {
-            throw new \InvalidArgumentException('non-nullable sale_prices cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'sale_prices');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('sale_prices', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['sale_prices'] = $sale_prices;
 
@@ -1253,7 +1260,14 @@ class CreateServicesBatch200ResponseInner implements ModelInterface, ArrayAccess
     public function setBarcodes($barcodes)
     {
         if (is_null($barcodes)) {
-            throw new \InvalidArgumentException('non-nullable barcodes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'barcodes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('barcodes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['barcodes'] = $barcodes;
 
@@ -1334,7 +1348,14 @@ class CreateServicesBatch200ResponseInner implements ModelInterface, ArrayAccess
     public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'attributes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('attributes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['attributes'] = $attributes;
 

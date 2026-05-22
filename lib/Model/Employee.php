@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class Employee implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $id) : Employee {
+        $o = new Employee();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('employee');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'employee' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.
@@ -153,7 +164,7 @@ class Employee implements ModelInterface, ArrayAccess, \JsonSerializable
         'salary' => false,
         'cashiers' => false,
         'image' => true,
-        'attributes' => false
+        'attributes' => true
     ];
 
     /**
@@ -1246,7 +1257,14 @@ class Employee implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'attributes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('attributes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['attributes'] = $attributes;
 

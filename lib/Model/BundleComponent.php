@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class BundleComponent implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $parentId, string $id) : BundleComponent {
+        $o = new BundleComponent();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('bundlecomponent');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'bundle' . '/' . $parentId . '/' . 'components' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.

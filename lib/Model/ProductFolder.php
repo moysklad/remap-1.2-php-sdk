@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class ProductFolder implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $id) : ProductFolder {
+        $o = new ProductFolder();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('productfolder');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'productfolder' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.

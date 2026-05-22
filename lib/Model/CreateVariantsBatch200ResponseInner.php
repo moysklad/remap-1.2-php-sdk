@@ -128,15 +128,15 @@ class CreateVariantsBatch200ResponseInner implements ModelInterface, ArrayAccess
         'description' => true,
         'discount_prohibited' => false,
         'product' => false,
-        'characteristics' => false,
-        'sale_prices' => false,
+        'characteristics' => true,
+        'sale_prices' => true,
         'buy_price' => true,
         'min_price' => false,
-        'barcodes' => false,
-        'packs' => false,
+        'barcodes' => true,
+        'packs' => true,
         'images' => true,
         'minimum_stock' => true,
-        'things' => false,
+        'things' => true,
         'errors' => false
     ];
 
@@ -788,7 +788,14 @@ class CreateVariantsBatch200ResponseInner implements ModelInterface, ArrayAccess
     public function setCharacteristics($characteristics)
     {
         if (is_null($characteristics)) {
-            throw new \InvalidArgumentException('non-nullable characteristics cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'characteristics');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('characteristics', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['characteristics'] = $characteristics;
 
@@ -815,7 +822,14 @@ class CreateVariantsBatch200ResponseInner implements ModelInterface, ArrayAccess
     public function setSalePrices($sale_prices)
     {
         if (is_null($sale_prices)) {
-            throw new \InvalidArgumentException('non-nullable sale_prices cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'sale_prices');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('sale_prices', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['sale_prices'] = $sale_prices;
 
@@ -903,7 +917,14 @@ class CreateVariantsBatch200ResponseInner implements ModelInterface, ArrayAccess
     public function setBarcodes($barcodes)
     {
         if (is_null($barcodes)) {
-            throw new \InvalidArgumentException('non-nullable barcodes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'barcodes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('barcodes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['barcodes'] = $barcodes;
 
@@ -930,7 +951,14 @@ class CreateVariantsBatch200ResponseInner implements ModelInterface, ArrayAccess
     public function setPacks($packs)
     {
         if (is_null($packs)) {
-            throw new \InvalidArgumentException('non-nullable packs cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'packs');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('packs', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['packs'] = $packs;
 
@@ -1025,7 +1053,14 @@ class CreateVariantsBatch200ResponseInner implements ModelInterface, ArrayAccess
     public function setThings($things)
     {
         if (is_null($things)) {
-            throw new \InvalidArgumentException('non-nullable things cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'things');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('things', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['things'] = $things;
 

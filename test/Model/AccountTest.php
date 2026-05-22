@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * AccountTest Class Doc Comment
  *
  * @category    Class
- * @description Счета Контрагентов
+ * @description Счета контрагентов/юрлиц
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
@@ -164,6 +164,15 @@ class AccountTest extends TestCase
      * Test attribute "bic"
      */
     public function testPropertyBic()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "currency"
+     */
+    public function testPropertyCurrency()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

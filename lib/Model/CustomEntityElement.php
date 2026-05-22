@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class CustomEntityElement implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $metadataId, string $id) : CustomEntityElement {
+        $o = new CustomEntityElement();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('customentity');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'customentity' . '/' . $metadataId . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.

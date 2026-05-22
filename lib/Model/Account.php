@@ -35,7 +35,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * Account Class Doc Comment
  *
  * @category Class
- * @description Счета Контрагентов
+ * @description Счета контрагентов/юрлиц
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class Account implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $entityType, string $parentId, string $id) : Account {
+        $o = new Account();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('account');
+        $href = $config->getHost() . '/' . 'entity' . '/' . $entityType . '/' . $parentId . '/' . 'accounts' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.
@@ -67,7 +78,8 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
         'bank_name' => 'string',
         'bank_location' => 'string',
         'correspondent_account' => 'string',
-        'bic' => 'string'
+        'bic' => 'string',
+        'currency' => '\OpenAPI\Client\Model\Currency'
     ];
 
     /**
@@ -87,7 +99,8 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
         'bank_name' => null,
         'bank_location' => null,
         'correspondent_account' => null,
-        'bic' => null
+        'bic' => null,
+        'currency' => null
     ];
 
     /**
@@ -105,7 +118,8 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
         'bank_name' => false,
         'bank_location' => false,
         'correspondent_account' => false,
-        'bic' => false
+        'bic' => false,
+        'currency' => true
     ];
 
     /**
@@ -203,7 +217,8 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
         'bank_name' => 'bankName',
         'bank_location' => 'bankLocation',
         'correspondent_account' => 'correspondentAccount',
-        'bic' => 'bic'
+        'bic' => 'bic',
+        'currency' => 'currency'
     ];
 
     /**
@@ -221,7 +236,8 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
         'bank_name' => 'setBankName',
         'bank_location' => 'setBankLocation',
         'correspondent_account' => 'setCorrespondentAccount',
-        'bic' => 'setBic'
+        'bic' => 'setBic',
+        'currency' => 'setCurrency'
     ];
 
     /**
@@ -239,7 +255,8 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
         'bank_name' => 'getBankName',
         'bank_location' => 'getBankLocation',
         'correspondent_account' => 'getCorrespondentAccount',
-        'bic' => 'getBic'
+        'bic' => 'getBic',
+        'currency' => 'getCurrency'
     ];
 
     /**
@@ -309,6 +326,7 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('bank_location', $data ?? [], null);
         $this->setIfExists('correspondent_account', $data ?? [], null);
         $this->setIfExists('bic', $data ?? [], null);
+        $this->setIfExists('currency', $data ?? [], null);
     }
 
     /**
@@ -619,6 +637,40 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable bic cannot be null');
         }
         $this->container['bic'] = $bic;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency
+     *
+     * @return \OpenAPI\Client\Model\Currency|null
+     */
+    public function getCurrency()
+    {
+        return $this->container['currency'];
+    }
+
+    /**
+     * Sets currency
+     *
+     * @param \OpenAPI\Client\Model\Currency|null $currency Метаданные валюты расчетного счета юрлица
+     *
+     * @return self
+     */
+    public function setCurrency($currency)
+    {
+        if (is_null($currency)) {
+            array_push($this->openAPINullablesSetToNull, 'currency');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('currency', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['currency'] = $currency;
 
         return $this;
     }

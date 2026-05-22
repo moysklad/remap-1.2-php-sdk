@@ -85,7 +85,7 @@ class CashInOperationAnyOf implements ModelInterface, ArrayAccess, \JsonSerializ
         'invoiced_sum' => 'float',
         'organization' => '\OpenAPI\Client\Model\Organization',
         'organization_account' => '\OpenAPI\Client\Model\Account',
-        'agent' => '\OpenAPI\Client\Model\Counterparty',
+        'agent' => '\OpenAPI\Client\Model\CustomerOrderAgent',
         'agent_account' => '\OpenAPI\Client\Model\Account',
         'store' => '\OpenAPI\Client\Model\Store',
         'state' => '\OpenAPI\Client\Model\State',
@@ -213,7 +213,7 @@ class CashInOperationAnyOf implements ModelInterface, ArrayAccess, \JsonSerializ
         'project' => true,
         'owner' => true,
         'group' => false,
-        'attributes' => false,
+        'attributes' => true,
         'files' => true,
         'tax_system' => false,
         'rate' => false,
@@ -221,13 +221,13 @@ class CashInOperationAnyOf implements ModelInterface, ArrayAccess, \JsonSerializ
         'sales_channel' => true,
         'shipment_address' => true,
         'shipment_address_full' => true,
-        'invoices_out' => false,
-        'demands' => false,
-        'payments' => false,
-        'prepayments' => false,
-        'purchase_orders' => false,
-        'moves' => false,
-        'production_tasks' => false,
+        'invoices_out' => true,
+        'demands' => true,
+        'payments' => true,
+        'prepayments' => true,
+        'purchase_orders' => true,
+        'moves' => true,
+        'production_tasks' => true,
         'linked_sum' => false
     ];
 
@@ -1425,7 +1425,7 @@ class CashInOperationAnyOf implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets agent
      *
-     * @return \OpenAPI\Client\Model\Counterparty|null
+     * @return \OpenAPI\Client\Model\CustomerOrderAgent|null
      */
     public function getAgent()
     {
@@ -1435,7 +1435,7 @@ class CashInOperationAnyOf implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets agent
      *
-     * @param \OpenAPI\Client\Model\Counterparty|null $agent agent
+     * @param \OpenAPI\Client\Model\CustomerOrderAgent|null $agent agent
      *
      * @return self
      */
@@ -1700,7 +1700,14 @@ class CashInOperationAnyOf implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'attributes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('attributes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['attributes'] = $attributes;
 
@@ -1948,7 +1955,14 @@ class CashInOperationAnyOf implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setInvoicesOut($invoices_out)
     {
         if (is_null($invoices_out)) {
-            throw new \InvalidArgumentException('non-nullable invoices_out cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'invoices_out');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('invoices_out', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['invoices_out'] = $invoices_out;
 
@@ -1975,7 +1989,14 @@ class CashInOperationAnyOf implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setDemands($demands)
     {
         if (is_null($demands)) {
-            throw new \InvalidArgumentException('non-nullable demands cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'demands');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('demands', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['demands'] = $demands;
 
@@ -2002,7 +2023,14 @@ class CashInOperationAnyOf implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setPayments($payments)
     {
         if (is_null($payments)) {
-            throw new \InvalidArgumentException('non-nullable payments cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'payments');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('payments', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['payments'] = $payments;
 
@@ -2029,7 +2057,14 @@ class CashInOperationAnyOf implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setPrepayments($prepayments)
     {
         if (is_null($prepayments)) {
-            throw new \InvalidArgumentException('non-nullable prepayments cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'prepayments');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('prepayments', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['prepayments'] = $prepayments;
 
@@ -2056,7 +2091,14 @@ class CashInOperationAnyOf implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setPurchaseOrders($purchase_orders)
     {
         if (is_null($purchase_orders)) {
-            throw new \InvalidArgumentException('non-nullable purchase_orders cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'purchase_orders');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('purchase_orders', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['purchase_orders'] = $purchase_orders;
 
@@ -2083,7 +2125,14 @@ class CashInOperationAnyOf implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setMoves($moves)
     {
         if (is_null($moves)) {
-            throw new \InvalidArgumentException('non-nullable moves cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'moves');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('moves', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['moves'] = $moves;
 
@@ -2110,7 +2159,14 @@ class CashInOperationAnyOf implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setProductionTasks($production_tasks)
     {
         if (is_null($production_tasks)) {
-            throw new \InvalidArgumentException('non-nullable production_tasks cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'production_tasks');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('production_tasks', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['production_tasks'] = $production_tasks;
 

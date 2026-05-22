@@ -89,15 +89,6 @@ class AttributeAbstractTest extends TestCase
     }
 
     /**
-     * Test attribute "meta"
-     */
-    public function testPropertyMeta()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "name"
      */
     public function testPropertyName()
@@ -116,18 +107,9 @@ class AttributeAbstractTest extends TestCase
     }
 
     /**
-     * Test attribute "value"
+     * Test attribute "meta"
      */
-    public function testPropertyValue()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "download"
-     */
-    public function testPropertyDownload()
+    public function testPropertyMeta()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

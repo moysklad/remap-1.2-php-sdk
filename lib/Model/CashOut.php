@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class CashOut implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $id) : CashOut {
+        $o = new CashOut();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('cashout');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'cashout' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.
@@ -165,7 +176,7 @@ class CashOut implements ModelInterface, ArrayAccess, \JsonSerializable
         'organization' => false,
         'agent' => false,
         'expense_item' => true,
-        'attributes' => false,
+        'attributes' => true,
         'contract' => true,
         'files' => true,
         'no_closing_docs' => false,
@@ -177,7 +188,7 @@ class CashOut implements ModelInterface, ArrayAccess, \JsonSerializable
         'sum' => false,
         'vat_sum' => false,
         'facture_in' => true,
-        'operations' => false
+        'operations' => true
     ];
 
     /**
@@ -1165,7 +1176,14 @@ class CashOut implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'attributes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('attributes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['attributes'] = $attributes;
 
@@ -1535,7 +1553,14 @@ class CashOut implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setOperations($operations)
     {
         if (is_null($operations)) {
-            throw new \InvalidArgumentException('non-nullable operations cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'operations');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('operations', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['operations'] = $operations;
 

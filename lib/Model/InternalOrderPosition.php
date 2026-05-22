@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class InternalOrderPosition implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $parentId, string $id) : InternalOrderPosition {
+        $o = new InternalOrderPosition();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('internalorderposition');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'internalorder' . '/' . $parentId . '/' . 'positions' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.

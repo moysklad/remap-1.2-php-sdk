@@ -95,7 +95,7 @@ class DiscountBase implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => false,
         'active' => false,
         'all_agents' => false,
-        'agent_tags' => false
+        'agent_tags' => true
     ];
 
     /**
@@ -521,7 +521,14 @@ class DiscountBase implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAgentTags($agent_tags)
     {
         if (is_null($agent_tags)) {
-            throw new \InvalidArgumentException('non-nullable agent_tags cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'agent_tags');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('agent_tags', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['agent_tags'] = $agent_tags;
 

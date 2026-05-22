@@ -96,22 +96,4 @@ class MinimumStockAbstractTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
-
-    /**
-     * Test attribute "quantity"
-     */
-    public function testPropertyQuantity()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "store_balances"
-     */
-    public function testPropertyStoreBalances()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
 }

@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class ContactPerson implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $parentId, string $id) : ContactPerson {
+        $o = new ContactPerson();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('contactperson');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'counterparty' . '/' . $parentId . '/' . 'contactpersons' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.

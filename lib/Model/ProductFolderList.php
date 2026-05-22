@@ -84,7 +84,7 @@ class ProductFolderList implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected static array $openAPINullables = [
         'context' => false,
         'meta' => false,
-        'rows' => false
+        'rows' => true
     ];
 
     /**
@@ -378,7 +378,14 @@ class ProductFolderList implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setRows($rows)
     {
         if (is_null($rows)) {
-            throw new \InvalidArgumentException('non-nullable rows cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'rows');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('rows', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['rows'] = $rows;
 

@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class Variant implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $id) : Variant {
+        $o = new Variant();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('variant');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'variant' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.
@@ -127,15 +138,15 @@ class Variant implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => true,
         'discount_prohibited' => false,
         'product' => false,
-        'characteristics' => false,
-        'sale_prices' => false,
+        'characteristics' => true,
+        'sale_prices' => true,
         'buy_price' => true,
         'min_price' => false,
-        'barcodes' => false,
-        'packs' => false,
+        'barcodes' => true,
+        'packs' => true,
         'images' => true,
         'minimum_stock' => true,
-        'things' => false
+        'things' => true
     ];
 
     /**
@@ -779,7 +790,14 @@ class Variant implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setCharacteristics($characteristics)
     {
         if (is_null($characteristics)) {
-            throw new \InvalidArgumentException('non-nullable characteristics cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'characteristics');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('characteristics', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['characteristics'] = $characteristics;
 
@@ -806,7 +824,14 @@ class Variant implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setSalePrices($sale_prices)
     {
         if (is_null($sale_prices)) {
-            throw new \InvalidArgumentException('non-nullable sale_prices cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'sale_prices');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('sale_prices', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['sale_prices'] = $sale_prices;
 
@@ -894,7 +919,14 @@ class Variant implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setBarcodes($barcodes)
     {
         if (is_null($barcodes)) {
-            throw new \InvalidArgumentException('non-nullable barcodes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'barcodes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('barcodes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['barcodes'] = $barcodes;
 
@@ -921,7 +953,14 @@ class Variant implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setPacks($packs)
     {
         if (is_null($packs)) {
-            throw new \InvalidArgumentException('non-nullable packs cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'packs');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('packs', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['packs'] = $packs;
 
@@ -1016,7 +1055,14 @@ class Variant implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setThings($things)
     {
         if (is_null($things)) {
-            throw new \InvalidArgumentException('non-nullable things cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'things');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('things', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['things'] = $things;
 

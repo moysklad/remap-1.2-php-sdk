@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class State implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $entityType, string $id) : State {
+        $o = new State();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('state');
+        $href = $config->getHost() . '/' . 'entity' . '/' . $entityType . '/' . 'metadata' . '/' . 'states' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.
@@ -321,6 +332,10 @@ class State implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
         }
 
+        if (!is_null($this->container['entity_type']) && (mb_strlen($this->container['entity_type']) > 255)) {
+            $invalidProperties[] = "invalid value for 'entity_type', the character length must be smaller than or equal to 255.";
+        }
+
         return $invalidProperties;
     }
 
@@ -497,6 +512,10 @@ class State implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($entity_type)) {
             throw new \InvalidArgumentException('non-nullable entity_type cannot be null');
         }
+        if ((mb_strlen($entity_type) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $entity_type when calling State., must be smaller than or equal to 255.');
+        }
+
         $this->container['entity_type'] = $entity_type;
 
         return $this;

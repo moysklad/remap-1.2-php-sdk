@@ -81,7 +81,7 @@ class EmployeeRole implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'meta' => false,
-        'permissions' => false
+        'permissions' => true
     ];
 
     /**
@@ -344,7 +344,14 @@ class EmployeeRole implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setPermissions($permissions)
     {
         if (is_null($permissions)) {
-            throw new \InvalidArgumentException('non-nullable permissions cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'permissions');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('permissions', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['permissions'] = $permissions;
 

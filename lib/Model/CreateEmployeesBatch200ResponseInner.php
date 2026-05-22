@@ -154,7 +154,7 @@ class CreateEmployeesBatch200ResponseInner implements ModelInterface, ArrayAcces
         'salary' => false,
         'cashiers' => false,
         'image' => true,
-        'attributes' => false,
+        'attributes' => true,
         'errors' => false
     ];
 
@@ -1255,7 +1255,14 @@ class CreateEmployeesBatch200ResponseInner implements ModelInterface, ArrayAcces
     public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'attributes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('attributes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['attributes'] = $attributes;
 

@@ -14,5 +14,6 @@ Name | Type | Description | Notes
 **bank_location** | **string** | Адрес банка | [optional]
 **correspondent_account** | **string** | Корр. счет | [optional]
 **bic** | **string** | БИК | [optional]
+**currency** | [**\OpenAPI\Client\Model\Currency**](Currency.md) | Метаданные валюты расчетного счета юрлица | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

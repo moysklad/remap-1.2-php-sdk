@@ -99,7 +99,6 @@ class DiscountAssortmentItem implements ModelInterface, ArrayAccess, \JsonSerial
         'payment_item_type' => 'string',
         'tax_system' => 'string',
         'attributes' => '\OpenAPI\Client\Model\AttributeAbstract[]',
-        'minimum_balance' => 'float',
         'minimum_stock' => '\OpenAPI\Client\Model\MinimumStockAbstract',
         'min_price' => '\OpenAPI\Client\Model\MinPrice',
         'weighed' => 'bool',
@@ -145,7 +144,7 @@ class DiscountAssortmentItem implements ModelInterface, ArrayAccess, \JsonSerial
         'owner' => null,
         'updated' => null,
         'weight' => 'float',
-        'volume' => 'float',
+        'volume' => 'double',
         'buy_price' => null,
         'sale_prices' => null,
         'supplier' => null,
@@ -161,7 +160,6 @@ class DiscountAssortmentItem implements ModelInterface, ArrayAccess, \JsonSerial
         'payment_item_type' => null,
         'tax_system' => null,
         'attributes' => null,
-        'minimum_balance' => 'float',
         'minimum_stock' => null,
         'min_price' => null,
         'weighed' => null,
@@ -207,31 +205,30 @@ class DiscountAssortmentItem implements ModelInterface, ArrayAccess, \JsonSerial
         'weight' => false,
         'volume' => false,
         'buy_price' => true,
-        'sale_prices' => false,
+        'sale_prices' => true,
         'supplier' => true,
         'country' => true,
         'uom' => true,
         'product_folder' => true,
         'images' => true,
         'files' => true,
-        'barcodes' => false,
-        'packs' => false,
+        'barcodes' => true,
+        'packs' => true,
         'tracking_type' => false,
         'tnved' => false,
         'payment_item_type' => false,
         'tax_system' => false,
-        'attributes' => false,
-        'minimum_balance' => false,
+        'attributes' => true,
         'minimum_stock' => true,
         'min_price' => false,
         'weighed' => false,
         'on_tap' => false,
         'partial_disposal' => false,
-        'things' => false,
+        'things' => true,
         'sync_id' => false,
         'ppe_type' => false,
         'product' => false,
-        'characteristics' => false
+        'characteristics' => true
     ];
 
     /**
@@ -361,7 +358,6 @@ class DiscountAssortmentItem implements ModelInterface, ArrayAccess, \JsonSerial
         'payment_item_type' => 'paymentItemType',
         'tax_system' => 'taxSystem',
         'attributes' => 'attributes',
-        'minimum_balance' => 'minimumBalance',
         'minimum_stock' => 'minimumStock',
         'min_price' => 'minPrice',
         'weighed' => 'weighed',
@@ -421,7 +417,6 @@ class DiscountAssortmentItem implements ModelInterface, ArrayAccess, \JsonSerial
         'payment_item_type' => 'setPaymentItemType',
         'tax_system' => 'setTaxSystem',
         'attributes' => 'setAttributes',
-        'minimum_balance' => 'setMinimumBalance',
         'minimum_stock' => 'setMinimumStock',
         'min_price' => 'setMinPrice',
         'weighed' => 'setWeighed',
@@ -481,7 +476,6 @@ class DiscountAssortmentItem implements ModelInterface, ArrayAccess, \JsonSerial
         'payment_item_type' => 'getPaymentItemType',
         'tax_system' => 'getTaxSystem',
         'attributes' => 'getAttributes',
-        'minimum_balance' => 'getMinimumBalance',
         'minimum_stock' => 'getMinimumStock',
         'min_price' => 'getMinPrice',
         'weighed' => 'getWeighed',
@@ -592,7 +586,6 @@ class DiscountAssortmentItem implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('payment_item_type', $data ?? [], null);
         $this->setIfExists('tax_system', $data ?? [], null);
         $this->setIfExists('attributes', $data ?? [], null);
-        $this->setIfExists('minimum_balance', $data ?? [], null);
         $this->setIfExists('minimum_stock', $data ?? [], null);
         $this->setIfExists('min_price', $data ?? [], null);
         $this->setIfExists('weighed', $data ?? [], null);
@@ -1495,7 +1488,14 @@ class DiscountAssortmentItem implements ModelInterface, ArrayAccess, \JsonSerial
     public function setSalePrices($sale_prices)
     {
         if (is_null($sale_prices)) {
-            throw new \InvalidArgumentException('non-nullable sale_prices cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'sale_prices');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('sale_prices', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['sale_prices'] = $sale_prices;
 
@@ -1726,7 +1726,14 @@ class DiscountAssortmentItem implements ModelInterface, ArrayAccess, \JsonSerial
     public function setBarcodes($barcodes)
     {
         if (is_null($barcodes)) {
-            throw new \InvalidArgumentException('non-nullable barcodes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'barcodes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('barcodes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['barcodes'] = $barcodes;
 
@@ -1753,7 +1760,14 @@ class DiscountAssortmentItem implements ModelInterface, ArrayAccess, \JsonSerial
     public function setPacks($packs)
     {
         if (is_null($packs)) {
-            throw new \InvalidArgumentException('non-nullable packs cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'packs');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('packs', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['packs'] = $packs;
 
@@ -1892,38 +1906,16 @@ class DiscountAssortmentItem implements ModelInterface, ArrayAccess, \JsonSerial
     public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'attributes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('attributes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['attributes'] = $attributes;
-
-        return $this;
-    }
-
-    /**
-     * Gets minimum_balance
-     *
-     * @return float|null
-     * @deprecated
-     */
-    public function getMinimumBalance()
-    {
-        return $this->container['minimum_balance'];
-    }
-
-    /**
-     * Sets minimum_balance
-     *
-     * @param float|null $minimum_balance Неснижаемый остаток (устаревшее)
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setMinimumBalance($minimum_balance)
-    {
-        if (is_null($minimum_balance)) {
-            throw new \InvalidArgumentException('non-nullable minimum_balance cannot be null');
-        }
-        $this->container['minimum_balance'] = $minimum_balance;
 
         return $this;
     }
@@ -2090,7 +2082,14 @@ class DiscountAssortmentItem implements ModelInterface, ArrayAccess, \JsonSerial
     public function setThings($things)
     {
         if (is_null($things)) {
-            throw new \InvalidArgumentException('non-nullable things cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'things');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('things', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['things'] = $things;
 
@@ -2198,7 +2197,14 @@ class DiscountAssortmentItem implements ModelInterface, ArrayAccess, \JsonSerial
     public function setCharacteristics($characteristics)
     {
         if (is_null($characteristics)) {
-            throw new \InvalidArgumentException('non-nullable characteristics cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'characteristics');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('characteristics', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['characteristics'] = $characteristics;
 

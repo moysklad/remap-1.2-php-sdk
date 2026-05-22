@@ -50,7 +50,7 @@ class Context implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'context';
+    protected static $openAPIModelName = 'Context';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

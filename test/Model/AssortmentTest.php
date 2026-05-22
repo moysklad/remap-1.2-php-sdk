@@ -449,15 +449,6 @@ class AssortmentTest extends TestCase
     }
 
     /**
-     * Test attribute "minimum_balance"
-     */
-    public function testPropertyMinimumBalance()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "minimum_stock"
      */
     public function testPropertyMinimumStock()
@@ -560,6 +551,33 @@ class AssortmentTest extends TestCase
      * Test attribute "components"
      */
     public function testPropertyComponents()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "assortment"
+     */
+    public function testPropertyAssortment()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "expiry_date"
+     */
+    public function testPropertyExpiryDate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "label"
+     */
+    public function testPropertyLabel()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

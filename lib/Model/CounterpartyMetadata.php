@@ -88,8 +88,8 @@ class CounterpartyMetadata implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static array $openAPINullables = [
         'meta' => false,
         'attributes' => false,
-        'states' => false,
-        'tags' => false,
+        'states' => true,
+        'tags' => true,
         'create_shared' => false
     ];
 
@@ -392,7 +392,14 @@ class CounterpartyMetadata implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setStates($states)
     {
         if (is_null($states)) {
-            throw new \InvalidArgumentException('non-nullable states cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'states');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('states', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['states'] = $states;
 
@@ -419,7 +426,14 @@ class CounterpartyMetadata implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setTags($tags)
     {
         if (is_null($tags)) {
-            throw new \InvalidArgumentException('non-nullable tags cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'tags');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('tags', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['tags'] = $tags;
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**context** | [**\OpenAPI\Client\Model\Context1**](Context1.md) |  | [optional]
+**context** | [**\OpenAPI\Client\Model\Context**](Context.md) |  | [optional]
 **meta** | [**\OpenAPI\Client\Model\MetaList**](MetaList.md) |  | [optional]
 **rows** | [**\OpenAPI\Client\Model\CommissionReportInPosition[]**](CommissionReportInPosition.md) | Массив позиций Полученного отчета комиссионера | [optional]
 

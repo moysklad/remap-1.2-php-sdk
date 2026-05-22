@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**meta** | [**\OpenAPI\Client\Model\Meta**](Meta.md) |  | [optional]
 **id** | **string** | ID упаковки | [optional] [readonly]
 **uom** | [**\OpenAPI\Client\Model\Uom**](Uom.md) |  | [optional]
 **quantity** | **float** | Количество товаров в упаковке | [optional]

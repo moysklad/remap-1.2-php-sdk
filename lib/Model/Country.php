@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class Country implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $id) : Country {
+        $o = new Country();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('country');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'country' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.

@@ -108,6 +108,30 @@ class PurchaseOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for createPurchaseOrderMetadataState
+     *
+     * Создать статус PurchaseOrder.
+     *
+     */
+    public function testCreatePurchaseOrderMetadataState()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for createPurchaseOrderNote
+     *
+     * Добавить Событие Заказа поставщику.
+     *
+     */
+    public function testCreatePurchaseOrderNote()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createPurchaseOrderPositions
      *
      * Создать позиции PurchaseOrder.
@@ -162,6 +186,18 @@ class PurchaseOrdersApiTest extends TestCase
      *
      */
     public function testDeletePurchaseOrderMetadataStateById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deletePurchaseOrderNote
+     *
+     * Удалить Событие Заказа поставщику.
+     *
+     */
+    public function testDeletePurchaseOrderNote()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -264,6 +300,30 @@ class PurchaseOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for getPurchaseOrderNoteById
+     *
+     * Получить Событие Заказа поставщику по ID.
+     *
+     */
+    public function testGetPurchaseOrderNoteById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getPurchaseOrderNotes
+     *
+     * Получить список Событий Заказа поставщику.
+     *
+     */
+    public function testGetPurchaseOrderNotes()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getPurchaseOrderPositionById
      *
      * Получить позицию PurchaseOrder.
@@ -330,6 +390,18 @@ class PurchaseOrdersApiTest extends TestCase
      *
      */
     public function testUpdatePurchaseOrderMetadataStateById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updatePurchaseOrderNote
+     *
+     * Обновить Событие Заказа поставщику.
+     *
+     */
+    public function testUpdatePurchaseOrderNote()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

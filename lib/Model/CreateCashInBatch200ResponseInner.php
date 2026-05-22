@@ -154,7 +154,7 @@ class CreateCashInBatch200ResponseInner implements ModelInterface, ArrayAccess, 
         'deleted' => false,
         'updated' => false,
         'moment' => false,
-        'attributes' => false,
+        'attributes' => true,
         'contract' => true,
         'files' => true,
         'payment_purpose' => false,
@@ -172,7 +172,7 @@ class CreateCashInBatch200ResponseInner implements ModelInterface, ArrayAccess, 
         'sum' => false,
         'vat_sum' => false,
         'facture_out' => true,
-        'operations' => false,
+        'operations' => true,
         'errors' => false
     ];
 
@@ -930,7 +930,14 @@ class CreateCashInBatch200ResponseInner implements ModelInterface, ArrayAccess, 
     public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'attributes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('attributes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['attributes'] = $attributes;
 
@@ -1469,7 +1476,14 @@ class CreateCashInBatch200ResponseInner implements ModelInterface, ArrayAccess, 
     public function setOperations($operations)
     {
         if (is_null($operations)) {
-            throw new \InvalidArgumentException('non-nullable operations cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'operations');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('operations', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['operations'] = $operations;
 

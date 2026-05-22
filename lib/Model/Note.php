@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class Note implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $parentId, string $id) : Note {
+        $o = new Note();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('note');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'counterparty' . '/' . $parentId . '/' . 'notes' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.

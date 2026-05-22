@@ -43,6 +43,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class Service implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $id) : Service {
+        $o = new Service();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('service');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'service' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.
@@ -155,14 +166,14 @@ class Service implements ModelInterface, ArrayAccess, \JsonSerializable
         'owner' => true,
         'updated' => false,
         'buy_price' => false,
-        'sale_prices' => false,
+        'sale_prices' => true,
         'uom' => true,
         'product_folder' => true,
         'files' => true,
-        'barcodes' => false,
+        'barcodes' => true,
         'payment_item_type' => false,
         'tax_system' => false,
-        'attributes' => false,
+        'attributes' => true,
         'min_price' => false,
         'sync_id' => false
     ];
@@ -1114,7 +1125,14 @@ class Service implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setSalePrices($sale_prices)
     {
         if (is_null($sale_prices)) {
-            throw new \InvalidArgumentException('non-nullable sale_prices cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'sale_prices');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('sale_prices', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['sale_prices'] = $sale_prices;
 
@@ -1243,7 +1261,14 @@ class Service implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setBarcodes($barcodes)
     {
         if (is_null($barcodes)) {
-            throw new \InvalidArgumentException('non-nullable barcodes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'barcodes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('barcodes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['barcodes'] = $barcodes;
 
@@ -1324,7 +1349,14 @@ class Service implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'attributes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('attributes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['attributes'] = $attributes;
 

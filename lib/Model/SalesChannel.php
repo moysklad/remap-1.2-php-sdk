@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class SalesChannel implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $id) : SalesChannel {
+        $o = new SalesChannel();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('saleschannel');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'saleschannel' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.
@@ -60,7 +71,17 @@ class SalesChannel implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'meta' => '\OpenAPI\Client\Model\Meta',
         'id' => 'string',
-        'account_id' => 'string'
+        'account_id' => 'string',
+        'archived' => 'bool',
+        'code' => 'string',
+        'description' => 'string',
+        'external_code' => 'string',
+        'group' => '\OpenAPI\Client\Model\Group',
+        'name' => 'string',
+        'owner' => '\OpenAPI\Client\Model\Employee',
+        'shared' => 'bool',
+        'type' => 'string',
+        'updated' => 'string'
     ];
 
     /**
@@ -73,7 +94,17 @@ class SalesChannel implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'meta' => null,
         'id' => 'uuid',
-        'account_id' => 'uuid'
+        'account_id' => 'uuid',
+        'archived' => null,
+        'code' => null,
+        'description' => null,
+        'external_code' => null,
+        'group' => null,
+        'name' => null,
+        'owner' => null,
+        'shared' => null,
+        'type' => null,
+        'updated' => null
     ];
 
     /**
@@ -84,7 +115,17 @@ class SalesChannel implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'meta' => false,
         'id' => false,
-        'account_id' => false
+        'account_id' => false,
+        'archived' => false,
+        'code' => false,
+        'description' => true,
+        'external_code' => false,
+        'group' => false,
+        'name' => false,
+        'owner' => true,
+        'shared' => false,
+        'type' => false,
+        'updated' => false
     ];
 
     /**
@@ -175,7 +216,17 @@ class SalesChannel implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'meta' => 'meta',
         'id' => 'id',
-        'account_id' => 'accountId'
+        'account_id' => 'accountId',
+        'archived' => 'archived',
+        'code' => 'code',
+        'description' => 'description',
+        'external_code' => 'externalCode',
+        'group' => 'group',
+        'name' => 'name',
+        'owner' => 'owner',
+        'shared' => 'shared',
+        'type' => 'type',
+        'updated' => 'updated'
     ];
 
     /**
@@ -186,7 +237,17 @@ class SalesChannel implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'meta' => 'setMeta',
         'id' => 'setId',
-        'account_id' => 'setAccountId'
+        'account_id' => 'setAccountId',
+        'archived' => 'setArchived',
+        'code' => 'setCode',
+        'description' => 'setDescription',
+        'external_code' => 'setExternalCode',
+        'group' => 'setGroup',
+        'name' => 'setName',
+        'owner' => 'setOwner',
+        'shared' => 'setShared',
+        'type' => 'setType',
+        'updated' => 'setUpdated'
     ];
 
     /**
@@ -197,7 +258,17 @@ class SalesChannel implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'meta' => 'getMeta',
         'id' => 'getId',
-        'account_id' => 'getAccountId'
+        'account_id' => 'getAccountId',
+        'archived' => 'getArchived',
+        'code' => 'getCode',
+        'description' => 'getDescription',
+        'external_code' => 'getExternalCode',
+        'group' => 'getGroup',
+        'name' => 'getName',
+        'owner' => 'getOwner',
+        'shared' => 'getShared',
+        'type' => 'getType',
+        'updated' => 'getUpdated'
     ];
 
     /**
@@ -260,6 +331,16 @@ class SalesChannel implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('account_id', $data ?? [], null);
+        $this->setIfExists('archived', $data ?? [], null);
+        $this->setIfExists('code', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('external_code', $data ?? [], null);
+        $this->setIfExists('group', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('owner', $data ?? [], null);
+        $this->setIfExists('shared', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('updated', $data ?? [], null);
     }
 
     /**
@@ -288,6 +369,22 @@ class SalesChannel implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        if (!is_null($this->container['code']) && (mb_strlen($this->container['code']) > 255)) {
+            $invalidProperties[] = "invalid value for 'code', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['description']) && (mb_strlen($this->container['description']) > 4096)) {
+            $invalidProperties[] = "invalid value for 'description', the character length must be smaller than or equal to 4096.";
+        }
+
+        if (!is_null($this->container['external_code']) && (mb_strlen($this->container['external_code']) > 255)) {
+            $invalidProperties[] = "invalid value for 'external_code', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 255)) {
+            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
+        }
 
         return $invalidProperties;
     }
@@ -381,6 +478,306 @@ class SalesChannel implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable account_id cannot be null');
         }
         $this->container['account_id'] = $account_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets archived
+     *
+     * @return bool|null
+     */
+    public function getArchived()
+    {
+        return $this->container['archived'];
+    }
+
+    /**
+     * Sets archived
+     *
+     * @param bool|null $archived Добавлен ли Канал продаж в архив
+     *
+     * @return self
+     */
+    public function setArchived($archived)
+    {
+        if (is_null($archived)) {
+            throw new \InvalidArgumentException('non-nullable archived cannot be null');
+        }
+        $this->container['archived'] = $archived;
+
+        return $this;
+    }
+
+    /**
+     * Gets code
+     *
+     * @return string|null
+     */
+    public function getCode()
+    {
+        return $this->container['code'];
+    }
+
+    /**
+     * Sets code
+     *
+     * @param string|null $code Код Канала продаж
+     *
+     * @return self
+     */
+    public function setCode($code)
+    {
+        if (is_null($code)) {
+            throw new \InvalidArgumentException('non-nullable code cannot be null');
+        }
+        if ((mb_strlen($code) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $code when calling SalesChannel., must be smaller than or equal to 255.');
+        }
+
+        $this->container['code'] = $code;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description Описание Канала продаж
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            array_push($this->openAPINullablesSetToNull, 'description');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('description', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($description) && (mb_strlen($description) > 4096)) {
+            throw new \InvalidArgumentException('invalid length for $description when calling SalesChannel., must be smaller than or equal to 4096.');
+        }
+
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets external_code
+     *
+     * @return string|null
+     */
+    public function getExternalCode()
+    {
+        return $this->container['external_code'];
+    }
+
+    /**
+     * Sets external_code
+     *
+     * @param string|null $external_code Внешний код Канала продаж
+     *
+     * @return self
+     */
+    public function setExternalCode($external_code)
+    {
+        if (is_null($external_code)) {
+            throw new \InvalidArgumentException('non-nullable external_code cannot be null');
+        }
+        if ((mb_strlen($external_code) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $external_code when calling SalesChannel., must be smaller than or equal to 255.');
+        }
+
+        $this->container['external_code'] = $external_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets group
+     *
+     * @return \OpenAPI\Client\Model\Group|null
+     */
+    public function getGroup()
+    {
+        return $this->container['group'];
+    }
+
+    /**
+     * Sets group
+     *
+     * @param \OpenAPI\Client\Model\Group|null $group group
+     *
+     * @return self
+     */
+    public function setGroup($group)
+    {
+        if (is_null($group)) {
+            throw new \InvalidArgumentException('non-nullable group cannot be null');
+        }
+        $this->container['group'] = $group;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string|null $name Наименование Канала продаж
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+        if ((mb_strlen($name) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling SalesChannel., must be smaller than or equal to 255.');
+        }
+
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets owner
+     *
+     * @return \OpenAPI\Client\Model\Employee|null
+     */
+    public function getOwner()
+    {
+        return $this->container['owner'];
+    }
+
+    /**
+     * Sets owner
+     *
+     * @param \OpenAPI\Client\Model\Employee|null $owner Метаданные владельца (Сотрудника)
+     *
+     * @return self
+     */
+    public function setOwner($owner)
+    {
+        if (is_null($owner)) {
+            array_push($this->openAPINullablesSetToNull, 'owner');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('owner', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['owner'] = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Gets shared
+     *
+     * @return bool|null
+     */
+    public function getShared()
+    {
+        return $this->container['shared'];
+    }
+
+    /**
+     * Sets shared
+     *
+     * @param bool|null $shared Общий доступ
+     *
+     * @return self
+     */
+    public function setShared($shared)
+    {
+        if (is_null($shared)) {
+            throw new \InvalidArgumentException('non-nullable shared cannot be null');
+        }
+        $this->container['shared'] = $shared;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string|null $type Тип Канала продаж. Известные значения описаны в SalesChannelType
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets updated
+     *
+     * @return string|null
+     */
+    public function getUpdated()
+    {
+        return $this->container['updated'];
+    }
+
+    /**
+     * Sets updated
+     *
+     * @param string|null $updated Момент последнего обновления сущности
+     *
+     * @return self
+     */
+    public function setUpdated($updated)
+    {
+        if (is_null($updated)) {
+            throw new \InvalidArgumentException('non-nullable updated cannot be null');
+        }
+        $this->container['updated'] = $updated;
 
         return $this;
     }

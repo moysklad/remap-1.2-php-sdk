@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $id) : Counterparty {
+        $o = new Counterparty();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('counterparty');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'counterparty' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.
@@ -204,8 +215,8 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
         'legal_middle_name' => false,
         'birth_date' => false,
         'sex' => false,
-        'discount_card_number' => false,
-        'discounts' => false,
+        'discount_card_number' => true,
+        'discounts' => true,
         'shared' => false,
         'group' => false,
         'owner' => true,
@@ -218,8 +229,8 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
         'contactpersons' => false,
         'notes' => false,
         'files' => false,
-        'tags' => false,
-        'attributes' => false
+        'tags' => true,
+        'attributes' => true
     ];
 
     /**
@@ -1649,9 +1660,16 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setDiscountCardNumber($discount_card_number)
     {
         if (is_null($discount_card_number)) {
-            throw new \InvalidArgumentException('non-nullable discount_card_number cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'discount_card_number');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('discount_card_number', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        if ((mb_strlen($discount_card_number) > 255)) {
+        if (!is_null($discount_card_number) && (mb_strlen($discount_card_number) > 255)) {
             throw new \InvalidArgumentException('invalid length for $discount_card_number when calling Counterparty., must be smaller than or equal to 255.');
         }
 
@@ -1680,7 +1698,14 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setDiscounts($discounts)
     {
         if (is_null($discounts)) {
-            throw new \InvalidArgumentException('non-nullable discounts cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'discounts');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('discounts', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['discounts'] = $discounts;
 
@@ -2052,7 +2077,14 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setTags($tags)
     {
         if (is_null($tags)) {
-            throw new \InvalidArgumentException('non-nullable tags cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'tags');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('tags', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['tags'] = $tags;
 
@@ -2079,7 +2111,14 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'attributes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('attributes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['attributes'] = $attributes;
 

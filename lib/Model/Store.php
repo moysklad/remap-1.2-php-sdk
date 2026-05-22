@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class Store implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $id) : Store {
+        $o = new Store();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('store');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'store' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.
@@ -130,7 +141,7 @@ class Store implements ModelInterface, ArrayAccess, \JsonSerializable
         'address_full' => true,
         'path_name' => false,
         'parent' => true,
-        'attributes' => false,
+        'attributes' => true,
         'zones' => true,
         'slots' => true
     ];
@@ -936,7 +947,14 @@ class Store implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'attributes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('attributes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['attributes'] = $attributes;
 

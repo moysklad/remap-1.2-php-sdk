@@ -108,6 +108,30 @@ class CustomerOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for createCustomerOrderMetadataState
+     *
+     * Создать статус CustomerOrder.
+     *
+     */
+    public function testCreateCustomerOrderMetadataState()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for createCustomerOrderNote
+     *
+     * Добавить Событие Заказа покупателя.
+     *
+     */
+    public function testCreateCustomerOrderNote()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createCustomerOrderPositions
      *
      * Создать позиции CustomerOrders.
@@ -162,6 +186,18 @@ class CustomerOrdersApiTest extends TestCase
      *
      */
     public function testDeleteCustomerOrderMetadataStateById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteCustomerOrderNote
+     *
+     * Удалить Событие Заказа покупателя.
+     *
+     */
+    public function testDeleteCustomerOrderNote()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -264,6 +300,30 @@ class CustomerOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for getCustomerOrderNoteById
+     *
+     * Получить Событие Заказа покупателя по ID.
+     *
+     */
+    public function testGetCustomerOrderNoteById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getCustomerOrderNotes
+     *
+     * Получить список Событий Заказа покупателя.
+     *
+     */
+    public function testGetCustomerOrderNotes()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getCustomerOrderPositionById
      *
      * Получить позицию CustomerOrders.
@@ -330,6 +390,18 @@ class CustomerOrdersApiTest extends TestCase
      *
      */
     public function testUpdateCustomerOrderMetadataStateById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateCustomerOrderNote
+     *
+     * Обновить Событие Заказа покупателя.
+     *
+     */
+    public function testUpdateCustomerOrderNote()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

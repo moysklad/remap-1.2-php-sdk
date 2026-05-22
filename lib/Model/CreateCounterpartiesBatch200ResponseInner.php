@@ -205,8 +205,8 @@ class CreateCounterpartiesBatch200ResponseInner implements ModelInterface, Array
         'legal_middle_name' => false,
         'birth_date' => false,
         'sex' => false,
-        'discount_card_number' => false,
-        'discounts' => false,
+        'discount_card_number' => true,
+        'discounts' => true,
         'shared' => false,
         'group' => false,
         'owner' => true,
@@ -219,8 +219,8 @@ class CreateCounterpartiesBatch200ResponseInner implements ModelInterface, Array
         'contactpersons' => false,
         'notes' => false,
         'files' => false,
-        'tags' => false,
-        'attributes' => false,
+        'tags' => true,
+        'attributes' => true,
         'errors' => false
     ];
 
@@ -1658,9 +1658,16 @@ class CreateCounterpartiesBatch200ResponseInner implements ModelInterface, Array
     public function setDiscountCardNumber($discount_card_number)
     {
         if (is_null($discount_card_number)) {
-            throw new \InvalidArgumentException('non-nullable discount_card_number cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'discount_card_number');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('discount_card_number', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        if ((mb_strlen($discount_card_number) > 255)) {
+        if (!is_null($discount_card_number) && (mb_strlen($discount_card_number) > 255)) {
             throw new \InvalidArgumentException('invalid length for $discount_card_number when calling CreateCounterpartiesBatch200ResponseInner., must be smaller than or equal to 255.');
         }
 
@@ -1689,7 +1696,14 @@ class CreateCounterpartiesBatch200ResponseInner implements ModelInterface, Array
     public function setDiscounts($discounts)
     {
         if (is_null($discounts)) {
-            throw new \InvalidArgumentException('non-nullable discounts cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'discounts');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('discounts', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['discounts'] = $discounts;
 
@@ -2061,7 +2075,14 @@ class CreateCounterpartiesBatch200ResponseInner implements ModelInterface, Array
     public function setTags($tags)
     {
         if (is_null($tags)) {
-            throw new \InvalidArgumentException('non-nullable tags cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'tags');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('tags', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['tags'] = $tags;
 
@@ -2088,7 +2109,14 @@ class CreateCounterpartiesBatch200ResponseInner implements ModelInterface, Array
     public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'attributes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('attributes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['attributes'] = $attributes;
 

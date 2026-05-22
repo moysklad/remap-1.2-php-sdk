@@ -108,6 +108,18 @@ class CashOutsApiTest extends TestCase
     }
 
     /**
+     * Test case for createCashOutMetadataState
+     *
+     * Создать статус CashOut.
+     *
+     */
+    public function testCreateCashOutMetadataState()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteCashOut
      *
      * Удалить CashOut.

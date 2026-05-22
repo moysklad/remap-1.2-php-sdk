@@ -174,13 +174,13 @@ class CreateInternalOrderBatch200ResponseInner implements ModelInterface, ArrayA
         'project' => true,
         'owner' => true,
         'group' => false,
-        'attributes' => false,
+        'attributes' => true,
         'files' => true,
         'rate' => false,
         'positions' => false,
-        'purchase_orders' => false,
-        'production_tasks' => false,
-        'moves' => false,
+        'purchase_orders' => true,
+        'production_tasks' => true,
+        'moves' => true,
         'processing_order' => true,
         'errors' => false
     ];
@@ -1353,7 +1353,14 @@ class CreateInternalOrderBatch200ResponseInner implements ModelInterface, ArrayA
     public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'attributes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('attributes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['attributes'] = $attributes;
 
@@ -1468,7 +1475,14 @@ class CreateInternalOrderBatch200ResponseInner implements ModelInterface, ArrayA
     public function setPurchaseOrders($purchase_orders)
     {
         if (is_null($purchase_orders)) {
-            throw new \InvalidArgumentException('non-nullable purchase_orders cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'purchase_orders');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('purchase_orders', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['purchase_orders'] = $purchase_orders;
 
@@ -1495,7 +1509,14 @@ class CreateInternalOrderBatch200ResponseInner implements ModelInterface, ArrayA
     public function setProductionTasks($production_tasks)
     {
         if (is_null($production_tasks)) {
-            throw new \InvalidArgumentException('non-nullable production_tasks cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'production_tasks');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('production_tasks', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['production_tasks'] = $production_tasks;
 
@@ -1522,7 +1543,14 @@ class CreateInternalOrderBatch200ResponseInner implements ModelInterface, ArrayA
     public function setMoves($moves)
     {
         if (is_null($moves)) {
-            throw new \InvalidArgumentException('non-nullable moves cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'moves');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('moves', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['moves'] = $moves;
 

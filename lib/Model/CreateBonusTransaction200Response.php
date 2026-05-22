@@ -64,7 +64,7 @@ class CreateBonusTransaction200Response implements ModelInterface, ArrayAccess, 
         'agent' => '\OpenAPI\Client\Model\Counterparty',
         'group' => '\OpenAPI\Client\Model\Group',
         'organization' => '\OpenAPI\Client\Model\Organization',
-        'parent_document' => '\OpenAPI\Client\Model\Meta',
+        'parent_document' => '\OpenAPI\Client\Model\BonusTransactionParentDocument',
         'applicable' => 'bool',
         'bonus_program' => '\OpenAPI\Client\Model\BonusProgram',
         'bonus_value' => 'int',
@@ -658,7 +658,7 @@ class CreateBonusTransaction200Response implements ModelInterface, ArrayAccess, 
     /**
      * Gets parent_document
      *
-     * @return \OpenAPI\Client\Model\Meta|null
+     * @return \OpenAPI\Client\Model\BonusTransactionParentDocument|null
      */
     public function getParentDocument()
     {
@@ -668,7 +668,7 @@ class CreateBonusTransaction200Response implements ModelInterface, ArrayAccess, 
     /**
      * Sets parent_document
      *
-     * @param \OpenAPI\Client\Model\Meta|null $parent_document Метаданные связанного документа бонусной операции
+     * @param \OpenAPI\Client\Model\BonusTransactionParentDocument|null $parent_document parent_document
      *
      * @return self
      */

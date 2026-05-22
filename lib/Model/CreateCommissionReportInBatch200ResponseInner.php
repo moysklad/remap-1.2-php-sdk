@@ -169,7 +169,7 @@ class CreateCommissionReportInBatch200ResponseInner implements ModelInterface, A
         'agent' => false,
         'agent_account' => true,
         'applicable' => false,
-        'attributes' => false,
+        'attributes' => true,
         'code' => false,
         'commission_overhead' => false,
         'commission_period_end' => false,
@@ -205,7 +205,7 @@ class CreateCommissionReportInBatch200ResponseInner implements ModelInterface, A
         'vat_enabled' => false,
         'vat_included' => false,
         'vat_sum' => false,
-        'payments' => false,
+        'payments' => true,
         'errors' => false
     ];
 
@@ -802,7 +802,14 @@ class CreateCommissionReportInBatch200ResponseInner implements ModelInterface, A
     public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'attributes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('attributes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['attributes'] = $attributes;
 
@@ -1850,7 +1857,14 @@ class CreateCommissionReportInBatch200ResponseInner implements ModelInterface, A
     public function setPayments($payments)
     {
         if (is_null($payments)) {
-            throw new \InvalidArgumentException('non-nullable payments cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'payments');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('payments', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['payments'] = $payments;
 

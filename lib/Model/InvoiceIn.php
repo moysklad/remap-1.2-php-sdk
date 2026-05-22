@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class InvoiceIn implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $id) : InvoiceIn {
+        $o = new InvoiceIn();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('invoicein');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'invoicein' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.

@@ -58,11 +58,9 @@ class AttributeAbstract implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPITypes = [
         'id' => 'string',
-        'meta' => '\OpenAPI\Client\Model\Meta',
         'name' => 'string',
         'type' => 'string',
-        'value' => 'object',
-        'download' => 'object'
+        'meta' => '\OpenAPI\Client\Model\Meta'
     ];
 
     /**
@@ -74,11 +72,9 @@ class AttributeAbstract implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPIFormats = [
         'id' => 'uuid',
-        'meta' => null,
         'name' => null,
         'type' => null,
-        'value' => null,
-        'download' => null
+        'meta' => null
     ];
 
     /**
@@ -88,11 +84,9 @@ class AttributeAbstract implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static array $openAPINullables = [
         'id' => false,
-        'meta' => false,
         'name' => false,
         'type' => false,
-        'value' => false,
-        'download' => false
+        'meta' => false
     ];
 
     /**
@@ -182,11 +176,9 @@ class AttributeAbstract implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $attributeMap = [
         'id' => 'id',
-        'meta' => 'meta',
         'name' => 'name',
         'type' => 'type',
-        'value' => 'value',
-        'download' => 'download'
+        'meta' => 'meta'
     ];
 
     /**
@@ -196,11 +188,9 @@ class AttributeAbstract implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $setters = [
         'id' => 'setId',
-        'meta' => 'setMeta',
         'name' => 'setName',
         'type' => 'setType',
-        'value' => 'setValue',
-        'download' => 'setDownload'
+        'meta' => 'setMeta'
     ];
 
     /**
@@ -210,11 +200,9 @@ class AttributeAbstract implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $getters = [
         'id' => 'getId',
-        'meta' => 'getMeta',
         'name' => 'getName',
         'type' => 'getType',
-        'value' => 'getValue',
-        'download' => 'getDownload'
+        'meta' => 'getMeta'
     ];
 
     /**
@@ -275,11 +263,9 @@ class AttributeAbstract implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function __construct(?array $data = null)
     {
         $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
-        $this->setIfExists('download', $data ?? [], null);
+        $this->setIfExists('meta', $data ?? [], null);
 
         // Initialize discriminator property with the model name.
         $this->container['type'] = static::$openAPIModelName;
@@ -358,33 +344,6 @@ class AttributeAbstract implements ModelInterface, ArrayAccess, \JsonSerializabl
     }
 
     /**
-     * Gets meta
-     *
-     * @return \OpenAPI\Client\Model\Meta|null
-     */
-    public function getMeta()
-    {
-        return $this->container['meta'];
-    }
-
-    /**
-     * Sets meta
-     *
-     * @param \OpenAPI\Client\Model\Meta|null $meta meta
-     *
-     * @return self
-     */
-    public function setMeta($meta)
-    {
-        if (is_null($meta)) {
-            throw new \InvalidArgumentException('non-nullable meta cannot be null');
-        }
-        $this->container['meta'] = $meta;
-
-        return $this;
-    }
-
-    /**
      * Gets name
      *
      * @return string|null
@@ -439,55 +398,28 @@ class AttributeAbstract implements ModelInterface, ArrayAccess, \JsonSerializabl
     }
 
     /**
-     * Gets value
+     * Gets meta
      *
-     * @return object|null
+     * @return \OpenAPI\Client\Model\Meta|null
      */
-    public function getValue()
+    public function getMeta()
     {
-        return $this->container['value'];
+        return $this->container['meta'];
     }
 
     /**
-     * Sets value
+     * Sets meta
      *
-     * @param object|null $value value
+     * @param \OpenAPI\Client\Model\Meta|null $meta meta
      *
      * @return self
      */
-    public function setValue($value)
+    public function setMeta($meta)
     {
-        if (is_null($value)) {
-            throw new \InvalidArgumentException('non-nullable value cannot be null');
+        if (is_null($meta)) {
+            throw new \InvalidArgumentException('non-nullable meta cannot be null');
         }
-        $this->container['value'] = $value;
-
-        return $this;
-    }
-
-    /**
-     * Gets download
-     *
-     * @return object|null
-     */
-    public function getDownload()
-    {
-        return $this->container['download'];
-    }
-
-    /**
-     * Sets download
-     *
-     * @param object|null $download download
-     *
-     * @return self
-     */
-    public function setDownload($download)
-    {
-        if (is_null($download)) {
-            throw new \InvalidArgumentException('non-nullable download cannot be null');
-        }
-        $this->container['download'] = $download;
+        $this->container['meta'] = $meta;
 
         return $this;
     }

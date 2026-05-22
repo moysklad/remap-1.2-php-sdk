@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class StoreBalance implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $parentId, string $id) : StoreBalance {
+        $o = new StoreBalance();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('minimumstock');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'product' . '/' . $parentId . '/' . 'storebalances' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.
@@ -77,7 +88,7 @@ class StoreBalance implements ModelInterface, ArrayAccess, \JsonSerializable
         'account_id' => 'uuid',
         'meta' => null,
         'store' => null,
-        'quantity' => 'float'
+        'quantity' => 'double'
     ];
 
     /**

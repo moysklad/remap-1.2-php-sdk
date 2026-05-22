@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class BonusTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $id) : BonusTransaction {
+        $o = new BonusTransaction();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('bonustransaction');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'bonustransaction' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.
@@ -65,7 +76,7 @@ class BonusTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'agent' => '\OpenAPI\Client\Model\Counterparty',
         'group' => '\OpenAPI\Client\Model\Group',
         'organization' => '\OpenAPI\Client\Model\Organization',
-        'parent_document' => '\OpenAPI\Client\Model\Meta',
+        'parent_document' => '\OpenAPI\Client\Model\BonusTransactionParentDocument',
         'applicable' => 'bool',
         'bonus_program' => '\OpenAPI\Client\Model\BonusProgram',
         'bonus_value' => 'int',
@@ -659,7 +670,7 @@ class BonusTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets parent_document
      *
-     * @return \OpenAPI\Client\Model\Meta|null
+     * @return \OpenAPI\Client\Model\BonusTransactionParentDocument|null
      */
     public function getParentDocument()
     {
@@ -669,7 +680,7 @@ class BonusTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets parent_document
      *
-     * @param \OpenAPI\Client\Model\Meta|null $parent_document Метаданные связанного документа бонусной операции
+     * @param \OpenAPI\Client\Model\BonusTransactionParentDocument|null $parent_document parent_document
      *
      * @return self
      */

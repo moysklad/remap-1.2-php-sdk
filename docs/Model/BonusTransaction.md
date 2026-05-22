@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **agent** | [**\OpenAPI\Client\Model\Counterparty**](Counterparty.md) |  | [optional]
 **group** | [**\OpenAPI\Client\Model\Group**](Group.md) |  | [optional]
 **organization** | [**\OpenAPI\Client\Model\Organization**](Organization.md) |  | [optional]
-**parent_document** | [**\OpenAPI\Client\Model\Meta**](Meta.md) | Метаданные связанного документа бонусной операции | [optional]
+**parent_document** | [**\OpenAPI\Client\Model\BonusTransactionParentDocument**](BonusTransactionParentDocument.md) |  | [optional]
 **applicable** | **bool** | Отметка о проведении | [optional]
 **bonus_program** | [**\OpenAPI\Client\Model\BonusProgram**](BonusProgram.md) |  | [optional]
 **bonus_value** | **int** | Количество бонусных баллов | [optional]

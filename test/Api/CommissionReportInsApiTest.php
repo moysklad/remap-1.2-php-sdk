@@ -108,6 +108,18 @@ class CommissionReportInsApiTest extends TestCase
     }
 
     /**
+     * Test case for createCommissionReportInMetadataState
+     *
+     * Создать статус CommissionReportIn.
+     *
+     */
+    public function testCreateCommissionReportInMetadataState()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createCommissionReportInPositions
      *
      * Создать позиции CommissionReportIn.

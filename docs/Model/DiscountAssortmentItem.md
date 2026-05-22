@@ -45,7 +45,6 @@ Name | Type | Description | Notes
 **payment_item_type** | **string** | Признак предмета расчета. Известные значения описаны в PaymentItemType | [optional]
 **tax_system** | **string** | Код системы налогообложения. Известные значения описаны в TaxSystem | [optional]
 **attributes** | [**\OpenAPI\Client\Model\AttributeAbstract[]**](AttributeAbstract.md) | Дополнительные поля | [optional]
-**minimum_balance** | **float** | Неснижаемый остаток (устаревшее) | [optional]
 **minimum_stock** | [**\OpenAPI\Client\Model\MinimumStockAbstract**](MinimumStockAbstract.md) | Неснижаемый остаток. Не выводится по умолчанию. Для получения передайте параметр &#x60;?fields&#x3D;minimumStock&#x60;. | [optional]
 **min_price** | [**\OpenAPI\Client\Model\MinPrice**](MinPrice.md) |  | [optional]
 **weighed** | **bool** | Поле, показывающее является ли товар весовым | [optional]

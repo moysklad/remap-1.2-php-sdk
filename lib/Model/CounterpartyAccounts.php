@@ -81,7 +81,7 @@ class CounterpartyAccounts implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static array $openAPINullables = [
         'meta' => false,
-        'rows' => false
+        'rows' => true
     ];
 
     /**
@@ -344,7 +344,14 @@ class CounterpartyAccounts implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setRows($rows)
     {
         if (is_null($rows)) {
-            throw new \InvalidArgumentException('non-nullable rows cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'rows');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('rows', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['rows'] = $rows;
 

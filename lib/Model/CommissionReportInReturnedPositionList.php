@@ -58,7 +58,7 @@ class CommissionReportInReturnedPositionList implements ModelInterface, ArrayAcc
       * @var string[]
       */
     protected static $openAPITypes = [
-        'context' => '\OpenAPI\Client\Model\Context1',
+        'context' => '\OpenAPI\Client\Model\Context',
         'meta' => '\OpenAPI\Client\Model\MetaList',
         'rows' => '\OpenAPI\Client\Model\CommissionReportInReturnedPosition[]'
     ];
@@ -307,7 +307,7 @@ class CommissionReportInReturnedPositionList implements ModelInterface, ArrayAcc
     /**
      * Gets context
      *
-     * @return \OpenAPI\Client\Model\Context1|null
+     * @return \OpenAPI\Client\Model\Context|null
      */
     public function getContext()
     {
@@ -317,7 +317,7 @@ class CommissionReportInReturnedPositionList implements ModelInterface, ArrayAcc
     /**
      * Sets context
      *
-     * @param \OpenAPI\Client\Model\Context1|null $context context
+     * @param \OpenAPI\Client\Model\Context|null $context context
      *
      * @return self
      */

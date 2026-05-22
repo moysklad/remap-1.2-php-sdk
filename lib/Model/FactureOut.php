@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $id) : FactureOut {
+        $o = new FactureOut();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('factureout');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'factureout' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.
@@ -88,10 +99,10 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
         'advance_payment_vat' => 'int',
         'payment_purpose' => 'string',
         'vat_sum' => 'float',
-        'demands' => '\OpenAPI\Client\Model\Meta[]',
-        'payments' => '\OpenAPI\Client\Model\Meta[]',
-        'returns' => '\OpenAPI\Client\Model\Meta[]',
-        'consignee' => '\OpenAPI\Client\Model\Meta',
+        'demands' => '\OpenAPI\Client\Model\Demand[]',
+        'payments' => '\OpenAPI\Client\Model\PaymentIn[]',
+        'returns' => '\OpenAPI\Client\Model\PurchaseReturn[]',
+        'consignee' => '\OpenAPI\Client\Model\Counterparty',
         'payment_number' => 'string',
         'payment_date' => 'string'
     ];
@@ -153,7 +164,7 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
         'account_id' => false,
         'agent' => false,
         'applicable' => false,
-        'attributes' => false,
+        'attributes' => true,
         'code' => false,
         'contract' => true,
         'created' => false,
@@ -178,10 +189,10 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
         'advance_payment_vat' => false,
         'payment_purpose' => false,
         'vat_sum' => false,
-        'demands' => false,
-        'payments' => false,
-        'returns' => false,
-        'consignee' => true,
+        'demands' => true,
+        'payments' => true,
+        'returns' => true,
+        'consignee' => false,
         'payment_number' => false,
         'payment_date' => false
     ];
@@ -718,7 +729,14 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'attributes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('attributes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['attributes'] = $attributes;
 
@@ -1435,7 +1453,7 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets demands
      *
-     * @return \OpenAPI\Client\Model\Meta[]|null
+     * @return \OpenAPI\Client\Model\Demand[]|null
      */
     public function getDemands()
     {
@@ -1445,14 +1463,21 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets demands
      *
-     * @param \OpenAPI\Client\Model\Meta[]|null $demands Связанные отгрузки (метаданные)
+     * @param \OpenAPI\Client\Model\Demand[]|null $demands Связанные отгрузки (метаданные)
      *
      * @return self
      */
     public function setDemands($demands)
     {
         if (is_null($demands)) {
-            throw new \InvalidArgumentException('non-nullable demands cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'demands');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('demands', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['demands'] = $demands;
 
@@ -1462,7 +1487,7 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets payments
      *
-     * @return \OpenAPI\Client\Model\Meta[]|null
+     * @return \OpenAPI\Client\Model\PaymentIn[]|null
      */
     public function getPayments()
     {
@@ -1472,14 +1497,21 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets payments
      *
-     * @param \OpenAPI\Client\Model\Meta[]|null $payments Связанные входящие платежи (метаданные)
+     * @param \OpenAPI\Client\Model\PaymentIn[]|null $payments Связанные входящие платежи (метаданные)
      *
      * @return self
      */
     public function setPayments($payments)
     {
         if (is_null($payments)) {
-            throw new \InvalidArgumentException('non-nullable payments cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'payments');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('payments', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['payments'] = $payments;
 
@@ -1489,7 +1521,7 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets returns
      *
-     * @return \OpenAPI\Client\Model\Meta[]|null
+     * @return \OpenAPI\Client\Model\PurchaseReturn[]|null
      */
     public function getReturns()
     {
@@ -1499,14 +1531,21 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets returns
      *
-     * @param \OpenAPI\Client\Model\Meta[]|null $returns Связанные возвраты поставщикам (метаданные)
+     * @param \OpenAPI\Client\Model\PurchaseReturn[]|null $returns Связанные возвраты поставщикам (метаданные)
      *
      * @return self
      */
     public function setReturns($returns)
     {
         if (is_null($returns)) {
-            throw new \InvalidArgumentException('non-nullable returns cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'returns');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('returns', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['returns'] = $returns;
 
@@ -1516,7 +1555,7 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets consignee
      *
-     * @return \OpenAPI\Client\Model\Meta|null
+     * @return \OpenAPI\Client\Model\Counterparty|null
      */
     public function getConsignee()
     {
@@ -1526,21 +1565,14 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets consignee
      *
-     * @param \OpenAPI\Client\Model\Meta|null $consignee Грузополучатель (контрагент или юрлицо)
+     * @param \OpenAPI\Client\Model\Counterparty|null $consignee consignee
      *
      * @return self
      */
     public function setConsignee($consignee)
     {
         if (is_null($consignee)) {
-            array_push($this->openAPINullablesSetToNull, 'consignee');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('consignee', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable consignee cannot be null');
         }
         $this->container['consignee'] = $consignee;
 

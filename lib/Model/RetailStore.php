@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class RetailStore implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $id) : RetailStore {
+        $o = new RetailStore();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('retailstore');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'retailstore' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.
@@ -260,15 +271,15 @@ class RetailStore implements ModelInterface, ArrayAccess, \JsonSerializable
         'control_shipping_stock' => false,
         'create_cash_in_on_retail_shift_closing' => false,
         'create_payment_in_on_retail_shift_closing' => false,
-        'create_agents_tags' => false,
-        'filter_agents_tags' => false,
+        'create_agents_tags' => true,
+        'filter_agents_tags' => true,
         'create_order_with_state' => true,
-        'customer_order_states' => false,
+        'customer_order_states' => true,
         'discount_enable' => false,
         'discount_max_percent' => false,
         'enable_returns_with_no_reason' => false,
         'issue_orders' => false,
-        'last_operation_names' => false,
+        'last_operation_names' => true,
         'master_retail_stores' => true,
         'ofd_enabled' => false,
         'only_in_stock' => false,
@@ -1182,7 +1193,7 @@ class RetailStore implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets organization
      *
-     * @param \OpenAPI\Client\Model\Organization|null $organization Метаданные юрлица-владельца Точки продаж
+     * @param \OpenAPI\Client\Model\Organization|null $organization organization
      *
      * @return self
      */
@@ -1844,7 +1855,14 @@ class RetailStore implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setCreateAgentsTags($create_agents_tags)
     {
         if (is_null($create_agents_tags)) {
-            throw new \InvalidArgumentException('non-nullable create_agents_tags cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'create_agents_tags');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('create_agents_tags', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['create_agents_tags'] = $create_agents_tags;
 
@@ -1871,7 +1889,14 @@ class RetailStore implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setFilterAgentsTags($filter_agents_tags)
     {
         if (is_null($filter_agents_tags)) {
-            throw new \InvalidArgumentException('non-nullable filter_agents_tags cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'filter_agents_tags');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('filter_agents_tags', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['filter_agents_tags'] = $filter_agents_tags;
 
@@ -1932,7 +1957,14 @@ class RetailStore implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setCustomerOrderStates($customer_order_states)
     {
         if (is_null($customer_order_states)) {
-            throw new \InvalidArgumentException('non-nullable customer_order_states cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'customer_order_states');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('customer_order_states', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['customer_order_states'] = $customer_order_states;
 
@@ -2067,7 +2099,14 @@ class RetailStore implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setLastOperationNames($last_operation_names)
     {
         if (is_null($last_operation_names)) {
-            throw new \InvalidArgumentException('non-nullable last_operation_names cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'last_operation_names');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('last_operation_names', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['last_operation_names'] = $last_operation_names;
 

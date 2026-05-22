@@ -35,6 +35,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * Consignment Class Doc Comment
  *
  * @category Class
+ * @description Партия
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -43,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class Consignment implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $id) : Consignment {
+        $o = new Consignment();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('consignment');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'consignment' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.
@@ -59,7 +71,19 @@ class Consignment implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'meta' => '\OpenAPI\Client\Model\Meta',
         'id' => 'string',
-        'account_id' => 'string'
+        'account_id' => 'string',
+        'archived' => 'bool',
+        'attributes' => '\OpenAPI\Client\Model\AttributeAbstract[]',
+        'assortment' => '\OpenAPI\Client\Model\Assortment',
+        'barcodes' => '\OpenAPI\Client\Model\Barcode[]',
+        'code' => 'string',
+        'description' => 'string',
+        'expiry_date' => 'string',
+        'external_code' => 'string',
+        'images' => '\OpenAPI\Client\Model\ImageList',
+        'label' => 'string',
+        'name' => 'string',
+        'updated' => 'string'
     ];
 
     /**
@@ -72,7 +96,19 @@ class Consignment implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'meta' => null,
         'id' => 'uuid',
-        'account_id' => 'uuid'
+        'account_id' => 'uuid',
+        'archived' => null,
+        'attributes' => null,
+        'assortment' => null,
+        'barcodes' => null,
+        'code' => null,
+        'description' => null,
+        'expiry_date' => null,
+        'external_code' => null,
+        'images' => null,
+        'label' => null,
+        'name' => null,
+        'updated' => null
     ];
 
     /**
@@ -83,7 +119,19 @@ class Consignment implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'meta' => false,
         'id' => false,
-        'account_id' => false
+        'account_id' => false,
+        'archived' => false,
+        'attributes' => true,
+        'assortment' => false,
+        'barcodes' => true,
+        'code' => false,
+        'description' => true,
+        'expiry_date' => false,
+        'external_code' => false,
+        'images' => false,
+        'label' => false,
+        'name' => false,
+        'updated' => false
     ];
 
     /**
@@ -174,7 +222,19 @@ class Consignment implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'meta' => 'meta',
         'id' => 'id',
-        'account_id' => 'accountId'
+        'account_id' => 'accountId',
+        'archived' => 'archived',
+        'attributes' => 'attributes',
+        'assortment' => 'assortment',
+        'barcodes' => 'barcodes',
+        'code' => 'code',
+        'description' => 'description',
+        'expiry_date' => 'expiryDate',
+        'external_code' => 'externalCode',
+        'images' => 'images',
+        'label' => 'label',
+        'name' => 'name',
+        'updated' => 'updated'
     ];
 
     /**
@@ -185,7 +245,19 @@ class Consignment implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'meta' => 'setMeta',
         'id' => 'setId',
-        'account_id' => 'setAccountId'
+        'account_id' => 'setAccountId',
+        'archived' => 'setArchived',
+        'attributes' => 'setAttributes',
+        'assortment' => 'setAssortment',
+        'barcodes' => 'setBarcodes',
+        'code' => 'setCode',
+        'description' => 'setDescription',
+        'expiry_date' => 'setExpiryDate',
+        'external_code' => 'setExternalCode',
+        'images' => 'setImages',
+        'label' => 'setLabel',
+        'name' => 'setName',
+        'updated' => 'setUpdated'
     ];
 
     /**
@@ -196,7 +268,19 @@ class Consignment implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'meta' => 'getMeta',
         'id' => 'getId',
-        'account_id' => 'getAccountId'
+        'account_id' => 'getAccountId',
+        'archived' => 'getArchived',
+        'attributes' => 'getAttributes',
+        'assortment' => 'getAssortment',
+        'barcodes' => 'getBarcodes',
+        'code' => 'getCode',
+        'description' => 'getDescription',
+        'expiry_date' => 'getExpiryDate',
+        'external_code' => 'getExternalCode',
+        'images' => 'getImages',
+        'label' => 'getLabel',
+        'name' => 'getName',
+        'updated' => 'getUpdated'
     ];
 
     /**
@@ -259,6 +343,18 @@ class Consignment implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('account_id', $data ?? [], null);
+        $this->setIfExists('archived', $data ?? [], null);
+        $this->setIfExists('attributes', $data ?? [], null);
+        $this->setIfExists('assortment', $data ?? [], null);
+        $this->setIfExists('barcodes', $data ?? [], null);
+        $this->setIfExists('code', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('expiry_date', $data ?? [], null);
+        $this->setIfExists('external_code', $data ?? [], null);
+        $this->setIfExists('images', $data ?? [], null);
+        $this->setIfExists('label', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('updated', $data ?? [], null);
     }
 
     /**
@@ -287,6 +383,26 @@ class Consignment implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        if (!is_null($this->container['code']) && (mb_strlen($this->container['code']) > 255)) {
+            $invalidProperties[] = "invalid value for 'code', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['description']) && (mb_strlen($this->container['description']) > 4096)) {
+            $invalidProperties[] = "invalid value for 'description', the character length must be smaller than or equal to 4096.";
+        }
+
+        if (!is_null($this->container['external_code']) && (mb_strlen($this->container['external_code']) > 255)) {
+            $invalidProperties[] = "invalid value for 'external_code', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['label']) && (mb_strlen($this->container['label']) > 255)) {
+            $invalidProperties[] = "invalid value for 'label', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 255)) {
+            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
+        }
 
         return $invalidProperties;
     }
@@ -343,7 +459,7 @@ class Consignment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param string|null $id ID партии
+     * @param string|null $id ID Партии
      *
      * @return self
      */
@@ -380,6 +496,373 @@ class Consignment implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable account_id cannot be null');
         }
         $this->container['account_id'] = $account_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets archived
+     *
+     * @return bool|null
+     */
+    public function getArchived()
+    {
+        return $this->container['archived'];
+    }
+
+    /**
+     * Sets archived
+     *
+     * @param bool|null $archived Добавлена ли Партия в архив
+     *
+     * @return self
+     */
+    public function setArchived($archived)
+    {
+        if (is_null($archived)) {
+            throw new \InvalidArgumentException('non-nullable archived cannot be null');
+        }
+        $this->container['archived'] = $archived;
+
+        return $this;
+    }
+
+    /**
+     * Gets attributes
+     *
+     * @return \OpenAPI\Client\Model\AttributeAbstract[]|null
+     */
+    public function getAttributes()
+    {
+        return $this->container['attributes'];
+    }
+
+    /**
+     * Sets attributes
+     *
+     * @param \OpenAPI\Client\Model\AttributeAbstract[]|null $attributes Коллекция доп. полей Партии
+     *
+     * @return self
+     */
+    public function setAttributes($attributes)
+    {
+        if (is_null($attributes)) {
+            array_push($this->openAPINullablesSetToNull, 'attributes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('attributes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['attributes'] = $attributes;
+
+        return $this;
+    }
+
+    /**
+     * Gets assortment
+     *
+     * @return \OpenAPI\Client\Model\Assortment|null
+     * @deprecated
+     */
+    public function getAssortment()
+    {
+        return $this->container['assortment'];
+    }
+
+    /**
+     * Sets assortment
+     *
+     * @param \OpenAPI\Client\Model\Assortment|null $assortment assortment
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setAssortment($assortment)
+    {
+        if (is_null($assortment)) {
+            throw new \InvalidArgumentException('non-nullable assortment cannot be null');
+        }
+        $this->container['assortment'] = $assortment;
+
+        return $this;
+    }
+
+    /**
+     * Gets barcodes
+     *
+     * @return \OpenAPI\Client\Model\Barcode[]|null
+     */
+    public function getBarcodes()
+    {
+        return $this->container['barcodes'];
+    }
+
+    /**
+     * Sets barcodes
+     *
+     * @param \OpenAPI\Client\Model\Barcode[]|null $barcodes Штрихкоды Партии
+     *
+     * @return self
+     */
+    public function setBarcodes($barcodes)
+    {
+        if (is_null($barcodes)) {
+            array_push($this->openAPINullablesSetToNull, 'barcodes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('barcodes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['barcodes'] = $barcodes;
+
+        return $this;
+    }
+
+    /**
+     * Gets code
+     *
+     * @return string|null
+     */
+    public function getCode()
+    {
+        return $this->container['code'];
+    }
+
+    /**
+     * Sets code
+     *
+     * @param string|null $code Код Партии
+     *
+     * @return self
+     */
+    public function setCode($code)
+    {
+        if (is_null($code)) {
+            throw new \InvalidArgumentException('non-nullable code cannot be null');
+        }
+        if ((mb_strlen($code) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $code when calling Consignment., must be smaller than or equal to 255.');
+        }
+
+        $this->container['code'] = $code;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description Описание Партии
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            array_push($this->openAPINullablesSetToNull, 'description');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('description', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($description) && (mb_strlen($description) > 4096)) {
+            throw new \InvalidArgumentException('invalid length for $description when calling Consignment., must be smaller than or equal to 4096.');
+        }
+
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets expiry_date
+     *
+     * @return string|null
+     */
+    public function getExpiryDate()
+    {
+        return $this->container['expiry_date'];
+    }
+
+    /**
+     * Sets expiry_date
+     *
+     * @param string|null $expiry_date Срок годности Партии
+     *
+     * @return self
+     */
+    public function setExpiryDate($expiry_date)
+    {
+        if (is_null($expiry_date)) {
+            throw new \InvalidArgumentException('non-nullable expiry_date cannot be null');
+        }
+        $this->container['expiry_date'] = $expiry_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets external_code
+     *
+     * @return string|null
+     */
+    public function getExternalCode()
+    {
+        return $this->container['external_code'];
+    }
+
+    /**
+     * Sets external_code
+     *
+     * @param string|null $external_code Внешний код Партии
+     *
+     * @return self
+     */
+    public function setExternalCode($external_code)
+    {
+        if (is_null($external_code)) {
+            throw new \InvalidArgumentException('non-nullable external_code cannot be null');
+        }
+        if ((mb_strlen($external_code) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $external_code when calling Consignment., must be smaller than or equal to 255.');
+        }
+
+        $this->container['external_code'] = $external_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets images
+     *
+     * @return \OpenAPI\Client\Model\ImageList|null
+     */
+    public function getImages()
+    {
+        return $this->container['images'];
+    }
+
+    /**
+     * Sets images
+     *
+     * @param \OpenAPI\Client\Model\ImageList|null $images Массив метаданных Изображений товара, к которому относится данная партия
+     *
+     * @return self
+     */
+    public function setImages($images)
+    {
+        if (is_null($images)) {
+            throw new \InvalidArgumentException('non-nullable images cannot be null');
+        }
+        $this->container['images'] = $images;
+
+        return $this;
+    }
+
+    /**
+     * Gets label
+     *
+     * @return string|null
+     */
+    public function getLabel()
+    {
+        return $this->container['label'];
+    }
+
+    /**
+     * Sets label
+     *
+     * @param string|null $label Метка Партии
+     *
+     * @return self
+     */
+    public function setLabel($label)
+    {
+        if (is_null($label)) {
+            throw new \InvalidArgumentException('non-nullable label cannot be null');
+        }
+        if ((mb_strlen($label) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $label when calling Consignment., must be smaller than or equal to 255.');
+        }
+
+        $this->container['label'] = $label;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string|null $name Наименование Партии
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+        if ((mb_strlen($name) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling Consignment., must be smaller than or equal to 255.');
+        }
+
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets updated
+     *
+     * @return string|null
+     */
+    public function getUpdated()
+    {
+        return $this->container['updated'];
+    }
+
+    /**
+     * Sets updated
+     *
+     * @param string|null $updated Момент последнего обновления сущности
+     *
+     * @return self
+     */
+    public function setUpdated($updated)
+    {
+        if (is_null($updated)) {
+            throw new \InvalidArgumentException('non-nullable updated cannot be null');
+        }
+        $this->container['updated'] = $updated;
 
         return $this;
     }

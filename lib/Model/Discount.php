@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class Discount implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $id) : Discount {
+        $o = new Discount();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('discount');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'discount' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.
@@ -97,15 +108,15 @@ class Discount implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'all_products' => false,
-        'assortment' => false,
-        'product_folders' => false,
+        'assortment' => true,
+        'product_folders' => true,
         'id' => false,
         'meta' => false,
         'account_id' => false,
         'name' => false,
         'active' => false,
         'all_agents' => false,
-        'agent_tags' => false
+        'agent_tags' => true
     ];
 
     /**
@@ -404,7 +415,14 @@ class Discount implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAssortment($assortment)
     {
         if (is_null($assortment)) {
-            throw new \InvalidArgumentException('non-nullable assortment cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'assortment');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('assortment', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['assortment'] = $assortment;
 
@@ -431,7 +449,14 @@ class Discount implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setProductFolders($product_folders)
     {
         if (is_null($product_folders)) {
-            throw new \InvalidArgumentException('non-nullable product_folders cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'product_folders');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('product_folders', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['product_folders'] = $product_folders;
 
@@ -624,7 +649,14 @@ class Discount implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAgentTags($agent_tags)
     {
         if (is_null($agent_tags)) {
-            throw new \InvalidArgumentException('non-nullable agent_tags cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'agent_tags');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('agent_tags', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['agent_tags'] = $agent_tags;
 

@@ -539,6 +539,114 @@ class CashInOperationTest extends TestCase
     }
 
     /**
+     * Test attribute "overhead"
+     */
+    public function testPropertyOverhead()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "customer_order"
+     */
+    public function testPropertyCustomerOrder()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "facture_out"
+     */
+    public function testPropertyFactureOut()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "returns"
+     */
+    public function testPropertyReturns()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "cargo_name"
+     */
+    public function testPropertyCargoName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "carrier"
+     */
+    public function testPropertyCarrier()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "consignee"
+     */
+    public function testPropertyConsignee()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "good_pack_quantity"
+     */
+    public function testPropertyGoodPackQuantity()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "shipping_instructions"
+     */
+    public function testPropertyShippingInstructions()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "state_contract_id"
+     */
+    public function testPropertyStateContractId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "transport_facility"
+     */
+    public function testPropertyTransportFacility()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "transport_facility_number"
+     */
+    public function testPropertyTransportFacilityNumber()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "commission_overhead"
      */
     public function testPropertyCommissionOverhead()

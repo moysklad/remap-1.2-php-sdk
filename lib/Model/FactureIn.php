@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class FactureIn implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $id) : FactureIn {
+        $o = new FactureIn();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('facturein');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'facturein' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.
@@ -123,7 +134,7 @@ class FactureIn implements ModelInterface, ArrayAccess, \JsonSerializable
         'account_id' => false,
         'agent' => false,
         'applicable' => false,
-        'attributes' => false,
+        'attributes' => true,
         'code' => false,
         'created' => false,
         'deleted' => false,
@@ -601,7 +612,14 @@ class FactureIn implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'attributes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('attributes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['attributes'] = $attributes;
 

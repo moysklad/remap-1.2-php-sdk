@@ -27,8 +27,6 @@
  */
 
 namespace OpenAPI\Client\Model;
-
-use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
@@ -40,7 +38,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class MinimumStockWarehouseVaried implements ModelInterface, ArrayAccess, \JsonSerializable
+class MinimumStockWarehouseVaried extends MinimumStockAbstract
 {
     public const DISCRIMINATOR = null;
 
@@ -97,7 +95,7 @@ class MinimumStockWarehouseVaried implements ModelInterface, ArrayAccess, \JsonS
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -107,7 +105,7 @@ class MinimumStockWarehouseVaried implements ModelInterface, ArrayAccess, \JsonS
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -117,7 +115,7 @@ class MinimumStockWarehouseVaried implements ModelInterface, ArrayAccess, \JsonS
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables;
+        return self::$openAPINullables + parent::openAPINullables();
     }
 
     /**
@@ -201,7 +199,7 @@ class MinimumStockWarehouseVaried implements ModelInterface, ArrayAccess, \JsonS
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -211,7 +209,7 @@ class MinimumStockWarehouseVaried implements ModelInterface, ArrayAccess, \JsonS
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -221,7 +219,7 @@ class MinimumStockWarehouseVaried implements ModelInterface, ArrayAccess, \JsonS
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -248,12 +246,6 @@ class MinimumStockWarehouseVaried implements ModelInterface, ArrayAccess, \JsonS
         ];
     }
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -263,6 +255,8 @@ class MinimumStockWarehouseVaried implements ModelInterface, ArrayAccess, \JsonS
      */
     public function __construct(?array $data = null)
     {
+        parent::__construct($data);
+
         $this->setIfExists('type', $data ?? [], 'WAREHOUSE_VARIED');
         $this->setIfExists('store_balances', $data ?? [], null);
     }
@@ -292,7 +286,7 @@ class MinimumStockWarehouseVaried implements ModelInterface, ArrayAccess, \JsonS
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";

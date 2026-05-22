@@ -80,6 +80,15 @@ class PackTest extends TestCase
     }
 
     /**
+     * Test attribute "meta"
+     */
+    public function testPropertyMeta()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "id"
      */
     public function testPropertyId()

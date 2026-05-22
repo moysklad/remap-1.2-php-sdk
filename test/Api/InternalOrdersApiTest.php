@@ -108,6 +108,18 @@ class InternalOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for createInternalOrderMetadataState
+     *
+     * Создать статус InternalOrder.
+     *
+     */
+    public function testCreateInternalOrderMetadataState()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createInternalOrderPositions
      *
      * Создать позиции InternalOrder.

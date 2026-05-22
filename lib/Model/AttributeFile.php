@@ -27,8 +27,6 @@
  */
 
 namespace OpenAPI\Client\Model;
-
-use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
@@ -40,7 +38,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class AttributeFile implements ModelInterface, ArrayAccess, \JsonSerializable
+class AttributeFile extends AttributeAbstract
 {
     public const DISCRIMINATOR = null;
 
@@ -59,10 +57,7 @@ class AttributeFile implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'type' => 'string',
         'value' => 'string',
-        'download' => 'object',
-        'id' => 'string',
-        'meta' => '\OpenAPI\Client\Model\Meta',
-        'name' => 'string'
+        'download' => 'object'
     ];
 
     /**
@@ -75,10 +70,7 @@ class AttributeFile implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'type' => null,
         'value' => null,
-        'download' => null,
-        'id' => 'uuid',
-        'meta' => null,
-        'name' => null
+        'download' => null
     ];
 
     /**
@@ -89,10 +81,7 @@ class AttributeFile implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'type' => false,
         'value' => false,
-        'download' => false,
-        'id' => false,
-        'meta' => false,
-        'name' => false
+        'download' => false
     ];
 
     /**
@@ -109,7 +98,7 @@ class AttributeFile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -119,7 +108,7 @@ class AttributeFile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -129,7 +118,7 @@ class AttributeFile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables;
+        return self::$openAPINullables + parent::openAPINullables();
     }
 
     /**
@@ -183,10 +172,7 @@ class AttributeFile implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'type' => 'type',
         'value' => 'value',
-        'download' => 'download',
-        'id' => 'id',
-        'meta' => 'meta',
-        'name' => 'name'
+        'download' => 'download'
     ];
 
     /**
@@ -197,10 +183,7 @@ class AttributeFile implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'type' => 'setType',
         'value' => 'setValue',
-        'download' => 'setDownload',
-        'id' => 'setId',
-        'meta' => 'setMeta',
-        'name' => 'setName'
+        'download' => 'setDownload'
     ];
 
     /**
@@ -211,10 +194,7 @@ class AttributeFile implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'type' => 'getType',
         'value' => 'getValue',
-        'download' => 'getDownload',
-        'id' => 'getId',
-        'meta' => 'getMeta',
-        'name' => 'getName'
+        'download' => 'getDownload'
     ];
 
     /**
@@ -225,7 +205,7 @@ class AttributeFile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -235,7 +215,7 @@ class AttributeFile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -245,7 +225,7 @@ class AttributeFile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -272,12 +252,6 @@ class AttributeFile implements ModelInterface, ArrayAccess, \JsonSerializable
         ];
     }
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -287,12 +261,11 @@ class AttributeFile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        parent::__construct($data);
+
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('value', $data ?? [], null);
         $this->setIfExists('download', $data ?? [], null);
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('meta', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
     }
 
     /**
@@ -320,7 +293,7 @@ class AttributeFile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
@@ -433,87 +406,6 @@ class AttributeFile implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable download cannot be null');
         }
         $this->container['download'] = $download;
-
-        return $this;
-    }
-
-    /**
-     * Gets id
-     *
-     * @return string|null
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param string|null $id ID дополнительного поля
-     *
-     * @return self
-     */
-    public function setId($id)
-    {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets meta
-     *
-     * @return \OpenAPI\Client\Model\Meta|null
-     */
-    public function getMeta()
-    {
-        return $this->container['meta'];
-    }
-
-    /**
-     * Sets meta
-     *
-     * @param \OpenAPI\Client\Model\Meta|null $meta meta
-     *
-     * @return self
-     */
-    public function setMeta($meta)
-    {
-        if (is_null($meta)) {
-            throw new \InvalidArgumentException('non-nullable meta cannot be null');
-        }
-        $this->container['meta'] = $meta;
-
-        return $this;
-    }
-
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Наименование дополнительного поля
-     *
-     * @return self
-     */
-    public function setName($name)
-    {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
-        $this->container['name'] = $name;
 
         return $this;
     }

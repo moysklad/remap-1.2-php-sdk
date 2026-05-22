@@ -44,6 +44,17 @@ use \OpenAPI\Client\ObjectSerializer;
 class InternalOrder implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public static function createWithMeta(string $id) : InternalOrder {
+        $o = new InternalOrder();
+        $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
+        $meta = new Meta();
+        $meta->setType('internalorder');
+        $href = $config->getHost() . '/' . 'entity' . '/' . 'internalorder' . '/' . $id;
+        $meta->setHref($href);
+        $o->setMeta($meta);
+        $o->setId($id);
+        return $o;
+    }
 
     /**
       * The original name of the model.
@@ -173,13 +184,13 @@ class InternalOrder implements ModelInterface, ArrayAccess, \JsonSerializable
         'project' => true,
         'owner' => true,
         'group' => false,
-        'attributes' => false,
+        'attributes' => true,
         'files' => true,
         'rate' => false,
         'positions' => false,
-        'purchase_orders' => false,
-        'production_tasks' => false,
-        'moves' => false,
+        'purchase_orders' => true,
+        'production_tasks' => true,
+        'moves' => true,
         'processing_order' => true
     ];
 
@@ -1344,7 +1355,14 @@ class InternalOrder implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'attributes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('attributes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['attributes'] = $attributes;
 
@@ -1459,7 +1477,14 @@ class InternalOrder implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setPurchaseOrders($purchase_orders)
     {
         if (is_null($purchase_orders)) {
-            throw new \InvalidArgumentException('non-nullable purchase_orders cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'purchase_orders');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('purchase_orders', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['purchase_orders'] = $purchase_orders;
 
@@ -1486,7 +1511,14 @@ class InternalOrder implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setProductionTasks($production_tasks)
     {
         if (is_null($production_tasks)) {
-            throw new \InvalidArgumentException('non-nullable production_tasks cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'production_tasks');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('production_tasks', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['production_tasks'] = $production_tasks;
 
@@ -1513,7 +1545,14 @@ class InternalOrder implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setMoves($moves)
     {
         if (is_null($moves)) {
-            throw new \InvalidArgumentException('non-nullable moves cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'moves');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('moves', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['moves'] = $moves;
 
