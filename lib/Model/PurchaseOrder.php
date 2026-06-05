@@ -96,7 +96,7 @@ class PurchaseOrder implements ModelInterface, ArrayAccess, \JsonSerializable
         'wait_sum' => 'float',
         'organization' => '\OpenAPI\Client\Model\Organization',
         'organization_account' => '\OpenAPI\Client\Model\Account',
-        'agent' => '\OpenAPI\Client\Model\Counterparty',
+        'agent' => '\OpenAPI\Client\Model\Agent',
         'agent_account' => '\OpenAPI\Client\Model\Account',
         'store' => '\OpenAPI\Client\Model\Store',
         'state' => '\OpenAPI\Client\Model\State',
@@ -112,7 +112,7 @@ class PurchaseOrder implements ModelInterface, ArrayAccess, \JsonSerializable
         'customer_orders' => '\OpenAPI\Client\Model\CustomerOrder[]',
         'invoices_in' => '\OpenAPI\Client\Model\InvoiceIn[]',
         'supplies' => '\OpenAPI\Client\Model\Supply[]',
-        'payments' => '\OpenAPI\Client\Model\PurchaseOrderPaymentsInner[]',
+        'payments' => '\OpenAPI\Client\Model\SalesReturnPaymentsInner[]',
         'production_tasks' => '\OpenAPI\Client\Model\ProductionTask[]'
     ];
 
@@ -1387,7 +1387,7 @@ class PurchaseOrder implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets agent
      *
-     * @return \OpenAPI\Client\Model\Counterparty|null
+     * @return \OpenAPI\Client\Model\Agent|null
      */
     public function getAgent()
     {
@@ -1397,7 +1397,11 @@ class PurchaseOrder implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets agent
      *
-     * @param \OpenAPI\Client\Model\Counterparty|null $agent agent
+     * Accepts a Counterparty, Organization, or Agent instance (or null when nullable).
+     * On the wire the server only reads `meta`; non-meta fields are kept locally for
+     * type-safe access and serialized verbatim.
+     *
+     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $agent Метаданные контрагента или юрлица
      *
      * @return self
      */
@@ -1405,6 +1409,15 @@ class PurchaseOrder implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (is_null($agent)) {
             throw new \InvalidArgumentException('non-nullable agent cannot be null');
+        }
+        if (!is_null($agent)
+            && !($agent instanceof \OpenAPI\Client\Model\Counterparty)
+            && !($agent instanceof \OpenAPI\Client\Model\Organization)
+            && !($agent instanceof \OpenAPI\Client\Model\Agent)) {
+            throw new \InvalidArgumentException(
+                "Argument for 'agent' must be one of Counterparty, Organization, or Agent; got "
+                . (is_object($agent) ? get_class($agent) : gettype($agent))
+            );
         }
         $this->container['agent'] = $agent;
 
@@ -1903,7 +1916,7 @@ class PurchaseOrder implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets payments
      *
-     * @return \OpenAPI\Client\Model\PurchaseOrderPaymentsInner[]|null
+     * @return \OpenAPI\Client\Model\SalesReturnPaymentsInner[]|null
      */
     public function getPayments()
     {
@@ -1913,7 +1926,7 @@ class PurchaseOrder implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets payments
      *
-     * @param \OpenAPI\Client\Model\PurchaseOrderPaymentsInner[]|null $payments Массив ссылок на связанные платежи
+     * @param \OpenAPI\Client\Model\SalesReturnPaymentsInner[]|null $payments Массив ссылок на связанные платежи
      *
      * @return self
      */

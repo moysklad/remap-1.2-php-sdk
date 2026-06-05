@@ -341,6 +341,14 @@ class CreateCommissionReportInPositionsRequest implements ModelInterface, ArrayA
             $invalidProperties[] = "invalid value for 'quantity', must be bigger than 0.";
         }
 
+        if (!is_null($this->container['vat']) && ($this->container['vat'] > 100)) {
+            $invalidProperties[] = "invalid value for 'vat', must be smaller than or equal to 100.";
+        }
+
+        if (!is_null($this->container['vat']) && ($this->container['vat'] < 0)) {
+            $invalidProperties[] = "invalid value for 'vat', must be bigger than or equal to 0.";
+        }
+
         return $invalidProperties;
     }
 
@@ -545,6 +553,14 @@ class CreateCommissionReportInPositionsRequest implements ModelInterface, ArrayA
         if (is_null($vat)) {
             throw new \InvalidArgumentException('non-nullable vat cannot be null');
         }
+
+        if (($vat > 100)) {
+            throw new \InvalidArgumentException('invalid value for $vat when calling CreateCommissionReportInPositionsRequest., must be smaller than or equal to 100.');
+        }
+        if (($vat < 0)) {
+            throw new \InvalidArgumentException('invalid value for $vat when calling CreateCommissionReportInPositionsRequest., must be bigger than or equal to 0.');
+        }
+
         $this->container['vat'] = $vat;
 
         return $this;

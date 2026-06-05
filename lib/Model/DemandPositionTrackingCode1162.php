@@ -344,7 +344,7 @@ class DemandPositionTrackingCode1162 implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets type
      *
-     * @param string|null $type Тип кода маркировки. Известные значения описаны в DemandPositionTrackingCodeType
+     * @param string|null $type Тип кода маркировки. Известные значения описаны в PositionTrackingCodeType
      *
      * @return self
      */

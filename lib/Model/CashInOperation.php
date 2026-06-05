@@ -85,7 +85,7 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'invoiced_sum' => 'float',
         'organization' => '\OpenAPI\Client\Model\Organization',
         'organization_account' => '\OpenAPI\Client\Model\Account',
-        'agent' => '\OpenAPI\Client\Model\Counterparty',
+        'agent' => '\OpenAPI\Client\Model\Agent',
         'agent_account' => '\OpenAPI\Client\Model\Account',
         'store' => '\OpenAPI\Client\Model\Store',
         'state' => '\OpenAPI\Client\Model\State',
@@ -109,13 +109,15 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'moves' => '\OpenAPI\Client\Model\Move[]',
         'production_tasks' => '\OpenAPI\Client\Model\ProductionTask[]',
         'linked_sum' => 'float',
-        'overhead' => '\OpenAPI\Client\Model\DemandOverhead',
-        'customer_order' => '\OpenAPI\Client\Model\CustomerOrder',
+        'supply' => '\OpenAPI\Client\Model\Supply',
         'facture_out' => '\OpenAPI\Client\Model\FactureOut',
+        'facture_in' => '\OpenAPI\Client\Model\FactureIn',
+        'overhead' => '\OpenAPI\Client\Model\Overhead',
+        'customer_order' => '\OpenAPI\Client\Model\CustomerOrder',
         'returns' => '\OpenAPI\Client\Model\SalesReturn[]',
         'cargo_name' => 'string',
-        'carrier' => '\OpenAPI\Client\Model\DemandCarrier',
-        'consignee' => '\OpenAPI\Client\Model\DemandConsignee',
+        'carrier' => '\OpenAPI\Client\Model\Agent',
+        'consignee' => '\OpenAPI\Client\Model\Agent',
         'good_pack_quantity' => 'int',
         'shipping_instructions' => 'string',
         'state_contract_id' => 'string',
@@ -189,9 +191,11 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'moves' => null,
         'production_tasks' => null,
         'linked_sum' => 'double',
+        'supply' => null,
+        'facture_out' => null,
+        'facture_in' => null,
         'overhead' => null,
         'customer_order' => null,
-        'facture_out' => null,
         'returns' => null,
         'cargo_name' => null,
         'carrier' => null,
@@ -267,9 +271,11 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'moves' => true,
         'production_tasks' => true,
         'linked_sum' => false,
+        'supply' => true,
+        'facture_out' => true,
+        'facture_in' => true,
         'overhead' => true,
         'customer_order' => true,
-        'facture_out' => true,
         'returns' => true,
         'cargo_name' => false,
         'carrier' => true,
@@ -425,9 +431,11 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'moves' => 'moves',
         'production_tasks' => 'productionTasks',
         'linked_sum' => 'linkedSum',
+        'supply' => 'supply',
+        'facture_out' => 'factureOut',
+        'facture_in' => 'factureIn',
         'overhead' => 'overhead',
         'customer_order' => 'customerOrder',
-        'facture_out' => 'factureOut',
         'returns' => 'returns',
         'cargo_name' => 'cargoName',
         'carrier' => 'carrier',
@@ -503,9 +511,11 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'moves' => 'setMoves',
         'production_tasks' => 'setProductionTasks',
         'linked_sum' => 'setLinkedSum',
+        'supply' => 'setSupply',
+        'facture_out' => 'setFactureOut',
+        'facture_in' => 'setFactureIn',
         'overhead' => 'setOverhead',
         'customer_order' => 'setCustomerOrder',
-        'facture_out' => 'setFactureOut',
         'returns' => 'setReturns',
         'cargo_name' => 'setCargoName',
         'carrier' => 'setCarrier',
@@ -581,9 +591,11 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'moves' => 'getMoves',
         'production_tasks' => 'getProductionTasks',
         'linked_sum' => 'getLinkedSum',
+        'supply' => 'getSupply',
+        'facture_out' => 'getFactureOut',
+        'facture_in' => 'getFactureIn',
         'overhead' => 'getOverhead',
         'customer_order' => 'getCustomerOrder',
-        'facture_out' => 'getFactureOut',
         'returns' => 'getReturns',
         'cargo_name' => 'getCargoName',
         'carrier' => 'getCarrier',
@@ -710,9 +722,11 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('moves', $data ?? [], null);
         $this->setIfExists('production_tasks', $data ?? [], null);
         $this->setIfExists('linked_sum', $data ?? [], null);
+        $this->setIfExists('supply', $data ?? [], null);
+        $this->setIfExists('facture_out', $data ?? [], null);
+        $this->setIfExists('facture_in', $data ?? [], null);
         $this->setIfExists('overhead', $data ?? [], null);
         $this->setIfExists('customer_order', $data ?? [], null);
-        $this->setIfExists('facture_out', $data ?? [], null);
         $this->setIfExists('returns', $data ?? [], null);
         $this->setIfExists('cargo_name', $data ?? [], null);
         $this->setIfExists('carrier', $data ?? [], null);
@@ -799,6 +813,14 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
 
         if (!is_null($this->container['transport_facility_number']) && (mb_strlen($this->container['transport_facility_number']) > 255)) {
             $invalidProperties[] = "invalid value for 'transport_facility_number', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['reward_percent']) && ($this->container['reward_percent'] > 100)) {
+            $invalidProperties[] = "invalid value for 'reward_percent', must be smaller than or equal to 100.";
+        }
+
+        if (!is_null($this->container['reward_percent']) && ($this->container['reward_percent'] < 0)) {
+            $invalidProperties[] = "invalid value for 'reward_percent', must be bigger than or equal to 0.";
         }
 
         if (!is_null($this->container['reward_type']) && (mb_strlen($this->container['reward_type']) > 255)) {
@@ -1582,7 +1604,7 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets agent
      *
-     * @return \OpenAPI\Client\Model\Counterparty|null
+     * @return \OpenAPI\Client\Model\Agent|null
      */
     public function getAgent()
     {
@@ -1592,7 +1614,11 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets agent
      *
-     * @param \OpenAPI\Client\Model\Counterparty|null $agent agent
+     * Accepts a Counterparty, Organization, or Agent instance (or null when nullable).
+     * On the wire the server only reads `meta`; non-meta fields are kept locally for
+     * type-safe access and serialized verbatim.
+     *
+     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $agent Метаданные контрагента или юрлица
      *
      * @return self
      */
@@ -1600,6 +1626,15 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (is_null($agent)) {
             throw new \InvalidArgumentException('non-nullable agent cannot be null');
+        }
+        if (!is_null($agent)
+            && !($agent instanceof \OpenAPI\Client\Model\Counterparty)
+            && !($agent instanceof \OpenAPI\Client\Model\Organization)
+            && !($agent instanceof \OpenAPI\Client\Model\Agent)) {
+            throw new \InvalidArgumentException(
+                "Argument for 'agent' must be one of Counterparty, Organization, or Agent; got "
+                . (is_object($agent) ? get_class($agent) : gettype($agent))
+            );
         }
         $this->container['agent'] = $agent;
 
@@ -2344,9 +2379,111 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets supply
+     *
+     * @return \OpenAPI\Client\Model\Supply|null
+     */
+    public function getSupply()
+    {
+        return $this->container['supply'];
+    }
+
+    /**
+     * Sets supply
+     *
+     * @param \OpenAPI\Client\Model\Supply|null $supply Приемка, по которой произошел возврат
+     *
+     * @return self
+     */
+    public function setSupply($supply)
+    {
+        if (is_null($supply)) {
+            array_push($this->openAPINullablesSetToNull, 'supply');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('supply', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['supply'] = $supply;
+
+        return $this;
+    }
+
+    /**
+     * Gets facture_out
+     *
+     * @return \OpenAPI\Client\Model\FactureOut|null
+     */
+    public function getFactureOut()
+    {
+        return $this->container['facture_out'];
+    }
+
+    /**
+     * Sets facture_out
+     *
+     * @param \OpenAPI\Client\Model\FactureOut|null $facture_out Счёт-фактура выданный, с которым связана Отгрузка
+     *
+     * @return self
+     */
+    public function setFactureOut($facture_out)
+    {
+        if (is_null($facture_out)) {
+            array_push($this->openAPINullablesSetToNull, 'facture_out');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('facture_out', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['facture_out'] = $facture_out;
+
+        return $this;
+    }
+
+    /**
+     * Gets facture_in
+     *
+     * @return \OpenAPI\Client\Model\FactureIn|null
+     */
+    public function getFactureIn()
+    {
+        return $this->container['facture_in'];
+    }
+
+    /**
+     * Sets facture_in
+     *
+     * @param \OpenAPI\Client\Model\FactureIn|null $facture_in Счет-фактура полученный, с которым связан этот возврат
+     *
+     * @return self
+     */
+    public function setFactureIn($facture_in)
+    {
+        if (is_null($facture_in)) {
+            array_push($this->openAPINullablesSetToNull, 'facture_in');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('facture_in', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['facture_in'] = $facture_in;
+
+        return $this;
+    }
+
+    /**
      * Gets overhead
      *
-     * @return \OpenAPI\Client\Model\DemandOverhead|null
+     * @return \OpenAPI\Client\Model\Overhead|null
      */
     public function getOverhead()
     {
@@ -2356,7 +2493,7 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets overhead
      *
-     * @param \OpenAPI\Client\Model\DemandOverhead|null $overhead overhead
+     * @param \OpenAPI\Client\Model\Overhead|null $overhead overhead
      *
      * @return self
      */
@@ -2407,40 +2544,6 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['customer_order'] = $customer_order;
-
-        return $this;
-    }
-
-    /**
-     * Gets facture_out
-     *
-     * @return \OpenAPI\Client\Model\FactureOut|null
-     */
-    public function getFactureOut()
-    {
-        return $this->container['facture_out'];
-    }
-
-    /**
-     * Sets facture_out
-     *
-     * @param \OpenAPI\Client\Model\FactureOut|null $facture_out Счёт-фактура выданный, с которым связана Отгрузка
-     *
-     * @return self
-     */
-    public function setFactureOut($facture_out)
-    {
-        if (is_null($facture_out)) {
-            array_push($this->openAPINullablesSetToNull, 'facture_out');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('facture_out', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['facture_out'] = $facture_out;
 
         return $this;
     }
@@ -2513,7 +2616,7 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets carrier
      *
-     * @return \OpenAPI\Client\Model\DemandCarrier|null
+     * @return \OpenAPI\Client\Model\Agent|null
      */
     public function getCarrier()
     {
@@ -2523,7 +2626,11 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets carrier
      *
-     * @param \OpenAPI\Client\Model\DemandCarrier|null $carrier carrier
+     * Accepts a Counterparty, Organization, or Agent instance (or null when nullable).
+     * On the wire the server only reads `meta`; non-meta fields are kept locally for
+     * type-safe access and serialized verbatim.
+     *
+     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $carrier Перевозчик (контрагент или юрлицо)
      *
      * @return self
      */
@@ -2539,6 +2646,15 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
+        if (!is_null($carrier)
+            && !($carrier instanceof \OpenAPI\Client\Model\Counterparty)
+            && !($carrier instanceof \OpenAPI\Client\Model\Organization)
+            && !($carrier instanceof \OpenAPI\Client\Model\Agent)) {
+            throw new \InvalidArgumentException(
+                "Argument for 'carrier' must be one of Counterparty, Organization, or Agent; got "
+                . (is_object($carrier) ? get_class($carrier) : gettype($carrier))
+            );
+        }
         $this->container['carrier'] = $carrier;
 
         return $this;
@@ -2547,7 +2663,7 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets consignee
      *
-     * @return \OpenAPI\Client\Model\DemandConsignee|null
+     * @return \OpenAPI\Client\Model\Agent|null
      */
     public function getConsignee()
     {
@@ -2557,7 +2673,11 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets consignee
      *
-     * @param \OpenAPI\Client\Model\DemandConsignee|null $consignee consignee
+     * Accepts a Counterparty, Organization, or Agent instance (or null when nullable).
+     * On the wire the server only reads `meta`; non-meta fields are kept locally for
+     * type-safe access and serialized verbatim.
+     *
+     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $consignee Грузополучатель (контрагент или юрлицо)
      *
      * @return self
      */
@@ -2572,6 +2692,15 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
+        }
+        if (!is_null($consignee)
+            && !($consignee instanceof \OpenAPI\Client\Model\Counterparty)
+            && !($consignee instanceof \OpenAPI\Client\Model\Organization)
+            && !($consignee instanceof \OpenAPI\Client\Model\Agent)) {
+            throw new \InvalidArgumentException(
+                "Argument for 'consignee' must be one of Counterparty, Organization, or Agent; got "
+                . (is_object($consignee) ? get_class($consignee) : gettype($consignee))
+            );
         }
         $this->container['consignee'] = $consignee;
 
@@ -2886,6 +3015,14 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($reward_percent)) {
             throw new \InvalidArgumentException('non-nullable reward_percent cannot be null');
         }
+
+        if (($reward_percent > 100)) {
+            throw new \InvalidArgumentException('invalid value for $reward_percent when calling CashInOperation., must be smaller than or equal to 100.');
+        }
+        if (($reward_percent < 0)) {
+            throw new \InvalidArgumentException('invalid value for $reward_percent when calling CashInOperation., must be bigger than or equal to 0.');
+        }
+
         $this->container['reward_percent'] = $reward_percent;
 
         return $this;
@@ -2904,7 +3041,7 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets reward_type
      *
-     * @param string|null $reward_type Тип вознаграждения
+     * @param string|null $reward_type Тип Вознаграждения. Известные значения описаны в RewardType
      *
      * @return self
      */

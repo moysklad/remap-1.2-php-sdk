@@ -107,15 +107,6 @@ class CashOutOperationTest extends TestCase
     }
 
     /**
-     * Test attribute "linked_sum"
-     */
-    public function testPropertyLinkedSum()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "name"
      */
     public function testPropertyName()
@@ -197,15 +188,6 @@ class CashOutOperationTest extends TestCase
     }
 
     /**
-     * Test attribute "delivery_planned_moment"
-     */
-    public function testPropertyDeliveryPlannedMoment()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "applicable"
      */
     public function testPropertyApplicable()
@@ -281,33 +263,6 @@ class CashOutOperationTest extends TestCase
      * Test attribute "payed_sum"
      */
     public function testPropertyPayedSum()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "shipped_sum"
-     */
-    public function testPropertyShippedSum()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "invoiced_sum"
-     */
-    public function testPropertyInvoicedSum()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "wait_sum"
-     */
-    public function testPropertyWaitSum()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -440,6 +395,168 @@ class CashOutOperationTest extends TestCase
     }
 
     /**
+     * Test attribute "sales_channel"
+     */
+    public function testPropertySalesChannel()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "demand"
+     */
+    public function testPropertyDemand()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "losses"
+     */
+    public function testPropertyLosses()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "payments"
+     */
+    public function testPropertyPayments()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "facture_out"
+     */
+    public function testPropertyFactureOut()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "linked_sum"
+     */
+    public function testPropertyLinkedSum()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "incoming_date"
+     */
+    public function testPropertyIncomingDate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "incoming_number"
+     */
+    public function testPropertyIncomingNumber()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "overhead"
+     */
+    public function testPropertyOverhead()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "purchase_order"
+     */
+    public function testPropertyPurchaseOrder()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "facture_in"
+     */
+    public function testPropertyFactureIn()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "invoices_in"
+     */
+    public function testPropertyInvoicesIn()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "production_task"
+     */
+    public function testPropertyProductionTask()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "returns"
+     */
+    public function testPropertyReturns()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "delivery_planned_moment"
+     */
+    public function testPropertyDeliveryPlannedMoment()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "shipped_sum"
+     */
+    public function testPropertyShippedSum()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "invoiced_sum"
+     */
+    public function testPropertyInvoicedSum()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "wait_sum"
+     */
+    public function testPropertyWaitSum()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "internal_order"
      */
     public function testPropertyInternalOrder()
@@ -458,15 +575,6 @@ class CashOutOperationTest extends TestCase
     }
 
     /**
-     * Test attribute "invoices_in"
-     */
-    public function testPropertyInvoicesIn()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "supplies"
      */
     public function testPropertySupplies()
@@ -476,18 +584,54 @@ class CashOutOperationTest extends TestCase
     }
 
     /**
-     * Test attribute "payments"
+     * Test attribute "production_tasks"
      */
-    public function testPropertyPayments()
+    public function testPropertyProductionTasks()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "production_tasks"
+     * Test attribute "commission_period_end"
      */
-    public function testPropertyProductionTasks()
+    public function testPropertyCommissionPeriodEnd()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "commission_period_start"
+     */
+    public function testPropertyCommissionPeriodStart()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "commitent_sum"
+     */
+    public function testPropertyCommitentSum()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "reward_percent"
+     */
+    public function testPropertyRewardPercent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "reward_type"
+     */
+    public function testPropertyRewardType()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -539,6 +539,33 @@ class CashInOperationTest extends TestCase
     }
 
     /**
+     * Test attribute "supply"
+     */
+    public function testPropertySupply()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "facture_out"
+     */
+    public function testPropertyFactureOut()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "facture_in"
+     */
+    public function testPropertyFactureIn()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "overhead"
      */
     public function testPropertyOverhead()
@@ -551,15 +578,6 @@ class CashInOperationTest extends TestCase
      * Test attribute "customer_order"
      */
     public function testPropertyCustomerOrder()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "facture_out"
-     */
-    public function testPropertyFactureOut()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

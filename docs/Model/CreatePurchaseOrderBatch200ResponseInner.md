@@ -31,7 +31,7 @@ Name | Type | Description | Notes
 **wait_sum** | **float** | Сумма товаров в пути | [optional] [readonly]
 **organization** | [**\OpenAPI\Client\Model\Organization**](Organization.md) |  | [optional]
 **organization_account** | [**\OpenAPI\Client\Model\Account**](Account.md) | Метаданные счета юрлица | [optional]
-**agent** | [**\OpenAPI\Client\Model\Counterparty**](Counterparty.md) |  | [optional]
+**agent** | [**\OpenAPI\Client\Model\Agent**](Agent.md) | Метаданные контрагента или юрлица | [optional]
 **agent_account** | [**\OpenAPI\Client\Model\Account**](Account.md) | Метаданные счета контрагента | [optional]
 **store** | [**\OpenAPI\Client\Model\Store**](Store.md) | Метаданные склада | [optional]
 **state** | [**\OpenAPI\Client\Model\State**](State.md) | Метаданные статуса заказа | [optional]
@@ -47,7 +47,7 @@ Name | Type | Description | Notes
 **customer_orders** | [**\OpenAPI\Client\Model\CustomerOrder[]**](CustomerOrder.md) | Массив ссылок на связанные заказы покупателей | [optional]
 **invoices_in** | [**\OpenAPI\Client\Model\InvoiceIn[]**](InvoiceIn.md) | Массив ссылок на связанные счета поставщиков | [optional]
 **supplies** | [**\OpenAPI\Client\Model\Supply[]**](Supply.md) | Массив ссылок на связанные приемки | [optional]
-**payments** | [**\OpenAPI\Client\Model\PurchaseOrderPaymentsInner[]**](PurchaseOrderPaymentsInner.md) | Массив ссылок на связанные платежи | [optional]
+**payments** | [**\OpenAPI\Client\Model\SalesReturnPaymentsInner[]**](SalesReturnPaymentsInner.md) | Массив ссылок на связанные платежи | [optional]
 **production_tasks** | [**\OpenAPI\Client\Model\ProductionTask[]**](ProductionTask.md) | Массив ссылок на связанные производственные задания | [optional]
 **errors** | [**\OpenAPI\Client\Model\ErrorErrorsInner[]**](ErrorErrorsInner.md) |  |
 

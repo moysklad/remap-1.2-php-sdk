@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **published** | **bool** | Опубликован ли документ | [optional] [readonly]
 **rate** | [**\OpenAPI\Client\Model\CurrencyRate**](CurrencyRate.md) |  | [optional]
 **organization** | [**\OpenAPI\Client\Model\Organization**](Organization.md) |  | [optional]
-**agent** | [**\OpenAPI\Client\Model\Counterparty**](Counterparty.md) |  | [optional]
+**agent** | [**\OpenAPI\Client\Model\Agent**](Agent.md) | Метаданные контрагента или юрлица | [optional]
 **expense_item** | [**\OpenAPI\Client\Model\ExpenseItem**](ExpenseItem.md) | Метаданные статьи расхода | [optional]
 **attributes** | [**\OpenAPI\Client\Model\AttributeAbstract[]**](AttributeAbstract.md) | Коллекция метаданных доп. полей | [optional]
 **contract** | [**\OpenAPI\Client\Model\Contract**](Contract.md) | Метаданные договора | [optional]

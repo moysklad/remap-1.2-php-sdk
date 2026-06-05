@@ -310,7 +310,7 @@ class CurrencyRate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets currency
      *
-     * @param \OpenAPI\Client\Model\Currency|null $currency currency
+     * @param \OpenAPI\Client\Model\Currency|null $currency Валюта
      *
      * @return self
      */

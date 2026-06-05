@@ -188,9 +188,90 @@ class CustomerOrderPaymentsInnerTest extends TestCase
     }
 
     /**
+     * Test attribute "owner"
+     */
+    public function testPropertyOwner()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "group"
+     */
+    public function testPropertyGroup()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "applicable"
      */
     public function testPropertyApplicable()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "printed"
+     */
+    public function testPropertyPrinted()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "published"
+     */
+    public function testPropertyPublished()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "rate"
+     */
+    public function testPropertyRate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "organization"
+     */
+    public function testPropertyOrganization()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "agent"
+     */
+    public function testPropertyAgent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "agent_account"
+     */
+    public function testPropertyAgentAccount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "organization_account"
+     */
+    public function testPropertyOrganizationAccount()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -233,45 +314,9 @@ class CustomerOrderPaymentsInnerTest extends TestCase
     }
 
     /**
-     * Test attribute "printed"
-     */
-    public function testPropertyPrinted()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "project"
      */
     public function testPropertyProject()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "published"
-     */
-    public function testPropertyPublished()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "owner"
-     */
-    public function testPropertyOwner()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "group"
-     */
-    public function testPropertyGroup()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -305,33 +350,6 @@ class CustomerOrderPaymentsInnerTest extends TestCase
     }
 
     /**
-     * Test attribute "rate"
-     */
-    public function testPropertyRate()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "organization"
-     */
-    public function testPropertyOrganization()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "agent"
-     */
-    public function testPropertyAgent()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "sum"
      */
     public function testPropertySum()
@@ -344,6 +362,24 @@ class CustomerOrderPaymentsInnerTest extends TestCase
      * Test attribute "vat_sum"
      */
     public function testPropertyVatSum()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "incoming_number"
+     */
+    public function testPropertyIncomingNumber()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "incoming_date"
+     */
+    public function testPropertyIncomingDate()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -72,7 +72,7 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
         'meta' => '\OpenAPI\Client\Model\Meta',
         'id' => 'string',
         'account_id' => 'string',
-        'agent' => '\OpenAPI\Client\Model\Counterparty',
+        'agent' => '\OpenAPI\Client\Model\Agent',
         'author' => '\OpenAPI\Client\Model\Employee',
         'author_application' => '\OpenAPI\Client\Model\Application',
         'created' => 'string',
@@ -438,7 +438,7 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets agent
      *
-     * @return \OpenAPI\Client\Model\Counterparty|null
+     * @return \OpenAPI\Client\Model\Agent|null
      */
     public function getAgent()
     {
@@ -448,7 +448,11 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets agent
      *
-     * @param \OpenAPI\Client\Model\Counterparty|null $agent agent
+     * Accepts a Counterparty, Organization, or Agent instance (or null when nullable).
+     * On the wire the server only reads `meta`; non-meta fields are kept locally for
+     * type-safe access and serialized verbatim.
+     *
+     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $agent Метаданные контрагента или юрлица
      *
      * @return self
      */
@@ -456,6 +460,15 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (is_null($agent)) {
             throw new \InvalidArgumentException('non-nullable agent cannot be null');
+        }
+        if (!is_null($agent)
+            && !($agent instanceof \OpenAPI\Client\Model\Counterparty)
+            && !($agent instanceof \OpenAPI\Client\Model\Organization)
+            && !($agent instanceof \OpenAPI\Client\Model\Agent)) {
+            throw new \InvalidArgumentException(
+                "Argument for 'agent' must be one of Counterparty, Organization, or Agent; got "
+                . (is_object($agent) ? get_class($agent) : gettype($agent))
+            );
         }
         $this->container['agent'] = $agent;
 

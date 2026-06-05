@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **meta** | [**\OpenAPI\Client\Model\Meta**](Meta.md) |  | [optional]
 **id** | **string** | ID Счета-фактуры выданного | [optional] [readonly]
 **account_id** | **string** | ID учетной записи | [optional] [readonly]
-**agent** | [**\OpenAPI\Client\Model\Counterparty**](Counterparty.md) |  | [optional]
+**agent** | [**\OpenAPI\Client\Model\Agent**](Agent.md) | Метаданные контрагента или юрлица | [optional]
 **applicable** | **bool** | Отметка о проведении | [optional]
 **attributes** | [**\OpenAPI\Client\Model\AttributeAbstract[]**](AttributeAbstract.md) | Коллекция метаданных доп. полей | [optional]
 **code** | **string** | Код Счета-фактуры выданного | [optional]
@@ -37,7 +37,7 @@ Name | Type | Description | Notes
 **demands** | [**\OpenAPI\Client\Model\Demand[]**](Demand.md) | Связанные отгрузки (метаданные) | [optional]
 **payments** | [**\OpenAPI\Client\Model\PaymentIn[]**](PaymentIn.md) | Связанные входящие платежи (метаданные) | [optional]
 **returns** | [**\OpenAPI\Client\Model\PurchaseReturn[]**](PurchaseReturn.md) | Связанные возвраты поставщикам (метаданные) | [optional]
-**consignee** | [**\OpenAPI\Client\Model\Counterparty**](Counterparty.md) |  | [optional]
+**consignee** | [**\OpenAPI\Client\Model\Agent**](Agent.md) | Грузополучатель (контрагент или юрлицо) | [optional]
 **payment_number** | **string** | Название платежного документа | [optional]
 **payment_date** | **string** | Дата платежного документа | [optional]
 

@@ -61,7 +61,7 @@ class CashInOperationAnyOf4 implements ModelInterface, ArrayAccess, \JsonSeriali
         'meta' => '\OpenAPI\Client\Model\Meta',
         'id' => 'string',
         'account_id' => 'string',
-        'agent' => '\OpenAPI\Client\Model\Counterparty',
+        'agent' => '\OpenAPI\Client\Model\Agent',
         'agent_account' => '\OpenAPI\Client\Model\Account',
         'applicable' => 'bool',
         'attributes' => '\OpenAPI\Client\Model\AttributeAbstract[]',
@@ -592,6 +592,14 @@ class CashInOperationAnyOf4 implements ModelInterface, ArrayAccess, \JsonSeriali
             $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
         }
 
+        if (!is_null($this->container['reward_percent']) && ($this->container['reward_percent'] > 100)) {
+            $invalidProperties[] = "invalid value for 'reward_percent', must be smaller than or equal to 100.";
+        }
+
+        if (!is_null($this->container['reward_percent']) && ($this->container['reward_percent'] < 0)) {
+            $invalidProperties[] = "invalid value for 'reward_percent', must be bigger than or equal to 0.";
+        }
+
         if (!is_null($this->container['reward_type']) && (mb_strlen($this->container['reward_type']) > 255)) {
             $invalidProperties[] = "invalid value for 'reward_type', the character length must be smaller than or equal to 255.";
         }
@@ -698,7 +706,7 @@ class CashInOperationAnyOf4 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets agent
      *
-     * @return \OpenAPI\Client\Model\Counterparty|null
+     * @return \OpenAPI\Client\Model\Agent|null
      */
     public function getAgent()
     {
@@ -708,7 +716,11 @@ class CashInOperationAnyOf4 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets agent
      *
-     * @param \OpenAPI\Client\Model\Counterparty|null $agent agent
+     * Accepts a Counterparty, Organization, or Agent instance (or null when nullable).
+     * On the wire the server only reads `meta`; non-meta fields are kept locally for
+     * type-safe access and serialized verbatim.
+     *
+     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $agent Метаданные контрагента или юрлица
      *
      * @return self
      */
@@ -716,6 +728,15 @@ class CashInOperationAnyOf4 implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         if (is_null($agent)) {
             throw new \InvalidArgumentException('non-nullable agent cannot be null');
+        }
+        if (!is_null($agent)
+            && !($agent instanceof \OpenAPI\Client\Model\Counterparty)
+            && !($agent instanceof \OpenAPI\Client\Model\Organization)
+            && !($agent instanceof \OpenAPI\Client\Model\Agent)) {
+            throw new \InvalidArgumentException(
+                "Argument for 'agent' must be one of Counterparty, Organization, or Agent; got "
+                . (is_object($agent) ? get_class($agent) : gettype($agent))
+            );
         }
         $this->container['agent'] = $agent;
 
@@ -1545,6 +1566,14 @@ class CashInOperationAnyOf4 implements ModelInterface, ArrayAccess, \JsonSeriali
         if (is_null($reward_percent)) {
             throw new \InvalidArgumentException('non-nullable reward_percent cannot be null');
         }
+
+        if (($reward_percent > 100)) {
+            throw new \InvalidArgumentException('invalid value for $reward_percent when calling CashInOperationAnyOf4., must be smaller than or equal to 100.');
+        }
+        if (($reward_percent < 0)) {
+            throw new \InvalidArgumentException('invalid value for $reward_percent when calling CashInOperationAnyOf4., must be bigger than or equal to 0.');
+        }
+
         $this->container['reward_percent'] = $reward_percent;
 
         return $this;
@@ -1563,7 +1592,7 @@ class CashInOperationAnyOf4 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets reward_type
      *
-     * @param string|null $reward_type Тип вознаграждения
+     * @param string|null $reward_type Тип Вознаграждения. Известные значения описаны в RewardType
      *
      * @return self
      */

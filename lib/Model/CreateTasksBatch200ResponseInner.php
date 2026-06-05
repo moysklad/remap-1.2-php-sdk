@@ -60,7 +60,7 @@ class CreateTasksBatch200ResponseInner implements ModelInterface, ArrayAccess, \
         'meta' => '\OpenAPI\Client\Model\Meta',
         'id' => 'string',
         'account_id' => 'string',
-        'agent' => '\OpenAPI\Client\Model\TaskAgent',
+        'agent' => '\OpenAPI\Client\Model\Agent',
         'assignee' => '\OpenAPI\Client\Model\Employee',
         'author' => '\OpenAPI\Client\Model\Employee',
         'author_application' => '\OpenAPI\Client\Model\Application',
@@ -116,7 +116,7 @@ class CreateTasksBatch200ResponseInner implements ModelInterface, ArrayAccess, \
         'meta' => false,
         'id' => false,
         'account_id' => false,
-        'agent' => true,
+        'agent' => false,
         'assignee' => false,
         'author' => false,
         'author_application' => false,
@@ -506,7 +506,7 @@ class CreateTasksBatch200ResponseInner implements ModelInterface, ArrayAccess, \
     /**
      * Gets agent
      *
-     * @return \OpenAPI\Client\Model\TaskAgent|null
+     * @return \OpenAPI\Client\Model\Agent|null
      */
     public function getAgent()
     {
@@ -516,21 +516,27 @@ class CreateTasksBatch200ResponseInner implements ModelInterface, ArrayAccess, \
     /**
      * Sets agent
      *
-     * @param \OpenAPI\Client\Model\TaskAgent|null $agent agent
+     * Accepts a Counterparty, Organization, or Agent instance (or null when nullable).
+     * On the wire the server only reads `meta`; non-meta fields are kept locally for
+     * type-safe access and serialized verbatim.
+     *
+     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $agent Метаданные Контрагента или юрлица, связанного с задачей
      *
      * @return self
      */
     public function setAgent($agent)
     {
         if (is_null($agent)) {
-            array_push($this->openAPINullablesSetToNull, 'agent');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('agent', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable agent cannot be null');
+        }
+        if (!is_null($agent)
+            && !($agent instanceof \OpenAPI\Client\Model\Counterparty)
+            && !($agent instanceof \OpenAPI\Client\Model\Organization)
+            && !($agent instanceof \OpenAPI\Client\Model\Agent)) {
+            throw new \InvalidArgumentException(
+                "Argument for 'agent' must be one of Counterparty, Organization, or Agent; got "
+                . (is_object($agent) ? get_class($agent) : gettype($agent))
+            );
         }
         $this->container['agent'] = $agent;
 

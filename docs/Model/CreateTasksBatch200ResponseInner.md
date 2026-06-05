@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **meta** | [**\OpenAPI\Client\Model\Meta**](Meta.md) |  | [optional]
 **id** | **string** | ID Задачи | [optional] [readonly]
 **account_id** | **string** | ID учетной записи | [optional] [readonly]
-**agent** | [**\OpenAPI\Client\Model\TaskAgent**](TaskAgent.md) |  | [optional]
+**agent** | [**\OpenAPI\Client\Model\Agent**](Agent.md) | Метаданные Контрагента или юрлица, связанного с задачей | [optional]
 **assignee** | [**\OpenAPI\Client\Model\Employee**](Employee.md) |  | [optional]
 **author** | [**\OpenAPI\Client\Model\Employee**](Employee.md) |  | [optional]
 **author_application** | [**\OpenAPI\Client\Model\Application**](Application.md) |  | [optional]

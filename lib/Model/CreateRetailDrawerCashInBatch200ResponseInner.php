@@ -461,8 +461,8 @@ class CreateRetailDrawerCashInBatch200ResponseInner implements ModelInterface, A
             $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
         }
 
-        if (!is_null($this->container['sum']) && ($this->container['sum'] < 0.5)) {
-            $invalidProperties[] = "invalid value for 'sum', must be bigger than or equal to 0.5.";
+        if (!is_null($this->container['sum']) && ($this->container['sum'] < 1)) {
+            $invalidProperties[] = "invalid value for 'sum', must be bigger than or equal to 1.";
         }
 
         if ($this->container['errors'] === null) {
@@ -1147,8 +1147,8 @@ class CreateRetailDrawerCashInBatch200ResponseInner implements ModelInterface, A
             throw new \InvalidArgumentException('non-nullable sum cannot be null');
         }
 
-        if (($sum < 0.5)) {
-            throw new \InvalidArgumentException('invalid value for $sum when calling CreateRetailDrawerCashInBatch200ResponseInner., must be bigger than or equal to 0.5.');
+        if (($sum < 1)) {
+            throw new \InvalidArgumentException('invalid value for $sum when calling CreateRetailDrawerCashInBatch200ResponseInner., must be bigger than or equal to 1.');
         }
 
         $this->container['sum'] = $sum;

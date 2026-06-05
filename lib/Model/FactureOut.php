@@ -72,7 +72,7 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
         'meta' => '\OpenAPI\Client\Model\Meta',
         'id' => 'string',
         'account_id' => 'string',
-        'agent' => '\OpenAPI\Client\Model\Counterparty',
+        'agent' => '\OpenAPI\Client\Model\Agent',
         'applicable' => 'bool',
         'attributes' => '\OpenAPI\Client\Model\AttributeAbstract[]',
         'code' => 'string',
@@ -102,7 +102,7 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
         'demands' => '\OpenAPI\Client\Model\Demand[]',
         'payments' => '\OpenAPI\Client\Model\PaymentIn[]',
         'returns' => '\OpenAPI\Client\Model\PurchaseReturn[]',
-        'consignee' => '\OpenAPI\Client\Model\Counterparty',
+        'consignee' => '\OpenAPI\Client\Model\Agent',
         'payment_number' => 'string',
         'payment_date' => 'string'
     ];
@@ -192,7 +192,7 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
         'demands' => true,
         'payments' => true,
         'returns' => true,
-        'consignee' => false,
+        'consignee' => true,
         'payment_number' => false,
         'payment_date' => false
     ];
@@ -658,7 +658,7 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets agent
      *
-     * @return \OpenAPI\Client\Model\Counterparty|null
+     * @return \OpenAPI\Client\Model\Agent|null
      */
     public function getAgent()
     {
@@ -668,7 +668,11 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets agent
      *
-     * @param \OpenAPI\Client\Model\Counterparty|null $agent agent
+     * Accepts a Counterparty, Organization, or Agent instance (or null when nullable).
+     * On the wire the server only reads `meta`; non-meta fields are kept locally for
+     * type-safe access and serialized verbatim.
+     *
+     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $agent Метаданные контрагента или юрлица
      *
      * @return self
      */
@@ -676,6 +680,15 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (is_null($agent)) {
             throw new \InvalidArgumentException('non-nullable agent cannot be null');
+        }
+        if (!is_null($agent)
+            && !($agent instanceof \OpenAPI\Client\Model\Counterparty)
+            && !($agent instanceof \OpenAPI\Client\Model\Organization)
+            && !($agent instanceof \OpenAPI\Client\Model\Agent)) {
+            throw new \InvalidArgumentException(
+                "Argument for 'agent' must be one of Counterparty, Organization, or Agent; got "
+                . (is_object($agent) ? get_class($agent) : gettype($agent))
+            );
         }
         $this->container['agent'] = $agent;
 
@@ -1555,7 +1568,7 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets consignee
      *
-     * @return \OpenAPI\Client\Model\Counterparty|null
+     * @return \OpenAPI\Client\Model\Agent|null
      */
     public function getConsignee()
     {
@@ -1565,14 +1578,34 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets consignee
      *
-     * @param \OpenAPI\Client\Model\Counterparty|null $consignee consignee
+     * Accepts a Counterparty, Organization, or Agent instance (or null when nullable).
+     * On the wire the server only reads `meta`; non-meta fields are kept locally for
+     * type-safe access and serialized verbatim.
+     *
+     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $consignee Грузополучатель (контрагент или юрлицо)
      *
      * @return self
      */
     public function setConsignee($consignee)
     {
         if (is_null($consignee)) {
-            throw new \InvalidArgumentException('non-nullable consignee cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'consignee');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('consignee', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($consignee)
+            && !($consignee instanceof \OpenAPI\Client\Model\Counterparty)
+            && !($consignee instanceof \OpenAPI\Client\Model\Organization)
+            && !($consignee instanceof \OpenAPI\Client\Model\Agent)) {
+            throw new \InvalidArgumentException(
+                "Argument for 'consignee' must be one of Counterparty, Organization, or Agent; got "
+                . (is_object($consignee) ? get_class($consignee) : gettype($consignee))
+            );
         }
         $this->container['consignee'] = $consignee;
 

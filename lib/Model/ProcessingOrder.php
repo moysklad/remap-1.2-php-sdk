@@ -80,7 +80,24 @@ class ProcessingOrder implements ModelInterface, ArrayAccess, \JsonSerializable
         'created' => 'string',
         'deleted' => 'string',
         'updated' => 'string',
-        'moment' => 'string'
+        'moment' => 'string',
+        'delivery_planned_moment' => 'string',
+        'applicable' => 'bool',
+        'printed' => 'bool',
+        'published' => 'bool',
+        'shared' => 'bool',
+        'organization' => '\OpenAPI\Client\Model\Organization',
+        'store' => '\OpenAPI\Client\Model\Store',
+        'state' => '\OpenAPI\Client\Model\State',
+        'processing_plan' => '\OpenAPI\Client\Model\ProcessingPlan',
+        'project' => '\OpenAPI\Client\Model\Project',
+        'owner' => '\OpenAPI\Client\Model\Employee',
+        'group' => '\OpenAPI\Client\Model\Group',
+        'attributes' => '\OpenAPI\Client\Model\AttributeAbstract[]',
+        'files' => '\OpenAPI\Client\Model\FileList',
+        'positions' => '\OpenAPI\Client\Model\ProcessingOrderPositionList',
+        'quantity' => 'float',
+        'processings' => '\OpenAPI\Client\Model\Processing[]'
     ];
 
     /**
@@ -102,7 +119,24 @@ class ProcessingOrder implements ModelInterface, ArrayAccess, \JsonSerializable
         'created' => null,
         'deleted' => null,
         'updated' => null,
-        'moment' => null
+        'moment' => null,
+        'delivery_planned_moment' => null,
+        'applicable' => null,
+        'printed' => null,
+        'published' => null,
+        'shared' => null,
+        'organization' => null,
+        'store' => null,
+        'state' => null,
+        'processing_plan' => null,
+        'project' => null,
+        'owner' => null,
+        'group' => null,
+        'attributes' => null,
+        'files' => null,
+        'positions' => null,
+        'quantity' => 'double',
+        'processings' => null
     ];
 
     /**
@@ -122,7 +156,24 @@ class ProcessingOrder implements ModelInterface, ArrayAccess, \JsonSerializable
         'created' => false,
         'deleted' => false,
         'updated' => false,
-        'moment' => false
+        'moment' => false,
+        'delivery_planned_moment' => false,
+        'applicable' => false,
+        'printed' => false,
+        'published' => false,
+        'shared' => false,
+        'organization' => false,
+        'store' => false,
+        'state' => true,
+        'processing_plan' => false,
+        'project' => true,
+        'owner' => true,
+        'group' => false,
+        'attributes' => true,
+        'files' => true,
+        'positions' => false,
+        'quantity' => false,
+        'processings' => true
     ];
 
     /**
@@ -222,7 +273,24 @@ class ProcessingOrder implements ModelInterface, ArrayAccess, \JsonSerializable
         'created' => 'created',
         'deleted' => 'deleted',
         'updated' => 'updated',
-        'moment' => 'moment'
+        'moment' => 'moment',
+        'delivery_planned_moment' => 'deliveryPlannedMoment',
+        'applicable' => 'applicable',
+        'printed' => 'printed',
+        'published' => 'published',
+        'shared' => 'shared',
+        'organization' => 'organization',
+        'store' => 'store',
+        'state' => 'state',
+        'processing_plan' => 'processingPlan',
+        'project' => 'project',
+        'owner' => 'owner',
+        'group' => 'group',
+        'attributes' => 'attributes',
+        'files' => 'files',
+        'positions' => 'positions',
+        'quantity' => 'quantity',
+        'processings' => 'processings'
     ];
 
     /**
@@ -242,7 +310,24 @@ class ProcessingOrder implements ModelInterface, ArrayAccess, \JsonSerializable
         'created' => 'setCreated',
         'deleted' => 'setDeleted',
         'updated' => 'setUpdated',
-        'moment' => 'setMoment'
+        'moment' => 'setMoment',
+        'delivery_planned_moment' => 'setDeliveryPlannedMoment',
+        'applicable' => 'setApplicable',
+        'printed' => 'setPrinted',
+        'published' => 'setPublished',
+        'shared' => 'setShared',
+        'organization' => 'setOrganization',
+        'store' => 'setStore',
+        'state' => 'setState',
+        'processing_plan' => 'setProcessingPlan',
+        'project' => 'setProject',
+        'owner' => 'setOwner',
+        'group' => 'setGroup',
+        'attributes' => 'setAttributes',
+        'files' => 'setFiles',
+        'positions' => 'setPositions',
+        'quantity' => 'setQuantity',
+        'processings' => 'setProcessings'
     ];
 
     /**
@@ -262,7 +347,24 @@ class ProcessingOrder implements ModelInterface, ArrayAccess, \JsonSerializable
         'created' => 'getCreated',
         'deleted' => 'getDeleted',
         'updated' => 'getUpdated',
-        'moment' => 'getMoment'
+        'moment' => 'getMoment',
+        'delivery_planned_moment' => 'getDeliveryPlannedMoment',
+        'applicable' => 'getApplicable',
+        'printed' => 'getPrinted',
+        'published' => 'getPublished',
+        'shared' => 'getShared',
+        'organization' => 'getOrganization',
+        'store' => 'getStore',
+        'state' => 'getState',
+        'processing_plan' => 'getProcessingPlan',
+        'project' => 'getProject',
+        'owner' => 'getOwner',
+        'group' => 'getGroup',
+        'attributes' => 'getAttributes',
+        'files' => 'getFiles',
+        'positions' => 'getPositions',
+        'quantity' => 'getQuantity',
+        'processings' => 'getProcessings'
     ];
 
     /**
@@ -334,6 +436,23 @@ class ProcessingOrder implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('deleted', $data ?? [], null);
         $this->setIfExists('updated', $data ?? [], null);
         $this->setIfExists('moment', $data ?? [], null);
+        $this->setIfExists('delivery_planned_moment', $data ?? [], null);
+        $this->setIfExists('applicable', $data ?? [], null);
+        $this->setIfExists('printed', $data ?? [], null);
+        $this->setIfExists('published', $data ?? [], null);
+        $this->setIfExists('shared', $data ?? [], null);
+        $this->setIfExists('organization', $data ?? [], null);
+        $this->setIfExists('store', $data ?? [], null);
+        $this->setIfExists('state', $data ?? [], null);
+        $this->setIfExists('processing_plan', $data ?? [], null);
+        $this->setIfExists('project', $data ?? [], null);
+        $this->setIfExists('owner', $data ?? [], null);
+        $this->setIfExists('group', $data ?? [], null);
+        $this->setIfExists('attributes', $data ?? [], null);
+        $this->setIfExists('files', $data ?? [], null);
+        $this->setIfExists('positions', $data ?? [], null);
+        $this->setIfExists('quantity', $data ?? [], null);
+        $this->setIfExists('processings', $data ?? [], null);
     }
 
     /**
@@ -737,6 +856,507 @@ class ProcessingOrder implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable moment cannot be null');
         }
         $this->container['moment'] = $moment;
+
+        return $this;
+    }
+
+    /**
+     * Gets delivery_planned_moment
+     *
+     * @return string|null
+     */
+    public function getDeliveryPlannedMoment()
+    {
+        return $this->container['delivery_planned_moment'];
+    }
+
+    /**
+     * Sets delivery_planned_moment
+     *
+     * @param string|null $delivery_planned_moment Планируемая дата производства
+     *
+     * @return self
+     */
+    public function setDeliveryPlannedMoment($delivery_planned_moment)
+    {
+        if (is_null($delivery_planned_moment)) {
+            throw new \InvalidArgumentException('non-nullable delivery_planned_moment cannot be null');
+        }
+        $this->container['delivery_planned_moment'] = $delivery_planned_moment;
+
+        return $this;
+    }
+
+    /**
+     * Gets applicable
+     *
+     * @return bool|null
+     */
+    public function getApplicable()
+    {
+        return $this->container['applicable'];
+    }
+
+    /**
+     * Sets applicable
+     *
+     * @param bool|null $applicable Отметка о проведении
+     *
+     * @return self
+     */
+    public function setApplicable($applicable)
+    {
+        if (is_null($applicable)) {
+            throw new \InvalidArgumentException('non-nullable applicable cannot be null');
+        }
+        $this->container['applicable'] = $applicable;
+
+        return $this;
+    }
+
+    /**
+     * Gets printed
+     *
+     * @return bool|null
+     */
+    public function getPrinted()
+    {
+        return $this->container['printed'];
+    }
+
+    /**
+     * Sets printed
+     *
+     * @param bool|null $printed Напечатан ли документ
+     *
+     * @return self
+     */
+    public function setPrinted($printed)
+    {
+        if (is_null($printed)) {
+            throw new \InvalidArgumentException('non-nullable printed cannot be null');
+        }
+        $this->container['printed'] = $printed;
+
+        return $this;
+    }
+
+    /**
+     * Gets published
+     *
+     * @return bool|null
+     */
+    public function getPublished()
+    {
+        return $this->container['published'];
+    }
+
+    /**
+     * Sets published
+     *
+     * @param bool|null $published Опубликован ли документ
+     *
+     * @return self
+     */
+    public function setPublished($published)
+    {
+        if (is_null($published)) {
+            throw new \InvalidArgumentException('non-nullable published cannot be null');
+        }
+        $this->container['published'] = $published;
+
+        return $this;
+    }
+
+    /**
+     * Gets shared
+     *
+     * @return bool|null
+     */
+    public function getShared()
+    {
+        return $this->container['shared'];
+    }
+
+    /**
+     * Sets shared
+     *
+     * @param bool|null $shared Общий доступ
+     *
+     * @return self
+     */
+    public function setShared($shared)
+    {
+        if (is_null($shared)) {
+            throw new \InvalidArgumentException('non-nullable shared cannot be null');
+        }
+        $this->container['shared'] = $shared;
+
+        return $this;
+    }
+
+    /**
+     * Gets organization
+     *
+     * @return \OpenAPI\Client\Model\Organization|null
+     */
+    public function getOrganization()
+    {
+        return $this->container['organization'];
+    }
+
+    /**
+     * Sets organization
+     *
+     * @param \OpenAPI\Client\Model\Organization|null $organization organization
+     *
+     * @return self
+     */
+    public function setOrganization($organization)
+    {
+        if (is_null($organization)) {
+            throw new \InvalidArgumentException('non-nullable organization cannot be null');
+        }
+        $this->container['organization'] = $organization;
+
+        return $this;
+    }
+
+    /**
+     * Gets store
+     *
+     * @return \OpenAPI\Client\Model\Store|null
+     */
+    public function getStore()
+    {
+        return $this->container['store'];
+    }
+
+    /**
+     * Sets store
+     *
+     * @param \OpenAPI\Client\Model\Store|null $store store
+     *
+     * @return self
+     */
+    public function setStore($store)
+    {
+        if (is_null($store)) {
+            throw new \InvalidArgumentException('non-nullable store cannot be null');
+        }
+        $this->container['store'] = $store;
+
+        return $this;
+    }
+
+    /**
+     * Gets state
+     *
+     * @return \OpenAPI\Client\Model\State|null
+     */
+    public function getState()
+    {
+        return $this->container['state'];
+    }
+
+    /**
+     * Sets state
+     *
+     * @param \OpenAPI\Client\Model\State|null $state Метаданные статуса Заказа на производство
+     *
+     * @return self
+     */
+    public function setState($state)
+    {
+        if (is_null($state)) {
+            array_push($this->openAPINullablesSetToNull, 'state');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('state', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['state'] = $state;
+
+        return $this;
+    }
+
+    /**
+     * Gets processing_plan
+     *
+     * @return \OpenAPI\Client\Model\ProcessingPlan|null
+     */
+    public function getProcessingPlan()
+    {
+        return $this->container['processing_plan'];
+    }
+
+    /**
+     * Sets processing_plan
+     *
+     * @param \OpenAPI\Client\Model\ProcessingPlan|null $processing_plan processing_plan
+     *
+     * @return self
+     */
+    public function setProcessingPlan($processing_plan)
+    {
+        if (is_null($processing_plan)) {
+            throw new \InvalidArgumentException('non-nullable processing_plan cannot be null');
+        }
+        $this->container['processing_plan'] = $processing_plan;
+
+        return $this;
+    }
+
+    /**
+     * Gets project
+     *
+     * @return \OpenAPI\Client\Model\Project|null
+     */
+    public function getProject()
+    {
+        return $this->container['project'];
+    }
+
+    /**
+     * Sets project
+     *
+     * @param \OpenAPI\Client\Model\Project|null $project Метаданные проекта
+     *
+     * @return self
+     */
+    public function setProject($project)
+    {
+        if (is_null($project)) {
+            array_push($this->openAPINullablesSetToNull, 'project');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('project', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['project'] = $project;
+
+        return $this;
+    }
+
+    /**
+     * Gets owner
+     *
+     * @return \OpenAPI\Client\Model\Employee|null
+     */
+    public function getOwner()
+    {
+        return $this->container['owner'];
+    }
+
+    /**
+     * Sets owner
+     *
+     * @param \OpenAPI\Client\Model\Employee|null $owner Владелец (Сотрудник)
+     *
+     * @return self
+     */
+    public function setOwner($owner)
+    {
+        if (is_null($owner)) {
+            array_push($this->openAPINullablesSetToNull, 'owner');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('owner', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['owner'] = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Gets group
+     *
+     * @return \OpenAPI\Client\Model\Group|null
+     */
+    public function getGroup()
+    {
+        return $this->container['group'];
+    }
+
+    /**
+     * Sets group
+     *
+     * @param \OpenAPI\Client\Model\Group|null $group group
+     *
+     * @return self
+     */
+    public function setGroup($group)
+    {
+        if (is_null($group)) {
+            throw new \InvalidArgumentException('non-nullable group cannot be null');
+        }
+        $this->container['group'] = $group;
+
+        return $this;
+    }
+
+    /**
+     * Gets attributes
+     *
+     * @return \OpenAPI\Client\Model\AttributeAbstract[]|null
+     */
+    public function getAttributes()
+    {
+        return $this->container['attributes'];
+    }
+
+    /**
+     * Sets attributes
+     *
+     * @param \OpenAPI\Client\Model\AttributeAbstract[]|null $attributes Коллекция метаданных доп. полей
+     *
+     * @return self
+     */
+    public function setAttributes($attributes)
+    {
+        if (is_null($attributes)) {
+            array_push($this->openAPINullablesSetToNull, 'attributes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('attributes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['attributes'] = $attributes;
+
+        return $this;
+    }
+
+    /**
+     * Gets files
+     *
+     * @return \OpenAPI\Client\Model\FileList|null
+     */
+    public function getFiles()
+    {
+        return $this->container['files'];
+    }
+
+    /**
+     * Sets files
+     *
+     * @param \OpenAPI\Client\Model\FileList|null $files Метаданные массива Файлов
+     *
+     * @return self
+     */
+    public function setFiles($files)
+    {
+        if (is_null($files)) {
+            array_push($this->openAPINullablesSetToNull, 'files');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('files', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['files'] = $files;
+
+        return $this;
+    }
+
+    /**
+     * Gets positions
+     *
+     * @return \OpenAPI\Client\Model\ProcessingOrderPositionList|null
+     */
+    public function getPositions()
+    {
+        return $this->container['positions'];
+    }
+
+    /**
+     * Sets positions
+     *
+     * @param \OpenAPI\Client\Model\ProcessingOrderPositionList|null $positions Позиции Заказа на производство
+     *
+     * @return self
+     */
+    public function setPositions($positions)
+    {
+        if (is_null($positions)) {
+            throw new \InvalidArgumentException('non-nullable positions cannot be null');
+        }
+        $this->container['positions'] = $positions;
+
+        return $this;
+    }
+
+    /**
+     * Gets quantity
+     *
+     * @return float|null
+     */
+    public function getQuantity()
+    {
+        return $this->container['quantity'];
+    }
+
+    /**
+     * Sets quantity
+     *
+     * @param float|null $quantity Объем производства
+     *
+     * @return self
+     */
+    public function setQuantity($quantity)
+    {
+        if (is_null($quantity)) {
+            throw new \InvalidArgumentException('non-nullable quantity cannot be null');
+        }
+        $this->container['quantity'] = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Gets processings
+     *
+     * @return \OpenAPI\Client\Model\Processing[]|null
+     */
+    public function getProcessings()
+    {
+        return $this->container['processings'];
+    }
+
+    /**
+     * Sets processings
+     *
+     * @param \OpenAPI\Client\Model\Processing[]|null $processings Массив ссылок на связанные техоперации
+     *
+     * @return self
+     */
+    public function setProcessings($processings)
+    {
+        if (is_null($processings)) {
+            array_push($this->openAPINullablesSetToNull, 'processings');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('processings', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['processings'] = $processings;
 
         return $this;
     }

@@ -372,6 +372,14 @@ class CreateCustomerOrderPositions200ResponseInner implements ModelInterface, Ar
     {
         $invalidProperties = [];
 
+        if (!is_null($this->container['vat']) && ($this->container['vat'] > 100)) {
+            $invalidProperties[] = "invalid value for 'vat', must be smaller than or equal to 100.";
+        }
+
+        if (!is_null($this->container['vat']) && ($this->container['vat'] < 0)) {
+            $invalidProperties[] = "invalid value for 'vat', must be bigger than or equal to 0.";
+        }
+
         if ($this->container['errors'] === null) {
             $invalidProperties[] = "'errors' can't be null";
         }
@@ -628,6 +636,14 @@ class CreateCustomerOrderPositions200ResponseInner implements ModelInterface, Ar
         if (is_null($vat)) {
             throw new \InvalidArgumentException('non-nullable vat cannot be null');
         }
+
+        if (($vat > 100)) {
+            throw new \InvalidArgumentException('invalid value for $vat when calling CreateCustomerOrderPositions200ResponseInner., must be smaller than or equal to 100.');
+        }
+        if (($vat < 0)) {
+            throw new \InvalidArgumentException('invalid value for $vat when calling CreateCustomerOrderPositions200ResponseInner., must be bigger than or equal to 0.');
+        }
+
         $this->container['vat'] = $vat;
 
         return $this;

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **meta** | [**\OpenAPI\Client\Model\Meta**](Meta.md) |  | [optional]
 **id** | **string** | ID Счета-фактуры полученного | [optional] [readonly]
 **account_id** | **string** | ID учетной записи | [optional] [readonly]
-**agent** | [**\OpenAPI\Client\Model\Counterparty**](Counterparty.md) |  | [optional]
+**agent** | [**\OpenAPI\Client\Model\Agent**](Agent.md) | Метаданные контрагента или юрлица | [optional]
 **applicable** | **bool** | Отметка о проведении | [optional]
 **attributes** | [**\OpenAPI\Client\Model\AttributeAbstract[]**](AttributeAbstract.md) | Коллекция метаданных доп. полей | [optional]
 **code** | **string** | Код Счета-фактуры полученного | [optional]

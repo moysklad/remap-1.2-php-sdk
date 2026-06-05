@@ -81,7 +81,7 @@ class CashInOperationAnyOf2 implements ModelInterface, ArrayAccess, \JsonSeriali
         'payed_sum' => 'float',
         'organization' => '\OpenAPI\Client\Model\Organization',
         'organization_account' => '\OpenAPI\Client\Model\Account',
-        'agent' => '\OpenAPI\Client\Model\CustomerOrderAgent',
+        'agent' => '\OpenAPI\Client\Model\Agent',
         'agent_account' => '\OpenAPI\Client\Model\Account',
         'store' => '\OpenAPI\Client\Model\Store',
         'state' => '\OpenAPI\Client\Model\State',
@@ -96,7 +96,7 @@ class CashInOperationAnyOf2 implements ModelInterface, ArrayAccess, \JsonSeriali
         'sales_channel' => '\OpenAPI\Client\Model\SalesChannel',
         'shipment_address' => 'string',
         'shipment_address_full' => '\OpenAPI\Client\Model\Address',
-        'overhead' => '\OpenAPI\Client\Model\DemandOverhead',
+        'overhead' => '\OpenAPI\Client\Model\Overhead',
         'customer_order' => '\OpenAPI\Client\Model\CustomerOrder',
         'facture_out' => '\OpenAPI\Client\Model\FactureOut',
         'returns' => '\OpenAPI\Client\Model\SalesReturn[]',
@@ -104,8 +104,8 @@ class CashInOperationAnyOf2 implements ModelInterface, ArrayAccess, \JsonSeriali
         'production_tasks' => '\OpenAPI\Client\Model\ProductionTask[]',
         'invoices_out' => '\OpenAPI\Client\Model\InvoiceOut[]',
         'cargo_name' => 'string',
-        'carrier' => '\OpenAPI\Client\Model\DemandCarrier',
-        'consignee' => '\OpenAPI\Client\Model\DemandConsignee',
+        'carrier' => '\OpenAPI\Client\Model\Agent',
+        'consignee' => '\OpenAPI\Client\Model\Agent',
         'good_pack_quantity' => 'int',
         'shipping_instructions' => 'string',
         'state_contract_id' => 'string',
@@ -1358,7 +1358,7 @@ class CashInOperationAnyOf2 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets agent
      *
-     * @return \OpenAPI\Client\Model\CustomerOrderAgent|null
+     * @return \OpenAPI\Client\Model\Agent|null
      */
     public function getAgent()
     {
@@ -1368,7 +1368,11 @@ class CashInOperationAnyOf2 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets agent
      *
-     * @param \OpenAPI\Client\Model\CustomerOrderAgent|null $agent agent
+     * Accepts a Counterparty, Organization, or Agent instance (or null when nullable).
+     * On the wire the server only reads `meta`; non-meta fields are kept locally for
+     * type-safe access and serialized verbatim.
+     *
+     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $agent Метаданные контрагента или юрлица
      *
      * @return self
      */
@@ -1376,6 +1380,15 @@ class CashInOperationAnyOf2 implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         if (is_null($agent)) {
             throw new \InvalidArgumentException('non-nullable agent cannot be null');
+        }
+        if (!is_null($agent)
+            && !($agent instanceof \OpenAPI\Client\Model\Counterparty)
+            && !($agent instanceof \OpenAPI\Client\Model\Organization)
+            && !($agent instanceof \OpenAPI\Client\Model\Agent)) {
+            throw new \InvalidArgumentException(
+                "Argument for 'agent' must be one of Counterparty, Organization, or Agent; got "
+                . (is_object($agent) ? get_class($agent) : gettype($agent))
+            );
         }
         $this->container['agent'] = $agent;
 
@@ -1830,7 +1843,7 @@ class CashInOperationAnyOf2 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets overhead
      *
-     * @return \OpenAPI\Client\Model\DemandOverhead|null
+     * @return \OpenAPI\Client\Model\Overhead|null
      */
     public function getOverhead()
     {
@@ -1840,7 +1853,7 @@ class CashInOperationAnyOf2 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets overhead
      *
-     * @param \OpenAPI\Client\Model\DemandOverhead|null $overhead overhead
+     * @param \OpenAPI\Client\Model\Overhead|null $overhead overhead
      *
      * @return self
      */
@@ -2099,7 +2112,7 @@ class CashInOperationAnyOf2 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets carrier
      *
-     * @return \OpenAPI\Client\Model\DemandCarrier|null
+     * @return \OpenAPI\Client\Model\Agent|null
      */
     public function getCarrier()
     {
@@ -2109,7 +2122,11 @@ class CashInOperationAnyOf2 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets carrier
      *
-     * @param \OpenAPI\Client\Model\DemandCarrier|null $carrier carrier
+     * Accepts a Counterparty, Organization, or Agent instance (or null when nullable).
+     * On the wire the server only reads `meta`; non-meta fields are kept locally for
+     * type-safe access and serialized verbatim.
+     *
+     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $carrier Перевозчик (контрагент или юрлицо)
      *
      * @return self
      */
@@ -2125,6 +2142,15 @@ class CashInOperationAnyOf2 implements ModelInterface, ArrayAccess, \JsonSeriali
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
+        if (!is_null($carrier)
+            && !($carrier instanceof \OpenAPI\Client\Model\Counterparty)
+            && !($carrier instanceof \OpenAPI\Client\Model\Organization)
+            && !($carrier instanceof \OpenAPI\Client\Model\Agent)) {
+            throw new \InvalidArgumentException(
+                "Argument for 'carrier' must be one of Counterparty, Organization, or Agent; got "
+                . (is_object($carrier) ? get_class($carrier) : gettype($carrier))
+            );
+        }
         $this->container['carrier'] = $carrier;
 
         return $this;
@@ -2133,7 +2159,7 @@ class CashInOperationAnyOf2 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets consignee
      *
-     * @return \OpenAPI\Client\Model\DemandConsignee|null
+     * @return \OpenAPI\Client\Model\Agent|null
      */
     public function getConsignee()
     {
@@ -2143,7 +2169,11 @@ class CashInOperationAnyOf2 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets consignee
      *
-     * @param \OpenAPI\Client\Model\DemandConsignee|null $consignee consignee
+     * Accepts a Counterparty, Organization, or Agent instance (or null when nullable).
+     * On the wire the server only reads `meta`; non-meta fields are kept locally for
+     * type-safe access and serialized verbatim.
+     *
+     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $consignee Грузополучатель (контрагент или юрлицо)
      *
      * @return self
      */
@@ -2158,6 +2188,15 @@ class CashInOperationAnyOf2 implements ModelInterface, ArrayAccess, \JsonSeriali
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
+        }
+        if (!is_null($consignee)
+            && !($consignee instanceof \OpenAPI\Client\Model\Counterparty)
+            && !($consignee instanceof \OpenAPI\Client\Model\Organization)
+            && !($consignee instanceof \OpenAPI\Client\Model\Agent)) {
+            throw new \InvalidArgumentException(
+                "Argument for 'consignee' must be one of Counterparty, Organization, or Agent; got "
+                . (is_object($consignee) ? get_class($consignee) : gettype($consignee))
+            );
         }
         $this->container['consignee'] = $consignee;
 

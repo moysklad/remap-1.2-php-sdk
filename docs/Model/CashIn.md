@@ -31,7 +31,7 @@ Name | Type | Description | Notes
 **state** | [**\OpenAPI\Client\Model\State**](State.md) | Метаданные статуса Приходного ордера | [optional]
 **rate** | [**\OpenAPI\Client\Model\CurrencyRate**](CurrencyRate.md) |  | [optional]
 **organization** | [**\OpenAPI\Client\Model\Organization**](Organization.md) |  | [optional]
-**agent** | [**\OpenAPI\Client\Model\Counterparty**](Counterparty.md) |  | [optional]
+**agent** | [**\OpenAPI\Client\Model\Agent**](Agent.md) | Метаданные контрагента или юрлица | [optional]
 **sum** | **float** | Сумма Приходного ордера в установленной валюте | [optional] [readonly]
 **vat_sum** | **float** | Сумма НДС | [optional] [readonly]
 **facture_out** | [**\OpenAPI\Client\Model\FactureOut**](FactureOut.md) | Счет-фактура выданный, с которым связан этот платеж | [optional]

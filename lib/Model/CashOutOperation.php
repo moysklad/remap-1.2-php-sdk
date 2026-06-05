@@ -61,7 +61,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'meta' => '\OpenAPI\Client\Model\Meta',
         'id' => 'string',
         'account_id' => 'string',
-        'linked_sum' => 'float',
         'name' => 'string',
         'code' => 'string',
         'external_code' => 'string',
@@ -71,7 +70,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'deleted' => 'string',
         'updated' => 'string',
         'moment' => 'string',
-        'delivery_planned_moment' => 'string',
         'applicable' => 'bool',
         'printed' => 'bool',
         'published' => 'bool',
@@ -81,12 +79,9 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'vat_sum' => 'float',
         'sum' => 'float',
         'payed_sum' => 'float',
-        'shipped_sum' => 'float',
-        'invoiced_sum' => 'float',
-        'wait_sum' => 'float',
         'organization' => '\OpenAPI\Client\Model\Organization',
         'organization_account' => '\OpenAPI\Client\Model\Account',
-        'agent' => '\OpenAPI\Client\Model\Counterparty',
+        'agent' => '\OpenAPI\Client\Model\Agent',
         'agent_account' => '\OpenAPI\Client\Model\Account',
         'store' => '\OpenAPI\Client\Model\Store',
         'state' => '\OpenAPI\Client\Model\State',
@@ -96,14 +91,35 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'group' => '\OpenAPI\Client\Model\Group',
         'attributes' => '\OpenAPI\Client\Model\AttributeAbstract[]',
         'files' => '\OpenAPI\Client\Model\FileList',
-        'rate' => '\OpenAPI\Client\Model\PurchaseOrderRate',
-        'positions' => '\OpenAPI\Client\Model\PurchaseOrderPositionList',
+        'rate' => '\OpenAPI\Client\Model\CurrencyRate',
+        'positions' => '\OpenAPI\Client\Model\CommissionReportOutPositionList',
+        'sales_channel' => '\OpenAPI\Client\Model\SalesChannel',
+        'demand' => '\OpenAPI\Client\Model\Demand',
+        'losses' => '\OpenAPI\Client\Model\Loss[]',
+        'payments' => '\OpenAPI\Client\Model\CustomerOrderPaymentsInner[]',
+        'facture_out' => '\OpenAPI\Client\Model\FactureOut',
+        'linked_sum' => 'float',
+        'incoming_date' => 'string',
+        'incoming_number' => 'string',
+        'overhead' => '\OpenAPI\Client\Model\Overhead',
+        'purchase_order' => '\OpenAPI\Client\Model\PurchaseOrder',
+        'facture_in' => '\OpenAPI\Client\Model\FactureIn',
+        'invoices_in' => '\OpenAPI\Client\Model\InvoiceIn[]',
+        'production_task' => '\OpenAPI\Client\Model\ProductionTask',
+        'returns' => '\OpenAPI\Client\Model\SupplyReturnsInner[]',
+        'delivery_planned_moment' => 'string',
+        'shipped_sum' => 'float',
+        'invoiced_sum' => 'float',
+        'wait_sum' => 'float',
         'internal_order' => '\OpenAPI\Client\Model\InternalOrder',
         'customer_orders' => '\OpenAPI\Client\Model\CustomerOrder[]',
-        'invoices_in' => '\OpenAPI\Client\Model\InvoiceIn[]',
         'supplies' => '\OpenAPI\Client\Model\Supply[]',
-        'payments' => '\OpenAPI\Client\Model\PurchaseOrderPaymentsInner[]',
-        'production_tasks' => '\OpenAPI\Client\Model\ProductionTask[]'
+        'production_tasks' => '\OpenAPI\Client\Model\ProductionTask[]',
+        'commission_period_end' => 'string',
+        'commission_period_start' => 'string',
+        'commitent_sum' => 'float',
+        'reward_percent' => 'int',
+        'reward_type' => 'string'
     ];
 
     /**
@@ -117,7 +133,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'meta' => null,
         'id' => 'uuid',
         'account_id' => 'uuid',
-        'linked_sum' => 'double',
         'name' => null,
         'code' => null,
         'external_code' => null,
@@ -127,7 +142,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'deleted' => null,
         'updated' => null,
         'moment' => null,
-        'delivery_planned_moment' => null,
         'applicable' => null,
         'printed' => null,
         'published' => null,
@@ -137,9 +151,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'vat_sum' => 'double',
         'sum' => 'double',
         'payed_sum' => 'double',
-        'shipped_sum' => 'double',
-        'invoiced_sum' => 'double',
-        'wait_sum' => 'double',
         'organization' => null,
         'organization_account' => null,
         'agent' => null,
@@ -154,12 +165,33 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'files' => null,
         'rate' => null,
         'positions' => null,
+        'sales_channel' => null,
+        'demand' => null,
+        'losses' => null,
+        'payments' => null,
+        'facture_out' => null,
+        'linked_sum' => 'double',
+        'incoming_date' => null,
+        'incoming_number' => null,
+        'overhead' => null,
+        'purchase_order' => null,
+        'facture_in' => null,
+        'invoices_in' => null,
+        'production_task' => null,
+        'returns' => null,
+        'delivery_planned_moment' => null,
+        'shipped_sum' => 'double',
+        'invoiced_sum' => 'double',
+        'wait_sum' => 'double',
         'internal_order' => null,
         'customer_orders' => null,
-        'invoices_in' => null,
         'supplies' => null,
-        'payments' => null,
-        'production_tasks' => null
+        'production_tasks' => null,
+        'commission_period_end' => null,
+        'commission_period_start' => null,
+        'commitent_sum' => 'double',
+        'reward_percent' => null,
+        'reward_type' => null
     ];
 
     /**
@@ -171,7 +203,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'meta' => false,
         'id' => false,
         'account_id' => false,
-        'linked_sum' => false,
         'name' => false,
         'code' => false,
         'external_code' => false,
@@ -181,7 +212,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'deleted' => false,
         'updated' => false,
         'moment' => false,
-        'delivery_planned_moment' => false,
         'applicable' => false,
         'printed' => false,
         'published' => false,
@@ -191,9 +221,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'vat_sum' => false,
         'sum' => false,
         'payed_sum' => false,
-        'shipped_sum' => false,
-        'invoiced_sum' => false,
-        'wait_sum' => false,
         'organization' => false,
         'organization_account' => true,
         'agent' => false,
@@ -208,12 +235,33 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'files' => true,
         'rate' => false,
         'positions' => false,
+        'sales_channel' => true,
+        'demand' => true,
+        'losses' => true,
+        'payments' => true,
+        'facture_out' => true,
+        'linked_sum' => false,
+        'incoming_date' => true,
+        'incoming_number' => true,
+        'overhead' => true,
+        'purchase_order' => true,
+        'facture_in' => true,
+        'invoices_in' => true,
+        'production_task' => true,
+        'returns' => true,
+        'delivery_planned_moment' => false,
+        'shipped_sum' => false,
+        'invoiced_sum' => false,
+        'wait_sum' => false,
         'internal_order' => true,
         'customer_orders' => true,
-        'invoices_in' => true,
         'supplies' => true,
-        'payments' => true,
-        'production_tasks' => true
+        'production_tasks' => true,
+        'commission_period_end' => false,
+        'commission_period_start' => false,
+        'commitent_sum' => false,
+        'reward_percent' => false,
+        'reward_type' => false
     ];
 
     /**
@@ -305,7 +353,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'meta' => 'meta',
         'id' => 'id',
         'account_id' => 'accountId',
-        'linked_sum' => 'linkedSum',
         'name' => 'name',
         'code' => 'code',
         'external_code' => 'externalCode',
@@ -315,7 +362,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'deleted' => 'deleted',
         'updated' => 'updated',
         'moment' => 'moment',
-        'delivery_planned_moment' => 'deliveryPlannedMoment',
         'applicable' => 'applicable',
         'printed' => 'printed',
         'published' => 'published',
@@ -325,9 +371,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'vat_sum' => 'vatSum',
         'sum' => 'sum',
         'payed_sum' => 'payedSum',
-        'shipped_sum' => 'shippedSum',
-        'invoiced_sum' => 'invoicedSum',
-        'wait_sum' => 'waitSum',
         'organization' => 'organization',
         'organization_account' => 'organizationAccount',
         'agent' => 'agent',
@@ -342,12 +385,33 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'files' => 'files',
         'rate' => 'rate',
         'positions' => 'positions',
+        'sales_channel' => 'salesChannel',
+        'demand' => 'demand',
+        'losses' => 'losses',
+        'payments' => 'payments',
+        'facture_out' => 'factureOut',
+        'linked_sum' => 'linkedSum',
+        'incoming_date' => 'incomingDate',
+        'incoming_number' => 'incomingNumber',
+        'overhead' => 'overhead',
+        'purchase_order' => 'purchaseOrder',
+        'facture_in' => 'factureIn',
+        'invoices_in' => 'invoicesIn',
+        'production_task' => 'productionTask',
+        'returns' => 'returns',
+        'delivery_planned_moment' => 'deliveryPlannedMoment',
+        'shipped_sum' => 'shippedSum',
+        'invoiced_sum' => 'invoicedSum',
+        'wait_sum' => 'waitSum',
         'internal_order' => 'internalOrder',
         'customer_orders' => 'customerOrders',
-        'invoices_in' => 'invoicesIn',
         'supplies' => 'supplies',
-        'payments' => 'payments',
-        'production_tasks' => 'productionTasks'
+        'production_tasks' => 'productionTasks',
+        'commission_period_end' => 'commissionPeriodEnd',
+        'commission_period_start' => 'commissionPeriodStart',
+        'commitent_sum' => 'commitentSum',
+        'reward_percent' => 'rewardPercent',
+        'reward_type' => 'rewardType'
     ];
 
     /**
@@ -359,7 +423,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'meta' => 'setMeta',
         'id' => 'setId',
         'account_id' => 'setAccountId',
-        'linked_sum' => 'setLinkedSum',
         'name' => 'setName',
         'code' => 'setCode',
         'external_code' => 'setExternalCode',
@@ -369,7 +432,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'deleted' => 'setDeleted',
         'updated' => 'setUpdated',
         'moment' => 'setMoment',
-        'delivery_planned_moment' => 'setDeliveryPlannedMoment',
         'applicable' => 'setApplicable',
         'printed' => 'setPrinted',
         'published' => 'setPublished',
@@ -379,9 +441,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'vat_sum' => 'setVatSum',
         'sum' => 'setSum',
         'payed_sum' => 'setPayedSum',
-        'shipped_sum' => 'setShippedSum',
-        'invoiced_sum' => 'setInvoicedSum',
-        'wait_sum' => 'setWaitSum',
         'organization' => 'setOrganization',
         'organization_account' => 'setOrganizationAccount',
         'agent' => 'setAgent',
@@ -396,12 +455,33 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'files' => 'setFiles',
         'rate' => 'setRate',
         'positions' => 'setPositions',
+        'sales_channel' => 'setSalesChannel',
+        'demand' => 'setDemand',
+        'losses' => 'setLosses',
+        'payments' => 'setPayments',
+        'facture_out' => 'setFactureOut',
+        'linked_sum' => 'setLinkedSum',
+        'incoming_date' => 'setIncomingDate',
+        'incoming_number' => 'setIncomingNumber',
+        'overhead' => 'setOverhead',
+        'purchase_order' => 'setPurchaseOrder',
+        'facture_in' => 'setFactureIn',
+        'invoices_in' => 'setInvoicesIn',
+        'production_task' => 'setProductionTask',
+        'returns' => 'setReturns',
+        'delivery_planned_moment' => 'setDeliveryPlannedMoment',
+        'shipped_sum' => 'setShippedSum',
+        'invoiced_sum' => 'setInvoicedSum',
+        'wait_sum' => 'setWaitSum',
         'internal_order' => 'setInternalOrder',
         'customer_orders' => 'setCustomerOrders',
-        'invoices_in' => 'setInvoicesIn',
         'supplies' => 'setSupplies',
-        'payments' => 'setPayments',
-        'production_tasks' => 'setProductionTasks'
+        'production_tasks' => 'setProductionTasks',
+        'commission_period_end' => 'setCommissionPeriodEnd',
+        'commission_period_start' => 'setCommissionPeriodStart',
+        'commitent_sum' => 'setCommitentSum',
+        'reward_percent' => 'setRewardPercent',
+        'reward_type' => 'setRewardType'
     ];
 
     /**
@@ -413,7 +493,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'meta' => 'getMeta',
         'id' => 'getId',
         'account_id' => 'getAccountId',
-        'linked_sum' => 'getLinkedSum',
         'name' => 'getName',
         'code' => 'getCode',
         'external_code' => 'getExternalCode',
@@ -423,7 +502,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'deleted' => 'getDeleted',
         'updated' => 'getUpdated',
         'moment' => 'getMoment',
-        'delivery_planned_moment' => 'getDeliveryPlannedMoment',
         'applicable' => 'getApplicable',
         'printed' => 'getPrinted',
         'published' => 'getPublished',
@@ -433,9 +511,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'vat_sum' => 'getVatSum',
         'sum' => 'getSum',
         'payed_sum' => 'getPayedSum',
-        'shipped_sum' => 'getShippedSum',
-        'invoiced_sum' => 'getInvoicedSum',
-        'wait_sum' => 'getWaitSum',
         'organization' => 'getOrganization',
         'organization_account' => 'getOrganizationAccount',
         'agent' => 'getAgent',
@@ -450,12 +525,33 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'files' => 'getFiles',
         'rate' => 'getRate',
         'positions' => 'getPositions',
+        'sales_channel' => 'getSalesChannel',
+        'demand' => 'getDemand',
+        'losses' => 'getLosses',
+        'payments' => 'getPayments',
+        'facture_out' => 'getFactureOut',
+        'linked_sum' => 'getLinkedSum',
+        'incoming_date' => 'getIncomingDate',
+        'incoming_number' => 'getIncomingNumber',
+        'overhead' => 'getOverhead',
+        'purchase_order' => 'getPurchaseOrder',
+        'facture_in' => 'getFactureIn',
+        'invoices_in' => 'getInvoicesIn',
+        'production_task' => 'getProductionTask',
+        'returns' => 'getReturns',
+        'delivery_planned_moment' => 'getDeliveryPlannedMoment',
+        'shipped_sum' => 'getShippedSum',
+        'invoiced_sum' => 'getInvoicedSum',
+        'wait_sum' => 'getWaitSum',
         'internal_order' => 'getInternalOrder',
         'customer_orders' => 'getCustomerOrders',
-        'invoices_in' => 'getInvoicesIn',
         'supplies' => 'getSupplies',
-        'payments' => 'getPayments',
-        'production_tasks' => 'getProductionTasks'
+        'production_tasks' => 'getProductionTasks',
+        'commission_period_end' => 'getCommissionPeriodEnd',
+        'commission_period_start' => 'getCommissionPeriodStart',
+        'commitent_sum' => 'getCommitentSum',
+        'reward_percent' => 'getRewardPercent',
+        'reward_type' => 'getRewardType'
     ];
 
     /**
@@ -518,7 +614,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('account_id', $data ?? [], null);
-        $this->setIfExists('linked_sum', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('code', $data ?? [], null);
         $this->setIfExists('external_code', $data ?? [], null);
@@ -528,7 +623,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('deleted', $data ?? [], null);
         $this->setIfExists('updated', $data ?? [], null);
         $this->setIfExists('moment', $data ?? [], null);
-        $this->setIfExists('delivery_planned_moment', $data ?? [], null);
         $this->setIfExists('applicable', $data ?? [], null);
         $this->setIfExists('printed', $data ?? [], null);
         $this->setIfExists('published', $data ?? [], null);
@@ -538,9 +632,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('vat_sum', $data ?? [], null);
         $this->setIfExists('sum', $data ?? [], null);
         $this->setIfExists('payed_sum', $data ?? [], null);
-        $this->setIfExists('shipped_sum', $data ?? [], null);
-        $this->setIfExists('invoiced_sum', $data ?? [], null);
-        $this->setIfExists('wait_sum', $data ?? [], null);
         $this->setIfExists('organization', $data ?? [], null);
         $this->setIfExists('organization_account', $data ?? [], null);
         $this->setIfExists('agent', $data ?? [], null);
@@ -555,12 +646,33 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('files', $data ?? [], null);
         $this->setIfExists('rate', $data ?? [], null);
         $this->setIfExists('positions', $data ?? [], null);
+        $this->setIfExists('sales_channel', $data ?? [], null);
+        $this->setIfExists('demand', $data ?? [], null);
+        $this->setIfExists('losses', $data ?? [], null);
+        $this->setIfExists('payments', $data ?? [], null);
+        $this->setIfExists('facture_out', $data ?? [], null);
+        $this->setIfExists('linked_sum', $data ?? [], null);
+        $this->setIfExists('incoming_date', $data ?? [], null);
+        $this->setIfExists('incoming_number', $data ?? [], null);
+        $this->setIfExists('overhead', $data ?? [], null);
+        $this->setIfExists('purchase_order', $data ?? [], null);
+        $this->setIfExists('facture_in', $data ?? [], null);
+        $this->setIfExists('invoices_in', $data ?? [], null);
+        $this->setIfExists('production_task', $data ?? [], null);
+        $this->setIfExists('returns', $data ?? [], null);
+        $this->setIfExists('delivery_planned_moment', $data ?? [], null);
+        $this->setIfExists('shipped_sum', $data ?? [], null);
+        $this->setIfExists('invoiced_sum', $data ?? [], null);
+        $this->setIfExists('wait_sum', $data ?? [], null);
         $this->setIfExists('internal_order', $data ?? [], null);
         $this->setIfExists('customer_orders', $data ?? [], null);
-        $this->setIfExists('invoices_in', $data ?? [], null);
         $this->setIfExists('supplies', $data ?? [], null);
-        $this->setIfExists('payments', $data ?? [], null);
         $this->setIfExists('production_tasks', $data ?? [], null);
+        $this->setIfExists('commission_period_end', $data ?? [], null);
+        $this->setIfExists('commission_period_start', $data ?? [], null);
+        $this->setIfExists('commitent_sum', $data ?? [], null);
+        $this->setIfExists('reward_percent', $data ?? [], null);
+        $this->setIfExists('reward_type', $data ?? [], null);
     }
 
     /**
@@ -590,9 +702,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['linked_sum'] === null) {
-            $invalidProperties[] = "'linked_sum' can't be null";
-        }
         if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 255)) {
             $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
         }
@@ -607,6 +716,25 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
 
         if (!is_null($this->container['description']) && (mb_strlen($this->container['description']) > 4096)) {
             $invalidProperties[] = "invalid value for 'description', the character length must be smaller than or equal to 4096.";
+        }
+
+        if ($this->container['linked_sum'] === null) {
+            $invalidProperties[] = "'linked_sum' can't be null";
+        }
+        if (!is_null($this->container['incoming_number']) && (mb_strlen($this->container['incoming_number']) > 255)) {
+            $invalidProperties[] = "invalid value for 'incoming_number', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['reward_percent']) && ($this->container['reward_percent'] > 100)) {
+            $invalidProperties[] = "invalid value for 'reward_percent', must be smaller than or equal to 100.";
+        }
+
+        if (!is_null($this->container['reward_percent']) && ($this->container['reward_percent'] < 0)) {
+            $invalidProperties[] = "invalid value for 'reward_percent', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['reward_type']) && (mb_strlen($this->container['reward_type']) > 255)) {
+            $invalidProperties[] = "invalid value for 'reward_type', the character length must be smaller than or equal to 255.";
         }
 
         return $invalidProperties;
@@ -664,7 +792,7 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param string|null $id ID выданного отчета комиссионера
+     * @param string|null $id ID Выданного отчета комиссионера
      *
      * @return self
      */
@@ -706,33 +834,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets linked_sum
-     *
-     * @return float
-     */
-    public function getLinkedSum()
-    {
-        return $this->container['linked_sum'];
-    }
-
-    /**
-     * Sets linked_sum
-     *
-     * @param float $linked_sum Сумма, оплаченная по данному документу
-     *
-     * @return self
-     */
-    public function setLinkedSum($linked_sum)
-    {
-        if (is_null($linked_sum)) {
-            throw new \InvalidArgumentException('non-nullable linked_sum cannot be null');
-        }
-        $this->container['linked_sum'] = $linked_sum;
-
-        return $this;
-    }
-
-    /**
      * Gets name
      *
      * @return string|null
@@ -745,7 +846,7 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      *
-     * @param string|null $name Наименование Заказа поставщику
+     * @param string|null $name Наименование Выданного отчета комиссионера
      *
      * @return self
      */
@@ -776,7 +877,7 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets code
      *
-     * @param string|null $code Код Заказа поставщику
+     * @param string|null $code Код Выданного отчета комиссионера
      *
      * @return self
      */
@@ -807,7 +908,7 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets external_code
      *
-     * @param string|null $external_code Внешний код Заказа поставщику
+     * @param string|null $external_code Внешний код Выданного отчета комиссионера
      *
      * @return self
      */
@@ -865,7 +966,7 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets description
      *
-     * @param string|null $description Комментарий Заказа поставщику
+     * @param string|null $description Комментарий Выданного отчета комиссионера
      *
      * @return self
      */
@@ -930,7 +1031,7 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets deleted
      *
-     * @param string|null $deleted Момент последнего удаления Заказа поставщику
+     * @param string|null $deleted Момент последнего удаления Выданного отчета комиссионера
      *
      * @return self
      */
@@ -957,7 +1058,7 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets updated
      *
-     * @param string|null $updated Момент последнего обновления Заказа поставщику
+     * @param string|null $updated Момент последнего обновления Выданного отчета комиссионера
      *
      * @return self
      */
@@ -994,33 +1095,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable moment cannot be null');
         }
         $this->container['moment'] = $moment;
-
-        return $this;
-    }
-
-    /**
-     * Gets delivery_planned_moment
-     *
-     * @return string|null
-     */
-    public function getDeliveryPlannedMoment()
-    {
-        return $this->container['delivery_planned_moment'];
-    }
-
-    /**
-     * Sets delivery_planned_moment
-     *
-     * @param string|null $delivery_planned_moment Планируемая дата отгрузки
-     *
-     * @return self
-     */
-    public function setDeliveryPlannedMoment($delivery_planned_moment)
-    {
-        if (is_null($delivery_planned_moment)) {
-            throw new \InvalidArgumentException('non-nullable delivery_planned_moment cannot be null');
-        }
-        $this->container['delivery_planned_moment'] = $delivery_planned_moment;
 
         return $this;
     }
@@ -1227,7 +1301,7 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets sum
      *
-     * @param float|null $sum Сумма Заказа поставщику в установленной валюте
+     * @param float|null $sum Сумма Выданного отчета комиссионера в копейках
      *
      * @return self
      */
@@ -1254,7 +1328,7 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets payed_sum
      *
-     * @param float|null $payed_sum Сумма входящих платежей по Заказу
+     * @param float|null $payed_sum Оплаченная сумма
      *
      * @return self
      */
@@ -1264,87 +1338,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable payed_sum cannot be null');
         }
         $this->container['payed_sum'] = $payed_sum;
-
-        return $this;
-    }
-
-    /**
-     * Gets shipped_sum
-     *
-     * @return float|null
-     */
-    public function getShippedSum()
-    {
-        return $this->container['shipped_sum'];
-    }
-
-    /**
-     * Sets shipped_sum
-     *
-     * @param float|null $shipped_sum Сумма принятого
-     *
-     * @return self
-     */
-    public function setShippedSum($shipped_sum)
-    {
-        if (is_null($shipped_sum)) {
-            throw new \InvalidArgumentException('non-nullable shipped_sum cannot be null');
-        }
-        $this->container['shipped_sum'] = $shipped_sum;
-
-        return $this;
-    }
-
-    /**
-     * Gets invoiced_sum
-     *
-     * @return float|null
-     */
-    public function getInvoicedSum()
-    {
-        return $this->container['invoiced_sum'];
-    }
-
-    /**
-     * Sets invoiced_sum
-     *
-     * @param float|null $invoiced_sum Сумма счетов поставщику
-     *
-     * @return self
-     */
-    public function setInvoicedSum($invoiced_sum)
-    {
-        if (is_null($invoiced_sum)) {
-            throw new \InvalidArgumentException('non-nullable invoiced_sum cannot be null');
-        }
-        $this->container['invoiced_sum'] = $invoiced_sum;
-
-        return $this;
-    }
-
-    /**
-     * Gets wait_sum
-     *
-     * @return float|null
-     */
-    public function getWaitSum()
-    {
-        return $this->container['wait_sum'];
-    }
-
-    /**
-     * Sets wait_sum
-     *
-     * @param float|null $wait_sum Сумма товаров в пути
-     *
-     * @return self
-     */
-    public function setWaitSum($wait_sum)
-    {
-        if (is_null($wait_sum)) {
-            throw new \InvalidArgumentException('non-nullable wait_sum cannot be null');
-        }
-        $this->container['wait_sum'] = $wait_sum;
 
         return $this;
     }
@@ -1413,7 +1406,7 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets agent
      *
-     * @return \OpenAPI\Client\Model\Counterparty|null
+     * @return \OpenAPI\Client\Model\Agent|null
      */
     public function getAgent()
     {
@@ -1423,7 +1416,11 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets agent
      *
-     * @param \OpenAPI\Client\Model\Counterparty|null $agent agent
+     * Accepts a Counterparty, Organization, or Agent instance (or null when nullable).
+     * On the wire the server only reads `meta`; non-meta fields are kept locally for
+     * type-safe access and serialized verbatim.
+     *
+     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $agent Метаданные контрагента или юрлица
      *
      * @return self
      */
@@ -1431,6 +1428,15 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (is_null($agent)) {
             throw new \InvalidArgumentException('non-nullable agent cannot be null');
+        }
+        if (!is_null($agent)
+            && !($agent instanceof \OpenAPI\Client\Model\Counterparty)
+            && !($agent instanceof \OpenAPI\Client\Model\Organization)
+            && !($agent instanceof \OpenAPI\Client\Model\Agent)) {
+            throw new \InvalidArgumentException(
+                "Argument for 'agent' must be one of Counterparty, Organization, or Agent; got "
+                . (is_object($agent) ? get_class($agent) : gettype($agent))
+            );
         }
         $this->container['agent'] = $agent;
 
@@ -1518,7 +1524,7 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets state
      *
-     * @param \OpenAPI\Client\Model\State|null $state Метаданные статуса заказа
+     * @param \OpenAPI\Client\Model\State|null $state Метаданные статуса Выданного отчета комиссионера
      *
      * @return self
      */
@@ -1715,7 +1721,7 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets files
      *
-     * @param \OpenAPI\Client\Model\FileList|null $files Метаданные массива Файлов
+     * @param \OpenAPI\Client\Model\FileList|null $files Метаданные массива файлов
      *
      * @return self
      */
@@ -1739,7 +1745,7 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets rate
      *
-     * @return \OpenAPI\Client\Model\PurchaseOrderRate|null
+     * @return \OpenAPI\Client\Model\CurrencyRate|null
      */
     public function getRate()
     {
@@ -1749,7 +1755,7 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets rate
      *
-     * @param \OpenAPI\Client\Model\PurchaseOrderRate|null $rate rate
+     * @param \OpenAPI\Client\Model\CurrencyRate|null $rate rate
      *
      * @return self
      */
@@ -1766,7 +1772,7 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets positions
      *
-     * @return \OpenAPI\Client\Model\PurchaseOrderPositionList|null
+     * @return \OpenAPI\Client\Model\CommissionReportOutPositionList|null
      */
     public function getPositions()
     {
@@ -1776,7 +1782,7 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets positions
      *
-     * @param \OpenAPI\Client\Model\PurchaseOrderPositionList|null $positions positions
+     * @param \OpenAPI\Client\Model\CommissionReportOutPositionList|null $positions positions
      *
      * @return self
      */
@@ -1786,6 +1792,587 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable positions cannot be null');
         }
         $this->container['positions'] = $positions;
+
+        return $this;
+    }
+
+    /**
+     * Gets sales_channel
+     *
+     * @return \OpenAPI\Client\Model\SalesChannel|null
+     */
+    public function getSalesChannel()
+    {
+        return $this->container['sales_channel'];
+    }
+
+    /**
+     * Sets sales_channel
+     *
+     * @param \OpenAPI\Client\Model\SalesChannel|null $sales_channel Метаданные канала продаж
+     *
+     * @return self
+     */
+    public function setSalesChannel($sales_channel)
+    {
+        if (is_null($sales_channel)) {
+            array_push($this->openAPINullablesSetToNull, 'sales_channel');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('sales_channel', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['sales_channel'] = $sales_channel;
+
+        return $this;
+    }
+
+    /**
+     * Gets demand
+     *
+     * @return \OpenAPI\Client\Model\Demand|null
+     */
+    public function getDemand()
+    {
+        return $this->container['demand'];
+    }
+
+    /**
+     * Sets demand
+     *
+     * @param \OpenAPI\Client\Model\Demand|null $demand Отгрузка, по которой произошел возврат
+     *
+     * @return self
+     */
+    public function setDemand($demand)
+    {
+        if (is_null($demand)) {
+            array_push($this->openAPINullablesSetToNull, 'demand');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('demand', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['demand'] = $demand;
+
+        return $this;
+    }
+
+    /**
+     * Gets losses
+     *
+     * @return \OpenAPI\Client\Model\Loss[]|null
+     */
+    public function getLosses()
+    {
+        return $this->container['losses'];
+    }
+
+    /**
+     * Sets losses
+     *
+     * @param \OpenAPI\Client\Model\Loss[]|null $losses Массив ссылок на связанные списания
+     *
+     * @return self
+     */
+    public function setLosses($losses)
+    {
+        if (is_null($losses)) {
+            array_push($this->openAPINullablesSetToNull, 'losses');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('losses', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['losses'] = $losses;
+
+        return $this;
+    }
+
+    /**
+     * Gets payments
+     *
+     * @return \OpenAPI\Client\Model\CustomerOrderPaymentsInner[]|null
+     */
+    public function getPayments()
+    {
+        return $this->container['payments'];
+    }
+
+    /**
+     * Sets payments
+     *
+     * @param \OpenAPI\Client\Model\CustomerOrderPaymentsInner[]|null $payments Массив ссылок на связанные платежи
+     *
+     * @return self
+     */
+    public function setPayments($payments)
+    {
+        if (is_null($payments)) {
+            array_push($this->openAPINullablesSetToNull, 'payments');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('payments', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['payments'] = $payments;
+
+        return $this;
+    }
+
+    /**
+     * Gets facture_out
+     *
+     * @return \OpenAPI\Client\Model\FactureOut|null
+     */
+    public function getFactureOut()
+    {
+        return $this->container['facture_out'];
+    }
+
+    /**
+     * Sets facture_out
+     *
+     * @param \OpenAPI\Client\Model\FactureOut|null $facture_out Счет-фактура выданный, с которым связан этот возврат
+     *
+     * @return self
+     */
+    public function setFactureOut($facture_out)
+    {
+        if (is_null($facture_out)) {
+            array_push($this->openAPINullablesSetToNull, 'facture_out');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('facture_out', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['facture_out'] = $facture_out;
+
+        return $this;
+    }
+
+    /**
+     * Gets linked_sum
+     *
+     * @return float
+     */
+    public function getLinkedSum()
+    {
+        return $this->container['linked_sum'];
+    }
+
+    /**
+     * Sets linked_sum
+     *
+     * @param float $linked_sum Сумма, оплаченная по данному документу
+     *
+     * @return self
+     */
+    public function setLinkedSum($linked_sum)
+    {
+        if (is_null($linked_sum)) {
+            throw new \InvalidArgumentException('non-nullable linked_sum cannot be null');
+        }
+        $this->container['linked_sum'] = $linked_sum;
+
+        return $this;
+    }
+
+    /**
+     * Gets incoming_date
+     *
+     * @return string|null
+     */
+    public function getIncomingDate()
+    {
+        return $this->container['incoming_date'];
+    }
+
+    /**
+     * Sets incoming_date
+     *
+     * @param string|null $incoming_date Входящая дата
+     *
+     * @return self
+     */
+    public function setIncomingDate($incoming_date)
+    {
+        if (is_null($incoming_date)) {
+            array_push($this->openAPINullablesSetToNull, 'incoming_date');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('incoming_date', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['incoming_date'] = $incoming_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets incoming_number
+     *
+     * @return string|null
+     */
+    public function getIncomingNumber()
+    {
+        return $this->container['incoming_number'];
+    }
+
+    /**
+     * Sets incoming_number
+     *
+     * @param string|null $incoming_number Входящий номер
+     *
+     * @return self
+     */
+    public function setIncomingNumber($incoming_number)
+    {
+        if (is_null($incoming_number)) {
+            array_push($this->openAPINullablesSetToNull, 'incoming_number');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('incoming_number', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($incoming_number) && (mb_strlen($incoming_number) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $incoming_number when calling CashOutOperation., must be smaller than or equal to 255.');
+        }
+
+        $this->container['incoming_number'] = $incoming_number;
+
+        return $this;
+    }
+
+    /**
+     * Gets overhead
+     *
+     * @return \OpenAPI\Client\Model\Overhead|null
+     */
+    public function getOverhead()
+    {
+        return $this->container['overhead'];
+    }
+
+    /**
+     * Sets overhead
+     *
+     * @param \OpenAPI\Client\Model\Overhead|null $overhead overhead
+     *
+     * @return self
+     */
+    public function setOverhead($overhead)
+    {
+        if (is_null($overhead)) {
+            array_push($this->openAPINullablesSetToNull, 'overhead');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('overhead', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['overhead'] = $overhead;
+
+        return $this;
+    }
+
+    /**
+     * Gets purchase_order
+     *
+     * @return \OpenAPI\Client\Model\PurchaseOrder|null
+     */
+    public function getPurchaseOrder()
+    {
+        return $this->container['purchase_order'];
+    }
+
+    /**
+     * Sets purchase_order
+     *
+     * @param \OpenAPI\Client\Model\PurchaseOrder|null $purchase_order Заказ поставщику, с которым связана Приемка
+     *
+     * @return self
+     */
+    public function setPurchaseOrder($purchase_order)
+    {
+        if (is_null($purchase_order)) {
+            array_push($this->openAPINullablesSetToNull, 'purchase_order');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('purchase_order', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['purchase_order'] = $purchase_order;
+
+        return $this;
+    }
+
+    /**
+     * Gets facture_in
+     *
+     * @return \OpenAPI\Client\Model\FactureIn|null
+     */
+    public function getFactureIn()
+    {
+        return $this->container['facture_in'];
+    }
+
+    /**
+     * Sets facture_in
+     *
+     * @param \OpenAPI\Client\Model\FactureIn|null $facture_in Счет-фактура полученный, с которым связана эта Приемка
+     *
+     * @return self
+     */
+    public function setFactureIn($facture_in)
+    {
+        if (is_null($facture_in)) {
+            array_push($this->openAPINullablesSetToNull, 'facture_in');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('facture_in', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['facture_in'] = $facture_in;
+
+        return $this;
+    }
+
+    /**
+     * Gets invoices_in
+     *
+     * @return \OpenAPI\Client\Model\InvoiceIn[]|null
+     */
+    public function getInvoicesIn()
+    {
+        return $this->container['invoices_in'];
+    }
+
+    /**
+     * Sets invoices_in
+     *
+     * @param \OpenAPI\Client\Model\InvoiceIn[]|null $invoices_in Массив ссылок на связанные счета поставщиков
+     *
+     * @return self
+     */
+    public function setInvoicesIn($invoices_in)
+    {
+        if (is_null($invoices_in)) {
+            array_push($this->openAPINullablesSetToNull, 'invoices_in');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('invoices_in', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['invoices_in'] = $invoices_in;
+
+        return $this;
+    }
+
+    /**
+     * Gets production_task
+     *
+     * @return \OpenAPI\Client\Model\ProductionTask|null
+     */
+    public function getProductionTask()
+    {
+        return $this->container['production_task'];
+    }
+
+    /**
+     * Sets production_task
+     *
+     * @param \OpenAPI\Client\Model\ProductionTask|null $production_task Связанное производственное задание
+     *
+     * @return self
+     */
+    public function setProductionTask($production_task)
+    {
+        if (is_null($production_task)) {
+            array_push($this->openAPINullablesSetToNull, 'production_task');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('production_task', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['production_task'] = $production_task;
+
+        return $this;
+    }
+
+    /**
+     * Gets returns
+     *
+     * @return \OpenAPI\Client\Model\SupplyReturnsInner[]|null
+     */
+    public function getReturns()
+    {
+        return $this->container['returns'];
+    }
+
+    /**
+     * Sets returns
+     *
+     * @param \OpenAPI\Client\Model\SupplyReturnsInner[]|null $returns Массив ссылок на связанные возвраты
+     *
+     * @return self
+     */
+    public function setReturns($returns)
+    {
+        if (is_null($returns)) {
+            array_push($this->openAPINullablesSetToNull, 'returns');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('returns', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['returns'] = $returns;
+
+        return $this;
+    }
+
+    /**
+     * Gets delivery_planned_moment
+     *
+     * @return string|null
+     */
+    public function getDeliveryPlannedMoment()
+    {
+        return $this->container['delivery_planned_moment'];
+    }
+
+    /**
+     * Sets delivery_planned_moment
+     *
+     * @param string|null $delivery_planned_moment Планируемая дата отгрузки
+     *
+     * @return self
+     */
+    public function setDeliveryPlannedMoment($delivery_planned_moment)
+    {
+        if (is_null($delivery_planned_moment)) {
+            throw new \InvalidArgumentException('non-nullable delivery_planned_moment cannot be null');
+        }
+        $this->container['delivery_planned_moment'] = $delivery_planned_moment;
+
+        return $this;
+    }
+
+    /**
+     * Gets shipped_sum
+     *
+     * @return float|null
+     */
+    public function getShippedSum()
+    {
+        return $this->container['shipped_sum'];
+    }
+
+    /**
+     * Sets shipped_sum
+     *
+     * @param float|null $shipped_sum Сумма принятого
+     *
+     * @return self
+     */
+    public function setShippedSum($shipped_sum)
+    {
+        if (is_null($shipped_sum)) {
+            throw new \InvalidArgumentException('non-nullable shipped_sum cannot be null');
+        }
+        $this->container['shipped_sum'] = $shipped_sum;
+
+        return $this;
+    }
+
+    /**
+     * Gets invoiced_sum
+     *
+     * @return float|null
+     */
+    public function getInvoicedSum()
+    {
+        return $this->container['invoiced_sum'];
+    }
+
+    /**
+     * Sets invoiced_sum
+     *
+     * @param float|null $invoiced_sum Сумма счетов поставщику
+     *
+     * @return self
+     */
+    public function setInvoicedSum($invoiced_sum)
+    {
+        if (is_null($invoiced_sum)) {
+            throw new \InvalidArgumentException('non-nullable invoiced_sum cannot be null');
+        }
+        $this->container['invoiced_sum'] = $invoiced_sum;
+
+        return $this;
+    }
+
+    /**
+     * Gets wait_sum
+     *
+     * @return float|null
+     */
+    public function getWaitSum()
+    {
+        return $this->container['wait_sum'];
+    }
+
+    /**
+     * Sets wait_sum
+     *
+     * @param float|null $wait_sum Сумма товаров в пути
+     *
+     * @return self
+     */
+    public function setWaitSum($wait_sum)
+    {
+        if (is_null($wait_sum)) {
+            throw new \InvalidArgumentException('non-nullable wait_sum cannot be null');
+        }
+        $this->container['wait_sum'] = $wait_sum;
 
         return $this;
     }
@@ -1859,40 +2446,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets invoices_in
-     *
-     * @return \OpenAPI\Client\Model\InvoiceIn[]|null
-     */
-    public function getInvoicesIn()
-    {
-        return $this->container['invoices_in'];
-    }
-
-    /**
-     * Sets invoices_in
-     *
-     * @param \OpenAPI\Client\Model\InvoiceIn[]|null $invoices_in Массив ссылок на связанные счета поставщиков
-     *
-     * @return self
-     */
-    public function setInvoicesIn($invoices_in)
-    {
-        if (is_null($invoices_in)) {
-            array_push($this->openAPINullablesSetToNull, 'invoices_in');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('invoices_in', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['invoices_in'] = $invoices_in;
-
-        return $this;
-    }
-
-    /**
      * Gets supplies
      *
      * @return \OpenAPI\Client\Model\Supply[]|null
@@ -1927,40 +2480,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets payments
-     *
-     * @return \OpenAPI\Client\Model\PurchaseOrderPaymentsInner[]|null
-     */
-    public function getPayments()
-    {
-        return $this->container['payments'];
-    }
-
-    /**
-     * Sets payments
-     *
-     * @param \OpenAPI\Client\Model\PurchaseOrderPaymentsInner[]|null $payments Массив ссылок на связанные платежи
-     *
-     * @return self
-     */
-    public function setPayments($payments)
-    {
-        if (is_null($payments)) {
-            array_push($this->openAPINullablesSetToNull, 'payments');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('payments', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['payments'] = $payments;
-
-        return $this;
-    }
-
-    /**
      * Gets production_tasks
      *
      * @return \OpenAPI\Client\Model\ProductionTask[]|null
@@ -1990,6 +2509,153 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['production_tasks'] = $production_tasks;
+
+        return $this;
+    }
+
+    /**
+     * Gets commission_period_end
+     *
+     * @return string|null
+     */
+    public function getCommissionPeriodEnd()
+    {
+        return $this->container['commission_period_end'];
+    }
+
+    /**
+     * Sets commission_period_end
+     *
+     * @param string|null $commission_period_end Конец периода
+     *
+     * @return self
+     */
+    public function setCommissionPeriodEnd($commission_period_end)
+    {
+        if (is_null($commission_period_end)) {
+            throw new \InvalidArgumentException('non-nullable commission_period_end cannot be null');
+        }
+        $this->container['commission_period_end'] = $commission_period_end;
+
+        return $this;
+    }
+
+    /**
+     * Gets commission_period_start
+     *
+     * @return string|null
+     */
+    public function getCommissionPeriodStart()
+    {
+        return $this->container['commission_period_start'];
+    }
+
+    /**
+     * Sets commission_period_start
+     *
+     * @param string|null $commission_period_start Начало периода
+     *
+     * @return self
+     */
+    public function setCommissionPeriodStart($commission_period_start)
+    {
+        if (is_null($commission_period_start)) {
+            throw new \InvalidArgumentException('non-nullable commission_period_start cannot be null');
+        }
+        $this->container['commission_period_start'] = $commission_period_start;
+
+        return $this;
+    }
+
+    /**
+     * Gets commitent_sum
+     *
+     * @return float|null
+     */
+    public function getCommitentSum()
+    {
+        return $this->container['commitent_sum'];
+    }
+
+    /**
+     * Sets commitent_sum
+     *
+     * @param float|null $commitent_sum Сумма коммитента в установленной валюте
+     *
+     * @return self
+     */
+    public function setCommitentSum($commitent_sum)
+    {
+        if (is_null($commitent_sum)) {
+            throw new \InvalidArgumentException('non-nullable commitent_sum cannot be null');
+        }
+        $this->container['commitent_sum'] = $commitent_sum;
+
+        return $this;
+    }
+
+    /**
+     * Gets reward_percent
+     *
+     * @return int|null
+     */
+    public function getRewardPercent()
+    {
+        return $this->container['reward_percent'];
+    }
+
+    /**
+     * Sets reward_percent
+     *
+     * @param int|null $reward_percent Процент вознаграждения
+     *
+     * @return self
+     */
+    public function setRewardPercent($reward_percent)
+    {
+        if (is_null($reward_percent)) {
+            throw new \InvalidArgumentException('non-nullable reward_percent cannot be null');
+        }
+
+        if (($reward_percent > 100)) {
+            throw new \InvalidArgumentException('invalid value for $reward_percent when calling CashOutOperation., must be smaller than or equal to 100.');
+        }
+        if (($reward_percent < 0)) {
+            throw new \InvalidArgumentException('invalid value for $reward_percent when calling CashOutOperation., must be bigger than or equal to 0.');
+        }
+
+        $this->container['reward_percent'] = $reward_percent;
+
+        return $this;
+    }
+
+    /**
+     * Gets reward_type
+     *
+     * @return string|null
+     */
+    public function getRewardType()
+    {
+        return $this->container['reward_type'];
+    }
+
+    /**
+     * Sets reward_type
+     *
+     * @param string|null $reward_type Тип Вознаграждения. Известные значения описаны в RewardType
+     *
+     * @return self
+     */
+    public function setRewardType($reward_type)
+    {
+        if (is_null($reward_type)) {
+            throw new \InvalidArgumentException('non-nullable reward_type cannot be null');
+        }
+        if ((mb_strlen($reward_type) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $reward_type when calling CashOutOperation., must be smaller than or equal to 255.');
+        }
+
+        $this->container['reward_type'] = $reward_type;
 
         return $this;
     }

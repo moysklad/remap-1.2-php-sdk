@@ -80,7 +80,39 @@ class Supply implements ModelInterface, ArrayAccess, \JsonSerializable
         'created' => 'string',
         'deleted' => 'string',
         'updated' => 'string',
-        'moment' => 'string'
+        'moment' => 'string',
+        'incoming_date' => 'string',
+        'incoming_number' => 'string',
+        'applicable' => 'bool',
+        'printed' => 'bool',
+        'published' => 'bool',
+        'shared' => 'bool',
+        'vat_enabled' => 'bool',
+        'vat_included' => 'bool',
+        'vat_sum' => 'float',
+        'sum' => 'float',
+        'payed_sum' => 'float',
+        'organization' => '\OpenAPI\Client\Model\Organization',
+        'organization_account' => '\OpenAPI\Client\Model\Account',
+        'agent' => '\OpenAPI\Client\Model\Agent',
+        'agent_account' => '\OpenAPI\Client\Model\Account',
+        'store' => '\OpenAPI\Client\Model\Store',
+        'state' => '\OpenAPI\Client\Model\State',
+        'contract' => '\OpenAPI\Client\Model\Contract',
+        'project' => '\OpenAPI\Client\Model\Project',
+        'owner' => '\OpenAPI\Client\Model\Employee',
+        'group' => '\OpenAPI\Client\Model\Group',
+        'attributes' => '\OpenAPI\Client\Model\AttributeAbstract[]',
+        'files' => '\OpenAPI\Client\Model\FileList',
+        'rate' => '\OpenAPI\Client\Model\CurrencyRate',
+        'overhead' => '\OpenAPI\Client\Model\Overhead',
+        'positions' => '\OpenAPI\Client\Model\SupplyPositionList',
+        'purchase_order' => '\OpenAPI\Client\Model\PurchaseOrder',
+        'facture_in' => '\OpenAPI\Client\Model\FactureIn',
+        'invoices_in' => '\OpenAPI\Client\Model\InvoiceIn[]',
+        'payments' => '\OpenAPI\Client\Model\SupplyPaymentsInner[]',
+        'production_task' => '\OpenAPI\Client\Model\ProductionTask',
+        'returns' => '\OpenAPI\Client\Model\SupplyReturnsInner[]'
     ];
 
     /**
@@ -102,7 +134,39 @@ class Supply implements ModelInterface, ArrayAccess, \JsonSerializable
         'created' => null,
         'deleted' => null,
         'updated' => null,
-        'moment' => null
+        'moment' => null,
+        'incoming_date' => null,
+        'incoming_number' => null,
+        'applicable' => null,
+        'printed' => null,
+        'published' => null,
+        'shared' => null,
+        'vat_enabled' => null,
+        'vat_included' => null,
+        'vat_sum' => 'double',
+        'sum' => 'double',
+        'payed_sum' => 'double',
+        'organization' => null,
+        'organization_account' => null,
+        'agent' => null,
+        'agent_account' => null,
+        'store' => null,
+        'state' => null,
+        'contract' => null,
+        'project' => null,
+        'owner' => null,
+        'group' => null,
+        'attributes' => null,
+        'files' => null,
+        'rate' => null,
+        'overhead' => null,
+        'positions' => null,
+        'purchase_order' => null,
+        'facture_in' => null,
+        'invoices_in' => null,
+        'payments' => null,
+        'production_task' => null,
+        'returns' => null
     ];
 
     /**
@@ -122,7 +186,39 @@ class Supply implements ModelInterface, ArrayAccess, \JsonSerializable
         'created' => false,
         'deleted' => false,
         'updated' => false,
-        'moment' => false
+        'moment' => false,
+        'incoming_date' => true,
+        'incoming_number' => true,
+        'applicable' => false,
+        'printed' => false,
+        'published' => false,
+        'shared' => false,
+        'vat_enabled' => false,
+        'vat_included' => false,
+        'vat_sum' => false,
+        'sum' => false,
+        'payed_sum' => false,
+        'organization' => false,
+        'organization_account' => true,
+        'agent' => false,
+        'agent_account' => true,
+        'store' => false,
+        'state' => true,
+        'contract' => true,
+        'project' => true,
+        'owner' => true,
+        'group' => false,
+        'attributes' => true,
+        'files' => true,
+        'rate' => false,
+        'overhead' => true,
+        'positions' => false,
+        'purchase_order' => true,
+        'facture_in' => true,
+        'invoices_in' => true,
+        'payments' => true,
+        'production_task' => true,
+        'returns' => true
     ];
 
     /**
@@ -222,7 +318,39 @@ class Supply implements ModelInterface, ArrayAccess, \JsonSerializable
         'created' => 'created',
         'deleted' => 'deleted',
         'updated' => 'updated',
-        'moment' => 'moment'
+        'moment' => 'moment',
+        'incoming_date' => 'incomingDate',
+        'incoming_number' => 'incomingNumber',
+        'applicable' => 'applicable',
+        'printed' => 'printed',
+        'published' => 'published',
+        'shared' => 'shared',
+        'vat_enabled' => 'vatEnabled',
+        'vat_included' => 'vatIncluded',
+        'vat_sum' => 'vatSum',
+        'sum' => 'sum',
+        'payed_sum' => 'payedSum',
+        'organization' => 'organization',
+        'organization_account' => 'organizationAccount',
+        'agent' => 'agent',
+        'agent_account' => 'agentAccount',
+        'store' => 'store',
+        'state' => 'state',
+        'contract' => 'contract',
+        'project' => 'project',
+        'owner' => 'owner',
+        'group' => 'group',
+        'attributes' => 'attributes',
+        'files' => 'files',
+        'rate' => 'rate',
+        'overhead' => 'overhead',
+        'positions' => 'positions',
+        'purchase_order' => 'purchaseOrder',
+        'facture_in' => 'factureIn',
+        'invoices_in' => 'invoicesIn',
+        'payments' => 'payments',
+        'production_task' => 'productionTask',
+        'returns' => 'returns'
     ];
 
     /**
@@ -242,7 +370,39 @@ class Supply implements ModelInterface, ArrayAccess, \JsonSerializable
         'created' => 'setCreated',
         'deleted' => 'setDeleted',
         'updated' => 'setUpdated',
-        'moment' => 'setMoment'
+        'moment' => 'setMoment',
+        'incoming_date' => 'setIncomingDate',
+        'incoming_number' => 'setIncomingNumber',
+        'applicable' => 'setApplicable',
+        'printed' => 'setPrinted',
+        'published' => 'setPublished',
+        'shared' => 'setShared',
+        'vat_enabled' => 'setVatEnabled',
+        'vat_included' => 'setVatIncluded',
+        'vat_sum' => 'setVatSum',
+        'sum' => 'setSum',
+        'payed_sum' => 'setPayedSum',
+        'organization' => 'setOrganization',
+        'organization_account' => 'setOrganizationAccount',
+        'agent' => 'setAgent',
+        'agent_account' => 'setAgentAccount',
+        'store' => 'setStore',
+        'state' => 'setState',
+        'contract' => 'setContract',
+        'project' => 'setProject',
+        'owner' => 'setOwner',
+        'group' => 'setGroup',
+        'attributes' => 'setAttributes',
+        'files' => 'setFiles',
+        'rate' => 'setRate',
+        'overhead' => 'setOverhead',
+        'positions' => 'setPositions',
+        'purchase_order' => 'setPurchaseOrder',
+        'facture_in' => 'setFactureIn',
+        'invoices_in' => 'setInvoicesIn',
+        'payments' => 'setPayments',
+        'production_task' => 'setProductionTask',
+        'returns' => 'setReturns'
     ];
 
     /**
@@ -262,7 +422,39 @@ class Supply implements ModelInterface, ArrayAccess, \JsonSerializable
         'created' => 'getCreated',
         'deleted' => 'getDeleted',
         'updated' => 'getUpdated',
-        'moment' => 'getMoment'
+        'moment' => 'getMoment',
+        'incoming_date' => 'getIncomingDate',
+        'incoming_number' => 'getIncomingNumber',
+        'applicable' => 'getApplicable',
+        'printed' => 'getPrinted',
+        'published' => 'getPublished',
+        'shared' => 'getShared',
+        'vat_enabled' => 'getVatEnabled',
+        'vat_included' => 'getVatIncluded',
+        'vat_sum' => 'getVatSum',
+        'sum' => 'getSum',
+        'payed_sum' => 'getPayedSum',
+        'organization' => 'getOrganization',
+        'organization_account' => 'getOrganizationAccount',
+        'agent' => 'getAgent',
+        'agent_account' => 'getAgentAccount',
+        'store' => 'getStore',
+        'state' => 'getState',
+        'contract' => 'getContract',
+        'project' => 'getProject',
+        'owner' => 'getOwner',
+        'group' => 'getGroup',
+        'attributes' => 'getAttributes',
+        'files' => 'getFiles',
+        'rate' => 'getRate',
+        'overhead' => 'getOverhead',
+        'positions' => 'getPositions',
+        'purchase_order' => 'getPurchaseOrder',
+        'facture_in' => 'getFactureIn',
+        'invoices_in' => 'getInvoicesIn',
+        'payments' => 'getPayments',
+        'production_task' => 'getProductionTask',
+        'returns' => 'getReturns'
     ];
 
     /**
@@ -334,6 +526,38 @@ class Supply implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('deleted', $data ?? [], null);
         $this->setIfExists('updated', $data ?? [], null);
         $this->setIfExists('moment', $data ?? [], null);
+        $this->setIfExists('incoming_date', $data ?? [], null);
+        $this->setIfExists('incoming_number', $data ?? [], null);
+        $this->setIfExists('applicable', $data ?? [], null);
+        $this->setIfExists('printed', $data ?? [], null);
+        $this->setIfExists('published', $data ?? [], null);
+        $this->setIfExists('shared', $data ?? [], null);
+        $this->setIfExists('vat_enabled', $data ?? [], null);
+        $this->setIfExists('vat_included', $data ?? [], null);
+        $this->setIfExists('vat_sum', $data ?? [], null);
+        $this->setIfExists('sum', $data ?? [], null);
+        $this->setIfExists('payed_sum', $data ?? [], null);
+        $this->setIfExists('organization', $data ?? [], null);
+        $this->setIfExists('organization_account', $data ?? [], null);
+        $this->setIfExists('agent', $data ?? [], null);
+        $this->setIfExists('agent_account', $data ?? [], null);
+        $this->setIfExists('store', $data ?? [], null);
+        $this->setIfExists('state', $data ?? [], null);
+        $this->setIfExists('contract', $data ?? [], null);
+        $this->setIfExists('project', $data ?? [], null);
+        $this->setIfExists('owner', $data ?? [], null);
+        $this->setIfExists('group', $data ?? [], null);
+        $this->setIfExists('attributes', $data ?? [], null);
+        $this->setIfExists('files', $data ?? [], null);
+        $this->setIfExists('rate', $data ?? [], null);
+        $this->setIfExists('overhead', $data ?? [], null);
+        $this->setIfExists('positions', $data ?? [], null);
+        $this->setIfExists('purchase_order', $data ?? [], null);
+        $this->setIfExists('facture_in', $data ?? [], null);
+        $this->setIfExists('invoices_in', $data ?? [], null);
+        $this->setIfExists('payments', $data ?? [], null);
+        $this->setIfExists('production_task', $data ?? [], null);
+        $this->setIfExists('returns', $data ?? [], null);
     }
 
     /**
@@ -377,6 +601,10 @@ class Supply implements ModelInterface, ArrayAccess, \JsonSerializable
 
         if (!is_null($this->container['description']) && (mb_strlen($this->container['description']) > 4096)) {
             $invalidProperties[] = "invalid value for 'description', the character length must be smaller than or equal to 4096.";
+        }
+
+        if (!is_null($this->container['incoming_number']) && (mb_strlen($this->container['incoming_number']) > 255)) {
+            $invalidProperties[] = "invalid value for 'incoming_number', the character length must be smaller than or equal to 255.";
         }
 
         return $invalidProperties;
@@ -581,7 +809,7 @@ class Supply implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets sync_id
      *
-     * @param string|null $sync_id ID синхронизации
+     * @param string|null $sync_id ID синхронизации. После заполнения недоступен для изменения
      *
      * @return self
      */
@@ -737,6 +965,1006 @@ class Supply implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable moment cannot be null');
         }
         $this->container['moment'] = $moment;
+
+        return $this;
+    }
+
+    /**
+     * Gets incoming_date
+     *
+     * @return string|null
+     */
+    public function getIncomingDate()
+    {
+        return $this->container['incoming_date'];
+    }
+
+    /**
+     * Sets incoming_date
+     *
+     * @param string|null $incoming_date Входящая дата
+     *
+     * @return self
+     */
+    public function setIncomingDate($incoming_date)
+    {
+        if (is_null($incoming_date)) {
+            array_push($this->openAPINullablesSetToNull, 'incoming_date');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('incoming_date', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['incoming_date'] = $incoming_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets incoming_number
+     *
+     * @return string|null
+     */
+    public function getIncomingNumber()
+    {
+        return $this->container['incoming_number'];
+    }
+
+    /**
+     * Sets incoming_number
+     *
+     * @param string|null $incoming_number Входящий номер
+     *
+     * @return self
+     */
+    public function setIncomingNumber($incoming_number)
+    {
+        if (is_null($incoming_number)) {
+            array_push($this->openAPINullablesSetToNull, 'incoming_number');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('incoming_number', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($incoming_number) && (mb_strlen($incoming_number) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $incoming_number when calling Supply., must be smaller than or equal to 255.');
+        }
+
+        $this->container['incoming_number'] = $incoming_number;
+
+        return $this;
+    }
+
+    /**
+     * Gets applicable
+     *
+     * @return bool|null
+     */
+    public function getApplicable()
+    {
+        return $this->container['applicable'];
+    }
+
+    /**
+     * Sets applicable
+     *
+     * @param bool|null $applicable Отметка о проведении
+     *
+     * @return self
+     */
+    public function setApplicable($applicable)
+    {
+        if (is_null($applicable)) {
+            throw new \InvalidArgumentException('non-nullable applicable cannot be null');
+        }
+        $this->container['applicable'] = $applicable;
+
+        return $this;
+    }
+
+    /**
+     * Gets printed
+     *
+     * @return bool|null
+     */
+    public function getPrinted()
+    {
+        return $this->container['printed'];
+    }
+
+    /**
+     * Sets printed
+     *
+     * @param bool|null $printed Напечатан ли документ
+     *
+     * @return self
+     */
+    public function setPrinted($printed)
+    {
+        if (is_null($printed)) {
+            throw new \InvalidArgumentException('non-nullable printed cannot be null');
+        }
+        $this->container['printed'] = $printed;
+
+        return $this;
+    }
+
+    /**
+     * Gets published
+     *
+     * @return bool|null
+     */
+    public function getPublished()
+    {
+        return $this->container['published'];
+    }
+
+    /**
+     * Sets published
+     *
+     * @param bool|null $published Опубликован ли документ
+     *
+     * @return self
+     */
+    public function setPublished($published)
+    {
+        if (is_null($published)) {
+            throw new \InvalidArgumentException('non-nullable published cannot be null');
+        }
+        $this->container['published'] = $published;
+
+        return $this;
+    }
+
+    /**
+     * Gets shared
+     *
+     * @return bool|null
+     */
+    public function getShared()
+    {
+        return $this->container['shared'];
+    }
+
+    /**
+     * Sets shared
+     *
+     * @param bool|null $shared Общий доступ
+     *
+     * @return self
+     */
+    public function setShared($shared)
+    {
+        if (is_null($shared)) {
+            throw new \InvalidArgumentException('non-nullable shared cannot be null');
+        }
+        $this->container['shared'] = $shared;
+
+        return $this;
+    }
+
+    /**
+     * Gets vat_enabled
+     *
+     * @return bool|null
+     */
+    public function getVatEnabled()
+    {
+        return $this->container['vat_enabled'];
+    }
+
+    /**
+     * Sets vat_enabled
+     *
+     * @param bool|null $vat_enabled Учитывается ли НДС
+     *
+     * @return self
+     */
+    public function setVatEnabled($vat_enabled)
+    {
+        if (is_null($vat_enabled)) {
+            throw new \InvalidArgumentException('non-nullable vat_enabled cannot be null');
+        }
+        $this->container['vat_enabled'] = $vat_enabled;
+
+        return $this;
+    }
+
+    /**
+     * Gets vat_included
+     *
+     * @return bool|null
+     */
+    public function getVatIncluded()
+    {
+        return $this->container['vat_included'];
+    }
+
+    /**
+     * Sets vat_included
+     *
+     * @param bool|null $vat_included Включен ли НДС в цену
+     *
+     * @return self
+     */
+    public function setVatIncluded($vat_included)
+    {
+        if (is_null($vat_included)) {
+            throw new \InvalidArgumentException('non-nullable vat_included cannot be null');
+        }
+        $this->container['vat_included'] = $vat_included;
+
+        return $this;
+    }
+
+    /**
+     * Gets vat_sum
+     *
+     * @return float|null
+     */
+    public function getVatSum()
+    {
+        return $this->container['vat_sum'];
+    }
+
+    /**
+     * Sets vat_sum
+     *
+     * @param float|null $vat_sum Сумма НДС
+     *
+     * @return self
+     */
+    public function setVatSum($vat_sum)
+    {
+        if (is_null($vat_sum)) {
+            throw new \InvalidArgumentException('non-nullable vat_sum cannot be null');
+        }
+        $this->container['vat_sum'] = $vat_sum;
+
+        return $this;
+    }
+
+    /**
+     * Gets sum
+     *
+     * @return float|null
+     */
+    public function getSum()
+    {
+        return $this->container['sum'];
+    }
+
+    /**
+     * Sets sum
+     *
+     * @param float|null $sum Сумма Приемки в копейках
+     *
+     * @return self
+     */
+    public function setSum($sum)
+    {
+        if (is_null($sum)) {
+            throw new \InvalidArgumentException('non-nullable sum cannot be null');
+        }
+        $this->container['sum'] = $sum;
+
+        return $this;
+    }
+
+    /**
+     * Gets payed_sum
+     *
+     * @return float|null
+     */
+    public function getPayedSum()
+    {
+        return $this->container['payed_sum'];
+    }
+
+    /**
+     * Sets payed_sum
+     *
+     * @param float|null $payed_sum Сумма входящих платежей по Приемке
+     *
+     * @return self
+     */
+    public function setPayedSum($payed_sum)
+    {
+        if (is_null($payed_sum)) {
+            throw new \InvalidArgumentException('non-nullable payed_sum cannot be null');
+        }
+        $this->container['payed_sum'] = $payed_sum;
+
+        return $this;
+    }
+
+    /**
+     * Gets organization
+     *
+     * @return \OpenAPI\Client\Model\Organization|null
+     */
+    public function getOrganization()
+    {
+        return $this->container['organization'];
+    }
+
+    /**
+     * Sets organization
+     *
+     * @param \OpenAPI\Client\Model\Organization|null $organization organization
+     *
+     * @return self
+     */
+    public function setOrganization($organization)
+    {
+        if (is_null($organization)) {
+            throw new \InvalidArgumentException('non-nullable organization cannot be null');
+        }
+        $this->container['organization'] = $organization;
+
+        return $this;
+    }
+
+    /**
+     * Gets organization_account
+     *
+     * @return \OpenAPI\Client\Model\Account|null
+     */
+    public function getOrganizationAccount()
+    {
+        return $this->container['organization_account'];
+    }
+
+    /**
+     * Sets organization_account
+     *
+     * @param \OpenAPI\Client\Model\Account|null $organization_account Метаданные счета юрлица
+     *
+     * @return self
+     */
+    public function setOrganizationAccount($organization_account)
+    {
+        if (is_null($organization_account)) {
+            array_push($this->openAPINullablesSetToNull, 'organization_account');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('organization_account', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['organization_account'] = $organization_account;
+
+        return $this;
+    }
+
+    /**
+     * Gets agent
+     *
+     * @return \OpenAPI\Client\Model\Agent|null
+     */
+    public function getAgent()
+    {
+        return $this->container['agent'];
+    }
+
+    /**
+     * Sets agent
+     *
+     * Accepts a Counterparty, Organization, or Agent instance (or null when nullable).
+     * On the wire the server only reads `meta`; non-meta fields are kept locally for
+     * type-safe access and serialized verbatim.
+     *
+     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $agent Метаданные контрагента
+     *
+     * @return self
+     */
+    public function setAgent($agent)
+    {
+        if (is_null($agent)) {
+            throw new \InvalidArgumentException('non-nullable agent cannot be null');
+        }
+        if (!is_null($agent)
+            && !($agent instanceof \OpenAPI\Client\Model\Counterparty)
+            && !($agent instanceof \OpenAPI\Client\Model\Organization)
+            && !($agent instanceof \OpenAPI\Client\Model\Agent)) {
+            throw new \InvalidArgumentException(
+                "Argument for 'agent' must be one of Counterparty, Organization, or Agent; got "
+                . (is_object($agent) ? get_class($agent) : gettype($agent))
+            );
+        }
+        $this->container['agent'] = $agent;
+
+        return $this;
+    }
+
+    /**
+     * Gets agent_account
+     *
+     * @return \OpenAPI\Client\Model\Account|null
+     */
+    public function getAgentAccount()
+    {
+        return $this->container['agent_account'];
+    }
+
+    /**
+     * Sets agent_account
+     *
+     * @param \OpenAPI\Client\Model\Account|null $agent_account Метаданные счета контрагента
+     *
+     * @return self
+     */
+    public function setAgentAccount($agent_account)
+    {
+        if (is_null($agent_account)) {
+            array_push($this->openAPINullablesSetToNull, 'agent_account');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('agent_account', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['agent_account'] = $agent_account;
+
+        return $this;
+    }
+
+    /**
+     * Gets store
+     *
+     * @return \OpenAPI\Client\Model\Store|null
+     */
+    public function getStore()
+    {
+        return $this->container['store'];
+    }
+
+    /**
+     * Sets store
+     *
+     * @param \OpenAPI\Client\Model\Store|null $store Метаданные склада
+     *
+     * @return self
+     */
+    public function setStore($store)
+    {
+        if (is_null($store)) {
+            throw new \InvalidArgumentException('non-nullable store cannot be null');
+        }
+        $this->container['store'] = $store;
+
+        return $this;
+    }
+
+    /**
+     * Gets state
+     *
+     * @return \OpenAPI\Client\Model\State|null
+     */
+    public function getState()
+    {
+        return $this->container['state'];
+    }
+
+    /**
+     * Sets state
+     *
+     * @param \OpenAPI\Client\Model\State|null $state Метаданные статуса Приемки
+     *
+     * @return self
+     */
+    public function setState($state)
+    {
+        if (is_null($state)) {
+            array_push($this->openAPINullablesSetToNull, 'state');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('state', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['state'] = $state;
+
+        return $this;
+    }
+
+    /**
+     * Gets contract
+     *
+     * @return \OpenAPI\Client\Model\Contract|null
+     */
+    public function getContract()
+    {
+        return $this->container['contract'];
+    }
+
+    /**
+     * Sets contract
+     *
+     * @param \OpenAPI\Client\Model\Contract|null $contract Метаданные договора
+     *
+     * @return self
+     */
+    public function setContract($contract)
+    {
+        if (is_null($contract)) {
+            array_push($this->openAPINullablesSetToNull, 'contract');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('contract', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['contract'] = $contract;
+
+        return $this;
+    }
+
+    /**
+     * Gets project
+     *
+     * @return \OpenAPI\Client\Model\Project|null
+     */
+    public function getProject()
+    {
+        return $this->container['project'];
+    }
+
+    /**
+     * Sets project
+     *
+     * @param \OpenAPI\Client\Model\Project|null $project Метаданные проекта
+     *
+     * @return self
+     */
+    public function setProject($project)
+    {
+        if (is_null($project)) {
+            array_push($this->openAPINullablesSetToNull, 'project');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('project', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['project'] = $project;
+
+        return $this;
+    }
+
+    /**
+     * Gets owner
+     *
+     * @return \OpenAPI\Client\Model\Employee|null
+     */
+    public function getOwner()
+    {
+        return $this->container['owner'];
+    }
+
+    /**
+     * Sets owner
+     *
+     * @param \OpenAPI\Client\Model\Employee|null $owner Владелец (Сотрудник)
+     *
+     * @return self
+     */
+    public function setOwner($owner)
+    {
+        if (is_null($owner)) {
+            array_push($this->openAPINullablesSetToNull, 'owner');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('owner', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['owner'] = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Gets group
+     *
+     * @return \OpenAPI\Client\Model\Group|null
+     */
+    public function getGroup()
+    {
+        return $this->container['group'];
+    }
+
+    /**
+     * Sets group
+     *
+     * @param \OpenAPI\Client\Model\Group|null $group group
+     *
+     * @return self
+     */
+    public function setGroup($group)
+    {
+        if (is_null($group)) {
+            throw new \InvalidArgumentException('non-nullable group cannot be null');
+        }
+        $this->container['group'] = $group;
+
+        return $this;
+    }
+
+    /**
+     * Gets attributes
+     *
+     * @return \OpenAPI\Client\Model\AttributeAbstract[]|null
+     */
+    public function getAttributes()
+    {
+        return $this->container['attributes'];
+    }
+
+    /**
+     * Sets attributes
+     *
+     * @param \OpenAPI\Client\Model\AttributeAbstract[]|null $attributes Коллекция метаданных доп. полей
+     *
+     * @return self
+     */
+    public function setAttributes($attributes)
+    {
+        if (is_null($attributes)) {
+            array_push($this->openAPINullablesSetToNull, 'attributes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('attributes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['attributes'] = $attributes;
+
+        return $this;
+    }
+
+    /**
+     * Gets files
+     *
+     * @return \OpenAPI\Client\Model\FileList|null
+     */
+    public function getFiles()
+    {
+        return $this->container['files'];
+    }
+
+    /**
+     * Sets files
+     *
+     * @param \OpenAPI\Client\Model\FileList|null $files Метаданные массива Файлов (максимальное количество файлов — 100)
+     *
+     * @return self
+     */
+    public function setFiles($files)
+    {
+        if (is_null($files)) {
+            array_push($this->openAPINullablesSetToNull, 'files');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('files', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['files'] = $files;
+
+        return $this;
+    }
+
+    /**
+     * Gets rate
+     *
+     * @return \OpenAPI\Client\Model\CurrencyRate|null
+     */
+    public function getRate()
+    {
+        return $this->container['rate'];
+    }
+
+    /**
+     * Sets rate
+     *
+     * @param \OpenAPI\Client\Model\CurrencyRate|null $rate rate
+     *
+     * @return self
+     */
+    public function setRate($rate)
+    {
+        if (is_null($rate)) {
+            throw new \InvalidArgumentException('non-nullable rate cannot be null');
+        }
+        $this->container['rate'] = $rate;
+
+        return $this;
+    }
+
+    /**
+     * Gets overhead
+     *
+     * @return \OpenAPI\Client\Model\Overhead|null
+     */
+    public function getOverhead()
+    {
+        return $this->container['overhead'];
+    }
+
+    /**
+     * Sets overhead
+     *
+     * @param \OpenAPI\Client\Model\Overhead|null $overhead overhead
+     *
+     * @return self
+     */
+    public function setOverhead($overhead)
+    {
+        if (is_null($overhead)) {
+            array_push($this->openAPINullablesSetToNull, 'overhead');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('overhead', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['overhead'] = $overhead;
+
+        return $this;
+    }
+
+    /**
+     * Gets positions
+     *
+     * @return \OpenAPI\Client\Model\SupplyPositionList|null
+     */
+    public function getPositions()
+    {
+        return $this->container['positions'];
+    }
+
+    /**
+     * Sets positions
+     *
+     * @param \OpenAPI\Client\Model\SupplyPositionList|null $positions positions
+     *
+     * @return self
+     */
+    public function setPositions($positions)
+    {
+        if (is_null($positions)) {
+            throw new \InvalidArgumentException('non-nullable positions cannot be null');
+        }
+        $this->container['positions'] = $positions;
+
+        return $this;
+    }
+
+    /**
+     * Gets purchase_order
+     *
+     * @return \OpenAPI\Client\Model\PurchaseOrder|null
+     */
+    public function getPurchaseOrder()
+    {
+        return $this->container['purchase_order'];
+    }
+
+    /**
+     * Sets purchase_order
+     *
+     * @param \OpenAPI\Client\Model\PurchaseOrder|null $purchase_order Заказ поставщику, с которым связана Приемка
+     *
+     * @return self
+     */
+    public function setPurchaseOrder($purchase_order)
+    {
+        if (is_null($purchase_order)) {
+            array_push($this->openAPINullablesSetToNull, 'purchase_order');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('purchase_order', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['purchase_order'] = $purchase_order;
+
+        return $this;
+    }
+
+    /**
+     * Gets facture_in
+     *
+     * @return \OpenAPI\Client\Model\FactureIn|null
+     */
+    public function getFactureIn()
+    {
+        return $this->container['facture_in'];
+    }
+
+    /**
+     * Sets facture_in
+     *
+     * @param \OpenAPI\Client\Model\FactureIn|null $facture_in Счет-фактура полученный, с которым связана эта Приемка
+     *
+     * @return self
+     */
+    public function setFactureIn($facture_in)
+    {
+        if (is_null($facture_in)) {
+            array_push($this->openAPINullablesSetToNull, 'facture_in');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('facture_in', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['facture_in'] = $facture_in;
+
+        return $this;
+    }
+
+    /**
+     * Gets invoices_in
+     *
+     * @return \OpenAPI\Client\Model\InvoiceIn[]|null
+     */
+    public function getInvoicesIn()
+    {
+        return $this->container['invoices_in'];
+    }
+
+    /**
+     * Sets invoices_in
+     *
+     * @param \OpenAPI\Client\Model\InvoiceIn[]|null $invoices_in Массив ссылок на связанные счета поставщиков
+     *
+     * @return self
+     */
+    public function setInvoicesIn($invoices_in)
+    {
+        if (is_null($invoices_in)) {
+            array_push($this->openAPINullablesSetToNull, 'invoices_in');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('invoices_in', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['invoices_in'] = $invoices_in;
+
+        return $this;
+    }
+
+    /**
+     * Gets payments
+     *
+     * @return \OpenAPI\Client\Model\SupplyPaymentsInner[]|null
+     */
+    public function getPayments()
+    {
+        return $this->container['payments'];
+    }
+
+    /**
+     * Sets payments
+     *
+     * @param \OpenAPI\Client\Model\SupplyPaymentsInner[]|null $payments Массив ссылок на связанные платежи
+     *
+     * @return self
+     */
+    public function setPayments($payments)
+    {
+        if (is_null($payments)) {
+            array_push($this->openAPINullablesSetToNull, 'payments');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('payments', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['payments'] = $payments;
+
+        return $this;
+    }
+
+    /**
+     * Gets production_task
+     *
+     * @return \OpenAPI\Client\Model\ProductionTask|null
+     */
+    public function getProductionTask()
+    {
+        return $this->container['production_task'];
+    }
+
+    /**
+     * Sets production_task
+     *
+     * @param \OpenAPI\Client\Model\ProductionTask|null $production_task Связанное производственное задание
+     *
+     * @return self
+     */
+    public function setProductionTask($production_task)
+    {
+        if (is_null($production_task)) {
+            array_push($this->openAPINullablesSetToNull, 'production_task');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('production_task', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['production_task'] = $production_task;
+
+        return $this;
+    }
+
+    /**
+     * Gets returns
+     *
+     * @return \OpenAPI\Client\Model\SupplyReturnsInner[]|null
+     */
+    public function getReturns()
+    {
+        return $this->container['returns'];
+    }
+
+    /**
+     * Sets returns
+     *
+     * @param \OpenAPI\Client\Model\SupplyReturnsInner[]|null $returns Массив ссылок на связанные возвраты
+     *
+     * @return self
+     */
+    public function setReturns($returns)
+    {
+        if (is_null($returns)) {
+            array_push($this->openAPINullablesSetToNull, 'returns');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('returns', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['returns'] = $returns;
 
         return $this;
     }

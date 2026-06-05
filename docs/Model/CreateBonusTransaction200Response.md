@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **id** | **string** | ID бонусной операции | [optional] [readonly]
 **account_id** | **string** | ID учетной записи | [optional] [readonly]
 **owner** | [**\OpenAPI\Client\Model\Employee**](Employee.md) |  | [optional]
-**agent** | [**\OpenAPI\Client\Model\Counterparty**](Counterparty.md) |  | [optional]
+**agent** | [**\OpenAPI\Client\Model\Agent**](Agent.md) | Метаданные контрагента или юрлица, связанного с бонусной операцией | [optional]
 **group** | [**\OpenAPI\Client\Model\Group**](Group.md) |  | [optional]
 **organization** | [**\OpenAPI\Client\Model\Organization**](Organization.md) |  | [optional]
 **parent_document** | [**\OpenAPI\Client\Model\BonusTransactionParentDocument**](BonusTransactionParentDocument.md) |  | [optional]

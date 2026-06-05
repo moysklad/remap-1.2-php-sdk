@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **meta** | [**\OpenAPI\Client\Model\Meta**](Meta.md) |  | [optional]
 **id** | **string** | ID События | [optional] [readonly]
 **account_id** | **string** | ID учетной записи | [optional] [readonly]
-**agent** | [**\OpenAPI\Client\Model\Counterparty**](Counterparty.md) |  | [optional]
+**agent** | [**\OpenAPI\Client\Model\Agent**](Agent.md) | Метаданные контрагента или юрлица | [optional] [readonly]
 **author** | [**\OpenAPI\Client\Model\Employee**](Employee.md) |  | [optional]
 **author_application** | [**\OpenAPI\Client\Model\Application**](Application.md) |  | [optional]
 **created** | **string** | Время создания объекта | [optional] [readonly]

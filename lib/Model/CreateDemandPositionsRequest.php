@@ -62,14 +62,14 @@ class CreateDemandPositionsRequest implements ModelInterface, ArrayAccess, \Json
         'account_id' => 'string',
         'assortment' => '\OpenAPI\Client\Model\Assortment',
         'cost' => 'int',
-        'declaration' => '\OpenAPI\Client\Model\DemandPositionDeclarationInner[]',
+        'declaration' => '\OpenAPI\Client\Model\DeclarationInner[]',
         'discount' => 'float',
         'pack' => '\OpenAPI\Client\Model\Pack',
         'price' => 'float',
         'quantity' => 'float',
         'slot' => '\OpenAPI\Client\Model\StoreSlot',
         'things' => 'string[]',
-        'tracking_codes' => '\OpenAPI\Client\Model\DemandPositionTrackingCode[]',
+        'tracking_codes' => '\OpenAPI\Client\Model\PositionTrackingCode[]',
         'tracking_codes_1162' => '\OpenAPI\Client\Model\DemandPositionTrackingCode1162[]',
         'overhead' => 'int',
         'vat' => 'int',
@@ -386,6 +386,14 @@ class CreateDemandPositionsRequest implements ModelInterface, ArrayAccess, \Json
     {
         $invalidProperties = [];
 
+        if (!is_null($this->container['vat']) && ($this->container['vat'] > 100)) {
+            $invalidProperties[] = "invalid value for 'vat', must be smaller than or equal to 100.";
+        }
+
+        if (!is_null($this->container['vat']) && ($this->container['vat'] < 0)) {
+            $invalidProperties[] = "invalid value for 'vat', must be bigger than or equal to 0.";
+        }
+
         return $invalidProperties;
     }
 
@@ -541,7 +549,7 @@ class CreateDemandPositionsRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets declaration
      *
-     * @return \OpenAPI\Client\Model\DemandPositionDeclarationInner[]|null
+     * @return \OpenAPI\Client\Model\DeclarationInner[]|null
      */
     public function getDeclaration()
     {
@@ -551,7 +559,7 @@ class CreateDemandPositionsRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets declaration
      *
-     * @param \OpenAPI\Client\Model\DemandPositionDeclarationInner[]|null $declaration Информация о прослеживаемости импортных товаров (ГТД, РНПТ и связанное количество). Не входит в ответ по умолчанию; может быть возвращена только при явном запросе расширенного набора полей для позиций документа. Только для чтения.
+     * @param \OpenAPI\Client\Model\DeclarationInner[]|null $declaration Информация о прослеживаемости импортных товаров. Не входит в ответ по умолчанию; может быть возвращена только при явном запросе `fields=declaration`. Только для чтения.
      *
      * @return self
      */
@@ -744,7 +752,7 @@ class CreateDemandPositionsRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets tracking_codes
      *
-     * @return \OpenAPI\Client\Model\DemandPositionTrackingCode[]|null
+     * @return \OpenAPI\Client\Model\PositionTrackingCode[]|null
      */
     public function getTrackingCodes()
     {
@@ -754,7 +762,7 @@ class CreateDemandPositionsRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets tracking_codes
      *
-     * @param \OpenAPI\Client\Model\DemandPositionTrackingCode[]|null $tracking_codes Коды маркировки товаров и транспортных упаковок (иерархическая структура). Количество кодов маркировки не влияет на поле quantity позиции.
+     * @param \OpenAPI\Client\Model\PositionTrackingCode[]|null $tracking_codes Коды маркировки товаров и транспортных упаковок (иерархическая структура). Количество кодов маркировки не влияет на поле quantity позиции.
      *
      * @return self
      */
@@ -844,6 +852,14 @@ class CreateDemandPositionsRequest implements ModelInterface, ArrayAccess, \Json
         if (is_null($vat)) {
             throw new \InvalidArgumentException('non-nullable vat cannot be null');
         }
+
+        if (($vat > 100)) {
+            throw new \InvalidArgumentException('invalid value for $vat when calling CreateDemandPositionsRequest., must be smaller than or equal to 100.');
+        }
+        if (($vat < 0)) {
+            throw new \InvalidArgumentException('invalid value for $vat when calling CreateDemandPositionsRequest., must be bigger than or equal to 0.');
+        }
+
         $this->container['vat'] = $vat;
 
         return $this;

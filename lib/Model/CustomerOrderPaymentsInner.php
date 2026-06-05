@@ -69,24 +69,28 @@ class CustomerOrderPaymentsInner implements ModelInterface, ArrayAccess, \JsonSe
         'deleted' => 'string',
         'updated' => 'string',
         'moment' => 'string',
+        'owner' => '\OpenAPI\Client\Model\Employee',
+        'group' => '\OpenAPI\Client\Model\Group',
         'applicable' => 'bool',
+        'printed' => 'bool',
+        'published' => 'bool',
+        'rate' => '\OpenAPI\Client\Model\CurrencyRate',
+        'organization' => '\OpenAPI\Client\Model\Organization',
+        'agent' => '\OpenAPI\Client\Model\Agent',
+        'agent_account' => '\OpenAPI\Client\Model\Account',
+        'organization_account' => '\OpenAPI\Client\Model\Account',
         'attributes' => '\OpenAPI\Client\Model\AttributeAbstract[]',
         'contract' => '\OpenAPI\Client\Model\Contract',
         'files' => '\OpenAPI\Client\Model\FileList',
         'payment_purpose' => 'string',
-        'printed' => 'bool',
         'project' => '\OpenAPI\Client\Model\Project',
-        'published' => 'bool',
-        'owner' => '\OpenAPI\Client\Model\Employee',
-        'group' => '\OpenAPI\Client\Model\Group',
         'sales_channel' => '\OpenAPI\Client\Model\SalesChannel',
         'shared' => 'bool',
         'state' => '\OpenAPI\Client\Model\State',
-        'rate' => '\OpenAPI\Client\Model\CurrencyRate',
-        'organization' => '\OpenAPI\Client\Model\Organization',
-        'agent' => '\OpenAPI\Client\Model\Counterparty',
         'sum' => 'float',
         'vat_sum' => 'float',
+        'incoming_number' => 'string',
+        'incoming_date' => 'string',
         'facture_out' => '\OpenAPI\Client\Model\FactureOut',
         'operations' => '\OpenAPI\Client\Model\CashInOperation[]'
     ];
@@ -111,24 +115,28 @@ class CustomerOrderPaymentsInner implements ModelInterface, ArrayAccess, \JsonSe
         'deleted' => null,
         'updated' => null,
         'moment' => null,
+        'owner' => null,
+        'group' => null,
         'applicable' => null,
+        'printed' => null,
+        'published' => null,
+        'rate' => null,
+        'organization' => null,
+        'agent' => null,
+        'agent_account' => null,
+        'organization_account' => null,
         'attributes' => null,
         'contract' => null,
         'files' => null,
         'payment_purpose' => null,
-        'printed' => null,
         'project' => null,
-        'published' => null,
-        'owner' => null,
-        'group' => null,
         'sales_channel' => null,
         'shared' => null,
         'state' => null,
-        'rate' => null,
-        'organization' => null,
-        'agent' => null,
         'sum' => 'double',
         'vat_sum' => 'double',
+        'incoming_number' => null,
+        'incoming_date' => null,
         'facture_out' => null,
         'operations' => null
     ];
@@ -151,24 +159,28 @@ class CustomerOrderPaymentsInner implements ModelInterface, ArrayAccess, \JsonSe
         'deleted' => false,
         'updated' => false,
         'moment' => false,
+        'owner' => true,
+        'group' => false,
         'applicable' => false,
+        'printed' => false,
+        'published' => false,
+        'rate' => false,
+        'organization' => false,
+        'agent' => false,
+        'agent_account' => true,
+        'organization_account' => true,
         'attributes' => true,
         'contract' => true,
         'files' => true,
         'payment_purpose' => false,
-        'printed' => false,
         'project' => true,
-        'published' => false,
-        'owner' => true,
-        'group' => false,
         'sales_channel' => true,
         'shared' => false,
         'state' => true,
-        'rate' => false,
-        'organization' => false,
-        'agent' => false,
         'sum' => false,
         'vat_sum' => false,
+        'incoming_number' => true,
+        'incoming_date' => true,
         'facture_out' => true,
         'operations' => true
     ];
@@ -271,24 +283,28 @@ class CustomerOrderPaymentsInner implements ModelInterface, ArrayAccess, \JsonSe
         'deleted' => 'deleted',
         'updated' => 'updated',
         'moment' => 'moment',
+        'owner' => 'owner',
+        'group' => 'group',
         'applicable' => 'applicable',
+        'printed' => 'printed',
+        'published' => 'published',
+        'rate' => 'rate',
+        'organization' => 'organization',
+        'agent' => 'agent',
+        'agent_account' => 'agentAccount',
+        'organization_account' => 'organizationAccount',
         'attributes' => 'attributes',
         'contract' => 'contract',
         'files' => 'files',
         'payment_purpose' => 'paymentPurpose',
-        'printed' => 'printed',
         'project' => 'project',
-        'published' => 'published',
-        'owner' => 'owner',
-        'group' => 'group',
         'sales_channel' => 'salesChannel',
         'shared' => 'shared',
         'state' => 'state',
-        'rate' => 'rate',
-        'organization' => 'organization',
-        'agent' => 'agent',
         'sum' => 'sum',
         'vat_sum' => 'vatSum',
+        'incoming_number' => 'incomingNumber',
+        'incoming_date' => 'incomingDate',
         'facture_out' => 'factureOut',
         'operations' => 'operations'
     ];
@@ -311,24 +327,28 @@ class CustomerOrderPaymentsInner implements ModelInterface, ArrayAccess, \JsonSe
         'deleted' => 'setDeleted',
         'updated' => 'setUpdated',
         'moment' => 'setMoment',
+        'owner' => 'setOwner',
+        'group' => 'setGroup',
         'applicable' => 'setApplicable',
+        'printed' => 'setPrinted',
+        'published' => 'setPublished',
+        'rate' => 'setRate',
+        'organization' => 'setOrganization',
+        'agent' => 'setAgent',
+        'agent_account' => 'setAgentAccount',
+        'organization_account' => 'setOrganizationAccount',
         'attributes' => 'setAttributes',
         'contract' => 'setContract',
         'files' => 'setFiles',
         'payment_purpose' => 'setPaymentPurpose',
-        'printed' => 'setPrinted',
         'project' => 'setProject',
-        'published' => 'setPublished',
-        'owner' => 'setOwner',
-        'group' => 'setGroup',
         'sales_channel' => 'setSalesChannel',
         'shared' => 'setShared',
         'state' => 'setState',
-        'rate' => 'setRate',
-        'organization' => 'setOrganization',
-        'agent' => 'setAgent',
         'sum' => 'setSum',
         'vat_sum' => 'setVatSum',
+        'incoming_number' => 'setIncomingNumber',
+        'incoming_date' => 'setIncomingDate',
         'facture_out' => 'setFactureOut',
         'operations' => 'setOperations'
     ];
@@ -351,24 +371,28 @@ class CustomerOrderPaymentsInner implements ModelInterface, ArrayAccess, \JsonSe
         'deleted' => 'getDeleted',
         'updated' => 'getUpdated',
         'moment' => 'getMoment',
+        'owner' => 'getOwner',
+        'group' => 'getGroup',
         'applicable' => 'getApplicable',
+        'printed' => 'getPrinted',
+        'published' => 'getPublished',
+        'rate' => 'getRate',
+        'organization' => 'getOrganization',
+        'agent' => 'getAgent',
+        'agent_account' => 'getAgentAccount',
+        'organization_account' => 'getOrganizationAccount',
         'attributes' => 'getAttributes',
         'contract' => 'getContract',
         'files' => 'getFiles',
         'payment_purpose' => 'getPaymentPurpose',
-        'printed' => 'getPrinted',
         'project' => 'getProject',
-        'published' => 'getPublished',
-        'owner' => 'getOwner',
-        'group' => 'getGroup',
         'sales_channel' => 'getSalesChannel',
         'shared' => 'getShared',
         'state' => 'getState',
-        'rate' => 'getRate',
-        'organization' => 'getOrganization',
-        'agent' => 'getAgent',
         'sum' => 'getSum',
         'vat_sum' => 'getVatSum',
+        'incoming_number' => 'getIncomingNumber',
+        'incoming_date' => 'getIncomingDate',
         'facture_out' => 'getFactureOut',
         'operations' => 'getOperations'
     ];
@@ -442,24 +466,28 @@ class CustomerOrderPaymentsInner implements ModelInterface, ArrayAccess, \JsonSe
         $this->setIfExists('deleted', $data ?? [], null);
         $this->setIfExists('updated', $data ?? [], null);
         $this->setIfExists('moment', $data ?? [], null);
+        $this->setIfExists('owner', $data ?? [], null);
+        $this->setIfExists('group', $data ?? [], null);
         $this->setIfExists('applicable', $data ?? [], null);
+        $this->setIfExists('printed', $data ?? [], null);
+        $this->setIfExists('published', $data ?? [], null);
+        $this->setIfExists('rate', $data ?? [], null);
+        $this->setIfExists('organization', $data ?? [], null);
+        $this->setIfExists('agent', $data ?? [], null);
+        $this->setIfExists('agent_account', $data ?? [], null);
+        $this->setIfExists('organization_account', $data ?? [], null);
         $this->setIfExists('attributes', $data ?? [], null);
         $this->setIfExists('contract', $data ?? [], null);
         $this->setIfExists('files', $data ?? [], null);
         $this->setIfExists('payment_purpose', $data ?? [], null);
-        $this->setIfExists('printed', $data ?? [], null);
         $this->setIfExists('project', $data ?? [], null);
-        $this->setIfExists('published', $data ?? [], null);
-        $this->setIfExists('owner', $data ?? [], null);
-        $this->setIfExists('group', $data ?? [], null);
         $this->setIfExists('sales_channel', $data ?? [], null);
         $this->setIfExists('shared', $data ?? [], null);
         $this->setIfExists('state', $data ?? [], null);
-        $this->setIfExists('rate', $data ?? [], null);
-        $this->setIfExists('organization', $data ?? [], null);
-        $this->setIfExists('agent', $data ?? [], null);
         $this->setIfExists('sum', $data ?? [], null);
         $this->setIfExists('vat_sum', $data ?? [], null);
+        $this->setIfExists('incoming_number', $data ?? [], null);
+        $this->setIfExists('incoming_date', $data ?? [], null);
         $this->setIfExists('facture_out', $data ?? [], null);
         $this->setIfExists('operations', $data ?? [], null);
     }
@@ -509,6 +537,10 @@ class CustomerOrderPaymentsInner implements ModelInterface, ArrayAccess, \JsonSe
 
         if (!is_null($this->container['payment_purpose']) && (mb_strlen($this->container['payment_purpose']) > 255)) {
             $invalidProperties[] = "invalid value for 'payment_purpose', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['incoming_number']) && (mb_strlen($this->container['incoming_number']) > 255)) {
+            $invalidProperties[] = "invalid value for 'incoming_number', the character length must be smaller than or equal to 255.";
         }
 
         return $invalidProperties;
@@ -874,6 +906,67 @@ class CustomerOrderPaymentsInner implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
+     * Gets owner
+     *
+     * @return \OpenAPI\Client\Model\Employee|null
+     */
+    public function getOwner()
+    {
+        return $this->container['owner'];
+    }
+
+    /**
+     * Sets owner
+     *
+     * @param \OpenAPI\Client\Model\Employee|null $owner Владелец (Сотрудник)
+     *
+     * @return self
+     */
+    public function setOwner($owner)
+    {
+        if (is_null($owner)) {
+            array_push($this->openAPINullablesSetToNull, 'owner');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('owner', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['owner'] = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Gets group
+     *
+     * @return \OpenAPI\Client\Model\Group|null
+     */
+    public function getGroup()
+    {
+        return $this->container['group'];
+    }
+
+    /**
+     * Sets group
+     *
+     * @param \OpenAPI\Client\Model\Group|null $group group
+     *
+     * @return self
+     */
+    public function setGroup($group)
+    {
+        if (is_null($group)) {
+            throw new \InvalidArgumentException('non-nullable group cannot be null');
+        }
+        $this->container['group'] = $group;
+
+        return $this;
+    }
+
+    /**
      * Gets applicable
      *
      * @return bool|null
@@ -896,6 +989,222 @@ class CustomerOrderPaymentsInner implements ModelInterface, ArrayAccess, \JsonSe
             throw new \InvalidArgumentException('non-nullable applicable cannot be null');
         }
         $this->container['applicable'] = $applicable;
+
+        return $this;
+    }
+
+    /**
+     * Gets printed
+     *
+     * @return bool|null
+     */
+    public function getPrinted()
+    {
+        return $this->container['printed'];
+    }
+
+    /**
+     * Sets printed
+     *
+     * @param bool|null $printed Напечатан ли документ
+     *
+     * @return self
+     */
+    public function setPrinted($printed)
+    {
+        if (is_null($printed)) {
+            throw new \InvalidArgumentException('non-nullable printed cannot be null');
+        }
+        $this->container['printed'] = $printed;
+
+        return $this;
+    }
+
+    /**
+     * Gets published
+     *
+     * @return bool|null
+     */
+    public function getPublished()
+    {
+        return $this->container['published'];
+    }
+
+    /**
+     * Sets published
+     *
+     * @param bool|null $published Опубликован ли документ
+     *
+     * @return self
+     */
+    public function setPublished($published)
+    {
+        if (is_null($published)) {
+            throw new \InvalidArgumentException('non-nullable published cannot be null');
+        }
+        $this->container['published'] = $published;
+
+        return $this;
+    }
+
+    /**
+     * Gets rate
+     *
+     * @return \OpenAPI\Client\Model\CurrencyRate|null
+     */
+    public function getRate()
+    {
+        return $this->container['rate'];
+    }
+
+    /**
+     * Sets rate
+     *
+     * @param \OpenAPI\Client\Model\CurrencyRate|null $rate rate
+     *
+     * @return self
+     */
+    public function setRate($rate)
+    {
+        if (is_null($rate)) {
+            throw new \InvalidArgumentException('non-nullable rate cannot be null');
+        }
+        $this->container['rate'] = $rate;
+
+        return $this;
+    }
+
+    /**
+     * Gets organization
+     *
+     * @return \OpenAPI\Client\Model\Organization|null
+     */
+    public function getOrganization()
+    {
+        return $this->container['organization'];
+    }
+
+    /**
+     * Sets organization
+     *
+     * @param \OpenAPI\Client\Model\Organization|null $organization organization
+     *
+     * @return self
+     */
+    public function setOrganization($organization)
+    {
+        if (is_null($organization)) {
+            throw new \InvalidArgumentException('non-nullable organization cannot be null');
+        }
+        $this->container['organization'] = $organization;
+
+        return $this;
+    }
+
+    /**
+     * Gets agent
+     *
+     * @return \OpenAPI\Client\Model\Agent|null
+     */
+    public function getAgent()
+    {
+        return $this->container['agent'];
+    }
+
+    /**
+     * Sets agent
+     *
+     * Accepts a Counterparty, Organization, or Agent instance (or null when nullable).
+     * On the wire the server only reads `meta`; non-meta fields are kept locally for
+     * type-safe access and serialized verbatim.
+     *
+     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $agent Метаданные контрагента или юрлица
+     *
+     * @return self
+     */
+    public function setAgent($agent)
+    {
+        if (is_null($agent)) {
+            throw new \InvalidArgumentException('non-nullable agent cannot be null');
+        }
+        if (!is_null($agent)
+            && !($agent instanceof \OpenAPI\Client\Model\Counterparty)
+            && !($agent instanceof \OpenAPI\Client\Model\Organization)
+            && !($agent instanceof \OpenAPI\Client\Model\Agent)) {
+            throw new \InvalidArgumentException(
+                "Argument for 'agent' must be one of Counterparty, Organization, or Agent; got "
+                . (is_object($agent) ? get_class($agent) : gettype($agent))
+            );
+        }
+        $this->container['agent'] = $agent;
+
+        return $this;
+    }
+
+    /**
+     * Gets agent_account
+     *
+     * @return \OpenAPI\Client\Model\Account|null
+     */
+    public function getAgentAccount()
+    {
+        return $this->container['agent_account'];
+    }
+
+    /**
+     * Sets agent_account
+     *
+     * @param \OpenAPI\Client\Model\Account|null $agent_account Метаданные счета контрагента
+     *
+     * @return self
+     */
+    public function setAgentAccount($agent_account)
+    {
+        if (is_null($agent_account)) {
+            array_push($this->openAPINullablesSetToNull, 'agent_account');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('agent_account', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['agent_account'] = $agent_account;
+
+        return $this;
+    }
+
+    /**
+     * Gets organization_account
+     *
+     * @return \OpenAPI\Client\Model\Account|null
+     */
+    public function getOrganizationAccount()
+    {
+        return $this->container['organization_account'];
+    }
+
+    /**
+     * Sets organization_account
+     *
+     * @param \OpenAPI\Client\Model\Account|null $organization_account Метаданные счета юрлица
+     *
+     * @return self
+     */
+    public function setOrganizationAccount($organization_account)
+    {
+        if (is_null($organization_account)) {
+            array_push($this->openAPINullablesSetToNull, 'organization_account');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('organization_account', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['organization_account'] = $organization_account;
 
         return $this;
     }
@@ -1034,33 +1343,6 @@ class CustomerOrderPaymentsInner implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-     * Gets printed
-     *
-     * @return bool|null
-     */
-    public function getPrinted()
-    {
-        return $this->container['printed'];
-    }
-
-    /**
-     * Sets printed
-     *
-     * @param bool|null $printed Напечатан ли документ
-     *
-     * @return self
-     */
-    public function setPrinted($printed)
-    {
-        if (is_null($printed)) {
-            throw new \InvalidArgumentException('non-nullable printed cannot be null');
-        }
-        $this->container['printed'] = $printed;
-
-        return $this;
-    }
-
-    /**
      * Gets project
      *
      * @return \OpenAPI\Client\Model\Project|null
@@ -1090,94 +1372,6 @@ class CustomerOrderPaymentsInner implements ModelInterface, ArrayAccess, \JsonSe
             }
         }
         $this->container['project'] = $project;
-
-        return $this;
-    }
-
-    /**
-     * Gets published
-     *
-     * @return bool|null
-     */
-    public function getPublished()
-    {
-        return $this->container['published'];
-    }
-
-    /**
-     * Sets published
-     *
-     * @param bool|null $published Опубликован ли документ
-     *
-     * @return self
-     */
-    public function setPublished($published)
-    {
-        if (is_null($published)) {
-            throw new \InvalidArgumentException('non-nullable published cannot be null');
-        }
-        $this->container['published'] = $published;
-
-        return $this;
-    }
-
-    /**
-     * Gets owner
-     *
-     * @return \OpenAPI\Client\Model\Employee|null
-     */
-    public function getOwner()
-    {
-        return $this->container['owner'];
-    }
-
-    /**
-     * Sets owner
-     *
-     * @param \OpenAPI\Client\Model\Employee|null $owner Владелец (Сотрудник)
-     *
-     * @return self
-     */
-    public function setOwner($owner)
-    {
-        if (is_null($owner)) {
-            array_push($this->openAPINullablesSetToNull, 'owner');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('owner', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['owner'] = $owner;
-
-        return $this;
-    }
-
-    /**
-     * Gets group
-     *
-     * @return \OpenAPI\Client\Model\Group|null
-     */
-    public function getGroup()
-    {
-        return $this->container['group'];
-    }
-
-    /**
-     * Sets group
-     *
-     * @param \OpenAPI\Client\Model\Group|null $group group
-     *
-     * @return self
-     */
-    public function setGroup($group)
-    {
-        if (is_null($group)) {
-            throw new \InvalidArgumentException('non-nullable group cannot be null');
-        }
-        $this->container['group'] = $group;
 
         return $this;
     }
@@ -1278,87 +1472,6 @@ class CustomerOrderPaymentsInner implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-     * Gets rate
-     *
-     * @return \OpenAPI\Client\Model\CurrencyRate|null
-     */
-    public function getRate()
-    {
-        return $this->container['rate'];
-    }
-
-    /**
-     * Sets rate
-     *
-     * @param \OpenAPI\Client\Model\CurrencyRate|null $rate rate
-     *
-     * @return self
-     */
-    public function setRate($rate)
-    {
-        if (is_null($rate)) {
-            throw new \InvalidArgumentException('non-nullable rate cannot be null');
-        }
-        $this->container['rate'] = $rate;
-
-        return $this;
-    }
-
-    /**
-     * Gets organization
-     *
-     * @return \OpenAPI\Client\Model\Organization|null
-     */
-    public function getOrganization()
-    {
-        return $this->container['organization'];
-    }
-
-    /**
-     * Sets organization
-     *
-     * @param \OpenAPI\Client\Model\Organization|null $organization organization
-     *
-     * @return self
-     */
-    public function setOrganization($organization)
-    {
-        if (is_null($organization)) {
-            throw new \InvalidArgumentException('non-nullable organization cannot be null');
-        }
-        $this->container['organization'] = $organization;
-
-        return $this;
-    }
-
-    /**
-     * Gets agent
-     *
-     * @return \OpenAPI\Client\Model\Counterparty|null
-     */
-    public function getAgent()
-    {
-        return $this->container['agent'];
-    }
-
-    /**
-     * Sets agent
-     *
-     * @param \OpenAPI\Client\Model\Counterparty|null $agent agent
-     *
-     * @return self
-     */
-    public function setAgent($agent)
-    {
-        if (is_null($agent)) {
-            throw new \InvalidArgumentException('non-nullable agent cannot be null');
-        }
-        $this->container['agent'] = $agent;
-
-        return $this;
-    }
-
-    /**
      * Gets sum
      *
      * @return float|null
@@ -1408,6 +1521,78 @@ class CustomerOrderPaymentsInner implements ModelInterface, ArrayAccess, \JsonSe
             throw new \InvalidArgumentException('non-nullable vat_sum cannot be null');
         }
         $this->container['vat_sum'] = $vat_sum;
+
+        return $this;
+    }
+
+    /**
+     * Gets incoming_number
+     *
+     * @return string|null
+     */
+    public function getIncomingNumber()
+    {
+        return $this->container['incoming_number'];
+    }
+
+    /**
+     * Sets incoming_number
+     *
+     * @param string|null $incoming_number Входящий номер
+     *
+     * @return self
+     */
+    public function setIncomingNumber($incoming_number)
+    {
+        if (is_null($incoming_number)) {
+            array_push($this->openAPINullablesSetToNull, 'incoming_number');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('incoming_number', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($incoming_number) && (mb_strlen($incoming_number) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $incoming_number when calling CustomerOrderPaymentsInner., must be smaller than or equal to 255.');
+        }
+
+        $this->container['incoming_number'] = $incoming_number;
+
+        return $this;
+    }
+
+    /**
+     * Gets incoming_date
+     *
+     * @return string|null
+     */
+    public function getIncomingDate()
+    {
+        return $this->container['incoming_date'];
+    }
+
+    /**
+     * Sets incoming_date
+     *
+     * @param string|null $incoming_date Входящая дата
+     *
+     * @return self
+     */
+    public function setIncomingDate($incoming_date)
+    {
+        if (is_null($incoming_date)) {
+            array_push($this->openAPINullablesSetToNull, 'incoming_date');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('incoming_date', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['incoming_date'] = $incoming_date;
 
         return $this;
     }

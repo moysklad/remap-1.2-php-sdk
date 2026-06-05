@@ -85,7 +85,7 @@ class CashInOperationAnyOf implements ModelInterface, ArrayAccess, \JsonSerializ
         'invoiced_sum' => 'float',
         'organization' => '\OpenAPI\Client\Model\Organization',
         'organization_account' => '\OpenAPI\Client\Model\Account',
-        'agent' => '\OpenAPI\Client\Model\CustomerOrderAgent',
+        'agent' => '\OpenAPI\Client\Model\Agent',
         'agent_account' => '\OpenAPI\Client\Model\Account',
         'store' => '\OpenAPI\Client\Model\Store',
         'state' => '\OpenAPI\Client\Model\State',
@@ -1425,7 +1425,7 @@ class CashInOperationAnyOf implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets agent
      *
-     * @return \OpenAPI\Client\Model\CustomerOrderAgent|null
+     * @return \OpenAPI\Client\Model\Agent|null
      */
     public function getAgent()
     {
@@ -1435,7 +1435,11 @@ class CashInOperationAnyOf implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets agent
      *
-     * @param \OpenAPI\Client\Model\CustomerOrderAgent|null $agent agent
+     * Accepts a Counterparty, Organization, or Agent instance (or null when nullable).
+     * On the wire the server only reads `meta`; non-meta fields are kept locally for
+     * type-safe access and serialized verbatim.
+     *
+     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $agent Метаданные контрагента или юрлица
      *
      * @return self
      */
@@ -1443,6 +1447,15 @@ class CashInOperationAnyOf implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         if (is_null($agent)) {
             throw new \InvalidArgumentException('non-nullable agent cannot be null');
+        }
+        if (!is_null($agent)
+            && !($agent instanceof \OpenAPI\Client\Model\Counterparty)
+            && !($agent instanceof \OpenAPI\Client\Model\Organization)
+            && !($agent instanceof \OpenAPI\Client\Model\Agent)) {
+            throw new \InvalidArgumentException(
+                "Argument for 'agent' must be one of Counterparty, Organization, or Agent; got "
+                . (is_object($agent) ? get_class($agent) : gettype($agent))
+            );
         }
         $this->container['agent'] = $agent;
 

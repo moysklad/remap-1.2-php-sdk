@@ -77,7 +77,7 @@ class CreateContractsBatch200ResponseInner implements ModelInterface, ArrayAcces
         'owner' => '\OpenAPI\Client\Model\Employee',
         'group' => '\OpenAPI\Client\Model\Group',
         'own_agent' => '\OpenAPI\Client\Model\Organization',
-        'agent' => '\OpenAPI\Client\Model\Counterparty',
+        'agent' => '\OpenAPI\Client\Model\Agent',
         'state' => '\OpenAPI\Client\Model\State',
         'organization_account' => '\OpenAPI\Client\Model\Account',
         'agent_account' => '\OpenAPI\Client\Model\Account',
@@ -1079,7 +1079,7 @@ class CreateContractsBatch200ResponseInner implements ModelInterface, ArrayAcces
     /**
      * Gets agent
      *
-     * @return \OpenAPI\Client\Model\Counterparty|null
+     * @return \OpenAPI\Client\Model\Agent|null
      */
     public function getAgent()
     {
@@ -1089,7 +1089,11 @@ class CreateContractsBatch200ResponseInner implements ModelInterface, ArrayAcces
     /**
      * Sets agent
      *
-     * @param \OpenAPI\Client\Model\Counterparty|null $agent agent
+     * Accepts a Counterparty, Organization, or Agent instance (or null when nullable).
+     * On the wire the server only reads `meta`; non-meta fields are kept locally for
+     * type-safe access and serialized verbatim.
+     *
+     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $agent Метаданные контрагента или юрлица
      *
      * @return self
      */
@@ -1097,6 +1101,15 @@ class CreateContractsBatch200ResponseInner implements ModelInterface, ArrayAcces
     {
         if (is_null($agent)) {
             throw new \InvalidArgumentException('non-nullable agent cannot be null');
+        }
+        if (!is_null($agent)
+            && !($agent instanceof \OpenAPI\Client\Model\Counterparty)
+            && !($agent instanceof \OpenAPI\Client\Model\Organization)
+            && !($agent instanceof \OpenAPI\Client\Model\Agent)) {
+            throw new \InvalidArgumentException(
+                "Argument for 'agent' must be one of Counterparty, Organization, or Agent; got "
+                . (is_object($agent) ? get_class($agent) : gettype($agent))
+            );
         }
         $this->container['agent'] = $agent;
 

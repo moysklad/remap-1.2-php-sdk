@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 **owner** | [**\OpenAPI\Client\Model\Employee**](Employee.md) | Метаданные владельца (Сотрудника) | [optional]
 **group** | [**\OpenAPI\Client\Model\Group**](Group.md) |  | [optional]
 **own_agent** | [**\OpenAPI\Client\Model\Organization**](Organization.md) |  | [optional]
-**agent** | [**\OpenAPI\Client\Model\Counterparty**](Counterparty.md) |  | [optional]
+**agent** | [**\OpenAPI\Client\Model\Agent**](Agent.md) | Метаданные контрагента или юрлица | [optional]
 **state** | [**\OpenAPI\Client\Model\State**](State.md) | Метаданные статуса договора | [optional]
 **organization_account** | [**\OpenAPI\Client\Model\Account**](Account.md) | Метаданные счета вашего юрлица | [optional]
 **agent_account** | [**\OpenAPI\Client\Model\Account**](Account.md) | Метаданные счета контрагента | [optional]
