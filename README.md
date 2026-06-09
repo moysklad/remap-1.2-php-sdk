@@ -435,6 +435,42 @@ Class | Method | HTTP request | Description
 *ExpenseItemsApi* | [**getExpenseItemById**](docs/Api/ExpenseItemsApi.md#getexpenseitembyid) | **GET** /entity/expenseitem/{id} | Получить статью расходов по ID
 *ExpenseItemsApi* | [**getExpenseItems**](docs/Api/ExpenseItemsApi.md#getexpenseitems) | **GET** /entity/expenseitem | Получить список статей расходов
 *ExpenseItemsApi* | [**updateExpenseItem**](docs/Api/ExpenseItemsApi.md#updateexpenseitem) | **PUT** /entity/expenseitem/{id} | Обновить статью расходов
+*FactureInsApi* | [**createFactureIn**](docs/Api/FactureInsApi.md#createfacturein) | **POST** /entity/facturein | Создать Счет-фактуру полученный
+*FactureInsApi* | [**createFactureInMetadataAttribute**](docs/Api/FactureInsApi.md#createfactureinmetadataattribute) | **POST** /entity/facturein/metadata/attributes | Создать доп. поле Счета-фактуры полученного
+*FactureInsApi* | [**createFactureInMetadataState**](docs/Api/FactureInsApi.md#createfactureinmetadatastate) | **POST** /entity/facturein/metadata/states | Создать статус Счета-фактуры полученного
+*FactureInsApi* | [**createFactureInsBatch**](docs/Api/FactureInsApi.md#createfactureinsbatch) | **POST** /entity/facturein/batch | Массовое создание и обновление Счетов-фактур полученных
+*FactureInsApi* | [**deleteFactureIn**](docs/Api/FactureInsApi.md#deletefacturein) | **DELETE** /entity/facturein/{id} | Удалить Счет-фактуру полученный
+*FactureInsApi* | [**deleteFactureInMetadataAttributeById**](docs/Api/FactureInsApi.md#deletefactureinmetadataattributebyid) | **DELETE** /entity/facturein/metadata/attributes/{id} | Удалить отдельное доп. поле Счета-фактуры полученного
+*FactureInsApi* | [**deleteFactureInMetadataStateById**](docs/Api/FactureInsApi.md#deletefactureinmetadatastatebyid) | **DELETE** /entity/facturein/metadata/states/{id} | Удалить отдельный статус Счета-фактуры полученного
+*FactureInsApi* | [**deleteFactureInsBatch**](docs/Api/FactureInsApi.md#deletefactureinsbatch) | **POST** /entity/facturein/delete | Массовое удаление Счетов-фактур полученных
+*FactureInsApi* | [**getFactureInById**](docs/Api/FactureInsApi.md#getfactureinbyid) | **GET** /entity/facturein/{id} | Получить Счет-фактуру полученный
+*FactureInsApi* | [**getFactureInMetadata**](docs/Api/FactureInsApi.md#getfactureinmetadata) | **GET** /entity/facturein/metadata | Метаданные Счетов-фактур полученных
+*FactureInsApi* | [**getFactureInMetadataAttributeById**](docs/Api/FactureInsApi.md#getfactureinmetadataattributebyid) | **GET** /entity/facturein/metadata/attributes/{id} | Отдельное доп. поле Счета-фактуры полученного
+*FactureInsApi* | [**getFactureInMetadataAttributes**](docs/Api/FactureInsApi.md#getfactureinmetadataattributes) | **GET** /entity/facturein/metadata/attributes | Доп. поля Счетов-фактур полученных
+*FactureInsApi* | [**getFactureInMetadataStateById**](docs/Api/FactureInsApi.md#getfactureinmetadatastatebyid) | **GET** /entity/facturein/metadata/states/{id} | Отдельный статус Счета-фактуры полученного
+*FactureInsApi* | [**getFactureInTemplate**](docs/Api/FactureInsApi.md#getfactureintemplate) | **PUT** /entity/facturein/new | Шаблон Счета-фактуры полученного
+*FactureInsApi* | [**getFactureIns**](docs/Api/FactureInsApi.md#getfactureins) | **GET** /entity/facturein | Получить список Счетов-фактур полученных
+*FactureInsApi* | [**updateFactureIn**](docs/Api/FactureInsApi.md#updatefacturein) | **PUT** /entity/facturein/{id} | Изменить Счет-фактуру полученный
+*FactureInsApi* | [**updateFactureInMetadataAttributeById**](docs/Api/FactureInsApi.md#updatefactureinmetadataattributebyid) | **PUT** /entity/facturein/metadata/attributes/{id} | Обновить отдельное доп. поле Счета-фактуры полученного
+*FactureInsApi* | [**updateFactureInMetadataStateById**](docs/Api/FactureInsApi.md#updatefactureinmetadatastatebyid) | **PUT** /entity/facturein/metadata/states/{id} | Обновить отдельный статус Счета-фактуры полученного
+*FactureOutsApi* | [**createFactureOut**](docs/Api/FactureOutsApi.md#createfactureout) | **POST** /entity/factureout | Создать Счет-фактуру выданный
+*FactureOutsApi* | [**createFactureOutMetadataAttribute**](docs/Api/FactureOutsApi.md#createfactureoutmetadataattribute) | **POST** /entity/factureout/metadata/attributes | Создать доп. поле Счета-фактуры выданного
+*FactureOutsApi* | [**createFactureOutMetadataState**](docs/Api/FactureOutsApi.md#createfactureoutmetadatastate) | **POST** /entity/factureout/metadata/states | Создать статус Счета-фактуры выданного
+*FactureOutsApi* | [**createFactureOutsBatch**](docs/Api/FactureOutsApi.md#createfactureoutsbatch) | **POST** /entity/factureout/batch | Массовое создание и обновление Счетов-фактур выданных
+*FactureOutsApi* | [**deleteFactureOut**](docs/Api/FactureOutsApi.md#deletefactureout) | **DELETE** /entity/factureout/{id} | Удалить Счет-фактуру выданный
+*FactureOutsApi* | [**deleteFactureOutMetadataAttributeById**](docs/Api/FactureOutsApi.md#deletefactureoutmetadataattributebyid) | **DELETE** /entity/factureout/metadata/attributes/{id} | Удалить отдельное доп. поле Счета-фактуры выданного
+*FactureOutsApi* | [**deleteFactureOutMetadataStateById**](docs/Api/FactureOutsApi.md#deletefactureoutmetadatastatebyid) | **DELETE** /entity/factureout/metadata/states/{id} | Удалить отдельный статус Счета-фактуры выданного
+*FactureOutsApi* | [**deleteFactureOutsBatch**](docs/Api/FactureOutsApi.md#deletefactureoutsbatch) | **POST** /entity/factureout/delete | Массовое удаление Счетов-фактур выданных
+*FactureOutsApi* | [**getFactureOutById**](docs/Api/FactureOutsApi.md#getfactureoutbyid) | **GET** /entity/factureout/{id} | Получить Счет-фактуру выданный
+*FactureOutsApi* | [**getFactureOutMetadata**](docs/Api/FactureOutsApi.md#getfactureoutmetadata) | **GET** /entity/factureout/metadata | Метаданные Счетов-фактур выданных
+*FactureOutsApi* | [**getFactureOutMetadataAttributeById**](docs/Api/FactureOutsApi.md#getfactureoutmetadataattributebyid) | **GET** /entity/factureout/metadata/attributes/{id} | Отдельное доп. поле Счета-фактуры выданного
+*FactureOutsApi* | [**getFactureOutMetadataAttributes**](docs/Api/FactureOutsApi.md#getfactureoutmetadataattributes) | **GET** /entity/factureout/metadata/attributes | Доп. поля Счетов-фактур выданных
+*FactureOutsApi* | [**getFactureOutMetadataStateById**](docs/Api/FactureOutsApi.md#getfactureoutmetadatastatebyid) | **GET** /entity/factureout/metadata/states/{id} | Отдельный статус Счета-фактуры выданного
+*FactureOutsApi* | [**getFactureOutTemplate**](docs/Api/FactureOutsApi.md#getfactureouttemplate) | **PUT** /entity/factureout/new | Шаблон Счета-фактуры выданного
+*FactureOutsApi* | [**getFactureOuts**](docs/Api/FactureOutsApi.md#getfactureouts) | **GET** /entity/factureout | Получить список Счетов-фактур выданных
+*FactureOutsApi* | [**updateFactureOut**](docs/Api/FactureOutsApi.md#updatefactureout) | **PUT** /entity/factureout/{id} | Изменить Счет-фактуру выданный
+*FactureOutsApi* | [**updateFactureOutMetadataAttributeById**](docs/Api/FactureOutsApi.md#updatefactureoutmetadataattributebyid) | **PUT** /entity/factureout/metadata/attributes/{id} | Обновить отдельное доп. поле Счета-фактуры выданного
+*FactureOutsApi* | [**updateFactureOutMetadataStateById**](docs/Api/FactureOutsApi.md#updatefactureoutmetadatastatebyid) | **PUT** /entity/factureout/metadata/states/{id} | Обновить отдельный статус Счета-фактуры выданного
 *GroupsApi* | [**createGroup**](docs/Api/GroupsApi.md#creategroup) | **POST** /entity/group | Создать группу
 *GroupsApi* | [**deleteGroup**](docs/Api/GroupsApi.md#deletegroup) | **DELETE** /entity/group/{id} | Удалить группу
 *GroupsApi* | [**getGroupById**](docs/Api/GroupsApi.md#getgroupbyid) | **GET** /entity/group/{id} | Получить группу по ID
@@ -492,6 +528,62 @@ Class | Method | HTTP request | Description
 *InventoriesApi* | [**updateInventoryMetadataAttributeById**](docs/Api/InventoriesApi.md#updateinventorymetadataattributebyid) | **PUT** /entity/inventory/metadata/attributes/{id} | Обновить отдельное доп. поле Инвентаризаций
 *InventoriesApi* | [**updateInventoryMetadataStateById**](docs/Api/InventoriesApi.md#updateinventorymetadatastatebyid) | **PUT** /entity/inventory/metadata/states/{id} | Обновить отдельный статус Инвентаризации
 *InventoriesApi* | [**updateInventoryPosition**](docs/Api/InventoriesApi.md#updateinventoryposition) | **PUT** /entity/inventory/{id}/positions/{positionId} | Изменить позицию Инвентаризации
+*InvoiceInsApi* | [**addInvoiceInFiles**](docs/Api/InvoiceInsApi.md#addinvoiceinfiles) | **POST** /entity/invoicein/{id}/files | Добавить файлы к Счету поставщику
+*InvoiceInsApi* | [**createInvoiceIn**](docs/Api/InvoiceInsApi.md#createinvoicein) | **POST** /entity/invoicein | Создать Счет поставщику
+*InvoiceInsApi* | [**createInvoiceInBatch**](docs/Api/InvoiceInsApi.md#createinvoiceinbatch) | **POST** /entity/invoicein/batch | Массовое создание и обновление Счетов поставщикам
+*InvoiceInsApi* | [**createInvoiceInMetadataAttribute**](docs/Api/InvoiceInsApi.md#createinvoiceinmetadataattribute) | **POST** /entity/invoicein/metadata/attributes | Создать Доп. поле InvoiceIn
+*InvoiceInsApi* | [**createInvoiceInPositions**](docs/Api/InvoiceInsApi.md#createinvoiceinpositions) | **POST** /entity/invoicein/{id}/positions | Создать позицию Счета поставщику
+*InvoiceInsApi* | [**createInvoiceInPositionsBatch**](docs/Api/InvoiceInsApi.md#createinvoiceinpositionsbatch) | **POST** /entity/invoicein/{id}/positions/batch | Создать позиции Счета поставщику
+*InvoiceInsApi* | [**deleteInvoiceIn**](docs/Api/InvoiceInsApi.md#deleteinvoicein) | **DELETE** /entity/invoicein/{id} | Удалить Счет поставщику
+*InvoiceInsApi* | [**deleteInvoiceInBatch**](docs/Api/InvoiceInsApi.md#deleteinvoiceinbatch) | **POST** /entity/invoicein/delete | Массовое удаление Счетов поставщикам
+*InvoiceInsApi* | [**deleteInvoiceInFile**](docs/Api/InvoiceInsApi.md#deleteinvoiceinfile) | **DELETE** /entity/invoicein/{id}/files/{fileId} | Удалить файл Счета поставщику
+*InvoiceInsApi* | [**deleteInvoiceInMetadataAttributeById**](docs/Api/InvoiceInsApi.md#deleteinvoiceinmetadataattributebyid) | **DELETE** /entity/invoicein/metadata/attributes/{id} | Удалить отдельное доп. поле InvoiceIn
+*InvoiceInsApi* | [**deleteInvoiceInMetadataStateById**](docs/Api/InvoiceInsApi.md#deleteinvoiceinmetadatastatebyid) | **DELETE** /entity/invoicein/metadata/states/{id} | Удалить отдельный статус InvoiceIn
+*InvoiceInsApi* | [**deleteInvoiceInPosition**](docs/Api/InvoiceInsApi.md#deleteinvoiceinposition) | **DELETE** /entity/invoicein/{id}/positions/{positionId} | Удалить позицию Счета поставщику
+*InvoiceInsApi* | [**deleteInvoiceInPositionsBatch**](docs/Api/InvoiceInsApi.md#deleteinvoiceinpositionsbatch) | **POST** /entity/invoicein/{id}/positions/delete | Массовое удаление позиций Счета поставщику
+*InvoiceInsApi* | [**getInvoiceInById**](docs/Api/InvoiceInsApi.md#getinvoiceinbyid) | **GET** /entity/invoicein/{id} | Получить Счет поставщику
+*InvoiceInsApi* | [**getInvoiceInFile**](docs/Api/InvoiceInsApi.md#getinvoiceinfile) | **GET** /entity/invoicein/{id}/files/{fileId} | Получить файл Счета поставщику
+*InvoiceInsApi* | [**getInvoiceInFiles**](docs/Api/InvoiceInsApi.md#getinvoiceinfiles) | **GET** /entity/invoicein/{id}/files | Получить файлы Счета поставщику
+*InvoiceInsApi* | [**getInvoiceInList**](docs/Api/InvoiceInsApi.md#getinvoiceinlist) | **GET** /entity/invoicein | Получить список Счетов поставщикам
+*InvoiceInsApi* | [**getInvoiceInMetadata**](docs/Api/InvoiceInsApi.md#getinvoiceinmetadata) | **GET** /entity/invoicein/metadata | Метаданные Счетов поставщикам
+*InvoiceInsApi* | [**getInvoiceInMetadataAttribute**](docs/Api/InvoiceInsApi.md#getinvoiceinmetadataattribute) | **GET** /entity/invoicein/metadata/attributes | Доп. поля InvoiceIn
+*InvoiceInsApi* | [**getInvoiceInMetadataAttributeById**](docs/Api/InvoiceInsApi.md#getinvoiceinmetadataattributebyid) | **GET** /entity/invoicein/metadata/attributes/{id} | Отдельное доп. поле InvoiceIn
+*InvoiceInsApi* | [**getInvoiceInMetadataStateById**](docs/Api/InvoiceInsApi.md#getinvoiceinmetadatastatebyid) | **GET** /entity/invoicein/metadata/states/{id} | Отдельный статус InvoiceIn
+*InvoiceInsApi* | [**getInvoiceInPositionById**](docs/Api/InvoiceInsApi.md#getinvoiceinpositionbyid) | **GET** /entity/invoicein/{id}/positions/{positionId} | Получить позицию Счета поставщику
+*InvoiceInsApi* | [**getInvoiceInPositions**](docs/Api/InvoiceInsApi.md#getinvoiceinpositions) | **GET** /entity/invoicein/{id}/positions | Получить позиции Счета поставщику
+*InvoiceInsApi* | [**getInvoiceInTemplate**](docs/Api/InvoiceInsApi.md#getinvoiceintemplate) | **PUT** /entity/invoicein/new | Шаблон Счета поставщику
+*InvoiceInsApi* | [**updateInvoiceIn**](docs/Api/InvoiceInsApi.md#updateinvoicein) | **PUT** /entity/invoicein/{id} | Изменить Счет поставщику
+*InvoiceInsApi* | [**updateInvoiceInMetadataAttributeById**](docs/Api/InvoiceInsApi.md#updateinvoiceinmetadataattributebyid) | **PUT** /entity/invoicein/metadata/attributes/{id} | Обновить отдельное доп. поле InvoiceIn
+*InvoiceInsApi* | [**updateInvoiceInMetadataStateById**](docs/Api/InvoiceInsApi.md#updateinvoiceinmetadatastatebyid) | **PUT** /entity/invoicein/metadata/states/{id} | Обновить отдельный статус InvoiceIn
+*InvoiceInsApi* | [**updateInvoiceInPosition**](docs/Api/InvoiceInsApi.md#updateinvoiceinposition) | **PUT** /entity/invoicein/{id}/positions/{positionId} | Изменить позицию Счета поставщику
+*InvoiceOutsApi* | [**addInvoiceOutFiles**](docs/Api/InvoiceOutsApi.md#addinvoiceoutfiles) | **POST** /entity/invoiceout/{id}/files | Добавить файлы к Счету покупателю
+*InvoiceOutsApi* | [**createInvoiceOut**](docs/Api/InvoiceOutsApi.md#createinvoiceout) | **POST** /entity/invoiceout | Создать Счет покупателю
+*InvoiceOutsApi* | [**createInvoiceOutBatch**](docs/Api/InvoiceOutsApi.md#createinvoiceoutbatch) | **POST** /entity/invoiceout/batch | Массовое создание и обновление Счетов покупателям
+*InvoiceOutsApi* | [**createInvoiceOutMetadataAttribute**](docs/Api/InvoiceOutsApi.md#createinvoiceoutmetadataattribute) | **POST** /entity/invoiceout/metadata/attributes | Создать Доп. поле InvoiceOut
+*InvoiceOutsApi* | [**createInvoiceOutPositions**](docs/Api/InvoiceOutsApi.md#createinvoiceoutpositions) | **POST** /entity/invoiceout/{id}/positions | Создать позицию Счета покупателю
+*InvoiceOutsApi* | [**createInvoiceOutPositionsBatch**](docs/Api/InvoiceOutsApi.md#createinvoiceoutpositionsbatch) | **POST** /entity/invoiceout/{id}/positions/batch | Создать позиции Счета покупателю
+*InvoiceOutsApi* | [**deleteInvoiceOut**](docs/Api/InvoiceOutsApi.md#deleteinvoiceout) | **DELETE** /entity/invoiceout/{id} | Удалить Счет покупателю
+*InvoiceOutsApi* | [**deleteInvoiceOutBatch**](docs/Api/InvoiceOutsApi.md#deleteinvoiceoutbatch) | **POST** /entity/invoiceout/delete | Массовое удаление Счетов покупателям
+*InvoiceOutsApi* | [**deleteInvoiceOutFile**](docs/Api/InvoiceOutsApi.md#deleteinvoiceoutfile) | **DELETE** /entity/invoiceout/{id}/files/{fileId} | Удалить файл Счета покупателю
+*InvoiceOutsApi* | [**deleteInvoiceOutMetadataAttributeById**](docs/Api/InvoiceOutsApi.md#deleteinvoiceoutmetadataattributebyid) | **DELETE** /entity/invoiceout/metadata/attributes/{id} | Удалить отдельное доп. поле InvoiceOut
+*InvoiceOutsApi* | [**deleteInvoiceOutMetadataStateById**](docs/Api/InvoiceOutsApi.md#deleteinvoiceoutmetadatastatebyid) | **DELETE** /entity/invoiceout/metadata/states/{id} | Удалить отдельный статус InvoiceOut
+*InvoiceOutsApi* | [**deleteInvoiceOutPosition**](docs/Api/InvoiceOutsApi.md#deleteinvoiceoutposition) | **DELETE** /entity/invoiceout/{id}/positions/{positionId} | Удалить позицию Счета покупателю
+*InvoiceOutsApi* | [**deleteInvoiceOutPositionsBatch**](docs/Api/InvoiceOutsApi.md#deleteinvoiceoutpositionsbatch) | **POST** /entity/invoiceout/{id}/positions/delete | Массовое удаление позиций Счета покупателю
+*InvoiceOutsApi* | [**getInvoiceOutById**](docs/Api/InvoiceOutsApi.md#getinvoiceoutbyid) | **GET** /entity/invoiceout/{id} | Получить Счет покупателю
+*InvoiceOutsApi* | [**getInvoiceOutFile**](docs/Api/InvoiceOutsApi.md#getinvoiceoutfile) | **GET** /entity/invoiceout/{id}/files/{fileId} | Получить файл Счета покупателю
+*InvoiceOutsApi* | [**getInvoiceOutFiles**](docs/Api/InvoiceOutsApi.md#getinvoiceoutfiles) | **GET** /entity/invoiceout/{id}/files | Получить файлы Счета покупателю
+*InvoiceOutsApi* | [**getInvoiceOutList**](docs/Api/InvoiceOutsApi.md#getinvoiceoutlist) | **GET** /entity/invoiceout | Получить список Счетов покупателям
+*InvoiceOutsApi* | [**getInvoiceOutMetadata**](docs/Api/InvoiceOutsApi.md#getinvoiceoutmetadata) | **GET** /entity/invoiceout/metadata | Метаданные Счетов покупателям
+*InvoiceOutsApi* | [**getInvoiceOutMetadataAttribute**](docs/Api/InvoiceOutsApi.md#getinvoiceoutmetadataattribute) | **GET** /entity/invoiceout/metadata/attributes | Доп. поля InvoiceOut
+*InvoiceOutsApi* | [**getInvoiceOutMetadataAttributeById**](docs/Api/InvoiceOutsApi.md#getinvoiceoutmetadataattributebyid) | **GET** /entity/invoiceout/metadata/attributes/{id} | Отдельное доп. поле InvoiceOut
+*InvoiceOutsApi* | [**getInvoiceOutMetadataStateById**](docs/Api/InvoiceOutsApi.md#getinvoiceoutmetadatastatebyid) | **GET** /entity/invoiceout/metadata/states/{id} | Отдельный статус InvoiceOut
+*InvoiceOutsApi* | [**getInvoiceOutPositionById**](docs/Api/InvoiceOutsApi.md#getinvoiceoutpositionbyid) | **GET** /entity/invoiceout/{id}/positions/{positionId} | Получить позицию Счета покупателю
+*InvoiceOutsApi* | [**getInvoiceOutPositions**](docs/Api/InvoiceOutsApi.md#getinvoiceoutpositions) | **GET** /entity/invoiceout/{id}/positions | Получить позиции Счета покупателю
+*InvoiceOutsApi* | [**getInvoiceOutTemplate**](docs/Api/InvoiceOutsApi.md#getinvoiceouttemplate) | **PUT** /entity/invoiceout/new | Шаблон Счета покупателю
+*InvoiceOutsApi* | [**updateInvoiceOut**](docs/Api/InvoiceOutsApi.md#updateinvoiceout) | **PUT** /entity/invoiceout/{id} | Изменить Счет покупателю
+*InvoiceOutsApi* | [**updateInvoiceOutMetadataAttributeById**](docs/Api/InvoiceOutsApi.md#updateinvoiceoutmetadataattributebyid) | **PUT** /entity/invoiceout/metadata/attributes/{id} | Обновить отдельное доп. поле InvoiceOut
+*InvoiceOutsApi* | [**updateInvoiceOutMetadataStateById**](docs/Api/InvoiceOutsApi.md#updateinvoiceoutmetadatastatebyid) | **PUT** /entity/invoiceout/metadata/states/{id} | Обновить отдельный статус InvoiceOut
+*InvoiceOutsApi* | [**updateInvoiceOutPosition**](docs/Api/InvoiceOutsApi.md#updateinvoiceoutposition) | **PUT** /entity/invoiceout/{id}/positions/{positionId} | Изменить позицию Счета покупателю
 *LabelsApi* | [**printLabels**](docs/Api/LabelsApi.md#printlabels) | **POST** /entity/{type}/{id}/export | Запрос на печать этикеток и ценников
 *LossesApi* | [**createLoss**](docs/Api/LossesApi.md#createloss) | **POST** /entity/loss | Создать Списание
 *LossesApi* | [**createLossBatch**](docs/Api/LossesApi.md#createlossbatch) | **POST** /entity/loss/batch | Массовое создание и обновление Списаний
@@ -1195,6 +1287,8 @@ Class | Method | HTTP request | Description
 - [CreateEnterPositions200ResponseInner](docs/Model/CreateEnterPositions200ResponseInner.md)
 - [CreateEnterPositionsRequest](docs/Model/CreateEnterPositionsRequest.md)
 - [CreateExpenseItemsBatch200ResponseInner](docs/Model/CreateExpenseItemsBatch200ResponseInner.md)
+- [CreateFactureInsBatch200ResponseInner](docs/Model/CreateFactureInsBatch200ResponseInner.md)
+- [CreateFactureOutsBatch200ResponseInner](docs/Model/CreateFactureOutsBatch200ResponseInner.md)
 - [CreateInternalOrderBatch200ResponseInner](docs/Model/CreateInternalOrderBatch200ResponseInner.md)
 - [CreateInternalOrderMetadataStateRequest](docs/Model/CreateInternalOrderMetadataStateRequest.md)
 - [CreateInternalOrderPositions200ResponseInner](docs/Model/CreateInternalOrderPositions200ResponseInner.md)
@@ -1202,6 +1296,10 @@ Class | Method | HTTP request | Description
 - [CreateInventoriesBatch200ResponseInner](docs/Model/CreateInventoriesBatch200ResponseInner.md)
 - [CreateInventoryPositions200ResponseInner](docs/Model/CreateInventoryPositions200ResponseInner.md)
 - [CreateInventoryPositionsRequest](docs/Model/CreateInventoryPositionsRequest.md)
+- [CreateInvoiceInBatch200ResponseInner](docs/Model/CreateInvoiceInBatch200ResponseInner.md)
+- [CreateInvoiceInPositionsBatch200ResponseInner](docs/Model/CreateInvoiceInPositionsBatch200ResponseInner.md)
+- [CreateInvoiceOutBatch200ResponseInner](docs/Model/CreateInvoiceOutBatch200ResponseInner.md)
+- [CreateInvoiceOutPositionsBatch200ResponseInner](docs/Model/CreateInvoiceOutPositionsBatch200ResponseInner.md)
 - [CreateLossBatch200ResponseInner](docs/Model/CreateLossBatch200ResponseInner.md)
 - [CreateLossPositions200ResponseInner](docs/Model/CreateLossPositions200ResponseInner.md)
 - [CreateLossPositionsRequest](docs/Model/CreateLossPositionsRequest.md)
@@ -1310,7 +1408,9 @@ Class | Method | HTTP request | Description
 - [ExpenseItem](docs/Model/ExpenseItem.md)
 - [ExpenseItemList](docs/Model/ExpenseItemList.md)
 - [FactureIn](docs/Model/FactureIn.md)
+- [FactureInList](docs/Model/FactureInList.md)
 - [FactureOut](docs/Model/FactureOut.md)
+- [FactureOutList](docs/Model/FactureOutList.md)
 - [File](docs/Model/File.md)
 - [FileList](docs/Model/FileList.md)
 - [FileUpload](docs/Model/FileUpload.md)
@@ -1337,7 +1437,13 @@ Class | Method | HTTP request | Description
 - [InventoryPosition](docs/Model/InventoryPosition.md)
 - [InventoryPositionList](docs/Model/InventoryPositionList.md)
 - [InvoiceIn](docs/Model/InvoiceIn.md)
+- [InvoiceInList](docs/Model/InvoiceInList.md)
+- [InvoiceInPosition](docs/Model/InvoiceInPosition.md)
+- [InvoiceInPositionList](docs/Model/InvoiceInPositionList.md)
 - [InvoiceOut](docs/Model/InvoiceOut.md)
+- [InvoiceOutList](docs/Model/InvoiceOutList.md)
+- [InvoiceOutPosition](docs/Model/InvoiceOutPosition.md)
+- [InvoiceOutPositionList](docs/Model/InvoiceOutPositionList.md)
 - [LabelPrintRequest](docs/Model/LabelPrintRequest.md)
 - [Locale](docs/Model/Locale.md)
 - [Loss](docs/Model/Loss.md)

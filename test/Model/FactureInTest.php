@@ -143,6 +143,15 @@ class FactureInTest extends TestCase
     }
 
     /**
+     * Test attribute "contract"
+     */
+    public function testPropertyContract()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "created"
      */
     public function testPropertyCreated()
@@ -215,6 +224,15 @@ class FactureInTest extends TestCase
     }
 
     /**
+     * Test attribute "organization"
+     */
+    public function testPropertyOrganization()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "owner"
      */
     public function testPropertyOwner()
@@ -263,6 +281,69 @@ class FactureInTest extends TestCase
      * Test attribute "state"
      */
     public function testPropertyState()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "sum"
+     */
+    public function testPropertySum()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "sync_id"
+     */
+    public function testPropertySyncId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "updated"
+     */
+    public function testPropertyUpdated()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "supplies"
+     */
+    public function testPropertySupplies()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "payments"
+     */
+    public function testPropertyPayments()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "incoming_number"
+     */
+    public function testPropertyIncomingNumber()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "incoming_date"
+     */
+    public function testPropertyIncomingDate()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

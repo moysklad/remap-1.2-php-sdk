@@ -107,13 +107,14 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'invoices_in' => '\OpenAPI\Client\Model\InvoiceIn[]',
         'production_task' => '\OpenAPI\Client\Model\ProductionTask',
         'returns' => '\OpenAPI\Client\Model\SupplyReturnsInner[]',
-        'delivery_planned_moment' => 'string',
+        'payment_planned_moment' => 'string',
         'shipped_sum' => 'float',
+        'supplies' => '\OpenAPI\Client\Model\Supply[]',
+        'delivery_planned_moment' => 'string',
         'invoiced_sum' => 'float',
         'wait_sum' => 'float',
         'internal_order' => '\OpenAPI\Client\Model\InternalOrder',
         'customer_orders' => '\OpenAPI\Client\Model\CustomerOrder[]',
-        'supplies' => '\OpenAPI\Client\Model\Supply[]',
         'production_tasks' => '\OpenAPI\Client\Model\ProductionTask[]',
         'commission_period_end' => 'string',
         'commission_period_start' => 'string',
@@ -179,13 +180,14 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'invoices_in' => null,
         'production_task' => null,
         'returns' => null,
-        'delivery_planned_moment' => null,
+        'payment_planned_moment' => null,
         'shipped_sum' => 'double',
+        'supplies' => null,
+        'delivery_planned_moment' => null,
         'invoiced_sum' => 'double',
         'wait_sum' => 'double',
         'internal_order' => null,
         'customer_orders' => null,
-        'supplies' => null,
         'production_tasks' => null,
         'commission_period_end' => null,
         'commission_period_start' => null,
@@ -249,13 +251,14 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'invoices_in' => true,
         'production_task' => true,
         'returns' => true,
-        'delivery_planned_moment' => false,
+        'payment_planned_moment' => false,
         'shipped_sum' => false,
+        'supplies' => true,
+        'delivery_planned_moment' => false,
         'invoiced_sum' => false,
         'wait_sum' => false,
         'internal_order' => true,
         'customer_orders' => true,
-        'supplies' => true,
         'production_tasks' => true,
         'commission_period_end' => false,
         'commission_period_start' => false,
@@ -399,13 +402,14 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'invoices_in' => 'invoicesIn',
         'production_task' => 'productionTask',
         'returns' => 'returns',
-        'delivery_planned_moment' => 'deliveryPlannedMoment',
+        'payment_planned_moment' => 'paymentPlannedMoment',
         'shipped_sum' => 'shippedSum',
+        'supplies' => 'supplies',
+        'delivery_planned_moment' => 'deliveryPlannedMoment',
         'invoiced_sum' => 'invoicedSum',
         'wait_sum' => 'waitSum',
         'internal_order' => 'internalOrder',
         'customer_orders' => 'customerOrders',
-        'supplies' => 'supplies',
         'production_tasks' => 'productionTasks',
         'commission_period_end' => 'commissionPeriodEnd',
         'commission_period_start' => 'commissionPeriodStart',
@@ -469,13 +473,14 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'invoices_in' => 'setInvoicesIn',
         'production_task' => 'setProductionTask',
         'returns' => 'setReturns',
-        'delivery_planned_moment' => 'setDeliveryPlannedMoment',
+        'payment_planned_moment' => 'setPaymentPlannedMoment',
         'shipped_sum' => 'setShippedSum',
+        'supplies' => 'setSupplies',
+        'delivery_planned_moment' => 'setDeliveryPlannedMoment',
         'invoiced_sum' => 'setInvoicedSum',
         'wait_sum' => 'setWaitSum',
         'internal_order' => 'setInternalOrder',
         'customer_orders' => 'setCustomerOrders',
-        'supplies' => 'setSupplies',
         'production_tasks' => 'setProductionTasks',
         'commission_period_end' => 'setCommissionPeriodEnd',
         'commission_period_start' => 'setCommissionPeriodStart',
@@ -539,13 +544,14 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'invoices_in' => 'getInvoicesIn',
         'production_task' => 'getProductionTask',
         'returns' => 'getReturns',
-        'delivery_planned_moment' => 'getDeliveryPlannedMoment',
+        'payment_planned_moment' => 'getPaymentPlannedMoment',
         'shipped_sum' => 'getShippedSum',
+        'supplies' => 'getSupplies',
+        'delivery_planned_moment' => 'getDeliveryPlannedMoment',
         'invoiced_sum' => 'getInvoicedSum',
         'wait_sum' => 'getWaitSum',
         'internal_order' => 'getInternalOrder',
         'customer_orders' => 'getCustomerOrders',
-        'supplies' => 'getSupplies',
         'production_tasks' => 'getProductionTasks',
         'commission_period_end' => 'getCommissionPeriodEnd',
         'commission_period_start' => 'getCommissionPeriodStart',
@@ -660,13 +666,14 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('invoices_in', $data ?? [], null);
         $this->setIfExists('production_task', $data ?? [], null);
         $this->setIfExists('returns', $data ?? [], null);
-        $this->setIfExists('delivery_planned_moment', $data ?? [], null);
+        $this->setIfExists('payment_planned_moment', $data ?? [], null);
         $this->setIfExists('shipped_sum', $data ?? [], null);
+        $this->setIfExists('supplies', $data ?? [], null);
+        $this->setIfExists('delivery_planned_moment', $data ?? [], null);
         $this->setIfExists('invoiced_sum', $data ?? [], null);
         $this->setIfExists('wait_sum', $data ?? [], null);
         $this->setIfExists('internal_order', $data ?? [], null);
         $this->setIfExists('customer_orders', $data ?? [], null);
-        $this->setIfExists('supplies', $data ?? [], null);
         $this->setIfExists('production_tasks', $data ?? [], null);
         $this->setIfExists('commission_period_end', $data ?? [], null);
         $this->setIfExists('commission_period_start', $data ?? [], null);
@@ -2112,7 +2119,7 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets purchase_order
      *
-     * @param \OpenAPI\Client\Model\PurchaseOrder|null $purchase_order Заказ поставщику, с которым связана Приемка
+     * @param \OpenAPI\Client\Model\PurchaseOrder|null $purchase_order Заказ поставщику, с которым связан Счет поставщика
      *
      * @return self
      */
@@ -2270,28 +2277,28 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets delivery_planned_moment
+     * Gets payment_planned_moment
      *
      * @return string|null
      */
-    public function getDeliveryPlannedMoment()
+    public function getPaymentPlannedMoment()
     {
-        return $this->container['delivery_planned_moment'];
+        return $this->container['payment_planned_moment'];
     }
 
     /**
-     * Sets delivery_planned_moment
+     * Sets payment_planned_moment
      *
-     * @param string|null $delivery_planned_moment Планируемая дата отгрузки
+     * @param string|null $payment_planned_moment Планируемая дата оплаты
      *
      * @return self
      */
-    public function setDeliveryPlannedMoment($delivery_planned_moment)
+    public function setPaymentPlannedMoment($payment_planned_moment)
     {
-        if (is_null($delivery_planned_moment)) {
-            throw new \InvalidArgumentException('non-nullable delivery_planned_moment cannot be null');
+        if (is_null($payment_planned_moment)) {
+            throw new \InvalidArgumentException('non-nullable payment_planned_moment cannot be null');
         }
-        $this->container['delivery_planned_moment'] = $delivery_planned_moment;
+        $this->container['payment_planned_moment'] = $payment_planned_moment;
 
         return $this;
     }
@@ -2319,6 +2326,67 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable shipped_sum cannot be null');
         }
         $this->container['shipped_sum'] = $shipped_sum;
+
+        return $this;
+    }
+
+    /**
+     * Gets supplies
+     *
+     * @return \OpenAPI\Client\Model\Supply[]|null
+     */
+    public function getSupplies()
+    {
+        return $this->container['supplies'];
+    }
+
+    /**
+     * Sets supplies
+     *
+     * @param \OpenAPI\Client\Model\Supply[]|null $supplies Массив ссылок на связанные приемки
+     *
+     * @return self
+     */
+    public function setSupplies($supplies)
+    {
+        if (is_null($supplies)) {
+            array_push($this->openAPINullablesSetToNull, 'supplies');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('supplies', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['supplies'] = $supplies;
+
+        return $this;
+    }
+
+    /**
+     * Gets delivery_planned_moment
+     *
+     * @return string|null
+     */
+    public function getDeliveryPlannedMoment()
+    {
+        return $this->container['delivery_planned_moment'];
+    }
+
+    /**
+     * Sets delivery_planned_moment
+     *
+     * @param string|null $delivery_planned_moment Планируемая дата отгрузки
+     *
+     * @return self
+     */
+    public function setDeliveryPlannedMoment($delivery_planned_moment)
+    {
+        if (is_null($delivery_planned_moment)) {
+            throw new \InvalidArgumentException('non-nullable delivery_planned_moment cannot be null');
+        }
+        $this->container['delivery_planned_moment'] = $delivery_planned_moment;
 
         return $this;
     }
@@ -2441,40 +2509,6 @@ class CashOutOperation implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['customer_orders'] = $customer_orders;
-
-        return $this;
-    }
-
-    /**
-     * Gets supplies
-     *
-     * @return \OpenAPI\Client\Model\Supply[]|null
-     */
-    public function getSupplies()
-    {
-        return $this->container['supplies'];
-    }
-
-    /**
-     * Sets supplies
-     *
-     * @param \OpenAPI\Client\Model\Supply[]|null $supplies Массив ссылок на связанные приемки
-     *
-     * @return self
-     */
-    public function setSupplies($supplies)
-    {
-        if (is_null($supplies)) {
-            array_push($this->openAPINullablesSetToNull, 'supplies');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('supplies', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['supplies'] = $supplies;
 
         return $this;
     }

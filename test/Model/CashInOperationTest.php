@@ -665,6 +665,15 @@ class CashInOperationTest extends TestCase
     }
 
     /**
+     * Test attribute "payment_planned_moment"
+     */
+    public function testPropertyPaymentPlannedMoment()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "commission_overhead"
      */
     public function testPropertyCommissionOverhead()

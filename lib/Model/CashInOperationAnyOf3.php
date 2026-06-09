@@ -70,6 +70,35 @@ class CashInOperationAnyOf3 implements ModelInterface, ArrayAccess, \JsonSeriali
         'deleted' => 'string',
         'updated' => 'string',
         'moment' => 'string',
+        'payment_planned_moment' => 'string',
+        'applicable' => 'bool',
+        'printed' => 'bool',
+        'published' => 'bool',
+        'shared' => 'bool',
+        'vat_enabled' => 'bool',
+        'vat_included' => 'bool',
+        'vat_sum' => 'float',
+        'sum' => 'float',
+        'payed_sum' => 'float',
+        'shipped_sum' => 'float',
+        'organization' => '\OpenAPI\Client\Model\Organization',
+        'organization_account' => '\OpenAPI\Client\Model\Account',
+        'agent' => '\OpenAPI\Client\Model\Agent',
+        'agent_account' => '\OpenAPI\Client\Model\Account',
+        'store' => '\OpenAPI\Client\Model\Store',
+        'state' => '\OpenAPI\Client\Model\State',
+        'contract' => '\OpenAPI\Client\Model\Contract',
+        'project' => '\OpenAPI\Client\Model\Project',
+        'owner' => '\OpenAPI\Client\Model\Employee',
+        'group' => '\OpenAPI\Client\Model\Group',
+        'attributes' => '\OpenAPI\Client\Model\AttributeAbstract[]',
+        'files' => '\OpenAPI\Client\Model\FileList',
+        'rate' => '\OpenAPI\Client\Model\CurrencyRate',
+        'positions' => '\OpenAPI\Client\Model\InvoiceOutPositionList',
+        'sales_channel' => '\OpenAPI\Client\Model\SalesChannel',
+        'customer_order' => '\OpenAPI\Client\Model\CustomerOrder',
+        'demands' => '\OpenAPI\Client\Model\Demand[]',
+        'payments' => '\OpenAPI\Client\Model\CustomerOrderPaymentsInner[]',
         'linked_sum' => 'float'
     ];
 
@@ -93,6 +122,35 @@ class CashInOperationAnyOf3 implements ModelInterface, ArrayAccess, \JsonSeriali
         'deleted' => null,
         'updated' => null,
         'moment' => null,
+        'payment_planned_moment' => null,
+        'applicable' => null,
+        'printed' => null,
+        'published' => null,
+        'shared' => null,
+        'vat_enabled' => null,
+        'vat_included' => null,
+        'vat_sum' => 'double',
+        'sum' => 'double',
+        'payed_sum' => 'double',
+        'shipped_sum' => 'double',
+        'organization' => null,
+        'organization_account' => null,
+        'agent' => null,
+        'agent_account' => null,
+        'store' => null,
+        'state' => null,
+        'contract' => null,
+        'project' => null,
+        'owner' => null,
+        'group' => null,
+        'attributes' => null,
+        'files' => null,
+        'rate' => null,
+        'positions' => null,
+        'sales_channel' => null,
+        'customer_order' => null,
+        'demands' => null,
+        'payments' => null,
         'linked_sum' => 'double'
     ];
 
@@ -114,6 +172,35 @@ class CashInOperationAnyOf3 implements ModelInterface, ArrayAccess, \JsonSeriali
         'deleted' => false,
         'updated' => false,
         'moment' => false,
+        'payment_planned_moment' => false,
+        'applicable' => false,
+        'printed' => false,
+        'published' => false,
+        'shared' => false,
+        'vat_enabled' => false,
+        'vat_included' => false,
+        'vat_sum' => false,
+        'sum' => false,
+        'payed_sum' => false,
+        'shipped_sum' => false,
+        'organization' => false,
+        'organization_account' => true,
+        'agent' => false,
+        'agent_account' => true,
+        'store' => true,
+        'state' => true,
+        'contract' => true,
+        'project' => true,
+        'owner' => true,
+        'group' => false,
+        'attributes' => true,
+        'files' => true,
+        'rate' => false,
+        'positions' => false,
+        'sales_channel' => true,
+        'customer_order' => true,
+        'demands' => true,
+        'payments' => true,
         'linked_sum' => false
     ];
 
@@ -215,6 +302,35 @@ class CashInOperationAnyOf3 implements ModelInterface, ArrayAccess, \JsonSeriali
         'deleted' => 'deleted',
         'updated' => 'updated',
         'moment' => 'moment',
+        'payment_planned_moment' => 'paymentPlannedMoment',
+        'applicable' => 'applicable',
+        'printed' => 'printed',
+        'published' => 'published',
+        'shared' => 'shared',
+        'vat_enabled' => 'vatEnabled',
+        'vat_included' => 'vatIncluded',
+        'vat_sum' => 'vatSum',
+        'sum' => 'sum',
+        'payed_sum' => 'payedSum',
+        'shipped_sum' => 'shippedSum',
+        'organization' => 'organization',
+        'organization_account' => 'organizationAccount',
+        'agent' => 'agent',
+        'agent_account' => 'agentAccount',
+        'store' => 'store',
+        'state' => 'state',
+        'contract' => 'contract',
+        'project' => 'project',
+        'owner' => 'owner',
+        'group' => 'group',
+        'attributes' => 'attributes',
+        'files' => 'files',
+        'rate' => 'rate',
+        'positions' => 'positions',
+        'sales_channel' => 'salesChannel',
+        'customer_order' => 'customerOrder',
+        'demands' => 'demands',
+        'payments' => 'payments',
         'linked_sum' => 'linkedSum'
     ];
 
@@ -236,6 +352,35 @@ class CashInOperationAnyOf3 implements ModelInterface, ArrayAccess, \JsonSeriali
         'deleted' => 'setDeleted',
         'updated' => 'setUpdated',
         'moment' => 'setMoment',
+        'payment_planned_moment' => 'setPaymentPlannedMoment',
+        'applicable' => 'setApplicable',
+        'printed' => 'setPrinted',
+        'published' => 'setPublished',
+        'shared' => 'setShared',
+        'vat_enabled' => 'setVatEnabled',
+        'vat_included' => 'setVatIncluded',
+        'vat_sum' => 'setVatSum',
+        'sum' => 'setSum',
+        'payed_sum' => 'setPayedSum',
+        'shipped_sum' => 'setShippedSum',
+        'organization' => 'setOrganization',
+        'organization_account' => 'setOrganizationAccount',
+        'agent' => 'setAgent',
+        'agent_account' => 'setAgentAccount',
+        'store' => 'setStore',
+        'state' => 'setState',
+        'contract' => 'setContract',
+        'project' => 'setProject',
+        'owner' => 'setOwner',
+        'group' => 'setGroup',
+        'attributes' => 'setAttributes',
+        'files' => 'setFiles',
+        'rate' => 'setRate',
+        'positions' => 'setPositions',
+        'sales_channel' => 'setSalesChannel',
+        'customer_order' => 'setCustomerOrder',
+        'demands' => 'setDemands',
+        'payments' => 'setPayments',
         'linked_sum' => 'setLinkedSum'
     ];
 
@@ -257,6 +402,35 @@ class CashInOperationAnyOf3 implements ModelInterface, ArrayAccess, \JsonSeriali
         'deleted' => 'getDeleted',
         'updated' => 'getUpdated',
         'moment' => 'getMoment',
+        'payment_planned_moment' => 'getPaymentPlannedMoment',
+        'applicable' => 'getApplicable',
+        'printed' => 'getPrinted',
+        'published' => 'getPublished',
+        'shared' => 'getShared',
+        'vat_enabled' => 'getVatEnabled',
+        'vat_included' => 'getVatIncluded',
+        'vat_sum' => 'getVatSum',
+        'sum' => 'getSum',
+        'payed_sum' => 'getPayedSum',
+        'shipped_sum' => 'getShippedSum',
+        'organization' => 'getOrganization',
+        'organization_account' => 'getOrganizationAccount',
+        'agent' => 'getAgent',
+        'agent_account' => 'getAgentAccount',
+        'store' => 'getStore',
+        'state' => 'getState',
+        'contract' => 'getContract',
+        'project' => 'getProject',
+        'owner' => 'getOwner',
+        'group' => 'getGroup',
+        'attributes' => 'getAttributes',
+        'files' => 'getFiles',
+        'rate' => 'getRate',
+        'positions' => 'getPositions',
+        'sales_channel' => 'getSalesChannel',
+        'customer_order' => 'getCustomerOrder',
+        'demands' => 'getDemands',
+        'payments' => 'getPayments',
         'linked_sum' => 'getLinkedSum'
     ];
 
@@ -329,6 +503,35 @@ class CashInOperationAnyOf3 implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('deleted', $data ?? [], null);
         $this->setIfExists('updated', $data ?? [], null);
         $this->setIfExists('moment', $data ?? [], null);
+        $this->setIfExists('payment_planned_moment', $data ?? [], null);
+        $this->setIfExists('applicable', $data ?? [], null);
+        $this->setIfExists('printed', $data ?? [], null);
+        $this->setIfExists('published', $data ?? [], null);
+        $this->setIfExists('shared', $data ?? [], null);
+        $this->setIfExists('vat_enabled', $data ?? [], null);
+        $this->setIfExists('vat_included', $data ?? [], null);
+        $this->setIfExists('vat_sum', $data ?? [], null);
+        $this->setIfExists('sum', $data ?? [], null);
+        $this->setIfExists('payed_sum', $data ?? [], null);
+        $this->setIfExists('shipped_sum', $data ?? [], null);
+        $this->setIfExists('organization', $data ?? [], null);
+        $this->setIfExists('organization_account', $data ?? [], null);
+        $this->setIfExists('agent', $data ?? [], null);
+        $this->setIfExists('agent_account', $data ?? [], null);
+        $this->setIfExists('store', $data ?? [], null);
+        $this->setIfExists('state', $data ?? [], null);
+        $this->setIfExists('contract', $data ?? [], null);
+        $this->setIfExists('project', $data ?? [], null);
+        $this->setIfExists('owner', $data ?? [], null);
+        $this->setIfExists('group', $data ?? [], null);
+        $this->setIfExists('attributes', $data ?? [], null);
+        $this->setIfExists('files', $data ?? [], null);
+        $this->setIfExists('rate', $data ?? [], null);
+        $this->setIfExists('positions', $data ?? [], null);
+        $this->setIfExists('sales_channel', $data ?? [], null);
+        $this->setIfExists('customer_order', $data ?? [], null);
+        $this->setIfExists('demands', $data ?? [], null);
+        $this->setIfExists('payments', $data ?? [], null);
         $this->setIfExists('linked_sum', $data ?? [], null);
     }
 
@@ -736,6 +939,893 @@ class CashInOperationAnyOf3 implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable moment cannot be null');
         }
         $this->container['moment'] = $moment;
+
+        return $this;
+    }
+
+    /**
+     * Gets payment_planned_moment
+     *
+     * @return string|null
+     */
+    public function getPaymentPlannedMoment()
+    {
+        return $this->container['payment_planned_moment'];
+    }
+
+    /**
+     * Sets payment_planned_moment
+     *
+     * @param string|null $payment_planned_moment Планируемая дата оплаты
+     *
+     * @return self
+     */
+    public function setPaymentPlannedMoment($payment_planned_moment)
+    {
+        if (is_null($payment_planned_moment)) {
+            throw new \InvalidArgumentException('non-nullable payment_planned_moment cannot be null');
+        }
+        $this->container['payment_planned_moment'] = $payment_planned_moment;
+
+        return $this;
+    }
+
+    /**
+     * Gets applicable
+     *
+     * @return bool|null
+     */
+    public function getApplicable()
+    {
+        return $this->container['applicable'];
+    }
+
+    /**
+     * Sets applicable
+     *
+     * @param bool|null $applicable Отметка о проведении
+     *
+     * @return self
+     */
+    public function setApplicable($applicable)
+    {
+        if (is_null($applicable)) {
+            throw new \InvalidArgumentException('non-nullable applicable cannot be null');
+        }
+        $this->container['applicable'] = $applicable;
+
+        return $this;
+    }
+
+    /**
+     * Gets printed
+     *
+     * @return bool|null
+     */
+    public function getPrinted()
+    {
+        return $this->container['printed'];
+    }
+
+    /**
+     * Sets printed
+     *
+     * @param bool|null $printed Напечатан ли документ
+     *
+     * @return self
+     */
+    public function setPrinted($printed)
+    {
+        if (is_null($printed)) {
+            throw new \InvalidArgumentException('non-nullable printed cannot be null');
+        }
+        $this->container['printed'] = $printed;
+
+        return $this;
+    }
+
+    /**
+     * Gets published
+     *
+     * @return bool|null
+     */
+    public function getPublished()
+    {
+        return $this->container['published'];
+    }
+
+    /**
+     * Sets published
+     *
+     * @param bool|null $published Опубликован ли документ
+     *
+     * @return self
+     */
+    public function setPublished($published)
+    {
+        if (is_null($published)) {
+            throw new \InvalidArgumentException('non-nullable published cannot be null');
+        }
+        $this->container['published'] = $published;
+
+        return $this;
+    }
+
+    /**
+     * Gets shared
+     *
+     * @return bool|null
+     */
+    public function getShared()
+    {
+        return $this->container['shared'];
+    }
+
+    /**
+     * Sets shared
+     *
+     * @param bool|null $shared Общий доступ
+     *
+     * @return self
+     */
+    public function setShared($shared)
+    {
+        if (is_null($shared)) {
+            throw new \InvalidArgumentException('non-nullable shared cannot be null');
+        }
+        $this->container['shared'] = $shared;
+
+        return $this;
+    }
+
+    /**
+     * Gets vat_enabled
+     *
+     * @return bool|null
+     */
+    public function getVatEnabled()
+    {
+        return $this->container['vat_enabled'];
+    }
+
+    /**
+     * Sets vat_enabled
+     *
+     * @param bool|null $vat_enabled Учитывается ли НДС
+     *
+     * @return self
+     */
+    public function setVatEnabled($vat_enabled)
+    {
+        if (is_null($vat_enabled)) {
+            throw new \InvalidArgumentException('non-nullable vat_enabled cannot be null');
+        }
+        $this->container['vat_enabled'] = $vat_enabled;
+
+        return $this;
+    }
+
+    /**
+     * Gets vat_included
+     *
+     * @return bool|null
+     */
+    public function getVatIncluded()
+    {
+        return $this->container['vat_included'];
+    }
+
+    /**
+     * Sets vat_included
+     *
+     * @param bool|null $vat_included Включен ли НДС в цену
+     *
+     * @return self
+     */
+    public function setVatIncluded($vat_included)
+    {
+        if (is_null($vat_included)) {
+            throw new \InvalidArgumentException('non-nullable vat_included cannot be null');
+        }
+        $this->container['vat_included'] = $vat_included;
+
+        return $this;
+    }
+
+    /**
+     * Gets vat_sum
+     *
+     * @return float|null
+     */
+    public function getVatSum()
+    {
+        return $this->container['vat_sum'];
+    }
+
+    /**
+     * Sets vat_sum
+     *
+     * @param float|null $vat_sum Сумма НДС
+     *
+     * @return self
+     */
+    public function setVatSum($vat_sum)
+    {
+        if (is_null($vat_sum)) {
+            throw new \InvalidArgumentException('non-nullable vat_sum cannot be null');
+        }
+        $this->container['vat_sum'] = $vat_sum;
+
+        return $this;
+    }
+
+    /**
+     * Gets sum
+     *
+     * @return float|null
+     */
+    public function getSum()
+    {
+        return $this->container['sum'];
+    }
+
+    /**
+     * Sets sum
+     *
+     * @param float|null $sum Сумма Счета в установленной валюте
+     *
+     * @return self
+     */
+    public function setSum($sum)
+    {
+        if (is_null($sum)) {
+            throw new \InvalidArgumentException('non-nullable sum cannot be null');
+        }
+        $this->container['sum'] = $sum;
+
+        return $this;
+    }
+
+    /**
+     * Gets payed_sum
+     *
+     * @return float|null
+     */
+    public function getPayedSum()
+    {
+        return $this->container['payed_sum'];
+    }
+
+    /**
+     * Sets payed_sum
+     *
+     * @param float|null $payed_sum Сумма входящих платежей по Счету покупателя
+     *
+     * @return self
+     */
+    public function setPayedSum($payed_sum)
+    {
+        if (is_null($payed_sum)) {
+            throw new \InvalidArgumentException('non-nullable payed_sum cannot be null');
+        }
+        $this->container['payed_sum'] = $payed_sum;
+
+        return $this;
+    }
+
+    /**
+     * Gets shipped_sum
+     *
+     * @return float|null
+     */
+    public function getShippedSum()
+    {
+        return $this->container['shipped_sum'];
+    }
+
+    /**
+     * Sets shipped_sum
+     *
+     * @param float|null $shipped_sum Сумма отгруженного
+     *
+     * @return self
+     */
+    public function setShippedSum($shipped_sum)
+    {
+        if (is_null($shipped_sum)) {
+            throw new \InvalidArgumentException('non-nullable shipped_sum cannot be null');
+        }
+        $this->container['shipped_sum'] = $shipped_sum;
+
+        return $this;
+    }
+
+    /**
+     * Gets organization
+     *
+     * @return \OpenAPI\Client\Model\Organization|null
+     */
+    public function getOrganization()
+    {
+        return $this->container['organization'];
+    }
+
+    /**
+     * Sets organization
+     *
+     * @param \OpenAPI\Client\Model\Organization|null $organization organization
+     *
+     * @return self
+     */
+    public function setOrganization($organization)
+    {
+        if (is_null($organization)) {
+            throw new \InvalidArgumentException('non-nullable organization cannot be null');
+        }
+        $this->container['organization'] = $organization;
+
+        return $this;
+    }
+
+    /**
+     * Gets organization_account
+     *
+     * @return \OpenAPI\Client\Model\Account|null
+     */
+    public function getOrganizationAccount()
+    {
+        return $this->container['organization_account'];
+    }
+
+    /**
+     * Sets organization_account
+     *
+     * @param \OpenAPI\Client\Model\Account|null $organization_account Метаданные счета юрлица
+     *
+     * @return self
+     */
+    public function setOrganizationAccount($organization_account)
+    {
+        if (is_null($organization_account)) {
+            array_push($this->openAPINullablesSetToNull, 'organization_account');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('organization_account', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['organization_account'] = $organization_account;
+
+        return $this;
+    }
+
+    /**
+     * Gets agent
+     *
+     * @return \OpenAPI\Client\Model\Agent|null
+     */
+    public function getAgent()
+    {
+        return $this->container['agent'];
+    }
+
+    /**
+     * Sets agent
+     *
+     * Accepts a Counterparty, Organization, or Agent instance (or null when nullable).
+     * On the wire the server only reads `meta`; non-meta fields are kept locally for
+     * type-safe access and serialized verbatim.
+     *
+     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $agent Метаданные контрагента
+     *
+     * @return self
+     */
+    public function setAgent($agent)
+    {
+        if (is_null($agent)) {
+            throw new \InvalidArgumentException('non-nullable agent cannot be null');
+        }
+        if (!is_null($agent)
+            && !($agent instanceof \OpenAPI\Client\Model\Counterparty)
+            && !($agent instanceof \OpenAPI\Client\Model\Organization)
+            && !($agent instanceof \OpenAPI\Client\Model\Agent)) {
+            throw new \InvalidArgumentException(
+                "Argument for 'agent' must be one of Counterparty, Organization, or Agent; got "
+                . (is_object($agent) ? get_class($agent) : gettype($agent))
+            );
+        }
+        $this->container['agent'] = $agent;
+
+        return $this;
+    }
+
+    /**
+     * Gets agent_account
+     *
+     * @return \OpenAPI\Client\Model\Account|null
+     */
+    public function getAgentAccount()
+    {
+        return $this->container['agent_account'];
+    }
+
+    /**
+     * Sets agent_account
+     *
+     * @param \OpenAPI\Client\Model\Account|null $agent_account Метаданные счета контрагента
+     *
+     * @return self
+     */
+    public function setAgentAccount($agent_account)
+    {
+        if (is_null($agent_account)) {
+            array_push($this->openAPINullablesSetToNull, 'agent_account');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('agent_account', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['agent_account'] = $agent_account;
+
+        return $this;
+    }
+
+    /**
+     * Gets store
+     *
+     * @return \OpenAPI\Client\Model\Store|null
+     */
+    public function getStore()
+    {
+        return $this->container['store'];
+    }
+
+    /**
+     * Sets store
+     *
+     * @param \OpenAPI\Client\Model\Store|null $store Метаданные склада
+     *
+     * @return self
+     */
+    public function setStore($store)
+    {
+        if (is_null($store)) {
+            array_push($this->openAPINullablesSetToNull, 'store');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('store', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['store'] = $store;
+
+        return $this;
+    }
+
+    /**
+     * Gets state
+     *
+     * @return \OpenAPI\Client\Model\State|null
+     */
+    public function getState()
+    {
+        return $this->container['state'];
+    }
+
+    /**
+     * Sets state
+     *
+     * @param \OpenAPI\Client\Model\State|null $state Метаданные статуса счета
+     *
+     * @return self
+     */
+    public function setState($state)
+    {
+        if (is_null($state)) {
+            array_push($this->openAPINullablesSetToNull, 'state');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('state', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['state'] = $state;
+
+        return $this;
+    }
+
+    /**
+     * Gets contract
+     *
+     * @return \OpenAPI\Client\Model\Contract|null
+     */
+    public function getContract()
+    {
+        return $this->container['contract'];
+    }
+
+    /**
+     * Sets contract
+     *
+     * @param \OpenAPI\Client\Model\Contract|null $contract Метаданные договора
+     *
+     * @return self
+     */
+    public function setContract($contract)
+    {
+        if (is_null($contract)) {
+            array_push($this->openAPINullablesSetToNull, 'contract');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('contract', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['contract'] = $contract;
+
+        return $this;
+    }
+
+    /**
+     * Gets project
+     *
+     * @return \OpenAPI\Client\Model\Project|null
+     */
+    public function getProject()
+    {
+        return $this->container['project'];
+    }
+
+    /**
+     * Sets project
+     *
+     * @param \OpenAPI\Client\Model\Project|null $project Метаданные проекта
+     *
+     * @return self
+     */
+    public function setProject($project)
+    {
+        if (is_null($project)) {
+            array_push($this->openAPINullablesSetToNull, 'project');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('project', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['project'] = $project;
+
+        return $this;
+    }
+
+    /**
+     * Gets owner
+     *
+     * @return \OpenAPI\Client\Model\Employee|null
+     */
+    public function getOwner()
+    {
+        return $this->container['owner'];
+    }
+
+    /**
+     * Sets owner
+     *
+     * @param \OpenAPI\Client\Model\Employee|null $owner Владелец (Сотрудник)
+     *
+     * @return self
+     */
+    public function setOwner($owner)
+    {
+        if (is_null($owner)) {
+            array_push($this->openAPINullablesSetToNull, 'owner');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('owner', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['owner'] = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Gets group
+     *
+     * @return \OpenAPI\Client\Model\Group|null
+     */
+    public function getGroup()
+    {
+        return $this->container['group'];
+    }
+
+    /**
+     * Sets group
+     *
+     * @param \OpenAPI\Client\Model\Group|null $group group
+     *
+     * @return self
+     */
+    public function setGroup($group)
+    {
+        if (is_null($group)) {
+            throw new \InvalidArgumentException('non-nullable group cannot be null');
+        }
+        $this->container['group'] = $group;
+
+        return $this;
+    }
+
+    /**
+     * Gets attributes
+     *
+     * @return \OpenAPI\Client\Model\AttributeAbstract[]|null
+     */
+    public function getAttributes()
+    {
+        return $this->container['attributes'];
+    }
+
+    /**
+     * Sets attributes
+     *
+     * @param \OpenAPI\Client\Model\AttributeAbstract[]|null $attributes Коллекция метаданных доп. полей
+     *
+     * @return self
+     */
+    public function setAttributes($attributes)
+    {
+        if (is_null($attributes)) {
+            array_push($this->openAPINullablesSetToNull, 'attributes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('attributes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['attributes'] = $attributes;
+
+        return $this;
+    }
+
+    /**
+     * Gets files
+     *
+     * @return \OpenAPI\Client\Model\FileList|null
+     */
+    public function getFiles()
+    {
+        return $this->container['files'];
+    }
+
+    /**
+     * Sets files
+     *
+     * @param \OpenAPI\Client\Model\FileList|null $files Метаданные массива Файлов
+     *
+     * @return self
+     */
+    public function setFiles($files)
+    {
+        if (is_null($files)) {
+            array_push($this->openAPINullablesSetToNull, 'files');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('files', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['files'] = $files;
+
+        return $this;
+    }
+
+    /**
+     * Gets rate
+     *
+     * @return \OpenAPI\Client\Model\CurrencyRate|null
+     */
+    public function getRate()
+    {
+        return $this->container['rate'];
+    }
+
+    /**
+     * Sets rate
+     *
+     * @param \OpenAPI\Client\Model\CurrencyRate|null $rate rate
+     *
+     * @return self
+     */
+    public function setRate($rate)
+    {
+        if (is_null($rate)) {
+            throw new \InvalidArgumentException('non-nullable rate cannot be null');
+        }
+        $this->container['rate'] = $rate;
+
+        return $this;
+    }
+
+    /**
+     * Gets positions
+     *
+     * @return \OpenAPI\Client\Model\InvoiceOutPositionList|null
+     */
+    public function getPositions()
+    {
+        return $this->container['positions'];
+    }
+
+    /**
+     * Sets positions
+     *
+     * @param \OpenAPI\Client\Model\InvoiceOutPositionList|null $positions positions
+     *
+     * @return self
+     */
+    public function setPositions($positions)
+    {
+        if (is_null($positions)) {
+            throw new \InvalidArgumentException('non-nullable positions cannot be null');
+        }
+        $this->container['positions'] = $positions;
+
+        return $this;
+    }
+
+    /**
+     * Gets sales_channel
+     *
+     * @return \OpenAPI\Client\Model\SalesChannel|null
+     */
+    public function getSalesChannel()
+    {
+        return $this->container['sales_channel'];
+    }
+
+    /**
+     * Sets sales_channel
+     *
+     * @param \OpenAPI\Client\Model\SalesChannel|null $sales_channel Метаданные канала продаж
+     *
+     * @return self
+     */
+    public function setSalesChannel($sales_channel)
+    {
+        if (is_null($sales_channel)) {
+            array_push($this->openAPINullablesSetToNull, 'sales_channel');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('sales_channel', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['sales_channel'] = $sales_channel;
+
+        return $this;
+    }
+
+    /**
+     * Gets customer_order
+     *
+     * @return \OpenAPI\Client\Model\CustomerOrder|null
+     */
+    public function getCustomerOrder()
+    {
+        return $this->container['customer_order'];
+    }
+
+    /**
+     * Sets customer_order
+     *
+     * @param \OpenAPI\Client\Model\CustomerOrder|null $customer_order Заказ покупателя, с которым связан Счет покупателю
+     *
+     * @return self
+     */
+    public function setCustomerOrder($customer_order)
+    {
+        if (is_null($customer_order)) {
+            array_push($this->openAPINullablesSetToNull, 'customer_order');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('customer_order', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['customer_order'] = $customer_order;
+
+        return $this;
+    }
+
+    /**
+     * Gets demands
+     *
+     * @return \OpenAPI\Client\Model\Demand[]|null
+     */
+    public function getDemands()
+    {
+        return $this->container['demands'];
+    }
+
+    /**
+     * Sets demands
+     *
+     * @param \OpenAPI\Client\Model\Demand[]|null $demands Массив ссылок на связанные отгрузки
+     *
+     * @return self
+     */
+    public function setDemands($demands)
+    {
+        if (is_null($demands)) {
+            array_push($this->openAPINullablesSetToNull, 'demands');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('demands', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['demands'] = $demands;
+
+        return $this;
+    }
+
+    /**
+     * Gets payments
+     *
+     * @return \OpenAPI\Client\Model\CustomerOrderPaymentsInner[]|null
+     */
+    public function getPayments()
+    {
+        return $this->container['payments'];
+    }
+
+    /**
+     * Sets payments
+     *
+     * @param \OpenAPI\Client\Model\CustomerOrderPaymentsInner[]|null $payments Массив ссылок на связанные операции
+     *
+     * @return self
+     */
+    public function setPayments($payments)
+    {
+        if (is_null($payments)) {
+            array_push($this->openAPINullablesSetToNull, 'payments');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('payments', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['payments'] = $payments;
 
         return $this;
     }

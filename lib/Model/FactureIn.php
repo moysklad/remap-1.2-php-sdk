@@ -76,6 +76,7 @@ class FactureIn implements ModelInterface, ArrayAccess, \JsonSerializable
         'applicable' => 'bool',
         'attributes' => '\OpenAPI\Client\Model\AttributeAbstract[]',
         'code' => 'string',
+        'contract' => '\OpenAPI\Client\Model\Contract',
         'created' => 'string',
         'deleted' => 'string',
         'description' => 'string',
@@ -84,12 +85,20 @@ class FactureIn implements ModelInterface, ArrayAccess, \JsonSerializable
         'group' => '\OpenAPI\Client\Model\Group',
         'moment' => 'string',
         'name' => 'string',
+        'organization' => '\OpenAPI\Client\Model\Organization',
         'owner' => '\OpenAPI\Client\Model\Employee',
         'printed' => 'bool',
         'published' => 'bool',
         'rate' => '\OpenAPI\Client\Model\CurrencyRate',
         'shared' => 'bool',
-        'state' => '\OpenAPI\Client\Model\State'
+        'state' => '\OpenAPI\Client\Model\State',
+        'sum' => 'float',
+        'sync_id' => 'string',
+        'updated' => 'string',
+        'supplies' => '\OpenAPI\Client\Model\Supply[]',
+        'payments' => '\OpenAPI\Client\Model\PaymentOut[]',
+        'incoming_number' => 'string',
+        'incoming_date' => 'string'
     ];
 
     /**
@@ -107,6 +116,7 @@ class FactureIn implements ModelInterface, ArrayAccess, \JsonSerializable
         'applicable' => null,
         'attributes' => null,
         'code' => null,
+        'contract' => null,
         'created' => null,
         'deleted' => null,
         'description' => null,
@@ -115,12 +125,20 @@ class FactureIn implements ModelInterface, ArrayAccess, \JsonSerializable
         'group' => null,
         'moment' => null,
         'name' => null,
+        'organization' => null,
         'owner' => null,
         'printed' => null,
         'published' => null,
         'rate' => null,
         'shared' => null,
-        'state' => null
+        'state' => null,
+        'sum' => 'double',
+        'sync_id' => 'uuid',
+        'updated' => null,
+        'supplies' => null,
+        'payments' => null,
+        'incoming_number' => null,
+        'incoming_date' => null
     ];
 
     /**
@@ -136,6 +154,7 @@ class FactureIn implements ModelInterface, ArrayAccess, \JsonSerializable
         'applicable' => false,
         'attributes' => true,
         'code' => false,
+        'contract' => true,
         'created' => false,
         'deleted' => false,
         'description' => true,
@@ -144,12 +163,20 @@ class FactureIn implements ModelInterface, ArrayAccess, \JsonSerializable
         'group' => false,
         'moment' => false,
         'name' => false,
+        'organization' => false,
         'owner' => true,
         'printed' => false,
         'published' => false,
         'rate' => false,
         'shared' => false,
-        'state' => true
+        'state' => true,
+        'sum' => false,
+        'sync_id' => false,
+        'updated' => false,
+        'supplies' => true,
+        'payments' => true,
+        'incoming_number' => true,
+        'incoming_date' => true
     ];
 
     /**
@@ -245,6 +272,7 @@ class FactureIn implements ModelInterface, ArrayAccess, \JsonSerializable
         'applicable' => 'applicable',
         'attributes' => 'attributes',
         'code' => 'code',
+        'contract' => 'contract',
         'created' => 'created',
         'deleted' => 'deleted',
         'description' => 'description',
@@ -253,12 +281,20 @@ class FactureIn implements ModelInterface, ArrayAccess, \JsonSerializable
         'group' => 'group',
         'moment' => 'moment',
         'name' => 'name',
+        'organization' => 'organization',
         'owner' => 'owner',
         'printed' => 'printed',
         'published' => 'published',
         'rate' => 'rate',
         'shared' => 'shared',
-        'state' => 'state'
+        'state' => 'state',
+        'sum' => 'sum',
+        'sync_id' => 'syncId',
+        'updated' => 'updated',
+        'supplies' => 'supplies',
+        'payments' => 'payments',
+        'incoming_number' => 'incomingNumber',
+        'incoming_date' => 'incomingDate'
     ];
 
     /**
@@ -274,6 +310,7 @@ class FactureIn implements ModelInterface, ArrayAccess, \JsonSerializable
         'applicable' => 'setApplicable',
         'attributes' => 'setAttributes',
         'code' => 'setCode',
+        'contract' => 'setContract',
         'created' => 'setCreated',
         'deleted' => 'setDeleted',
         'description' => 'setDescription',
@@ -282,12 +319,20 @@ class FactureIn implements ModelInterface, ArrayAccess, \JsonSerializable
         'group' => 'setGroup',
         'moment' => 'setMoment',
         'name' => 'setName',
+        'organization' => 'setOrganization',
         'owner' => 'setOwner',
         'printed' => 'setPrinted',
         'published' => 'setPublished',
         'rate' => 'setRate',
         'shared' => 'setShared',
-        'state' => 'setState'
+        'state' => 'setState',
+        'sum' => 'setSum',
+        'sync_id' => 'setSyncId',
+        'updated' => 'setUpdated',
+        'supplies' => 'setSupplies',
+        'payments' => 'setPayments',
+        'incoming_number' => 'setIncomingNumber',
+        'incoming_date' => 'setIncomingDate'
     ];
 
     /**
@@ -303,6 +348,7 @@ class FactureIn implements ModelInterface, ArrayAccess, \JsonSerializable
         'applicable' => 'getApplicable',
         'attributes' => 'getAttributes',
         'code' => 'getCode',
+        'contract' => 'getContract',
         'created' => 'getCreated',
         'deleted' => 'getDeleted',
         'description' => 'getDescription',
@@ -311,12 +357,20 @@ class FactureIn implements ModelInterface, ArrayAccess, \JsonSerializable
         'group' => 'getGroup',
         'moment' => 'getMoment',
         'name' => 'getName',
+        'organization' => 'getOrganization',
         'owner' => 'getOwner',
         'printed' => 'getPrinted',
         'published' => 'getPublished',
         'rate' => 'getRate',
         'shared' => 'getShared',
-        'state' => 'getState'
+        'state' => 'getState',
+        'sum' => 'getSum',
+        'sync_id' => 'getSyncId',
+        'updated' => 'getUpdated',
+        'supplies' => 'getSupplies',
+        'payments' => 'getPayments',
+        'incoming_number' => 'getIncomingNumber',
+        'incoming_date' => 'getIncomingDate'
     ];
 
     /**
@@ -383,6 +437,7 @@ class FactureIn implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('applicable', $data ?? [], null);
         $this->setIfExists('attributes', $data ?? [], null);
         $this->setIfExists('code', $data ?? [], null);
+        $this->setIfExists('contract', $data ?? [], null);
         $this->setIfExists('created', $data ?? [], null);
         $this->setIfExists('deleted', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
@@ -391,12 +446,20 @@ class FactureIn implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('group', $data ?? [], null);
         $this->setIfExists('moment', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('organization', $data ?? [], null);
         $this->setIfExists('owner', $data ?? [], null);
         $this->setIfExists('printed', $data ?? [], null);
         $this->setIfExists('published', $data ?? [], null);
         $this->setIfExists('rate', $data ?? [], null);
         $this->setIfExists('shared', $data ?? [], null);
         $this->setIfExists('state', $data ?? [], null);
+        $this->setIfExists('sum', $data ?? [], null);
+        $this->setIfExists('sync_id', $data ?? [], null);
+        $this->setIfExists('updated', $data ?? [], null);
+        $this->setIfExists('supplies', $data ?? [], null);
+        $this->setIfExists('payments', $data ?? [], null);
+        $this->setIfExists('incoming_number', $data ?? [], null);
+        $this->setIfExists('incoming_date', $data ?? [], null);
     }
 
     /**
@@ -440,6 +503,10 @@ class FactureIn implements ModelInterface, ArrayAccess, \JsonSerializable
 
         if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 255)) {
             $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['incoming_number']) && (mb_strlen($this->container['incoming_number']) > 255)) {
+            $invalidProperties[] = "invalid value for 'incoming_number', the character length must be smaller than or equal to 255.";
         }
 
         return $invalidProperties;
@@ -666,6 +733,40 @@ class FactureIn implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['code'] = $code;
+
+        return $this;
+    }
+
+    /**
+     * Gets contract
+     *
+     * @return \OpenAPI\Client\Model\Contract|null
+     */
+    public function getContract()
+    {
+        return $this->container['contract'];
+    }
+
+    /**
+     * Sets contract
+     *
+     * @param \OpenAPI\Client\Model\Contract|null $contract Метаданные договора
+     *
+     * @return self
+     */
+    public function setContract($contract)
+    {
+        if (is_null($contract)) {
+            array_push($this->openAPINullablesSetToNull, 'contract');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('contract', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['contract'] = $contract;
 
         return $this;
     }
@@ -913,6 +1014,33 @@ class FactureIn implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets organization
+     *
+     * @return \OpenAPI\Client\Model\Organization|null
+     */
+    public function getOrganization()
+    {
+        return $this->container['organization'];
+    }
+
+    /**
+     * Sets organization
+     *
+     * @param \OpenAPI\Client\Model\Organization|null $organization organization
+     *
+     * @return self
+     */
+    public function setOrganization($organization)
+    {
+        if (is_null($organization)) {
+            throw new \InvalidArgumentException('non-nullable organization cannot be null');
+        }
+        $this->container['organization'] = $organization;
+
+        return $this;
+    }
+
+    /**
      * Gets owner
      *
      * @return \OpenAPI\Client\Model\Employee|null
@@ -1013,7 +1141,7 @@ class FactureIn implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets rate
      *
-     * @param \OpenAPI\Client\Model\CurrencyRate|null $rate rate
+     * @param \OpenAPI\Client\Model\CurrencyRate|null $rate Валюта документа. Если значение курса валюты не указано, используется курс из справочника валют.
      *
      * @return self
      */
@@ -1084,6 +1212,227 @@ class FactureIn implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['state'] = $state;
+
+        return $this;
+    }
+
+    /**
+     * Gets sum
+     *
+     * @return float|null
+     */
+    public function getSum()
+    {
+        return $this->container['sum'];
+    }
+
+    /**
+     * Sets sum
+     *
+     * @param float|null $sum Сумма Счета-фактуры полученного в установленной валюте
+     *
+     * @return self
+     */
+    public function setSum($sum)
+    {
+        if (is_null($sum)) {
+            throw new \InvalidArgumentException('non-nullable sum cannot be null');
+        }
+        $this->container['sum'] = $sum;
+
+        return $this;
+    }
+
+    /**
+     * Gets sync_id
+     *
+     * @return string|null
+     */
+    public function getSyncId()
+    {
+        return $this->container['sync_id'];
+    }
+
+    /**
+     * Sets sync_id
+     *
+     * @param string|null $sync_id ID синхронизации
+     *
+     * @return self
+     */
+    public function setSyncId($sync_id)
+    {
+        if (is_null($sync_id)) {
+            throw new \InvalidArgumentException('non-nullable sync_id cannot be null');
+        }
+        $this->container['sync_id'] = $sync_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets updated
+     *
+     * @return string|null
+     */
+    public function getUpdated()
+    {
+        return $this->container['updated'];
+    }
+
+    /**
+     * Sets updated
+     *
+     * @param string|null $updated Момент последнего обновления Счета-фактуры полученного
+     *
+     * @return self
+     */
+    public function setUpdated($updated)
+    {
+        if (is_null($updated)) {
+            throw new \InvalidArgumentException('non-nullable updated cannot be null');
+        }
+        $this->container['updated'] = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Gets supplies
+     *
+     * @return \OpenAPI\Client\Model\Supply[]|null
+     */
+    public function getSupplies()
+    {
+        return $this->container['supplies'];
+    }
+
+    /**
+     * Sets supplies
+     *
+     * @param \OpenAPI\Client\Model\Supply[]|null $supplies Массив ссылок на связанные приемки
+     *
+     * @return self
+     */
+    public function setSupplies($supplies)
+    {
+        if (is_null($supplies)) {
+            array_push($this->openAPINullablesSetToNull, 'supplies');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('supplies', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['supplies'] = $supplies;
+
+        return $this;
+    }
+
+    /**
+     * Gets payments
+     *
+     * @return \OpenAPI\Client\Model\PaymentOut[]|null
+     */
+    public function getPayments()
+    {
+        return $this->container['payments'];
+    }
+
+    /**
+     * Sets payments
+     *
+     * @param \OpenAPI\Client\Model\PaymentOut[]|null $payments Массив ссылок на связанные исходящие платежи
+     *
+     * @return self
+     */
+    public function setPayments($payments)
+    {
+        if (is_null($payments)) {
+            array_push($this->openAPINullablesSetToNull, 'payments');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('payments', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['payments'] = $payments;
+
+        return $this;
+    }
+
+    /**
+     * Gets incoming_number
+     *
+     * @return string|null
+     */
+    public function getIncomingNumber()
+    {
+        return $this->container['incoming_number'];
+    }
+
+    /**
+     * Sets incoming_number
+     *
+     * @param string|null $incoming_number Входящий номер
+     *
+     * @return self
+     */
+    public function setIncomingNumber($incoming_number)
+    {
+        if (is_null($incoming_number)) {
+            array_push($this->openAPINullablesSetToNull, 'incoming_number');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('incoming_number', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($incoming_number) && (mb_strlen($incoming_number) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $incoming_number when calling FactureIn., must be smaller than or equal to 255.');
+        }
+
+        $this->container['incoming_number'] = $incoming_number;
+
+        return $this;
+    }
+
+    /**
+     * Gets incoming_date
+     *
+     * @return string|null
+     */
+    public function getIncomingDate()
+    {
+        return $this->container['incoming_date'];
+    }
+
+    /**
+     * Sets incoming_date
+     *
+     * @param string|null $incoming_date Входящая дата
+     *
+     * @return self
+     */
+    public function setIncomingDate($incoming_date)
+    {
+        if (is_null($incoming_date)) {
+            array_push($this->openAPINullablesSetToNull, 'incoming_date');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('incoming_date', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['incoming_date'] = $incoming_date;
 
         return $this;
     }

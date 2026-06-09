@@ -521,9 +521,9 @@ class CashOutOperationTest extends TestCase
     }
 
     /**
-     * Test attribute "delivery_planned_moment"
+     * Test attribute "payment_planned_moment"
      */
-    public function testPropertyDeliveryPlannedMoment()
+    public function testPropertyPaymentPlannedMoment()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -533,6 +533,24 @@ class CashOutOperationTest extends TestCase
      * Test attribute "shipped_sum"
      */
     public function testPropertyShippedSum()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "supplies"
+     */
+    public function testPropertySupplies()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "delivery_planned_moment"
+     */
+    public function testPropertyDeliveryPlannedMoment()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -569,15 +587,6 @@ class CashOutOperationTest extends TestCase
      * Test attribute "customer_orders"
      */
     public function testPropertyCustomerOrders()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "supplies"
-     */
-    public function testPropertySupplies()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

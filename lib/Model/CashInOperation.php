@@ -123,6 +123,7 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'state_contract_id' => 'string',
         'transport_facility' => 'string',
         'transport_facility_number' => 'string',
+        'payment_planned_moment' => 'string',
         'commission_overhead' => '\OpenAPI\Client\Model\CommissionReportInCommissionOverhead',
         'commission_period_end' => 'string',
         'commission_period_start' => 'string',
@@ -205,6 +206,7 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'state_contract_id' => null,
         'transport_facility' => null,
         'transport_facility_number' => null,
+        'payment_planned_moment' => null,
         'commission_overhead' => null,
         'commission_period_end' => null,
         'commission_period_start' => null,
@@ -285,6 +287,7 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'state_contract_id' => false,
         'transport_facility' => false,
         'transport_facility_number' => false,
+        'payment_planned_moment' => false,
         'commission_overhead' => false,
         'commission_period_end' => false,
         'commission_period_start' => false,
@@ -445,6 +448,7 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'state_contract_id' => 'stateContractId',
         'transport_facility' => 'transportFacility',
         'transport_facility_number' => 'transportFacilityNumber',
+        'payment_planned_moment' => 'paymentPlannedMoment',
         'commission_overhead' => 'commissionOverhead',
         'commission_period_end' => 'commissionPeriodEnd',
         'commission_period_start' => 'commissionPeriodStart',
@@ -525,6 +529,7 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'state_contract_id' => 'setStateContractId',
         'transport_facility' => 'setTransportFacility',
         'transport_facility_number' => 'setTransportFacilityNumber',
+        'payment_planned_moment' => 'setPaymentPlannedMoment',
         'commission_overhead' => 'setCommissionOverhead',
         'commission_period_end' => 'setCommissionPeriodEnd',
         'commission_period_start' => 'setCommissionPeriodStart',
@@ -605,6 +610,7 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         'state_contract_id' => 'getStateContractId',
         'transport_facility' => 'getTransportFacility',
         'transport_facility_number' => 'getTransportFacilityNumber',
+        'payment_planned_moment' => 'getPaymentPlannedMoment',
         'commission_overhead' => 'getCommissionOverhead',
         'commission_period_end' => 'getCommissionPeriodEnd',
         'commission_period_start' => 'getCommissionPeriodStart',
@@ -736,6 +742,7 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('state_contract_id', $data ?? [], null);
         $this->setIfExists('transport_facility', $data ?? [], null);
         $this->setIfExists('transport_facility_number', $data ?? [], null);
+        $this->setIfExists('payment_planned_moment', $data ?? [], null);
         $this->setIfExists('commission_overhead', $data ?? [], null);
         $this->setIfExists('commission_period_end', $data ?? [], null);
         $this->setIfExists('commission_period_start', $data ?? [], null);
@@ -2527,7 +2534,7 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets customer_order
      *
-     * @param \OpenAPI\Client\Model\CustomerOrder|null $customer_order Заказ покупателя, с которым связана Отгрузка
+     * @param \OpenAPI\Client\Model\CustomerOrder|null $customer_order Заказ покупателя, с которым связан Счет покупателю
      *
      * @return self
      */
@@ -2854,6 +2861,33 @@ class CashInOperation implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['transport_facility_number'] = $transport_facility_number;
+
+        return $this;
+    }
+
+    /**
+     * Gets payment_planned_moment
+     *
+     * @return string|null
+     */
+    public function getPaymentPlannedMoment()
+    {
+        return $this->container['payment_planned_moment'];
+    }
+
+    /**
+     * Sets payment_planned_moment
+     *
+     * @param string|null $payment_planned_moment Планируемая дата оплаты
+     *
+     * @return self
+     */
+    public function setPaymentPlannedMoment($payment_planned_moment)
+    {
+        if (is_null($payment_planned_moment)) {
+            throw new \InvalidArgumentException('non-nullable payment_planned_moment cannot be null');
+        }
+        $this->container['payment_planned_moment'] = $payment_planned_moment;
 
         return $this;
     }

@@ -1191,7 +1191,7 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets rate
      *
-     * @param \OpenAPI\Client\Model\CurrencyRate|null $rate rate
+     * @param \OpenAPI\Client\Model\CurrencyRate|null $rate Валюта документа. Если значение курса валюты не указано, используется курс из справочника валют.
      *
      * @return self
      */
@@ -1391,7 +1391,7 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets advance_payment_vat
      *
-     * @param int|null $advance_payment_vat Ставка НДС для авансового платежа (в процентах)
+     * @param int|null $advance_payment_vat Ставка НДС для авансового платежа (в процентах). Доступно только для счетов-фактур с основаниями-платежами.
      *
      * @return self
      */
@@ -1418,7 +1418,7 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets payment_purpose
      *
-     * @param string|null $payment_purpose Назначение платежа
+     * @param string|null $payment_purpose Назначение платежа. Доступно только для счетов-фактур с основаниями-платежами.
      *
      * @return self
      */
@@ -1449,7 +1449,7 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets vat_sum
      *
-     * @param float|null $vat_sum Сумма включая НДС
+     * @param float|null $vat_sum Сумма включая НДС. Доступно только для счетов-фактур с основаниями-платежами.
      *
      * @return self
      */
