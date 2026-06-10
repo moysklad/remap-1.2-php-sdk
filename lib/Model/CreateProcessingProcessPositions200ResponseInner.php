@@ -1,6 +1,6 @@
 <?php
 /**
- * CreatePurchaseReturnPositionsRequest
+ * CreateProcessingProcessPositions200ResponseInner
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * CreatePurchaseReturnPositionsRequest Class Doc Comment
+ * CreateProcessingProcessPositions200ResponseInner Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class CreatePurchaseReturnPositionsRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class CreateProcessingProcessPositions200ResponseInner implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class CreatePurchaseReturnPositionsRequest implements ModelInterface, ArrayAcces
       *
       * @var string
       */
-    protected static $openAPIModelName = 'createPurchaseReturnPositions_request';
+    protected static $openAPIModelName = 'createProcessingProcessPositions_200_response_inner';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,15 +60,9 @@ class CreatePurchaseReturnPositionsRequest implements ModelInterface, ArrayAcces
         'meta' => '\OpenAPI\Client\Model\Meta',
         'id' => 'string',
         'account_id' => 'string',
-        'assortment' => '\OpenAPI\Client\Model\Assortment',
-        'discount' => 'float',
-        'pack' => '\OpenAPI\Client\Model\Pack',
-        'price' => 'float',
-        'quantity' => 'float',
-        'slot' => '\OpenAPI\Client\Model\StoreSlot',
-        'things' => 'string[]',
-        'vat' => 'int',
-        'vat_enabled' => 'bool'
+        'processingstage' => '\OpenAPI\Client\Model\ProcessingStage',
+        'next_positions' => '\OpenAPI\Client\Model\ProcessingProcessPositionNextPositionsInner[]',
+        'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
     ];
 
     /**
@@ -82,15 +76,9 @@ class CreatePurchaseReturnPositionsRequest implements ModelInterface, ArrayAcces
         'meta' => null,
         'id' => 'uuid',
         'account_id' => 'uuid',
-        'assortment' => null,
-        'discount' => 'double',
-        'pack' => null,
-        'price' => 'double',
-        'quantity' => 'double',
-        'slot' => null,
-        'things' => null,
-        'vat' => null,
-        'vat_enabled' => null
+        'processingstage' => null,
+        'next_positions' => null,
+        'errors' => null
     ];
 
     /**
@@ -102,15 +90,9 @@ class CreatePurchaseReturnPositionsRequest implements ModelInterface, ArrayAcces
         'meta' => false,
         'id' => false,
         'account_id' => false,
-        'assortment' => false,
-        'discount' => false,
-        'pack' => true,
-        'price' => false,
-        'quantity' => false,
-        'slot' => true,
-        'things' => false,
-        'vat' => false,
-        'vat_enabled' => false
+        'processingstage' => false,
+        'next_positions' => true,
+        'errors' => false
     ];
 
     /**
@@ -202,15 +184,9 @@ class CreatePurchaseReturnPositionsRequest implements ModelInterface, ArrayAcces
         'meta' => 'meta',
         'id' => 'id',
         'account_id' => 'accountId',
-        'assortment' => 'assortment',
-        'discount' => 'discount',
-        'pack' => 'pack',
-        'price' => 'price',
-        'quantity' => 'quantity',
-        'slot' => 'slot',
-        'things' => 'things',
-        'vat' => 'vat',
-        'vat_enabled' => 'vatEnabled'
+        'processingstage' => 'processingstage',
+        'next_positions' => 'nextPositions',
+        'errors' => 'errors'
     ];
 
     /**
@@ -222,15 +198,9 @@ class CreatePurchaseReturnPositionsRequest implements ModelInterface, ArrayAcces
         'meta' => 'setMeta',
         'id' => 'setId',
         'account_id' => 'setAccountId',
-        'assortment' => 'setAssortment',
-        'discount' => 'setDiscount',
-        'pack' => 'setPack',
-        'price' => 'setPrice',
-        'quantity' => 'setQuantity',
-        'slot' => 'setSlot',
-        'things' => 'setThings',
-        'vat' => 'setVat',
-        'vat_enabled' => 'setVatEnabled'
+        'processingstage' => 'setProcessingstage',
+        'next_positions' => 'setNextPositions',
+        'errors' => 'setErrors'
     ];
 
     /**
@@ -242,15 +212,9 @@ class CreatePurchaseReturnPositionsRequest implements ModelInterface, ArrayAcces
         'meta' => 'getMeta',
         'id' => 'getId',
         'account_id' => 'getAccountId',
-        'assortment' => 'getAssortment',
-        'discount' => 'getDiscount',
-        'pack' => 'getPack',
-        'price' => 'getPrice',
-        'quantity' => 'getQuantity',
-        'slot' => 'getSlot',
-        'things' => 'getThings',
-        'vat' => 'getVat',
-        'vat_enabled' => 'getVatEnabled'
+        'processingstage' => 'getProcessingstage',
+        'next_positions' => 'getNextPositions',
+        'errors' => 'getErrors'
     ];
 
     /**
@@ -313,15 +277,9 @@ class CreatePurchaseReturnPositionsRequest implements ModelInterface, ArrayAcces
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('account_id', $data ?? [], null);
-        $this->setIfExists('assortment', $data ?? [], null);
-        $this->setIfExists('discount', $data ?? [], null);
-        $this->setIfExists('pack', $data ?? [], null);
-        $this->setIfExists('price', $data ?? [], null);
-        $this->setIfExists('quantity', $data ?? [], null);
-        $this->setIfExists('slot', $data ?? [], null);
-        $this->setIfExists('things', $data ?? [], null);
-        $this->setIfExists('vat', $data ?? [], null);
-        $this->setIfExists('vat_enabled', $data ?? [], null);
+        $this->setIfExists('processingstage', $data ?? [], null);
+        $this->setIfExists('next_positions', $data ?? [], null);
+        $this->setIfExists('errors', $data ?? [], null);
     }
 
     /**
@@ -351,18 +309,9 @@ class CreatePurchaseReturnPositionsRequest implements ModelInterface, ArrayAcces
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['quantity']) && ($this->container['quantity'] < 0)) {
-            $invalidProperties[] = "invalid value for 'quantity', must be bigger than or equal to 0.";
+        if ($this->container['errors'] === null) {
+            $invalidProperties[] = "'errors' can't be null";
         }
-
-        if (!is_null($this->container['vat']) && ($this->container['vat'] > 100)) {
-            $invalidProperties[] = "invalid value for 'vat', must be smaller than or equal to 100.";
-        }
-
-        if (!is_null($this->container['vat']) && ($this->container['vat'] < 0)) {
-            $invalidProperties[] = "invalid value for 'vat', must be bigger than or equal to 0.";
-        }
-
         return $invalidProperties;
     }
 
@@ -460,273 +409,89 @@ class CreatePurchaseReturnPositionsRequest implements ModelInterface, ArrayAcces
     }
 
     /**
-     * Gets assortment
+     * Gets processingstage
      *
-     * @return \OpenAPI\Client\Model\Assortment|null
-     * @deprecated
+     * @return \OpenAPI\Client\Model\ProcessingStage|null
      */
-    public function getAssortment()
+    public function getProcessingstage()
     {
-        return $this->container['assortment'];
+        return $this->container['processingstage'];
     }
 
     /**
-     * Sets assortment
+     * Sets processingstage
      *
-     * @param \OpenAPI\Client\Model\Assortment|null $assortment assortment
+     * @param \OpenAPI\Client\Model\ProcessingStage|null $processingstage processingstage
      *
      * @return self
-     * @deprecated
      */
-    public function setAssortment($assortment)
+    public function setProcessingstage($processingstage)
     {
-        if (is_null($assortment)) {
-            throw new \InvalidArgumentException('non-nullable assortment cannot be null');
+        if (is_null($processingstage)) {
+            throw new \InvalidArgumentException('non-nullable processingstage cannot be null');
         }
-        $this->container['assortment'] = $assortment;
+        $this->container['processingstage'] = $processingstage;
 
         return $this;
     }
 
     /**
-     * Gets discount
+     * Gets next_positions
      *
-     * @return float|null
+     * @return \OpenAPI\Client\Model\ProcessingProcessPositionNextPositionsInner[]|null
      */
-    public function getDiscount()
+    public function getNextPositions()
     {
-        return $this->container['discount'];
+        return $this->container['next_positions'];
     }
 
     /**
-     * Sets discount
+     * Sets next_positions
      *
-     * @param float|null $discount Процент скидки или наценки
+     * @param \OpenAPI\Client\Model\ProcessingProcessPositionNextPositionsInner[]|null $next_positions Метаданные следующих позиций позиции Техпроцесса
      *
      * @return self
      */
-    public function setDiscount($discount)
+    public function setNextPositions($next_positions)
     {
-        if (is_null($discount)) {
-            throw new \InvalidArgumentException('non-nullable discount cannot be null');
-        }
-        $this->container['discount'] = $discount;
-
-        return $this;
-    }
-
-    /**
-     * Gets pack
-     *
-     * @return \OpenAPI\Client\Model\Pack|null
-     */
-    public function getPack()
-    {
-        return $this->container['pack'];
-    }
-
-    /**
-     * Sets pack
-     *
-     * @param \OpenAPI\Client\Model\Pack|null $pack Упаковка Товара
-     *
-     * @return self
-     */
-    public function setPack($pack)
-    {
-        if (is_null($pack)) {
-            array_push($this->openAPINullablesSetToNull, 'pack');
+        if (is_null($next_positions)) {
+            array_push($this->openAPINullablesSetToNull, 'next_positions');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('pack', $nullablesSetToNull);
+            $index = array_search('next_positions', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['pack'] = $pack;
+        $this->container['next_positions'] = $next_positions;
 
         return $this;
     }
 
     /**
-     * Gets price
+     * Gets errors
      *
-     * @return float|null
+     * @return \OpenAPI\Client\Model\ErrorErrorsInner[]
      */
-    public function getPrice()
+    public function getErrors()
     {
-        return $this->container['price'];
+        return $this->container['errors'];
     }
 
     /**
-     * Sets price
+     * Sets errors
      *
-     * @param float|null $price Цена товара/услуги в копейках
+     * @param \OpenAPI\Client\Model\ErrorErrorsInner[] $errors errors
      *
      * @return self
      */
-    public function setPrice($price)
+    public function setErrors($errors)
     {
-        if (is_null($price)) {
-            throw new \InvalidArgumentException('non-nullable price cannot be null');
+        if (is_null($errors)) {
+            throw new \InvalidArgumentException('non-nullable errors cannot be null');
         }
-        $this->container['price'] = $price;
-
-        return $this;
-    }
-
-    /**
-     * Gets quantity
-     *
-     * @return float|null
-     */
-    public function getQuantity()
-    {
-        return $this->container['quantity'];
-    }
-
-    /**
-     * Sets quantity
-     *
-     * @param float|null $quantity Количество товаров данного вида в позиции
-     *
-     * @return self
-     */
-    public function setQuantity($quantity)
-    {
-        if (is_null($quantity)) {
-            throw new \InvalidArgumentException('non-nullable quantity cannot be null');
-        }
-
-        if (($quantity < 0)) {
-            throw new \InvalidArgumentException('invalid value for $quantity when calling CreatePurchaseReturnPositionsRequest., must be bigger than or equal to 0.');
-        }
-
-        $this->container['quantity'] = $quantity;
-
-        return $this;
-    }
-
-    /**
-     * Gets slot
-     *
-     * @return \OpenAPI\Client\Model\StoreSlot|null
-     */
-    public function getSlot()
-    {
-        return $this->container['slot'];
-    }
-
-    /**
-     * Sets slot
-     *
-     * @param \OpenAPI\Client\Model\StoreSlot|null $slot Ячейка на складе
-     *
-     * @return self
-     */
-    public function setSlot($slot)
-    {
-        if (is_null($slot)) {
-            array_push($this->openAPINullablesSetToNull, 'slot');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('slot', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['slot'] = $slot;
-
-        return $this;
-    }
-
-    /**
-     * Gets things
-     *
-     * @return string[]|null
-     */
-    public function getThings()
-    {
-        return $this->container['things'];
-    }
-
-    /**
-     * Sets things
-     *
-     * @param string[]|null $things Серийные номера. Игнорируется, если товар позиции не на серийном учёте; иначе количество единиц в позиции совпадает с числом переданных серийных номеров.
-     *
-     * @return self
-     */
-    public function setThings($things)
-    {
-        if (is_null($things)) {
-            throw new \InvalidArgumentException('non-nullable things cannot be null');
-        }
-        $this->container['things'] = $things;
-
-        return $this;
-    }
-
-    /**
-     * Gets vat
-     *
-     * @return int|null
-     */
-    public function getVat()
-    {
-        return $this->container['vat'];
-    }
-
-    /**
-     * Sets vat
-     *
-     * @param int|null $vat НДС, которым облагается текущая позиция
-     *
-     * @return self
-     */
-    public function setVat($vat)
-    {
-        if (is_null($vat)) {
-            throw new \InvalidArgumentException('non-nullable vat cannot be null');
-        }
-
-        if (($vat > 100)) {
-            throw new \InvalidArgumentException('invalid value for $vat when calling CreatePurchaseReturnPositionsRequest., must be smaller than or equal to 100.');
-        }
-        if (($vat < 0)) {
-            throw new \InvalidArgumentException('invalid value for $vat when calling CreatePurchaseReturnPositionsRequest., must be bigger than or equal to 0.');
-        }
-
-        $this->container['vat'] = $vat;
-
-        return $this;
-    }
-
-    /**
-     * Gets vat_enabled
-     *
-     * @return bool|null
-     */
-    public function getVatEnabled()
-    {
-        return $this->container['vat_enabled'];
-    }
-
-    /**
-     * Sets vat_enabled
-     *
-     * @param bool|null $vat_enabled Включён ли НДС для позиции. Пара `(vat = 0, vatEnabled = false)` соответствует НДС «без НДС»; `(vat = 0, vatEnabled = true)` — НДС 0%.
-     *
-     * @return self
-     */
-    public function setVatEnabled($vat_enabled)
-    {
-        if (is_null($vat_enabled)) {
-            throw new \InvalidArgumentException('non-nullable vat_enabled cannot be null');
-        }
-        $this->container['vat_enabled'] = $vat_enabled;
+        $this->container['errors'] = $errors;
 
         return $this;
     }

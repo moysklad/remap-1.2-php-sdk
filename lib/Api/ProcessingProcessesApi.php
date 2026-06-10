@@ -77,6 +77,9 @@ class ProcessingProcessesApi
         'createProcessingProcess' => [
             'application/json',
         ],
+        'createProcessingProcessPosition' => [
+            'application/json',
+        ],
         'createProcessingProcessPositions' => [
             'application/json',
         ],
@@ -496,9 +499,9 @@ class ProcessingProcessesApi
     }
 
     /**
-     * Operation createProcessingProcessPositions
+     * Operation createProcessingProcessPosition
      *
-     * Создать позицию Техпроцесса
+     * Создать и обновить позицию Техпроцесса
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\ProcessingProcessPosition $processing_process_position processing_process_position (required)
@@ -506,22 +509,22 @@ class ProcessingProcessesApi
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProcessingProcessPositions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProcessingProcessPosition'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\ProcessingProcessPosition|\OpenAPI\Client\Model\ErrorOrArray
      */
-    public function createProcessingProcessPositions($id, $processing_process_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingProcessPositions'][0])
+    public function createProcessingProcessPosition($id, $processing_process_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingProcessPosition'][0])
     {
-        list($response) = $this->createProcessingProcessPositionsWithHttpInfo($id, $processing_process_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        list($response) = $this->createProcessingProcessPositionWithHttpInfo($id, $processing_process_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
     }
 
     /**
-     * Operation createProcessingProcessPositionsWithHttpInfo
+     * Operation createProcessingProcessPositionWithHttpInfo
      *
-     * Создать позицию Техпроцесса
+     * Создать и обновить позицию Техпроцесса
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\ProcessingProcessPosition $processing_process_position (required)
@@ -529,15 +532,15 @@ class ProcessingProcessesApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProcessingProcessPositions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProcessingProcessPosition'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ProcessingProcessPosition|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createProcessingProcessPositionsWithHttpInfo($id, $processing_process_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingProcessPositions'][0])
+    public function createProcessingProcessPositionWithHttpInfo($id, $processing_process_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingProcessPosition'][0])
     {
-        $request = $this->createProcessingProcessPositionsRequest($id, $processing_process_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->createProcessingProcessPositionRequest($id, $processing_process_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -623,12 +626,366 @@ class ProcessingProcessesApi
     }
 
     /**
-     * Operation createProcessingProcessPositionsAsync
+     * Operation createProcessingProcessPositionAsync
      *
-     * Создать позицию Техпроцесса
+     * Создать и обновить позицию Техпроцесса
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\ProcessingProcessPosition $processing_process_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProcessingProcessPosition'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createProcessingProcessPositionAsync($id, $processing_process_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingProcessPosition'][0])
+    {
+        return $this->createProcessingProcessPositionAsyncWithHttpInfo($id, $processing_process_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createProcessingProcessPositionAsyncWithHttpInfo
+     *
+     * Создать и обновить позицию Техпроцесса
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\ProcessingProcessPosition $processing_process_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProcessingProcessPosition'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createProcessingProcessPositionAsyncWithHttpInfo($id, $processing_process_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingProcessPosition'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\ProcessingProcessPosition';
+        $request = $this->createProcessingProcessPositionRequest($id, $processing_process_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createProcessingProcessPosition'
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\ProcessingProcessPosition $processing_process_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProcessingProcessPosition'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createProcessingProcessPositionRequest($id, $processing_process_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingProcessPosition'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling createProcessingProcessPosition'
+            );
+        }
+
+        // verify the required parameter 'processing_process_position' is set
+        if ($processing_process_position === null || (is_array($processing_process_position) && count($processing_process_position) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $processing_process_position when calling createProcessingProcessPosition'
+            );
+        }
+
+
+
+
+
+
+        $resourcePath = '/entity/processingprocess/{id}/positions';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $expand,
+            'expand', // param base name
+            'string', // openApiType
+            '', // style
+            false, // explode
+            false // required
+        ) ?? []);
+
+        // header params
+        if ($accept !== null) {
+            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+        }
+        // header params
+        if ($accept_encoding !== null) {
+            $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+        // header params
+        if ($content_type !== null) {
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
+        }
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'text/html;charset=UTF-8', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($processing_process_position)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($processing_process_position));
+            } else {
+                $httpBody = $processing_process_position;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createProcessingProcessPositions
+     *
+     * Массовое создание и обновление позиций Техпроцесса
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\ProcessingProcessPosition[] $processing_process_position processing_process_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProcessingProcessPositions'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\CreateProcessingProcessPositions200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     */
+    public function createProcessingProcessPositions($id, $processing_process_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingProcessPositions'][0])
+    {
+        list($response) = $this->createProcessingProcessPositionsWithHttpInfo($id, $processing_process_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createProcessingProcessPositionsWithHttpInfo
+     *
+     * Массовое создание и обновление позиций Техпроцесса
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\ProcessingProcessPosition[] $processing_process_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProcessingProcessPositions'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\CreateProcessingProcessPositions200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createProcessingProcessPositionsWithHttpInfo($id, $processing_process_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingProcessPositions'][0])
+    {
+        $request = $this->createProcessingProcessPositionsRequest($id, $processing_process_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\CreateProcessingProcessPositions200ResponseInner[]',
+                        $request,
+                        $response,
+                    );
+                default:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\OpenAPI\Client\Model\CreateProcessingProcessPositions200ResponseInner[]',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\CreateProcessingProcessPositions200ResponseInner[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createProcessingProcessPositionsAsync
+     *
+     * Массовое создание и обновление позиций Техпроцесса
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\ProcessingProcessPosition[] $processing_process_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -651,10 +1008,10 @@ class ProcessingProcessesApi
     /**
      * Operation createProcessingProcessPositionsAsyncWithHttpInfo
      *
-     * Создать позицию Техпроцесса
+     * Массовое создание и обновление позиций Техпроцесса
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\ProcessingProcessPosition $processing_process_position (required)
+     * @param  \OpenAPI\Client\Model\ProcessingProcessPosition[] $processing_process_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -666,7 +1023,7 @@ class ProcessingProcessesApi
      */
     public function createProcessingProcessPositionsAsyncWithHttpInfo($id, $processing_process_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingProcessPositions'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\ProcessingProcessPosition';
+        $returnType = '\OpenAPI\Client\Model\CreateProcessingProcessPositions200ResponseInner[]';
         $request = $this->createProcessingProcessPositionsRequest($id, $processing_process_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
@@ -709,7 +1066,7 @@ class ProcessingProcessesApi
      * Create request for operation 'createProcessingProcessPositions'
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\ProcessingProcessPosition $processing_process_position (required)
+     * @param  \OpenAPI\Client\Model\ProcessingProcessPosition[] $processing_process_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -735,13 +1092,19 @@ class ProcessingProcessesApi
                 'Missing the required parameter $processing_process_position when calling createProcessingProcessPositions'
             );
         }
+        if (count($processing_process_position) > 1000) {
+            throw new \InvalidArgumentException('invalid value for "$processing_process_position" when calling ProcessingProcessesApi.createProcessingProcessPositions, number of items must be less than or equal to 1000.');
+        }
+        if (count($processing_process_position) < 1) {
+            throw new \InvalidArgumentException('invalid value for "$processing_process_position" when calling ProcessingProcessesApi.createProcessingProcessPositions, number of items must be greater than or equal to 1.');
+        }
+        
 
 
 
 
 
-
-        $resourcePath = '/entity/processingprocess/{id}/positions';
+        $resourcePath = '/entity/processingprocess/{id}/positions/batch';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

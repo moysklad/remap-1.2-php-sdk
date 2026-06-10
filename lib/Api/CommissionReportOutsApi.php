@@ -92,7 +92,7 @@ class CommissionReportOutsApi
         'createCommissionReportOutPosition' => [
             'application/json',
         ],
-        'createCommissionReportOutPositionsBatch' => [
+        'createCommissionReportOutPositions' => [
             'application/json',
         ],
         'deleteCommissionReportOut' => [
@@ -1860,7 +1860,7 @@ class CommissionReportOutsApi
     /**
      * Operation createCommissionReportOutPosition
      *
-     * Создать позицию CommissionReportOut
+     * Создать и обновить позицию Выданного отчета комиссионера
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\CommissionReportOutPosition $commission_report_out_position commission_report_out_position (required)
@@ -1883,7 +1883,7 @@ class CommissionReportOutsApi
     /**
      * Operation createCommissionReportOutPositionWithHttpInfo
      *
-     * Создать позицию CommissionReportOut
+     * Создать и обновить позицию Выданного отчета комиссионера
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\CommissionReportOutPosition $commission_report_out_position (required)
@@ -1987,7 +1987,7 @@ class CommissionReportOutsApi
     /**
      * Operation createCommissionReportOutPositionAsync
      *
-     * Создать позицию CommissionReportOut
+     * Создать и обновить позицию Выданного отчета комиссионера
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\CommissionReportOutPosition $commission_report_out_position (required)
@@ -2013,7 +2013,7 @@ class CommissionReportOutsApi
     /**
      * Operation createCommissionReportOutPositionAsyncWithHttpInfo
      *
-     * Создать позицию CommissionReportOut
+     * Создать и обновить позицию Выданного отчета комиссионера
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\CommissionReportOutPosition $commission_report_out_position (required)
@@ -2212,9 +2212,9 @@ class CommissionReportOutsApi
     }
 
     /**
-     * Operation createCommissionReportOutPositionsBatch
+     * Operation createCommissionReportOutPositions
      *
-     * Массовое создание позиций CommissionReportOut
+     * Массовое создание и обновление позиций Выданного отчета комиссионера
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\CommissionReportOutPosition[] $commission_report_out_position commission_report_out_position (required)
@@ -2222,22 +2222,22 @@ class CommissionReportOutsApi
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCommissionReportOutPositionsBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCommissionReportOutPositions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreateCommissionReportOutPositionsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\CreateCommissionReportOutPositions200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
      */
-    public function createCommissionReportOutPositionsBatch($id, $commission_report_out_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportOutPositionsBatch'][0])
+    public function createCommissionReportOutPositions($id, $commission_report_out_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportOutPositions'][0])
     {
-        list($response) = $this->createCommissionReportOutPositionsBatchWithHttpInfo($id, $commission_report_out_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        list($response) = $this->createCommissionReportOutPositionsWithHttpInfo($id, $commission_report_out_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
     }
 
     /**
-     * Operation createCommissionReportOutPositionsBatchWithHttpInfo
+     * Operation createCommissionReportOutPositionsWithHttpInfo
      *
-     * Массовое создание позиций CommissionReportOut
+     * Массовое создание и обновление позиций Выданного отчета комиссионера
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\CommissionReportOutPosition[] $commission_report_out_position (required)
@@ -2245,15 +2245,15 @@ class CommissionReportOutsApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCommissionReportOutPositionsBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCommissionReportOutPositions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreateCommissionReportOutPositionsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\CreateCommissionReportOutPositions200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createCommissionReportOutPositionsBatchWithHttpInfo($id, $commission_report_out_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportOutPositionsBatch'][0])
+    public function createCommissionReportOutPositionsWithHttpInfo($id, $commission_report_out_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportOutPositions'][0])
     {
-        $request = $this->createCommissionReportOutPositionsBatchRequest($id, $commission_report_out_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->createCommissionReportOutPositionsRequest($id, $commission_report_out_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2281,7 +2281,7 @@ class CommissionReportOutsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CreateCommissionReportOutPositionsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\CreateCommissionReportOutPositions200ResponseInner[]',
                         $request,
                         $response,
                     );
@@ -2309,7 +2309,7 @@ class CommissionReportOutsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\CreateCommissionReportOutPositionsBatch200ResponseInner[]',
+                '\OpenAPI\Client\Model\CreateCommissionReportOutPositions200ResponseInner[]',
                 $request,
                 $response,
             );
@@ -2318,7 +2318,7 @@ class CommissionReportOutsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreateCommissionReportOutPositionsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\CreateCommissionReportOutPositions200ResponseInner[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2339,9 +2339,9 @@ class CommissionReportOutsApi
     }
 
     /**
-     * Operation createCommissionReportOutPositionsBatchAsync
+     * Operation createCommissionReportOutPositionsAsync
      *
-     * Массовое создание позиций CommissionReportOut
+     * Массовое создание и обновление позиций Выданного отчета комиссионера
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\CommissionReportOutPosition[] $commission_report_out_position (required)
@@ -2349,14 +2349,14 @@ class CommissionReportOutsApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCommissionReportOutPositionsBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCommissionReportOutPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createCommissionReportOutPositionsBatchAsync($id, $commission_report_out_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportOutPositionsBatch'][0])
+    public function createCommissionReportOutPositionsAsync($id, $commission_report_out_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportOutPositions'][0])
     {
-        return $this->createCommissionReportOutPositionsBatchAsyncWithHttpInfo($id, $commission_report_out_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
+        return $this->createCommissionReportOutPositionsAsyncWithHttpInfo($id, $commission_report_out_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2365,9 +2365,9 @@ class CommissionReportOutsApi
     }
 
     /**
-     * Operation createCommissionReportOutPositionsBatchAsyncWithHttpInfo
+     * Operation createCommissionReportOutPositionsAsyncWithHttpInfo
      *
-     * Массовое создание позиций CommissionReportOut
+     * Массовое создание и обновление позиций Выданного отчета комиссионера
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\CommissionReportOutPosition[] $commission_report_out_position (required)
@@ -2375,15 +2375,15 @@ class CommissionReportOutsApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCommissionReportOutPositionsBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCommissionReportOutPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createCommissionReportOutPositionsBatchAsyncWithHttpInfo($id, $commission_report_out_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportOutPositionsBatch'][0])
+    public function createCommissionReportOutPositionsAsyncWithHttpInfo($id, $commission_report_out_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportOutPositions'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CreateCommissionReportOutPositionsBatch200ResponseInner[]';
-        $request = $this->createCommissionReportOutPositionsBatchRequest($id, $commission_report_out_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $returnType = '\OpenAPI\Client\Model\CreateCommissionReportOutPositions200ResponseInner[]';
+        $request = $this->createCommissionReportOutPositionsRequest($id, $commission_report_out_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2422,7 +2422,7 @@ class CommissionReportOutsApi
     }
 
     /**
-     * Create request for operation 'createCommissionReportOutPositionsBatch'
+     * Create request for operation 'createCommissionReportOutPositions'
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\CommissionReportOutPosition[] $commission_report_out_position (required)
@@ -2430,32 +2430,32 @@ class CommissionReportOutsApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCommissionReportOutPositionsBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCommissionReportOutPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createCommissionReportOutPositionsBatchRequest($id, $commission_report_out_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportOutPositionsBatch'][0])
+    public function createCommissionReportOutPositionsRequest($id, $commission_report_out_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportOutPositions'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling createCommissionReportOutPositionsBatch'
+                'Missing the required parameter $id when calling createCommissionReportOutPositions'
             );
         }
 
         // verify the required parameter 'commission_report_out_position' is set
         if ($commission_report_out_position === null || (is_array($commission_report_out_position) && count($commission_report_out_position) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $commission_report_out_position when calling createCommissionReportOutPositionsBatch'
+                'Missing the required parameter $commission_report_out_position when calling createCommissionReportOutPositions'
             );
         }
         if (count($commission_report_out_position) > 1000) {
-            throw new \InvalidArgumentException('invalid value for "$commission_report_out_position" when calling CommissionReportOutsApi.createCommissionReportOutPositionsBatch, number of items must be less than or equal to 1000.');
+            throw new \InvalidArgumentException('invalid value for "$commission_report_out_position" when calling CommissionReportOutsApi.createCommissionReportOutPositions, number of items must be less than or equal to 1000.');
         }
         if (count($commission_report_out_position) < 1) {
-            throw new \InvalidArgumentException('invalid value for "$commission_report_out_position" when calling CommissionReportOutsApi.createCommissionReportOutPositionsBatch, number of items must be greater than or equal to 1.');
+            throw new \InvalidArgumentException('invalid value for "$commission_report_out_position" when calling CommissionReportOutsApi.createCommissionReportOutPositions, number of items must be greater than or equal to 1.');
         }
         
 

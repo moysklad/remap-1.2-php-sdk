@@ -9,7 +9,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createEnterBatch()**](EntersApi.md#createEnterBatch) | **POST** /entity/enter/batch | Массовое создание и обновление Оприходований |
 | [**createEnterMetadataAttribute()**](EntersApi.md#createEnterMetadataAttribute) | **POST** /entity/enter/metadata/attributes | Создать доп. поле Оприходований |
 | [**createEnterMetadataState()**](EntersApi.md#createEnterMetadataState) | **POST** /entity/enter/metadata/states | Создать статус Оприходования |
-| [**createEnterPositions()**](EntersApi.md#createEnterPositions) | **POST** /entity/enter/{id}/positions | Создать позиции Оприходования |
+| [**createEnterPosition()**](EntersApi.md#createEnterPosition) | **POST** /entity/enter/{id}/positions | Создать и обновить позицию Оприходования |
+| [**createEnterPositions()**](EntersApi.md#createEnterPositions) | **POST** /entity/enter/{id}/positions/batch | Массовое создание и обновление позиций Оприходования |
 | [**deleteEnter()**](EntersApi.md#deleteEnter) | **DELETE** /entity/enter/{id} | Удалить Оприходование |
 | [**deleteEnterBatch()**](EntersApi.md#deleteEnterBatch) | **POST** /entity/enter/delete | Массовое удаление Оприходований |
 | [**deleteEnterFile()**](EntersApi.md#deleteEnterFile) | **DELETE** /entity/enter/{id}/files/{fileId} | Удалить файл Оприходования |
@@ -386,13 +387,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createEnterPositions()`
+## `createEnterPosition()`
 
 ```php
-createEnterPositions($id, $create_enter_positions_request, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateEnterPositions200ResponseInner[]
+createEnterPosition($id, $enter_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\EnterPosition
 ```
 
-Создать позиции Оприходования
+Создать и обновить позицию Оприходования
 
 ### Example
 
@@ -417,14 +418,87 @@ $apiInstance = new OpenAPI\Client\Api\EntersApi(
     $config
 );
 $id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$create_enter_positions_request = new \OpenAPI\Client\Model\CreateEnterPositionsRequest(); // \OpenAPI\Client\Model\CreateEnterPositionsRequest
+$enter_position = new \OpenAPI\Client\Model\EnterPosition(); // \OpenAPI\Client\Model\EnterPosition
 $expand = agent,organization; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
 $accept_encoding = gzip, deflate, br; // string
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createEnterPositions($id, $create_enter_positions_request, $expand, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->createEnterPosition($id, $enter_position, $expand, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling EntersApi->createEnterPosition: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **enter_position** | [**\OpenAPI\Client\Model\EnterPosition**](../Model/EnterPosition.md)|  | |
+| **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\EnterPosition**](../Model/EnterPosition.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createEnterPositions()`
+
+```php
+createEnterPositions($id, $enter_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateEnterPositions200ResponseInner[]
+```
+
+Массовое создание и обновление позиций Оприходования
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\EntersApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$enter_position = array(new \OpenAPI\Client\Model\EnterPosition()); // \OpenAPI\Client\Model\EnterPosition[]
+$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = gzip, deflate, br; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createEnterPositions($id, $enter_position, $expand, $accept, $accept_encoding, $content_type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EntersApi->createEnterPositions: ', $e->getMessage(), PHP_EOL;
@@ -436,7 +510,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
-| **create_enter_positions_request** | [**\OpenAPI\Client\Model\CreateEnterPositionsRequest**](../Model/CreateEnterPositionsRequest.md)|  | |
+| **enter_position** | [**\OpenAPI\Client\Model\EnterPosition[]**](../Model/EnterPosition.md)|  | |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |

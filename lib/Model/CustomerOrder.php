@@ -1829,7 +1829,7 @@ class CustomerOrder implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets positions
      *
-     * @param \OpenAPI\Client\Model\CustomerOrderPositionList|null $positions Позиций Заказа покупателя
+     * @param \OpenAPI\Client\Model\CustomerOrderPositionList|null $positions positions
      *
      * @return self
      */

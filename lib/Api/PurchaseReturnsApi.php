@@ -89,6 +89,9 @@ class PurchaseReturnsApi
         'createPurchaseReturnMetadataState' => [
             'application/json',
         ],
+        'createPurchaseReturnPosition' => [
+            'application/json',
+        ],
         'createPurchaseReturnPositions' => [
             'application/json',
         ],
@@ -1858,12 +1861,366 @@ class PurchaseReturnsApi
     }
 
     /**
-     * Operation createPurchaseReturnPositions
+     * Operation createPurchaseReturnPosition
      *
-     * Создать позиции Возврата поставщику
+     * Создать и обновить позицию Возврата поставщику
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\CreatePurchaseReturnPositionsRequest $create_purchase_return_positions_request create_purchase_return_positions_request (required)
+     * @param  \OpenAPI\Client\Model\PurchaseReturnPosition $purchase_return_position purchase_return_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnPosition'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\PurchaseReturnPosition|\OpenAPI\Client\Model\ErrorOrArray
+     */
+    public function createPurchaseReturnPosition($id, $purchase_return_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnPosition'][0])
+    {
+        list($response) = $this->createPurchaseReturnPositionWithHttpInfo($id, $purchase_return_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createPurchaseReturnPositionWithHttpInfo
+     *
+     * Создать и обновить позицию Возврата поставщику
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\PurchaseReturnPosition $purchase_return_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnPosition'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\PurchaseReturnPosition|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createPurchaseReturnPositionWithHttpInfo($id, $purchase_return_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnPosition'][0])
+    {
+        $request = $this->createPurchaseReturnPositionRequest($id, $purchase_return_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\PurchaseReturnPosition',
+                        $request,
+                        $response,
+                    );
+                default:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\OpenAPI\Client\Model\PurchaseReturnPosition',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\PurchaseReturnPosition',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createPurchaseReturnPositionAsync
+     *
+     * Создать и обновить позицию Возврата поставщику
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\PurchaseReturnPosition $purchase_return_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnPosition'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createPurchaseReturnPositionAsync($id, $purchase_return_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnPosition'][0])
+    {
+        return $this->createPurchaseReturnPositionAsyncWithHttpInfo($id, $purchase_return_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createPurchaseReturnPositionAsyncWithHttpInfo
+     *
+     * Создать и обновить позицию Возврата поставщику
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\PurchaseReturnPosition $purchase_return_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnPosition'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createPurchaseReturnPositionAsyncWithHttpInfo($id, $purchase_return_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnPosition'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\PurchaseReturnPosition';
+        $request = $this->createPurchaseReturnPositionRequest($id, $purchase_return_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createPurchaseReturnPosition'
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\PurchaseReturnPosition $purchase_return_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnPosition'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createPurchaseReturnPositionRequest($id, $purchase_return_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnPosition'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling createPurchaseReturnPosition'
+            );
+        }
+
+        // verify the required parameter 'purchase_return_position' is set
+        if ($purchase_return_position === null || (is_array($purchase_return_position) && count($purchase_return_position) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $purchase_return_position when calling createPurchaseReturnPosition'
+            );
+        }
+
+
+
+
+
+
+        $resourcePath = '/entity/purchasereturn/{id}/positions';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $expand,
+            'expand', // param base name
+            'string', // openApiType
+            '', // style
+            false, // explode
+            false // required
+        ) ?? []);
+
+        // header params
+        if ($accept !== null) {
+            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+        }
+        // header params
+        if ($accept_encoding !== null) {
+            $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+        // header params
+        if ($content_type !== null) {
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
+        }
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'text/html;charset=UTF-8', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($purchase_return_position)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($purchase_return_position));
+            } else {
+                $httpBody = $purchase_return_position;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createPurchaseReturnPositions
+     *
+     * Массовое создание и обновление позиций Возврата поставщику
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\PurchaseReturnPosition[] $purchase_return_position purchase_return_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
@@ -1874,19 +2231,19 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\CreatePurchaseReturnPositions200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
      */
-    public function createPurchaseReturnPositions($id, $create_purchase_return_positions_request, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnPositions'][0])
+    public function createPurchaseReturnPositions($id, $purchase_return_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnPositions'][0])
     {
-        list($response) = $this->createPurchaseReturnPositionsWithHttpInfo($id, $create_purchase_return_positions_request, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        list($response) = $this->createPurchaseReturnPositionsWithHttpInfo($id, $purchase_return_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
     }
 
     /**
      * Operation createPurchaseReturnPositionsWithHttpInfo
      *
-     * Создать позиции Возврата поставщику
+     * Массовое создание и обновление позиций Возврата поставщику
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\CreatePurchaseReturnPositionsRequest $create_purchase_return_positions_request (required)
+     * @param  \OpenAPI\Client\Model\PurchaseReturnPosition[] $purchase_return_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -1897,9 +2254,9 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\CreatePurchaseReturnPositions200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createPurchaseReturnPositionsWithHttpInfo($id, $create_purchase_return_positions_request, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnPositions'][0])
+    public function createPurchaseReturnPositionsWithHttpInfo($id, $purchase_return_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnPositions'][0])
     {
-        $request = $this->createPurchaseReturnPositionsRequest($id, $create_purchase_return_positions_request, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->createPurchaseReturnPositionsRequest($id, $purchase_return_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1987,10 +2344,10 @@ class PurchaseReturnsApi
     /**
      * Operation createPurchaseReturnPositionsAsync
      *
-     * Создать позиции Возврата поставщику
+     * Массовое создание и обновление позиций Возврата поставщику
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\CreatePurchaseReturnPositionsRequest $create_purchase_return_positions_request (required)
+     * @param  \OpenAPI\Client\Model\PurchaseReturnPosition[] $purchase_return_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -2000,9 +2357,9 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPurchaseReturnPositionsAsync($id, $create_purchase_return_positions_request, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnPositions'][0])
+    public function createPurchaseReturnPositionsAsync($id, $purchase_return_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnPositions'][0])
     {
-        return $this->createPurchaseReturnPositionsAsyncWithHttpInfo($id, $create_purchase_return_positions_request, $expand, $accept, $accept_encoding, $content_type, $contentType)
+        return $this->createPurchaseReturnPositionsAsyncWithHttpInfo($id, $purchase_return_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2013,10 +2370,10 @@ class PurchaseReturnsApi
     /**
      * Operation createPurchaseReturnPositionsAsyncWithHttpInfo
      *
-     * Создать позиции Возврата поставщику
+     * Массовое создание и обновление позиций Возврата поставщику
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\CreatePurchaseReturnPositionsRequest $create_purchase_return_positions_request (required)
+     * @param  \OpenAPI\Client\Model\PurchaseReturnPosition[] $purchase_return_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -2026,10 +2383,10 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPurchaseReturnPositionsAsyncWithHttpInfo($id, $create_purchase_return_positions_request, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnPositions'][0])
+    public function createPurchaseReturnPositionsAsyncWithHttpInfo($id, $purchase_return_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnPositions'][0])
     {
         $returnType = '\OpenAPI\Client\Model\CreatePurchaseReturnPositions200ResponseInner[]';
-        $request = $this->createPurchaseReturnPositionsRequest($id, $create_purchase_return_positions_request, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->createPurchaseReturnPositionsRequest($id, $purchase_return_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2071,7 +2428,7 @@ class PurchaseReturnsApi
      * Create request for operation 'createPurchaseReturnPositions'
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\CreatePurchaseReturnPositionsRequest $create_purchase_return_positions_request (required)
+     * @param  \OpenAPI\Client\Model\PurchaseReturnPosition[] $purchase_return_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -2081,7 +2438,7 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createPurchaseReturnPositionsRequest($id, $create_purchase_return_positions_request, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnPositions'][0])
+    public function createPurchaseReturnPositionsRequest($id, $purchase_return_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnPositions'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -2091,19 +2448,25 @@ class PurchaseReturnsApi
             );
         }
 
-        // verify the required parameter 'create_purchase_return_positions_request' is set
-        if ($create_purchase_return_positions_request === null || (is_array($create_purchase_return_positions_request) && count($create_purchase_return_positions_request) === 0)) {
+        // verify the required parameter 'purchase_return_position' is set
+        if ($purchase_return_position === null || (is_array($purchase_return_position) && count($purchase_return_position) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $create_purchase_return_positions_request when calling createPurchaseReturnPositions'
+                'Missing the required parameter $purchase_return_position when calling createPurchaseReturnPositions'
             );
         }
+        if (count($purchase_return_position) > 1000) {
+            throw new \InvalidArgumentException('invalid value for "$purchase_return_position" when calling PurchaseReturnsApi.createPurchaseReturnPositions, number of items must be less than or equal to 1000.');
+        }
+        if (count($purchase_return_position) < 1) {
+            throw new \InvalidArgumentException('invalid value for "$purchase_return_position" when calling PurchaseReturnsApi.createPurchaseReturnPositions, number of items must be greater than or equal to 1.');
+        }
+        
 
 
 
 
 
-
-        $resourcePath = '/entity/purchasereturn/{id}/positions';
+        $resourcePath = '/entity/purchasereturn/{id}/positions/batch';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2150,12 +2513,12 @@ class PurchaseReturnsApi
         );
 
         // for model (json/xml)
-        if (isset($create_purchase_return_positions_request)) {
+        if (isset($purchase_return_position)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_purchase_return_positions_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($purchase_return_position));
             } else {
-                $httpBody = $create_purchase_return_positions_request;
+                $httpBody = $purchase_return_position;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -6905,16 +7268,15 @@ class PurchaseReturnsApi
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
-     * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnPositions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\PurchaseReturnPositionList|\OpenAPI\Client\Model\ErrorOrArray
      */
-    public function getPurchaseReturnPositions($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getPurchaseReturnPositions'][0])
+    public function getPurchaseReturnPositions($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnPositions'][0])
     {
-        list($response) = $this->getPurchaseReturnPositionsWithHttpInfo($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType);
+        list($response) = $this->getPurchaseReturnPositionsWithHttpInfo($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $contentType);
         return $response;
     }
 
@@ -6930,16 +7292,15 @@ class PurchaseReturnsApi
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
-     * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnPositions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\PurchaseReturnPositionList|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPurchaseReturnPositionsWithHttpInfo($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getPurchaseReturnPositions'][0])
+    public function getPurchaseReturnPositionsWithHttpInfo($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnPositions'][0])
     {
-        $request = $this->getPurchaseReturnPositionsRequest($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->getPurchaseReturnPositionsRequest($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -7036,15 +7397,14 @@ class PurchaseReturnsApi
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
-     * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnPositionsAsync($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getPurchaseReturnPositions'][0])
+    public function getPurchaseReturnPositionsAsync($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnPositions'][0])
     {
-        return $this->getPurchaseReturnPositionsAsyncWithHttpInfo($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType)
+        return $this->getPurchaseReturnPositionsAsyncWithHttpInfo($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -7064,16 +7424,15 @@ class PurchaseReturnsApi
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
-     * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnPositionsAsyncWithHttpInfo($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getPurchaseReturnPositions'][0])
+    public function getPurchaseReturnPositionsAsyncWithHttpInfo($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnPositions'][0])
     {
         $returnType = '\OpenAPI\Client\Model\PurchaseReturnPositionList';
-        $request = $this->getPurchaseReturnPositionsRequest($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->getPurchaseReturnPositionsRequest($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -7121,13 +7480,12 @@ class PurchaseReturnsApi
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
-     * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPurchaseReturnPositionsRequest($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getPurchaseReturnPositions'][0])
+    public function getPurchaseReturnPositionsRequest($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnPositions'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -7148,7 +7506,6 @@ class PurchaseReturnsApi
             throw new \InvalidArgumentException('invalid value for "$offset" when calling PurchaseReturnsApi.getPurchaseReturnPositions, must be bigger than or equal to 0.');
         }
         
-
 
 
 
@@ -7205,10 +7562,6 @@ class PurchaseReturnsApi
         // header params
         if ($accept_encoding !== null) {
             $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
-        }
-        // header params
-        if ($content_type !== null) {
-            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
         }
 
         // path params

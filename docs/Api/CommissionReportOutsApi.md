@@ -9,8 +9,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createCommissionReportOutBatch()**](CommissionReportOutsApi.md#createCommissionReportOutBatch) | **POST** /entity/commissionreportout/batch | Массовое создание и обновление CommissionReportOut |
 | [**createCommissionReportOutMetadataAttribute()**](CommissionReportOutsApi.md#createCommissionReportOutMetadataAttribute) | **POST** /entity/commissionreportout/metadata/attributes | Создать доп. поле CommissionReportOut |
 | [**createCommissionReportOutMetadataState()**](CommissionReportOutsApi.md#createCommissionReportOutMetadataState) | **POST** /entity/commissionreportout/metadata/states | Создать статус CommissionReportOut |
-| [**createCommissionReportOutPosition()**](CommissionReportOutsApi.md#createCommissionReportOutPosition) | **POST** /entity/commissionreportout/{id}/positions | Создать позицию CommissionReportOut |
-| [**createCommissionReportOutPositionsBatch()**](CommissionReportOutsApi.md#createCommissionReportOutPositionsBatch) | **POST** /entity/commissionreportout/{id}/positions/batch | Массовое создание позиций CommissionReportOut |
+| [**createCommissionReportOutPosition()**](CommissionReportOutsApi.md#createCommissionReportOutPosition) | **POST** /entity/commissionreportout/{id}/positions | Создать и обновить позицию Выданного отчета комиссионера |
+| [**createCommissionReportOutPositions()**](CommissionReportOutsApi.md#createCommissionReportOutPositions) | **POST** /entity/commissionreportout/{id}/positions/batch | Массовое создание и обновление позиций Выданного отчета комиссионера |
 | [**deleteCommissionReportOut()**](CommissionReportOutsApi.md#deleteCommissionReportOut) | **DELETE** /entity/commissionreportout/{id} | Удалить CommissionReportOut |
 | [**deleteCommissionReportOutBatch()**](CommissionReportOutsApi.md#deleteCommissionReportOutBatch) | **POST** /entity/commissionreportout/delete | Массовое удаление CommissionReportOut |
 | [**deleteCommissionReportOutFile()**](CommissionReportOutsApi.md#deleteCommissionReportOutFile) | **DELETE** /entity/commissionreportout/{id}/files/{fileId} | Удалить файл Выданного отчета комиссионера |
@@ -392,7 +392,7 @@ try {
 createCommissionReportOutPosition($id, $commission_report_out_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CommissionReportOutPosition
 ```
 
-Создать позицию CommissionReportOut
+Создать и обновить позицию Выданного отчета комиссионера
 
 ### Example
 
@@ -459,13 +459,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createCommissionReportOutPositionsBatch()`
+## `createCommissionReportOutPositions()`
 
 ```php
-createCommissionReportOutPositionsBatch($id, $commission_report_out_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateCommissionReportOutPositionsBatch200ResponseInner[]
+createCommissionReportOutPositions($id, $commission_report_out_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateCommissionReportOutPositions200ResponseInner[]
 ```
 
-Массовое создание позиций CommissionReportOut
+Массовое создание и обновление позиций Выданного отчета комиссионера
 
 ### Example
 
@@ -497,10 +497,10 @@ $accept_encoding = gzip, deflate, br; // string
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createCommissionReportOutPositionsBatch($id, $commission_report_out_position, $expand, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->createCommissionReportOutPositions($id, $commission_report_out_position, $expand, $accept, $accept_encoding, $content_type);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling CommissionReportOutsApi->createCommissionReportOutPositionsBatch: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling CommissionReportOutsApi->createCommissionReportOutPositions: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -517,7 +517,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateCommissionReportOutPositionsBatch200ResponseInner[]**](../Model/CreateCommissionReportOutPositionsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\CreateCommissionReportOutPositions200ResponseInner[]**](../Model/CreateCommissionReportOutPositions200ResponseInner.md)
 
 ### Authorization
 

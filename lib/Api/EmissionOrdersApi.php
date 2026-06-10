@@ -80,10 +80,10 @@ class EmissionOrdersApi
         'createEmissionOrderBatch' => [
             'application/json',
         ],
-        'createEmissionOrderPositions' => [
+        'createEmissionOrderPosition' => [
             'application/json',
         ],
-        'createEmissionOrderPositionsBatch' => [
+        'createEmissionOrderPositions' => [
             'application/json',
         ],
         'deleteEmissionOrderMetadataStateById' => [
@@ -839,9 +839,9 @@ class EmissionOrdersApi
     }
 
     /**
-     * Operation createEmissionOrderPositions
+     * Operation createEmissionOrderPosition
      *
-     * Создать позицию Заказа кодов маркировки
+     * Создать и обновить позицию Заказа кодов маркировки
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EmissionOrderPosition $emission_order_position emission_order_position (required)
@@ -849,22 +849,22 @@ class EmissionOrdersApi
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderPositions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderPosition'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\EmissionOrderPosition|\OpenAPI\Client\Model\ErrorOrArray
      */
-    public function createEmissionOrderPositions($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPositions'][0])
+    public function createEmissionOrderPosition($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPosition'][0])
     {
-        list($response) = $this->createEmissionOrderPositionsWithHttpInfo($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        list($response) = $this->createEmissionOrderPositionWithHttpInfo($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
     }
 
     /**
-     * Operation createEmissionOrderPositionsWithHttpInfo
+     * Operation createEmissionOrderPositionWithHttpInfo
      *
-     * Создать позицию Заказа кодов маркировки
+     * Создать и обновить позицию Заказа кодов маркировки
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EmissionOrderPosition $emission_order_position (required)
@@ -872,15 +872,15 @@ class EmissionOrdersApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderPositions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderPosition'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\EmissionOrderPosition|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createEmissionOrderPositionsWithHttpInfo($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPositions'][0])
+    public function createEmissionOrderPositionWithHttpInfo($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPosition'][0])
     {
-        $request = $this->createEmissionOrderPositionsRequest($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->createEmissionOrderPositionRequest($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -966,9 +966,9 @@ class EmissionOrdersApi
     }
 
     /**
-     * Operation createEmissionOrderPositionsAsync
+     * Operation createEmissionOrderPositionAsync
      *
-     * Создать позицию Заказа кодов маркировки
+     * Создать и обновить позицию Заказа кодов маркировки
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EmissionOrderPosition $emission_order_position (required)
@@ -976,14 +976,14 @@ class EmissionOrdersApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderPositions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createEmissionOrderPositionsAsync($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPositions'][0])
+    public function createEmissionOrderPositionAsync($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPosition'][0])
     {
-        return $this->createEmissionOrderPositionsAsyncWithHttpInfo($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
+        return $this->createEmissionOrderPositionAsyncWithHttpInfo($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -992,9 +992,9 @@ class EmissionOrdersApi
     }
 
     /**
-     * Operation createEmissionOrderPositionsAsyncWithHttpInfo
+     * Operation createEmissionOrderPositionAsyncWithHttpInfo
      *
-     * Создать позицию Заказа кодов маркировки
+     * Создать и обновить позицию Заказа кодов маркировки
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EmissionOrderPosition $emission_order_position (required)
@@ -1002,15 +1002,15 @@ class EmissionOrdersApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderPositions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createEmissionOrderPositionsAsyncWithHttpInfo($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPositions'][0])
+    public function createEmissionOrderPositionAsyncWithHttpInfo($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPosition'][0])
     {
         $returnType = '\OpenAPI\Client\Model\EmissionOrderPosition';
-        $request = $this->createEmissionOrderPositionsRequest($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->createEmissionOrderPositionRequest($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1049,7 +1049,7 @@ class EmissionOrdersApi
     }
 
     /**
-     * Create request for operation 'createEmissionOrderPositions'
+     * Create request for operation 'createEmissionOrderPosition'
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EmissionOrderPosition $emission_order_position (required)
@@ -1057,25 +1057,25 @@ class EmissionOrdersApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderPositions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createEmissionOrderPositionsRequest($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPositions'][0])
+    public function createEmissionOrderPositionRequest($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPosition'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling createEmissionOrderPositions'
+                'Missing the required parameter $id when calling createEmissionOrderPosition'
             );
         }
 
         // verify the required parameter 'emission_order_position' is set
         if ($emission_order_position === null || (is_array($emission_order_position) && count($emission_order_position) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $emission_order_position when calling createEmissionOrderPositions'
+                'Missing the required parameter $emission_order_position when calling createEmissionOrderPosition'
             );
         }
 
@@ -1193,9 +1193,9 @@ class EmissionOrdersApi
     }
 
     /**
-     * Operation createEmissionOrderPositionsBatch
+     * Operation createEmissionOrderPositions
      *
-     * Создать позиции Заказа кодов маркировки
+     * Массовое создание и обновление позиций Заказа кодов маркировки
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EmissionOrderPosition[] $emission_order_position emission_order_position (required)
@@ -1203,22 +1203,22 @@ class EmissionOrdersApi
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderPositionsBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderPositions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreateEmissionOrderPositionsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\CreateEmissionOrderPositions200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
      */
-    public function createEmissionOrderPositionsBatch($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPositionsBatch'][0])
+    public function createEmissionOrderPositions($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPositions'][0])
     {
-        list($response) = $this->createEmissionOrderPositionsBatchWithHttpInfo($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        list($response) = $this->createEmissionOrderPositionsWithHttpInfo($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
     }
 
     /**
-     * Operation createEmissionOrderPositionsBatchWithHttpInfo
+     * Operation createEmissionOrderPositionsWithHttpInfo
      *
-     * Создать позиции Заказа кодов маркировки
+     * Массовое создание и обновление позиций Заказа кодов маркировки
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EmissionOrderPosition[] $emission_order_position (required)
@@ -1226,15 +1226,15 @@ class EmissionOrdersApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderPositionsBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderPositions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreateEmissionOrderPositionsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\CreateEmissionOrderPositions200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createEmissionOrderPositionsBatchWithHttpInfo($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPositionsBatch'][0])
+    public function createEmissionOrderPositionsWithHttpInfo($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPositions'][0])
     {
-        $request = $this->createEmissionOrderPositionsBatchRequest($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->createEmissionOrderPositionsRequest($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1262,7 +1262,7 @@ class EmissionOrdersApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CreateEmissionOrderPositionsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\CreateEmissionOrderPositions200ResponseInner[]',
                         $request,
                         $response,
                     );
@@ -1290,7 +1290,7 @@ class EmissionOrdersApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\CreateEmissionOrderPositionsBatch200ResponseInner[]',
+                '\OpenAPI\Client\Model\CreateEmissionOrderPositions200ResponseInner[]',
                 $request,
                 $response,
             );
@@ -1299,7 +1299,7 @@ class EmissionOrdersApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreateEmissionOrderPositionsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\CreateEmissionOrderPositions200ResponseInner[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1320,9 +1320,9 @@ class EmissionOrdersApi
     }
 
     /**
-     * Operation createEmissionOrderPositionsBatchAsync
+     * Operation createEmissionOrderPositionsAsync
      *
-     * Создать позиции Заказа кодов маркировки
+     * Массовое создание и обновление позиций Заказа кодов маркировки
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EmissionOrderPosition[] $emission_order_position (required)
@@ -1330,14 +1330,14 @@ class EmissionOrdersApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderPositionsBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createEmissionOrderPositionsBatchAsync($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPositionsBatch'][0])
+    public function createEmissionOrderPositionsAsync($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPositions'][0])
     {
-        return $this->createEmissionOrderPositionsBatchAsyncWithHttpInfo($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
+        return $this->createEmissionOrderPositionsAsyncWithHttpInfo($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1346,9 +1346,9 @@ class EmissionOrdersApi
     }
 
     /**
-     * Operation createEmissionOrderPositionsBatchAsyncWithHttpInfo
+     * Operation createEmissionOrderPositionsAsyncWithHttpInfo
      *
-     * Создать позиции Заказа кодов маркировки
+     * Массовое создание и обновление позиций Заказа кодов маркировки
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EmissionOrderPosition[] $emission_order_position (required)
@@ -1356,15 +1356,15 @@ class EmissionOrdersApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderPositionsBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createEmissionOrderPositionsBatchAsyncWithHttpInfo($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPositionsBatch'][0])
+    public function createEmissionOrderPositionsAsyncWithHttpInfo($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPositions'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CreateEmissionOrderPositionsBatch200ResponseInner[]';
-        $request = $this->createEmissionOrderPositionsBatchRequest($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $returnType = '\OpenAPI\Client\Model\CreateEmissionOrderPositions200ResponseInner[]';
+        $request = $this->createEmissionOrderPositionsRequest($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1403,7 +1403,7 @@ class EmissionOrdersApi
     }
 
     /**
-     * Create request for operation 'createEmissionOrderPositionsBatch'
+     * Create request for operation 'createEmissionOrderPositions'
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EmissionOrderPosition[] $emission_order_position (required)
@@ -1411,32 +1411,32 @@ class EmissionOrdersApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderPositionsBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createEmissionOrderPositionsBatchRequest($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPositionsBatch'][0])
+    public function createEmissionOrderPositionsRequest($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPositions'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling createEmissionOrderPositionsBatch'
+                'Missing the required parameter $id when calling createEmissionOrderPositions'
             );
         }
 
         // verify the required parameter 'emission_order_position' is set
         if ($emission_order_position === null || (is_array($emission_order_position) && count($emission_order_position) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $emission_order_position when calling createEmissionOrderPositionsBatch'
+                'Missing the required parameter $emission_order_position when calling createEmissionOrderPositions'
             );
         }
         if (count($emission_order_position) > 1000) {
-            throw new \InvalidArgumentException('invalid value for "$emission_order_position" when calling EmissionOrdersApi.createEmissionOrderPositionsBatch, number of items must be less than or equal to 1000.');
+            throw new \InvalidArgumentException('invalid value for "$emission_order_position" when calling EmissionOrdersApi.createEmissionOrderPositions, number of items must be less than or equal to 1000.');
         }
         if (count($emission_order_position) < 1) {
-            throw new \InvalidArgumentException('invalid value for "$emission_order_position" when calling EmissionOrdersApi.createEmissionOrderPositionsBatch, number of items must be greater than or equal to 1.');
+            throw new \InvalidArgumentException('invalid value for "$emission_order_position" when calling EmissionOrdersApi.createEmissionOrderPositions, number of items must be greater than or equal to 1.');
         }
         
 

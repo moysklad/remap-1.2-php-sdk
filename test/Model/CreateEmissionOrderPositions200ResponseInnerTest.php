@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateSupplyPositionsBatch200ResponseInnerTest
+ * CreateEmissionOrderPositions200ResponseInnerTest
  *
  * PHP version 8.1
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * CreateSupplyPositionsBatch200ResponseInnerTest Class Doc Comment
+ * CreateEmissionOrderPositions200ResponseInnerTest Class Doc Comment
  *
  * @category    Class
- * @description CreateSupplyPositionsBatch200ResponseInner
+ * @description CreateEmissionOrderPositions200ResponseInner
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class CreateSupplyPositionsBatch200ResponseInnerTest extends TestCase
+class CreateEmissionOrderPositions200ResponseInnerTest extends TestCase
 {
 
     /**
@@ -71,9 +71,9 @@ class CreateSupplyPositionsBatch200ResponseInnerTest extends TestCase
     }
 
     /**
-     * Test "CreateSupplyPositionsBatch200ResponseInner"
+     * Test "CreateEmissionOrderPositions200ResponseInner"
      */
-    public function testCreateSupplyPositionsBatch200ResponseInner()
+    public function testCreateEmissionOrderPositions200ResponseInner()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -116,51 +116,6 @@ class CreateSupplyPositionsBatch200ResponseInnerTest extends TestCase
     }
 
     /**
-     * Test attribute "country"
-     */
-    public function testPropertyCountry()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "discount"
-     */
-    public function testPropertyDiscount()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "gtd"
-     */
-    public function testPropertyGtd()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "pack"
-     */
-    public function testPropertyPack()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "price"
-     */
-    public function testPropertyPrice()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "quantity"
      */
     public function testPropertyQuantity()
@@ -170,54 +125,9 @@ class CreateSupplyPositionsBatch200ResponseInnerTest extends TestCase
     }
 
     /**
-     * Test attribute "slot"
+     * Test attribute "status"
      */
-    public function testPropertySlot()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "things"
-     */
-    public function testPropertyThings()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "tracking_codes"
-     */
-    public function testPropertyTrackingCodes()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "overhead"
-     */
-    public function testPropertyOverhead()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "vat"
-     */
-    public function testPropertyVat()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "vat_enabled"
-     */
-    public function testPropertyVatEnabled()
+    public function testPropertyStatus()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -132,9 +132,21 @@ class EntersApiTest extends TestCase
     }
 
     /**
+     * Test case for createEnterPosition
+     *
+     * Создать и обновить позицию Оприходования.
+     *
+     */
+    public function testCreateEnterPosition()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createEnterPositions
      *
-     * Создать позиции Оприходования.
+     * Массовое создание и обновление позиций Оприходования.
      *
      */
     public function testCreateEnterPositions()

@@ -1,4 +1,4 @@
-# # CreateCommissionReportOutPositionsBatch200ResponseInner
+# # CreateCommissionReportOutPositions200ResponseInner
 
 ## Properties
 

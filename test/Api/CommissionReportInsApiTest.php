@@ -120,9 +120,21 @@ class CommissionReportInsApiTest extends TestCase
     }
 
     /**
+     * Test case for createCommissionReportInPosition
+     *
+     * Создать и обновить позицию Полученного отчета комиссионера.
+     *
+     */
+    public function testCreateCommissionReportInPosition()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createCommissionReportInPositions
      *
-     * Создать позиции CommissionReportIn.
+     * Массовое создание и обновление позиций Полученного отчета комиссионера.
      *
      */
     public function testCreateCommissionReportInPositions()

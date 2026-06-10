@@ -120,24 +120,24 @@ class MovesApiTest extends TestCase
     }
 
     /**
-     * Test case for createMovePositions
+     * Test case for createMovePosition
      *
-     * Создать позицию Перемещения.
+     * Создать и обновить позицию Перемещения.
      *
      */
-    public function testCreateMovePositions()
+    public function testCreateMovePosition()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for createMovePositionsBatch
+     * Test case for createMovePositions
      *
-     * Создать позиции Перемещения.
+     * Массовое создание и обновление позиций Перемещения.
      *
      */
-    public function testCreateMovePositionsBatch()
+    public function testCreateMovePositions()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

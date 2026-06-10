@@ -83,6 +83,9 @@ class DemandsApi
         'createDemandMetadataAttribute' => [
             'application/json',
         ],
+        'createDemandPosition' => [
+            'application/json',
+        ],
         'createDemandPositions' => [
             'application/json',
         ],
@@ -1185,12 +1188,366 @@ class DemandsApi
     }
 
     /**
-     * Operation createDemandPositions
+     * Operation createDemandPosition
      *
-     * Создать позиции Отгрузки
+     * Создать и обновить позицию Отгрузки
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\CreateDemandPositionsRequest $create_demand_positions_request create_demand_positions_request (required)
+     * @param  \OpenAPI\Client\Model\DemandPosition $demand_position demand_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createDemandPosition'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\DemandPosition|\OpenAPI\Client\Model\ErrorOrArray
+     */
+    public function createDemandPosition($id, $demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createDemandPosition'][0])
+    {
+        list($response) = $this->createDemandPositionWithHttpInfo($id, $demand_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createDemandPositionWithHttpInfo
+     *
+     * Создать и обновить позицию Отгрузки
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\DemandPosition $demand_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createDemandPosition'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\DemandPosition|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createDemandPositionWithHttpInfo($id, $demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createDemandPosition'][0])
+    {
+        $request = $this->createDemandPositionRequest($id, $demand_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\DemandPosition',
+                        $request,
+                        $response,
+                    );
+                default:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\OpenAPI\Client\Model\DemandPosition',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\DemandPosition',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createDemandPositionAsync
+     *
+     * Создать и обновить позицию Отгрузки
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\DemandPosition $demand_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createDemandPosition'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createDemandPositionAsync($id, $demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createDemandPosition'][0])
+    {
+        return $this->createDemandPositionAsyncWithHttpInfo($id, $demand_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createDemandPositionAsyncWithHttpInfo
+     *
+     * Создать и обновить позицию Отгрузки
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\DemandPosition $demand_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createDemandPosition'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createDemandPositionAsyncWithHttpInfo($id, $demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createDemandPosition'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\DemandPosition';
+        $request = $this->createDemandPositionRequest($id, $demand_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createDemandPosition'
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\DemandPosition $demand_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createDemandPosition'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createDemandPositionRequest($id, $demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createDemandPosition'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling createDemandPosition'
+            );
+        }
+
+        // verify the required parameter 'demand_position' is set
+        if ($demand_position === null || (is_array($demand_position) && count($demand_position) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $demand_position when calling createDemandPosition'
+            );
+        }
+
+
+
+
+
+
+        $resourcePath = '/entity/demand/{id}/positions';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $expand,
+            'expand', // param base name
+            'string', // openApiType
+            '', // style
+            false, // explode
+            false // required
+        ) ?? []);
+
+        // header params
+        if ($accept !== null) {
+            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+        }
+        // header params
+        if ($accept_encoding !== null) {
+            $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+        // header params
+        if ($content_type !== null) {
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
+        }
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'text/html;charset=UTF-8', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($demand_position)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($demand_position));
+            } else {
+                $httpBody = $demand_position;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createDemandPositions
+     *
+     * Массовое создание и обновление позиций Отгрузки
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\DemandPosition[] $demand_position demand_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
@@ -1201,19 +1558,19 @@ class DemandsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\CreateDemandPositions200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
      */
-    public function createDemandPositions($id, $create_demand_positions_request, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createDemandPositions'][0])
+    public function createDemandPositions($id, $demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createDemandPositions'][0])
     {
-        list($response) = $this->createDemandPositionsWithHttpInfo($id, $create_demand_positions_request, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        list($response) = $this->createDemandPositionsWithHttpInfo($id, $demand_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
     }
 
     /**
      * Operation createDemandPositionsWithHttpInfo
      *
-     * Создать позиции Отгрузки
+     * Массовое создание и обновление позиций Отгрузки
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\CreateDemandPositionsRequest $create_demand_positions_request (required)
+     * @param  \OpenAPI\Client\Model\DemandPosition[] $demand_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -1224,9 +1581,9 @@ class DemandsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\CreateDemandPositions200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createDemandPositionsWithHttpInfo($id, $create_demand_positions_request, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createDemandPositions'][0])
+    public function createDemandPositionsWithHttpInfo($id, $demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createDemandPositions'][0])
     {
-        $request = $this->createDemandPositionsRequest($id, $create_demand_positions_request, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->createDemandPositionsRequest($id, $demand_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1314,10 +1671,10 @@ class DemandsApi
     /**
      * Operation createDemandPositionsAsync
      *
-     * Создать позиции Отгрузки
+     * Массовое создание и обновление позиций Отгрузки
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\CreateDemandPositionsRequest $create_demand_positions_request (required)
+     * @param  \OpenAPI\Client\Model\DemandPosition[] $demand_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -1327,9 +1684,9 @@ class DemandsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createDemandPositionsAsync($id, $create_demand_positions_request, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createDemandPositions'][0])
+    public function createDemandPositionsAsync($id, $demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createDemandPositions'][0])
     {
-        return $this->createDemandPositionsAsyncWithHttpInfo($id, $create_demand_positions_request, $expand, $accept, $accept_encoding, $content_type, $contentType)
+        return $this->createDemandPositionsAsyncWithHttpInfo($id, $demand_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1340,10 +1697,10 @@ class DemandsApi
     /**
      * Operation createDemandPositionsAsyncWithHttpInfo
      *
-     * Создать позиции Отгрузки
+     * Массовое создание и обновление позиций Отгрузки
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\CreateDemandPositionsRequest $create_demand_positions_request (required)
+     * @param  \OpenAPI\Client\Model\DemandPosition[] $demand_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -1353,10 +1710,10 @@ class DemandsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createDemandPositionsAsyncWithHttpInfo($id, $create_demand_positions_request, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createDemandPositions'][0])
+    public function createDemandPositionsAsyncWithHttpInfo($id, $demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createDemandPositions'][0])
     {
         $returnType = '\OpenAPI\Client\Model\CreateDemandPositions200ResponseInner[]';
-        $request = $this->createDemandPositionsRequest($id, $create_demand_positions_request, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->createDemandPositionsRequest($id, $demand_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1398,7 +1755,7 @@ class DemandsApi
      * Create request for operation 'createDemandPositions'
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\CreateDemandPositionsRequest $create_demand_positions_request (required)
+     * @param  \OpenAPI\Client\Model\DemandPosition[] $demand_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -1408,7 +1765,7 @@ class DemandsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createDemandPositionsRequest($id, $create_demand_positions_request, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createDemandPositions'][0])
+    public function createDemandPositionsRequest($id, $demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createDemandPositions'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -1418,19 +1775,25 @@ class DemandsApi
             );
         }
 
-        // verify the required parameter 'create_demand_positions_request' is set
-        if ($create_demand_positions_request === null || (is_array($create_demand_positions_request) && count($create_demand_positions_request) === 0)) {
+        // verify the required parameter 'demand_position' is set
+        if ($demand_position === null || (is_array($demand_position) && count($demand_position) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $create_demand_positions_request when calling createDemandPositions'
+                'Missing the required parameter $demand_position when calling createDemandPositions'
             );
         }
+        if (count($demand_position) > 1000) {
+            throw new \InvalidArgumentException('invalid value for "$demand_position" when calling DemandsApi.createDemandPositions, number of items must be less than or equal to 1000.');
+        }
+        if (count($demand_position) < 1) {
+            throw new \InvalidArgumentException('invalid value for "$demand_position" when calling DemandsApi.createDemandPositions, number of items must be greater than or equal to 1.');
+        }
+        
 
 
 
 
 
-
-        $resourcePath = '/entity/demand/{id}/positions';
+        $resourcePath = '/entity/demand/{id}/positions/batch';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1477,12 +1840,12 @@ class DemandsApi
         );
 
         // for model (json/xml)
-        if (isset($create_demand_positions_request)) {
+        if (isset($demand_position)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_demand_positions_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($demand_position));
             } else {
-                $httpBody = $create_demand_positions_request;
+                $httpBody = $demand_position;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

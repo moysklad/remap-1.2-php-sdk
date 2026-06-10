@@ -9,7 +9,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createPurchaseOrderMetadataAttribute()**](PurchaseOrdersApi.md#createPurchaseOrderMetadataAttribute) | **POST** /entity/purchaseorder/metadata/attributes | Создать Доп. поле PurchaseOrder |
 | [**createPurchaseOrderMetadataState()**](PurchaseOrdersApi.md#createPurchaseOrderMetadataState) | **POST** /entity/purchaseorder/metadata/states | Создать статус PurchaseOrder |
 | [**createPurchaseOrderNote()**](PurchaseOrdersApi.md#createPurchaseOrderNote) | **POST** /entity/purchaseorder/{id}/notes | Добавить Событие Заказа поставщику |
-| [**createPurchaseOrderPositions()**](PurchaseOrdersApi.md#createPurchaseOrderPositions) | **POST** /entity/purchaseorder/{id}/positions | Создать позиции PurchaseOrder |
+| [**createPurchaseOrderPosition()**](PurchaseOrdersApi.md#createPurchaseOrderPosition) | **POST** /entity/purchaseorder/{id}/positions | Создать и обновить позицию Заказа поставщику |
+| [**createPurchaseOrderPositions()**](PurchaseOrdersApi.md#createPurchaseOrderPositions) | **POST** /entity/purchaseorder/{id}/positions/batch | Массовое создание и обновление позиций Заказа поставщику |
 | [**deletePurchaseOrder()**](PurchaseOrdersApi.md#deletePurchaseOrder) | **DELETE** /entity/purchaseorder/{id} | Удалить PurchaseOrder |
 | [**deletePurchaseOrderBatch()**](PurchaseOrdersApi.md#deletePurchaseOrderBatch) | **POST** /entity/purchaseorder/delete | Массовое удаление PurchaseOrder |
 | [**deletePurchaseOrderMetadataAttributeById()**](PurchaseOrdersApi.md#deletePurchaseOrderMetadataAttributeById) | **DELETE** /entity/purchaseorder/metadata/attributes/{id} | Удалить отдельное доп. поле PurchaseOrder |
@@ -388,13 +389,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createPurchaseOrderPositions()`
+## `createPurchaseOrderPosition()`
 
 ```php
-createPurchaseOrderPositions($id, $create_purchase_order_positions_request, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreatePurchaseOrderPositions200ResponseInner[]
+createPurchaseOrderPosition($id, $purchase_order_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\PurchaseOrderPosition
 ```
 
-Создать позиции PurchaseOrder
+Создать и обновить позицию Заказа поставщику
 
 ### Example
 
@@ -419,14 +420,87 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     $config
 );
 $id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$create_purchase_order_positions_request = new \OpenAPI\Client\Model\CreatePurchaseOrderPositionsRequest(); // \OpenAPI\Client\Model\CreatePurchaseOrderPositionsRequest
+$purchase_order_position = new \OpenAPI\Client\Model\PurchaseOrderPosition(); // \OpenAPI\Client\Model\PurchaseOrderPosition
 $expand = agent,organization; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
 $accept_encoding = gzip, deflate, br; // string
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createPurchaseOrderPositions($id, $create_purchase_order_positions_request, $expand, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->createPurchaseOrderPosition($id, $purchase_order_position, $expand, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PurchaseOrdersApi->createPurchaseOrderPosition: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **purchase_order_position** | [**\OpenAPI\Client\Model\PurchaseOrderPosition**](../Model/PurchaseOrderPosition.md)|  | |
+| **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\PurchaseOrderPosition**](../Model/PurchaseOrderPosition.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createPurchaseOrderPositions()`
+
+```php
+createPurchaseOrderPositions($id, $purchase_order_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreatePurchaseOrderPositions200ResponseInner[]
+```
+
+Массовое создание и обновление позиций Заказа поставщику
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$purchase_order_position = array(new \OpenAPI\Client\Model\PurchaseOrderPosition()); // \OpenAPI\Client\Model\PurchaseOrderPosition[]
+$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = gzip, deflate, br; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createPurchaseOrderPositions($id, $purchase_order_position, $expand, $accept, $accept_encoding, $content_type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PurchaseOrdersApi->createPurchaseOrderPositions: ', $e->getMessage(), PHP_EOL;
@@ -438,7 +512,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
-| **create_purchase_order_positions_request** | [**\OpenAPI\Client\Model\CreatePurchaseOrderPositionsRequest**](../Model/CreatePurchaseOrderPositionsRequest.md)|  | |
+| **purchase_order_position** | [**\OpenAPI\Client\Model\PurchaseOrderPosition[]**](../Model/PurchaseOrderPosition.md)|  | |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
@@ -1597,7 +1671,7 @@ try {
 ## `getPurchaseOrderPositions()`
 
 ```php
-getPurchaseOrderPositions($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\PurchaseOrderPosition[]
+getPurchaseOrderPositions($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding): \OpenAPI\Client\Model\PurchaseOrderPositionList
 ```
 
 Получить позиции PurchaseOrder
@@ -1631,10 +1705,9 @@ $expand = agent,organization; // string | Замена ссылок объект
 $fields = minimumStock; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
 $accept = 'application/json;charset=utf-8'; // string
 $accept_encoding = gzip, deflate, br; // string
-$content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->getPurchaseOrderPositions($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->getPurchaseOrderPositions($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PurchaseOrdersApi->getPurchaseOrderPositions: ', $e->getMessage(), PHP_EOL;
@@ -1652,11 +1725,10 @@ try {
 | **fields** | **string**| Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
-| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\PurchaseOrderPosition[]**](../Model/PurchaseOrderPosition.md)
+[**\OpenAPI\Client\Model\PurchaseOrderPositionList**](../Model/PurchaseOrderPositionList.md)
 
 ### Authorization
 

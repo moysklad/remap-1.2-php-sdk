@@ -89,6 +89,9 @@ class EntersApi
         'createEnterMetadataState' => [
             'application/json',
         ],
+        'createEnterPosition' => [
+            'application/json',
+        ],
         'createEnterPositions' => [
             'application/json',
         ],
@@ -1858,12 +1861,366 @@ class EntersApi
     }
 
     /**
-     * Operation createEnterPositions
+     * Operation createEnterPosition
      *
-     * Создать позиции Оприходования
+     * Создать и обновить позицию Оприходования
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\CreateEnterPositionsRequest $create_enter_positions_request create_enter_positions_request (required)
+     * @param  \OpenAPI\Client\Model\EnterPosition $enter_position enter_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEnterPosition'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\EnterPosition|\OpenAPI\Client\Model\ErrorOrArray
+     */
+    public function createEnterPosition($id, $enter_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEnterPosition'][0])
+    {
+        list($response) = $this->createEnterPositionWithHttpInfo($id, $enter_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createEnterPositionWithHttpInfo
+     *
+     * Создать и обновить позицию Оприходования
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\EnterPosition $enter_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEnterPosition'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\EnterPosition|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createEnterPositionWithHttpInfo($id, $enter_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEnterPosition'][0])
+    {
+        $request = $this->createEnterPositionRequest($id, $enter_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\EnterPosition',
+                        $request,
+                        $response,
+                    );
+                default:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\OpenAPI\Client\Model\EnterPosition',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\EnterPosition',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createEnterPositionAsync
+     *
+     * Создать и обновить позицию Оприходования
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\EnterPosition $enter_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEnterPosition'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createEnterPositionAsync($id, $enter_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEnterPosition'][0])
+    {
+        return $this->createEnterPositionAsyncWithHttpInfo($id, $enter_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createEnterPositionAsyncWithHttpInfo
+     *
+     * Создать и обновить позицию Оприходования
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\EnterPosition $enter_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEnterPosition'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createEnterPositionAsyncWithHttpInfo($id, $enter_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEnterPosition'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\EnterPosition';
+        $request = $this->createEnterPositionRequest($id, $enter_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createEnterPosition'
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\EnterPosition $enter_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEnterPosition'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createEnterPositionRequest($id, $enter_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEnterPosition'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling createEnterPosition'
+            );
+        }
+
+        // verify the required parameter 'enter_position' is set
+        if ($enter_position === null || (is_array($enter_position) && count($enter_position) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $enter_position when calling createEnterPosition'
+            );
+        }
+
+
+
+
+
+
+        $resourcePath = '/entity/enter/{id}/positions';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $expand,
+            'expand', // param base name
+            'string', // openApiType
+            '', // style
+            false, // explode
+            false // required
+        ) ?? []);
+
+        // header params
+        if ($accept !== null) {
+            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+        }
+        // header params
+        if ($accept_encoding !== null) {
+            $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+        // header params
+        if ($content_type !== null) {
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
+        }
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'text/html;charset=UTF-8', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($enter_position)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($enter_position));
+            } else {
+                $httpBody = $enter_position;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createEnterPositions
+     *
+     * Массовое создание и обновление позиций Оприходования
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\EnterPosition[] $enter_position enter_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
@@ -1874,19 +2231,19 @@ class EntersApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\CreateEnterPositions200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
      */
-    public function createEnterPositions($id, $create_enter_positions_request, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEnterPositions'][0])
+    public function createEnterPositions($id, $enter_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEnterPositions'][0])
     {
-        list($response) = $this->createEnterPositionsWithHttpInfo($id, $create_enter_positions_request, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        list($response) = $this->createEnterPositionsWithHttpInfo($id, $enter_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
     }
 
     /**
      * Operation createEnterPositionsWithHttpInfo
      *
-     * Создать позиции Оприходования
+     * Массовое создание и обновление позиций Оприходования
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\CreateEnterPositionsRequest $create_enter_positions_request (required)
+     * @param  \OpenAPI\Client\Model\EnterPosition[] $enter_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -1897,9 +2254,9 @@ class EntersApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\CreateEnterPositions200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createEnterPositionsWithHttpInfo($id, $create_enter_positions_request, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEnterPositions'][0])
+    public function createEnterPositionsWithHttpInfo($id, $enter_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEnterPositions'][0])
     {
-        $request = $this->createEnterPositionsRequest($id, $create_enter_positions_request, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->createEnterPositionsRequest($id, $enter_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1987,10 +2344,10 @@ class EntersApi
     /**
      * Operation createEnterPositionsAsync
      *
-     * Создать позиции Оприходования
+     * Массовое создание и обновление позиций Оприходования
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\CreateEnterPositionsRequest $create_enter_positions_request (required)
+     * @param  \OpenAPI\Client\Model\EnterPosition[] $enter_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -2000,9 +2357,9 @@ class EntersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createEnterPositionsAsync($id, $create_enter_positions_request, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEnterPositions'][0])
+    public function createEnterPositionsAsync($id, $enter_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEnterPositions'][0])
     {
-        return $this->createEnterPositionsAsyncWithHttpInfo($id, $create_enter_positions_request, $expand, $accept, $accept_encoding, $content_type, $contentType)
+        return $this->createEnterPositionsAsyncWithHttpInfo($id, $enter_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2013,10 +2370,10 @@ class EntersApi
     /**
      * Operation createEnterPositionsAsyncWithHttpInfo
      *
-     * Создать позиции Оприходования
+     * Массовое создание и обновление позиций Оприходования
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\CreateEnterPositionsRequest $create_enter_positions_request (required)
+     * @param  \OpenAPI\Client\Model\EnterPosition[] $enter_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -2026,10 +2383,10 @@ class EntersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createEnterPositionsAsyncWithHttpInfo($id, $create_enter_positions_request, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEnterPositions'][0])
+    public function createEnterPositionsAsyncWithHttpInfo($id, $enter_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEnterPositions'][0])
     {
         $returnType = '\OpenAPI\Client\Model\CreateEnterPositions200ResponseInner[]';
-        $request = $this->createEnterPositionsRequest($id, $create_enter_positions_request, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->createEnterPositionsRequest($id, $enter_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2071,7 +2428,7 @@ class EntersApi
      * Create request for operation 'createEnterPositions'
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\CreateEnterPositionsRequest $create_enter_positions_request (required)
+     * @param  \OpenAPI\Client\Model\EnterPosition[] $enter_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -2081,7 +2438,7 @@ class EntersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createEnterPositionsRequest($id, $create_enter_positions_request, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEnterPositions'][0])
+    public function createEnterPositionsRequest($id, $enter_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEnterPositions'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -2091,19 +2448,25 @@ class EntersApi
             );
         }
 
-        // verify the required parameter 'create_enter_positions_request' is set
-        if ($create_enter_positions_request === null || (is_array($create_enter_positions_request) && count($create_enter_positions_request) === 0)) {
+        // verify the required parameter 'enter_position' is set
+        if ($enter_position === null || (is_array($enter_position) && count($enter_position) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $create_enter_positions_request when calling createEnterPositions'
+                'Missing the required parameter $enter_position when calling createEnterPositions'
             );
         }
+        if (count($enter_position) > 1000) {
+            throw new \InvalidArgumentException('invalid value for "$enter_position" when calling EntersApi.createEnterPositions, number of items must be less than or equal to 1000.');
+        }
+        if (count($enter_position) < 1) {
+            throw new \InvalidArgumentException('invalid value for "$enter_position" when calling EntersApi.createEnterPositions, number of items must be greater than or equal to 1.');
+        }
+        
 
 
 
 
 
-
-        $resourcePath = '/entity/enter/{id}/positions';
+        $resourcePath = '/entity/enter/{id}/positions/batch';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2150,12 +2513,12 @@ class EntersApi
         );
 
         // for model (json/xml)
-        if (isset($create_enter_positions_request)) {
+        if (isset($enter_position)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_enter_positions_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($enter_position));
             } else {
-                $httpBody = $create_enter_positions_request;
+                $httpBody = $enter_position;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

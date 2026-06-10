@@ -108,9 +108,21 @@ class SalesReturnsApiTest extends TestCase
     }
 
     /**
+     * Test case for createSalesReturnPosition
+     *
+     * Создать и обновить позицию Возврата покупателя.
+     *
+     */
+    public function testCreateSalesReturnPosition()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createSalesReturnPositions
      *
-     * Создать позиции Возврата покупателя.
+     * Массовое создание и обновление позиций Возврата покупателя.
      *
      */
     public function testCreateSalesReturnPositions()

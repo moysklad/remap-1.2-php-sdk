@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateInventoryPositionsRequestTest
+ * CreateProcessingProcessPositions200ResponseInnerTest
  *
  * PHP version 8.1
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * CreateInventoryPositionsRequestTest Class Doc Comment
+ * CreateProcessingProcessPositions200ResponseInnerTest Class Doc Comment
  *
  * @category    Class
- * @description CreateInventoryPositionsRequest
+ * @description CreateProcessingProcessPositions200ResponseInner
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class CreateInventoryPositionsRequestTest extends TestCase
+class CreateProcessingProcessPositions200ResponseInnerTest extends TestCase
 {
 
     /**
@@ -71,9 +71,9 @@ class CreateInventoryPositionsRequestTest extends TestCase
     }
 
     /**
-     * Test "CreateInventoryPositionsRequest"
+     * Test "CreateProcessingProcessPositions200ResponseInner"
      */
-    public function testCreateInventoryPositionsRequest()
+    public function testCreateProcessingProcessPositions200ResponseInner()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -107,72 +107,27 @@ class CreateInventoryPositionsRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "assortment"
+     * Test attribute "processingstage"
      */
-    public function testPropertyAssortment()
+    public function testPropertyProcessingstage()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "calculated_quantity"
+     * Test attribute "next_positions"
      */
-    public function testPropertyCalculatedQuantity()
+    public function testPropertyNextPositions()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "correction_amount"
+     * Test attribute "errors"
      */
-    public function testPropertyCorrectionAmount()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "correction_sum"
-     */
-    public function testPropertyCorrectionSum()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "pack"
-     */
-    public function testPropertyPack()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "price"
-     */
-    public function testPropertyPrice()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "things"
-     */
-    public function testPropertyThings()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "quantity"
-     */
-    public function testPropertyQuantity()
+    public function testPropertyErrors()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

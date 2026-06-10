@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateEnterPositionsRequest
+ * CreateCommissionReportOutPositions200ResponseInner
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * CreateEnterPositionsRequest Class Doc Comment
+ * CreateCommissionReportOutPositions200ResponseInner Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class CreateEnterPositionsRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class CreateCommissionReportOutPositions200ResponseInner implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class CreateEnterPositionsRequest implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var string
       */
-    protected static $openAPIModelName = 'createEnterPositions_request';
+    protected static $openAPIModelName = 'createCommissionReportOutPositions_200_response_inner';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,16 +60,14 @@ class CreateEnterPositionsRequest implements ModelInterface, ArrayAccess, \JsonS
         'meta' => '\OpenAPI\Client\Model\Meta',
         'id' => 'string',
         'account_id' => 'string',
-        'assortment' => '\OpenAPI\Client\Model\Assortment',
-        'country' => '\OpenAPI\Client\Model\Country',
-        'gtd' => '\OpenAPI\Client\Model\Gtd',
-        'overhead' => 'int',
-        'pack' => '\OpenAPI\Client\Model\Pack',
-        'price' => 'float',
         'quantity' => 'float',
-        'reason' => 'string',
-        'slot' => '\OpenAPI\Client\Model\StoreSlot',
-        'things' => 'string[]'
+        'price' => 'float',
+        'reward' => 'float',
+        'vat' => 'int',
+        'vat_enabled' => 'bool',
+        'assortment' => '\OpenAPI\Client\Model\Assortment',
+        'pack' => '\OpenAPI\Client\Model\Pack',
+        'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
     ];
 
     /**
@@ -83,16 +81,14 @@ class CreateEnterPositionsRequest implements ModelInterface, ArrayAccess, \JsonS
         'meta' => null,
         'id' => 'uuid',
         'account_id' => 'uuid',
-        'assortment' => null,
-        'country' => null,
-        'gtd' => null,
-        'overhead' => null,
-        'pack' => null,
-        'price' => 'double',
         'quantity' => 'double',
-        'reason' => null,
-        'slot' => null,
-        'things' => null
+        'price' => 'double',
+        'reward' => 'double',
+        'vat' => null,
+        'vat_enabled' => null,
+        'assortment' => null,
+        'pack' => null,
+        'errors' => null
     ];
 
     /**
@@ -104,16 +100,14 @@ class CreateEnterPositionsRequest implements ModelInterface, ArrayAccess, \JsonS
         'meta' => false,
         'id' => false,
         'account_id' => false,
-        'assortment' => false,
-        'country' => true,
-        'gtd' => true,
-        'overhead' => false,
-        'pack' => true,
-        'price' => false,
         'quantity' => false,
-        'reason' => true,
-        'slot' => true,
-        'things' => false
+        'price' => false,
+        'reward' => false,
+        'vat' => false,
+        'vat_enabled' => false,
+        'assortment' => false,
+        'pack' => true,
+        'errors' => false
     ];
 
     /**
@@ -205,16 +199,14 @@ class CreateEnterPositionsRequest implements ModelInterface, ArrayAccess, \JsonS
         'meta' => 'meta',
         'id' => 'id',
         'account_id' => 'accountId',
-        'assortment' => 'assortment',
-        'country' => 'country',
-        'gtd' => 'gtd',
-        'overhead' => 'overhead',
-        'pack' => 'pack',
-        'price' => 'price',
         'quantity' => 'quantity',
-        'reason' => 'reason',
-        'slot' => 'slot',
-        'things' => 'things'
+        'price' => 'price',
+        'reward' => 'reward',
+        'vat' => 'vat',
+        'vat_enabled' => 'vatEnabled',
+        'assortment' => 'assortment',
+        'pack' => 'pack',
+        'errors' => 'errors'
     ];
 
     /**
@@ -226,16 +218,14 @@ class CreateEnterPositionsRequest implements ModelInterface, ArrayAccess, \JsonS
         'meta' => 'setMeta',
         'id' => 'setId',
         'account_id' => 'setAccountId',
-        'assortment' => 'setAssortment',
-        'country' => 'setCountry',
-        'gtd' => 'setGtd',
-        'overhead' => 'setOverhead',
-        'pack' => 'setPack',
-        'price' => 'setPrice',
         'quantity' => 'setQuantity',
-        'reason' => 'setReason',
-        'slot' => 'setSlot',
-        'things' => 'setThings'
+        'price' => 'setPrice',
+        'reward' => 'setReward',
+        'vat' => 'setVat',
+        'vat_enabled' => 'setVatEnabled',
+        'assortment' => 'setAssortment',
+        'pack' => 'setPack',
+        'errors' => 'setErrors'
     ];
 
     /**
@@ -247,16 +237,14 @@ class CreateEnterPositionsRequest implements ModelInterface, ArrayAccess, \JsonS
         'meta' => 'getMeta',
         'id' => 'getId',
         'account_id' => 'getAccountId',
-        'assortment' => 'getAssortment',
-        'country' => 'getCountry',
-        'gtd' => 'getGtd',
-        'overhead' => 'getOverhead',
-        'pack' => 'getPack',
-        'price' => 'getPrice',
         'quantity' => 'getQuantity',
-        'reason' => 'getReason',
-        'slot' => 'getSlot',
-        'things' => 'getThings'
+        'price' => 'getPrice',
+        'reward' => 'getReward',
+        'vat' => 'getVat',
+        'vat_enabled' => 'getVatEnabled',
+        'assortment' => 'getAssortment',
+        'pack' => 'getPack',
+        'errors' => 'getErrors'
     ];
 
     /**
@@ -319,16 +307,14 @@ class CreateEnterPositionsRequest implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('account_id', $data ?? [], null);
-        $this->setIfExists('assortment', $data ?? [], null);
-        $this->setIfExists('country', $data ?? [], null);
-        $this->setIfExists('gtd', $data ?? [], null);
-        $this->setIfExists('overhead', $data ?? [], null);
-        $this->setIfExists('pack', $data ?? [], null);
-        $this->setIfExists('price', $data ?? [], null);
         $this->setIfExists('quantity', $data ?? [], null);
-        $this->setIfExists('reason', $data ?? [], null);
-        $this->setIfExists('slot', $data ?? [], null);
-        $this->setIfExists('things', $data ?? [], null);
+        $this->setIfExists('price', $data ?? [], null);
+        $this->setIfExists('reward', $data ?? [], null);
+        $this->setIfExists('vat', $data ?? [], null);
+        $this->setIfExists('vat_enabled', $data ?? [], null);
+        $this->setIfExists('assortment', $data ?? [], null);
+        $this->setIfExists('pack', $data ?? [], null);
+        $this->setIfExists('errors', $data ?? [], null);
     }
 
     /**
@@ -358,10 +344,17 @@ class CreateEnterPositionsRequest implements ModelInterface, ArrayAccess, \JsonS
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['reason']) && (mb_strlen($this->container['reason']) > 255)) {
-            $invalidProperties[] = "invalid value for 'reason', the character length must be smaller than or equal to 255.";
+        if (!is_null($this->container['quantity']) && ($this->container['quantity'] <= 0)) {
+            $invalidProperties[] = "invalid value for 'quantity', must be bigger than 0.";
         }
 
+        if (!is_null($this->container['reward']) && ($this->container['reward'] < 0)) {
+            $invalidProperties[] = "invalid value for 'reward', must be bigger than or equal to 0.";
+        }
+
+        if ($this->container['errors'] === null) {
+            $invalidProperties[] = "'errors' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -459,6 +452,151 @@ class CreateEnterPositionsRequest implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
+     * Gets quantity
+     *
+     * @return float|null
+     */
+    public function getQuantity()
+    {
+        return $this->container['quantity'];
+    }
+
+    /**
+     * Sets quantity
+     *
+     * @param float|null $quantity Количество товаров/услуг в позиции
+     *
+     * @return self
+     */
+    public function setQuantity($quantity)
+    {
+        if (is_null($quantity)) {
+            throw new \InvalidArgumentException('non-nullable quantity cannot be null');
+        }
+
+        if (($quantity <= 0)) {
+            throw new \InvalidArgumentException('invalid value for $quantity when calling CreateCommissionReportOutPositions200ResponseInner., must be bigger than 0.');
+        }
+
+        $this->container['quantity'] = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Gets price
+     *
+     * @return float|null
+     */
+    public function getPrice()
+    {
+        return $this->container['price'];
+    }
+
+    /**
+     * Sets price
+     *
+     * @param float|null $price Цена товара в копейках
+     *
+     * @return self
+     */
+    public function setPrice($price)
+    {
+        if (is_null($price)) {
+            throw new \InvalidArgumentException('non-nullable price cannot be null');
+        }
+        $this->container['price'] = $price;
+
+        return $this;
+    }
+
+    /**
+     * Gets reward
+     *
+     * @return float|null
+     */
+    public function getReward()
+    {
+        return $this->container['reward'];
+    }
+
+    /**
+     * Sets reward
+     *
+     * @param float|null $reward Вознаграждение
+     *
+     * @return self
+     */
+    public function setReward($reward)
+    {
+        if (is_null($reward)) {
+            throw new \InvalidArgumentException('non-nullable reward cannot be null');
+        }
+
+        if (($reward < 0)) {
+            throw new \InvalidArgumentException('invalid value for $reward when calling CreateCommissionReportOutPositions200ResponseInner., must be bigger than or equal to 0.');
+        }
+
+        $this->container['reward'] = $reward;
+
+        return $this;
+    }
+
+    /**
+     * Gets vat
+     *
+     * @return int|null
+     */
+    public function getVat()
+    {
+        return $this->container['vat'];
+    }
+
+    /**
+     * Sets vat
+     *
+     * @param int|null $vat НДС для позиции
+     *
+     * @return self
+     */
+    public function setVat($vat)
+    {
+        if (is_null($vat)) {
+            throw new \InvalidArgumentException('non-nullable vat cannot be null');
+        }
+        $this->container['vat'] = $vat;
+
+        return $this;
+    }
+
+    /**
+     * Gets vat_enabled
+     *
+     * @return bool|null
+     */
+    public function getVatEnabled()
+    {
+        return $this->container['vat_enabled'];
+    }
+
+    /**
+     * Sets vat_enabled
+     *
+     * @param bool|null $vat_enabled Включен ли НДС для позиции
+     *
+     * @return self
+     */
+    public function setVatEnabled($vat_enabled)
+    {
+        if (is_null($vat_enabled)) {
+            throw new \InvalidArgumentException('non-nullable vat_enabled cannot be null');
+        }
+        $this->container['vat_enabled'] = $vat_enabled;
+
+        return $this;
+    }
+
+    /**
      * Gets assortment
      *
      * @return \OpenAPI\Client\Model\Assortment|null
@@ -483,101 +621,6 @@ class CreateEnterPositionsRequest implements ModelInterface, ArrayAccess, \JsonS
             throw new \InvalidArgumentException('non-nullable assortment cannot be null');
         }
         $this->container['assortment'] = $assortment;
-
-        return $this;
-    }
-
-    /**
-     * Gets country
-     *
-     * @return \OpenAPI\Client\Model\Country|null
-     */
-    public function getCountry()
-    {
-        return $this->container['country'];
-    }
-
-    /**
-     * Sets country
-     *
-     * @param \OpenAPI\Client\Model\Country|null $country Метаданные страны
-     *
-     * @return self
-     */
-    public function setCountry($country)
-    {
-        if (is_null($country)) {
-            array_push($this->openAPINullablesSetToNull, 'country');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('country', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['country'] = $country;
-
-        return $this;
-    }
-
-    /**
-     * Gets gtd
-     *
-     * @return \OpenAPI\Client\Model\Gtd|null
-     */
-    public function getGtd()
-    {
-        return $this->container['gtd'];
-    }
-
-    /**
-     * Sets gtd
-     *
-     * @param \OpenAPI\Client\Model\Gtd|null $gtd gtd
-     *
-     * @return self
-     */
-    public function setGtd($gtd)
-    {
-        if (is_null($gtd)) {
-            array_push($this->openAPINullablesSetToNull, 'gtd');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('gtd', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['gtd'] = $gtd;
-
-        return $this;
-    }
-
-    /**
-     * Gets overhead
-     *
-     * @return int|null
-     */
-    public function getOverhead()
-    {
-        return $this->container['overhead'];
-    }
-
-    /**
-     * Sets overhead
-     *
-     * @param int|null $overhead Накладные расходы
-     *
-     * @return self
-     */
-    public function setOverhead($overhead)
-    {
-        if (is_null($overhead)) {
-            throw new \InvalidArgumentException('non-nullable overhead cannot be null');
-        }
-        $this->container['overhead'] = $overhead;
 
         return $this;
     }
@@ -617,154 +660,28 @@ class CreateEnterPositionsRequest implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Gets price
+     * Gets errors
      *
-     * @return float|null
+     * @return \OpenAPI\Client\Model\ErrorErrorsInner[]
      */
-    public function getPrice()
+    public function getErrors()
     {
-        return $this->container['price'];
+        return $this->container['errors'];
     }
 
     /**
-     * Sets price
+     * Sets errors
      *
-     * @param float|null $price Цена товара/услуги в копейках
+     * @param \OpenAPI\Client\Model\ErrorErrorsInner[] $errors errors
      *
      * @return self
      */
-    public function setPrice($price)
+    public function setErrors($errors)
     {
-        if (is_null($price)) {
-            throw new \InvalidArgumentException('non-nullable price cannot be null');
+        if (is_null($errors)) {
+            throw new \InvalidArgumentException('non-nullable errors cannot be null');
         }
-        $this->container['price'] = $price;
-
-        return $this;
-    }
-
-    /**
-     * Gets quantity
-     *
-     * @return float|null
-     */
-    public function getQuantity()
-    {
-        return $this->container['quantity'];
-    }
-
-    /**
-     * Sets quantity
-     *
-     * @param float|null $quantity Количество товаров данного вида в позиции
-     *
-     * @return self
-     */
-    public function setQuantity($quantity)
-    {
-        if (is_null($quantity)) {
-            throw new \InvalidArgumentException('non-nullable quantity cannot be null');
-        }
-        $this->container['quantity'] = $quantity;
-
-        return $this;
-    }
-
-    /**
-     * Gets reason
-     *
-     * @return string|null
-     */
-    public function getReason()
-    {
-        return $this->container['reason'];
-    }
-
-    /**
-     * Sets reason
-     *
-     * @param string|null $reason Причина оприходования данной позиции
-     *
-     * @return self
-     */
-    public function setReason($reason)
-    {
-        if (is_null($reason)) {
-            array_push($this->openAPINullablesSetToNull, 'reason');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('reason', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        if (!is_null($reason) && (mb_strlen($reason) > 255)) {
-            throw new \InvalidArgumentException('invalid length for $reason when calling CreateEnterPositionsRequest., must be smaller than or equal to 255.');
-        }
-
-        $this->container['reason'] = $reason;
-
-        return $this;
-    }
-
-    /**
-     * Gets slot
-     *
-     * @return \OpenAPI\Client\Model\StoreSlot|null
-     */
-    public function getSlot()
-    {
-        return $this->container['slot'];
-    }
-
-    /**
-     * Sets slot
-     *
-     * @param \OpenAPI\Client\Model\StoreSlot|null $slot Ячейка на складе
-     *
-     * @return self
-     */
-    public function setSlot($slot)
-    {
-        if (is_null($slot)) {
-            array_push($this->openAPINullablesSetToNull, 'slot');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('slot', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['slot'] = $slot;
-
-        return $this;
-    }
-
-    /**
-     * Gets things
-     *
-     * @return string[]|null
-     */
-    public function getThings()
-    {
-        return $this->container['things'];
-    }
-
-    /**
-     * Sets things
-     *
-     * @param string[]|null $things Серийные номера. Игнорируется, если товар позиции не на серийном учёте; иначе количество единиц в позиции совпадает с числом переданных серийных номеров.
-     *
-     * @return self
-     */
-    public function setThings($things)
-    {
-        if (is_null($things)) {
-            throw new \InvalidArgumentException('non-nullable things cannot be null');
-        }
-        $this->container['things'] = $things;
+        $this->container['errors'] = $errors;
 
         return $this;
     }

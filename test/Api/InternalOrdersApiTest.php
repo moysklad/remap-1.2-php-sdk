@@ -120,9 +120,21 @@ class InternalOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for createInternalOrderPosition
+     *
+     * Создать и обновить позицию Внутреннего заказа.
+     *
+     */
+    public function testCreateInternalOrderPosition()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createInternalOrderPositions
      *
-     * Создать позиции InternalOrder.
+     * Массовое создание и обновление позиций Внутреннего заказа.
      *
      */
     public function testCreateInternalOrderPositions()

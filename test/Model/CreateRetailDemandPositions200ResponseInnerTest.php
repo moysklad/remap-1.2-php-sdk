@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateProcessingOrderPositionsRequestTest
+ * CreateRetailDemandPositions200ResponseInnerTest
  *
  * PHP version 8.1
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * CreateProcessingOrderPositionsRequestTest Class Doc Comment
+ * CreateRetailDemandPositions200ResponseInnerTest Class Doc Comment
  *
  * @category    Class
- * @description CreateProcessingOrderPositionsRequest
+ * @description CreateRetailDemandPositions200ResponseInner
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class CreateProcessingOrderPositionsRequestTest extends TestCase
+class CreateRetailDemandPositions200ResponseInnerTest extends TestCase
 {
 
     /**
@@ -71,9 +71,9 @@ class CreateProcessingOrderPositionsRequestTest extends TestCase
     }
 
     /**
-     * Test "CreateProcessingOrderPositionsRequest"
+     * Test "CreateRetailDemandPositions200ResponseInner"
      */
-    public function testCreateProcessingOrderPositionsRequest()
+    public function testCreateRetailDemandPositions200ResponseInner()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -107,24 +107,6 @@ class CreateProcessingOrderPositionsRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "quantity"
-     */
-    public function testPropertyQuantity()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "reserve"
-     */
-    public function testPropertyReserve()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "assortment"
      */
     public function testPropertyAssortment()
@@ -134,9 +116,90 @@ class CreateProcessingOrderPositionsRequestTest extends TestCase
     }
 
     /**
+     * Test attribute "cost"
+     */
+    public function testPropertyCost()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "declaration"
+     */
+    public function testPropertyDeclaration()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "discount"
+     */
+    public function testPropertyDiscount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "pack"
      */
     public function testPropertyPack()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "price"
+     */
+    public function testPropertyPrice()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "quantity"
+     */
+    public function testPropertyQuantity()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "things"
+     */
+    public function testPropertyThings()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "vat"
+     */
+    public function testPropertyVat()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "vat_enabled"
+     */
+    public function testPropertyVatEnabled()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "errors"
+     */
+    public function testPropertyErrors()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

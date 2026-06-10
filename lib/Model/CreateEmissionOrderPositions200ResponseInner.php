@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateInventoryPositionsRequest
+ * CreateEmissionOrderPositions200ResponseInner
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * CreateInventoryPositionsRequest Class Doc Comment
+ * CreateEmissionOrderPositions200ResponseInner Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class CreateInventoryPositionsRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class CreateEmissionOrderPositions200ResponseInner implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class CreateInventoryPositionsRequest implements ModelInterface, ArrayAccess, \J
       *
       * @var string
       */
-    protected static $openAPIModelName = 'createInventoryPositions_request';
+    protected static $openAPIModelName = 'createEmissionOrderPositions_200_response_inner';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -61,13 +61,9 @@ class CreateInventoryPositionsRequest implements ModelInterface, ArrayAccess, \J
         'id' => 'string',
         'account_id' => 'string',
         'assortment' => '\OpenAPI\Client\Model\Assortment',
-        'calculated_quantity' => 'float',
-        'correction_amount' => 'float',
-        'correction_sum' => 'float',
-        'pack' => '\OpenAPI\Client\Model\Pack',
-        'price' => 'float',
-        'things' => 'string[]',
-        'quantity' => 'float'
+        'quantity' => 'float',
+        'status' => 'string',
+        'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
     ];
 
     /**
@@ -82,13 +78,9 @@ class CreateInventoryPositionsRequest implements ModelInterface, ArrayAccess, \J
         'id' => 'uuid',
         'account_id' => 'uuid',
         'assortment' => null,
-        'calculated_quantity' => 'double',
-        'correction_amount' => 'double',
-        'correction_sum' => 'double',
-        'pack' => null,
-        'price' => 'double',
-        'things' => null,
-        'quantity' => 'double'
+        'quantity' => 'float',
+        'status' => null,
+        'errors' => null
     ];
 
     /**
@@ -101,13 +93,9 @@ class CreateInventoryPositionsRequest implements ModelInterface, ArrayAccess, \J
         'id' => false,
         'account_id' => false,
         'assortment' => false,
-        'calculated_quantity' => false,
-        'correction_amount' => false,
-        'correction_sum' => false,
-        'pack' => true,
-        'price' => false,
-        'things' => false,
-        'quantity' => false
+        'quantity' => false,
+        'status' => false,
+        'errors' => false
     ];
 
     /**
@@ -200,13 +188,9 @@ class CreateInventoryPositionsRequest implements ModelInterface, ArrayAccess, \J
         'id' => 'id',
         'account_id' => 'accountId',
         'assortment' => 'assortment',
-        'calculated_quantity' => 'calculatedQuantity',
-        'correction_amount' => 'correctionAmount',
-        'correction_sum' => 'correctionSum',
-        'pack' => 'pack',
-        'price' => 'price',
-        'things' => 'things',
-        'quantity' => 'quantity'
+        'quantity' => 'quantity',
+        'status' => 'status',
+        'errors' => 'errors'
     ];
 
     /**
@@ -219,13 +203,9 @@ class CreateInventoryPositionsRequest implements ModelInterface, ArrayAccess, \J
         'id' => 'setId',
         'account_id' => 'setAccountId',
         'assortment' => 'setAssortment',
-        'calculated_quantity' => 'setCalculatedQuantity',
-        'correction_amount' => 'setCorrectionAmount',
-        'correction_sum' => 'setCorrectionSum',
-        'pack' => 'setPack',
-        'price' => 'setPrice',
-        'things' => 'setThings',
-        'quantity' => 'setQuantity'
+        'quantity' => 'setQuantity',
+        'status' => 'setStatus',
+        'errors' => 'setErrors'
     ];
 
     /**
@@ -238,13 +218,9 @@ class CreateInventoryPositionsRequest implements ModelInterface, ArrayAccess, \J
         'id' => 'getId',
         'account_id' => 'getAccountId',
         'assortment' => 'getAssortment',
-        'calculated_quantity' => 'getCalculatedQuantity',
-        'correction_amount' => 'getCorrectionAmount',
-        'correction_sum' => 'getCorrectionSum',
-        'pack' => 'getPack',
-        'price' => 'getPrice',
-        'things' => 'getThings',
-        'quantity' => 'getQuantity'
+        'quantity' => 'getQuantity',
+        'status' => 'getStatus',
+        'errors' => 'getErrors'
     ];
 
     /**
@@ -308,13 +284,9 @@ class CreateInventoryPositionsRequest implements ModelInterface, ArrayAccess, \J
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('account_id', $data ?? [], null);
         $this->setIfExists('assortment', $data ?? [], null);
-        $this->setIfExists('calculated_quantity', $data ?? [], null);
-        $this->setIfExists('correction_amount', $data ?? [], null);
-        $this->setIfExists('correction_sum', $data ?? [], null);
-        $this->setIfExists('pack', $data ?? [], null);
-        $this->setIfExists('price', $data ?? [], null);
-        $this->setIfExists('things', $data ?? [], null);
         $this->setIfExists('quantity', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('errors', $data ?? [], null);
     }
 
     /**
@@ -344,6 +316,17 @@ class CreateInventoryPositionsRequest implements ModelInterface, ArrayAccess, \J
     {
         $invalidProperties = [];
 
+        if (!is_null($this->container['quantity']) && ($this->container['quantity'] > 1000)) {
+            $invalidProperties[] = "invalid value for 'quantity', must be smaller than or equal to 1000.";
+        }
+
+        if (!is_null($this->container['quantity']) && ($this->container['quantity'] < 0)) {
+            $invalidProperties[] = "invalid value for 'quantity', must be bigger than or equal to 0.";
+        }
+
+        if ($this->container['errors'] === null) {
+            $invalidProperties[] = "'errors' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -470,175 +453,6 @@ class CreateInventoryPositionsRequest implements ModelInterface, ArrayAccess, \J
     }
 
     /**
-     * Gets calculated_quantity
-     *
-     * @return float|null
-     */
-    public function getCalculatedQuantity()
-    {
-        return $this->container['calculated_quantity'];
-    }
-
-    /**
-     * Sets calculated_quantity
-     *
-     * @param float|null $calculated_quantity Расчетный остаток
-     *
-     * @return self
-     */
-    public function setCalculatedQuantity($calculated_quantity)
-    {
-        if (is_null($calculated_quantity)) {
-            throw new \InvalidArgumentException('non-nullable calculated_quantity cannot be null');
-        }
-        $this->container['calculated_quantity'] = $calculated_quantity;
-
-        return $this;
-    }
-
-    /**
-     * Gets correction_amount
-     *
-     * @return float|null
-     */
-    public function getCorrectionAmount()
-    {
-        return $this->container['correction_amount'];
-    }
-
-    /**
-     * Sets correction_amount
-     *
-     * @param float|null $correction_amount Разница между расчетным остатком и фактическим
-     *
-     * @return self
-     */
-    public function setCorrectionAmount($correction_amount)
-    {
-        if (is_null($correction_amount)) {
-            throw new \InvalidArgumentException('non-nullable correction_amount cannot be null');
-        }
-        $this->container['correction_amount'] = $correction_amount;
-
-        return $this;
-    }
-
-    /**
-     * Gets correction_sum
-     *
-     * @return float|null
-     */
-    public function getCorrectionSum()
-    {
-        return $this->container['correction_sum'];
-    }
-
-    /**
-     * Sets correction_sum
-     *
-     * @param float|null $correction_sum Избыток/недостача
-     *
-     * @return self
-     */
-    public function setCorrectionSum($correction_sum)
-    {
-        if (is_null($correction_sum)) {
-            throw new \InvalidArgumentException('non-nullable correction_sum cannot be null');
-        }
-        $this->container['correction_sum'] = $correction_sum;
-
-        return $this;
-    }
-
-    /**
-     * Gets pack
-     *
-     * @return \OpenAPI\Client\Model\Pack|null
-     */
-    public function getPack()
-    {
-        return $this->container['pack'];
-    }
-
-    /**
-     * Sets pack
-     *
-     * @param \OpenAPI\Client\Model\Pack|null $pack Упаковка Товара
-     *
-     * @return self
-     */
-    public function setPack($pack)
-    {
-        if (is_null($pack)) {
-            array_push($this->openAPINullablesSetToNull, 'pack');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('pack', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['pack'] = $pack;
-
-        return $this;
-    }
-
-    /**
-     * Gets price
-     *
-     * @return float|null
-     */
-    public function getPrice()
-    {
-        return $this->container['price'];
-    }
-
-    /**
-     * Sets price
-     *
-     * @param float|null $price Цена товара/услуги в копейках
-     *
-     * @return self
-     */
-    public function setPrice($price)
-    {
-        if (is_null($price)) {
-            throw new \InvalidArgumentException('non-nullable price cannot be null');
-        }
-        $this->container['price'] = $price;
-
-        return $this;
-    }
-
-    /**
-     * Gets things
-     *
-     * @return string[]|null
-     */
-    public function getThings()
-    {
-        return $this->container['things'];
-    }
-
-    /**
-     * Sets things
-     *
-     * @param string[]|null $things Серийные номера. Игнорируется, если товар позиции не на серийном учёте; иначе количество единиц в позиции совпадает с числом переданных серийных номеров.
-     *
-     * @return self
-     */
-    public function setThings($things)
-    {
-        if (is_null($things)) {
-            throw new \InvalidArgumentException('non-nullable things cannot be null');
-        }
-        $this->container['things'] = $things;
-
-        return $this;
-    }
-
-    /**
      * Gets quantity
      *
      * @return float|null
@@ -651,7 +465,7 @@ class CreateInventoryPositionsRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Sets quantity
      *
-     * @param float|null $quantity Количество товаров/услуг данного вида в позиции. Если позиция - товар,  у которого включен учет по серийным номерам, то значение в этом поле всегда  будет равно количеству серийных номеров для данной позиции в документе.
+     * @param float|null $quantity Количество товаров данного вида в позиции
      *
      * @return self
      */
@@ -660,7 +474,69 @@ class CreateInventoryPositionsRequest implements ModelInterface, ArrayAccess, \J
         if (is_null($quantity)) {
             throw new \InvalidArgumentException('non-nullable quantity cannot be null');
         }
+
+        if (($quantity > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $quantity when calling CreateEmissionOrderPositions200ResponseInner., must be smaller than or equal to 1000.');
+        }
+        if (($quantity < 0)) {
+            throw new \InvalidArgumentException('invalid value for $quantity when calling CreateEmissionOrderPositions200ResponseInner., must be bigger than or equal to 0.');
+        }
+
         $this->container['quantity'] = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return string|null
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param string|null $status Статус кодов. Известные значения описаны в EmissionOrderPositionStatus
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        }
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets errors
+     *
+     * @return \OpenAPI\Client\Model\ErrorErrorsInner[]
+     */
+    public function getErrors()
+    {
+        return $this->container['errors'];
+    }
+
+    /**
+     * Sets errors
+     *
+     * @param \OpenAPI\Client\Model\ErrorErrorsInner[] $errors errors
+     *
+     * @return self
+     */
+    public function setErrors($errors)
+    {
+        if (is_null($errors)) {
+            throw new \InvalidArgumentException('non-nullable errors cannot be null');
+        }
+        $this->container['errors'] = $errors;
 
         return $this;
     }

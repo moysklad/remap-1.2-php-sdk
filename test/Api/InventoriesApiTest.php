@@ -132,9 +132,21 @@ class InventoriesApiTest extends TestCase
     }
 
     /**
+     * Test case for createInventoryPosition
+     *
+     * Создать и обновить позицию Инвентаризации.
+     *
+     */
+    public function testCreateInventoryPosition()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createInventoryPositions
      *
-     * Создать позиции Инвентаризации.
+     * Массовое создание и обновление позиций Инвентаризации.
      *
      */
     public function testCreateInventoryPositions()

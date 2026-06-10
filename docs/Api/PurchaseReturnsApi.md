@@ -9,7 +9,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createPurchaseReturnBatch()**](PurchaseReturnsApi.md#createPurchaseReturnBatch) | **POST** /entity/purchasereturn/batch | Массовое создание и обновление Возвратов поставщикам |
 | [**createPurchaseReturnMetadataAttribute()**](PurchaseReturnsApi.md#createPurchaseReturnMetadataAttribute) | **POST** /entity/purchasereturn/metadata/attributes | Создать доп. поле Возврата поставщику |
 | [**createPurchaseReturnMetadataState()**](PurchaseReturnsApi.md#createPurchaseReturnMetadataState) | **POST** /entity/purchasereturn/metadata/states | Создать статус Возврата поставщику |
-| [**createPurchaseReturnPositions()**](PurchaseReturnsApi.md#createPurchaseReturnPositions) | **POST** /entity/purchasereturn/{id}/positions | Создать позиции Возврата поставщику |
+| [**createPurchaseReturnPosition()**](PurchaseReturnsApi.md#createPurchaseReturnPosition) | **POST** /entity/purchasereturn/{id}/positions | Создать и обновить позицию Возврата поставщику |
+| [**createPurchaseReturnPositions()**](PurchaseReturnsApi.md#createPurchaseReturnPositions) | **POST** /entity/purchasereturn/{id}/positions/batch | Массовое создание и обновление позиций Возврата поставщику |
 | [**deletePurchaseReturn()**](PurchaseReturnsApi.md#deletePurchaseReturn) | **DELETE** /entity/purchasereturn/{id} | Удалить Возврат поставщику |
 | [**deletePurchaseReturnBatch()**](PurchaseReturnsApi.md#deletePurchaseReturnBatch) | **POST** /entity/purchasereturn/delete | Массовое удаление Возвратов поставщикам |
 | [**deletePurchaseReturnFile()**](PurchaseReturnsApi.md#deletePurchaseReturnFile) | **DELETE** /entity/purchasereturn/{id}/files/{fileId} | Удалить файл возврата поставщику |
@@ -386,13 +387,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createPurchaseReturnPositions()`
+## `createPurchaseReturnPosition()`
 
 ```php
-createPurchaseReturnPositions($id, $create_purchase_return_positions_request, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreatePurchaseReturnPositions200ResponseInner[]
+createPurchaseReturnPosition($id, $purchase_return_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\PurchaseReturnPosition
 ```
 
-Создать позиции Возврата поставщику
+Создать и обновить позицию Возврата поставщику
 
 ### Example
 
@@ -417,14 +418,87 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseReturnsApi(
     $config
 );
 $id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$create_purchase_return_positions_request = new \OpenAPI\Client\Model\CreatePurchaseReturnPositionsRequest(); // \OpenAPI\Client\Model\CreatePurchaseReturnPositionsRequest
+$purchase_return_position = new \OpenAPI\Client\Model\PurchaseReturnPosition(); // \OpenAPI\Client\Model\PurchaseReturnPosition
 $expand = agent,organization; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
 $accept_encoding = gzip, deflate, br; // string
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createPurchaseReturnPositions($id, $create_purchase_return_positions_request, $expand, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->createPurchaseReturnPosition($id, $purchase_return_position, $expand, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PurchaseReturnsApi->createPurchaseReturnPosition: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **purchase_return_position** | [**\OpenAPI\Client\Model\PurchaseReturnPosition**](../Model/PurchaseReturnPosition.md)|  | |
+| **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\PurchaseReturnPosition**](../Model/PurchaseReturnPosition.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createPurchaseReturnPositions()`
+
+```php
+createPurchaseReturnPositions($id, $purchase_return_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreatePurchaseReturnPositions200ResponseInner[]
+```
+
+Массовое создание и обновление позиций Возврата поставщику
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\PurchaseReturnsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$purchase_return_position = array(new \OpenAPI\Client\Model\PurchaseReturnPosition()); // \OpenAPI\Client\Model\PurchaseReturnPosition[]
+$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = gzip, deflate, br; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createPurchaseReturnPositions($id, $purchase_return_position, $expand, $accept, $accept_encoding, $content_type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PurchaseReturnsApi->createPurchaseReturnPositions: ', $e->getMessage(), PHP_EOL;
@@ -436,7 +510,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
-| **create_purchase_return_positions_request** | [**\OpenAPI\Client\Model\CreatePurchaseReturnPositionsRequest**](../Model/CreatePurchaseReturnPositionsRequest.md)|  | |
+| **purchase_return_position** | [**\OpenAPI\Client\Model\PurchaseReturnPosition[]**](../Model/PurchaseReturnPosition.md)|  | |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
@@ -1504,7 +1578,7 @@ try {
 ## `getPurchaseReturnPositions()`
 
 ```php
-getPurchaseReturnPositions($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\PurchaseReturnPositionList
+getPurchaseReturnPositions($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding): \OpenAPI\Client\Model\PurchaseReturnPositionList
 ```
 
 Получить позиции Возврата поставщику
@@ -1538,10 +1612,9 @@ $expand = agent,organization; // string | Замена ссылок объект
 $fields = minimumStock; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
 $accept = 'application/json;charset=utf-8'; // string
 $accept_encoding = gzip, deflate, br; // string
-$content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->getPurchaseReturnPositions($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->getPurchaseReturnPositions($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PurchaseReturnsApi->getPurchaseReturnPositions: ', $e->getMessage(), PHP_EOL;
@@ -1559,7 +1632,6 @@ try {
 | **fields** | **string**| Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
-| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
 

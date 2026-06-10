@@ -8,7 +8,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createInternalOrderBatch()**](InternalOrdersApi.md#createInternalOrderBatch) | **POST** /entity/internalorder/batch | Массовое создание и обновление InternalOrder |
 | [**createInternalOrderMetadataAttribute()**](InternalOrdersApi.md#createInternalOrderMetadataAttribute) | **POST** /entity/internalorder/metadata/attributes | Создать Доп. поле InternalOrder |
 | [**createInternalOrderMetadataState()**](InternalOrdersApi.md#createInternalOrderMetadataState) | **POST** /entity/internalorder/metadata/states | Создать статус InternalOrder |
-| [**createInternalOrderPositions()**](InternalOrdersApi.md#createInternalOrderPositions) | **POST** /entity/internalorder/{id}/positions | Создать позиции InternalOrder |
+| [**createInternalOrderPosition()**](InternalOrdersApi.md#createInternalOrderPosition) | **POST** /entity/internalorder/{id}/positions | Создать и обновить позицию Внутреннего заказа |
+| [**createInternalOrderPositions()**](InternalOrdersApi.md#createInternalOrderPositions) | **POST** /entity/internalorder/{id}/positions/batch | Массовое создание и обновление позиций Внутреннего заказа |
 | [**deleteInternalOrder()**](InternalOrdersApi.md#deleteInternalOrder) | **DELETE** /entity/internalorder/{id} | Удалить InternalOrder |
 | [**deleteInternalOrderBatch()**](InternalOrdersApi.md#deleteInternalOrderBatch) | **POST** /entity/internalorder/delete | Массовое удаление InternalOrder |
 | [**deleteInternalOrderMetadataAttributeById()**](InternalOrdersApi.md#deleteInternalOrderMetadataAttributeById) | **DELETE** /entity/internalorder/metadata/attributes/{id} | Удалить отдельное доп. поле InternalOrder |
@@ -310,13 +311,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createInternalOrderPositions()`
+## `createInternalOrderPosition()`
 
 ```php
-createInternalOrderPositions($id, $create_internal_order_positions_request, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateInternalOrderPositions200ResponseInner[]
+createInternalOrderPosition($id, $internal_order_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\InternalOrderPosition
 ```
 
-Создать позиции InternalOrder
+Создать и обновить позицию Внутреннего заказа
 
 ### Example
 
@@ -341,14 +342,87 @@ $apiInstance = new OpenAPI\Client\Api\InternalOrdersApi(
     $config
 );
 $id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$create_internal_order_positions_request = new \OpenAPI\Client\Model\CreateInternalOrderPositionsRequest(); // \OpenAPI\Client\Model\CreateInternalOrderPositionsRequest
+$internal_order_position = new \OpenAPI\Client\Model\InternalOrderPosition(); // \OpenAPI\Client\Model\InternalOrderPosition
 $expand = agent,organization; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
 $accept_encoding = gzip, deflate, br; // string
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createInternalOrderPositions($id, $create_internal_order_positions_request, $expand, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->createInternalOrderPosition($id, $internal_order_position, $expand, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling InternalOrdersApi->createInternalOrderPosition: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **internal_order_position** | [**\OpenAPI\Client\Model\InternalOrderPosition**](../Model/InternalOrderPosition.md)|  | |
+| **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\InternalOrderPosition**](../Model/InternalOrderPosition.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createInternalOrderPositions()`
+
+```php
+createInternalOrderPositions($id, $internal_order_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateInternalOrderPositions200ResponseInner[]
+```
+
+Массовое создание и обновление позиций Внутреннего заказа
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\InternalOrdersApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$internal_order_position = array(new \OpenAPI\Client\Model\InternalOrderPosition()); // \OpenAPI\Client\Model\InternalOrderPosition[]
+$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = gzip, deflate, br; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createInternalOrderPositions($id, $internal_order_position, $expand, $accept, $accept_encoding, $content_type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling InternalOrdersApi->createInternalOrderPositions: ', $e->getMessage(), PHP_EOL;
@@ -360,7 +434,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
-| **create_internal_order_positions_request** | [**\OpenAPI\Client\Model\CreateInternalOrderPositionsRequest**](../Model/CreateInternalOrderPositionsRequest.md)|  | |
+| **internal_order_position** | [**\OpenAPI\Client\Model\InternalOrderPosition[]**](../Model/InternalOrderPosition.md)|  | |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
@@ -1297,7 +1371,7 @@ try {
 ## `getInternalOrderPositions()`
 
 ```php
-getInternalOrderPositions($id, $limit, $offset, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\InternalOrderPosition[]
+getInternalOrderPositions($id, $limit, $offset, $expand, $accept, $accept_encoding): \OpenAPI\Client\Model\InternalOrderPositionList
 ```
 
 Получить позиции InternalOrder
@@ -1330,10 +1404,9 @@ $offset = 0; // int | Отступ в выданном списке
 $expand = agent,organization; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
 $accept_encoding = gzip, deflate, br; // string
-$content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->getInternalOrderPositions($id, $limit, $offset, $expand, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->getInternalOrderPositions($id, $limit, $offset, $expand, $accept, $accept_encoding);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling InternalOrdersApi->getInternalOrderPositions: ', $e->getMessage(), PHP_EOL;
@@ -1350,11 +1423,10 @@ try {
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
-| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\InternalOrderPosition[]**](../Model/InternalOrderPosition.md)
+[**\OpenAPI\Client\Model\InternalOrderPositionList**](../Model/InternalOrderPositionList.md)
 
 ### Authorization
 

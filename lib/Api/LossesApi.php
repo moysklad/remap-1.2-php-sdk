@@ -83,6 +83,9 @@ class LossesApi
         'createLossMetadataAttribute' => [
             'application/json',
         ],
+        'createLossPosition' => [
+            'application/json',
+        ],
         'createLossPositions' => [
             'application/json',
         ],
@@ -1185,12 +1188,366 @@ class LossesApi
     }
 
     /**
-     * Operation createLossPositions
+     * Operation createLossPosition
      *
-     * Создать позиции Списания
+     * Создать и обновить позицию Списания
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\CreateLossPositionsRequest $create_loss_positions_request create_loss_positions_request (required)
+     * @param  \OpenAPI\Client\Model\LossPosition $loss_position loss_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createLossPosition'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\LossPosition|\OpenAPI\Client\Model\ErrorOrArray
+     */
+    public function createLossPosition($id, $loss_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createLossPosition'][0])
+    {
+        list($response) = $this->createLossPositionWithHttpInfo($id, $loss_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createLossPositionWithHttpInfo
+     *
+     * Создать и обновить позицию Списания
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\LossPosition $loss_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createLossPosition'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\LossPosition|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createLossPositionWithHttpInfo($id, $loss_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createLossPosition'][0])
+    {
+        $request = $this->createLossPositionRequest($id, $loss_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\LossPosition',
+                        $request,
+                        $response,
+                    );
+                default:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\OpenAPI\Client\Model\LossPosition',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\LossPosition',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createLossPositionAsync
+     *
+     * Создать и обновить позицию Списания
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\LossPosition $loss_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createLossPosition'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createLossPositionAsync($id, $loss_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createLossPosition'][0])
+    {
+        return $this->createLossPositionAsyncWithHttpInfo($id, $loss_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createLossPositionAsyncWithHttpInfo
+     *
+     * Создать и обновить позицию Списания
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\LossPosition $loss_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createLossPosition'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createLossPositionAsyncWithHttpInfo($id, $loss_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createLossPosition'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\LossPosition';
+        $request = $this->createLossPositionRequest($id, $loss_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createLossPosition'
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\LossPosition $loss_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createLossPosition'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createLossPositionRequest($id, $loss_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createLossPosition'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling createLossPosition'
+            );
+        }
+
+        // verify the required parameter 'loss_position' is set
+        if ($loss_position === null || (is_array($loss_position) && count($loss_position) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $loss_position when calling createLossPosition'
+            );
+        }
+
+
+
+
+
+
+        $resourcePath = '/entity/loss/{id}/positions';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $expand,
+            'expand', // param base name
+            'string', // openApiType
+            '', // style
+            false, // explode
+            false // required
+        ) ?? []);
+
+        // header params
+        if ($accept !== null) {
+            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+        }
+        // header params
+        if ($accept_encoding !== null) {
+            $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+        // header params
+        if ($content_type !== null) {
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
+        }
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'text/html;charset=UTF-8', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($loss_position)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($loss_position));
+            } else {
+                $httpBody = $loss_position;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createLossPositions
+     *
+     * Массовое создание и обновление позиций Списания
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\LossPosition[] $loss_position loss_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
@@ -1201,19 +1558,19 @@ class LossesApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\CreateLossPositions200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
      */
-    public function createLossPositions($id, $create_loss_positions_request, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createLossPositions'][0])
+    public function createLossPositions($id, $loss_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createLossPositions'][0])
     {
-        list($response) = $this->createLossPositionsWithHttpInfo($id, $create_loss_positions_request, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        list($response) = $this->createLossPositionsWithHttpInfo($id, $loss_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
     }
 
     /**
      * Operation createLossPositionsWithHttpInfo
      *
-     * Создать позиции Списания
+     * Массовое создание и обновление позиций Списания
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\CreateLossPositionsRequest $create_loss_positions_request (required)
+     * @param  \OpenAPI\Client\Model\LossPosition[] $loss_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -1224,9 +1581,9 @@ class LossesApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\CreateLossPositions200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createLossPositionsWithHttpInfo($id, $create_loss_positions_request, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createLossPositions'][0])
+    public function createLossPositionsWithHttpInfo($id, $loss_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createLossPositions'][0])
     {
-        $request = $this->createLossPositionsRequest($id, $create_loss_positions_request, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->createLossPositionsRequest($id, $loss_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1314,10 +1671,10 @@ class LossesApi
     /**
      * Operation createLossPositionsAsync
      *
-     * Создать позиции Списания
+     * Массовое создание и обновление позиций Списания
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\CreateLossPositionsRequest $create_loss_positions_request (required)
+     * @param  \OpenAPI\Client\Model\LossPosition[] $loss_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -1327,9 +1684,9 @@ class LossesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createLossPositionsAsync($id, $create_loss_positions_request, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createLossPositions'][0])
+    public function createLossPositionsAsync($id, $loss_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createLossPositions'][0])
     {
-        return $this->createLossPositionsAsyncWithHttpInfo($id, $create_loss_positions_request, $expand, $accept, $accept_encoding, $content_type, $contentType)
+        return $this->createLossPositionsAsyncWithHttpInfo($id, $loss_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1340,10 +1697,10 @@ class LossesApi
     /**
      * Operation createLossPositionsAsyncWithHttpInfo
      *
-     * Создать позиции Списания
+     * Массовое создание и обновление позиций Списания
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\CreateLossPositionsRequest $create_loss_positions_request (required)
+     * @param  \OpenAPI\Client\Model\LossPosition[] $loss_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -1353,10 +1710,10 @@ class LossesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createLossPositionsAsyncWithHttpInfo($id, $create_loss_positions_request, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createLossPositions'][0])
+    public function createLossPositionsAsyncWithHttpInfo($id, $loss_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createLossPositions'][0])
     {
         $returnType = '\OpenAPI\Client\Model\CreateLossPositions200ResponseInner[]';
-        $request = $this->createLossPositionsRequest($id, $create_loss_positions_request, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->createLossPositionsRequest($id, $loss_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1398,7 +1755,7 @@ class LossesApi
      * Create request for operation 'createLossPositions'
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\CreateLossPositionsRequest $create_loss_positions_request (required)
+     * @param  \OpenAPI\Client\Model\LossPosition[] $loss_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -1408,7 +1765,7 @@ class LossesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createLossPositionsRequest($id, $create_loss_positions_request, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createLossPositions'][0])
+    public function createLossPositionsRequest($id, $loss_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createLossPositions'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -1418,19 +1775,25 @@ class LossesApi
             );
         }
 
-        // verify the required parameter 'create_loss_positions_request' is set
-        if ($create_loss_positions_request === null || (is_array($create_loss_positions_request) && count($create_loss_positions_request) === 0)) {
+        // verify the required parameter 'loss_position' is set
+        if ($loss_position === null || (is_array($loss_position) && count($loss_position) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $create_loss_positions_request when calling createLossPositions'
+                'Missing the required parameter $loss_position when calling createLossPositions'
             );
         }
+        if (count($loss_position) > 1000) {
+            throw new \InvalidArgumentException('invalid value for "$loss_position" when calling LossesApi.createLossPositions, number of items must be less than or equal to 1000.');
+        }
+        if (count($loss_position) < 1) {
+            throw new \InvalidArgumentException('invalid value for "$loss_position" when calling LossesApi.createLossPositions, number of items must be greater than or equal to 1.');
+        }
+        
 
 
 
 
 
-
-        $resourcePath = '/entity/loss/{id}/positions';
+        $resourcePath = '/entity/loss/{id}/positions/batch';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1477,12 +1840,12 @@ class LossesApi
         );
 
         // for model (json/xml)
-        if (isset($create_loss_positions_request)) {
+        if (isset($loss_position)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_loss_positions_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($loss_position));
             } else {
-                $httpBody = $create_loss_positions_request;
+                $httpBody = $loss_position;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

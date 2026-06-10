@@ -9,7 +9,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createCustomerOrderMetadataAttribute()**](CustomerOrdersApi.md#createCustomerOrderMetadataAttribute) | **POST** /entity/customerorder/metadata/attributes | Создать Доп. поле CustomerOrder |
 | [**createCustomerOrderMetadataState()**](CustomerOrdersApi.md#createCustomerOrderMetadataState) | **POST** /entity/customerorder/metadata/states | Создать статус CustomerOrder |
 | [**createCustomerOrderNote()**](CustomerOrdersApi.md#createCustomerOrderNote) | **POST** /entity/customerorder/{id}/notes | Добавить Событие Заказа покупателя |
-| [**createCustomerOrderPositions()**](CustomerOrdersApi.md#createCustomerOrderPositions) | **POST** /entity/customerorder/{id}/positions | Создать позиции CustomerOrders |
+| [**createCustomerOrderPosition()**](CustomerOrdersApi.md#createCustomerOrderPosition) | **POST** /entity/customerorder/{id}/positions | Создать и обновить позицию Заказа покупателя |
+| [**createCustomerOrderPositions()**](CustomerOrdersApi.md#createCustomerOrderPositions) | **POST** /entity/customerorder/{id}/positions/batch | Массовое создание и обновление позиций Заказа покупателя |
 | [**deleteCustomerOrder()**](CustomerOrdersApi.md#deleteCustomerOrder) | **DELETE** /entity/customerorder/{id} | Удалить CustomerOrders |
 | [**deleteCustomerOrderBatch()**](CustomerOrdersApi.md#deleteCustomerOrderBatch) | **POST** /entity/customerorder/delete | Массовое удаление CustomerOrders |
 | [**deleteCustomerOrderMetadataAttributeById()**](CustomerOrdersApi.md#deleteCustomerOrderMetadataAttributeById) | **DELETE** /entity/customerorder/metadata/attributes/{id} | Удалить отдельное доп. поле CustomerOrder |
@@ -388,13 +389,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createCustomerOrderPositions()`
+## `createCustomerOrderPosition()`
 
 ```php
-createCustomerOrderPositions($id, $create_customer_order_positions_request, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateCustomerOrderPositions200ResponseInner[]
+createCustomerOrderPosition($id, $customer_order_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CustomerOrderPosition
 ```
 
-Создать позиции CustomerOrders
+Создать и обновить позицию Заказа покупателя
 
 ### Example
 
@@ -419,14 +420,87 @@ $apiInstance = new OpenAPI\Client\Api\CustomerOrdersApi(
     $config
 );
 $id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$create_customer_order_positions_request = new \OpenAPI\Client\Model\CreateCustomerOrderPositionsRequest(); // \OpenAPI\Client\Model\CreateCustomerOrderPositionsRequest
+$customer_order_position = new \OpenAPI\Client\Model\CustomerOrderPosition(); // \OpenAPI\Client\Model\CustomerOrderPosition
 $expand = agent,organization; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
 $accept_encoding = gzip, deflate, br; // string
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createCustomerOrderPositions($id, $create_customer_order_positions_request, $expand, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->createCustomerOrderPosition($id, $customer_order_position, $expand, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CustomerOrdersApi->createCustomerOrderPosition: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **customer_order_position** | [**\OpenAPI\Client\Model\CustomerOrderPosition**](../Model/CustomerOrderPosition.md)|  | |
+| **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\CustomerOrderPosition**](../Model/CustomerOrderPosition.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createCustomerOrderPositions()`
+
+```php
+createCustomerOrderPositions($id, $customer_order_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateCustomerOrderPositions200ResponseInner[]
+```
+
+Массовое создание и обновление позиций Заказа покупателя
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CustomerOrdersApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$customer_order_position = array(new \OpenAPI\Client\Model\CustomerOrderPosition()); // \OpenAPI\Client\Model\CustomerOrderPosition[]
+$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = gzip, deflate, br; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createCustomerOrderPositions($id, $customer_order_position, $expand, $accept, $accept_encoding, $content_type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling CustomerOrdersApi->createCustomerOrderPositions: ', $e->getMessage(), PHP_EOL;
@@ -438,7 +512,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
-| **create_customer_order_positions_request** | [**\OpenAPI\Client\Model\CreateCustomerOrderPositionsRequest**](../Model/CreateCustomerOrderPositionsRequest.md)|  | |
+| **customer_order_position** | [**\OpenAPI\Client\Model\CustomerOrderPosition[]**](../Model/CustomerOrderPosition.md)|  | |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
@@ -1595,7 +1669,7 @@ try {
 ## `getCustomerOrderPositions()`
 
 ```php
-getCustomerOrderPositions($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CustomerOrderPosition[]
+getCustomerOrderPositions($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding): \OpenAPI\Client\Model\CustomerOrderPositionList
 ```
 
 Получить позиции CustomerOrders
@@ -1629,10 +1703,9 @@ $expand = agent,organization; // string | Замена ссылок объект
 $fields = minimumStock; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
 $accept = 'application/json;charset=utf-8'; // string
 $accept_encoding = gzip, deflate, br; // string
-$content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->getCustomerOrderPositions($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->getCustomerOrderPositions($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling CustomerOrdersApi->getCustomerOrderPositions: ', $e->getMessage(), PHP_EOL;
@@ -1650,11 +1723,10 @@ try {
 | **fields** | **string**| Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
-| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CustomerOrderPosition[]**](../Model/CustomerOrderPosition.md)
+[**\OpenAPI\Client\Model\CustomerOrderPositionList**](../Model/CustomerOrderPositionList.md)
 
 ### Authorization
 

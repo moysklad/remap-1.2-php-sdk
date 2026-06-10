@@ -43,7 +43,7 @@ Name | Type | Description | Notes
 **files** | [**\OpenAPI\Client\Model\FileList**](FileList.md) | Метаданные массива файлов | [optional]
 **tax_system** | **string** | Код системы налогообложения. Известные значения описаны в TaxSystem | [optional]
 **rate** | [**\OpenAPI\Client\Model\CurrencyRate**](CurrencyRate.md) |  | [optional]
-**positions** | [**\OpenAPI\Client\Model\CommissionReportInPositionList**](.md) |  | [optional]
+**positions** | [**\OpenAPI\Client\Model\CommissionReportInPositionList**](CommissionReportInPositionList.md) |  | [optional]
 **sales_channel** | [**\OpenAPI\Client\Model\SalesChannel**](SalesChannel.md) | Метаданные канала продаж | [optional]
 **shipment_address** | **string** | Адрес доставки Отгрузки (строка). Для удаления адреса передайте пустую строку. Не поддерживается значение &#x60;null&#x60; для сброса — см. документацию по адресу доставки. | [optional]
 **shipment_address_full** | [**\OpenAPI\Client\Model\Address**](Address.md) | Адрес доставки Отгрузки с детализацией по отдельным полям | [optional]

@@ -1443,7 +1443,7 @@ class InternalOrder implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets positions
      *
-     * @param \OpenAPI\Client\Model\InternalOrderPositionList|null $positions Позиций Внутреннего заказа
+     * @param \OpenAPI\Client\Model\InternalOrderPositionList|null $positions positions
      *
      * @return self
      */

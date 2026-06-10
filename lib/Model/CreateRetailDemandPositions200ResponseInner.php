@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateDemandPositionsRequest
+ * CreateRetailDemandPositions200ResponseInner
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * CreateDemandPositionsRequest Class Doc Comment
+ * CreateRetailDemandPositions200ResponseInner Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class CreateDemandPositionsRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class CreateRetailDemandPositions200ResponseInner implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class CreateDemandPositionsRequest implements ModelInterface, ArrayAccess, \Json
       *
       * @var string
       */
-    protected static $openAPIModelName = 'createDemandPositions_request';
+    protected static $openAPIModelName = 'createRetailDemandPositions_200_response_inner';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -67,13 +67,10 @@ class CreateDemandPositionsRequest implements ModelInterface, ArrayAccess, \Json
         'pack' => '\OpenAPI\Client\Model\Pack',
         'price' => 'float',
         'quantity' => 'float',
-        'slot' => '\OpenAPI\Client\Model\StoreSlot',
         'things' => 'string[]',
-        'tracking_codes' => '\OpenAPI\Client\Model\PositionTrackingCode[]',
-        'tracking_codes_1162' => '\OpenAPI\Client\Model\DemandPositionTrackingCode1162[]',
-        'overhead' => 'int',
         'vat' => 'int',
-        'vat_enabled' => 'bool'
+        'vat_enabled' => 'bool',
+        'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
     ];
 
     /**
@@ -94,13 +91,10 @@ class CreateDemandPositionsRequest implements ModelInterface, ArrayAccess, \Json
         'pack' => null,
         'price' => 'double',
         'quantity' => 'double',
-        'slot' => null,
         'things' => null,
-        'tracking_codes' => null,
-        'tracking_codes_1162' => null,
-        'overhead' => null,
         'vat' => null,
-        'vat_enabled' => null
+        'vat_enabled' => null,
+        'errors' => null
     ];
 
     /**
@@ -119,13 +113,10 @@ class CreateDemandPositionsRequest implements ModelInterface, ArrayAccess, \Json
         'pack' => true,
         'price' => false,
         'quantity' => false,
-        'slot' => true,
         'things' => false,
-        'tracking_codes' => false,
-        'tracking_codes_1162' => false,
-        'overhead' => false,
         'vat' => false,
-        'vat_enabled' => false
+        'vat_enabled' => false,
+        'errors' => false
     ];
 
     /**
@@ -224,13 +215,10 @@ class CreateDemandPositionsRequest implements ModelInterface, ArrayAccess, \Json
         'pack' => 'pack',
         'price' => 'price',
         'quantity' => 'quantity',
-        'slot' => 'slot',
         'things' => 'things',
-        'tracking_codes' => 'trackingCodes',
-        'tracking_codes_1162' => 'trackingCodes_1162',
-        'overhead' => 'overhead',
         'vat' => 'vat',
-        'vat_enabled' => 'vatEnabled'
+        'vat_enabled' => 'vatEnabled',
+        'errors' => 'errors'
     ];
 
     /**
@@ -249,13 +237,10 @@ class CreateDemandPositionsRequest implements ModelInterface, ArrayAccess, \Json
         'pack' => 'setPack',
         'price' => 'setPrice',
         'quantity' => 'setQuantity',
-        'slot' => 'setSlot',
         'things' => 'setThings',
-        'tracking_codes' => 'setTrackingCodes',
-        'tracking_codes_1162' => 'setTrackingCodes1162',
-        'overhead' => 'setOverhead',
         'vat' => 'setVat',
-        'vat_enabled' => 'setVatEnabled'
+        'vat_enabled' => 'setVatEnabled',
+        'errors' => 'setErrors'
     ];
 
     /**
@@ -274,13 +259,10 @@ class CreateDemandPositionsRequest implements ModelInterface, ArrayAccess, \Json
         'pack' => 'getPack',
         'price' => 'getPrice',
         'quantity' => 'getQuantity',
-        'slot' => 'getSlot',
         'things' => 'getThings',
-        'tracking_codes' => 'getTrackingCodes',
-        'tracking_codes_1162' => 'getTrackingCodes1162',
-        'overhead' => 'getOverhead',
         'vat' => 'getVat',
-        'vat_enabled' => 'getVatEnabled'
+        'vat_enabled' => 'getVatEnabled',
+        'errors' => 'getErrors'
     ];
 
     /**
@@ -350,13 +332,10 @@ class CreateDemandPositionsRequest implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('pack', $data ?? [], null);
         $this->setIfExists('price', $data ?? [], null);
         $this->setIfExists('quantity', $data ?? [], null);
-        $this->setIfExists('slot', $data ?? [], null);
         $this->setIfExists('things', $data ?? [], null);
-        $this->setIfExists('tracking_codes', $data ?? [], null);
-        $this->setIfExists('tracking_codes_1162', $data ?? [], null);
-        $this->setIfExists('overhead', $data ?? [], null);
         $this->setIfExists('vat', $data ?? [], null);
         $this->setIfExists('vat_enabled', $data ?? [], null);
+        $this->setIfExists('errors', $data ?? [], null);
     }
 
     /**
@@ -386,14 +365,13 @@ class CreateDemandPositionsRequest implements ModelInterface, ArrayAccess, \Json
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['vat']) && ($this->container['vat'] > 100)) {
-            $invalidProperties[] = "invalid value for 'vat', must be smaller than or equal to 100.";
+        if (!is_null($this->container['quantity']) && ($this->container['quantity'] <= 0)) {
+            $invalidProperties[] = "invalid value for 'quantity', must be bigger than 0.";
         }
 
-        if (!is_null($this->container['vat']) && ($this->container['vat'] < 0)) {
-            $invalidProperties[] = "invalid value for 'vat', must be bigger than or equal to 0.";
+        if ($this->container['errors'] === null) {
+            $invalidProperties[] = "'errors' can't be null";
         }
-
         return $invalidProperties;
     }
 
@@ -613,7 +591,7 @@ class CreateDemandPositionsRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets pack
      *
-     * @param \OpenAPI\Client\Model\Pack|null $pack Упаковка Товара
+     * @param \OpenAPI\Client\Model\Pack|null $pack Упаковка товара
      *
      * @return self
      */
@@ -674,7 +652,7 @@ class CreateDemandPositionsRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets quantity
      *
-     * @param float|null $quantity Количество товаров/услуг данного вида в позиции. Если позиция — товар с учётом по серийным номерам, значение всегда равно количеству серийных номеров для этой позиции в документе.
+     * @param float|null $quantity Количество товаров/услуг данного вида в позиции. Если позиция является товаром с учётом по серийным номерам, значение всегда равно количеству серийных номеров для этой позиции в документе.
      *
      * @return self
      */
@@ -683,41 +661,12 @@ class CreateDemandPositionsRequest implements ModelInterface, ArrayAccess, \Json
         if (is_null($quantity)) {
             throw new \InvalidArgumentException('non-nullable quantity cannot be null');
         }
-        $this->container['quantity'] = $quantity;
 
-        return $this;
-    }
-
-    /**
-     * Gets slot
-     *
-     * @return \OpenAPI\Client\Model\StoreSlot|null
-     */
-    public function getSlot()
-    {
-        return $this->container['slot'];
-    }
-
-    /**
-     * Sets slot
-     *
-     * @param \OpenAPI\Client\Model\StoreSlot|null $slot Ячейка на складе
-     *
-     * @return self
-     */
-    public function setSlot($slot)
-    {
-        if (is_null($slot)) {
-            array_push($this->openAPINullablesSetToNull, 'slot');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('slot', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (($quantity <= 0)) {
+            throw new \InvalidArgumentException('invalid value for $quantity when calling CreateRetailDemandPositions200ResponseInner., must be bigger than 0.');
         }
-        $this->container['slot'] = $slot;
+
+        $this->container['quantity'] = $quantity;
 
         return $this;
     }
@@ -750,87 +699,6 @@ class CreateDemandPositionsRequest implements ModelInterface, ArrayAccess, \Json
     }
 
     /**
-     * Gets tracking_codes
-     *
-     * @return \OpenAPI\Client\Model\PositionTrackingCode[]|null
-     */
-    public function getTrackingCodes()
-    {
-        return $this->container['tracking_codes'];
-    }
-
-    /**
-     * Sets tracking_codes
-     *
-     * @param \OpenAPI\Client\Model\PositionTrackingCode[]|null $tracking_codes Коды маркировки товаров и транспортных упаковок (иерархическая структура). Количество кодов маркировки не влияет на поле quantity позиции.
-     *
-     * @return self
-     */
-    public function setTrackingCodes($tracking_codes)
-    {
-        if (is_null($tracking_codes)) {
-            throw new \InvalidArgumentException('non-nullable tracking_codes cannot be null');
-        }
-        $this->container['tracking_codes'] = $tracking_codes;
-
-        return $this;
-    }
-
-    /**
-     * Gets tracking_codes_1162
-     *
-     * @return \OpenAPI\Client\Model\DemandPositionTrackingCode1162[]|null
-     */
-    public function getTrackingCodes1162()
-    {
-        return $this->container['tracking_codes_1162'];
-    }
-
-    /**
-     * Sets tracking_codes_1162
-     *
-     * @param \OpenAPI\Client\Model\DemandPositionTrackingCode1162[]|null $tracking_codes_1162 Коды маркировки в формате тега 1162 (иерархическая структура). Только для чтения в ответе.
-     *
-     * @return self
-     */
-    public function setTrackingCodes1162($tracking_codes_1162)
-    {
-        if (is_null($tracking_codes_1162)) {
-            throw new \InvalidArgumentException('non-nullable tracking_codes_1162 cannot be null');
-        }
-        $this->container['tracking_codes_1162'] = $tracking_codes_1162;
-
-        return $this;
-    }
-
-    /**
-     * Gets overhead
-     *
-     * @return int|null
-     */
-    public function getOverhead()
-    {
-        return $this->container['overhead'];
-    }
-
-    /**
-     * Sets overhead
-     *
-     * @param int|null $overhead Накладные расходы по позиции. Если позиции Отгрузки не заданы, накладные расходы на уровне документа задать нельзя.
-     *
-     * @return self
-     */
-    public function setOverhead($overhead)
-    {
-        if (is_null($overhead)) {
-            throw new \InvalidArgumentException('non-nullable overhead cannot be null');
-        }
-        $this->container['overhead'] = $overhead;
-
-        return $this;
-    }
-
-    /**
      * Gets vat
      *
      * @return int|null
@@ -852,14 +720,6 @@ class CreateDemandPositionsRequest implements ModelInterface, ArrayAccess, \Json
         if (is_null($vat)) {
             throw new \InvalidArgumentException('non-nullable vat cannot be null');
         }
-
-        if (($vat > 100)) {
-            throw new \InvalidArgumentException('invalid value for $vat when calling CreateDemandPositionsRequest., must be smaller than or equal to 100.');
-        }
-        if (($vat < 0)) {
-            throw new \InvalidArgumentException('invalid value for $vat when calling CreateDemandPositionsRequest., must be bigger than or equal to 0.');
-        }
-
         $this->container['vat'] = $vat;
 
         return $this;
@@ -878,7 +738,7 @@ class CreateDemandPositionsRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets vat_enabled
      *
-     * @param bool|null $vat_enabled Включён ли НДС для позиции. Пара `(vat = 0, vatEnabled = false)` соответствует НДС «без НДС»; `(vat = 0, vatEnabled = true)` — НДС 0%.
+     * @param bool|null $vat_enabled Включен ли НДС для позиции
      *
      * @return self
      */
@@ -888,6 +748,33 @@ class CreateDemandPositionsRequest implements ModelInterface, ArrayAccess, \Json
             throw new \InvalidArgumentException('non-nullable vat_enabled cannot be null');
         }
         $this->container['vat_enabled'] = $vat_enabled;
+
+        return $this;
+    }
+
+    /**
+     * Gets errors
+     *
+     * @return \OpenAPI\Client\Model\ErrorErrorsInner[]
+     */
+    public function getErrors()
+    {
+        return $this->container['errors'];
+    }
+
+    /**
+     * Sets errors
+     *
+     * @param \OpenAPI\Client\Model\ErrorErrorsInner[] $errors errors
+     *
+     * @return self
+     */
+    public function setErrors($errors)
+    {
+        if (is_null($errors)) {
+            throw new \InvalidArgumentException('non-nullable errors cannot be null');
+        }
+        $this->container['errors'] = $errors;
 
         return $this;
     }

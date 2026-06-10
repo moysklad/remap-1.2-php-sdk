@@ -132,9 +132,21 @@ class CustomerOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for createCustomerOrderPosition
+     *
+     * Создать и обновить позицию Заказа покупателя.
+     *
+     */
+    public function testCreateCustomerOrderPosition()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createCustomerOrderPositions
      *
-     * Создать позиции CustomerOrders.
+     * Массовое создание и обновление позиций Заказа покупателя.
      *
      */
     public function testCreateCustomerOrderPositions()

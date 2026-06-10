@@ -132,24 +132,24 @@ class SuppliesApiTest extends TestCase
     }
 
     /**
-     * Test case for createSupplyPositions
+     * Test case for createSupplyPosition
      *
-     * Создать позицию Приемки.
+     * Создать и обновить позицию Приемки.
      *
      */
-    public function testCreateSupplyPositions()
+    public function testCreateSupplyPosition()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for createSupplyPositionsBatch
+     * Test case for createSupplyPositions
      *
-     * Создать позиции Приемки.
+     * Массовое создание и обновление позиций Приемки.
      *
      */
-    public function testCreateSupplyPositionsBatch()
+    public function testCreateSupplyPositions()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

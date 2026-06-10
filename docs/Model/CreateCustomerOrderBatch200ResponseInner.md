@@ -43,7 +43,7 @@ Name | Type | Description | Notes
 **files** | [**\OpenAPI\Client\Model\FileList**](FileList.md) | Метаданные массива Файлов | [optional]
 **tax_system** | **string** | Код системы налогообложения. Известные значения описаны в TaxSystem | [optional]
 **rate** | [**\OpenAPI\Client\Model\CurrencyRate**](CurrencyRate.md) |  | [optional]
-**positions** | [**\OpenAPI\Client\Model\CustomerOrderPositionList**](.md) |  | [optional]
+**positions** | [**\OpenAPI\Client\Model\CustomerOrderPositionList**](CustomerOrderPositionList.md) |  | [optional]
 **sales_channel** | [**\OpenAPI\Client\Model\SalesChannel**](SalesChannel.md) | Метаданные канала продаж | [optional]
 **shipment_address** | **string** | Адрес доставки Заказа покупателя | [optional]
 **shipment_address_full** | [**\OpenAPI\Client\Model\Address**](Address.md) | Адрес доставки Заказа покупателя с детализацией по отдельным полям | [optional]

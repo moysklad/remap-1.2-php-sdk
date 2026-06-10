@@ -6,8 +6,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | ------------- | ------------- | ------------- |
 | [**createEmissionOrder()**](EmissionOrdersApi.md#createEmissionOrder) | **POST** /entity/emissionorder | Создать Заказ кодов маркировки |
 | [**createEmissionOrderBatch()**](EmissionOrdersApi.md#createEmissionOrderBatch) | **POST** /entity/emissionorder/batch | Массовое создание и обновление Заказов кодов маркировки |
-| [**createEmissionOrderPositions()**](EmissionOrdersApi.md#createEmissionOrderPositions) | **POST** /entity/emissionorder/{id}/positions | Создать позицию Заказа кодов маркировки |
-| [**createEmissionOrderPositionsBatch()**](EmissionOrdersApi.md#createEmissionOrderPositionsBatch) | **POST** /entity/emissionorder/{id}/positions/batch | Создать позиции Заказа кодов маркировки |
+| [**createEmissionOrderPosition()**](EmissionOrdersApi.md#createEmissionOrderPosition) | **POST** /entity/emissionorder/{id}/positions | Создать и обновить позицию Заказа кодов маркировки |
+| [**createEmissionOrderPositions()**](EmissionOrdersApi.md#createEmissionOrderPositions) | **POST** /entity/emissionorder/{id}/positions/batch | Массовое создание и обновление позиций Заказа кодов маркировки |
 | [**deleteEmissionOrderMetadataStateById()**](EmissionOrdersApi.md#deleteEmissionOrderMetadataStateById) | **DELETE** /entity/emissionorder/metadata/states/{id} | Удалить отдельный статус Заказа кодов маркировки |
 | [**getEmissionOrderById()**](EmissionOrdersApi.md#getEmissionOrderById) | **GET** /entity/emissionorder/{id} | Получить Заказ кодов маркировки |
 | [**getEmissionOrderList()**](EmissionOrdersApi.md#getEmissionOrderList) | **GET** /entity/emissionorder | Получить список Заказов кодов маркировки |
@@ -162,13 +162,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createEmissionOrderPositions()`
+## `createEmissionOrderPosition()`
 
 ```php
-createEmissionOrderPositions($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\EmissionOrderPosition
+createEmissionOrderPosition($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\EmissionOrderPosition
 ```
 
-Создать позицию Заказа кодов маркировки
+Создать и обновить позицию Заказа кодов маркировки
 
 ### Example
 
@@ -200,10 +200,10 @@ $accept_encoding = gzip, deflate, br; // string
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createEmissionOrderPositions($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->createEmissionOrderPosition($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling EmissionOrdersApi->createEmissionOrderPositions: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling EmissionOrdersApi->createEmissionOrderPosition: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -235,13 +235,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createEmissionOrderPositionsBatch()`
+## `createEmissionOrderPositions()`
 
 ```php
-createEmissionOrderPositionsBatch($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateEmissionOrderPositionsBatch200ResponseInner[]
+createEmissionOrderPositions($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateEmissionOrderPositions200ResponseInner[]
 ```
 
-Создать позиции Заказа кодов маркировки
+Массовое создание и обновление позиций Заказа кодов маркировки
 
 ### Example
 
@@ -273,10 +273,10 @@ $accept_encoding = gzip, deflate, br; // string
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createEmissionOrderPositionsBatch($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->createEmissionOrderPositions($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling EmissionOrdersApi->createEmissionOrderPositionsBatch: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling EmissionOrdersApi->createEmissionOrderPositions: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -293,7 +293,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateEmissionOrderPositionsBatch200ResponseInner[]**](../Model/CreateEmissionOrderPositionsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\CreateEmissionOrderPositions200ResponseInner[]**](../Model/CreateEmissionOrderPositions200ResponseInner.md)
 
 ### Authorization
 

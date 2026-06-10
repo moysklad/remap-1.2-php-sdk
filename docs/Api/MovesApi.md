@@ -8,8 +8,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createMove()**](MovesApi.md#createMove) | **POST** /entity/move | Создать Перемещение |
 | [**createMoveBatch()**](MovesApi.md#createMoveBatch) | **POST** /entity/move/batch | Массовое создание и обновление Перемещений |
 | [**createMoveMetadataAttribute()**](MovesApi.md#createMoveMetadataAttribute) | **POST** /entity/move/metadata/attributes | Создать доп. поле Перемещения |
-| [**createMovePositions()**](MovesApi.md#createMovePositions) | **POST** /entity/move/{id}/positions | Создать позицию Перемещения |
-| [**createMovePositionsBatch()**](MovesApi.md#createMovePositionsBatch) | **POST** /entity/move/{id}/positions/batch | Создать позиции Перемещения |
+| [**createMovePosition()**](MovesApi.md#createMovePosition) | **POST** /entity/move/{id}/positions | Создать и обновить позицию Перемещения |
+| [**createMovePositions()**](MovesApi.md#createMovePositions) | **POST** /entity/move/{id}/positions/batch | Массовое создание и обновление позиций Перемещения |
 | [**deleteMove()**](MovesApi.md#deleteMove) | **DELETE** /entity/move/{id} | Удалить Перемещение |
 | [**deleteMoveBatch()**](MovesApi.md#deleteMoveBatch) | **POST** /entity/move/delete | Массовое удаление Перемещений |
 | [**deleteMoveFile()**](MovesApi.md#deleteMoveFile) | **DELETE** /entity/move/{id}/files/{fileId} | Удалить файл перемещения |
@@ -317,13 +317,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createMovePositions()`
+## `createMovePosition()`
 
 ```php
-createMovePositions($id, $move_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\MovePosition
+createMovePosition($id, $move_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\MovePosition
 ```
 
-Создать позицию Перемещения
+Создать и обновить позицию Перемещения
 
 ### Example
 
@@ -355,10 +355,10 @@ $accept_encoding = gzip, deflate, br; // string
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createMovePositions($id, $move_position, $expand, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->createMovePosition($id, $move_position, $expand, $accept, $accept_encoding, $content_type);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling MovesApi->createMovePositions: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MovesApi->createMovePosition: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -390,13 +390,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createMovePositionsBatch()`
+## `createMovePositions()`
 
 ```php
-createMovePositionsBatch($id, $move_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateMovePositionsBatch200ResponseInner[]
+createMovePositions($id, $move_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateMovePositions200ResponseInner[]
 ```
 
-Создать позиции Перемещения
+Массовое создание и обновление позиций Перемещения
 
 ### Example
 
@@ -428,10 +428,10 @@ $accept_encoding = gzip, deflate, br; // string
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createMovePositionsBatch($id, $move_position, $expand, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->createMovePositions($id, $move_position, $expand, $accept, $accept_encoding, $content_type);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling MovesApi->createMovePositionsBatch: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MovesApi->createMovePositions: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -448,7 +448,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateMovePositionsBatch200ResponseInner[]**](../Model/CreateMovePositionsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\CreateMovePositions200ResponseInner[]**](../Model/CreateMovePositions200ResponseInner.md)
 
 ### Authorization
 

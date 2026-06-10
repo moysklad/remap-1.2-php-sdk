@@ -7,7 +7,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createDemand()**](DemandsApi.md#createDemand) | **POST** /entity/demand | Создать Отгрузку |
 | [**createDemandBatch()**](DemandsApi.md#createDemandBatch) | **POST** /entity/demand/batch | Массовое создание и обновление Отгрузок |
 | [**createDemandMetadataAttribute()**](DemandsApi.md#createDemandMetadataAttribute) | **POST** /entity/demand/metadata/attributes | Создать доп. поле Отгрузки |
-| [**createDemandPositions()**](DemandsApi.md#createDemandPositions) | **POST** /entity/demand/{id}/positions | Создать позиции Отгрузки |
+| [**createDemandPosition()**](DemandsApi.md#createDemandPosition) | **POST** /entity/demand/{id}/positions | Создать и обновить позицию Отгрузки |
+| [**createDemandPositions()**](DemandsApi.md#createDemandPositions) | **POST** /entity/demand/{id}/positions/batch | Массовое создание и обновление позиций Отгрузки |
 | [**deleteDemand()**](DemandsApi.md#deleteDemand) | **DELETE** /entity/demand/{id} | Удалить Отгрузку |
 | [**deleteDemandBatch()**](DemandsApi.md#deleteDemandBatch) | **POST** /entity/demand/delete | Массовое удаление Отгрузок |
 | [**deleteDemandMetadataAttributeById()**](DemandsApi.md#deleteDemandMetadataAttributeById) | **DELETE** /entity/demand/metadata/attributes/{id} | Удалить отдельное доп. поле Отгрузки |
@@ -240,13 +241,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createDemandPositions()`
+## `createDemandPosition()`
 
 ```php
-createDemandPositions($id, $create_demand_positions_request, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateDemandPositions200ResponseInner[]
+createDemandPosition($id, $demand_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DemandPosition
 ```
 
-Создать позиции Отгрузки
+Создать и обновить позицию Отгрузки
 
 ### Example
 
@@ -271,14 +272,87 @@ $apiInstance = new OpenAPI\Client\Api\DemandsApi(
     $config
 );
 $id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$create_demand_positions_request = new \OpenAPI\Client\Model\CreateDemandPositionsRequest(); // \OpenAPI\Client\Model\CreateDemandPositionsRequest
+$demand_position = new \OpenAPI\Client\Model\DemandPosition(); // \OpenAPI\Client\Model\DemandPosition
 $expand = agent,organization; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
 $accept_encoding = gzip, deflate, br; // string
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createDemandPositions($id, $create_demand_positions_request, $expand, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->createDemandPosition($id, $demand_position, $expand, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DemandsApi->createDemandPosition: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **demand_position** | [**\OpenAPI\Client\Model\DemandPosition**](../Model/DemandPosition.md)|  | |
+| **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\DemandPosition**](../Model/DemandPosition.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createDemandPositions()`
+
+```php
+createDemandPositions($id, $demand_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateDemandPositions200ResponseInner[]
+```
+
+Массовое создание и обновление позиций Отгрузки
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\DemandsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$demand_position = array(new \OpenAPI\Client\Model\DemandPosition()); // \OpenAPI\Client\Model\DemandPosition[]
+$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = gzip, deflate, br; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createDemandPositions($id, $demand_position, $expand, $accept, $accept_encoding, $content_type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DemandsApi->createDemandPositions: ', $e->getMessage(), PHP_EOL;
@@ -290,7 +364,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
-| **create_demand_positions_request** | [**\OpenAPI\Client\Model\CreateDemandPositionsRequest**](../Model/CreateDemandPositionsRequest.md)|  | |
+| **demand_position** | [**\OpenAPI\Client\Model\DemandPosition[]**](../Model/DemandPosition.md)|  | |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |

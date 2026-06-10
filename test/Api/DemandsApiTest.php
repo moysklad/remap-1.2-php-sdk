@@ -108,9 +108,21 @@ class DemandsApiTest extends TestCase
     }
 
     /**
+     * Test case for createDemandPosition
+     *
+     * Создать и обновить позицию Отгрузки.
+     *
+     */
+    public function testCreateDemandPosition()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createDemandPositions
      *
-     * Создать позиции Отгрузки.
+     * Массовое создание и обновление позиций Отгрузки.
      *
      */
     public function testCreateDemandPositions()

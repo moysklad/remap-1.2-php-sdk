@@ -84,9 +84,21 @@ class ProcessingProcessesApiTest extends TestCase
     }
 
     /**
+     * Test case for createProcessingProcessPosition
+     *
+     * Создать и обновить позицию Техпроцесса.
+     *
+     */
+    public function testCreateProcessingProcessPosition()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createProcessingProcessPositions
      *
-     * Создать позицию Техпроцесса.
+     * Массовое создание и обновление позиций Техпроцесса.
      *
      */
     public function testCreateProcessingProcessPositions()

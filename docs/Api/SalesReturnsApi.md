@@ -7,7 +7,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createSalesReturn()**](SalesReturnsApi.md#createSalesReturn) | **POST** /entity/salesreturn | Создать Возврат покупателя |
 | [**createSalesReturnBatch()**](SalesReturnsApi.md#createSalesReturnBatch) | **POST** /entity/salesreturn/batch | Массовое создание и обновление Возвратов покупателей |
 | [**createSalesReturnMetadataAttribute()**](SalesReturnsApi.md#createSalesReturnMetadataAttribute) | **POST** /entity/salesreturn/metadata/attributes | Создать доп. поле Возврата покупателя |
-| [**createSalesReturnPositions()**](SalesReturnsApi.md#createSalesReturnPositions) | **POST** /entity/salesreturn/{id}/positions | Создать позиции Возврата покупателя |
+| [**createSalesReturnPosition()**](SalesReturnsApi.md#createSalesReturnPosition) | **POST** /entity/salesreturn/{id}/positions | Создать и обновить позицию Возврата покупателя |
+| [**createSalesReturnPositions()**](SalesReturnsApi.md#createSalesReturnPositions) | **POST** /entity/salesreturn/{id}/positions/batch | Массовое создание и обновление позиций Возврата покупателя |
 | [**deleteSalesReturn()**](SalesReturnsApi.md#deleteSalesReturn) | **DELETE** /entity/salesreturn/{id} | Удалить Возврат покупателя |
 | [**deleteSalesReturnBatch()**](SalesReturnsApi.md#deleteSalesReturnBatch) | **POST** /entity/salesreturn/delete | Массовое удаление Возвратов покупателей |
 | [**deleteSalesReturnMetadataAttributeById()**](SalesReturnsApi.md#deleteSalesReturnMetadataAttributeById) | **DELETE** /entity/salesreturn/metadata/attributes/{id} | Удалить отдельное доп. поле Возврата покупателя |
@@ -240,13 +241,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createSalesReturnPositions()`
+## `createSalesReturnPosition()`
 
 ```php
-createSalesReturnPositions($id, $create_sales_return_positions_request, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateSalesReturnPositions200ResponseInner[]
+createSalesReturnPosition($id, $sales_return_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\SalesReturnPosition
 ```
 
-Создать позиции Возврата покупателя
+Создать и обновить позицию Возврата покупателя
 
 ### Example
 
@@ -271,14 +272,87 @@ $apiInstance = new OpenAPI\Client\Api\SalesReturnsApi(
     $config
 );
 $id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$create_sales_return_positions_request = new \OpenAPI\Client\Model\CreateSalesReturnPositionsRequest(); // \OpenAPI\Client\Model\CreateSalesReturnPositionsRequest
+$sales_return_position = new \OpenAPI\Client\Model\SalesReturnPosition(); // \OpenAPI\Client\Model\SalesReturnPosition
 $expand = agent,organization; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
 $accept_encoding = gzip, deflate, br; // string
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createSalesReturnPositions($id, $create_sales_return_positions_request, $expand, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->createSalesReturnPosition($id, $sales_return_position, $expand, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling SalesReturnsApi->createSalesReturnPosition: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **sales_return_position** | [**\OpenAPI\Client\Model\SalesReturnPosition**](../Model/SalesReturnPosition.md)|  | |
+| **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\SalesReturnPosition**](../Model/SalesReturnPosition.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createSalesReturnPositions()`
+
+```php
+createSalesReturnPositions($id, $sales_return_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateSalesReturnPositions200ResponseInner[]
+```
+
+Массовое создание и обновление позиций Возврата покупателя
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\SalesReturnsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$sales_return_position = array(new \OpenAPI\Client\Model\SalesReturnPosition()); // \OpenAPI\Client\Model\SalesReturnPosition[]
+$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = gzip, deflate, br; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createSalesReturnPositions($id, $sales_return_position, $expand, $accept, $accept_encoding, $content_type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SalesReturnsApi->createSalesReturnPositions: ', $e->getMessage(), PHP_EOL;
@@ -290,7 +364,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
-| **create_sales_return_positions_request** | [**\OpenAPI\Client\Model\CreateSalesReturnPositionsRequest**](../Model/CreateSalesReturnPositionsRequest.md)|  | |
+| **sales_return_position** | [**\OpenAPI\Client\Model\SalesReturnPosition[]**](../Model/SalesReturnPosition.md)|  | |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
@@ -1231,7 +1305,7 @@ try {
 ## `getSalesReturnPositions()`
 
 ```php
-getSalesReturnPositions($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\SalesReturnPositionList
+getSalesReturnPositions($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding): \OpenAPI\Client\Model\SalesReturnPositionList
 ```
 
 Получить позиции Возврата покупателя
@@ -1265,10 +1339,9 @@ $expand = agent,organization; // string | Замена ссылок объект
 $fields = minimumStock; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
 $accept = 'application/json;charset=utf-8'; // string
 $accept_encoding = gzip, deflate, br; // string
-$content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->getSalesReturnPositions($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->getSalesReturnPositions($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SalesReturnsApi->getSalesReturnPositions: ', $e->getMessage(), PHP_EOL;
@@ -1286,7 +1359,6 @@ try {
 | **fields** | **string**| Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
-| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
 

@@ -96,24 +96,24 @@ class EmissionOrdersApiTest extends TestCase
     }
 
     /**
-     * Test case for createEmissionOrderPositions
+     * Test case for createEmissionOrderPosition
      *
-     * Создать позицию Заказа кодов маркировки.
+     * Создать и обновить позицию Заказа кодов маркировки.
      *
      */
-    public function testCreateEmissionOrderPositions()
+    public function testCreateEmissionOrderPosition()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for createEmissionOrderPositionsBatch
+     * Test case for createEmissionOrderPositions
      *
-     * Создать позиции Заказа кодов маркировки.
+     * Массовое создание и обновление позиций Заказа кодов маркировки.
      *
      */
-    public function testCreateEmissionOrderPositionsBatch()
+    public function testCreateEmissionOrderPositions()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

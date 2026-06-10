@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateLossPositionsRequest
+ * CreateMovePositions200ResponseInner
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * CreateLossPositionsRequest Class Doc Comment
+ * CreateMovePositions200ResponseInner Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class CreateLossPositionsRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class CreateMovePositions200ResponseInner implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class CreateLossPositionsRequest implements ModelInterface, ArrayAccess, \JsonSe
       *
       * @var string
       */
-    protected static $openAPIModelName = 'createLossPositions_request';
+    protected static $openAPIModelName = 'createMovePositions_200_response_inner';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -61,13 +61,14 @@ class CreateLossPositionsRequest implements ModelInterface, ArrayAccess, \JsonSe
         'id' => 'string',
         'account_id' => 'string',
         'assortment' => '\OpenAPI\Client\Model\Assortment',
-        'declaration' => '\OpenAPI\Client\Model\DeclarationInner[]',
+        'overhead' => 'int',
         'pack' => '\OpenAPI\Client\Model\Pack',
         'price' => 'float',
         'quantity' => 'float',
-        'reason' => 'string',
-        'slot' => '\OpenAPI\Client\Model\StoreSlot',
-        'things' => 'string[]'
+        'source_slot' => '\OpenAPI\Client\Model\StoreSlot',
+        'target_slot' => '\OpenAPI\Client\Model\StoreSlot',
+        'things' => 'string[]',
+        'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
     ];
 
     /**
@@ -82,13 +83,14 @@ class CreateLossPositionsRequest implements ModelInterface, ArrayAccess, \JsonSe
         'id' => 'uuid',
         'account_id' => 'uuid',
         'assortment' => null,
-        'declaration' => null,
+        'overhead' => null,
         'pack' => null,
         'price' => 'double',
         'quantity' => 'double',
-        'reason' => null,
-        'slot' => null,
-        'things' => null
+        'source_slot' => null,
+        'target_slot' => null,
+        'things' => null,
+        'errors' => null
     ];
 
     /**
@@ -101,13 +103,14 @@ class CreateLossPositionsRequest implements ModelInterface, ArrayAccess, \JsonSe
         'id' => false,
         'account_id' => false,
         'assortment' => false,
-        'declaration' => false,
+        'overhead' => false,
         'pack' => true,
         'price' => false,
         'quantity' => false,
-        'reason' => false,
-        'slot' => true,
-        'things' => false
+        'source_slot' => true,
+        'target_slot' => true,
+        'things' => false,
+        'errors' => false
     ];
 
     /**
@@ -200,13 +203,14 @@ class CreateLossPositionsRequest implements ModelInterface, ArrayAccess, \JsonSe
         'id' => 'id',
         'account_id' => 'accountId',
         'assortment' => 'assortment',
-        'declaration' => 'declaration',
+        'overhead' => 'overhead',
         'pack' => 'pack',
         'price' => 'price',
         'quantity' => 'quantity',
-        'reason' => 'reason',
-        'slot' => 'slot',
-        'things' => 'things'
+        'source_slot' => 'sourceSlot',
+        'target_slot' => 'targetSlot',
+        'things' => 'things',
+        'errors' => 'errors'
     ];
 
     /**
@@ -219,13 +223,14 @@ class CreateLossPositionsRequest implements ModelInterface, ArrayAccess, \JsonSe
         'id' => 'setId',
         'account_id' => 'setAccountId',
         'assortment' => 'setAssortment',
-        'declaration' => 'setDeclaration',
+        'overhead' => 'setOverhead',
         'pack' => 'setPack',
         'price' => 'setPrice',
         'quantity' => 'setQuantity',
-        'reason' => 'setReason',
-        'slot' => 'setSlot',
-        'things' => 'setThings'
+        'source_slot' => 'setSourceSlot',
+        'target_slot' => 'setTargetSlot',
+        'things' => 'setThings',
+        'errors' => 'setErrors'
     ];
 
     /**
@@ -238,13 +243,14 @@ class CreateLossPositionsRequest implements ModelInterface, ArrayAccess, \JsonSe
         'id' => 'getId',
         'account_id' => 'getAccountId',
         'assortment' => 'getAssortment',
-        'declaration' => 'getDeclaration',
+        'overhead' => 'getOverhead',
         'pack' => 'getPack',
         'price' => 'getPrice',
         'quantity' => 'getQuantity',
-        'reason' => 'getReason',
-        'slot' => 'getSlot',
-        'things' => 'getThings'
+        'source_slot' => 'getSourceSlot',
+        'target_slot' => 'getTargetSlot',
+        'things' => 'getThings',
+        'errors' => 'getErrors'
     ];
 
     /**
@@ -308,13 +314,14 @@ class CreateLossPositionsRequest implements ModelInterface, ArrayAccess, \JsonSe
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('account_id', $data ?? [], null);
         $this->setIfExists('assortment', $data ?? [], null);
-        $this->setIfExists('declaration', $data ?? [], null);
+        $this->setIfExists('overhead', $data ?? [], null);
         $this->setIfExists('pack', $data ?? [], null);
         $this->setIfExists('price', $data ?? [], null);
         $this->setIfExists('quantity', $data ?? [], null);
-        $this->setIfExists('reason', $data ?? [], null);
-        $this->setIfExists('slot', $data ?? [], null);
+        $this->setIfExists('source_slot', $data ?? [], null);
+        $this->setIfExists('target_slot', $data ?? [], null);
         $this->setIfExists('things', $data ?? [], null);
+        $this->setIfExists('errors', $data ?? [], null);
     }
 
     /**
@@ -344,10 +351,13 @@ class CreateLossPositionsRequest implements ModelInterface, ArrayAccess, \JsonSe
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['reason']) && (mb_strlen($this->container['reason']) > 255)) {
-            $invalidProperties[] = "invalid value for 'reason', the character length must be smaller than or equal to 255.";
+        if (!is_null($this->container['quantity']) && ($this->container['quantity'] <= 0)) {
+            $invalidProperties[] = "invalid value for 'quantity', must be bigger than 0.";
         }
 
+        if ($this->container['errors'] === null) {
+            $invalidProperties[] = "'errors' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -474,28 +484,28 @@ class CreateLossPositionsRequest implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-     * Gets declaration
+     * Gets overhead
      *
-     * @return \OpenAPI\Client\Model\DeclarationInner[]|null
+     * @return int|null
      */
-    public function getDeclaration()
+    public function getOverhead()
     {
-        return $this->container['declaration'];
+        return $this->container['overhead'];
     }
 
     /**
-     * Sets declaration
+     * Sets overhead
      *
-     * @param \OpenAPI\Client\Model\DeclarationInner[]|null $declaration Информация о прослеживаемости импортных товаров. Не входит в ответ по умолчанию; может быть возвращена только при явном запросе `fields=declaration`. Только для чтения.
+     * @param int|null $overhead Накладные расходы по позиции. Если позиции Перемещения не заданы, накладные расходы на уровне документа задать нельзя.
      *
      * @return self
      */
-    public function setDeclaration($declaration)
+    public function setOverhead($overhead)
     {
-        if (is_null($declaration)) {
-            throw new \InvalidArgumentException('non-nullable declaration cannot be null');
+        if (is_null($overhead)) {
+            throw new \InvalidArgumentException('non-nullable overhead cannot be null');
         }
-        $this->container['declaration'] = $declaration;
+        $this->container['overhead'] = $overhead;
 
         return $this;
     }
@@ -574,7 +584,7 @@ class CreateLossPositionsRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets quantity
      *
-     * @param float|null $quantity Количество товаров/услуг данного вида в позиции
+     * @param float|null $quantity Количество товаров/услуг данного вида в позиции. Если позиция — товар с учётом по серийным номерам, значение всегда равно количеству серийных номеров для этой позиции в документе.
      *
      * @return self
      */
@@ -583,72 +593,80 @@ class CreateLossPositionsRequest implements ModelInterface, ArrayAccess, \JsonSe
         if (is_null($quantity)) {
             throw new \InvalidArgumentException('non-nullable quantity cannot be null');
         }
+
+        if (($quantity <= 0)) {
+            throw new \InvalidArgumentException('invalid value for $quantity when calling CreateMovePositions200ResponseInner., must be bigger than 0.');
+        }
+
         $this->container['quantity'] = $quantity;
 
         return $this;
     }
 
     /**
-     * Gets reason
-     *
-     * @return string|null
-     */
-    public function getReason()
-    {
-        return $this->container['reason'];
-    }
-
-    /**
-     * Sets reason
-     *
-     * @param string|null $reason Причина списания данной позиции
-     *
-     * @return self
-     */
-    public function setReason($reason)
-    {
-        if (is_null($reason)) {
-            throw new \InvalidArgumentException('non-nullable reason cannot be null');
-        }
-        if ((mb_strlen($reason) > 255)) {
-            throw new \InvalidArgumentException('invalid length for $reason when calling CreateLossPositionsRequest., must be smaller than or equal to 255.');
-        }
-
-        $this->container['reason'] = $reason;
-
-        return $this;
-    }
-
-    /**
-     * Gets slot
+     * Gets source_slot
      *
      * @return \OpenAPI\Client\Model\StoreSlot|null
      */
-    public function getSlot()
+    public function getSourceSlot()
     {
-        return $this->container['slot'];
+        return $this->container['source_slot'];
     }
 
     /**
-     * Sets slot
+     * Sets source_slot
      *
-     * @param \OpenAPI\Client\Model\StoreSlot|null $slot Ячейка на складе
+     * @param \OpenAPI\Client\Model\StoreSlot|null $source_slot Ячейка на складе, с которого совершается перемещение
      *
      * @return self
      */
-    public function setSlot($slot)
+    public function setSourceSlot($source_slot)
     {
-        if (is_null($slot)) {
-            array_push($this->openAPINullablesSetToNull, 'slot');
+        if (is_null($source_slot)) {
+            array_push($this->openAPINullablesSetToNull, 'source_slot');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('slot', $nullablesSetToNull);
+            $index = array_search('source_slot', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['slot'] = $slot;
+        $this->container['source_slot'] = $source_slot;
+
+        return $this;
+    }
+
+    /**
+     * Gets target_slot
+     *
+     * @return \OpenAPI\Client\Model\StoreSlot|null
+     */
+    public function getTargetSlot()
+    {
+        return $this->container['target_slot'];
+    }
+
+    /**
+     * Sets target_slot
+     *
+     * @param \OpenAPI\Client\Model\StoreSlot|null $target_slot Ячейка на складе, на который совершается перемещение
+     *
+     * @return self
+     */
+    public function setTargetSlot($target_slot)
+    {
+        if (is_null($target_slot)) {
+            array_push($this->openAPINullablesSetToNull, 'target_slot');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('target_slot', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['target_slot'] = $target_slot;
 
         return $this;
     }
@@ -666,7 +684,7 @@ class CreateLossPositionsRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets things
      *
-     * @param string[]|null $things Серийные номера
+     * @param string[]|null $things Серийные номера. Игнорируется, если товар позиции не на серийном учёте; иначе количество единиц в позиции совпадает с числом переданных серийных номеров.
      *
      * @return self
      */
@@ -676,6 +694,33 @@ class CreateLossPositionsRequest implements ModelInterface, ArrayAccess, \JsonSe
             throw new \InvalidArgumentException('non-nullable things cannot be null');
         }
         $this->container['things'] = $things;
+
+        return $this;
+    }
+
+    /**
+     * Gets errors
+     *
+     * @return \OpenAPI\Client\Model\ErrorErrorsInner[]
+     */
+    public function getErrors()
+    {
+        return $this->container['errors'];
+    }
+
+    /**
+     * Sets errors
+     *
+     * @param \OpenAPI\Client\Model\ErrorErrorsInner[] $errors errors
+     *
+     * @return self
+     */
+    public function setErrors($errors)
+    {
+        if (is_null($errors)) {
+            throw new \InvalidArgumentException('non-nullable errors cannot be null');
+        }
+        $this->container['errors'] = $errors;
 
         return $this;
     }

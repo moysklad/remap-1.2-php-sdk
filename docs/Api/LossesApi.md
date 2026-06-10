@@ -7,7 +7,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createLoss()**](LossesApi.md#createLoss) | **POST** /entity/loss | Создать Списание |
 | [**createLossBatch()**](LossesApi.md#createLossBatch) | **POST** /entity/loss/batch | Массовое создание и обновление Списаний |
 | [**createLossMetadataAttribute()**](LossesApi.md#createLossMetadataAttribute) | **POST** /entity/loss/metadata/attributes | Создать доп. поле Списания |
-| [**createLossPositions()**](LossesApi.md#createLossPositions) | **POST** /entity/loss/{id}/positions | Создать позиции Списания |
+| [**createLossPosition()**](LossesApi.md#createLossPosition) | **POST** /entity/loss/{id}/positions | Создать и обновить позицию Списания |
+| [**createLossPositions()**](LossesApi.md#createLossPositions) | **POST** /entity/loss/{id}/positions/batch | Массовое создание и обновление позиций Списания |
 | [**deleteLoss()**](LossesApi.md#deleteLoss) | **DELETE** /entity/loss/{id} | Удалить Списание |
 | [**deleteLossBatch()**](LossesApi.md#deleteLossBatch) | **POST** /entity/loss/delete | Массовое удаление Списаний |
 | [**deleteLossMetadataAttributeById()**](LossesApi.md#deleteLossMetadataAttributeById) | **DELETE** /entity/loss/metadata/attributes/{id} | Удалить отдельное доп. поле Списания |
@@ -240,13 +241,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createLossPositions()`
+## `createLossPosition()`
 
 ```php
-createLossPositions($id, $create_loss_positions_request, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateLossPositions200ResponseInner[]
+createLossPosition($id, $loss_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\LossPosition
 ```
 
-Создать позиции Списания
+Создать и обновить позицию Списания
 
 ### Example
 
@@ -271,14 +272,87 @@ $apiInstance = new OpenAPI\Client\Api\LossesApi(
     $config
 );
 $id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$create_loss_positions_request = new \OpenAPI\Client\Model\CreateLossPositionsRequest(); // \OpenAPI\Client\Model\CreateLossPositionsRequest
+$loss_position = new \OpenAPI\Client\Model\LossPosition(); // \OpenAPI\Client\Model\LossPosition
 $expand = agent,organization; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
 $accept_encoding = gzip, deflate, br; // string
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createLossPositions($id, $create_loss_positions_request, $expand, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->createLossPosition($id, $loss_position, $expand, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LossesApi->createLossPosition: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **loss_position** | [**\OpenAPI\Client\Model\LossPosition**](../Model/LossPosition.md)|  | |
+| **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\LossPosition**](../Model/LossPosition.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createLossPositions()`
+
+```php
+createLossPositions($id, $loss_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateLossPositions200ResponseInner[]
+```
+
+Массовое создание и обновление позиций Списания
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\LossesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$loss_position = array(new \OpenAPI\Client\Model\LossPosition()); // \OpenAPI\Client\Model\LossPosition[]
+$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = gzip, deflate, br; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createLossPositions($id, $loss_position, $expand, $accept, $accept_encoding, $content_type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling LossesApi->createLossPositions: ', $e->getMessage(), PHP_EOL;
@@ -290,7 +364,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
-| **create_loss_positions_request** | [**\OpenAPI\Client\Model\CreateLossPositionsRequest**](../Model/CreateLossPositionsRequest.md)|  | |
+| **loss_position** | [**\OpenAPI\Client\Model\LossPosition[]**](../Model/LossPosition.md)|  | |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |

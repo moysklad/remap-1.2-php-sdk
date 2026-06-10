@@ -83,10 +83,10 @@ class RetailDemandsApi
         'createRetailDemandMetadataAttribute' => [
             'application/json',
         ],
-        'createRetailDemandPositions' => [
+        'createRetailDemandPosition' => [
             'application/json',
         ],
-        'createRetailDemandPositionsBatch' => [
+        'createRetailDemandPositions' => [
             'application/json',
         ],
         'deleteRetailDemand' => [
@@ -1188,9 +1188,9 @@ class RetailDemandsApi
     }
 
     /**
-     * Operation createRetailDemandPositions
+     * Operation createRetailDemandPosition
      *
-     * Создать позиции Розничной продажи
+     * Создать и обновить позицию Розничной продажи
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\RetailDemandPosition $retail_demand_position retail_demand_position (required)
@@ -1198,22 +1198,22 @@ class RetailDemandsApi
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createRetailDemandPositions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createRetailDemandPosition'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\RetailDemandPosition|\OpenAPI\Client\Model\ErrorOrArray
      */
-    public function createRetailDemandPositions($id, $retail_demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createRetailDemandPositions'][0])
+    public function createRetailDemandPosition($id, $retail_demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createRetailDemandPosition'][0])
     {
-        list($response) = $this->createRetailDemandPositionsWithHttpInfo($id, $retail_demand_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        list($response) = $this->createRetailDemandPositionWithHttpInfo($id, $retail_demand_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
     }
 
     /**
-     * Operation createRetailDemandPositionsWithHttpInfo
+     * Operation createRetailDemandPositionWithHttpInfo
      *
-     * Создать позиции Розничной продажи
+     * Создать и обновить позицию Розничной продажи
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\RetailDemandPosition $retail_demand_position (required)
@@ -1221,15 +1221,15 @@ class RetailDemandsApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createRetailDemandPositions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createRetailDemandPosition'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\RetailDemandPosition|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createRetailDemandPositionsWithHttpInfo($id, $retail_demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createRetailDemandPositions'][0])
+    public function createRetailDemandPositionWithHttpInfo($id, $retail_demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createRetailDemandPosition'][0])
     {
-        $request = $this->createRetailDemandPositionsRequest($id, $retail_demand_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->createRetailDemandPositionRequest($id, $retail_demand_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1315,9 +1315,9 @@ class RetailDemandsApi
     }
 
     /**
-     * Operation createRetailDemandPositionsAsync
+     * Operation createRetailDemandPositionAsync
      *
-     * Создать позиции Розничной продажи
+     * Создать и обновить позицию Розничной продажи
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\RetailDemandPosition $retail_demand_position (required)
@@ -1325,14 +1325,14 @@ class RetailDemandsApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createRetailDemandPositions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createRetailDemandPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createRetailDemandPositionsAsync($id, $retail_demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createRetailDemandPositions'][0])
+    public function createRetailDemandPositionAsync($id, $retail_demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createRetailDemandPosition'][0])
     {
-        return $this->createRetailDemandPositionsAsyncWithHttpInfo($id, $retail_demand_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
+        return $this->createRetailDemandPositionAsyncWithHttpInfo($id, $retail_demand_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1341,9 +1341,9 @@ class RetailDemandsApi
     }
 
     /**
-     * Operation createRetailDemandPositionsAsyncWithHttpInfo
+     * Operation createRetailDemandPositionAsyncWithHttpInfo
      *
-     * Создать позиции Розничной продажи
+     * Создать и обновить позицию Розничной продажи
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\RetailDemandPosition $retail_demand_position (required)
@@ -1351,15 +1351,15 @@ class RetailDemandsApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createRetailDemandPositions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createRetailDemandPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createRetailDemandPositionsAsyncWithHttpInfo($id, $retail_demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createRetailDemandPositions'][0])
+    public function createRetailDemandPositionAsyncWithHttpInfo($id, $retail_demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createRetailDemandPosition'][0])
     {
         $returnType = '\OpenAPI\Client\Model\RetailDemandPosition';
-        $request = $this->createRetailDemandPositionsRequest($id, $retail_demand_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->createRetailDemandPositionRequest($id, $retail_demand_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1398,7 +1398,7 @@ class RetailDemandsApi
     }
 
     /**
-     * Create request for operation 'createRetailDemandPositions'
+     * Create request for operation 'createRetailDemandPosition'
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\RetailDemandPosition $retail_demand_position (required)
@@ -1406,25 +1406,25 @@ class RetailDemandsApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createRetailDemandPositions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createRetailDemandPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createRetailDemandPositionsRequest($id, $retail_demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createRetailDemandPositions'][0])
+    public function createRetailDemandPositionRequest($id, $retail_demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createRetailDemandPosition'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling createRetailDemandPositions'
+                'Missing the required parameter $id when calling createRetailDemandPosition'
             );
         }
 
         // verify the required parameter 'retail_demand_position' is set
         if ($retail_demand_position === null || (is_array($retail_demand_position) && count($retail_demand_position) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $retail_demand_position when calling createRetailDemandPositions'
+                'Missing the required parameter $retail_demand_position when calling createRetailDemandPosition'
             );
         }
 
@@ -1542,9 +1542,9 @@ class RetailDemandsApi
     }
 
     /**
-     * Operation createRetailDemandPositionsBatch
+     * Operation createRetailDemandPositions
      *
-     * Создать позиции Розничной продажи
+     * Массовое создание и обновление позиций Розничной продажи
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\RetailDemandPosition[] $retail_demand_position retail_demand_position (required)
@@ -1552,22 +1552,22 @@ class RetailDemandsApi
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createRetailDemandPositionsBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createRetailDemandPositions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreateRetailDemandPositionsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\CreateRetailDemandPositions200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
      */
-    public function createRetailDemandPositionsBatch($id, $retail_demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createRetailDemandPositionsBatch'][0])
+    public function createRetailDemandPositions($id, $retail_demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createRetailDemandPositions'][0])
     {
-        list($response) = $this->createRetailDemandPositionsBatchWithHttpInfo($id, $retail_demand_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        list($response) = $this->createRetailDemandPositionsWithHttpInfo($id, $retail_demand_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
     }
 
     /**
-     * Operation createRetailDemandPositionsBatchWithHttpInfo
+     * Operation createRetailDemandPositionsWithHttpInfo
      *
-     * Создать позиции Розничной продажи
+     * Массовое создание и обновление позиций Розничной продажи
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\RetailDemandPosition[] $retail_demand_position (required)
@@ -1575,15 +1575,15 @@ class RetailDemandsApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createRetailDemandPositionsBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createRetailDemandPositions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreateRetailDemandPositionsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\CreateRetailDemandPositions200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createRetailDemandPositionsBatchWithHttpInfo($id, $retail_demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createRetailDemandPositionsBatch'][0])
+    public function createRetailDemandPositionsWithHttpInfo($id, $retail_demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createRetailDemandPositions'][0])
     {
-        $request = $this->createRetailDemandPositionsBatchRequest($id, $retail_demand_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->createRetailDemandPositionsRequest($id, $retail_demand_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1611,7 +1611,7 @@ class RetailDemandsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CreateRetailDemandPositionsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\CreateRetailDemandPositions200ResponseInner[]',
                         $request,
                         $response,
                     );
@@ -1639,7 +1639,7 @@ class RetailDemandsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\CreateRetailDemandPositionsBatch200ResponseInner[]',
+                '\OpenAPI\Client\Model\CreateRetailDemandPositions200ResponseInner[]',
                 $request,
                 $response,
             );
@@ -1648,7 +1648,7 @@ class RetailDemandsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreateRetailDemandPositionsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\CreateRetailDemandPositions200ResponseInner[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1669,9 +1669,9 @@ class RetailDemandsApi
     }
 
     /**
-     * Operation createRetailDemandPositionsBatchAsync
+     * Operation createRetailDemandPositionsAsync
      *
-     * Создать позиции Розничной продажи
+     * Массовое создание и обновление позиций Розничной продажи
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\RetailDemandPosition[] $retail_demand_position (required)
@@ -1679,14 +1679,14 @@ class RetailDemandsApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createRetailDemandPositionsBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createRetailDemandPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createRetailDemandPositionsBatchAsync($id, $retail_demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createRetailDemandPositionsBatch'][0])
+    public function createRetailDemandPositionsAsync($id, $retail_demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createRetailDemandPositions'][0])
     {
-        return $this->createRetailDemandPositionsBatchAsyncWithHttpInfo($id, $retail_demand_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
+        return $this->createRetailDemandPositionsAsyncWithHttpInfo($id, $retail_demand_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1695,9 +1695,9 @@ class RetailDemandsApi
     }
 
     /**
-     * Operation createRetailDemandPositionsBatchAsyncWithHttpInfo
+     * Operation createRetailDemandPositionsAsyncWithHttpInfo
      *
-     * Создать позиции Розничной продажи
+     * Массовое создание и обновление позиций Розничной продажи
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\RetailDemandPosition[] $retail_demand_position (required)
@@ -1705,15 +1705,15 @@ class RetailDemandsApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createRetailDemandPositionsBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createRetailDemandPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createRetailDemandPositionsBatchAsyncWithHttpInfo($id, $retail_demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createRetailDemandPositionsBatch'][0])
+    public function createRetailDemandPositionsAsyncWithHttpInfo($id, $retail_demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createRetailDemandPositions'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CreateRetailDemandPositionsBatch200ResponseInner[]';
-        $request = $this->createRetailDemandPositionsBatchRequest($id, $retail_demand_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $returnType = '\OpenAPI\Client\Model\CreateRetailDemandPositions200ResponseInner[]';
+        $request = $this->createRetailDemandPositionsRequest($id, $retail_demand_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1752,7 +1752,7 @@ class RetailDemandsApi
     }
 
     /**
-     * Create request for operation 'createRetailDemandPositionsBatch'
+     * Create request for operation 'createRetailDemandPositions'
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\RetailDemandPosition[] $retail_demand_position (required)
@@ -1760,32 +1760,32 @@ class RetailDemandsApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createRetailDemandPositionsBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createRetailDemandPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createRetailDemandPositionsBatchRequest($id, $retail_demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createRetailDemandPositionsBatch'][0])
+    public function createRetailDemandPositionsRequest($id, $retail_demand_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createRetailDemandPositions'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling createRetailDemandPositionsBatch'
+                'Missing the required parameter $id when calling createRetailDemandPositions'
             );
         }
 
         // verify the required parameter 'retail_demand_position' is set
         if ($retail_demand_position === null || (is_array($retail_demand_position) && count($retail_demand_position) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $retail_demand_position when calling createRetailDemandPositionsBatch'
+                'Missing the required parameter $retail_demand_position when calling createRetailDemandPositions'
             );
         }
         if (count($retail_demand_position) > 1000) {
-            throw new \InvalidArgumentException('invalid value for "$retail_demand_position" when calling RetailDemandsApi.createRetailDemandPositionsBatch, number of items must be less than or equal to 1000.');
+            throw new \InvalidArgumentException('invalid value for "$retail_demand_position" when calling RetailDemandsApi.createRetailDemandPositions, number of items must be less than or equal to 1000.');
         }
         if (count($retail_demand_position) < 1) {
-            throw new \InvalidArgumentException('invalid value for "$retail_demand_position" when calling RetailDemandsApi.createRetailDemandPositionsBatch, number of items must be greater than or equal to 1.');
+            throw new \InvalidArgumentException('invalid value for "$retail_demand_position" when calling RetailDemandsApi.createRetailDemandPositions, number of items must be greater than or equal to 1.');
         }
         
 
@@ -6047,16 +6047,15 @@ class RetailDemandsApi
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
-     * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRetailDemandPositions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\RetailDemandPositionList|\OpenAPI\Client\Model\ErrorOrArray
      */
-    public function getRetailDemandPositions($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getRetailDemandPositions'][0])
+    public function getRetailDemandPositions($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRetailDemandPositions'][0])
     {
-        list($response) = $this->getRetailDemandPositionsWithHttpInfo($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType);
+        list($response) = $this->getRetailDemandPositionsWithHttpInfo($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $contentType);
         return $response;
     }
 
@@ -6072,16 +6071,15 @@ class RetailDemandsApi
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
-     * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRetailDemandPositions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\RetailDemandPositionList|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getRetailDemandPositionsWithHttpInfo($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getRetailDemandPositions'][0])
+    public function getRetailDemandPositionsWithHttpInfo($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRetailDemandPositions'][0])
     {
-        $request = $this->getRetailDemandPositionsRequest($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->getRetailDemandPositionsRequest($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -6178,15 +6176,14 @@ class RetailDemandsApi
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
-     * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRetailDemandPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getRetailDemandPositionsAsync($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getRetailDemandPositions'][0])
+    public function getRetailDemandPositionsAsync($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRetailDemandPositions'][0])
     {
-        return $this->getRetailDemandPositionsAsyncWithHttpInfo($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType)
+        return $this->getRetailDemandPositionsAsyncWithHttpInfo($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -6206,16 +6203,15 @@ class RetailDemandsApi
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
-     * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRetailDemandPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getRetailDemandPositionsAsyncWithHttpInfo($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getRetailDemandPositions'][0])
+    public function getRetailDemandPositionsAsyncWithHttpInfo($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRetailDemandPositions'][0])
     {
         $returnType = '\OpenAPI\Client\Model\RetailDemandPositionList';
-        $request = $this->getRetailDemandPositionsRequest($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->getRetailDemandPositionsRequest($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -6263,13 +6259,12 @@ class RetailDemandsApi
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
-     * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRetailDemandPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getRetailDemandPositionsRequest($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getRetailDemandPositions'][0])
+    public function getRetailDemandPositionsRequest($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRetailDemandPositions'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -6290,7 +6285,6 @@ class RetailDemandsApi
             throw new \InvalidArgumentException('invalid value for "$offset" when calling RetailDemandsApi.getRetailDemandPositions, must be bigger than or equal to 0.');
         }
         
-
 
 
 
@@ -6347,10 +6341,6 @@ class RetailDemandsApi
         // header params
         if ($accept_encoding !== null) {
             $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
-        }
-        // header params
-        if ($content_type !== null) {
-            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
         }
 
         // path params

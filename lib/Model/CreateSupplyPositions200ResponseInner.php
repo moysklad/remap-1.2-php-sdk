@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateMovePositionsBatch200ResponseInner
+ * CreateSupplyPositions200ResponseInner
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * CreateMovePositionsBatch200ResponseInner Class Doc Comment
+ * CreateSupplyPositions200ResponseInner Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class CreateMovePositionsBatch200ResponseInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class CreateSupplyPositions200ResponseInner implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class CreateMovePositionsBatch200ResponseInner implements ModelInterface, ArrayA
       *
       * @var string
       */
-    protected static $openAPIModelName = 'createMovePositionsBatch_200_response_inner';
+    protected static $openAPIModelName = 'createSupplyPositions_200_response_inner';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -61,13 +61,18 @@ class CreateMovePositionsBatch200ResponseInner implements ModelInterface, ArrayA
         'id' => 'string',
         'account_id' => 'string',
         'assortment' => '\OpenAPI\Client\Model\Assortment',
-        'overhead' => 'int',
+        'country' => '\OpenAPI\Client\Model\Country',
+        'discount' => 'float',
+        'gtd' => '\OpenAPI\Client\Model\Gtd',
         'pack' => '\OpenAPI\Client\Model\Pack',
         'price' => 'float',
         'quantity' => 'float',
-        'source_slot' => '\OpenAPI\Client\Model\StoreSlot',
-        'target_slot' => '\OpenAPI\Client\Model\StoreSlot',
+        'slot' => '\OpenAPI\Client\Model\StoreSlot',
         'things' => 'string[]',
+        'tracking_codes' => '\OpenAPI\Client\Model\PositionTrackingCode[]',
+        'overhead' => 'int',
+        'vat' => 'int',
+        'vat_enabled' => 'bool',
         'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
     ];
 
@@ -83,13 +88,18 @@ class CreateMovePositionsBatch200ResponseInner implements ModelInterface, ArrayA
         'id' => 'uuid',
         'account_id' => 'uuid',
         'assortment' => null,
-        'overhead' => null,
+        'country' => null,
+        'discount' => 'double',
+        'gtd' => null,
         'pack' => null,
         'price' => 'double',
         'quantity' => 'double',
-        'source_slot' => null,
-        'target_slot' => null,
+        'slot' => null,
         'things' => null,
+        'tracking_codes' => null,
+        'overhead' => null,
+        'vat' => null,
+        'vat_enabled' => null,
         'errors' => null
     ];
 
@@ -103,13 +113,18 @@ class CreateMovePositionsBatch200ResponseInner implements ModelInterface, ArrayA
         'id' => false,
         'account_id' => false,
         'assortment' => false,
-        'overhead' => false,
+        'country' => true,
+        'discount' => false,
+        'gtd' => true,
         'pack' => true,
         'price' => false,
         'quantity' => false,
-        'source_slot' => true,
-        'target_slot' => true,
+        'slot' => true,
         'things' => false,
+        'tracking_codes' => false,
+        'overhead' => false,
+        'vat' => false,
+        'vat_enabled' => false,
         'errors' => false
     ];
 
@@ -203,13 +218,18 @@ class CreateMovePositionsBatch200ResponseInner implements ModelInterface, ArrayA
         'id' => 'id',
         'account_id' => 'accountId',
         'assortment' => 'assortment',
-        'overhead' => 'overhead',
+        'country' => 'country',
+        'discount' => 'discount',
+        'gtd' => 'gtd',
         'pack' => 'pack',
         'price' => 'price',
         'quantity' => 'quantity',
-        'source_slot' => 'sourceSlot',
-        'target_slot' => 'targetSlot',
+        'slot' => 'slot',
         'things' => 'things',
+        'tracking_codes' => 'trackingCodes',
+        'overhead' => 'overhead',
+        'vat' => 'vat',
+        'vat_enabled' => 'vatEnabled',
         'errors' => 'errors'
     ];
 
@@ -223,13 +243,18 @@ class CreateMovePositionsBatch200ResponseInner implements ModelInterface, ArrayA
         'id' => 'setId',
         'account_id' => 'setAccountId',
         'assortment' => 'setAssortment',
-        'overhead' => 'setOverhead',
+        'country' => 'setCountry',
+        'discount' => 'setDiscount',
+        'gtd' => 'setGtd',
         'pack' => 'setPack',
         'price' => 'setPrice',
         'quantity' => 'setQuantity',
-        'source_slot' => 'setSourceSlot',
-        'target_slot' => 'setTargetSlot',
+        'slot' => 'setSlot',
         'things' => 'setThings',
+        'tracking_codes' => 'setTrackingCodes',
+        'overhead' => 'setOverhead',
+        'vat' => 'setVat',
+        'vat_enabled' => 'setVatEnabled',
         'errors' => 'setErrors'
     ];
 
@@ -243,13 +268,18 @@ class CreateMovePositionsBatch200ResponseInner implements ModelInterface, ArrayA
         'id' => 'getId',
         'account_id' => 'getAccountId',
         'assortment' => 'getAssortment',
-        'overhead' => 'getOverhead',
+        'country' => 'getCountry',
+        'discount' => 'getDiscount',
+        'gtd' => 'getGtd',
         'pack' => 'getPack',
         'price' => 'getPrice',
         'quantity' => 'getQuantity',
-        'source_slot' => 'getSourceSlot',
-        'target_slot' => 'getTargetSlot',
+        'slot' => 'getSlot',
         'things' => 'getThings',
+        'tracking_codes' => 'getTrackingCodes',
+        'overhead' => 'getOverhead',
+        'vat' => 'getVat',
+        'vat_enabled' => 'getVatEnabled',
         'errors' => 'getErrors'
     ];
 
@@ -314,13 +344,18 @@ class CreateMovePositionsBatch200ResponseInner implements ModelInterface, ArrayA
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('account_id', $data ?? [], null);
         $this->setIfExists('assortment', $data ?? [], null);
-        $this->setIfExists('overhead', $data ?? [], null);
+        $this->setIfExists('country', $data ?? [], null);
+        $this->setIfExists('discount', $data ?? [], null);
+        $this->setIfExists('gtd', $data ?? [], null);
         $this->setIfExists('pack', $data ?? [], null);
         $this->setIfExists('price', $data ?? [], null);
         $this->setIfExists('quantity', $data ?? [], null);
-        $this->setIfExists('source_slot', $data ?? [], null);
-        $this->setIfExists('target_slot', $data ?? [], null);
+        $this->setIfExists('slot', $data ?? [], null);
         $this->setIfExists('things', $data ?? [], null);
+        $this->setIfExists('tracking_codes', $data ?? [], null);
+        $this->setIfExists('overhead', $data ?? [], null);
+        $this->setIfExists('vat', $data ?? [], null);
+        $this->setIfExists('vat_enabled', $data ?? [], null);
         $this->setIfExists('errors', $data ?? [], null);
     }
 
@@ -484,28 +519,96 @@ class CreateMovePositionsBatch200ResponseInner implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets overhead
+     * Gets country
      *
-     * @return int|null
+     * @return \OpenAPI\Client\Model\Country|null
      */
-    public function getOverhead()
+    public function getCountry()
     {
-        return $this->container['overhead'];
+        return $this->container['country'];
     }
 
     /**
-     * Sets overhead
+     * Sets country
      *
-     * @param int|null $overhead Накладные расходы по позиции. Если позиции Перемещения не заданы, накладные расходы на уровне документа задать нельзя.
+     * @param \OpenAPI\Client\Model\Country|null $country Метаданные страны
      *
      * @return self
      */
-    public function setOverhead($overhead)
+    public function setCountry($country)
     {
-        if (is_null($overhead)) {
-            throw new \InvalidArgumentException('non-nullable overhead cannot be null');
+        if (is_null($country)) {
+            array_push($this->openAPINullablesSetToNull, 'country');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('country', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        $this->container['overhead'] = $overhead;
+        $this->container['country'] = $country;
+
+        return $this;
+    }
+
+    /**
+     * Gets discount
+     *
+     * @return float|null
+     */
+    public function getDiscount()
+    {
+        return $this->container['discount'];
+    }
+
+    /**
+     * Sets discount
+     *
+     * @param float|null $discount Процент скидки или наценки
+     *
+     * @return self
+     */
+    public function setDiscount($discount)
+    {
+        if (is_null($discount)) {
+            throw new \InvalidArgumentException('non-nullable discount cannot be null');
+        }
+        $this->container['discount'] = $discount;
+
+        return $this;
+    }
+
+    /**
+     * Gets gtd
+     *
+     * @return \OpenAPI\Client\Model\Gtd|null
+     */
+    public function getGtd()
+    {
+        return $this->container['gtd'];
+    }
+
+    /**
+     * Sets gtd
+     *
+     * @param \OpenAPI\Client\Model\Gtd|null $gtd gtd
+     *
+     * @return self
+     */
+    public function setGtd($gtd)
+    {
+        if (is_null($gtd)) {
+            array_push($this->openAPINullablesSetToNull, 'gtd');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('gtd', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['gtd'] = $gtd;
 
         return $this;
     }
@@ -595,7 +698,7 @@ class CreateMovePositionsBatch200ResponseInner implements ModelInterface, ArrayA
         }
 
         if (($quantity <= 0)) {
-            throw new \InvalidArgumentException('invalid value for $quantity when calling CreateMovePositionsBatch200ResponseInner., must be bigger than 0.');
+            throw new \InvalidArgumentException('invalid value for $quantity when calling CreateSupplyPositions200ResponseInner., must be bigger than 0.');
         }
 
         $this->container['quantity'] = $quantity;
@@ -604,69 +707,35 @@ class CreateMovePositionsBatch200ResponseInner implements ModelInterface, ArrayA
     }
 
     /**
-     * Gets source_slot
+     * Gets slot
      *
      * @return \OpenAPI\Client\Model\StoreSlot|null
      */
-    public function getSourceSlot()
+    public function getSlot()
     {
-        return $this->container['source_slot'];
+        return $this->container['slot'];
     }
 
     /**
-     * Sets source_slot
+     * Sets slot
      *
-     * @param \OpenAPI\Client\Model\StoreSlot|null $source_slot Ячейка на складе, с которого совершается перемещение
+     * @param \OpenAPI\Client\Model\StoreSlot|null $slot Ячейка на складе
      *
      * @return self
      */
-    public function setSourceSlot($source_slot)
+    public function setSlot($slot)
     {
-        if (is_null($source_slot)) {
-            array_push($this->openAPINullablesSetToNull, 'source_slot');
+        if (is_null($slot)) {
+            array_push($this->openAPINullablesSetToNull, 'slot');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('source_slot', $nullablesSetToNull);
+            $index = array_search('slot', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['source_slot'] = $source_slot;
-
-        return $this;
-    }
-
-    /**
-     * Gets target_slot
-     *
-     * @return \OpenAPI\Client\Model\StoreSlot|null
-     */
-    public function getTargetSlot()
-    {
-        return $this->container['target_slot'];
-    }
-
-    /**
-     * Sets target_slot
-     *
-     * @param \OpenAPI\Client\Model\StoreSlot|null $target_slot Ячейка на складе, на который совершается перемещение
-     *
-     * @return self
-     */
-    public function setTargetSlot($target_slot)
-    {
-        if (is_null($target_slot)) {
-            array_push($this->openAPINullablesSetToNull, 'target_slot');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('target_slot', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['target_slot'] = $target_slot;
+        $this->container['slot'] = $slot;
 
         return $this;
     }
@@ -694,6 +763,114 @@ class CreateMovePositionsBatch200ResponseInner implements ModelInterface, ArrayA
             throw new \InvalidArgumentException('non-nullable things cannot be null');
         }
         $this->container['things'] = $things;
+
+        return $this;
+    }
+
+    /**
+     * Gets tracking_codes
+     *
+     * @return \OpenAPI\Client\Model\PositionTrackingCode[]|null
+     */
+    public function getTrackingCodes()
+    {
+        return $this->container['tracking_codes'];
+    }
+
+    /**
+     * Sets tracking_codes
+     *
+     * @param \OpenAPI\Client\Model\PositionTrackingCode[]|null $tracking_codes Коды маркировки товаров и транспортных упаковок (иерархическая структура). Количество кодов маркировки не влияет на поле quantity позиции.
+     *
+     * @return self
+     */
+    public function setTrackingCodes($tracking_codes)
+    {
+        if (is_null($tracking_codes)) {
+            throw new \InvalidArgumentException('non-nullable tracking_codes cannot be null');
+        }
+        $this->container['tracking_codes'] = $tracking_codes;
+
+        return $this;
+    }
+
+    /**
+     * Gets overhead
+     *
+     * @return int|null
+     */
+    public function getOverhead()
+    {
+        return $this->container['overhead'];
+    }
+
+    /**
+     * Sets overhead
+     *
+     * @param int|null $overhead Накладные расходы по позиции. Если позиции Приемки не заданы, накладные расходы на уровне документа задать нельзя.
+     *
+     * @return self
+     */
+    public function setOverhead($overhead)
+    {
+        if (is_null($overhead)) {
+            throw new \InvalidArgumentException('non-nullable overhead cannot be null');
+        }
+        $this->container['overhead'] = $overhead;
+
+        return $this;
+    }
+
+    /**
+     * Gets vat
+     *
+     * @return int|null
+     */
+    public function getVat()
+    {
+        return $this->container['vat'];
+    }
+
+    /**
+     * Sets vat
+     *
+     * @param int|null $vat НДС, которым облагается текущая позиция
+     *
+     * @return self
+     */
+    public function setVat($vat)
+    {
+        if (is_null($vat)) {
+            throw new \InvalidArgumentException('non-nullable vat cannot be null');
+        }
+        $this->container['vat'] = $vat;
+
+        return $this;
+    }
+
+    /**
+     * Gets vat_enabled
+     *
+     * @return bool|null
+     */
+    public function getVatEnabled()
+    {
+        return $this->container['vat_enabled'];
+    }
+
+    /**
+     * Sets vat_enabled
+     *
+     * @param bool|null $vat_enabled Включён ли НДС для позиции. Пара `(vat = 0, vatEnabled = false)` соответствует НДС «без НДС»; `(vat = 0, vatEnabled = true)` — НДС 0%.
+     *
+     * @return self
+     */
+    public function setVatEnabled($vat_enabled)
+    {
+        if (is_null($vat_enabled)) {
+            throw new \InvalidArgumentException('non-nullable vat_enabled cannot be null');
+        }
+        $this->container['vat_enabled'] = $vat_enabled;
 
         return $this;
     }

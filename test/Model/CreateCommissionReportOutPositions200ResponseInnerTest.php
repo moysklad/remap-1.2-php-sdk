@@ -1,6 +1,6 @@
 <?php
 /**
- * CreatePurchaseOrderPositionsRequestTest
+ * CreateCommissionReportOutPositions200ResponseInnerTest
  *
  * PHP version 8.1
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * CreatePurchaseOrderPositionsRequestTest Class Doc Comment
+ * CreateCommissionReportOutPositions200ResponseInnerTest Class Doc Comment
  *
  * @category    Class
- * @description CreatePurchaseOrderPositionsRequest
+ * @description CreateCommissionReportOutPositions200ResponseInner
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class CreatePurchaseOrderPositionsRequestTest extends TestCase
+class CreateCommissionReportOutPositions200ResponseInnerTest extends TestCase
 {
 
     /**
@@ -71,9 +71,9 @@ class CreatePurchaseOrderPositionsRequestTest extends TestCase
     }
 
     /**
-     * Test "CreatePurchaseOrderPositionsRequest"
+     * Test "CreateCommissionReportOutPositions200ResponseInner"
      */
-    public function testCreatePurchaseOrderPositionsRequest()
+    public function testCreateCommissionReportOutPositions200ResponseInner()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -125,27 +125,9 @@ class CreatePurchaseOrderPositionsRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "discount"
+     * Test attribute "reward"
      */
-    public function testPropertyDiscount()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "shipped"
-     */
-    public function testPropertyShipped()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "in_transit"
-     */
-    public function testPropertyInTransit()
+    public function testPropertyReward()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -188,9 +170,9 @@ class CreatePurchaseOrderPositionsRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "stock"
+     * Test attribute "errors"
      */
-    public function testPropertyStock()
+    public function testPropertyErrors()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

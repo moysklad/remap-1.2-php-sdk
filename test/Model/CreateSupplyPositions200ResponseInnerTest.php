@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateEnterPositionsRequestTest
+ * CreateSupplyPositions200ResponseInnerTest
  *
  * PHP version 8.1
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * CreateEnterPositionsRequestTest Class Doc Comment
+ * CreateSupplyPositions200ResponseInnerTest Class Doc Comment
  *
  * @category    Class
- * @description CreateEnterPositionsRequest
+ * @description CreateSupplyPositions200ResponseInner
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class CreateEnterPositionsRequestTest extends TestCase
+class CreateSupplyPositions200ResponseInnerTest extends TestCase
 {
 
     /**
@@ -71,9 +71,9 @@ class CreateEnterPositionsRequestTest extends TestCase
     }
 
     /**
-     * Test "CreateEnterPositionsRequest"
+     * Test "CreateSupplyPositions200ResponseInner"
      */
-    public function testCreateEnterPositionsRequest()
+    public function testCreateSupplyPositions200ResponseInner()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -125,18 +125,18 @@ class CreateEnterPositionsRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "gtd"
+     * Test attribute "discount"
      */
-    public function testPropertyGtd()
+    public function testPropertyDiscount()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "overhead"
+     * Test attribute "gtd"
      */
-    public function testPropertyOverhead()
+    public function testPropertyGtd()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -170,15 +170,6 @@ class CreateEnterPositionsRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "reason"
-     */
-    public function testPropertyReason()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "slot"
      */
     public function testPropertySlot()
@@ -191,6 +182,51 @@ class CreateEnterPositionsRequestTest extends TestCase
      * Test attribute "things"
      */
     public function testPropertyThings()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "tracking_codes"
+     */
+    public function testPropertyTrackingCodes()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "overhead"
+     */
+    public function testPropertyOverhead()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "vat"
+     */
+    public function testPropertyVat()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "vat_enabled"
+     */
+    public function testPropertyVatEnabled()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "errors"
+     */
+    public function testPropertyErrors()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -108,24 +108,24 @@ class RetailDemandsApiTest extends TestCase
     }
 
     /**
-     * Test case for createRetailDemandPositions
+     * Test case for createRetailDemandPosition
      *
-     * Создать позиции Розничной продажи.
+     * Создать и обновить позицию Розничной продажи.
      *
      */
-    public function testCreateRetailDemandPositions()
+    public function testCreateRetailDemandPosition()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for createRetailDemandPositionsBatch
+     * Test case for createRetailDemandPositions
      *
-     * Создать позиции Розничной продажи.
+     * Массовое создание и обновление позиций Розничной продажи.
      *
      */
-    public function testCreateRetailDemandPositionsBatch()
+    public function testCreateRetailDemandPositions()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

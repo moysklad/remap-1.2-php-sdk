@@ -132,9 +132,21 @@ class ProcessingOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for createProcessingOrderPosition
+     *
+     * Обновить позицию ProcessingOrder.
+     *
+     */
+    public function testCreateProcessingOrderPosition()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createProcessingOrderPositions
      *
-     * Создать позиции ProcessingOrder.
+     * Массовое изменение позиций Заказа на производство.
      *
      */
     public function testCreateProcessingOrderPositions()

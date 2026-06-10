@@ -108,9 +108,21 @@ class LossesApiTest extends TestCase
     }
 
     /**
+     * Test case for createLossPosition
+     *
+     * Создать и обновить позицию Списания.
+     *
+     */
+    public function testCreateLossPosition()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createLossPositions
      *
-     * Создать позиции Списания.
+     * Массовое создание и обновление позиций Списания.
      *
      */
     public function testCreateLossPositions()

@@ -29,7 +29,7 @@ Name | Type | Description | Notes
 **organization_account** | [**\OpenAPI\Client\Model\Account**](Account.md) | Метаданные счета юрлица | [optional]
 **owner** | [**\OpenAPI\Client\Model\Employee**](Employee.md) | Владелец (Сотрудник) | [optional]
 **payed_sum** | **float** | Оплаченная сумма | [optional] [readonly]
-**positions** | [**\OpenAPI\Client\Model\CommissionReportInPositionList**](.md) |  | [optional]
+**positions** | [**\OpenAPI\Client\Model\CommissionReportInPositionList**](CommissionReportInPositionList.md) |  | [optional]
 **printed** | **bool** | Напечатан ли документ | [optional] [readonly]
 **project** | [**\OpenAPI\Client\Model\Project**](Project.md) | Метаданные проекта | [optional]
 **published** | **bool** | Опубликован ли документ | [optional] [readonly]

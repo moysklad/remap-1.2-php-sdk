@@ -89,10 +89,10 @@ class SuppliesApi
         'createSupplyMetadataState' => [
             'application/json',
         ],
-        'createSupplyPositions' => [
+        'createSupplyPosition' => [
             'application/json',
         ],
-        'createSupplyPositionsBatch' => [
+        'createSupplyPositions' => [
             'application/json',
         ],
         'deleteSupply' => [
@@ -1861,9 +1861,9 @@ class SuppliesApi
     }
 
     /**
-     * Operation createSupplyPositions
+     * Operation createSupplyPosition
      *
-     * Создать позицию Приемки
+     * Создать и обновить позицию Приемки
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\SupplyPosition $supply_position supply_position (required)
@@ -1871,22 +1871,22 @@ class SuppliesApi
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSupplyPositions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSupplyPosition'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\SupplyPosition|\OpenAPI\Client\Model\ErrorOrArray
      */
-    public function createSupplyPositions($id, $supply_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSupplyPositions'][0])
+    public function createSupplyPosition($id, $supply_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSupplyPosition'][0])
     {
-        list($response) = $this->createSupplyPositionsWithHttpInfo($id, $supply_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        list($response) = $this->createSupplyPositionWithHttpInfo($id, $supply_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
     }
 
     /**
-     * Operation createSupplyPositionsWithHttpInfo
+     * Operation createSupplyPositionWithHttpInfo
      *
-     * Создать позицию Приемки
+     * Создать и обновить позицию Приемки
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\SupplyPosition $supply_position (required)
@@ -1894,15 +1894,15 @@ class SuppliesApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSupplyPositions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSupplyPosition'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\SupplyPosition|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createSupplyPositionsWithHttpInfo($id, $supply_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSupplyPositions'][0])
+    public function createSupplyPositionWithHttpInfo($id, $supply_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSupplyPosition'][0])
     {
-        $request = $this->createSupplyPositionsRequest($id, $supply_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->createSupplyPositionRequest($id, $supply_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1988,9 +1988,9 @@ class SuppliesApi
     }
 
     /**
-     * Operation createSupplyPositionsAsync
+     * Operation createSupplyPositionAsync
      *
-     * Создать позицию Приемки
+     * Создать и обновить позицию Приемки
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\SupplyPosition $supply_position (required)
@@ -1998,14 +1998,14 @@ class SuppliesApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSupplyPositions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSupplyPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createSupplyPositionsAsync($id, $supply_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSupplyPositions'][0])
+    public function createSupplyPositionAsync($id, $supply_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSupplyPosition'][0])
     {
-        return $this->createSupplyPositionsAsyncWithHttpInfo($id, $supply_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
+        return $this->createSupplyPositionAsyncWithHttpInfo($id, $supply_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2014,9 +2014,9 @@ class SuppliesApi
     }
 
     /**
-     * Operation createSupplyPositionsAsyncWithHttpInfo
+     * Operation createSupplyPositionAsyncWithHttpInfo
      *
-     * Создать позицию Приемки
+     * Создать и обновить позицию Приемки
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\SupplyPosition $supply_position (required)
@@ -2024,15 +2024,15 @@ class SuppliesApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSupplyPositions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSupplyPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createSupplyPositionsAsyncWithHttpInfo($id, $supply_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSupplyPositions'][0])
+    public function createSupplyPositionAsyncWithHttpInfo($id, $supply_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSupplyPosition'][0])
     {
         $returnType = '\OpenAPI\Client\Model\SupplyPosition';
-        $request = $this->createSupplyPositionsRequest($id, $supply_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->createSupplyPositionRequest($id, $supply_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2071,7 +2071,7 @@ class SuppliesApi
     }
 
     /**
-     * Create request for operation 'createSupplyPositions'
+     * Create request for operation 'createSupplyPosition'
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\SupplyPosition $supply_position (required)
@@ -2079,25 +2079,25 @@ class SuppliesApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSupplyPositions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSupplyPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createSupplyPositionsRequest($id, $supply_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSupplyPositions'][0])
+    public function createSupplyPositionRequest($id, $supply_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSupplyPosition'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling createSupplyPositions'
+                'Missing the required parameter $id when calling createSupplyPosition'
             );
         }
 
         // verify the required parameter 'supply_position' is set
         if ($supply_position === null || (is_array($supply_position) && count($supply_position) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $supply_position when calling createSupplyPositions'
+                'Missing the required parameter $supply_position when calling createSupplyPosition'
             );
         }
 
@@ -2215,9 +2215,9 @@ class SuppliesApi
     }
 
     /**
-     * Operation createSupplyPositionsBatch
+     * Operation createSupplyPositions
      *
-     * Создать позиции Приемки
+     * Массовое создание и обновление позиций Приемки
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\SupplyPosition[] $supply_position supply_position (required)
@@ -2225,22 +2225,22 @@ class SuppliesApi
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSupplyPositionsBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSupplyPositions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreateSupplyPositionsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\CreateSupplyPositions200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
      */
-    public function createSupplyPositionsBatch($id, $supply_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSupplyPositionsBatch'][0])
+    public function createSupplyPositions($id, $supply_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSupplyPositions'][0])
     {
-        list($response) = $this->createSupplyPositionsBatchWithHttpInfo($id, $supply_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        list($response) = $this->createSupplyPositionsWithHttpInfo($id, $supply_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
     }
 
     /**
-     * Operation createSupplyPositionsBatchWithHttpInfo
+     * Operation createSupplyPositionsWithHttpInfo
      *
-     * Создать позиции Приемки
+     * Массовое создание и обновление позиций Приемки
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\SupplyPosition[] $supply_position (required)
@@ -2248,15 +2248,15 @@ class SuppliesApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSupplyPositionsBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSupplyPositions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreateSupplyPositionsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\CreateSupplyPositions200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createSupplyPositionsBatchWithHttpInfo($id, $supply_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSupplyPositionsBatch'][0])
+    public function createSupplyPositionsWithHttpInfo($id, $supply_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSupplyPositions'][0])
     {
-        $request = $this->createSupplyPositionsBatchRequest($id, $supply_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->createSupplyPositionsRequest($id, $supply_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2284,7 +2284,7 @@ class SuppliesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CreateSupplyPositionsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\CreateSupplyPositions200ResponseInner[]',
                         $request,
                         $response,
                     );
@@ -2312,7 +2312,7 @@ class SuppliesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\CreateSupplyPositionsBatch200ResponseInner[]',
+                '\OpenAPI\Client\Model\CreateSupplyPositions200ResponseInner[]',
                 $request,
                 $response,
             );
@@ -2321,7 +2321,7 @@ class SuppliesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreateSupplyPositionsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\CreateSupplyPositions200ResponseInner[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2342,9 +2342,9 @@ class SuppliesApi
     }
 
     /**
-     * Operation createSupplyPositionsBatchAsync
+     * Operation createSupplyPositionsAsync
      *
-     * Создать позиции Приемки
+     * Массовое создание и обновление позиций Приемки
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\SupplyPosition[] $supply_position (required)
@@ -2352,14 +2352,14 @@ class SuppliesApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSupplyPositionsBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSupplyPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createSupplyPositionsBatchAsync($id, $supply_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSupplyPositionsBatch'][0])
+    public function createSupplyPositionsAsync($id, $supply_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSupplyPositions'][0])
     {
-        return $this->createSupplyPositionsBatchAsyncWithHttpInfo($id, $supply_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
+        return $this->createSupplyPositionsAsyncWithHttpInfo($id, $supply_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2368,9 +2368,9 @@ class SuppliesApi
     }
 
     /**
-     * Operation createSupplyPositionsBatchAsyncWithHttpInfo
+     * Operation createSupplyPositionsAsyncWithHttpInfo
      *
-     * Создать позиции Приемки
+     * Массовое создание и обновление позиций Приемки
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\SupplyPosition[] $supply_position (required)
@@ -2378,15 +2378,15 @@ class SuppliesApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSupplyPositionsBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSupplyPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createSupplyPositionsBatchAsyncWithHttpInfo($id, $supply_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSupplyPositionsBatch'][0])
+    public function createSupplyPositionsAsyncWithHttpInfo($id, $supply_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSupplyPositions'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CreateSupplyPositionsBatch200ResponseInner[]';
-        $request = $this->createSupplyPositionsBatchRequest($id, $supply_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $returnType = '\OpenAPI\Client\Model\CreateSupplyPositions200ResponseInner[]';
+        $request = $this->createSupplyPositionsRequest($id, $supply_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2425,7 +2425,7 @@ class SuppliesApi
     }
 
     /**
-     * Create request for operation 'createSupplyPositionsBatch'
+     * Create request for operation 'createSupplyPositions'
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\SupplyPosition[] $supply_position (required)
@@ -2433,32 +2433,32 @@ class SuppliesApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSupplyPositionsBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSupplyPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createSupplyPositionsBatchRequest($id, $supply_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSupplyPositionsBatch'][0])
+    public function createSupplyPositionsRequest($id, $supply_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSupplyPositions'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling createSupplyPositionsBatch'
+                'Missing the required parameter $id when calling createSupplyPositions'
             );
         }
 
         // verify the required parameter 'supply_position' is set
         if ($supply_position === null || (is_array($supply_position) && count($supply_position) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $supply_position when calling createSupplyPositionsBatch'
+                'Missing the required parameter $supply_position when calling createSupplyPositions'
             );
         }
         if (count($supply_position) > 1000) {
-            throw new \InvalidArgumentException('invalid value for "$supply_position" when calling SuppliesApi.createSupplyPositionsBatch, number of items must be less than or equal to 1000.');
+            throw new \InvalidArgumentException('invalid value for "$supply_position" when calling SuppliesApi.createSupplyPositions, number of items must be less than or equal to 1000.');
         }
         if (count($supply_position) < 1) {
-            throw new \InvalidArgumentException('invalid value for "$supply_position" when calling SuppliesApi.createSupplyPositionsBatch, number of items must be greater than or equal to 1.');
+            throw new \InvalidArgumentException('invalid value for "$supply_position" when calling SuppliesApi.createSupplyPositions, number of items must be greater than or equal to 1.');
         }
         
 

@@ -134,7 +134,7 @@ class CommissionReportOutsApiTest extends TestCase
     /**
      * Test case for createCommissionReportOutPosition
      *
-     * Создать позицию CommissionReportOut.
+     * Создать и обновить позицию Выданного отчета комиссионера.
      *
      */
     public function testCreateCommissionReportOutPosition()
@@ -144,12 +144,12 @@ class CommissionReportOutsApiTest extends TestCase
     }
 
     /**
-     * Test case for createCommissionReportOutPositionsBatch
+     * Test case for createCommissionReportOutPositions
      *
-     * Массовое создание позиций CommissionReportOut.
+     * Массовое создание и обновление позиций Выданного отчета комиссионера.
      *
      */
-    public function testCreateCommissionReportOutPositionsBatch()
+    public function testCreateCommissionReportOutPositions()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

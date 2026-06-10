@@ -1763,7 +1763,7 @@ class PurchaseOrder implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets positions
      *
-     * @param \OpenAPI\Client\Model\PurchaseOrderPositionList|null $positions Позиции Заказа поставщику
+     * @param \OpenAPI\Client\Model\PurchaseOrderPositionList|null $positions positions
      *
      * @return self
      */

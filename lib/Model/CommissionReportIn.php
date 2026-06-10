@@ -1389,7 +1389,7 @@ class CommissionReportIn implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets positions
      *
-     * @param \OpenAPI\Client\Model\CommissionReportInPositionList|null $positions Метаданные позиций реализовано комиссионером Полученного отчета комиссионера
+     * @param \OpenAPI\Client\Model\CommissionReportInPositionList|null $positions positions
      *
      * @return self
      */

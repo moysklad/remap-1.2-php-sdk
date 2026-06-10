@@ -8,7 +8,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createCommissionReportInBatch()**](CommissionReportInsApi.md#createCommissionReportInBatch) | **POST** /entity/commissionreportin/batch | Массовое создание и обновление CommissionReportIn |
 | [**createCommissionReportInMetadataAttribute()**](CommissionReportInsApi.md#createCommissionReportInMetadataAttribute) | **POST** /entity/commissionreportin/metadata/attributes | Создать доп. поле CommissionReportIn |
 | [**createCommissionReportInMetadataState()**](CommissionReportInsApi.md#createCommissionReportInMetadataState) | **POST** /entity/commissionreportin/metadata/states | Создать статус CommissionReportIn |
-| [**createCommissionReportInPositions()**](CommissionReportInsApi.md#createCommissionReportInPositions) | **POST** /entity/commissionreportin/{id}/positions | Создать позиции CommissionReportIn |
+| [**createCommissionReportInPosition()**](CommissionReportInsApi.md#createCommissionReportInPosition) | **POST** /entity/commissionreportin/{id}/positions | Создать и обновить позицию Полученного отчета комиссионера |
+| [**createCommissionReportInPositions()**](CommissionReportInsApi.md#createCommissionReportInPositions) | **POST** /entity/commissionreportin/{id}/positions/batch | Массовое создание и обновление позиций Полученного отчета комиссионера |
 | [**createCommissionReportInReturnedPositions()**](CommissionReportInsApi.md#createCommissionReportInReturnedPositions) | **POST** /entity/commissionreportin/{id}/returntocommissionerpositions | Создать позиции возврата на склад комиссионера |
 | [**deleteCommissionReportIn()**](CommissionReportInsApi.md#deleteCommissionReportIn) | **DELETE** /entity/commissionreportin/{id} | Удалить CommissionReportIn |
 | [**deleteCommissionReportInBatch()**](CommissionReportInsApi.md#deleteCommissionReportInBatch) | **POST** /entity/commissionreportin/delete | Массовое удаление CommissionReportIn |
@@ -315,13 +316,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createCommissionReportInPositions()`
+## `createCommissionReportInPosition()`
 
 ```php
-createCommissionReportInPositions($id, $create_commission_report_in_positions_request, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateCommissionReportInPositions200ResponseInner[]
+createCommissionReportInPosition($id, $commission_report_in_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CommissionReportInPosition
 ```
 
-Создать позиции CommissionReportIn
+Создать и обновить позицию Полученного отчета комиссионера
 
 ### Example
 
@@ -346,14 +347,87 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportInsApi(
     $config
 );
 $id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$create_commission_report_in_positions_request = new \OpenAPI\Client\Model\CreateCommissionReportInPositionsRequest(); // \OpenAPI\Client\Model\CreateCommissionReportInPositionsRequest
+$commission_report_in_position = new \OpenAPI\Client\Model\CommissionReportInPosition(); // \OpenAPI\Client\Model\CommissionReportInPosition
 $expand = agent,organization; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
 $accept_encoding = gzip, deflate, br; // string
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createCommissionReportInPositions($id, $create_commission_report_in_positions_request, $expand, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->createCommissionReportInPosition($id, $commission_report_in_position, $expand, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CommissionReportInsApi->createCommissionReportInPosition: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **commission_report_in_position** | [**\OpenAPI\Client\Model\CommissionReportInPosition**](../Model/CommissionReportInPosition.md)|  | |
+| **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\CommissionReportInPosition**](../Model/CommissionReportInPosition.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createCommissionReportInPositions()`
+
+```php
+createCommissionReportInPositions($id, $commission_report_in_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateCommissionReportInPositions200ResponseInner[]
+```
+
+Массовое создание и обновление позиций Полученного отчета комиссионера
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CommissionReportInsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$commission_report_in_position = array(new \OpenAPI\Client\Model\CommissionReportInPosition()); // \OpenAPI\Client\Model\CommissionReportInPosition[]
+$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = gzip, deflate, br; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createCommissionReportInPositions($id, $commission_report_in_position, $expand, $accept, $accept_encoding, $content_type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling CommissionReportInsApi->createCommissionReportInPositions: ', $e->getMessage(), PHP_EOL;
@@ -365,7 +439,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
-| **create_commission_report_in_positions_request** | [**\OpenAPI\Client\Model\CreateCommissionReportInPositionsRequest**](../Model/CreateCommissionReportInPositionsRequest.md)|  | |
+| **commission_report_in_position** | [**\OpenAPI\Client\Model\CommissionReportInPosition[]**](../Model/CommissionReportInPosition.md)|  | |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
@@ -1518,7 +1592,7 @@ try {
 ## `getCommissionReportInPositions()`
 
 ```php
-getCommissionReportInPositions($id, $limit, $offset, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CommissionReportInPosition[]
+getCommissionReportInPositions($id, $limit, $offset, $expand, $accept, $accept_encoding): \OpenAPI\Client\Model\CommissionReportInPositionList
 ```
 
 Получить позиции CommissionReportIn
@@ -1551,10 +1625,9 @@ $offset = 0; // int | Отступ в выданном списке
 $expand = agent,organization; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
 $accept_encoding = gzip, deflate, br; // string
-$content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->getCommissionReportInPositions($id, $limit, $offset, $expand, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->getCommissionReportInPositions($id, $limit, $offset, $expand, $accept, $accept_encoding);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling CommissionReportInsApi->getCommissionReportInPositions: ', $e->getMessage(), PHP_EOL;
@@ -1571,11 +1644,10 @@ try {
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
-| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CommissionReportInPosition[]**](../Model/CommissionReportInPosition.md)
+[**\OpenAPI\Client\Model\CommissionReportInPositionList**](../Model/CommissionReportInPositionList.md)
 
 ### Authorization
 

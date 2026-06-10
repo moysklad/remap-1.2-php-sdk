@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateCommissionReportOutPositionsBatch200ResponseInnerTest
+ * CreateMovePositions200ResponseInnerTest
  *
  * PHP version 8.1
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * CreateCommissionReportOutPositionsBatch200ResponseInnerTest Class Doc Comment
+ * CreateMovePositions200ResponseInnerTest Class Doc Comment
  *
  * @category    Class
- * @description CreateCommissionReportOutPositionsBatch200ResponseInner
+ * @description CreateMovePositions200ResponseInner
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class CreateCommissionReportOutPositionsBatch200ResponseInnerTest extends TestCase
+class CreateMovePositions200ResponseInnerTest extends TestCase
 {
 
     /**
@@ -71,9 +71,9 @@ class CreateCommissionReportOutPositionsBatch200ResponseInnerTest extends TestCa
     }
 
     /**
-     * Test "CreateCommissionReportOutPositionsBatch200ResponseInner"
+     * Test "CreateMovePositions200ResponseInner"
      */
-    public function testCreateCommissionReportOutPositionsBatch200ResponseInner()
+    public function testCreateMovePositions200ResponseInner()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -107,9 +107,27 @@ class CreateCommissionReportOutPositionsBatch200ResponseInnerTest extends TestCa
     }
 
     /**
-     * Test attribute "quantity"
+     * Test attribute "assortment"
      */
-    public function testPropertyQuantity()
+    public function testPropertyAssortment()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "overhead"
+     */
+    public function testPropertyOverhead()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "pack"
+     */
+    public function testPropertyPack()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -125,45 +143,36 @@ class CreateCommissionReportOutPositionsBatch200ResponseInnerTest extends TestCa
     }
 
     /**
-     * Test attribute "reward"
+     * Test attribute "quantity"
      */
-    public function testPropertyReward()
+    public function testPropertyQuantity()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "vat"
+     * Test attribute "source_slot"
      */
-    public function testPropertyVat()
+    public function testPropertySourceSlot()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "vat_enabled"
+     * Test attribute "target_slot"
      */
-    public function testPropertyVatEnabled()
+    public function testPropertyTargetSlot()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "assortment"
+     * Test attribute "things"
      */
-    public function testPropertyAssortment()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "pack"
-     */
-    public function testPropertyPack()
+    public function testPropertyThings()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -132,9 +132,21 @@ class PurchaseReturnsApiTest extends TestCase
     }
 
     /**
+     * Test case for createPurchaseReturnPosition
+     *
+     * Создать и обновить позицию Возврата поставщику.
+     *
+     */
+    public function testCreatePurchaseReturnPosition()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createPurchaseReturnPositions
      *
-     * Создать позиции Возврата поставщику.
+     * Массовое создание и обновление позиций Возврата поставщику.
      *
      */
     public function testCreatePurchaseReturnPositions()

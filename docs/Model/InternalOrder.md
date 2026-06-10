@@ -34,7 +34,7 @@ Name | Type | Description | Notes
 **attributes** | [**\OpenAPI\Client\Model\AttributeAbstract[]**](AttributeAbstract.md) | Коллекция метаданных доп. полей | [optional]
 **files** | [**\OpenAPI\Client\Model\FileList**](FileList.md) | Метаданные массива Файлов | [optional]
 **rate** | [**\OpenAPI\Client\Model\CurrencyRate**](CurrencyRate.md) |  | [optional]
-**positions** | [**\OpenAPI\Client\Model\InternalOrderPositionList**](.md) | Позиций Внутреннего заказа | [optional]
+**positions** | [**\OpenAPI\Client\Model\InternalOrderPositionList**](InternalOrderPositionList.md) |  | [optional]
 **purchase_orders** | [**\OpenAPI\Client\Model\PurchaseOrder[]**](PurchaseOrder.md) | Коллекция метаданных на связанные заказы поставщику | [optional]
 **production_tasks** | [**\OpenAPI\Client\Model\ProductionTask[]**](ProductionTask.md) | Массив ссылок на связанные производственные задания | [optional]
 **moves** | [**\OpenAPI\Client\Model\Move[]**](Move.md) | Коллекция метаданных на связанные заказы перемещения | [optional]

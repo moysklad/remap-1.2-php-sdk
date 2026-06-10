@@ -9,8 +9,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createSupplyBatch()**](SuppliesApi.md#createSupplyBatch) | **POST** /entity/supply/batch | Массовое создание и обновление Приемок |
 | [**createSupplyMetadataAttribute()**](SuppliesApi.md#createSupplyMetadataAttribute) | **POST** /entity/supply/metadata/attributes | Создать доп. поле Приемки |
 | [**createSupplyMetadataState()**](SuppliesApi.md#createSupplyMetadataState) | **POST** /entity/supply/metadata/states | Создать статус Приемки |
-| [**createSupplyPositions()**](SuppliesApi.md#createSupplyPositions) | **POST** /entity/supply/{id}/positions | Создать позицию Приемки |
-| [**createSupplyPositionsBatch()**](SuppliesApi.md#createSupplyPositionsBatch) | **POST** /entity/supply/{id}/positions/batch | Создать позиции Приемки |
+| [**createSupplyPosition()**](SuppliesApi.md#createSupplyPosition) | **POST** /entity/supply/{id}/positions | Создать и обновить позицию Приемки |
+| [**createSupplyPositions()**](SuppliesApi.md#createSupplyPositions) | **POST** /entity/supply/{id}/positions/batch | Массовое создание и обновление позиций Приемки |
 | [**deleteSupply()**](SuppliesApi.md#deleteSupply) | **DELETE** /entity/supply/{id} | Удалить Приемку |
 | [**deleteSupplyBatch()**](SuppliesApi.md#deleteSupplyBatch) | **POST** /entity/supply/delete | Массовое удаление Приемок |
 | [**deleteSupplyFile()**](SuppliesApi.md#deleteSupplyFile) | **DELETE** /entity/supply/{id}/files/{fileId} | Удалить файл Приемки |
@@ -387,13 +387,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createSupplyPositions()`
+## `createSupplyPosition()`
 
 ```php
-createSupplyPositions($id, $supply_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\SupplyPosition
+createSupplyPosition($id, $supply_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\SupplyPosition
 ```
 
-Создать позицию Приемки
+Создать и обновить позицию Приемки
 
 ### Example
 
@@ -425,10 +425,10 @@ $accept_encoding = gzip, deflate, br; // string
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createSupplyPositions($id, $supply_position, $expand, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->createSupplyPosition($id, $supply_position, $expand, $accept, $accept_encoding, $content_type);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling SuppliesApi->createSupplyPositions: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling SuppliesApi->createSupplyPosition: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -460,13 +460,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createSupplyPositionsBatch()`
+## `createSupplyPositions()`
 
 ```php
-createSupplyPositionsBatch($id, $supply_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateSupplyPositionsBatch200ResponseInner[]
+createSupplyPositions($id, $supply_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateSupplyPositions200ResponseInner[]
 ```
 
-Создать позиции Приемки
+Массовое создание и обновление позиций Приемки
 
 ### Example
 
@@ -498,10 +498,10 @@ $accept_encoding = gzip, deflate, br; // string
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createSupplyPositionsBatch($id, $supply_position, $expand, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->createSupplyPositions($id, $supply_position, $expand, $accept, $accept_encoding, $content_type);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling SuppliesApi->createSupplyPositionsBatch: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling SuppliesApi->createSupplyPositions: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -518,7 +518,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateSupplyPositionsBatch200ResponseInner[]**](../Model/CreateSupplyPositionsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\CreateSupplyPositions200ResponseInner[]**](../Model/CreateSupplyPositions200ResponseInner.md)
 
 ### Authorization
 

@@ -132,9 +132,21 @@ class PurchaseOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for createPurchaseOrderPosition
+     *
+     * Создать и обновить позицию Заказа поставщику.
+     *
+     */
+    public function testCreatePurchaseOrderPosition()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createPurchaseOrderPositions
      *
-     * Создать позиции PurchaseOrder.
+     * Массовое создание и обновление позиций Заказа поставщику.
      *
      */
     public function testCreatePurchaseOrderPositions()

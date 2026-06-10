@@ -7,8 +7,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createRetailDemand()**](RetailDemandsApi.md#createRetailDemand) | **POST** /entity/retaildemand | Создать Розничную продажу |
 | [**createRetailDemandBatch()**](RetailDemandsApi.md#createRetailDemandBatch) | **POST** /entity/retaildemand/batch | Массовое создание и обновление Розничных продаж |
 | [**createRetailDemandMetadataAttribute()**](RetailDemandsApi.md#createRetailDemandMetadataAttribute) | **POST** /entity/retaildemand/metadata/attributes | Создать доп. поле Розничной продажи |
-| [**createRetailDemandPositions()**](RetailDemandsApi.md#createRetailDemandPositions) | **POST** /entity/retaildemand/{id}/positions | Создать позиции Розничной продажи |
-| [**createRetailDemandPositionsBatch()**](RetailDemandsApi.md#createRetailDemandPositionsBatch) | **POST** /entity/retaildemand/{id}/positions/batch | Создать позиции Розничной продажи |
+| [**createRetailDemandPosition()**](RetailDemandsApi.md#createRetailDemandPosition) | **POST** /entity/retaildemand/{id}/positions | Создать и обновить позицию Розничной продажи |
+| [**createRetailDemandPositions()**](RetailDemandsApi.md#createRetailDemandPositions) | **POST** /entity/retaildemand/{id}/positions/batch | Массовое создание и обновление позиций Розничной продажи |
 | [**deleteRetailDemand()**](RetailDemandsApi.md#deleteRetailDemand) | **DELETE** /entity/retaildemand/{id} | Удалить Розничную продажу |
 | [**deleteRetailDemandBatch()**](RetailDemandsApi.md#deleteRetailDemandBatch) | **POST** /entity/retaildemand/delete | Массовое удаление Розничных продаж |
 | [**deleteRetailDemandMetadataAttributeById()**](RetailDemandsApi.md#deleteRetailDemandMetadataAttributeById) | **DELETE** /entity/retaildemand/metadata/attributes/{id} | Удалить отдельное доп. поле Розничной продажи |
@@ -241,13 +241,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createRetailDemandPositions()`
+## `createRetailDemandPosition()`
 
 ```php
-createRetailDemandPositions($id, $retail_demand_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\RetailDemandPosition
+createRetailDemandPosition($id, $retail_demand_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\RetailDemandPosition
 ```
 
-Создать позиции Розничной продажи
+Создать и обновить позицию Розничной продажи
 
 ### Example
 
@@ -279,10 +279,10 @@ $accept_encoding = gzip, deflate, br; // string
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createRetailDemandPositions($id, $retail_demand_position, $expand, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->createRetailDemandPosition($id, $retail_demand_position, $expand, $accept, $accept_encoding, $content_type);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling RetailDemandsApi->createRetailDemandPositions: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling RetailDemandsApi->createRetailDemandPosition: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -314,13 +314,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createRetailDemandPositionsBatch()`
+## `createRetailDemandPositions()`
 
 ```php
-createRetailDemandPositionsBatch($id, $retail_demand_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateRetailDemandPositionsBatch200ResponseInner[]
+createRetailDemandPositions($id, $retail_demand_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateRetailDemandPositions200ResponseInner[]
 ```
 
-Создать позиции Розничной продажи
+Массовое создание и обновление позиций Розничной продажи
 
 ### Example
 
@@ -352,10 +352,10 @@ $accept_encoding = gzip, deflate, br; // string
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createRetailDemandPositionsBatch($id, $retail_demand_position, $expand, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->createRetailDemandPositions($id, $retail_demand_position, $expand, $accept, $accept_encoding, $content_type);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling RetailDemandsApi->createRetailDemandPositionsBatch: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling RetailDemandsApi->createRetailDemandPositions: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -372,7 +372,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateRetailDemandPositionsBatch200ResponseInner[]**](../Model/CreateRetailDemandPositionsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\CreateRetailDemandPositions200ResponseInner[]**](../Model/CreateRetailDemandPositions200ResponseInner.md)
 
 ### Authorization
 
@@ -1305,7 +1305,7 @@ try {
 ## `getRetailDemandPositions()`
 
 ```php
-getRetailDemandPositions($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\RetailDemandPositionList
+getRetailDemandPositions($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding): \OpenAPI\Client\Model\RetailDemandPositionList
 ```
 
 Получить позиции Розничной продажи
@@ -1339,10 +1339,9 @@ $expand = agent,organization; // string | Замена ссылок объект
 $fields = minimumStock; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
 $accept = 'application/json;charset=utf-8'; // string
 $accept_encoding = gzip, deflate, br; // string
-$content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->getRetailDemandPositions($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->getRetailDemandPositions($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RetailDemandsApi->getRetailDemandPositions: ', $e->getMessage(), PHP_EOL;
@@ -1360,7 +1359,6 @@ try {
 | **fields** | **string**| Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
-| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
 

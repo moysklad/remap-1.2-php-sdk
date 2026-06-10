@@ -86,10 +86,10 @@ class MovesApi
         'createMoveMetadataAttribute' => [
             'application/json',
         ],
-        'createMovePositions' => [
+        'createMovePosition' => [
             'application/json',
         ],
-        'createMovePositionsBatch' => [
+        'createMovePositions' => [
             'application/json',
         ],
         'deleteMove' => [
@@ -1539,9 +1539,9 @@ class MovesApi
     }
 
     /**
-     * Operation createMovePositions
+     * Operation createMovePosition
      *
-     * Создать позицию Перемещения
+     * Создать и обновить позицию Перемещения
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\MovePosition $move_position move_position (required)
@@ -1549,22 +1549,22 @@ class MovesApi
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMovePositions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMovePosition'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\MovePosition|\OpenAPI\Client\Model\ErrorOrArray
      */
-    public function createMovePositions($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePositions'][0])
+    public function createMovePosition($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePosition'][0])
     {
-        list($response) = $this->createMovePositionsWithHttpInfo($id, $move_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        list($response) = $this->createMovePositionWithHttpInfo($id, $move_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
     }
 
     /**
-     * Operation createMovePositionsWithHttpInfo
+     * Operation createMovePositionWithHttpInfo
      *
-     * Создать позицию Перемещения
+     * Создать и обновить позицию Перемещения
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\MovePosition $move_position (required)
@@ -1572,15 +1572,15 @@ class MovesApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMovePositions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMovePosition'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\MovePosition|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createMovePositionsWithHttpInfo($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePositions'][0])
+    public function createMovePositionWithHttpInfo($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePosition'][0])
     {
-        $request = $this->createMovePositionsRequest($id, $move_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->createMovePositionRequest($id, $move_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1666,9 +1666,9 @@ class MovesApi
     }
 
     /**
-     * Operation createMovePositionsAsync
+     * Operation createMovePositionAsync
      *
-     * Создать позицию Перемещения
+     * Создать и обновить позицию Перемещения
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\MovePosition $move_position (required)
@@ -1676,14 +1676,14 @@ class MovesApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMovePositions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMovePosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createMovePositionsAsync($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePositions'][0])
+    public function createMovePositionAsync($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePosition'][0])
     {
-        return $this->createMovePositionsAsyncWithHttpInfo($id, $move_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
+        return $this->createMovePositionAsyncWithHttpInfo($id, $move_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1692,9 +1692,9 @@ class MovesApi
     }
 
     /**
-     * Operation createMovePositionsAsyncWithHttpInfo
+     * Operation createMovePositionAsyncWithHttpInfo
      *
-     * Создать позицию Перемещения
+     * Создать и обновить позицию Перемещения
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\MovePosition $move_position (required)
@@ -1702,15 +1702,15 @@ class MovesApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMovePositions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMovePosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createMovePositionsAsyncWithHttpInfo($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePositions'][0])
+    public function createMovePositionAsyncWithHttpInfo($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePosition'][0])
     {
         $returnType = '\OpenAPI\Client\Model\MovePosition';
-        $request = $this->createMovePositionsRequest($id, $move_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->createMovePositionRequest($id, $move_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1749,7 +1749,7 @@ class MovesApi
     }
 
     /**
-     * Create request for operation 'createMovePositions'
+     * Create request for operation 'createMovePosition'
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\MovePosition $move_position (required)
@@ -1757,25 +1757,25 @@ class MovesApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMovePositions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMovePosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createMovePositionsRequest($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePositions'][0])
+    public function createMovePositionRequest($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePosition'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling createMovePositions'
+                'Missing the required parameter $id when calling createMovePosition'
             );
         }
 
         // verify the required parameter 'move_position' is set
         if ($move_position === null || (is_array($move_position) && count($move_position) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $move_position when calling createMovePositions'
+                'Missing the required parameter $move_position when calling createMovePosition'
             );
         }
 
@@ -1893,9 +1893,9 @@ class MovesApi
     }
 
     /**
-     * Operation createMovePositionsBatch
+     * Operation createMovePositions
      *
-     * Создать позиции Перемещения
+     * Массовое создание и обновление позиций Перемещения
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\MovePosition[] $move_position move_position (required)
@@ -1903,22 +1903,22 @@ class MovesApi
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMovePositionsBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMovePositions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreateMovePositionsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\CreateMovePositions200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
      */
-    public function createMovePositionsBatch($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePositionsBatch'][0])
+    public function createMovePositions($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePositions'][0])
     {
-        list($response) = $this->createMovePositionsBatchWithHttpInfo($id, $move_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        list($response) = $this->createMovePositionsWithHttpInfo($id, $move_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
     }
 
     /**
-     * Operation createMovePositionsBatchWithHttpInfo
+     * Operation createMovePositionsWithHttpInfo
      *
-     * Создать позиции Перемещения
+     * Массовое создание и обновление позиций Перемещения
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\MovePosition[] $move_position (required)
@@ -1926,15 +1926,15 @@ class MovesApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMovePositionsBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMovePositions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreateMovePositionsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\CreateMovePositions200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createMovePositionsBatchWithHttpInfo($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePositionsBatch'][0])
+    public function createMovePositionsWithHttpInfo($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePositions'][0])
     {
-        $request = $this->createMovePositionsBatchRequest($id, $move_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->createMovePositionsRequest($id, $move_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1962,7 +1962,7 @@ class MovesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CreateMovePositionsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\CreateMovePositions200ResponseInner[]',
                         $request,
                         $response,
                     );
@@ -1990,7 +1990,7 @@ class MovesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\CreateMovePositionsBatch200ResponseInner[]',
+                '\OpenAPI\Client\Model\CreateMovePositions200ResponseInner[]',
                 $request,
                 $response,
             );
@@ -1999,7 +1999,7 @@ class MovesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreateMovePositionsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\CreateMovePositions200ResponseInner[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2020,9 +2020,9 @@ class MovesApi
     }
 
     /**
-     * Operation createMovePositionsBatchAsync
+     * Operation createMovePositionsAsync
      *
-     * Создать позиции Перемещения
+     * Массовое создание и обновление позиций Перемещения
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\MovePosition[] $move_position (required)
@@ -2030,14 +2030,14 @@ class MovesApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMovePositionsBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMovePositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createMovePositionsBatchAsync($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePositionsBatch'][0])
+    public function createMovePositionsAsync($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePositions'][0])
     {
-        return $this->createMovePositionsBatchAsyncWithHttpInfo($id, $move_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
+        return $this->createMovePositionsAsyncWithHttpInfo($id, $move_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2046,9 +2046,9 @@ class MovesApi
     }
 
     /**
-     * Operation createMovePositionsBatchAsyncWithHttpInfo
+     * Operation createMovePositionsAsyncWithHttpInfo
      *
-     * Создать позиции Перемещения
+     * Массовое создание и обновление позиций Перемещения
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\MovePosition[] $move_position (required)
@@ -2056,15 +2056,15 @@ class MovesApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMovePositionsBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMovePositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createMovePositionsBatchAsyncWithHttpInfo($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePositionsBatch'][0])
+    public function createMovePositionsAsyncWithHttpInfo($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePositions'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CreateMovePositionsBatch200ResponseInner[]';
-        $request = $this->createMovePositionsBatchRequest($id, $move_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $returnType = '\OpenAPI\Client\Model\CreateMovePositions200ResponseInner[]';
+        $request = $this->createMovePositionsRequest($id, $move_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2103,7 +2103,7 @@ class MovesApi
     }
 
     /**
-     * Create request for operation 'createMovePositionsBatch'
+     * Create request for operation 'createMovePositions'
      *
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\MovePosition[] $move_position (required)
@@ -2111,32 +2111,32 @@ class MovesApi
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMovePositionsBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMovePositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createMovePositionsBatchRequest($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePositionsBatch'][0])
+    public function createMovePositionsRequest($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePositions'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling createMovePositionsBatch'
+                'Missing the required parameter $id when calling createMovePositions'
             );
         }
 
         // verify the required parameter 'move_position' is set
         if ($move_position === null || (is_array($move_position) && count($move_position) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $move_position when calling createMovePositionsBatch'
+                'Missing the required parameter $move_position when calling createMovePositions'
             );
         }
         if (count($move_position) > 1000) {
-            throw new \InvalidArgumentException('invalid value for "$move_position" when calling MovesApi.createMovePositionsBatch, number of items must be less than or equal to 1000.');
+            throw new \InvalidArgumentException('invalid value for "$move_position" when calling MovesApi.createMovePositions, number of items must be less than or equal to 1000.');
         }
         if (count($move_position) < 1) {
-            throw new \InvalidArgumentException('invalid value for "$move_position" when calling MovesApi.createMovePositionsBatch, number of items must be greater than or equal to 1.');
+            throw new \InvalidArgumentException('invalid value for "$move_position" when calling MovesApi.createMovePositions, number of items must be greater than or equal to 1.');
         }
         
 
