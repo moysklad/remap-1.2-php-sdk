@@ -43,6 +43,16 @@ use \OpenAPI\Client\ObjectSerializer;
 class CreatePaymentOutBatch200ResponseInner implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+
+    /**
+      * Array of nested discriminator mappings. Used for polymorphic deserialization
+      *
+      * @var string[]
+      */
+    protected static array $openAPIPolymorphicDiscriminatorMappings = [
+        
+    ];
 
     /**
       * The original name of the model.
@@ -92,7 +102,7 @@ class CreatePaymentOutBatch200ResponseInner implements ModelInterface, ArrayAcce
         'facture_in' => '\OpenAPI\Client\Model\FactureIn',
         'agent_account' => '\OpenAPI\Client\Model\Account',
         'organization_account' => '\OpenAPI\Client\Model\Account',
-        'operations' => '\OpenAPI\Client\Model\PaymentOutOperation[]',
+        'operations' => '\OpenAPI\Client\Model\FinanceOutOperationAbstract[]',
         'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
     ];
 
@@ -213,6 +223,26 @@ class CreatePaymentOutBatch200ResponseInner implements ModelInterface, ArrayAcce
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Nested discriminator path. Used for polymorphic deserialization
+     *
+     * @return string|null
+     */
+    public static function openAPIPolymorphicDiscriminatorPath(): ?string
+    {
+        return self::$openAPIPolymorphicDiscriminatorPath;
+    }
+
+    /**
+     * Nested discriminator mappings. Used for polymorphic deserialization
+     *
+     * @return array
+     */
+    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    {
+        return self::$openAPIPolymorphicDiscriminatorMappings;
     }
 
     /**
@@ -445,12 +475,14 @@ class CreatePaymentOutBatch200ResponseInner implements ModelInterface, ArrayAcce
     }
 
 
+    
     /**
      * Associative array for storing property values
      *
      * @var mixed[]
      */
     protected $container = [];
+    
 
     /**
      * Constructor
@@ -460,6 +492,7 @@ class CreatePaymentOutBatch200ResponseInner implements ModelInterface, ArrayAcce
      */
     public function __construct(?array $data = null)
     {
+        
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('account_id', $data ?? [], null);
@@ -524,7 +557,10 @@ class CreatePaymentOutBatch200ResponseInner implements ModelInterface, ArrayAcce
      */
     public function listInvalidProperties()
     {
+        
+        
         $invalidProperties = [];
+        
 
         if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 255)) {
             $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
@@ -1647,7 +1683,7 @@ class CreatePaymentOutBatch200ResponseInner implements ModelInterface, ArrayAcce
     /**
      * Gets operations
      *
-     * @return \OpenAPI\Client\Model\PaymentOutOperation[]|null
+     * @return \OpenAPI\Client\Model\FinanceOutOperationAbstract[]|null
      */
     public function getOperations()
     {
@@ -1657,7 +1693,7 @@ class CreatePaymentOutBatch200ResponseInner implements ModelInterface, ArrayAcce
     /**
      * Sets operations
      *
-     * @param \OpenAPI\Client\Model\PaymentOutOperation[]|null $operations Связанные операции: полное тело документа плюс `linkedSum`. Допустимые типы по `meta.type`: salesreturn, supply, invoicein, purchaseorder, commissionreportout. См. `PaymentOutOperation`.
+     * @param \OpenAPI\Client\Model\FinanceOutOperationAbstract[]|null $operations Связанные операции: полное тело документа плюс `linkedSum`. Допустимые типы по `meta.type`: salesreturn, supply, invoicein, purchaseorder, commissionreportout
      *
      * @return self
      */

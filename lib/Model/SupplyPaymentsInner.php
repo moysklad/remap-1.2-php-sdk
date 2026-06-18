@@ -43,6 +43,16 @@ use \OpenAPI\Client\ObjectSerializer;
 class SupplyPaymentsInner implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+
+    /**
+      * Array of nested discriminator mappings. Used for polymorphic deserialization
+      *
+      * @var string[]
+      */
+    protected static array $openAPIPolymorphicDiscriminatorMappings = [
+        
+    ];
 
     /**
       * The original name of the model.
@@ -92,7 +102,7 @@ class SupplyPaymentsInner implements ModelInterface, ArrayAccess, \JsonSerializa
         'facture_in' => '\OpenAPI\Client\Model\FactureIn',
         'agent_account' => '\OpenAPI\Client\Model\Account',
         'organization_account' => '\OpenAPI\Client\Model\Account',
-        'operations' => '\OpenAPI\Client\Model\PaymentInOperation[]',
+        'operations' => '\OpenAPI\Client\Model\FinanceInOperationAbstract[]',
         'incoming_number' => 'string',
         'incoming_date' => 'string',
         'facture_out' => '\OpenAPI\Client\Model\FactureOut'
@@ -219,6 +229,26 @@ class SupplyPaymentsInner implements ModelInterface, ArrayAccess, \JsonSerializa
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Nested discriminator path. Used for polymorphic deserialization
+     *
+     * @return string|null
+     */
+    public static function openAPIPolymorphicDiscriminatorPath(): ?string
+    {
+        return self::$openAPIPolymorphicDiscriminatorPath;
+    }
+
+    /**
+     * Nested discriminator mappings. Used for polymorphic deserialization
+     *
+     * @return array
+     */
+    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    {
+        return self::$openAPIPolymorphicDiscriminatorMappings;
     }
 
     /**
@@ -457,12 +487,14 @@ class SupplyPaymentsInner implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
 
+    
     /**
      * Associative array for storing property values
      *
      * @var mixed[]
      */
     protected $container = [];
+    
 
     /**
      * Constructor
@@ -472,6 +504,7 @@ class SupplyPaymentsInner implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(?array $data = null)
     {
+        
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('account_id', $data ?? [], null);
@@ -538,7 +571,10 @@ class SupplyPaymentsInner implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function listInvalidProperties()
     {
+        
+        
         $invalidProperties = [];
+        
 
         if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 255)) {
             $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
@@ -1662,7 +1698,7 @@ class SupplyPaymentsInner implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets operations
      *
-     * @return \OpenAPI\Client\Model\PaymentInOperation[]|null
+     * @return \OpenAPI\Client\Model\FinanceInOperationAbstract[]|null
      */
     public function getOperations()
     {
@@ -1672,7 +1708,7 @@ class SupplyPaymentsInner implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets operations
      *
-     * @param \OpenAPI\Client\Model\PaymentInOperation[]|null $operations Связанные операции. Допустимые типы по `meta.type`: customerorder, purchasereturn, demand, invoiceout, commissionreportin, retailshift.
+     * @param \OpenAPI\Client\Model\FinanceInOperationAbstract[]|null $operations Связанные операции. Допустимые типы по `meta.type`: customerorder, purchasereturn, demand, invoiceout, commissionreportin, retailshift.
      *
      * @return self
      */

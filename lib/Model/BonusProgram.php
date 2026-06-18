@@ -44,6 +44,16 @@ use \OpenAPI\Client\ObjectSerializer;
 class BonusProgram implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+
+    /**
+      * Array of nested discriminator mappings. Used for polymorphic deserialization
+      *
+      * @var string[]
+      */
+    protected static array $openAPIPolymorphicDiscriminatorMappings = [
+        
+    ];
 
     /**
       * The original name of the model.
@@ -151,6 +161,26 @@ class BonusProgram implements ModelInterface, ArrayAccess, \JsonSerializable
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Nested discriminator path. Used for polymorphic deserialization
+     *
+     * @return string|null
+     */
+    public static function openAPIPolymorphicDiscriminatorPath(): ?string
+    {
+        return self::$openAPIPolymorphicDiscriminatorPath;
+    }
+
+    /**
+     * Nested discriminator mappings. Used for polymorphic deserialization
+     *
+     * @return array
+     */
+    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    {
+        return self::$openAPIPolymorphicDiscriminatorMappings;
     }
 
     /**
@@ -320,12 +350,14 @@ class BonusProgram implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
+    
     /**
      * Associative array for storing property values
      *
      * @var mixed[]
      */
     protected $container = [];
+    
 
     /**
      * Constructor
@@ -335,6 +367,7 @@ class BonusProgram implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        
         $this->setIfExists('earn_rate_roubles_to_point', $data ?? [], null);
         $this->setIfExists('earn_while_redeeming', $data ?? [], null);
         $this->setIfExists('postponed_bonuses_delay_days', $data ?? [], null);
@@ -378,7 +411,10 @@ class BonusProgram implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function listInvalidProperties()
     {
+        
+        
         $invalidProperties = [];
+        
 
         if (!is_null($this->container['max_paid_rate_percents']) && ($this->container['max_paid_rate_percents'] > 100)) {
             $invalidProperties[] = "invalid value for 'max_paid_rate_percents', must be smaller than or equal to 100.";

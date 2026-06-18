@@ -38,9 +38,19 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class MinimumStockWarehouseVaried extends MinimumStockAbstract
+class MinimumStockWarehouseVaried extends MinimumStockAbstract 
 {
     public const DISCRIMINATOR = null;
+    protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+
+    /**
+      * Array of nested discriminator mappings. Used for polymorphic deserialization
+      *
+      * @var string[]
+      */
+    protected static array $openAPIPolymorphicDiscriminatorMappings = [
+        
+    ];
 
     /**
       * The original name of the model.
@@ -106,6 +116,26 @@ class MinimumStockWarehouseVaried extends MinimumStockAbstract
     public static function openAPIFormats()
     {
         return self::$openAPIFormats + parent::openAPIFormats();
+    }
+
+    /**
+     * Nested discriminator path. Used for polymorphic deserialization
+     *
+     * @return string|null
+     */
+    public static function openAPIPolymorphicDiscriminatorPath(): ?string
+    {
+        return self::$openAPIPolymorphicDiscriminatorPath;
+    }
+
+    /**
+     * Nested discriminator mappings. Used for polymorphic deserialization
+     *
+     * @return array
+     */
+    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    {
+        return self::$openAPIPolymorphicDiscriminatorMappings;
     }
 
     /**
@@ -246,6 +276,7 @@ class MinimumStockWarehouseVaried extends MinimumStockAbstract
         ];
     }
 
+    
 
     /**
      * Constructor
@@ -257,6 +288,7 @@ class MinimumStockWarehouseVaried extends MinimumStockAbstract
     {
         parent::__construct($data);
 
+        
         $this->setIfExists('type', $data ?? [], 'WAREHOUSE_VARIED');
         $this->setIfExists('store_balances', $data ?? [], null);
     }
@@ -287,6 +319,8 @@ class MinimumStockWarehouseVaried extends MinimumStockAbstract
     public function listInvalidProperties()
     {
         $invalidProperties = parent::listInvalidProperties();
+        
+        
 
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";

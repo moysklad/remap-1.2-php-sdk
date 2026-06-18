@@ -44,6 +44,16 @@ use \OpenAPI\Client\ObjectSerializer;
 class SalesReturnPosition implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+
+    /**
+      * Array of nested discriminator mappings. Used for polymorphic deserialization
+      *
+      * @var string[]
+      */
+    protected static array $openAPIPolymorphicDiscriminatorMappings = [
+        
+    ];
     public static function createWithMeta(string $parentId, string $id) : SalesReturnPosition {
         $o = new SalesReturnPosition();
         $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
@@ -159,6 +169,26 @@ class SalesReturnPosition implements ModelInterface, ArrayAccess, \JsonSerializa
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Nested discriminator path. Used for polymorphic deserialization
+     *
+     * @return string|null
+     */
+    public static function openAPIPolymorphicDiscriminatorPath(): ?string
+    {
+        return self::$openAPIPolymorphicDiscriminatorPath;
+    }
+
+    /**
+     * Nested discriminator mappings. Used for polymorphic deserialization
+     *
+     * @return array
+     */
+    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    {
+        return self::$openAPIPolymorphicDiscriminatorMappings;
     }
 
     /**
@@ -325,12 +355,14 @@ class SalesReturnPosition implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
 
+    
     /**
      * Associative array for storing property values
      *
      * @var mixed[]
      */
     protected $container = [];
+    
 
     /**
      * Constructor
@@ -340,6 +372,7 @@ class SalesReturnPosition implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(?array $data = null)
     {
+        
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('account_id', $data ?? [], null);
@@ -382,7 +415,10 @@ class SalesReturnPosition implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function listInvalidProperties()
     {
+        
+        
         $invalidProperties = [];
+        
 
         if (!is_null($this->container['vat']) && ($this->container['vat'] > 100)) {
             $invalidProperties[] = "invalid value for 'vat', must be smaller than or equal to 100.";

@@ -44,6 +44,16 @@ use \OpenAPI\Client\ObjectSerializer;
 class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+
+    /**
+      * Array of nested discriminator mappings. Used for polymorphic deserialization
+      *
+      * @var string[]
+      */
+    protected static array $openAPIPolymorphicDiscriminatorMappings = [
+        
+    ];
     public static function createWithMeta(string $id) : RetailShift {
         $o = new RetailShift();
         $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
@@ -71,7 +81,11 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'meta' => '\OpenAPI\Client\Model\Meta',
         'id' => 'string',
-        'account_id' => 'string'
+        'account_id' => 'string',
+        'name' => 'string',
+        'moment' => 'string',
+        'retail_store' => '\OpenAPI\Client\Model\RetailStore',
+        'payments' => '\OpenAPI\Client\Model\RetailShiftPaymentsInner[]'
     ];
 
     /**
@@ -84,7 +98,11 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'meta' => null,
         'id' => 'uuid',
-        'account_id' => 'uuid'
+        'account_id' => 'uuid',
+        'name' => null,
+        'moment' => null,
+        'retail_store' => null,
+        'payments' => null
     ];
 
     /**
@@ -95,7 +113,11 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'meta' => false,
         'id' => false,
-        'account_id' => false
+        'account_id' => false,
+        'name' => false,
+        'moment' => false,
+        'retail_store' => true,
+        'payments' => true
     ];
 
     /**
@@ -123,6 +145,26 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Nested discriminator path. Used for polymorphic deserialization
+     *
+     * @return string|null
+     */
+    public static function openAPIPolymorphicDiscriminatorPath(): ?string
+    {
+        return self::$openAPIPolymorphicDiscriminatorPath;
+    }
+
+    /**
+     * Nested discriminator mappings. Used for polymorphic deserialization
+     *
+     * @return array
+     */
+    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    {
+        return self::$openAPIPolymorphicDiscriminatorMappings;
     }
 
     /**
@@ -186,7 +228,11 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'meta' => 'meta',
         'id' => 'id',
-        'account_id' => 'accountId'
+        'account_id' => 'accountId',
+        'name' => 'name',
+        'moment' => 'moment',
+        'retail_store' => 'retailStore',
+        'payments' => 'payments'
     ];
 
     /**
@@ -197,7 +243,11 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'meta' => 'setMeta',
         'id' => 'setId',
-        'account_id' => 'setAccountId'
+        'account_id' => 'setAccountId',
+        'name' => 'setName',
+        'moment' => 'setMoment',
+        'retail_store' => 'setRetailStore',
+        'payments' => 'setPayments'
     ];
 
     /**
@@ -208,7 +258,11 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'meta' => 'getMeta',
         'id' => 'getId',
-        'account_id' => 'getAccountId'
+        'account_id' => 'getAccountId',
+        'name' => 'getName',
+        'moment' => 'getMoment',
+        'retail_store' => 'getRetailStore',
+        'payments' => 'getPayments'
     ];
 
     /**
@@ -253,12 +307,14 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
+    
     /**
      * Associative array for storing property values
      *
      * @var mixed[]
      */
     protected $container = [];
+    
 
     /**
      * Constructor
@@ -268,9 +324,14 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('account_id', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('moment', $data ?? [], null);
+        $this->setIfExists('retail_store', $data ?? [], null);
+        $this->setIfExists('payments', $data ?? [], null);
     }
 
     /**
@@ -298,7 +359,14 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function listInvalidProperties()
     {
+        
+        
         $invalidProperties = [];
+        
+
+        if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 255)) {
+            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
+        }
 
         return $invalidProperties;
     }
@@ -392,6 +460,132 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable account_id cannot be null');
         }
         $this->container['account_id'] = $account_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string|null $name Наименование смены
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+        if ((mb_strlen($name) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling RetailShift., must be smaller than or equal to 255.');
+        }
+
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets moment
+     *
+     * @return string|null
+     */
+    public function getMoment()
+    {
+        return $this->container['moment'];
+    }
+
+    /**
+     * Sets moment
+     *
+     * @param string|null $moment Дата смены
+     *
+     * @return self
+     */
+    public function setMoment($moment)
+    {
+        if (is_null($moment)) {
+            throw new \InvalidArgumentException('non-nullable moment cannot be null');
+        }
+        $this->container['moment'] = $moment;
+
+        return $this;
+    }
+
+    /**
+     * Gets retail_store
+     *
+     * @return \OpenAPI\Client\Model\RetailStore|null
+     */
+    public function getRetailStore()
+    {
+        return $this->container['retail_store'];
+    }
+
+    /**
+     * Sets retail_store
+     *
+     * @param \OpenAPI\Client\Model\RetailStore|null $retail_store Метаданные точки продаж
+     *
+     * @return self
+     */
+    public function setRetailStore($retail_store)
+    {
+        if (is_null($retail_store)) {
+            array_push($this->openAPINullablesSetToNull, 'retail_store');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('retail_store', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['retail_store'] = $retail_store;
+
+        return $this;
+    }
+
+    /**
+     * Gets payments
+     *
+     * @return \OpenAPI\Client\Model\RetailShiftPaymentsInner[]|null
+     */
+    public function getPayments()
+    {
+        return $this->container['payments'];
+    }
+
+    /**
+     * Sets payments
+     *
+     * @param \OpenAPI\Client\Model\RetailShiftPaymentsInner[]|null $payments Связанные платежи
+     *
+     * @return self
+     */
+    public function setPayments($payments)
+    {
+        if (is_null($payments)) {
+            array_push($this->openAPINullablesSetToNull, 'payments');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('payments', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['payments'] = $payments;
 
         return $this;
     }

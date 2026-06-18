@@ -44,6 +44,16 @@ use \OpenAPI\Client\ObjectSerializer;
 class OperationLinkedSum implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+
+    /**
+      * Array of nested discriminator mappings. Used for polymorphic deserialization
+      *
+      * @var string[]
+      */
+    protected static array $openAPIPolymorphicDiscriminatorMappings = [
+        
+    ];
 
     /**
       * The original name of the model.
@@ -106,6 +116,26 @@ class OperationLinkedSum implements ModelInterface, ArrayAccess, \JsonSerializab
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Nested discriminator path. Used for polymorphic deserialization
+     *
+     * @return string|null
+     */
+    public static function openAPIPolymorphicDiscriminatorPath(): ?string
+    {
+        return self::$openAPIPolymorphicDiscriminatorPath;
+    }
+
+    /**
+     * Nested discriminator mappings. Used for polymorphic deserialization
+     *
+     * @return array
+     */
+    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    {
+        return self::$openAPIPolymorphicDiscriminatorMappings;
     }
 
     /**
@@ -230,12 +260,14 @@ class OperationLinkedSum implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
 
+    
     /**
      * Associative array for storing property values
      *
      * @var mixed[]
      */
     protected $container = [];
+    
 
     /**
      * Constructor
@@ -245,6 +277,7 @@ class OperationLinkedSum implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(?array $data = null)
     {
+        
         $this->setIfExists('linked_sum', $data ?? [], null);
     }
 
@@ -273,7 +306,10 @@ class OperationLinkedSum implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function listInvalidProperties()
     {
+        
+        
         $invalidProperties = [];
+        
 
         if ($this->container['linked_sum'] === null) {
             $invalidProperties[] = "'linked_sum' can't be null";

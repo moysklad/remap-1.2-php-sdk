@@ -38,9 +38,19 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class AttributeFile extends AttributeAbstract
+class AttributeFile extends AttributeAbstract 
 {
     public const DISCRIMINATOR = null;
+    protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+
+    /**
+      * Array of nested discriminator mappings. Used for polymorphic deserialization
+      *
+      * @var string[]
+      */
+    protected static array $openAPIPolymorphicDiscriminatorMappings = [
+        
+    ];
 
     /**
       * The original name of the model.
@@ -109,6 +119,26 @@ class AttributeFile extends AttributeAbstract
     public static function openAPIFormats()
     {
         return self::$openAPIFormats + parent::openAPIFormats();
+    }
+
+    /**
+     * Nested discriminator path. Used for polymorphic deserialization
+     *
+     * @return string|null
+     */
+    public static function openAPIPolymorphicDiscriminatorPath(): ?string
+    {
+        return self::$openAPIPolymorphicDiscriminatorPath;
+    }
+
+    /**
+     * Nested discriminator mappings. Used for polymorphic deserialization
+     *
+     * @return array
+     */
+    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    {
+        return self::$openAPIPolymorphicDiscriminatorMappings;
     }
 
     /**
@@ -252,6 +282,7 @@ class AttributeFile extends AttributeAbstract
         ];
     }
 
+    
 
     /**
      * Constructor
@@ -263,6 +294,7 @@ class AttributeFile extends AttributeAbstract
     {
         parent::__construct($data);
 
+        
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('value', $data ?? [], null);
         $this->setIfExists('download', $data ?? [], null);
@@ -294,6 +326,8 @@ class AttributeFile extends AttributeAbstract
     public function listInvalidProperties()
     {
         $invalidProperties = parent::listInvalidProperties();
+        
+        
 
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {

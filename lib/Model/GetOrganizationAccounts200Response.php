@@ -43,6 +43,16 @@ use \OpenAPI\Client\ObjectSerializer;
 class GetOrganizationAccounts200Response implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+
+    /**
+      * Array of nested discriminator mappings. Used for polymorphic deserialization
+      *
+      * @var string[]
+      */
+    protected static array $openAPIPolymorphicDiscriminatorMappings = [
+        
+    ];
 
     /**
       * The original name of the model.
@@ -111,6 +121,26 @@ class GetOrganizationAccounts200Response implements ModelInterface, ArrayAccess,
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Nested discriminator path. Used for polymorphic deserialization
+     *
+     * @return string|null
+     */
+    public static function openAPIPolymorphicDiscriminatorPath(): ?string
+    {
+        return self::$openAPIPolymorphicDiscriminatorPath;
+    }
+
+    /**
+     * Nested discriminator mappings. Used for polymorphic deserialization
+     *
+     * @return array
+     */
+    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    {
+        return self::$openAPIPolymorphicDiscriminatorMappings;
     }
 
     /**
@@ -241,12 +271,14 @@ class GetOrganizationAccounts200Response implements ModelInterface, ArrayAccess,
     }
 
 
+    
     /**
      * Associative array for storing property values
      *
      * @var mixed[]
      */
     protected $container = [];
+    
 
     /**
      * Constructor
@@ -256,6 +288,7 @@ class GetOrganizationAccounts200Response implements ModelInterface, ArrayAccess,
      */
     public function __construct(?array $data = null)
     {
+        
         $this->setIfExists('context', $data ?? [], null);
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('rows', $data ?? [], null);
@@ -286,7 +319,10 @@ class GetOrganizationAccounts200Response implements ModelInterface, ArrayAccess,
      */
     public function listInvalidProperties()
     {
+        
+        
         $invalidProperties = [];
+        
 
         return $invalidProperties;
     }

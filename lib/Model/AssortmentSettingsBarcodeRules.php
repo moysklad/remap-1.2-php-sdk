@@ -44,6 +44,16 @@ use \OpenAPI\Client\ObjectSerializer;
 class AssortmentSettingsBarcodeRules implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+
+    /**
+      * Array of nested discriminator mappings. Used for polymorphic deserialization
+      *
+      * @var string[]
+      */
+    protected static array $openAPIPolymorphicDiscriminatorMappings = [
+        
+    ];
 
     /**
       * The original name of the model.
@@ -112,6 +122,26 @@ class AssortmentSettingsBarcodeRules implements ModelInterface, ArrayAccess, \Js
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Nested discriminator path. Used for polymorphic deserialization
+     *
+     * @return string|null
+     */
+    public static function openAPIPolymorphicDiscriminatorPath(): ?string
+    {
+        return self::$openAPIPolymorphicDiscriminatorPath;
+    }
+
+    /**
+     * Nested discriminator mappings. Used for polymorphic deserialization
+     *
+     * @return array
+     */
+    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    {
+        return self::$openAPIPolymorphicDiscriminatorMappings;
     }
 
     /**
@@ -242,12 +272,14 @@ class AssortmentSettingsBarcodeRules implements ModelInterface, ArrayAccess, \Js
     }
 
 
+    
     /**
      * Associative array for storing property values
      *
      * @var mixed[]
      */
     protected $container = [];
+    
 
     /**
      * Constructor
@@ -257,6 +289,7 @@ class AssortmentSettingsBarcodeRules implements ModelInterface, ArrayAccess, \Js
      */
     public function __construct(?array $data = null)
     {
+        
         $this->setIfExists('fill_ean13_barcode', $data ?? [], null);
         $this->setIfExists('weight_barcode', $data ?? [], null);
         $this->setIfExists('weight_barcode_prefix', $data ?? [], null);
@@ -287,7 +320,10 @@ class AssortmentSettingsBarcodeRules implements ModelInterface, ArrayAccess, \Js
      */
     public function listInvalidProperties()
     {
+        
+        
         $invalidProperties = [];
+        
 
         return $invalidProperties;
     }

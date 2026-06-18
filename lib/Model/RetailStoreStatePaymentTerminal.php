@@ -44,6 +44,16 @@ use \OpenAPI\Client\ObjectSerializer;
 class RetailStoreStatePaymentTerminal implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+
+    /**
+      * Array of nested discriminator mappings. Used for polymorphic deserialization
+      *
+      * @var string[]
+      */
+    protected static array $openAPIPolymorphicDiscriminatorMappings = [
+        
+    ];
 
     /**
       * The original name of the model.
@@ -106,6 +116,26 @@ class RetailStoreStatePaymentTerminal implements ModelInterface, ArrayAccess, \J
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Nested discriminator path. Used for polymorphic deserialization
+     *
+     * @return string|null
+     */
+    public static function openAPIPolymorphicDiscriminatorPath(): ?string
+    {
+        return self::$openAPIPolymorphicDiscriminatorPath;
+    }
+
+    /**
+     * Nested discriminator mappings. Used for polymorphic deserialization
+     *
+     * @return array
+     */
+    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    {
+        return self::$openAPIPolymorphicDiscriminatorMappings;
     }
 
     /**
@@ -230,12 +260,14 @@ class RetailStoreStatePaymentTerminal implements ModelInterface, ArrayAccess, \J
     }
 
 
+    
     /**
      * Associative array for storing property values
      *
      * @var mixed[]
      */
     protected $container = [];
+    
 
     /**
      * Constructor
@@ -245,6 +277,7 @@ class RetailStoreStatePaymentTerminal implements ModelInterface, ArrayAccess, \J
      */
     public function __construct(?array $data = null)
     {
+        
         $this->setIfExists('acquiring_type', $data ?? [], null);
     }
 
@@ -273,7 +306,10 @@ class RetailStoreStatePaymentTerminal implements ModelInterface, ArrayAccess, \J
      */
     public function listInvalidProperties()
     {
+        
+        
         $invalidProperties = [];
+        
 
         if (!is_null($this->container['acquiring_type']) && (mb_strlen($this->container['acquiring_type']) > 255)) {
             $invalidProperties[] = "invalid value for 'acquiring_type', the character length must be smaller than or equal to 255.";

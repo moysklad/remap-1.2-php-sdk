@@ -43,6 +43,16 @@ use \OpenAPI\Client\ObjectSerializer;
 class CreateCashInBatch200ResponseInner implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+
+    /**
+      * Array of nested discriminator mappings. Used for polymorphic deserialization
+      *
+      * @var string[]
+      */
+    protected static array $openAPIPolymorphicDiscriminatorMappings = [
+        
+    ];
 
     /**
       * The original name of the model.
@@ -88,7 +98,7 @@ class CreateCashInBatch200ResponseInner implements ModelInterface, ArrayAccess, 
         'sum' => 'float',
         'vat_sum' => 'float',
         'facture_out' => '\OpenAPI\Client\Model\FactureOut',
-        'operations' => '\OpenAPI\Client\Model\CashInOperation[]',
+        'operations' => '\OpenAPI\Client\Model\FinanceInOperationAbstract[]',
         'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
     ];
 
@@ -201,6 +211,26 @@ class CreateCashInBatch200ResponseInner implements ModelInterface, ArrayAccess, 
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Nested discriminator path. Used for polymorphic deserialization
+     *
+     * @return string|null
+     */
+    public static function openAPIPolymorphicDiscriminatorPath(): ?string
+    {
+        return self::$openAPIPolymorphicDiscriminatorPath;
+    }
+
+    /**
+     * Nested discriminator mappings. Used for polymorphic deserialization
+     *
+     * @return array
+     */
+    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    {
+        return self::$openAPIPolymorphicDiscriminatorMappings;
     }
 
     /**
@@ -421,12 +451,14 @@ class CreateCashInBatch200ResponseInner implements ModelInterface, ArrayAccess, 
     }
 
 
+    
     /**
      * Associative array for storing property values
      *
      * @var mixed[]
      */
     protected $container = [];
+    
 
     /**
      * Constructor
@@ -436,6 +468,7 @@ class CreateCashInBatch200ResponseInner implements ModelInterface, ArrayAccess, 
      */
     public function __construct(?array $data = null)
     {
+        
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('account_id', $data ?? [], null);
@@ -496,7 +529,10 @@ class CreateCashInBatch200ResponseInner implements ModelInterface, ArrayAccess, 
      */
     public function listInvalidProperties()
     {
+        
+        
         $invalidProperties = [];
+        
 
         if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 255)) {
             $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
@@ -1472,7 +1508,7 @@ class CreateCashInBatch200ResponseInner implements ModelInterface, ArrayAccess, 
     /**
      * Gets operations
      *
-     * @return \OpenAPI\Client\Model\CashInOperation[]|null
+     * @return \OpenAPI\Client\Model\FinanceInOperationAbstract[]|null
      */
     public function getOperations()
     {
@@ -1482,7 +1518,7 @@ class CreateCashInBatch200ResponseInner implements ModelInterface, ArrayAccess, 
     /**
      * Sets operations
      *
-     * @param \OpenAPI\Client\Model\CashInOperation[]|null $operations Связанные операции. Допустимые типы по `meta.type`: customerorder, purchasereturn, demand, invoiceout, commissionreportin, retailshift.
+     * @param \OpenAPI\Client\Model\FinanceInOperationAbstract[]|null $operations Связанные операции. Допустимые типы по `meta.type`: customerorder, purchasereturn, demand, invoiceout, commissionreportin, retailshift
      *
      * @return self
      */

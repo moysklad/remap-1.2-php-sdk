@@ -44,6 +44,16 @@ use \OpenAPI\Client\ObjectSerializer;
 class ProcessingPlanStage implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+
+    /**
+      * Array of nested discriminator mappings. Used for polymorphic deserialization
+      *
+      * @var string[]
+      */
+    protected static array $openAPIPolymorphicDiscriminatorMappings = [
+        
+    ];
     public static function createWithMeta(string $parentId, string $id) : ProcessingPlanStage {
         $o = new ProcessingPlanStage();
         $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
@@ -141,6 +151,26 @@ class ProcessingPlanStage implements ModelInterface, ArrayAccess, \JsonSerializa
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Nested discriminator path. Used for polymorphic deserialization
+     *
+     * @return string|null
+     */
+    public static function openAPIPolymorphicDiscriminatorPath(): ?string
+    {
+        return self::$openAPIPolymorphicDiscriminatorPath;
+    }
+
+    /**
+     * Nested discriminator mappings. Used for polymorphic deserialization
+     *
+     * @return array
+     */
+    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    {
+        return self::$openAPIPolymorphicDiscriminatorMappings;
     }
 
     /**
@@ -289,12 +319,14 @@ class ProcessingPlanStage implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
 
+    
     /**
      * Associative array for storing property values
      *
      * @var mixed[]
      */
     protected $container = [];
+    
 
     /**
      * Constructor
@@ -304,6 +336,7 @@ class ProcessingPlanStage implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(?array $data = null)
     {
+        
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('account_id', $data ?? [], null);
@@ -340,7 +373,10 @@ class ProcessingPlanStage implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function listInvalidProperties()
     {
+        
+        
         $invalidProperties = [];
+        
 
         if (!is_null($this->container['cost']) && ($this->container['cost'] < 0)) {
             $invalidProperties[] = "invalid value for 'cost', must be bigger than or equal to 0.";

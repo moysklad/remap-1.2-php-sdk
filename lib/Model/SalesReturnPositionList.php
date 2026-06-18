@@ -44,6 +44,16 @@ use \OpenAPI\Client\ObjectSerializer;
 class SalesReturnPositionList implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+
+    /**
+      * Array of nested discriminator mappings. Used for polymorphic deserialization
+      *
+      * @var string[]
+      */
+    protected static array $openAPIPolymorphicDiscriminatorMappings = [
+        
+    ];
 
     /**
       * The original name of the model.
@@ -84,7 +94,7 @@ class SalesReturnPositionList implements ModelInterface, ArrayAccess, \JsonSeria
     protected static array $openAPINullables = [
         'context' => false,
         'meta' => false,
-        'rows' => false
+        'rows' => true
     ];
 
     /**
@@ -112,6 +122,26 @@ class SalesReturnPositionList implements ModelInterface, ArrayAccess, \JsonSeria
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Nested discriminator path. Used for polymorphic deserialization
+     *
+     * @return string|null
+     */
+    public static function openAPIPolymorphicDiscriminatorPath(): ?string
+    {
+        return self::$openAPIPolymorphicDiscriminatorPath;
+    }
+
+    /**
+     * Nested discriminator mappings. Used for polymorphic deserialization
+     *
+     * @return array
+     */
+    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    {
+        return self::$openAPIPolymorphicDiscriminatorMappings;
     }
 
     /**
@@ -242,12 +272,14 @@ class SalesReturnPositionList implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
 
+    
     /**
      * Associative array for storing property values
      *
      * @var mixed[]
      */
     protected $container = [];
+    
 
     /**
      * Constructor
@@ -257,6 +289,7 @@ class SalesReturnPositionList implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function __construct(?array $data = null)
     {
+        
         $this->setIfExists('context', $data ?? [], null);
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('rows', $data ?? [], null);
@@ -287,7 +320,10 @@ class SalesReturnPositionList implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function listInvalidProperties()
     {
+        
+        
         $invalidProperties = [];
+        
 
         return $invalidProperties;
     }
@@ -378,7 +414,14 @@ class SalesReturnPositionList implements ModelInterface, ArrayAccess, \JsonSeria
     public function setRows($rows)
     {
         if (is_null($rows)) {
-            throw new \InvalidArgumentException('non-nullable rows cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'rows');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('rows', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['rows'] = $rows;
 

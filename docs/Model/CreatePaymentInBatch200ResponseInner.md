@@ -39,7 +39,7 @@ Name | Type | Description | Notes
 **incoming_number** | **string** | Входящий номер | [optional]
 **incoming_date** | **string** | Входящая дата | [optional]
 **facture_out** | [**\OpenAPI\Client\Model\FactureOut**](FactureOut.md) | Счет-фактура выданный, с которым связан этот платеж | [optional]
-**operations** | [**\OpenAPI\Client\Model\PaymentInOperation[]**](PaymentInOperation.md) | Связанные операции. Допустимые типы по &#x60;meta.type&#x60;: customerorder, purchasereturn, demand, invoiceout, commissionreportin, retailshift. | [optional]
+**operations** | [**\OpenAPI\Client\Model\FinanceInOperationAbstract[]**](FinanceInOperationAbstract.md) | Связанные операции. Допустимые типы по &#x60;meta.type&#x60;: customerorder, purchasereturn, demand, invoiceout, commissionreportin, retailshift. | [optional]
 **errors** | [**\OpenAPI\Client\Model\ErrorErrorsInner[]**](ErrorErrorsInner.md) |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

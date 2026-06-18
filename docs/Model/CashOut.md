@@ -37,6 +37,6 @@ Name | Type | Description | Notes
 **sum** | **float** | Сумма расходного ордера в установленной валюте | [optional] [readonly]
 **vat_sum** | **float** | Сумма НДС | [optional] [readonly]
 **facture_in** | [**\OpenAPI\Client\Model\FactureIn**](FactureIn.md) | Счет-фактура полученный, с которым связан этот платеж | [optional]
-**operations** | [**\OpenAPI\Client\Model\CashOutOperation[]**](CashOutOperation.md) | Связанные операции: полное тело документа плюс &#x60;linkedSum&#x60;. Допустимые типы по &#x60;meta.type&#x60;: salesreturn, supply, invoicein, purchaseorder, commissionreportout. См. &#x60;CashOutOperation&#x60;. | [optional]
+**operations** | [**\OpenAPI\Client\Model\FinanceOutOperationAbstract[]**](FinanceOutOperationAbstract.md) | Связанные операции: полное тело документа плюс &#x60;linkedSum&#x60;. Допустимые типы по &#x60;meta.type&#x60;: salesreturn, supply, invoicein, purchaseorder, commissionreportout | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

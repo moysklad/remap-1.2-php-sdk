@@ -43,6 +43,16 @@ use \OpenAPI\Client\ObjectSerializer;
 class ProcessingProcessPositionNextPositionsInner implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+
+    /**
+      * Array of nested discriminator mappings. Used for polymorphic deserialization
+      *
+      * @var string[]
+      */
+    protected static array $openAPIPolymorphicDiscriminatorMappings = [
+        
+    ];
 
     /**
       * The original name of the model.
@@ -105,6 +115,26 @@ class ProcessingProcessPositionNextPositionsInner implements ModelInterface, Arr
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Nested discriminator path. Used for polymorphic deserialization
+     *
+     * @return string|null
+     */
+    public static function openAPIPolymorphicDiscriminatorPath(): ?string
+    {
+        return self::$openAPIPolymorphicDiscriminatorPath;
+    }
+
+    /**
+     * Nested discriminator mappings. Used for polymorphic deserialization
+     *
+     * @return array
+     */
+    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    {
+        return self::$openAPIPolymorphicDiscriminatorMappings;
     }
 
     /**
@@ -229,12 +259,14 @@ class ProcessingProcessPositionNextPositionsInner implements ModelInterface, Arr
     }
 
 
+    
     /**
      * Associative array for storing property values
      *
      * @var mixed[]
      */
     protected $container = [];
+    
 
     /**
      * Constructor
@@ -244,6 +276,7 @@ class ProcessingProcessPositionNextPositionsInner implements ModelInterface, Arr
      */
     public function __construct(?array $data = null)
     {
+        
         $this->setIfExists('processingstage', $data ?? [], null);
     }
 
@@ -272,7 +305,10 @@ class ProcessingProcessPositionNextPositionsInner implements ModelInterface, Arr
      */
     public function listInvalidProperties()
     {
+        
+        
         $invalidProperties = [];
+        
 
         return $invalidProperties;
     }
