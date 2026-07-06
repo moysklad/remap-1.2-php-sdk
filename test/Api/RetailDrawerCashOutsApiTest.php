@@ -132,6 +132,18 @@ class RetailDrawerCashOutsApiTest extends TestCase
     }
 
     /**
+     * Test case for createRetailDrawerCashOutMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов Выплат денег.
+     *
+     */
+    public function testCreateRetailDrawerCashOutMetadataStatesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteRetailDrawerCashOut
      *
      * Удалить Выплату денег.

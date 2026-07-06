@@ -13,7 +13,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 ## `deleteAssortmentPositionsBatch()`
 
 ```php
-deleteAssortmentPositionsBatch($assortment, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteAssortmentPositionsBatch($assortment, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Удалить позиции ассортимента
@@ -44,7 +44,7 @@ $apiInstance = new OpenAPI\Client\Api\AssortmentApi(
 );
 $assortment = array(new \OpenAPI\Client\Model\Assortment()); // \OpenAPI\Client\Model\Assortment[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -66,7 +66,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -115,15 +115,15 @@ $apiInstance = new OpenAPI\Client\Api\AssortmentApi(
 );
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$search = name=123; // string | Контекстный поиск по строковым полям сущностей
-$filter = archived=false; // string | Фильтрация выборки
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$order = name; // string | Сортировка
+$search = 'search_example'; // string | Контекстный поиск по строковым полям сущностей
+$filter = 'filter_example'; // string | Фильтрация выборки
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$order = 'order_example'; // string | Сортировка
 $group_by = 'group_by_example'; // string | Параметр группировки (product, variant, consignment)
 $stock_mode = 'stock_mode_example'; // string | Фильтрация по значению остатка
 $quantity_mode = 'quantity_mode_example'; // string | Фильтрация по значению доступно
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getAssortment($limit, $offset, $search, $filter, $expand, $order, $group_by, $stock_mode, $quantity_mode, $accept, $accept_encoding);
@@ -199,7 +199,7 @@ $apiInstance = new OpenAPI\Client\Api\AssortmentApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getAssortmentSettings($accept, $accept_encoding);
@@ -267,7 +267,7 @@ $apiInstance = new OpenAPI\Client\Api\AssortmentApi(
 );
 $assortment_settings = new \OpenAPI\Client\Model\AssortmentSettings(); // \OpenAPI\Client\Model\AssortmentSettings
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {

@@ -45,6 +45,7 @@ class FinanceOutOperationCommissionReportOut extends FinanceOutOperationAbstract
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+    protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
     /**
       * Array of nested discriminator mappings. Used for polymorphic deserialization
@@ -108,7 +109,7 @@ class FinanceOutOperationCommissionReportOut extends FinanceOutOperationAbstract
         'vat_enabled' => 'bool',
         'vat_included' => 'bool',
         'vat_sum' => 'float',
-        'payments' => '\OpenAPI\Client\Model\CustomerOrderPaymentsInner[]'
+        'payments' => '\OpenAPI\Client\Model\RetailShiftPaymentsInner[]'
     ];
 
     /**
@@ -256,6 +257,17 @@ class FinanceOutOperationCommissionReportOut extends FinanceOutOperationAbstract
     public static function openAPIPolymorphicDiscriminatorMappings(): array
     {
         return self::$openAPIPolymorphicDiscriminatorMappings;
+    }
+
+    /**
+     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * discriminator mappings do not match.
+     *
+     * @return bool
+     */
+    public static function openAPIPolymorphicBatchErrorFallback(): bool
+    {
+        return self::$openAPIPolymorphicBatchErrorFallback;
     }
 
     /**
@@ -1824,7 +1836,7 @@ class FinanceOutOperationCommissionReportOut extends FinanceOutOperationAbstract
     /**
      * Gets payments
      *
-     * @return \OpenAPI\Client\Model\CustomerOrderPaymentsInner[]|null
+     * @return \OpenAPI\Client\Model\RetailShiftPaymentsInner[]|null
      */
     public function getPayments()
     {
@@ -1834,7 +1846,7 @@ class FinanceOutOperationCommissionReportOut extends FinanceOutOperationAbstract
     /**
      * Sets payments
      *
-     * @param \OpenAPI\Client\Model\CustomerOrderPaymentsInner[]|null $payments Массив ссылок на связанные платежи
+     * @param \OpenAPI\Client\Model\RetailShiftPaymentsInner[]|null $payments Массив ссылок на связанные платежи
      *
      * @return self
      */

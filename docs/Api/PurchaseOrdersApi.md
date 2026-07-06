@@ -8,6 +8,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createPurchaseOrderBatch()**](PurchaseOrdersApi.md#createPurchaseOrderBatch) | **POST** /entity/purchaseorder/batch | Массовое создание и обновление PurchaseOrder |
 | [**createPurchaseOrderMetadataAttribute()**](PurchaseOrdersApi.md#createPurchaseOrderMetadataAttribute) | **POST** /entity/purchaseorder/metadata/attributes | Создать Доп. поле PurchaseOrder |
 | [**createPurchaseOrderMetadataState()**](PurchaseOrdersApi.md#createPurchaseOrderMetadataState) | **POST** /entity/purchaseorder/metadata/states | Создать статус PurchaseOrder |
+| [**createPurchaseOrderMetadataStatesBatch()**](PurchaseOrdersApi.md#createPurchaseOrderMetadataStatesBatch) | **POST** /entity/purchaseorder/metadata/states/batch | Массовое создание и обновление статусов PurchaseOrder |
 | [**createPurchaseOrderNote()**](PurchaseOrdersApi.md#createPurchaseOrderNote) | **POST** /entity/purchaseorder/{id}/notes | Добавить Событие Заказа поставщику |
 | [**createPurchaseOrderPosition()**](PurchaseOrdersApi.md#createPurchaseOrderPosition) | **POST** /entity/purchaseorder/{id}/positions | Создать и обновить позицию Заказа поставщику |
 | [**createPurchaseOrderPositions()**](PurchaseOrdersApi.md#createPurchaseOrderPositions) | **POST** /entity/purchaseorder/{id}/positions/batch | Массовое создание и обновление позиций Заказа поставщику |
@@ -67,9 +68,9 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     $config
 );
 $purchase_order = new \OpenAPI\Client\Model\PurchaseOrder(); // \OpenAPI\Client\Model\PurchaseOrder
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -110,7 +111,7 @@ try {
 ## `createPurchaseOrderBatch()`
 
 ```php
-createPurchaseOrderBatch($purchase_order, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreatePurchaseOrderBatch200ResponseInner[]
+createPurchaseOrderBatch($purchase_order, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
 ```
 
 Массовое создание и обновление PurchaseOrder
@@ -138,9 +139,9 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     $config
 );
 $purchase_order = array(new \OpenAPI\Client\Model\PurchaseOrder()); // \OpenAPI\Client\Model\PurchaseOrder[]
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -163,7 +164,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreatePurchaseOrderBatch200ResponseInner[]**](../Model/CreatePurchaseOrderBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -210,7 +211,7 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
 );
 $attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -250,7 +251,7 @@ try {
 ## `createPurchaseOrderMetadataState()`
 
 ```php
-createPurchaseOrderMetadataState($create_internal_order_metadata_state_request, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest
+createPurchaseOrderMetadataState($state, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\State
 ```
 
 Создать статус PurchaseOrder
@@ -277,13 +278,13 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$create_internal_order_metadata_state_request = new \OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest(); // \OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest
+$state = new \OpenAPI\Client\Model\State(); // \OpenAPI\Client\Model\State
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createPurchaseOrderMetadataState($create_internal_order_metadata_state_request, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->createPurchaseOrderMetadataState($state, $accept, $accept_encoding, $content_type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PurchaseOrdersApi->createPurchaseOrderMetadataState: ', $e->getMessage(), PHP_EOL;
@@ -294,14 +295,83 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **create_internal_order_metadata_state_request** | [**\OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest**](../Model/CreateInternalOrderMetadataStateRequest.md)|  | |
+| **state** | [**\OpenAPI\Client\Model\State**](../Model/State.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest**](../Model/CreateInternalOrderMetadataStateRequest.md)
+[**\OpenAPI\Client\Model\State**](../Model/State.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createPurchaseOrderMetadataStatesBatch()`
+
+```php
+createPurchaseOrderMetadataStatesBatch($state, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\StateRowResult[]
+```
+
+Массовое создание и обновление статусов PurchaseOrder
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$state = array(new \OpenAPI\Client\Model\State()); // \OpenAPI\Client\Model\State[]
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createPurchaseOrderMetadataStatesBatch($state, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PurchaseOrdersApi->createPurchaseOrderMetadataStatesBatch: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **state** | [**\OpenAPI\Client\Model\State[]**](../Model/State.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\StateRowResult[]**](../Model/StateRowResult.md)
 
 ### Authorization
 
@@ -348,10 +418,10 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $event_note = new \OpenAPI\Client\Model\EventNote(); // \OpenAPI\Client\Model\EventNote
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -419,11 +489,11 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $purchase_order_position = new \OpenAPI\Client\Model\PurchaseOrderPosition(); // \OpenAPI\Client\Model\PurchaseOrderPosition
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -492,11 +562,11 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $purchase_order_position = array(new \OpenAPI\Client\Model\PurchaseOrderPosition()); // \OpenAPI\Client\Model\PurchaseOrderPosition[]
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -565,9 +635,9 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -606,7 +676,7 @@ void (empty response body)
 ## `deletePurchaseOrderBatch()`
 
 ```php
-deletePurchaseOrderBatch($purchase_order, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deletePurchaseOrderBatch($purchase_order, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Массовое удаление PurchaseOrder
@@ -635,7 +705,7 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
 );
 $purchase_order = array(new \OpenAPI\Client\Model\PurchaseOrder()); // \OpenAPI\Client\Model\PurchaseOrder[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -657,7 +727,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -702,9 +772,9 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -770,9 +840,9 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -840,10 +910,10 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $note_id = 'note_id_example'; // string | ID События
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deletePurchaseOrderNote($id, $note_id, $accept, $accept_encoding);
@@ -908,11 +978,11 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$position_id = 12a8b923-692c-11e6-8a84-bae500000054; // string | ID позиции
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$id = 'id_example'; // string | ID сущности
+$position_id = 'position_id_example'; // string | ID позиции
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -953,7 +1023,7 @@ void (empty response body)
 ## `deletePurchaseOrderPositionsBatch()`
 
 ```php
-deletePurchaseOrderPositionsBatch($id, $purchase_order_position, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deletePurchaseOrderPositionsBatch($id, $purchase_order_position, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Массовое удаление позиций PurchaseOrder
@@ -980,10 +1050,10 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $purchase_order_position = array(new \OpenAPI\Client\Model\PurchaseOrderPosition()); // \OpenAPI\Client\Model\PurchaseOrderPosition[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1006,7 +1076,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -1051,11 +1121,11 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$fields = minimumStock; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
+$id = 'id_example'; // string | ID сущности
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$fields = 'fields_example'; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1126,11 +1196,11 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
 );
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$search = name=123; // string | Контекстный поиск по строковым полям сущностей
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$fields = minimumStock; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
+$search = 'search_example'; // string | Контекстный поиск по строковым полям сущностей
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$fields = 'fields_example'; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1202,7 +1272,7 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1271,7 +1341,7 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
 $offset = 0; // int | Отступ в выданном списке
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1339,9 +1409,9 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1408,9 +1478,9 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1479,10 +1549,10 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $note_id = 'note_id_example'; // string | ID События
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getPurchaseOrderNoteById($id, $note_id, $accept, $accept_encoding);
@@ -1550,12 +1620,12 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getPurchaseOrderNotes($id, $limit, $offset, $expand, $accept, $accept_encoding);
@@ -1623,12 +1693,12 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$position_id = 12a8b923-692c-11e6-8a84-bae500000054; // string | ID позиции
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$fields = minimumStock; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
+$id = 'id_example'; // string | ID сущности
+$position_id = 'position_id_example'; // string | ID позиции
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$fields = 'fields_example'; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1698,13 +1768,13 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$fields = minimumStock; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$fields = 'fields_example'; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getPurchaseOrderPositions($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding);
@@ -1774,7 +1844,7 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 $body = array('key' => new \stdClass); // object
 
@@ -1842,12 +1912,12 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $purchase_order = new \OpenAPI\Client\Model\PurchaseOrder(); // \OpenAPI\Client\Model\PurchaseOrder
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$fields = minimumStock; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$fields = 'fields_example'; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1917,10 +1987,10 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1988,10 +2058,10 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $state = new \OpenAPI\Client\Model\State(); // \OpenAPI\Client\Model\State
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -2061,11 +2131,11 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $note_id = 'note_id_example'; // string | ID События
 $event_note = new \OpenAPI\Client\Model\EventNote(); // \OpenAPI\Client\Model\EventNote
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -2134,13 +2204,13 @@ $apiInstance = new OpenAPI\Client\Api\PurchaseOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$position_id = 12a8b923-692c-11e6-8a84-bae500000054; // string | ID позиции
+$id = 'id_example'; // string | ID сущности
+$position_id = 'position_id_example'; // string | ID позиции
 $purchase_order_position = new \OpenAPI\Client\Model\PurchaseOrderPosition(); // \OpenAPI\Client\Model\PurchaseOrderPosition
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$fields = minimumStock; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$fields = 'fields_example'; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {

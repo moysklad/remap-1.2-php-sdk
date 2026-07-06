@@ -86,6 +86,9 @@ class CommissionReportInsApi
         'createCommissionReportInMetadataState' => [
             'application/json',
         ],
+        'createCommissionReportInMetadataStatesBatch' => [
+            'application/json',
+        ],
         'createCommissionReportInPosition' => [
             'application/json',
         ],
@@ -560,7 +563,7 @@ class CommissionReportInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreateCommissionReportInBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function createCommissionReportInBatch($commission_report_in, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportInBatch'][0])
     {
@@ -582,7 +585,7 @@ class CommissionReportInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreateCommissionReportInBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function createCommissionReportInBatchWithHttpInfo($commission_report_in, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportInBatch'][0])
     {
@@ -614,7 +617,7 @@ class CommissionReportInsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CreateCommissionReportInBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
                         $request,
                         $response,
                     );
@@ -642,7 +645,7 @@ class CommissionReportInsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\CreateCommissionReportInBatch200ResponseInner[]',
+                '\OpenAPI\Client\Model\BatchResponseEntity[]',
                 $request,
                 $response,
             );
@@ -651,7 +654,7 @@ class CommissionReportInsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreateCommissionReportInBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -713,7 +716,7 @@ class CommissionReportInsApi
      */
     public function createCommissionReportInBatchAsyncWithHttpInfo($commission_report_in, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportInBatch'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CreateCommissionReportInBatch200ResponseInner[]';
+        $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
         $request = $this->createCommissionReportInBatchRequest($commission_report_in, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
@@ -1210,7 +1213,7 @@ class CommissionReportInsApi
      *
      * Создать статус CommissionReportIn
      *
-     * @param  \OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest $create_internal_order_metadata_state_request create_internal_order_metadata_state_request (required)
+     * @param  \OpenAPI\Client\Model\State $state state (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
@@ -1218,11 +1221,11 @@ class CommissionReportInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\ErrorOrArray
      */
-    public function createCommissionReportInMetadataState($create_internal_order_metadata_state_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportInMetadataState'][0])
+    public function createCommissionReportInMetadataState($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportInMetadataState'][0])
     {
-        list($response) = $this->createCommissionReportInMetadataStateWithHttpInfo($create_internal_order_metadata_state_request, $accept, $accept_encoding, $content_type, $contentType);
+        list($response) = $this->createCommissionReportInMetadataStateWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
     }
 
@@ -1231,7 +1234,7 @@ class CommissionReportInsApi
      *
      * Создать статус CommissionReportIn
      *
-     * @param  \OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest $create_internal_order_metadata_state_request (required)
+     * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
@@ -1239,11 +1242,11 @@ class CommissionReportInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createCommissionReportInMetadataStateWithHttpInfo($create_internal_order_metadata_state_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportInMetadataState'][0])
+    public function createCommissionReportInMetadataStateWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportInMetadataState'][0])
     {
-        $request = $this->createCommissionReportInMetadataStateRequest($create_internal_order_metadata_state_request, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->createCommissionReportInMetadataStateRequest($state, $accept, $accept_encoding, $content_type, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,7 +1274,7 @@ class CommissionReportInsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest',
+                        '\OpenAPI\Client\Model\State',
                         $request,
                         $response,
                     );
@@ -1299,7 +1302,7 @@ class CommissionReportInsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest',
+                '\OpenAPI\Client\Model\State',
                 $request,
                 $response,
             );
@@ -1308,7 +1311,7 @@ class CommissionReportInsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest',
+                        '\OpenAPI\Client\Model\State',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1333,7 +1336,7 @@ class CommissionReportInsApi
      *
      * Создать статус CommissionReportIn
      *
-     * @param  \OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest $create_internal_order_metadata_state_request (required)
+     * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
@@ -1342,9 +1345,9 @@ class CommissionReportInsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createCommissionReportInMetadataStateAsync($create_internal_order_metadata_state_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportInMetadataState'][0])
+    public function createCommissionReportInMetadataStateAsync($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportInMetadataState'][0])
     {
-        return $this->createCommissionReportInMetadataStateAsyncWithHttpInfo($create_internal_order_metadata_state_request, $accept, $accept_encoding, $content_type, $contentType)
+        return $this->createCommissionReportInMetadataStateAsyncWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1357,7 +1360,7 @@ class CommissionReportInsApi
      *
      * Создать статус CommissionReportIn
      *
-     * @param  \OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest $create_internal_order_metadata_state_request (required)
+     * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
@@ -1366,10 +1369,10 @@ class CommissionReportInsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createCommissionReportInMetadataStateAsyncWithHttpInfo($create_internal_order_metadata_state_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportInMetadataState'][0])
+    public function createCommissionReportInMetadataStateAsyncWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportInMetadataState'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest';
-        $request = $this->createCommissionReportInMetadataStateRequest($create_internal_order_metadata_state_request, $accept, $accept_encoding, $content_type, $contentType);
+        $returnType = '\OpenAPI\Client\Model\State';
+        $request = $this->createCommissionReportInMetadataStateRequest($state, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1410,7 +1413,7 @@ class CommissionReportInsApi
     /**
      * Create request for operation 'createCommissionReportInMetadataState'
      *
-     * @param  \OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest $create_internal_order_metadata_state_request (required)
+     * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
@@ -1419,13 +1422,13 @@ class CommissionReportInsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createCommissionReportInMetadataStateRequest($create_internal_order_metadata_state_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportInMetadataState'][0])
+    public function createCommissionReportInMetadataStateRequest($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportInMetadataState'][0])
     {
 
-        // verify the required parameter 'create_internal_order_metadata_state_request' is set
-        if ($create_internal_order_metadata_state_request === null || (is_array($create_internal_order_metadata_state_request) && count($create_internal_order_metadata_state_request) === 0)) {
+        // verify the required parameter 'state' is set
+        if ($state === null || (is_array($state) && count($state) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $create_internal_order_metadata_state_request when calling createCommissionReportInMetadataState'
+                'Missing the required parameter $state when calling createCommissionReportInMetadataState'
             );
         }
 
@@ -1463,12 +1466,337 @@ class CommissionReportInsApi
         );
 
         // for model (json/xml)
-        if (isset($create_internal_order_metadata_state_request)) {
+        if (isset($state)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_internal_order_metadata_state_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($state));
             } else {
-                $httpBody = $create_internal_order_metadata_state_request;
+                $httpBody = $state;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createCommissionReportInMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов CommissionReportIn
+     *
+     * @param  \OpenAPI\Client\Model\State[] $state state (required)
+     * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCommissionReportInMetadataStatesBatch'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\StateRowResult[]|\OpenAPI\Client\Model\ErrorOrArray
+     */
+    public function createCommissionReportInMetadataStatesBatch($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportInMetadataStatesBatch'][0])
+    {
+        list($response) = $this->createCommissionReportInMetadataStatesBatchWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createCommissionReportInMetadataStatesBatchWithHttpInfo
+     *
+     * Массовое создание и обновление статусов CommissionReportIn
+     *
+     * @param  \OpenAPI\Client\Model\State[] $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCommissionReportInMetadataStatesBatch'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\StateRowResult[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createCommissionReportInMetadataStatesBatchWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportInMetadataStatesBatch'][0])
+    {
+        $request = $this->createCommissionReportInMetadataStatesBatchRequest($state, $accept, $accept_encoding, $content_type, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\StateRowResult[]',
+                        $request,
+                        $response,
+                    );
+                default:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\OpenAPI\Client\Model\StateRowResult[]',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\StateRowResult[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createCommissionReportInMetadataStatesBatchAsync
+     *
+     * Массовое создание и обновление статусов CommissionReportIn
+     *
+     * @param  \OpenAPI\Client\Model\State[] $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCommissionReportInMetadataStatesBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createCommissionReportInMetadataStatesBatchAsync($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportInMetadataStatesBatch'][0])
+    {
+        return $this->createCommissionReportInMetadataStatesBatchAsyncWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createCommissionReportInMetadataStatesBatchAsyncWithHttpInfo
+     *
+     * Массовое создание и обновление статусов CommissionReportIn
+     *
+     * @param  \OpenAPI\Client\Model\State[] $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCommissionReportInMetadataStatesBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createCommissionReportInMetadataStatesBatchAsyncWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportInMetadataStatesBatch'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\StateRowResult[]';
+        $request = $this->createCommissionReportInMetadataStatesBatchRequest($state, $accept, $accept_encoding, $content_type, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createCommissionReportInMetadataStatesBatch'
+     *
+     * @param  \OpenAPI\Client\Model\State[] $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCommissionReportInMetadataStatesBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createCommissionReportInMetadataStatesBatchRequest($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportInMetadataStatesBatch'][0])
+    {
+
+        // verify the required parameter 'state' is set
+        if ($state === null || (is_array($state) && count($state) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $state when calling createCommissionReportInMetadataStatesBatch'
+            );
+        }
+        if (count($state) > 1000) {
+            throw new \InvalidArgumentException('invalid value for "$state" when calling CommissionReportInsApi.createCommissionReportInMetadataStatesBatch, number of items must be less than or equal to 1000.');
+        }
+        if (count($state) < 1) {
+            throw new \InvalidArgumentException('invalid value for "$state" when calling CommissionReportInsApi.createCommissionReportInMetadataStatesBatch, number of items must be greater than or equal to 1.');
+        }
+        
+
+
+
+
+        $resourcePath = '/entity/commissionreportin/metadata/states/batch';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // header params
+        if ($accept !== null) {
+            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+        }
+        // header params
+        if ($accept_encoding !== null) {
+            $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+        // header params
+        if ($content_type !== null) {
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
+        }
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'text/html;charset=UTF-8', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($state)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($state));
+            } else {
+                $httpBody = $state;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -2869,7 +3197,7 @@ class CommissionReportInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function deleteCommissionReportInBatch($commission_report_in, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteCommissionReportInBatch'][0])
     {
@@ -2890,7 +3218,7 @@ class CommissionReportInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteCommissionReportInBatchWithHttpInfo($commission_report_in, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteCommissionReportInBatch'][0])
     {
@@ -2922,7 +3250,7 @@ class CommissionReportInsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteRowResult[]',
                         $request,
                         $response,
                     );
@@ -2950,7 +3278,7 @@ class CommissionReportInsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                '\OpenAPI\Client\Model\DeleteRowResult[]',
                 $request,
                 $response,
             );
@@ -2959,7 +3287,7 @@ class CommissionReportInsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteRowResult[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3019,7 +3347,7 @@ class CommissionReportInsApi
      */
     public function deleteCommissionReportInBatchAsyncWithHttpInfo($commission_report_in, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteCommissionReportInBatch'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]';
+        $returnType = '\OpenAPI\Client\Model\DeleteRowResult[]';
         $request = $this->deleteCommissionReportInBatchRequest($commission_report_in, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
@@ -4022,7 +4350,7 @@ class CommissionReportInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function deleteCommissionReportInPositionsBatch($id, $commission_report_in_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteCommissionReportInPositionsBatch'][0])
     {
@@ -4044,7 +4372,7 @@ class CommissionReportInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteCommissionReportInPositionsBatchWithHttpInfo($id, $commission_report_in_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteCommissionReportInPositionsBatch'][0])
     {
@@ -4076,7 +4404,7 @@ class CommissionReportInsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteRowResult[]',
                         $request,
                         $response,
                     );
@@ -4104,7 +4432,7 @@ class CommissionReportInsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                '\OpenAPI\Client\Model\DeleteRowResult[]',
                 $request,
                 $response,
             );
@@ -4113,7 +4441,7 @@ class CommissionReportInsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteRowResult[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4175,7 +4503,7 @@ class CommissionReportInsApi
      */
     public function deleteCommissionReportInPositionsBatchAsyncWithHttpInfo($id, $commission_report_in_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteCommissionReportInPositionsBatch'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]';
+        $returnType = '\OpenAPI\Client\Model\DeleteRowResult[]';
         $request = $this->deleteCommissionReportInPositionsBatchRequest($id, $commission_report_in_position, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
@@ -4666,7 +4994,7 @@ class CommissionReportInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function deleteCommissionReportInReturnedPositionsBatch($id, $commission_report_in_returned_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteCommissionReportInReturnedPositionsBatch'][0])
     {
@@ -4688,7 +5016,7 @@ class CommissionReportInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteCommissionReportInReturnedPositionsBatchWithHttpInfo($id, $commission_report_in_returned_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteCommissionReportInReturnedPositionsBatch'][0])
     {
@@ -4720,7 +5048,7 @@ class CommissionReportInsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteRowResult[]',
                         $request,
                         $response,
                     );
@@ -4748,7 +5076,7 @@ class CommissionReportInsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                '\OpenAPI\Client\Model\DeleteRowResult[]',
                 $request,
                 $response,
             );
@@ -4757,7 +5085,7 @@ class CommissionReportInsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteRowResult[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4819,7 +5147,7 @@ class CommissionReportInsApi
      */
     public function deleteCommissionReportInReturnedPositionsBatchAsyncWithHttpInfo($id, $commission_report_in_returned_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteCommissionReportInReturnedPositionsBatch'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]';
+        $returnType = '\OpenAPI\Client\Model\DeleteRowResult[]';
         $request = $this->deleteCommissionReportInReturnedPositionsBatchRequest($id, $commission_report_in_returned_position, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client

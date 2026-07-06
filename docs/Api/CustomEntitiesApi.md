@@ -47,9 +47,9 @@ $apiInstance = new OpenAPI\Client\Api\CustomEntitiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$custom_entity = new \OpenAPI\Client\Model\CustomEntity(); // \OpenAPI\Client\Model\CustomEntity
+$custom_entity = {name=custom dictionary}; // \OpenAPI\Client\Model\CustomEntity
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -118,11 +118,11 @@ $apiInstance = new OpenAPI\Client\Api\CustomEntitiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $custom_entity_element = new \OpenAPI\Client\Model\CustomEntityElement(); // \OpenAPI\Client\Model\CustomEntityElement
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -193,9 +193,9 @@ $apiInstance = new OpenAPI\Client\Api\CustomEntitiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteCustomEntity($id, $accept, $accept_encoding);
@@ -264,7 +264,7 @@ $apiInstance = new OpenAPI\Client\Api\CustomEntitiesApi(
 $metadata_id = 'metadata_id_example'; // string
 $id = 'id_example'; // string
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteCustomEntityElement($metadata_id, $id, $accept, $accept_encoding);
@@ -334,8 +334,8 @@ $apiInstance = new OpenAPI\Client\Api\CustomEntitiesApi(
 $metadata_id = 'metadata_id_example'; // string
 $id = 'id_example'; // string
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$accept_encoding = 'gzip, deflate, br'; // string
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 
 try {
     $result = $apiInstance->getCustomEntityElementById($metadata_id, $id, $accept, $accept_encoding, $expand);
@@ -404,10 +404,10 @@ $apiInstance = new OpenAPI\Client\Api\CustomEntitiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$id = 'id_example'; // string | ID сущности
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getCustomEntityElements($id, $expand, $accept, $accept_encoding);
@@ -475,10 +475,10 @@ $apiInstance = new OpenAPI\Client\Api\CustomEntitiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$accept_encoding = 'gzip, deflate, br'; // string
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 
 try {
     $result = $apiInstance->getCustomEntityMetadata($id, $accept, $accept_encoding, $expand);
@@ -546,11 +546,11 @@ $apiInstance = new OpenAPI\Client\Api\CustomEntitiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $custom_entity = new \OpenAPI\Client\Model\CustomEntity(); // \OpenAPI\Client\Model\CustomEntity
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -625,9 +625,9 @@ $metadata_id = 'metadata_id_example'; // string
 $id = 'id_example'; // string
 $custom_entity_element = new \OpenAPI\Client\Model\CustomEntityElement(); // \OpenAPI\Client\Model\CustomEntityElement
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 
 try {
     $result = $apiInstance->updateCustomEntityElement($metadata_id, $id, $custom_entity_element, $accept, $accept_encoding, $content_type, $expand);

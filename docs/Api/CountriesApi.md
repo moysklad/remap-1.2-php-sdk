@@ -16,7 +16,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 ## `createCountriesBatch()`
 
 ```php
-createCountriesBatch($country, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateCountriesBatch200ResponseInner[]
+createCountriesBatch($country, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
 ```
 
 Создать или изменить страны
@@ -45,10 +45,10 @@ $apiInstance = new OpenAPI\Client\Api\CountriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$country = array(new \OpenAPI\Client\Model\Country()); // \OpenAPI\Client\Model\Country[]
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$country = [{name=Панама 3, description=Страна batch из примера OpenAPI, code=PanamaCode3, shared=true, externalCode=panamaCountry3, archived=false}]; // \OpenAPI\Client\Model\Country[]
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -71,7 +71,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateCountriesBatch200ResponseInner[]**](../Model/CreateCountriesBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -118,10 +118,10 @@ $apiInstance = new OpenAPI\Client\Api\CountriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$country = new \OpenAPI\Client\Model\Country(); // \OpenAPI\Client\Model\Country
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$country = {name=Панама 2, description=Мы создали Панаму, code=PanamaCode, shared=false, externalCode=panamaCountry}; // \OpenAPI\Client\Model\Country
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -162,7 +162,7 @@ try {
 ## `deleteCountriesBatch()`
 
 ```php
-deleteCountriesBatch($country, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteCountriesBatch($country, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Удалить страны
@@ -193,7 +193,7 @@ $apiInstance = new OpenAPI\Client\Api\CountriesApi(
 );
 $country = array(new \OpenAPI\Client\Model\Country()); // \OpenAPI\Client\Model\Country[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -215,7 +215,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -262,9 +262,9 @@ $apiInstance = new OpenAPI\Client\Api\CountriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteCountry($id, $accept, $accept_encoding);
@@ -332,12 +332,12 @@ $apiInstance = new OpenAPI\Client\Api\CountriesApi(
 );
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$search = name=123; // string | Контекстный поиск по строковым полям сущностей
-$filter = archived=false; // string | Фильтрация выборки
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$order = name; // string | Сортировка
+$search = 'search_example'; // string | Контекстный поиск по строковым полям сущностей
+$filter = 'filter_example'; // string | Фильтрация выборки
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$order = 'order_example'; // string | Сортировка
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getCountries($limit, $offset, $search, $filter, $expand, $order, $accept, $accept_encoding);
@@ -409,10 +409,10 @@ $apiInstance = new OpenAPI\Client\Api\CountriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$id = 'id_example'; // string | ID сущности
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getCountryById($id, $expand, $accept, $accept_encoding);
@@ -480,11 +480,11 @@ $apiInstance = new OpenAPI\Client\Api\CountriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $country = new \OpenAPI\Client\Model\Country(); // \OpenAPI\Client\Model\Country
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {

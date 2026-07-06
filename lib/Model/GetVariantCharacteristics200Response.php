@@ -44,6 +44,7 @@ class GetVariantCharacteristics200Response implements ModelInterface, ArrayAcces
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+    protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
     /**
       * Array of nested discriminator mappings. Used for polymorphic deserialization
@@ -138,6 +139,17 @@ class GetVariantCharacteristics200Response implements ModelInterface, ArrayAcces
     public static function openAPIPolymorphicDiscriminatorMappings(): array
     {
         return self::$openAPIPolymorphicDiscriminatorMappings;
+    }
+
+    /**
+     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * discriminator mappings do not match.
+     *
+     * @return bool
+     */
+    public static function openAPIPolymorphicBatchErrorFallback(): bool
+    {
+        return self::$openAPIPolymorphicBatchErrorFallback;
     }
 
     /**

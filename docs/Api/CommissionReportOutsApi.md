@@ -9,6 +9,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createCommissionReportOutBatch()**](CommissionReportOutsApi.md#createCommissionReportOutBatch) | **POST** /entity/commissionreportout/batch | Массовое создание и обновление CommissionReportOut |
 | [**createCommissionReportOutMetadataAttribute()**](CommissionReportOutsApi.md#createCommissionReportOutMetadataAttribute) | **POST** /entity/commissionreportout/metadata/attributes | Создать доп. поле CommissionReportOut |
 | [**createCommissionReportOutMetadataState()**](CommissionReportOutsApi.md#createCommissionReportOutMetadataState) | **POST** /entity/commissionreportout/metadata/states | Создать статус CommissionReportOut |
+| [**createCommissionReportOutMetadataStatesBatch()**](CommissionReportOutsApi.md#createCommissionReportOutMetadataStatesBatch) | **POST** /entity/commissionreportout/metadata/states/batch | Массовое создание и обновление статусов CommissionReportOut |
 | [**createCommissionReportOutPosition()**](CommissionReportOutsApi.md#createCommissionReportOutPosition) | **POST** /entity/commissionreportout/{id}/positions | Создать и обновить позицию Выданного отчета комиссионера |
 | [**createCommissionReportOutPositions()**](CommissionReportOutsApi.md#createCommissionReportOutPositions) | **POST** /entity/commissionreportout/{id}/positions/batch | Массовое создание и обновление позиций Выданного отчета комиссионера |
 | [**deleteCommissionReportOut()**](CommissionReportOutsApi.md#deleteCommissionReportOut) | **DELETE** /entity/commissionreportout/{id} | Удалить CommissionReportOut |
@@ -65,10 +66,10 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $file_upload = array(new \OpenAPI\Client\Model\FileUpload()); // \OpenAPI\Client\Model\FileUpload[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -137,9 +138,9 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
     $config
 );
 $commission_report_out = new \OpenAPI\Client\Model\CommissionReportOut(); // \OpenAPI\Client\Model\CommissionReportOut
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -180,7 +181,7 @@ try {
 ## `createCommissionReportOutBatch()`
 
 ```php
-createCommissionReportOutBatch($commission_report_out, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateCommissionReportOutBatch200ResponseInner[]
+createCommissionReportOutBatch($commission_report_out, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
 ```
 
 Массовое создание и обновление CommissionReportOut
@@ -208,9 +209,9 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
     $config
 );
 $commission_report_out = array(new \OpenAPI\Client\Model\CommissionReportOut()); // \OpenAPI\Client\Model\CommissionReportOut[]
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -233,7 +234,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateCommissionReportOutBatch200ResponseInner[]**](../Model/CreateCommissionReportOutBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -280,7 +281,7 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
 );
 $attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -320,7 +321,7 @@ try {
 ## `createCommissionReportOutMetadataState()`
 
 ```php
-createCommissionReportOutMetadataState($create_internal_order_metadata_state_request, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest
+createCommissionReportOutMetadataState($state, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\State
 ```
 
 Создать статус CommissionReportOut
@@ -347,13 +348,13 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$create_internal_order_metadata_state_request = new \OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest(); // \OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest
+$state = new \OpenAPI\Client\Model\State(); // \OpenAPI\Client\Model\State
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createCommissionReportOutMetadataState($create_internal_order_metadata_state_request, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->createCommissionReportOutMetadataState($state, $accept, $accept_encoding, $content_type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling CommissionReportOutsApi->createCommissionReportOutMetadataState: ', $e->getMessage(), PHP_EOL;
@@ -364,14 +365,83 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **create_internal_order_metadata_state_request** | [**\OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest**](../Model/CreateInternalOrderMetadataStateRequest.md)|  | |
+| **state** | [**\OpenAPI\Client\Model\State**](../Model/State.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest**](../Model/CreateInternalOrderMetadataStateRequest.md)
+[**\OpenAPI\Client\Model\State**](../Model/State.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createCommissionReportOutMetadataStatesBatch()`
+
+```php
+createCommissionReportOutMetadataStatesBatch($state, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\StateRowResult[]
+```
+
+Массовое создание и обновление статусов CommissionReportOut
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$state = array(new \OpenAPI\Client\Model\State()); // \OpenAPI\Client\Model\State[]
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createCommissionReportOutMetadataStatesBatch($state, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CommissionReportOutsApi->createCommissionReportOutMetadataStatesBatch: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **state** | [**\OpenAPI\Client\Model\State[]**](../Model/State.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\StateRowResult[]**](../Model/StateRowResult.md)
 
 ### Authorization
 
@@ -416,11 +486,11 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $commission_report_out_position = new \OpenAPI\Client\Model\CommissionReportOutPosition(); // \OpenAPI\Client\Model\CommissionReportOutPosition
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -462,7 +532,7 @@ try {
 ## `createCommissionReportOutPositions()`
 
 ```php
-createCommissionReportOutPositions($id, $commission_report_out_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateCommissionReportOutPositions200ResponseInner[]
+createCommissionReportOutPositions($id, $commission_report_out_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
 ```
 
 Массовое создание и обновление позиций Выданного отчета комиссионера
@@ -489,11 +559,11 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $commission_report_out_position = array(new \OpenAPI\Client\Model\CommissionReportOutPosition()); // \OpenAPI\Client\Model\CommissionReportOutPosition[]
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -517,7 +587,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateCommissionReportOutPositions200ResponseInner[]**](../Model/CreateCommissionReportOutPositions200ResponseInner.md)
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -562,9 +632,9 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -603,7 +673,7 @@ void (empty response body)
 ## `deleteCommissionReportOutBatch()`
 
 ```php
-deleteCommissionReportOutBatch($commission_report_out, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteCommissionReportOutBatch($commission_report_out, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Массовое удаление CommissionReportOut
@@ -632,7 +702,7 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
 );
 $commission_report_out = array(new \OpenAPI\Client\Model\CommissionReportOut()); // \OpenAPI\Client\Model\CommissionReportOut[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -654,7 +724,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -701,10 +771,10 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $file_id = 'file_id_example'; // string | ID файла
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteCommissionReportOutFile($id, $file_id, $accept, $accept_encoding);
@@ -769,9 +839,9 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -837,9 +907,9 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -905,11 +975,11 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$position_id = 12a8b923-692c-11e6-8a84-bae500000054; // string | ID позиции
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$id = 'id_example'; // string | ID сущности
+$position_id = 'position_id_example'; // string | ID позиции
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -950,7 +1020,7 @@ void (empty response body)
 ## `deleteCommissionReportOutPositionsBatch()`
 
 ```php
-deleteCommissionReportOutPositionsBatch($id, $commission_report_out_position, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteCommissionReportOutPositionsBatch($id, $commission_report_out_position, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Массовое удаление позиций CommissionReportOut
@@ -977,10 +1047,10 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $commission_report_out_position = array(new \OpenAPI\Client\Model\CommissionReportOutPosition()); // \OpenAPI\Client\Model\CommissionReportOutPosition[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1003,7 +1073,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -1048,10 +1118,10 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$id = 'id_example'; // string | ID сущности
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1121,11 +1191,11 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getCommissionReportOutFiles($id, $limit, $offset, $accept, $accept_encoding);
@@ -1194,10 +1264,10 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
 );
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$search = name=123; // string | Контекстный поиск по строковым полям сущностей
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$search = 'search_example'; // string | Контекстный поиск по строковым полям сущностей
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1268,7 +1338,7 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1337,7 +1407,7 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
 $offset = 0; // int | Отступ в выданном списке
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1405,9 +1475,9 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1474,9 +1544,9 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1543,11 +1613,11 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$position_id = 12a8b923-692c-11e6-8a84-bae500000054; // string | ID позиции
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$id = 'id_example'; // string | ID сущности
+$position_id = 'position_id_example'; // string | ID позиции
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1616,12 +1686,12 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1691,11 +1761,11 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $commission_report_out = new \OpenAPI\Client\Model\CommissionReportOut(); // \OpenAPI\Client\Model\CommissionReportOut
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1764,10 +1834,10 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1835,10 +1905,10 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $state = new \OpenAPI\Client\Model\State(); // \OpenAPI\Client\Model\State
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1906,12 +1976,12 @@ $apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$position_id = 12a8b923-692c-11e6-8a84-bae500000054; // string | ID позиции
+$id = 'id_example'; // string | ID сущности
+$position_id = 'position_id_example'; // string | ID позиции
 $commission_report_out_position = new \OpenAPI\Client\Model\CommissionReportOutPosition(); // \OpenAPI\Client\Model\CommissionReportOutPosition
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {

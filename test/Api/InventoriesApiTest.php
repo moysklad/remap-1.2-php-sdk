@@ -132,6 +132,18 @@ class InventoriesApiTest extends TestCase
     }
 
     /**
+     * Test case for createInventoryMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов Инвентаризации.
+     *
+     */
+    public function testCreateInventoryMetadataStatesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createInventoryPosition
      *
      * Создать и обновить позицию Инвентаризации.

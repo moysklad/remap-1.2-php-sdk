@@ -65,10 +65,10 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $file_upload = array(new \OpenAPI\Client\Model\FileUpload()); // \OpenAPI\Client\Model\FileUpload[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -137,9 +137,9 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
     $config
 );
 $move = new \OpenAPI\Client\Model\Move(); // \OpenAPI\Client\Model\Move
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -180,7 +180,7 @@ try {
 ## `createMoveBatch()`
 
 ```php
-createMoveBatch($move, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateMoveBatch200ResponseInner[]
+createMoveBatch($move, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
 ```
 
 Массовое создание и обновление Перемещений
@@ -208,9 +208,9 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
     $config
 );
 $move = array(new \OpenAPI\Client\Model\Move()); // \OpenAPI\Client\Model\Move[]
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -233,7 +233,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateMoveBatch200ResponseInner[]**](../Model/CreateMoveBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -280,7 +280,7 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
 );
 $attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -347,11 +347,11 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $move_position = new \OpenAPI\Client\Model\MovePosition(); // \OpenAPI\Client\Model\MovePosition
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -393,7 +393,7 @@ try {
 ## `createMovePositions()`
 
 ```php
-createMovePositions($id, $move_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateMovePositions200ResponseInner[]
+createMovePositions($id, $move_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
 ```
 
 Массовое создание и обновление позиций Перемещения
@@ -420,11 +420,11 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $move_position = array(new \OpenAPI\Client\Model\MovePosition()); // \OpenAPI\Client\Model\MovePosition[]
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -448,7 +448,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateMovePositions200ResponseInner[]**](../Model/CreateMovePositions200ResponseInner.md)
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -493,9 +493,9 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -534,7 +534,7 @@ void (empty response body)
 ## `deleteMoveBatch()`
 
 ```php
-deleteMoveBatch($move, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteMoveBatch($move, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Массовое удаление Перемещений
@@ -563,7 +563,7 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
 );
 $move = array(new \OpenAPI\Client\Model\Move()); // \OpenAPI\Client\Model\Move[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -585,7 +585,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -632,10 +632,10 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $file_id = 'file_id_example'; // string | ID файла
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteMoveFile($id, $file_id, $accept, $accept_encoding);
@@ -700,9 +700,9 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -768,9 +768,9 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -836,11 +836,11 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$position_id = 12a8b923-692c-11e6-8a84-bae500000054; // string | ID позиции
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$id = 'id_example'; // string | ID сущности
+$position_id = 'position_id_example'; // string | ID позиции
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -881,7 +881,7 @@ void (empty response body)
 ## `deleteMovePositionsBatch()`
 
 ```php
-deleteMovePositionsBatch($id, $move_position, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteMovePositionsBatch($id, $move_position, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Массовое удаление позиций Перемещения
@@ -908,10 +908,10 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $move_position = array(new \OpenAPI\Client\Model\MovePosition()); // \OpenAPI\Client\Model\MovePosition[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -934,7 +934,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -979,11 +979,11 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$fields = minimumStock; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
+$id = 'id_example'; // string | ID сущности
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$fields = 'fields_example'; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getMoveById($id, $expand, $fields, $accept, $accept_encoding);
@@ -1052,11 +1052,11 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getMoveFiles($id, $limit, $offset, $accept, $accept_encoding);
@@ -1125,11 +1125,11 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
 );
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$search = name=123; // string | Контекстный поиск по строковым полям сущностей
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$fields = minimumStock; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
+$search = 'search_example'; // string | Контекстный поиск по строковым полям сущностей
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$fields = 'fields_example'; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1201,7 +1201,7 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1270,7 +1270,7 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
 $offset = 0; // int | Отступ в выданном списке
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1338,9 +1338,9 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1407,9 +1407,9 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1476,12 +1476,12 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$position_id = 12a8b923-692c-11e6-8a84-bae500000054; // string | ID позиции
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$fields = minimumStock; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
+$id = 'id_example'; // string | ID сущности
+$position_id = 'position_id_example'; // string | ID позиции
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$fields = 'fields_example'; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1551,14 +1551,14 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$search = name=123; // string | Контекстный поиск по строковым полям сущностей
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$fields = minimumStock; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
+$search = 'search_example'; // string | Контекстный поиск по строковым полям сущностей
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$fields = 'fields_example'; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1633,7 +1633,7 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 $body = array('key' => new \stdClass); // object
 
@@ -1701,12 +1701,12 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $move = new \OpenAPI\Client\Model\Move(); // \OpenAPI\Client\Model\Move
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$fields = minimumStock; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$fields = 'fields_example'; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1776,10 +1776,10 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1847,10 +1847,10 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $state = new \OpenAPI\Client\Model\State(); // \OpenAPI\Client\Model\State
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1918,13 +1918,13 @@ $apiInstance = new OpenAPI\Client\Api\MovesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$position_id = 12a8b923-692c-11e6-8a84-bae500000054; // string | ID позиции
+$id = 'id_example'; // string | ID сущности
+$position_id = 'position_id_example'; // string | ID позиции
 $move_position = new \OpenAPI\Client\Model\MovePosition(); // \OpenAPI\Client\Model\MovePosition
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$fields = minimumStock; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$fields = 'fields_example'; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {

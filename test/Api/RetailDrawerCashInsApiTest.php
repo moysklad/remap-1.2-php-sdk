@@ -132,6 +132,18 @@ class RetailDrawerCashInsApiTest extends TestCase
     }
 
     /**
+     * Test case for createRetailDrawerCashInMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов Внесений денег.
+     *
+     */
+    public function testCreateRetailDrawerCashInMetadataStatesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteRetailDrawerCashIn
      *
      * Удалить Внесение денег.

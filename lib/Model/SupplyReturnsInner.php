@@ -44,6 +44,7 @@ class SupplyReturnsInner implements ModelInterface, ArrayAccess, \JsonSerializab
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+    protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
     /**
       * Array of nested discriminator mappings. Used for polymorphic deserialization
@@ -105,7 +106,7 @@ class SupplyReturnsInner implements ModelInterface, ArrayAccess, \JsonSerializab
         'sales_channel' => '\OpenAPI\Client\Model\SalesChannel',
         'demand' => '\OpenAPI\Client\Model\Demand',
         'losses' => '\OpenAPI\Client\Model\Loss[]',
-        'payments' => '\OpenAPI\Client\Model\CustomerOrderPaymentsInner[]',
+        'payments' => '\OpenAPI\Client\Model\RetailShiftPaymentsInner[]',
         'facture_out' => '\OpenAPI\Client\Model\FactureOut',
         'supply' => '\OpenAPI\Client\Model\Supply',
         'facture_in' => '\OpenAPI\Client\Model\FactureIn',
@@ -279,6 +280,17 @@ class SupplyReturnsInner implements ModelInterface, ArrayAccess, \JsonSerializab
     public static function openAPIPolymorphicDiscriminatorMappings(): array
     {
         return self::$openAPIPolymorphicDiscriminatorMappings;
+    }
+
+    /**
+     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * discriminator mappings do not match.
+     *
+     * @return bool
+     */
+    public static function openAPIPolymorphicBatchErrorFallback(): bool
+    {
+        return self::$openAPIPolymorphicBatchErrorFallback;
     }
 
     /**
@@ -1819,7 +1831,7 @@ class SupplyReturnsInner implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets payments
      *
-     * @return \OpenAPI\Client\Model\CustomerOrderPaymentsInner[]|null
+     * @return \OpenAPI\Client\Model\RetailShiftPaymentsInner[]|null
      */
     public function getPayments()
     {
@@ -1829,7 +1841,7 @@ class SupplyReturnsInner implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets payments
      *
-     * @param \OpenAPI\Client\Model\CustomerOrderPaymentsInner[]|null $payments Массив ссылок на связанные платежи
+     * @param \OpenAPI\Client\Model\RetailShiftPaymentsInner[]|null $payments Массив ссылок на связанные платежи
      *
      * @return self
      */

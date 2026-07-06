@@ -8,6 +8,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createCashInBatch()**](CashInsApi.md#createCashInBatch) | **POST** /entity/cashin/batch | Массовое создание и обновление CashIn |
 | [**createCashInMetadataAttribute()**](CashInsApi.md#createCashInMetadataAttribute) | **POST** /entity/cashin/metadata/attributes | Создать доп. поле CashIn |
 | [**createCashInMetadataState()**](CashInsApi.md#createCashInMetadataState) | **POST** /entity/cashin/metadata/states | Создать статус CashIn |
+| [**createCashInMetadataStatesBatch()**](CashInsApi.md#createCashInMetadataStatesBatch) | **POST** /entity/cashin/metadata/states/batch | Массовое создание и обновление статусов CashIn |
 | [**deleteCashIn()**](CashInsApi.md#deleteCashIn) | **DELETE** /entity/cashin/{id} | Удалить CashIn |
 | [**deleteCashInBatch()**](CashInsApi.md#deleteCashInBatch) | **POST** /entity/cashin/delete | Массовое удаление CashIn |
 | [**deleteCashInMetadataAttributeById()**](CashInsApi.md#deleteCashInMetadataAttributeById) | **DELETE** /entity/cashin/metadata/attributes/{id} | Удалить отдельное доп. поле CashIn |
@@ -55,9 +56,9 @@ $apiInstance = new OpenAPI\Client\Api\CashInsApi(
     $config
 );
 $cash_in = new \OpenAPI\Client\Model\CashIn(); // \OpenAPI\Client\Model\CashIn
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -98,7 +99,7 @@ try {
 ## `createCashInBatch()`
 
 ```php
-createCashInBatch($cash_in, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateCashInBatch200ResponseInner[]
+createCashInBatch($cash_in, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
 ```
 
 Массовое создание и обновление CashIn
@@ -126,9 +127,9 @@ $apiInstance = new OpenAPI\Client\Api\CashInsApi(
     $config
 );
 $cash_in = array(new \OpenAPI\Client\Model\CashIn()); // \OpenAPI\Client\Model\CashIn[]
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -151,7 +152,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateCashInBatch200ResponseInner[]**](../Model/CreateCashInBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -198,7 +199,7 @@ $apiInstance = new OpenAPI\Client\Api\CashInsApi(
 );
 $attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -238,7 +239,7 @@ try {
 ## `createCashInMetadataState()`
 
 ```php
-createCashInMetadataState($create_internal_order_metadata_state_request, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest
+createCashInMetadataState($state, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\State
 ```
 
 Создать статус CashIn
@@ -265,13 +266,13 @@ $apiInstance = new OpenAPI\Client\Api\CashInsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$create_internal_order_metadata_state_request = new \OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest(); // \OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest
+$state = new \OpenAPI\Client\Model\State(); // \OpenAPI\Client\Model\State
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createCashInMetadataState($create_internal_order_metadata_state_request, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->createCashInMetadataState($state, $accept, $accept_encoding, $content_type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling CashInsApi->createCashInMetadataState: ', $e->getMessage(), PHP_EOL;
@@ -282,14 +283,83 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **create_internal_order_metadata_state_request** | [**\OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest**](../Model/CreateInternalOrderMetadataStateRequest.md)|  | |
+| **state** | [**\OpenAPI\Client\Model\State**](../Model/State.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest**](../Model/CreateInternalOrderMetadataStateRequest.md)
+[**\OpenAPI\Client\Model\State**](../Model/State.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createCashInMetadataStatesBatch()`
+
+```php
+createCashInMetadataStatesBatch($state, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\StateRowResult[]
+```
+
+Массовое создание и обновление статусов CashIn
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CashInsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$state = array(new \OpenAPI\Client\Model\State()); // \OpenAPI\Client\Model\State[]
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createCashInMetadataStatesBatch($state, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CashInsApi->createCashInMetadataStatesBatch: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **state** | [**\OpenAPI\Client\Model\State[]**](../Model/State.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\StateRowResult[]**](../Model/StateRowResult.md)
 
 ### Authorization
 
@@ -334,9 +404,9 @@ $apiInstance = new OpenAPI\Client\Api\CashInsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -375,7 +445,7 @@ void (empty response body)
 ## `deleteCashInBatch()`
 
 ```php
-deleteCashInBatch($cash_in, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteCashInBatch($cash_in, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Массовое удаление CashIn
@@ -404,7 +474,7 @@ $apiInstance = new OpenAPI\Client\Api\CashInsApi(
 );
 $cash_in = array(new \OpenAPI\Client\Model\CashIn()); // \OpenAPI\Client\Model\CashIn[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -426,7 +496,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -471,9 +541,9 @@ $apiInstance = new OpenAPI\Client\Api\CashInsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -539,9 +609,9 @@ $apiInstance = new OpenAPI\Client\Api\CashInsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -607,10 +677,10 @@ $apiInstance = new OpenAPI\Client\Api\CashInsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$id = 'id_example'; // string | ID сущности
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -680,10 +750,10 @@ $apiInstance = new OpenAPI\Client\Api\CashInsApi(
 );
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$search = name=123; // string | Контекстный поиск по строковым полям сущностей
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$search = 'search_example'; // string | Контекстный поиск по строковым полям сущностей
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -754,7 +824,7 @@ $apiInstance = new OpenAPI\Client\Api\CashInsApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -823,7 +893,7 @@ $apiInstance = new OpenAPI\Client\Api\CashInsApi(
 $offset = 0; // int | Отступ в выданном списке
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -891,9 +961,9 @@ $apiInstance = new OpenAPI\Client\Api\CashInsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -960,9 +1030,9 @@ $apiInstance = new OpenAPI\Client\Api\CashInsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1030,7 +1100,7 @@ $apiInstance = new OpenAPI\Client\Api\CashInsApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 $body = array('key' => new \stdClass); // object
 
@@ -1098,11 +1168,11 @@ $apiInstance = new OpenAPI\Client\Api\CashInsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $cash_in = new \OpenAPI\Client\Model\CashIn(); // \OpenAPI\Client\Model\CashIn
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1171,10 +1241,10 @@ $apiInstance = new OpenAPI\Client\Api\CashInsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1242,10 +1312,10 @@ $apiInstance = new OpenAPI\Client\Api\CashInsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $state = new \OpenAPI\Client\Model\State(); // \OpenAPI\Client\Model\State
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {

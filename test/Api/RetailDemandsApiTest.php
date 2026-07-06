@@ -108,6 +108,18 @@ class RetailDemandsApiTest extends TestCase
     }
 
     /**
+     * Test case for createRetailDemandMetadataState
+     *
+     * Создать статус Розничной продажи.
+     *
+     */
+    public function testCreateRetailDemandMetadataState()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createRetailDemandPosition
      *
      * Создать и обновить позицию Розничной продажи.

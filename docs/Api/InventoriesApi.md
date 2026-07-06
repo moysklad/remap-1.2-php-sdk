@@ -9,6 +9,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createInventory()**](InventoriesApi.md#createInventory) | **POST** /entity/inventory | Создать Инвентаризацию |
 | [**createInventoryMetadataAttribute()**](InventoriesApi.md#createInventoryMetadataAttribute) | **POST** /entity/inventory/metadata/attributes | Создать доп. поле Инвентаризаций |
 | [**createInventoryMetadataState()**](InventoriesApi.md#createInventoryMetadataState) | **POST** /entity/inventory/metadata/states | Создать статус Инвентаризации |
+| [**createInventoryMetadataStatesBatch()**](InventoriesApi.md#createInventoryMetadataStatesBatch) | **POST** /entity/inventory/metadata/states/batch | Массовое создание и обновление статусов Инвентаризации |
 | [**createInventoryPosition()**](InventoriesApi.md#createInventoryPosition) | **POST** /entity/inventory/{id}/positions | Создать и обновить позицию Инвентаризации |
 | [**createInventoryPositions()**](InventoriesApi.md#createInventoryPositions) | **POST** /entity/inventory/{id}/positions/batch | Массовое создание и обновление позиций Инвентаризации |
 | [**deleteInventoriesBatch()**](InventoriesApi.md#deleteInventoriesBatch) | **POST** /entity/inventory/delete | Массовое удаление Инвентаризации |
@@ -67,10 +68,10 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $file_upload = array(new \OpenAPI\Client\Model\FileUpload()); // \OpenAPI\Client\Model\FileUpload[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -111,7 +112,7 @@ try {
 ## `createInventoriesBatch()`
 
 ```php
-createInventoriesBatch($inventory, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateInventoriesBatch200ResponseInner[]
+createInventoriesBatch($inventory, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
 ```
 
 Массовое создание и обновление Инвентаризации
@@ -139,9 +140,9 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
     $config
 );
 $inventory = array(new \OpenAPI\Client\Model\Inventory()); // \OpenAPI\Client\Model\Inventory[]
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -164,7 +165,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateInventoriesBatch200ResponseInner[]**](../Model/CreateInventoriesBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -210,9 +211,9 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
     $config
 );
 $inventory = new \OpenAPI\Client\Model\Inventory(); // \OpenAPI\Client\Model\Inventory
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -282,7 +283,7 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
 );
 $attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -349,9 +350,9 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$state = new \OpenAPI\Client\Model\State(); // \OpenAPI\Client\Model\State
+$state = {name=Одобрено, color=69446, stateType=Regular}; // \OpenAPI\Client\Model\State
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -374,6 +375,75 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\State**](../Model/State.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createInventoryMetadataStatesBatch()`
+
+```php
+createInventoryMetadataStatesBatch($state, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\StateRowResult[]
+```
+
+Массовое создание и обновление статусов Инвентаризации
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\InventoriesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$state = array(new \OpenAPI\Client\Model\State()); // \OpenAPI\Client\Model\State[]
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createInventoryMetadataStatesBatch($state, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling InventoriesApi->createInventoryMetadataStatesBatch: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **state** | [**\OpenAPI\Client\Model\State[]**](../Model/State.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\StateRowResult[]**](../Model/StateRowResult.md)
 
 ### Authorization
 
@@ -418,11 +488,11 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $inventory_position = new \OpenAPI\Client\Model\InventoryPosition(); // \OpenAPI\Client\Model\InventoryPosition
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -491,11 +561,11 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $inventory_position = array(new \OpenAPI\Client\Model\InventoryPosition()); // \OpenAPI\Client\Model\InventoryPosition[]
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -537,7 +607,7 @@ try {
 ## `deleteInventoriesBatch()`
 
 ```php
-deleteInventoriesBatch($inventory, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteInventoriesBatch($inventory, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Массовое удаление Инвентаризации
@@ -566,7 +636,7 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
 );
 $inventory = array(new \OpenAPI\Client\Model\Inventory()); // \OpenAPI\Client\Model\Inventory[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -588,7 +658,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -633,9 +703,9 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteInventory($id, $accept, $accept_encoding);
@@ -701,10 +771,10 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $file_id = 'file_id_example'; // string | ID файла
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteInventoryFile($id, $file_id, $accept, $accept_encoding);
@@ -769,9 +839,9 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteInventoryMetadataAttributeById($id, $accept, $accept_encoding);
@@ -835,9 +905,9 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteInventoryMetadataStateById($id, $accept, $accept_encoding);
@@ -901,10 +971,10 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$position_id = 12a8b923-692c-11e6-8a84-bae500000054; // string | ID позиции
+$id = 'id_example'; // string | ID сущности
+$position_id = 'position_id_example'; // string | ID позиции
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteInventoryPosition($id, $position_id, $accept, $accept_encoding);
@@ -942,7 +1012,7 @@ void (empty response body)
 ## `deleteInventoryPositionsBatch()`
 
 ```php
-deleteInventoryPositionsBatch($id, $inventory_position, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteInventoryPositionsBatch($id, $inventory_position, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Массовое удаление позиций Инвентаризации
@@ -969,10 +1039,10 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $inventory_position = array(new \OpenAPI\Client\Model\InventoryPosition()); // \OpenAPI\Client\Model\InventoryPosition[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -995,7 +1065,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -1040,10 +1110,10 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$id = 'id_example'; // string | ID сущности
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getInventoryById($id, $expand, $accept, $accept_encoding);
@@ -1111,11 +1181,11 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getInventoryFiles($id, $limit, $offset, $accept, $accept_encoding);
@@ -1184,10 +1254,10 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
 );
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$search = name=123; // string | Контекстный поиск по строковым полям сущностей
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$search = 'search_example'; // string | Контекстный поиск по строковым полям сущностей
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getInventoryList($limit, $offset, $search, $expand, $accept, $accept_encoding);
@@ -1255,9 +1325,9 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getInventoryMetadata($expand, $accept, $accept_encoding);
@@ -1325,7 +1395,7 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
 $offset = 0; // int | Отступ в выданном списке
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getInventoryMetadataAttribute($offset, $limit, $accept, $accept_encoding);
@@ -1391,9 +1461,9 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getInventoryMetadataAttributeById($id, $accept, $accept_encoding);
@@ -1458,9 +1528,9 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getInventoryMetadataStateById($id, $accept, $accept_encoding);
@@ -1525,11 +1595,11 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$position_id = 12a8b923-692c-11e6-8a84-bae500000054; // string | ID позиции
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$id = 'id_example'; // string | ID сущности
+$position_id = 'position_id_example'; // string | ID позиции
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getInventoryPositionById($id, $position_id, $expand, $accept, $accept_encoding);
@@ -1596,12 +1666,12 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getInventoryPositions($id, $limit, $offset, $expand, $accept, $accept_encoding);
@@ -1672,7 +1742,7 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 $body = array('key' => new \stdClass); // object
 
@@ -1740,9 +1810,9 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1808,11 +1878,11 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $inventory = new \OpenAPI\Client\Model\Inventory(); // \OpenAPI\Client\Model\Inventory
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1881,10 +1951,10 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1952,10 +2022,10 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $state = new \OpenAPI\Client\Model\State(); // \OpenAPI\Client\Model\State
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -2023,12 +2093,12 @@ $apiInstance = new OpenAPI\Client\Api\InventoriesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$position_id = 12a8b923-692c-11e6-8a84-bae500000054; // string | ID позиции
+$id = 'id_example'; // string | ID сущности
+$position_id = 'position_id_example'; // string | ID позиции
 $inventory_position = new \OpenAPI\Client\Model\InventoryPosition(); // \OpenAPI\Client\Model\InventoryPosition
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {

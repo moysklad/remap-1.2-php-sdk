@@ -108,6 +108,18 @@ class FactureInsApiTest extends TestCase
     }
 
     /**
+     * Test case for createFactureInMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов Счета-фактуры полученного.
+     *
+     */
+    public function testCreateFactureInMetadataStatesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createFactureInsBatch
      *
      * Массовое создание и обновление Счетов-фактур полученных.

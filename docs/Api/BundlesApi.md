@@ -51,8 +51,8 @@ $apiInstance = new OpenAPI\Client\Api\BundlesApi(
 );
 $bundle = new \OpenAPI\Client\Model\Bundle(); // \OpenAPI\Client\Model\Bundle
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$accept_encoding = 'gzip, deflate, br'; // string
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $content_type = 'application/json'; // string
 
 try {
@@ -120,11 +120,11 @@ $apiInstance = new OpenAPI\Client\Api\BundlesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $create_bundle_components_request = new \OpenAPI\Client\Model\CreateBundleComponentsRequest(); // \OpenAPI\Client\Model\CreateBundleComponentsRequest
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$accept_encoding = 'gzip, deflate, br'; // string
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $content_type = 'application/json'; // string
 
 try {
@@ -166,7 +166,7 @@ try {
 ## `createBundlesBatch()`
 
 ```php
-createBundlesBatch($bundle, $accept, $accept_encoding, $expand, $content_type): \OpenAPI\Client\Model\CreateBundlesBatch200ResponseInner[]
+createBundlesBatch($bundle, $accept, $accept_encoding, $expand, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
 ```
 
 Массовое создание и обновление Комплектов
@@ -195,8 +195,8 @@ $apiInstance = new OpenAPI\Client\Api\BundlesApi(
 );
 $bundle = array(new \OpenAPI\Client\Model\Bundle()); // \OpenAPI\Client\Model\Bundle[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$accept_encoding = 'gzip, deflate, br'; // string
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $content_type = 'application/json'; // string
 
 try {
@@ -219,7 +219,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateBundlesBatch200ResponseInner[]**](../Model/CreateBundlesBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -264,9 +264,9 @@ $apiInstance = new OpenAPI\Client\Api\BundlesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteBundle($id, $accept, $accept_encoding);
@@ -330,10 +330,10 @@ $apiInstance = new OpenAPI\Client\Api\BundlesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $component_id = 'component_id_example'; // string
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteBundleComponent($id, $component_id, $accept, $accept_encoding);
@@ -398,10 +398,10 @@ $apiInstance = new OpenAPI\Client\Api\BundlesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $bundle_component = array(new \OpenAPI\Client\Model\BundleComponent()); // \OpenAPI\Client\Model\BundleComponent[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -441,7 +441,7 @@ void (empty response body)
 ## `deleteBundlesBatch()`
 
 ```php
-deleteBundlesBatch($bundle, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteBundlesBatch($bundle, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Массовое удаление Комплектов
@@ -470,7 +470,7 @@ $apiInstance = new OpenAPI\Client\Api\BundlesApi(
 );
 $bundle = array(new \OpenAPI\Client\Model\Bundle()); // \OpenAPI\Client\Model\Bundle[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -492,7 +492,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -537,10 +537,10 @@ $apiInstance = new OpenAPI\Client\Api\BundlesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$id = 'id_example'; // string | ID сущности
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getBundleById($id, $expand, $accept, $accept_encoding);
@@ -606,11 +606,11 @@ $apiInstance = new OpenAPI\Client\Api\BundlesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $component_id = 'component_id_example'; // string
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getBundleComponentById($id, $component_id, $expand, $accept, $accept_encoding);
@@ -677,15 +677,15 @@ $apiInstance = new OpenAPI\Client\Api\BundlesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$search = name=123; // string | Контекстный поиск по строковым полям сущностей
-$filter = archived=false; // string | Фильтрация выборки
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$order = name; // string | Сортировка
+$search = 'search_example'; // string | Контекстный поиск по строковым полям сущностей
+$filter = 'filter_example'; // string | Фильтрация выборки
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$order = 'order_example'; // string | Сортировка
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getBundleComponents($id, $limit, $offset, $search, $filter, $expand, $order, $accept, $accept_encoding);
@@ -758,12 +758,12 @@ $apiInstance = new OpenAPI\Client\Api\BundlesApi(
 );
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$search = name=123; // string | Контекстный поиск по строковым полям сущностей
-$filter = archived=false; // string | Фильтрация выборки
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$order = name; // string | Сортировка
+$search = 'search_example'; // string | Контекстный поиск по строковым полям сущностей
+$filter = 'filter_example'; // string | Фильтрация выборки
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$order = 'order_example'; // string | Сортировка
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getBundles($limit, $offset, $search, $filter, $expand, $order, $accept, $accept_encoding);
@@ -833,11 +833,11 @@ $apiInstance = new OpenAPI\Client\Api\BundlesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $bundle = new \OpenAPI\Client\Model\Bundle(); // \OpenAPI\Client\Model\Bundle
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -906,12 +906,12 @@ $apiInstance = new OpenAPI\Client\Api\BundlesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $component_id = 'component_id_example'; // string
 $bundle_component = new \OpenAPI\Client\Model\BundleComponent(); // \OpenAPI\Client\Model\BundleComponent
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {

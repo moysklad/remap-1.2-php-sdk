@@ -57,10 +57,10 @@ $apiInstance = new OpenAPI\Client\Api\OrganizationsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$organization = new \OpenAPI\Client\Model\Organization(); // \OpenAPI\Client\Model\Organization
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$organization = {name=ОАО СветПром, legalTitle=ООО Великое Свет Пром, inn=87654321, email=svetprom@mail.svet, phone=22222222}; // \OpenAPI\Client\Model\Organization
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -132,7 +132,7 @@ $apiInstance = new OpenAPI\Client\Api\OrganizationsApi(
 );
 $attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -172,7 +172,7 @@ try {
 ## `createOrganizationsBatch()`
 
 ```php
-createOrganizationsBatch($organization, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateOrganizationsBatch200ResponseInner[]
+createOrganizationsBatch($organization, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
 ```
 
 Создать или изменить юрлица
@@ -201,10 +201,10 @@ $apiInstance = new OpenAPI\Client\Api\OrganizationsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$organization = array(new \OpenAPI\Client\Model\Organization()); // \OpenAPI\Client\Model\Organization[]
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$organization = [{name=ООО Пример batch, legalTitle=ООО Пример, inn=1234567890, email=example-batch@mail.ru, phone=33333333}]; // \OpenAPI\Client\Model\Organization[]
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -227,7 +227,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateOrganizationsBatch200ResponseInner[]**](../Model/CreateOrganizationsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -274,9 +274,9 @@ $apiInstance = new OpenAPI\Client\Api\OrganizationsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteOrganization($id, $accept, $accept_encoding);
@@ -342,10 +342,10 @@ $apiInstance = new OpenAPI\Client\Api\OrganizationsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $account_id = 'account_id_example'; // string | ID счёта юрлица
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteOrganizationAccount($id, $account_id, $accept, $accept_encoding);
@@ -383,7 +383,7 @@ void (empty response body)
 ## `deleteOrganizationAccountsBatch()`
 
 ```php
-deleteOrganizationAccountsBatch($id, $account, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteOrganizationAccountsBatch($id, $account, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Удалить счета юрлица
@@ -412,10 +412,10 @@ $apiInstance = new OpenAPI\Client\Api\OrganizationsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $account = array(new \OpenAPI\Client\Model\Account()); // \OpenAPI\Client\Model\Account[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -438,7 +438,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -483,9 +483,9 @@ $apiInstance = new OpenAPI\Client\Api\OrganizationsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteOrganizationMetadataAttributeById($id, $accept, $accept_encoding);
@@ -522,7 +522,7 @@ void (empty response body)
 ## `deleteOrganizationsBatch()`
 
 ```php
-deleteOrganizationsBatch($organization, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteOrganizationsBatch($organization, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Удалить юрлица
@@ -553,7 +553,7 @@ $apiInstance = new OpenAPI\Client\Api\OrganizationsApi(
 );
 $organization = array(new \OpenAPI\Client\Model\Organization()); // \OpenAPI\Client\Model\Organization[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -575,7 +575,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -622,11 +622,11 @@ $apiInstance = new OpenAPI\Client\Api\OrganizationsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $account_id = 'account_id_example'; // string | ID счёта юрлица
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getOrganizationAccountById($id, $account_id, $expand, $accept, $accept_encoding);
@@ -695,11 +695,11 @@ $apiInstance = new OpenAPI\Client\Api\OrganizationsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getOrganizationAccounts($id, $limit, $offset, $accept, $accept_encoding);
@@ -768,10 +768,10 @@ $apiInstance = new OpenAPI\Client\Api\OrganizationsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$id = 'id_example'; // string | ID сущности
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getOrganizationById($id, $expand, $accept, $accept_encoding);
@@ -839,9 +839,9 @@ $apiInstance = new OpenAPI\Client\Api\OrganizationsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getOrganizationMetadata($expand, $accept, $accept_encoding);
@@ -908,9 +908,9 @@ $apiInstance = new OpenAPI\Client\Api\OrganizationsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getOrganizationMetadataAttributeById($id, $accept, $accept_encoding);
@@ -980,7 +980,7 @@ $apiInstance = new OpenAPI\Client\Api\OrganizationsApi(
 $offset = 0; // int | Отступ в выданном списке
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getOrganizationMetadataAttributes($offset, $limit, $accept, $accept_encoding);
@@ -1050,12 +1050,12 @@ $apiInstance = new OpenAPI\Client\Api\OrganizationsApi(
 );
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$search = name=123; // string | Контекстный поиск по строковым полям сущностей
-$filter = archived=false; // string | Фильтрация выборки
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$order = name; // string | Сортировка
+$search = 'search_example'; // string | Контекстный поиск по строковым полям сущностей
+$filter = 'filter_example'; // string | Фильтрация выборки
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$order = 'order_example'; // string | Сортировка
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getOrganizations($limit, $offset, $search, $filter, $expand, $order, $accept, $accept_encoding);
@@ -1127,11 +1127,11 @@ $apiInstance = new OpenAPI\Client\Api\OrganizationsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $organization = new \OpenAPI\Client\Model\Organization(); // \OpenAPI\Client\Model\Organization
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1202,12 +1202,12 @@ $apiInstance = new OpenAPI\Client\Api\OrganizationsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $account_id = 'account_id_example'; // string | ID счёта юрлица
 $account = new \OpenAPI\Client\Model\Account(); // \OpenAPI\Client\Model\Account
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1279,10 +1279,10 @@ $apiInstance = new OpenAPI\Client\Api\OrganizationsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $account = new \OpenAPI\Client\Model\Account(); // \OpenAPI\Client\Model\Account
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1350,10 +1350,10 @@ $apiInstance = new OpenAPI\Client\Api\OrganizationsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {

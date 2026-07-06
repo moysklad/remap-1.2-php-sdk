@@ -132,6 +132,18 @@ class ProcessingOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for createProcessingOrderMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов ProcessingOrder.
+     *
+     */
+    public function testCreateProcessingOrderMetadataStatesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createProcessingOrderPosition
      *
      * Обновить позицию ProcessingOrder.

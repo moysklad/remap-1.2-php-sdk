@@ -120,6 +120,18 @@ class PurchaseOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for createPurchaseOrderMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов PurchaseOrder.
+     *
+     */
+    public function testCreatePurchaseOrderMetadataStatesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createPurchaseOrderNote
      *
      * Добавить Событие Заказа поставщику.

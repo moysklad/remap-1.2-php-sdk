@@ -42,6 +42,6 @@ Name | Type | Description | Notes
 **supply** | [**\OpenAPI\Client\Model\Supply**](Supply.md) | Приемка, по которой произошел возврат | [optional]
 **facture_out** | [**\OpenAPI\Client\Model\FactureOut**](FactureOut.md) | Счет-фактура выданный, с которым связан этот возврат | [optional]
 **facture_in** | [**\OpenAPI\Client\Model\FactureIn**](FactureIn.md) | Счет-фактура полученный, с которым связан этот возврат | [optional]
-**payments** | [**\OpenAPI\Client\Model\CustomerOrderPaymentsInner[]**](CustomerOrderPaymentsInner.md) | Массив ссылок на связанные платежи | [optional]
+**payments** | [**\OpenAPI\Client\Model\RetailShiftPaymentsInner[]**](RetailShiftPaymentsInner.md) | Массив ссылок на связанные платежи | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

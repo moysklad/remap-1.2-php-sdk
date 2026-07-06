@@ -45,6 +45,7 @@ class FinanceInOperationPurchaseReturn extends FinanceInOperationAbstract
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+    protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
     /**
       * Array of nested discriminator mappings. Used for polymorphic deserialization
@@ -106,7 +107,7 @@ class FinanceInOperationPurchaseReturn extends FinanceInOperationAbstract
         'supply' => '\OpenAPI\Client\Model\Supply',
         'facture_out' => '\OpenAPI\Client\Model\FactureOut',
         'facture_in' => '\OpenAPI\Client\Model\FactureIn',
-        'payments' => '\OpenAPI\Client\Model\CustomerOrderPaymentsInner[]'
+        'payments' => '\OpenAPI\Client\Model\RetailShiftPaymentsInner[]'
     ];
 
     /**
@@ -250,6 +251,17 @@ class FinanceInOperationPurchaseReturn extends FinanceInOperationAbstract
     public static function openAPIPolymorphicDiscriminatorMappings(): array
     {
         return self::$openAPIPolymorphicDiscriminatorMappings;
+    }
+
+    /**
+     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * discriminator mappings do not match.
+     *
+     * @return bool
+     */
+    public static function openAPIPolymorphicBatchErrorFallback(): bool
+    {
+        return self::$openAPIPolymorphicBatchErrorFallback;
     }
 
     /**
@@ -1753,7 +1765,7 @@ class FinanceInOperationPurchaseReturn extends FinanceInOperationAbstract
     /**
      * Gets payments
      *
-     * @return \OpenAPI\Client\Model\CustomerOrderPaymentsInner[]|null
+     * @return \OpenAPI\Client\Model\RetailShiftPaymentsInner[]|null
      */
     public function getPayments()
     {
@@ -1763,7 +1775,7 @@ class FinanceInOperationPurchaseReturn extends FinanceInOperationAbstract
     /**
      * Sets payments
      *
-     * @param \OpenAPI\Client\Model\CustomerOrderPaymentsInner[]|null $payments Массив ссылок на связанные платежи
+     * @param \OpenAPI\Client\Model\RetailShiftPaymentsInner[]|null $payments Массив ссылок на связанные платежи
      *
      * @return self
      */

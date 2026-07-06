@@ -132,6 +132,18 @@ class PurchaseReturnsApiTest extends TestCase
     }
 
     /**
+     * Test case for createPurchaseReturnMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов Возврата поставщику.
+     *
+     */
+    public function testCreatePurchaseReturnMetadataStatesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createPurchaseReturnPosition
      *
      * Создать и обновить позицию Возврата поставщику.

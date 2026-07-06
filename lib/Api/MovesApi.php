@@ -893,7 +893,7 @@ class MovesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreateMoveBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function createMoveBatch($move, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMoveBatch'][0])
     {
@@ -915,7 +915,7 @@ class MovesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreateMoveBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function createMoveBatchWithHttpInfo($move, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMoveBatch'][0])
     {
@@ -947,7 +947,7 @@ class MovesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CreateMoveBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
                         $request,
                         $response,
                     );
@@ -975,7 +975,7 @@ class MovesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\CreateMoveBatch200ResponseInner[]',
+                '\OpenAPI\Client\Model\BatchResponseEntity[]',
                 $request,
                 $response,
             );
@@ -984,7 +984,7 @@ class MovesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreateMoveBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1046,7 +1046,7 @@ class MovesApi
      */
     public function createMoveBatchAsyncWithHttpInfo($move, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMoveBatch'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CreateMoveBatch200ResponseInner[]';
+        $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
         $request = $this->createMoveBatchRequest($move, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
@@ -1907,7 +1907,7 @@ class MovesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreateMovePositions200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function createMovePositions($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePositions'][0])
     {
@@ -1930,7 +1930,7 @@ class MovesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreateMovePositions200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function createMovePositionsWithHttpInfo($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePositions'][0])
     {
@@ -1962,7 +1962,7 @@ class MovesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CreateMovePositions200ResponseInner[]',
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
                         $request,
                         $response,
                     );
@@ -1990,7 +1990,7 @@ class MovesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\CreateMovePositions200ResponseInner[]',
+                '\OpenAPI\Client\Model\BatchResponseEntity[]',
                 $request,
                 $response,
             );
@@ -1999,7 +1999,7 @@ class MovesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreateMovePositions200ResponseInner[]',
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2063,7 +2063,7 @@ class MovesApi
      */
     public function createMovePositionsAsyncWithHttpInfo($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePositions'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CreateMovePositions200ResponseInner[]';
+        $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
         $request = $this->createMovePositionsRequest($id, $move_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
@@ -2529,7 +2529,7 @@ class MovesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function deleteMoveBatch($move, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteMoveBatch'][0])
     {
@@ -2550,7 +2550,7 @@ class MovesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteMoveBatchWithHttpInfo($move, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteMoveBatch'][0])
     {
@@ -2582,7 +2582,7 @@ class MovesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteRowResult[]',
                         $request,
                         $response,
                     );
@@ -2610,7 +2610,7 @@ class MovesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                '\OpenAPI\Client\Model\DeleteRowResult[]',
                 $request,
                 $response,
             );
@@ -2619,7 +2619,7 @@ class MovesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteRowResult[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2679,7 +2679,7 @@ class MovesApi
      */
     public function deleteMoveBatchAsyncWithHttpInfo($move, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteMoveBatch'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]';
+        $returnType = '\OpenAPI\Client\Model\DeleteRowResult[]';
         $request = $this->deleteMoveBatchRequest($move, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
@@ -3956,7 +3956,7 @@ class MovesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function deleteMovePositionsBatch($id, $move_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteMovePositionsBatch'][0])
     {
@@ -3978,7 +3978,7 @@ class MovesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteMovePositionsBatchWithHttpInfo($id, $move_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteMovePositionsBatch'][0])
     {
@@ -4010,7 +4010,7 @@ class MovesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteRowResult[]',
                         $request,
                         $response,
                     );
@@ -4038,7 +4038,7 @@ class MovesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                '\OpenAPI\Client\Model\DeleteRowResult[]',
                 $request,
                 $response,
             );
@@ -4047,7 +4047,7 @@ class MovesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteRowResult[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4109,7 +4109,7 @@ class MovesApi
      */
     public function deleteMovePositionsBatchAsyncWithHttpInfo($id, $move_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteMovePositionsBatch'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]';
+        $returnType = '\OpenAPI\Client\Model\DeleteRowResult[]';
         $request = $this->deleteMovePositionsBatchRequest($id, $move_position, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client

@@ -478,7 +478,7 @@ class ProcessingPlanFoldersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreateProcessingPlanFoldersBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function createProcessingPlanFoldersBatch($processing_plan_folder, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingPlanFoldersBatch'][0])
     {
@@ -499,7 +499,7 @@ class ProcessingPlanFoldersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreateProcessingPlanFoldersBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function createProcessingPlanFoldersBatchWithHttpInfo($processing_plan_folder, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingPlanFoldersBatch'][0])
     {
@@ -531,7 +531,7 @@ class ProcessingPlanFoldersApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CreateProcessingPlanFoldersBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
                         $request,
                         $response,
                     );
@@ -559,7 +559,7 @@ class ProcessingPlanFoldersApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\CreateProcessingPlanFoldersBatch200ResponseInner[]',
+                '\OpenAPI\Client\Model\BatchResponseEntity[]',
                 $request,
                 $response,
             );
@@ -568,7 +568,7 @@ class ProcessingPlanFoldersApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreateProcessingPlanFoldersBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -628,7 +628,7 @@ class ProcessingPlanFoldersApi
      */
     public function createProcessingPlanFoldersBatchAsyncWithHttpInfo($processing_plan_folder, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingPlanFoldersBatch'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CreateProcessingPlanFoldersBatch200ResponseInner[]';
+        $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
         $request = $this->createProcessingPlanFoldersBatchRequest($processing_plan_folder, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
@@ -1067,7 +1067,7 @@ class ProcessingPlanFoldersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function deleteProcessingPlanFoldersBatch($processing_plan_folder, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteProcessingPlanFoldersBatch'][0])
     {
@@ -1088,7 +1088,7 @@ class ProcessingPlanFoldersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteProcessingPlanFoldersBatchWithHttpInfo($processing_plan_folder, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteProcessingPlanFoldersBatch'][0])
     {
@@ -1120,7 +1120,7 @@ class ProcessingPlanFoldersApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteRowResult[]',
                         $request,
                         $response,
                     );
@@ -1148,7 +1148,7 @@ class ProcessingPlanFoldersApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                '\OpenAPI\Client\Model\DeleteRowResult[]',
                 $request,
                 $response,
             );
@@ -1157,7 +1157,7 @@ class ProcessingPlanFoldersApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteRowResult[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1217,7 +1217,7 @@ class ProcessingPlanFoldersApi
      */
     public function deleteProcessingPlanFoldersBatchAsyncWithHttpInfo($processing_plan_folder, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteProcessingPlanFoldersBatch'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]';
+        $returnType = '\OpenAPI\Client\Model\DeleteRowResult[]';
         $request = $this->deleteProcessingPlanFoldersBatchRequest($processing_plan_folder, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client

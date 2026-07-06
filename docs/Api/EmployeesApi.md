@@ -56,11 +56,11 @@ $apiInstance = new OpenAPI\Client\Api\EmployeesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
-$activate_employee_request = {login=newcashier@lognex, group={meta={href=https://api.moysklad.ru/api/remap/1.2/entity/group/f4b74c5e-443a-11eb-ac12-001000000003, metadataHref=https://api.moysklad.ru/api/remap/1.2/entity/group/metadata, type=group, mediaType=application/json}}, role={meta={href=https://api.moysklad.ru/api/remap/1.2/entity/role/cashier, type=systemrole, mediaType=application/json}}}; // \OpenAPI\Client\Model\ActivateEmployeeRequest
+$activate_employee_request = new \OpenAPI\Client\Model\ActivateEmployeeRequest(); // \OpenAPI\Client\Model\ActivateEmployeeRequest
 
 try {
     $result = $apiInstance->activateEmployee($id, $accept, $accept_encoding, $content_type, $activate_employee_request);
@@ -129,10 +129,10 @@ $apiInstance = new OpenAPI\Client\Api\EmployeesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$employee = new \OpenAPI\Client\Model\Employee(); // \OpenAPI\Client\Model\Employee
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$employee = {lastName=Мойскладкин, firstName=Петр, middleName=Иванович, email=employee@example.ru, phone=+7(999)888-7766, position=Директор}; // \OpenAPI\Client\Model\Employee
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -173,7 +173,7 @@ try {
 ## `createEmployeesBatch()`
 
 ```php
-createEmployeesBatch($employee, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateEmployeesBatch200ResponseInner[]
+createEmployeesBatch($employee, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
 ```
 
 Создать или изменить сотрудников
@@ -202,10 +202,10 @@ $apiInstance = new OpenAPI\Client\Api\EmployeesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$employee = array(new \OpenAPI\Client\Model\Employee()); // \OpenAPI\Client\Model\Employee[]
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$employee = [{lastName=Петров, firstName=Иван, middleName=Сергеевич, email=petrov@example.ru, phone=+7(495)123-4567, position=Менеджер}]; // \OpenAPI\Client\Model\Employee[]
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -228,7 +228,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateEmployeesBatch200ResponseInner[]**](../Model/CreateEmployeesBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -275,9 +275,9 @@ $apiInstance = new OpenAPI\Client\Api\EmployeesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deactivateEmployee($id, $accept, $accept_encoding);
@@ -343,9 +343,9 @@ $apiInstance = new OpenAPI\Client\Api\EmployeesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteEmployee($id, $accept, $accept_encoding);
@@ -382,7 +382,7 @@ void (empty response body)
 ## `deleteEmployeesBatch()`
 
 ```php
-deleteEmployeesBatch($employee, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteEmployeesBatch($employee, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Удалить сотрудников
@@ -413,7 +413,7 @@ $apiInstance = new OpenAPI\Client\Api\EmployeesApi(
 );
 $employee = array(new \OpenAPI\Client\Model\Employee()); // \OpenAPI\Client\Model\Employee[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -435,7 +435,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -482,10 +482,10 @@ $apiInstance = new OpenAPI\Client\Api\EmployeesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$id = 'id_example'; // string | ID сущности
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getEmployeeById($id, $expand, $accept, $accept_encoding);
@@ -554,7 +554,7 @@ $apiInstance = new OpenAPI\Client\Api\EmployeesApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getEmployeeMetadata($accept, $accept_encoding);
@@ -620,9 +620,9 @@ $apiInstance = new OpenAPI\Client\Api\EmployeesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getEmployeeSecurity($id, $accept, $accept_encoding);
@@ -691,12 +691,12 @@ $apiInstance = new OpenAPI\Client\Api\EmployeesApi(
 );
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$search = name=123; // string | Контекстный поиск по строковым полям сущностей
-$filter = archived=false; // string | Фильтрация выборки
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$order = name; // string | Сортировка
+$search = 'search_example'; // string | Контекстный поиск по строковым полям сущностей
+$filter = 'filter_example'; // string | Фильтрация выборки
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$order = 'order_example'; // string | Сортировка
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getEmployees($limit, $offset, $search, $filter, $expand, $order, $accept, $accept_encoding);
@@ -769,7 +769,7 @@ $apiInstance = new OpenAPI\Client\Api\EmployeesApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getRoleAdmin($accept, $accept_encoding);
@@ -836,7 +836,7 @@ $apiInstance = new OpenAPI\Client\Api\EmployeesApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getRoleCashier($accept, $accept_encoding);
@@ -903,7 +903,7 @@ $apiInstance = new OpenAPI\Client\Api\EmployeesApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getRoleIndividual($accept, $accept_encoding);
@@ -970,7 +970,7 @@ $apiInstance = new OpenAPI\Client\Api\EmployeesApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getRoleOwner($accept, $accept_encoding);
@@ -1037,7 +1037,7 @@ $apiInstance = new OpenAPI\Client\Api\EmployeesApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getRoleWorker($accept, $accept_encoding);
@@ -1103,9 +1103,9 @@ $apiInstance = new OpenAPI\Client\Api\EmployeesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->resetEmployeePassword($id, $accept, $accept_encoding);
@@ -1171,11 +1171,11 @@ $apiInstance = new OpenAPI\Client\Api\EmployeesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $employee = new \OpenAPI\Client\Model\Employee(); // \OpenAPI\Client\Model\Employee
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1246,10 +1246,10 @@ $apiInstance = new OpenAPI\Client\Api\EmployeesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$employee_security = {group={meta={href=https://api.moysklad.ru/api/remap/1.2/entity/group/f4b74c5e-443a-11eb-ac12-001000000003, metadataHref=https://api.moysklad.ru/api/remap/1.2/entity/group/metadata, type=group, mediaType=application/json}}, authorizedHosts=[20.20.15.5], role={meta={href=https://api.moysklad.ru/api/remap/1.2/entity/role/admin, type=systemrole, mediaType=application/json}}}; // \OpenAPI\Client\Model\EmployeeSecurity
+$id = 'id_example'; // string | ID сущности
+$employee_security = new \OpenAPI\Client\Model\EmployeeSecurity(); // \OpenAPI\Client\Model\EmployeeSecurity
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {

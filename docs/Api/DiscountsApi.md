@@ -52,9 +52,9 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$accumulation_discount = new \OpenAPI\Client\Model\AccumulationDiscount(); // \OpenAPI\Client\Model\AccumulationDiscount
+$accumulation_discount = {name=accumulationDiscountExample, active=true, allProducts=true, allAgents=true, agentTags=[]}; // \OpenAPI\Client\Model\AccumulationDiscount
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -123,9 +123,9 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$personal_discount = new \OpenAPI\Client\Model\PersonalDiscount(); // \OpenAPI\Client\Model\PersonalDiscount
+$personal_discount = {name=personalDiscountExample, active=true, allProducts=true, allAgents=true}; // \OpenAPI\Client\Model\PersonalDiscount
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -196,7 +196,7 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
 );
 $special_price_discount = new \OpenAPI\Client\Model\SpecialPriceDiscount(); // \OpenAPI\Client\Model\SpecialPriceDiscount
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -265,9 +265,9 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteAccumulationDiscount($id, $accept, $accept_encoding);
@@ -333,9 +333,9 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deletePersonalDiscount($id, $accept, $accept_encoding);
@@ -401,9 +401,9 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteSpecialPriceDiscount($id, $accept, $accept_encoding);
@@ -469,9 +469,9 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getAccumulationDiscountById($id, $accept, $accept_encoding);
@@ -541,8 +541,8 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$accept_encoding = 'gzip, deflate, br'; // string
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 
 try {
     $result = $apiInstance->getDiscounts($limit, $offset, $accept, $accept_encoding, $expand);
@@ -611,9 +611,9 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getPersonalDiscountById($id, $accept, $accept_encoding);
@@ -680,9 +680,9 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getSpecialPriceDiscountById($id, $accept, $accept_encoding);
@@ -749,10 +749,10 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accumulation_discount = new \OpenAPI\Client\Model\AccumulationDiscount(); // \OpenAPI\Client\Model\AccumulationDiscount
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -822,10 +822,10 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $discount = new \OpenAPI\Client\Model\Discount(); // \OpenAPI\Client\Model\Discount
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -895,10 +895,10 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $personal_discount = new \OpenAPI\Client\Model\PersonalDiscount(); // \OpenAPI\Client\Model\PersonalDiscount
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -968,10 +968,10 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $special_price_discount = new \OpenAPI\Client\Model\SpecialPriceDiscount(); // \OpenAPI\Client\Model\SpecialPriceDiscount
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {

@@ -96,6 +96,18 @@ class PrepaymentReturnsApiTest extends TestCase
     }
 
     /**
+     * Test case for createPrepaymentReturnMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов Возврата предоплаты.
+     *
+     */
+    public function testCreatePrepaymentReturnMetadataStatesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deletePrepaymentReturn
      *
      * Удалить Возврат предоплаты.

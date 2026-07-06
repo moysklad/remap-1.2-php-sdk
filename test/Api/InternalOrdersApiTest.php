@@ -120,6 +120,18 @@ class InternalOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for createInternalOrderMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов InternalOrder.
+     *
+     */
+    public function testCreateInternalOrderMetadataStatesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createInternalOrderPosition
      *
      * Создать и обновить позицию Внутреннего заказа.

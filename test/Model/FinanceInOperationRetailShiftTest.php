@@ -141,4 +141,310 @@ class FinanceInOperationRetailShiftTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "acquire"
+     */
+    public function testPropertyAcquire()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "agent_account"
+     */
+    public function testPropertyAgentAccount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "attributes"
+     */
+    public function testPropertyAttributes()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "bank_comission"
+     */
+    public function testPropertyBankComission()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "bank_percent"
+     */
+    public function testPropertyBankPercent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "cheque"
+     */
+    public function testPropertyCheque()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "close_date"
+     */
+    public function testPropertyCloseDate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "contract"
+     */
+    public function testPropertyContract()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "created"
+     */
+    public function testPropertyCreated()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "deleted"
+     */
+    public function testPropertyDeleted()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "description"
+     */
+    public function testPropertyDescription()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "external_code"
+     */
+    public function testPropertyExternalCode()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "files"
+     */
+    public function testPropertyFiles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "group"
+     */
+    public function testPropertyGroup()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "operations"
+     */
+    public function testPropertyOperations()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "organization"
+     */
+    public function testPropertyOrganization()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "organization_account"
+     */
+    public function testPropertyOrganizationAccount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "owner"
+     */
+    public function testPropertyOwner()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "payment_operations"
+     */
+    public function testPropertyPaymentOperations()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "printed"
+     */
+    public function testPropertyPrinted()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "proceeds_cash"
+     */
+    public function testPropertyProceedsCash()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "proceeds_no_cash"
+     */
+    public function testPropertyProceedsNoCash()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "published"
+     */
+    public function testPropertyPublished()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "qr_acquire"
+     */
+    public function testPropertyQrAcquire()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "qr_bank_comission"
+     */
+    public function testPropertyQrBankComission()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "qr_bank_percent"
+     */
+    public function testPropertyQrBankPercent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "received_cash"
+     */
+    public function testPropertyReceivedCash()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "received_no_cash"
+     */
+    public function testPropertyReceivedNoCash()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "shared"
+     */
+    public function testPropertyShared()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "store"
+     */
+    public function testPropertyStore()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "sync_id"
+     */
+    public function testPropertySyncId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "updated"
+     */
+    public function testPropertyUpdated()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "vat_enabled"
+     */
+    public function testPropertyVatEnabled()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "vat_included"
+     */
+    public function testPropertyVatIncluded()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

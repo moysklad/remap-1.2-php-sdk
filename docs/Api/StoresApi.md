@@ -59,10 +59,10 @@ $apiInstance = new OpenAPI\Client\Api\StoresApi(
     new GuzzleHttp\Client(),
     $config
 );
-$store = new \OpenAPI\Client\Model\Store(); // \OpenAPI\Client\Model\Store
+$store = {name=Склад2, code=code3, address=г Москва ул Вавилова 19 к 116, description=Склад из примера OpenAPI}; // \OpenAPI\Client\Model\Store
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$accept_encoding = 'gzip, deflate, br'; // string
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $content_type = 'application/json'; // string
 
 try {
@@ -132,7 +132,7 @@ $apiInstance = new OpenAPI\Client\Api\StoresApi(
 );
 $attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -202,7 +202,7 @@ $apiInstance = new OpenAPI\Client\Api\StoresApi(
 $store_id = 'store_id_example'; // string
 $create_store_slots_request = new \OpenAPI\Client\Model\CreateStoreSlotsRequest(); // \OpenAPI\Client\Model\CreateStoreSlotsRequest
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->createStoreSlots($store_id, $create_store_slots_request, $accept, $accept_encoding);
@@ -271,7 +271,7 @@ $apiInstance = new OpenAPI\Client\Api\StoresApi(
 $store_id = 'store_id_example'; // string
 $create_store_zones_request = new \OpenAPI\Client\Model\CreateStoreZonesRequest(); // \OpenAPI\Client\Model\CreateStoreZonesRequest
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->createStoreZones($store_id, $create_store_zones_request, $accept, $accept_encoding);
@@ -310,7 +310,7 @@ try {
 ## `createStoresBatch()`
 
 ```php
-createStoresBatch($store, $accept, $accept_encoding, $expand, $content_type): \OpenAPI\Client\Model\CreateStoresBatch200ResponseInner[]
+createStoresBatch($store, $accept, $accept_encoding, $expand, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
 ```
 
 Массовое создание и обновление Складов
@@ -337,10 +337,10 @@ $apiInstance = new OpenAPI\Client\Api\StoresApi(
     new GuzzleHttp\Client(),
     $config
 );
-$store = array(new \OpenAPI\Client\Model\Store()); // \OpenAPI\Client\Model\Store[]
+$store = [{name=Склад3, code=code4, address=г Москва ул БаБилова 20 к 116, description=Склад batch из примера OpenAPI}]; // \OpenAPI\Client\Model\Store[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$accept_encoding = 'gzip, deflate, br'; // string
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $content_type = 'application/json'; // string
 
 try {
@@ -363,7 +363,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateStoresBatch200ResponseInner[]**](../Model/CreateStoresBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -408,9 +408,9 @@ $apiInstance = new OpenAPI\Client\Api\StoresApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteStore($id, $accept, $accept_encoding);
@@ -477,7 +477,7 @@ $apiInstance = new OpenAPI\Client\Api\StoresApi(
 $store_id = 'store_id_example'; // string
 $id = 'id_example'; // string
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteStoreSlot($store_id, $id, $accept, $accept_encoding);
@@ -545,7 +545,7 @@ $apiInstance = new OpenAPI\Client\Api\StoresApi(
 $store_id = 'store_id_example'; // string
 $store_slot = array(new \OpenAPI\Client\Model\StoreSlot()); // \OpenAPI\Client\Model\StoreSlot[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -615,7 +615,7 @@ $apiInstance = new OpenAPI\Client\Api\StoresApi(
 $store_id = 'store_id_example'; // string
 $id = 'id_example'; // string
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteStoreZone($store_id, $id, $accept, $accept_encoding);
@@ -683,7 +683,7 @@ $apiInstance = new OpenAPI\Client\Api\StoresApi(
 $store_id = 'store_id_example'; // string
 $store_zone = array(new \OpenAPI\Client\Model\StoreZone()); // \OpenAPI\Client\Model\StoreZone[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -723,7 +723,7 @@ void (empty response body)
 ## `deleteStoresBatch()`
 
 ```php
-deleteStoresBatch($store, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteStoresBatch($store, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Массовое удаление Складов
@@ -752,7 +752,7 @@ $apiInstance = new OpenAPI\Client\Api\StoresApi(
 );
 $store = array(new \OpenAPI\Client\Model\Store()); // \OpenAPI\Client\Model\Store[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -774,7 +774,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -819,10 +819,10 @@ $apiInstance = new OpenAPI\Client\Api\StoresApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$id = 'id_example'; // string | ID сущности
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getStoreById($id, $expand, $accept, $accept_encoding);
@@ -888,9 +888,9 @@ $apiInstance = new OpenAPI\Client\Api\StoresApi(
     new GuzzleHttp\Client(),
     $config
 );
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getStoreMetadata($expand, $accept, $accept_encoding);
@@ -958,7 +958,7 @@ $apiInstance = new OpenAPI\Client\Api\StoresApi(
 $offset = 0; // int | Отступ в выданном списке
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1026,9 +1026,9 @@ $apiInstance = new OpenAPI\Client\Api\StoresApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getStoreMetadataAttributeById($id, $accept, $accept_encoding);
@@ -1096,7 +1096,7 @@ $apiInstance = new OpenAPI\Client\Api\StoresApi(
 $store_id = 'store_id_example'; // string
 $id = 'id_example'; // string
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getStoreSlotById($store_id, $id, $accept, $accept_encoding);
@@ -1164,7 +1164,7 @@ $apiInstance = new OpenAPI\Client\Api\StoresApi(
 );
 $store_id = 'store_id_example'; // string
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getStoreSlots($store_id, $accept, $accept_encoding);
@@ -1232,7 +1232,7 @@ $apiInstance = new OpenAPI\Client\Api\StoresApi(
 $store_id = 'store_id_example'; // string
 $id = 'id_example'; // string
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getStoreZoneById($store_id, $id, $accept, $accept_encoding);
@@ -1300,7 +1300,7 @@ $apiInstance = new OpenAPI\Client\Api\StoresApi(
 );
 $store_id = 'store_id_example'; // string
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getStoreZones($store_id, $accept, $accept_encoding);
@@ -1367,12 +1367,12 @@ $apiInstance = new OpenAPI\Client\Api\StoresApi(
 );
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$search = name=123; // string | Контекстный поиск по строковым полям сущностей
-$filter = archived=false; // string | Фильтрация выборки
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$order = name; // string | Сортировка
+$search = 'search_example'; // string | Контекстный поиск по строковым полям сущностей
+$filter = 'filter_example'; // string | Фильтрация выборки
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$order = 'order_example'; // string | Сортировка
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getStores($limit, $offset, $search, $filter, $expand, $order, $accept, $accept_encoding);
@@ -1442,11 +1442,11 @@ $apiInstance = new OpenAPI\Client\Api\StoresApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $store = new \OpenAPI\Client\Model\Store(); // \OpenAPI\Client\Model\Store
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1519,7 +1519,7 @@ $store_id = 'store_id_example'; // string
 $id = 'id_example'; // string
 $store_slot = new \OpenAPI\Client\Model\StoreSlot(); // \OpenAPI\Client\Model\StoreSlot
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->updateStoreSlot($store_id, $id, $store_slot, $accept, $accept_encoding);
@@ -1590,7 +1590,7 @@ $store_id = 'store_id_example'; // string
 $id = 'id_example'; // string
 $store_zone = new \OpenAPI\Client\Model\StoreZone(); // \OpenAPI\Client\Model\StoreZone
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->updateStoreZone($store_id, $id, $store_zone, $accept, $accept_encoding);

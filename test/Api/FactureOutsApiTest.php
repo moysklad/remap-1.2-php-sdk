@@ -108,6 +108,18 @@ class FactureOutsApiTest extends TestCase
     }
 
     /**
+     * Test case for createFactureOutMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов Счета-фактуры выданного.
+     *
+     */
+    public function testCreateFactureOutMetadataStatesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createFactureOutsBatch
      *
      * Массовое создание и обновление Счетов-фактур выданных.

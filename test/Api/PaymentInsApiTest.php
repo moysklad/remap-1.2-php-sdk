@@ -132,6 +132,18 @@ class PaymentInsApiTest extends TestCase
     }
 
     /**
+     * Test case for createPaymentInMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов PaymentIn.
+     *
+     */
+    public function testCreatePaymentInMetadataStatesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deletePaymentIn
      *
      * Удалить PaymentIn.

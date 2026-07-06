@@ -45,10 +45,10 @@ $apiInstance = new OpenAPI\Client\Api\ProductFoldersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$product_folder = new \OpenAPI\Client\Model\ProductFolder(); // \OpenAPI\Client\Model\ProductFolder
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$product_folder = {name=Овощи, description=Группа овощей, vatEnabled=false, shared=true, archived=false, vat=10, useParentVat=false}; // \OpenAPI\Client\Model\ProductFolder
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -89,7 +89,7 @@ try {
 ## `createProductFoldersBatch()`
 
 ```php
-createProductFoldersBatch($product_folder, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateProductFoldersBatch200ResponseInner[]
+createProductFoldersBatch($product_folder, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
 ```
 
 Создать или изменить группы товаров
@@ -118,10 +118,10 @@ $apiInstance = new OpenAPI\Client\Api\ProductFoldersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$product_folder = array(new \OpenAPI\Client\Model\ProductFolder()); // \OpenAPI\Client\Model\ProductFolder[]
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$product_folder = [{name=Фрукты, description=Группа фруктов, vatEnabled=false, shared=true, archived=false, vat=6, useParentVat=false}]; // \OpenAPI\Client\Model\ProductFolder[]
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -144,7 +144,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateProductFoldersBatch200ResponseInner[]**](../Model/CreateProductFoldersBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -191,9 +191,9 @@ $apiInstance = new OpenAPI\Client\Api\ProductFoldersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteProductFolder($id, $accept, $accept_encoding);
@@ -230,7 +230,7 @@ void (empty response body)
 ## `deleteProductFoldersBatch()`
 
 ```php
-deleteProductFoldersBatch($product_folder, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteProductFoldersBatch($product_folder, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Удалить группы товаров
@@ -261,7 +261,7 @@ $apiInstance = new OpenAPI\Client\Api\ProductFoldersApi(
 );
 $product_folder = array(new \OpenAPI\Client\Model\ProductFolder()); // \OpenAPI\Client\Model\ProductFolder[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -283,7 +283,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -330,10 +330,10 @@ $apiInstance = new OpenAPI\Client\Api\ProductFoldersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$id = 'id_example'; // string | ID сущности
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getProductFolderById($id, $expand, $accept, $accept_encoding);
@@ -403,12 +403,12 @@ $apiInstance = new OpenAPI\Client\Api\ProductFoldersApi(
 );
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$search = name=123; // string | Контекстный поиск по строковым полям сущностей
-$filter = archived=false; // string | Фильтрация выборки
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$order = name; // string | Сортировка
+$search = 'search_example'; // string | Контекстный поиск по строковым полям сущностей
+$filter = 'filter_example'; // string | Фильтрация выборки
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$order = 'order_example'; // string | Сортировка
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getProductFolders($limit, $offset, $search, $filter, $expand, $order, $accept, $accept_encoding);
@@ -480,11 +480,11 @@ $apiInstance = new OpenAPI\Client\Api\ProductFoldersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $product_folder = new \OpenAPI\Client\Model\ProductFolder(); // \OpenAPI\Client\Model\ProductFolder
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {

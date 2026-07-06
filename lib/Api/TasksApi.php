@@ -80,6 +80,9 @@ class TasksApi
         'createTaskMetadataStates' => [
             'application/json',
         ],
+        'createTaskMetadataStatesBatch' => [
+            'application/json',
+        ],
         'createTaskNote' => [
             'application/json',
         ],
@@ -515,7 +518,7 @@ class TasksApi
      *
      * Создать или изменить типы задач
      *
-     * @param  \OpenAPI\Client\Model\CreateTaskMetadataStatesRequest $create_task_metadata_states_request create_task_metadata_states_request (required)
+     * @param  \OpenAPI\Client\Model\State $state state (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
@@ -523,11 +526,11 @@ class TasksApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreateTaskMetadataStates200Response|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\ErrorOrArray
      */
-    public function createTaskMetadataStates($create_task_metadata_states_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createTaskMetadataStates'][0])
+    public function createTaskMetadataStates($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createTaskMetadataStates'][0])
     {
-        list($response) = $this->createTaskMetadataStatesWithHttpInfo($create_task_metadata_states_request, $accept, $accept_encoding, $content_type, $contentType);
+        list($response) = $this->createTaskMetadataStatesWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
     }
 
@@ -536,7 +539,7 @@ class TasksApi
      *
      * Создать или изменить типы задач
      *
-     * @param  \OpenAPI\Client\Model\CreateTaskMetadataStatesRequest $create_task_metadata_states_request (required)
+     * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
@@ -544,11 +547,11 @@ class TasksApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreateTaskMetadataStates200Response|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createTaskMetadataStatesWithHttpInfo($create_task_metadata_states_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createTaskMetadataStates'][0])
+    public function createTaskMetadataStatesWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createTaskMetadataStates'][0])
     {
-        $request = $this->createTaskMetadataStatesRequest($create_task_metadata_states_request, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->createTaskMetadataStatesRequest($state, $accept, $accept_encoding, $content_type, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -576,7 +579,7 @@ class TasksApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CreateTaskMetadataStates200Response',
+                        '\OpenAPI\Client\Model\State',
                         $request,
                         $response,
                     );
@@ -604,7 +607,7 @@ class TasksApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\CreateTaskMetadataStates200Response',
+                '\OpenAPI\Client\Model\State',
                 $request,
                 $response,
             );
@@ -613,7 +616,7 @@ class TasksApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreateTaskMetadataStates200Response',
+                        '\OpenAPI\Client\Model\State',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -638,7 +641,7 @@ class TasksApi
      *
      * Создать или изменить типы задач
      *
-     * @param  \OpenAPI\Client\Model\CreateTaskMetadataStatesRequest $create_task_metadata_states_request (required)
+     * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
@@ -647,9 +650,9 @@ class TasksApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createTaskMetadataStatesAsync($create_task_metadata_states_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createTaskMetadataStates'][0])
+    public function createTaskMetadataStatesAsync($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createTaskMetadataStates'][0])
     {
-        return $this->createTaskMetadataStatesAsyncWithHttpInfo($create_task_metadata_states_request, $accept, $accept_encoding, $content_type, $contentType)
+        return $this->createTaskMetadataStatesAsyncWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -662,7 +665,7 @@ class TasksApi
      *
      * Создать или изменить типы задач
      *
-     * @param  \OpenAPI\Client\Model\CreateTaskMetadataStatesRequest $create_task_metadata_states_request (required)
+     * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
@@ -671,10 +674,10 @@ class TasksApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createTaskMetadataStatesAsyncWithHttpInfo($create_task_metadata_states_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createTaskMetadataStates'][0])
+    public function createTaskMetadataStatesAsyncWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createTaskMetadataStates'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CreateTaskMetadataStates200Response';
-        $request = $this->createTaskMetadataStatesRequest($create_task_metadata_states_request, $accept, $accept_encoding, $content_type, $contentType);
+        $returnType = '\OpenAPI\Client\Model\State';
+        $request = $this->createTaskMetadataStatesRequest($state, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -715,7 +718,7 @@ class TasksApi
     /**
      * Create request for operation 'createTaskMetadataStates'
      *
-     * @param  \OpenAPI\Client\Model\CreateTaskMetadataStatesRequest $create_task_metadata_states_request (required)
+     * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
@@ -724,13 +727,13 @@ class TasksApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createTaskMetadataStatesRequest($create_task_metadata_states_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createTaskMetadataStates'][0])
+    public function createTaskMetadataStatesRequest($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createTaskMetadataStates'][0])
     {
 
-        // verify the required parameter 'create_task_metadata_states_request' is set
-        if ($create_task_metadata_states_request === null || (is_array($create_task_metadata_states_request) && count($create_task_metadata_states_request) === 0)) {
+        // verify the required parameter 'state' is set
+        if ($state === null || (is_array($state) && count($state) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $create_task_metadata_states_request when calling createTaskMetadataStates'
+                'Missing the required parameter $state when calling createTaskMetadataStates'
             );
         }
 
@@ -768,12 +771,337 @@ class TasksApi
         );
 
         // for model (json/xml)
-        if (isset($create_task_metadata_states_request)) {
+        if (isset($state)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_task_metadata_states_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($state));
             } else {
-                $httpBody = $create_task_metadata_states_request;
+                $httpBody = $state;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createTaskMetadataStatesBatch
+     *
+     * Массовое создание и обновление типов задач
+     *
+     * @param  \OpenAPI\Client\Model\State[] $state state (required)
+     * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTaskMetadataStatesBatch'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\StateRowResult[]|\OpenAPI\Client\Model\ErrorOrArray
+     */
+    public function createTaskMetadataStatesBatch($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createTaskMetadataStatesBatch'][0])
+    {
+        list($response) = $this->createTaskMetadataStatesBatchWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createTaskMetadataStatesBatchWithHttpInfo
+     *
+     * Массовое создание и обновление типов задач
+     *
+     * @param  \OpenAPI\Client\Model\State[] $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTaskMetadataStatesBatch'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\StateRowResult[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createTaskMetadataStatesBatchWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createTaskMetadataStatesBatch'][0])
+    {
+        $request = $this->createTaskMetadataStatesBatchRequest($state, $accept, $accept_encoding, $content_type, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\StateRowResult[]',
+                        $request,
+                        $response,
+                    );
+                default:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\OpenAPI\Client\Model\StateRowResult[]',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\StateRowResult[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createTaskMetadataStatesBatchAsync
+     *
+     * Массовое создание и обновление типов задач
+     *
+     * @param  \OpenAPI\Client\Model\State[] $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTaskMetadataStatesBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createTaskMetadataStatesBatchAsync($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createTaskMetadataStatesBatch'][0])
+    {
+        return $this->createTaskMetadataStatesBatchAsyncWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createTaskMetadataStatesBatchAsyncWithHttpInfo
+     *
+     * Массовое создание и обновление типов задач
+     *
+     * @param  \OpenAPI\Client\Model\State[] $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTaskMetadataStatesBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createTaskMetadataStatesBatchAsyncWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createTaskMetadataStatesBatch'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\StateRowResult[]';
+        $request = $this->createTaskMetadataStatesBatchRequest($state, $accept, $accept_encoding, $content_type, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createTaskMetadataStatesBatch'
+     *
+     * @param  \OpenAPI\Client\Model\State[] $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTaskMetadataStatesBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createTaskMetadataStatesBatchRequest($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createTaskMetadataStatesBatch'][0])
+    {
+
+        // verify the required parameter 'state' is set
+        if ($state === null || (is_array($state) && count($state) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $state when calling createTaskMetadataStatesBatch'
+            );
+        }
+        if (count($state) > 1000) {
+            throw new \InvalidArgumentException('invalid value for "$state" when calling TasksApi.createTaskMetadataStatesBatch, number of items must be less than or equal to 1000.');
+        }
+        if (count($state) < 1) {
+            throw new \InvalidArgumentException('invalid value for "$state" when calling TasksApi.createTaskMetadataStatesBatch, number of items must be greater than or equal to 1.');
+        }
+        
+
+
+
+
+        $resourcePath = '/entity/task/metadata/states/batch';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // header params
+        if ($accept !== null) {
+            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+        }
+        // header params
+        if ($accept_encoding !== null) {
+            $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+        // header params
+        if ($content_type !== null) {
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
+        }
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'text/html;charset=UTF-8', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($state)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($state));
+            } else {
+                $httpBody = $state;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1182,7 +1510,7 @@ class TasksApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreateTaskNotesBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function createTaskNotesBatch($id, $task_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createTaskNotesBatch'][0])
     {
@@ -1204,7 +1532,7 @@ class TasksApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreateTaskNotesBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function createTaskNotesBatchWithHttpInfo($id, $task_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createTaskNotesBatch'][0])
     {
@@ -1236,7 +1564,7 @@ class TasksApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CreateTaskNotesBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
                         $request,
                         $response,
                     );
@@ -1264,7 +1592,7 @@ class TasksApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\CreateTaskNotesBatch200ResponseInner[]',
+                '\OpenAPI\Client\Model\BatchResponseEntity[]',
                 $request,
                 $response,
             );
@@ -1273,7 +1601,7 @@ class TasksApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreateTaskNotesBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1335,7 +1663,7 @@ class TasksApi
      */
     public function createTaskNotesBatchAsyncWithHttpInfo($id, $task_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createTaskNotesBatch'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CreateTaskNotesBatch200ResponseInner[]';
+        $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
         $request = $this->createTaskNotesBatchRequest($id, $task_note, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
@@ -1527,7 +1855,7 @@ class TasksApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreateTasksBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function createTasksBatch($task, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createTasksBatch'][0])
     {
@@ -1549,7 +1877,7 @@ class TasksApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreateTasksBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function createTasksBatchWithHttpInfo($task, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createTasksBatch'][0])
     {
@@ -1581,7 +1909,7 @@ class TasksApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CreateTasksBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
                         $request,
                         $response,
                     );
@@ -1609,7 +1937,7 @@ class TasksApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\CreateTasksBatch200ResponseInner[]',
+                '\OpenAPI\Client\Model\BatchResponseEntity[]',
                 $request,
                 $response,
             );
@@ -1618,7 +1946,7 @@ class TasksApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreateTasksBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1680,7 +2008,7 @@ class TasksApi
      */
     public function createTasksBatchAsyncWithHttpInfo($task, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createTasksBatch'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CreateTasksBatch200ResponseInner[]';
+        $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
         $request = $this->createTasksBatchRequest($task, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
@@ -2947,7 +3275,7 @@ class TasksApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function deleteTasksBatch($task, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteTasksBatch'][0])
     {
@@ -2968,7 +3296,7 @@ class TasksApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteTasksBatchWithHttpInfo($task, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteTasksBatch'][0])
     {
@@ -3000,7 +3328,7 @@ class TasksApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteRowResult[]',
                         $request,
                         $response,
                     );
@@ -3028,7 +3356,7 @@ class TasksApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                '\OpenAPI\Client\Model\DeleteRowResult[]',
                 $request,
                 $response,
             );
@@ -3037,7 +3365,7 @@ class TasksApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteRowResult[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3097,7 +3425,7 @@ class TasksApi
      */
     public function deleteTasksBatchAsyncWithHttpInfo($task, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteTasksBatch'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]';
+        $returnType = '\OpenAPI\Client\Model\DeleteRowResult[]';
         $request = $this->deleteTasksBatchRequest($task, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client

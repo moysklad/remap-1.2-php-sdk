@@ -44,6 +44,7 @@ class CreateRetailDemandPositions200ResponseInner implements ModelInterface, Arr
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+    protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
     /**
       * Array of nested discriminator mappings. Used for polymorphic deserialization
@@ -174,6 +175,17 @@ class CreateRetailDemandPositions200ResponseInner implements ModelInterface, Arr
     public static function openAPIPolymorphicDiscriminatorMappings(): array
     {
         return self::$openAPIPolymorphicDiscriminatorMappings;
+    }
+
+    /**
+     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * discriminator mappings do not match.
+     *
+     * @return bool
+     */
+    public static function openAPIPolymorphicBatchErrorFallback(): bool
+    {
+        return self::$openAPIPolymorphicBatchErrorFallback;
     }
 
     /**
@@ -401,8 +413,20 @@ class CreateRetailDemandPositions200ResponseInner implements ModelInterface, Arr
         $invalidProperties = [];
         
 
-        if (!is_null($this->container['quantity']) && ($this->container['quantity'] <= 0)) {
-            $invalidProperties[] = "invalid value for 'quantity', must be bigger than 0.";
+        if (!is_null($this->container['cost']) && ($this->container['cost'] < 0)) {
+            $invalidProperties[] = "invalid value for 'cost', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['discount']) && ($this->container['discount'] > 100)) {
+            $invalidProperties[] = "invalid value for 'discount', must be smaller than or equal to 100.";
+        }
+
+        if (!is_null($this->container['price']) && ($this->container['price'] < 0)) {
+            $invalidProperties[] = "invalid value for 'price', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['quantity']) && ($this->container['quantity'] <= 0.00010)) {
+            $invalidProperties[] = "invalid value for 'quantity', must be bigger than 0.00010.";
         }
 
         if ($this->container['errors'] === null) {
@@ -555,6 +579,11 @@ class CreateRetailDemandPositions200ResponseInner implements ModelInterface, Arr
         if (is_null($cost)) {
             throw new \InvalidArgumentException('non-nullable cost cannot be null');
         }
+
+        if (($cost < 0)) {
+            throw new \InvalidArgumentException('invalid value for $cost when calling CreateRetailDemandPositions200ResponseInner., must be bigger than or equal to 0.');
+        }
+
         $this->container['cost'] = $cost;
 
         return $this;
@@ -609,6 +638,11 @@ class CreateRetailDemandPositions200ResponseInner implements ModelInterface, Arr
         if (is_null($discount)) {
             throw new \InvalidArgumentException('non-nullable discount cannot be null');
         }
+
+        if (($discount > 100)) {
+            throw new \InvalidArgumentException('invalid value for $discount when calling CreateRetailDemandPositions200ResponseInner., must be smaller than or equal to 100.');
+        }
+
         $this->container['discount'] = $discount;
 
         return $this;
@@ -670,6 +704,11 @@ class CreateRetailDemandPositions200ResponseInner implements ModelInterface, Arr
         if (is_null($price)) {
             throw new \InvalidArgumentException('non-nullable price cannot be null');
         }
+
+        if (($price < 0)) {
+            throw new \InvalidArgumentException('invalid value for $price when calling CreateRetailDemandPositions200ResponseInner., must be bigger than or equal to 0.');
+        }
+
         $this->container['price'] = $price;
 
         return $this;
@@ -698,8 +737,8 @@ class CreateRetailDemandPositions200ResponseInner implements ModelInterface, Arr
             throw new \InvalidArgumentException('non-nullable quantity cannot be null');
         }
 
-        if (($quantity <= 0)) {
-            throw new \InvalidArgumentException('invalid value for $quantity when calling CreateRetailDemandPositions200ResponseInner., must be bigger than 0.');
+        if (($quantity <= 0.00010)) {
+            throw new \InvalidArgumentException('invalid value for $quantity when calling CreateRetailDemandPositions200ResponseInner., must be bigger than 0.00010.');
         }
 
         $this->container['quantity'] = $quantity;

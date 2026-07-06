@@ -542,7 +542,7 @@ class SalesReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreateSalesReturnBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function createSalesReturnBatch($sales_return, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSalesReturnBatch'][0])
     {
@@ -564,7 +564,7 @@ class SalesReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreateSalesReturnBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function createSalesReturnBatchWithHttpInfo($sales_return, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSalesReturnBatch'][0])
     {
@@ -596,7 +596,7 @@ class SalesReturnsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CreateSalesReturnBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
                         $request,
                         $response,
                     );
@@ -624,7 +624,7 @@ class SalesReturnsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\CreateSalesReturnBatch200ResponseInner[]',
+                '\OpenAPI\Client\Model\BatchResponseEntity[]',
                 $request,
                 $response,
             );
@@ -633,7 +633,7 @@ class SalesReturnsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreateSalesReturnBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -695,7 +695,7 @@ class SalesReturnsApi
      */
     public function createSalesReturnBatchAsyncWithHttpInfo($sales_return, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSalesReturnBatch'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CreateSalesReturnBatch200ResponseInner[]';
+        $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
         $request = $this->createSalesReturnBatchRequest($sales_return, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
@@ -2178,7 +2178,7 @@ class SalesReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function deleteSalesReturnBatch($sales_return, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteSalesReturnBatch'][0])
     {
@@ -2199,7 +2199,7 @@ class SalesReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteSalesReturnBatchWithHttpInfo($sales_return, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteSalesReturnBatch'][0])
     {
@@ -2231,7 +2231,7 @@ class SalesReturnsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteRowResult[]',
                         $request,
                         $response,
                     );
@@ -2259,7 +2259,7 @@ class SalesReturnsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                '\OpenAPI\Client\Model\DeleteRowResult[]',
                 $request,
                 $response,
             );
@@ -2268,7 +2268,7 @@ class SalesReturnsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteRowResult[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2328,7 +2328,7 @@ class SalesReturnsApi
      */
     public function deleteSalesReturnBatchAsyncWithHttpInfo($sales_return, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteSalesReturnBatch'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]';
+        $returnType = '\OpenAPI\Client\Model\DeleteRowResult[]';
         $request = $this->deleteSalesReturnBatchRequest($sales_return, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
@@ -3331,7 +3331,7 @@ class SalesReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function deleteSalesReturnPositionsBatch($id, $sales_return_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteSalesReturnPositionsBatch'][0])
     {
@@ -3353,7 +3353,7 @@ class SalesReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteSalesReturnPositionsBatchWithHttpInfo($id, $sales_return_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteSalesReturnPositionsBatch'][0])
     {
@@ -3385,7 +3385,7 @@ class SalesReturnsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteRowResult[]',
                         $request,
                         $response,
                     );
@@ -3413,7 +3413,7 @@ class SalesReturnsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                '\OpenAPI\Client\Model\DeleteRowResult[]',
                 $request,
                 $response,
             );
@@ -3422,7 +3422,7 @@ class SalesReturnsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteRowResult[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3484,7 +3484,7 @@ class SalesReturnsApi
      */
     public function deleteSalesReturnPositionsBatchAsyncWithHttpInfo($id, $sales_return_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteSalesReturnPositionsBatch'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]';
+        $returnType = '\OpenAPI\Client\Model\DeleteRowResult[]';
         $request = $this->deleteSalesReturnPositionsBatchRequest($id, $sales_return_position, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client

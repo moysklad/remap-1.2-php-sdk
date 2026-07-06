@@ -45,10 +45,10 @@ $apiInstance = new OpenAPI\Client\Api\SalesChannelsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$sales_channel = new \OpenAPI\Client\Model\SalesChannel(); // \OpenAPI\Client\Model\SalesChannel
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$sales_channel = {name=Телефонный звонок, type=OTHER, code=phone-call, description=Заказы по телефону, shared=true, archived=false}; // \OpenAPI\Client\Model\SalesChannel
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -89,7 +89,7 @@ try {
 ## `createSalesChannelsBatch()`
 
 ```php
-createSalesChannelsBatch($sales_channel, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateSalesChannelsBatch200ResponseInner[]
+createSalesChannelsBatch($sales_channel, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
 ```
 
 Создать или изменить Каналы продаж
@@ -118,10 +118,10 @@ $apiInstance = new OpenAPI\Client\Api\SalesChannelsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$sales_channel = array(new \OpenAPI\Client\Model\SalesChannel()); // \OpenAPI\Client\Model\SalesChannel[]
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$sales_channel = [{name=Заказы из ИМ, type=ECOMMERCE, code=ecommerce, description=Заказы с интернет-магазина, shared=true, archived=true}]; // \OpenAPI\Client\Model\SalesChannel[]
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -144,7 +144,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateSalesChannelsBatch200ResponseInner[]**](../Model/CreateSalesChannelsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -191,9 +191,9 @@ $apiInstance = new OpenAPI\Client\Api\SalesChannelsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteSalesChannel($id, $accept, $accept_encoding);
@@ -230,7 +230,7 @@ void (empty response body)
 ## `deleteSalesChannelsBatch()`
 
 ```php
-deleteSalesChannelsBatch($sales_channel, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteSalesChannelsBatch($sales_channel, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Удалить Каналы продаж
@@ -261,7 +261,7 @@ $apiInstance = new OpenAPI\Client\Api\SalesChannelsApi(
 );
 $sales_channel = array(new \OpenAPI\Client\Model\SalesChannel()); // \OpenAPI\Client\Model\SalesChannel[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -283,7 +283,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -330,10 +330,10 @@ $apiInstance = new OpenAPI\Client\Api\SalesChannelsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$id = 'id_example'; // string | ID сущности
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getSalesChannelById($id, $expand, $accept, $accept_encoding);
@@ -403,12 +403,12 @@ $apiInstance = new OpenAPI\Client\Api\SalesChannelsApi(
 );
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$search = name=123; // string | Контекстный поиск по строковым полям сущностей
-$filter = archived=false; // string | Фильтрация выборки
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$order = name; // string | Сортировка
+$search = 'search_example'; // string | Контекстный поиск по строковым полям сущностей
+$filter = 'filter_example'; // string | Фильтрация выборки
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$order = 'order_example'; // string | Сортировка
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getSalesChannels($limit, $offset, $search, $filter, $expand, $order, $accept, $accept_encoding);
@@ -480,11 +480,11 @@ $apiInstance = new OpenAPI\Client\Api\SalesChannelsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $sales_channel = new \OpenAPI\Client\Model\SalesChannel(); // \OpenAPI\Client\Model\SalesChannel
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {

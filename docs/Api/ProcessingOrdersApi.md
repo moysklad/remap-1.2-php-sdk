@@ -9,6 +9,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createProcessingOrderBatch()**](ProcessingOrdersApi.md#createProcessingOrderBatch) | **POST** /entity/processingorder/batch | Массовое создание и обновление ProcessingOrder |
 | [**createProcessingOrderMetadataAttribute()**](ProcessingOrdersApi.md#createProcessingOrderMetadataAttribute) | **POST** /entity/processingorder/metadata/attributes | Создать Доп. поле ProcessingOrder |
 | [**createProcessingOrderMetadataState()**](ProcessingOrdersApi.md#createProcessingOrderMetadataState) | **POST** /entity/processingorder/metadata/states | Создать статус ProcessingOrder |
+| [**createProcessingOrderMetadataStatesBatch()**](ProcessingOrdersApi.md#createProcessingOrderMetadataStatesBatch) | **POST** /entity/processingorder/metadata/states/batch | Массовое создание и обновление статусов ProcessingOrder |
 | [**createProcessingOrderPosition()**](ProcessingOrdersApi.md#createProcessingOrderPosition) | **POST** /entity/processingorder/{id}/positions | Обновить позицию ProcessingOrder |
 | [**createProcessingOrderPositions()**](ProcessingOrdersApi.md#createProcessingOrderPositions) | **POST** /entity/processingorder/{id}/positions/batch | Массовое изменение позиций Заказа на производство |
 | [**deleteProcessingOrder()**](ProcessingOrdersApi.md#deleteProcessingOrder) | **DELETE** /entity/processingorder/{id} | Удалить ProcessingOrder |
@@ -67,10 +68,10 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $file_upload = array(new \OpenAPI\Client\Model\FileUpload()); // \OpenAPI\Client\Model\FileUpload[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -139,9 +140,9 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
     $config
 );
 $processing_order = new \OpenAPI\Client\Model\ProcessingOrder(); // \OpenAPI\Client\Model\ProcessingOrder
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -182,7 +183,7 @@ try {
 ## `createProcessingOrderBatch()`
 
 ```php
-createProcessingOrderBatch($processing_order, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateProcessingOrderBatch200ResponseInner[]
+createProcessingOrderBatch($processing_order, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
 ```
 
 Массовое создание и обновление ProcessingOrder
@@ -210,9 +211,9 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
     $config
 );
 $processing_order = array(new \OpenAPI\Client\Model\ProcessingOrder()); // \OpenAPI\Client\Model\ProcessingOrder[]
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -235,7 +236,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateProcessingOrderBatch200ResponseInner[]**](../Model/CreateProcessingOrderBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -282,7 +283,7 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
 );
 $attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -349,9 +350,9 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$state = new \OpenAPI\Client\Model\State(); // \OpenAPI\Client\Model\State
+$state = {name=Одобрено, color=69446, stateType=Regular}; // \OpenAPI\Client\Model\State
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -374,6 +375,75 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\State**](../Model/State.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createProcessingOrderMetadataStatesBatch()`
+
+```php
+createProcessingOrderMetadataStatesBatch($state, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\StateRowResult[]
+```
+
+Массовое создание и обновление статусов ProcessingOrder
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$state = array(new \OpenAPI\Client\Model\State()); // \OpenAPI\Client\Model\State[]
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createProcessingOrderMetadataStatesBatch($state, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProcessingOrdersApi->createProcessingOrderMetadataStatesBatch: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **state** | [**\OpenAPI\Client\Model\State[]**](../Model/State.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\StateRowResult[]**](../Model/StateRowResult.md)
 
 ### Authorization
 
@@ -418,11 +488,11 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $processing_order_position = new \OpenAPI\Client\Model\ProcessingOrderPosition(); // \OpenAPI\Client\Model\ProcessingOrderPosition
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -491,11 +561,11 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $processing_order_position = array(new \OpenAPI\Client\Model\ProcessingOrderPosition()); // \OpenAPI\Client\Model\ProcessingOrderPosition[]
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -564,9 +634,9 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteProcessingOrder($id, $accept, $accept_encoding);
@@ -603,7 +673,7 @@ void (empty response body)
 ## `deleteProcessingOrderBatch()`
 
 ```php
-deleteProcessingOrderBatch($processing_order, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteProcessingOrderBatch($processing_order, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Массовое удаление ProcessingOrder
@@ -632,7 +702,7 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
 );
 $processing_order = array(new \OpenAPI\Client\Model\ProcessingOrder()); // \OpenAPI\Client\Model\ProcessingOrder[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -654,7 +724,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -701,10 +771,10 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $file_id = 'file_id_example'; // string | ID файла
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteProcessingOrderFile($id, $file_id, $accept, $accept_encoding);
@@ -769,9 +839,9 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteProcessingOrderMetadataAttributeById($id, $accept, $accept_encoding);
@@ -835,9 +905,9 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteProcessingOrderMetadataStateById($id, $accept, $accept_encoding);
@@ -901,10 +971,10 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$position_id = 12a8b923-692c-11e6-8a84-bae500000054; // string | ID позиции
+$id = 'id_example'; // string | ID сущности
+$position_id = 'position_id_example'; // string | ID позиции
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteProcessingOrderPosition($id, $position_id, $accept, $accept_encoding);
@@ -942,7 +1012,7 @@ void (empty response body)
 ## `deleteProcessingOrderPositionsBatch()`
 
 ```php
-deleteProcessingOrderPositionsBatch($id, $processing_order_position, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteProcessingOrderPositionsBatch($id, $processing_order_position, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Массовое удаление позиций ProcessingOrder
@@ -969,10 +1039,10 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $processing_order_position = array(new \OpenAPI\Client\Model\ProcessingOrderPosition()); // \OpenAPI\Client\Model\ProcessingOrderPosition[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -995,7 +1065,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -1040,10 +1110,10 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$id = 'id_example'; // string | ID сущности
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getProcessingOrderById($id, $expand, $accept, $accept_encoding);
@@ -1111,10 +1181,10 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $file_id = 'file_id_example'; // string | ID файла
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getProcessingOrderFile($id, $file_id, $accept, $accept_encoding);
@@ -1182,11 +1252,11 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getProcessingOrderFiles($id, $limit, $offset, $accept, $accept_encoding);
@@ -1255,10 +1325,10 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
 );
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$search = name=123; // string | Контекстный поиск по строковым полям сущностей
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$search = 'search_example'; // string | Контекстный поиск по строковым полям сущностей
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getProcessingOrderList($limit, $offset, $search, $expand, $accept, $accept_encoding);
@@ -1327,7 +1397,7 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getProcessingOrderMetadata($accept, $accept_encoding);
@@ -1394,7 +1464,7 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
 $offset = 0; // int | Отступ в выданном списке
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getProcessingOrderMetadataAttribute($offset, $limit, $accept, $accept_encoding);
@@ -1460,9 +1530,9 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getProcessingOrderMetadataAttributeById($id, $accept, $accept_encoding);
@@ -1527,9 +1597,9 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getProcessingOrderMetadataStateById($id, $accept, $accept_encoding);
@@ -1594,11 +1664,11 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$position_id = 12a8b923-692c-11e6-8a84-bae500000054; // string | ID позиции
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$id = 'id_example'; // string | ID сущности
+$position_id = 'position_id_example'; // string | ID позиции
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getProcessingOrderPositionById($id, $position_id, $expand, $accept, $accept_encoding);
@@ -1665,12 +1735,12 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getProcessingOrderPositions($id, $limit, $offset, $expand, $accept, $accept_encoding);
@@ -1739,7 +1809,7 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 $body = array('key' => new \stdClass); // object
 
@@ -1807,11 +1877,11 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $processing_order = new \OpenAPI\Client\Model\ProcessingOrder(); // \OpenAPI\Client\Model\ProcessingOrder
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1880,10 +1950,10 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1951,10 +2021,10 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $state = new \OpenAPI\Client\Model\State(); // \OpenAPI\Client\Model\State
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -2022,12 +2092,12 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$position_id = 12a8b923-692c-11e6-8a84-bae500000054; // string | ID позиции
+$id = 'id_example'; // string | ID сущности
+$position_id = 'position_id_example'; // string | ID позиции
 $processing_order_position = new \OpenAPI\Client\Model\ProcessingOrderPosition(); // \OpenAPI\Client\Model\ProcessingOrderPosition
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {

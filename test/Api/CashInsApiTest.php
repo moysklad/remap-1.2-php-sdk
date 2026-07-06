@@ -120,6 +120,18 @@ class CashInsApiTest extends TestCase
     }
 
     /**
+     * Test case for createCashInMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов CashIn.
+     *
+     */
+    public function testCreateCashInMetadataStatesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteCashIn
      *
      * Удалить CashIn.

@@ -35,7 +35,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * RetailShift Class Doc Comment
  *
  * @category Class
- * @description Смена (retailshift). Заглушка: в спецификации нет полного описания сущности; при развёртывании в ответе API возможны дополнительные поля.
+ * @description Розничная смена
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -45,6 +45,7 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+    protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
     /**
       * Array of nested discriminator mappings. Used for polymorphic deserialization
@@ -85,7 +86,41 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'string',
         'moment' => 'string',
         'retail_store' => '\OpenAPI\Client\Model\RetailStore',
-        'payments' => '\OpenAPI\Client\Model\RetailShiftPaymentsInner[]'
+        'payments' => '\OpenAPI\Client\Model\RetailShiftPaymentsInner[]',
+        'acquire' => '\OpenAPI\Client\Model\Agent',
+        'agent_account' => '\OpenAPI\Client\Model\Account',
+        'attributes' => '\OpenAPI\Client\Model\AttributeAbstract[]',
+        'bank_comission' => 'float',
+        'bank_percent' => 'float',
+        'cheque' => '\OpenAPI\Client\Model\RetailShiftCheque',
+        'close_date' => 'string',
+        'contract' => '\OpenAPI\Client\Model\Contract',
+        'created' => 'string',
+        'deleted' => 'string',
+        'description' => 'string',
+        'external_code' => 'string',
+        'files' => '\OpenAPI\Client\Model\FileList',
+        'group' => '\OpenAPI\Client\Model\Group',
+        'operations' => '\OpenAPI\Client\Model\RetailShiftOperation[]',
+        'organization' => '\OpenAPI\Client\Model\Organization',
+        'organization_account' => '\OpenAPI\Client\Model\Account',
+        'owner' => '\OpenAPI\Client\Model\Employee',
+        'payment_operations' => '\OpenAPI\Client\Model\RetailShiftPaymentOperation[]',
+        'printed' => 'bool',
+        'proceeds_cash' => 'float',
+        'proceeds_no_cash' => 'float',
+        'published' => 'bool',
+        'qr_acquire' => '\OpenAPI\Client\Model\Agent',
+        'qr_bank_comission' => 'float',
+        'qr_bank_percent' => 'float',
+        'received_cash' => 'float',
+        'received_no_cash' => 'float',
+        'shared' => 'bool',
+        'store' => '\OpenAPI\Client\Model\Store',
+        'sync_id' => 'string',
+        'updated' => 'string',
+        'vat_enabled' => 'bool',
+        'vat_included' => 'bool'
     ];
 
     /**
@@ -102,7 +137,41 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => null,
         'moment' => null,
         'retail_store' => null,
-        'payments' => null
+        'payments' => null,
+        'acquire' => null,
+        'agent_account' => null,
+        'attributes' => null,
+        'bank_comission' => 'double',
+        'bank_percent' => 'double',
+        'cheque' => null,
+        'close_date' => null,
+        'contract' => null,
+        'created' => null,
+        'deleted' => null,
+        'description' => null,
+        'external_code' => null,
+        'files' => null,
+        'group' => null,
+        'operations' => null,
+        'organization' => null,
+        'organization_account' => null,
+        'owner' => null,
+        'payment_operations' => null,
+        'printed' => null,
+        'proceeds_cash' => 'double',
+        'proceeds_no_cash' => 'double',
+        'published' => null,
+        'qr_acquire' => null,
+        'qr_bank_comission' => 'double',
+        'qr_bank_percent' => 'double',
+        'received_cash' => 'double',
+        'received_no_cash' => 'double',
+        'shared' => null,
+        'store' => null,
+        'sync_id' => 'uuid',
+        'updated' => null,
+        'vat_enabled' => null,
+        'vat_included' => null
     ];
 
     /**
@@ -117,7 +186,41 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => false,
         'moment' => false,
         'retail_store' => true,
-        'payments' => true
+        'payments' => true,
+        'acquire' => true,
+        'agent_account' => true,
+        'attributes' => true,
+        'bank_comission' => false,
+        'bank_percent' => false,
+        'cheque' => true,
+        'close_date' => true,
+        'contract' => true,
+        'created' => false,
+        'deleted' => true,
+        'description' => true,
+        'external_code' => false,
+        'files' => true,
+        'group' => false,
+        'operations' => true,
+        'organization' => false,
+        'organization_account' => true,
+        'owner' => true,
+        'payment_operations' => true,
+        'printed' => false,
+        'proceeds_cash' => false,
+        'proceeds_no_cash' => false,
+        'published' => false,
+        'qr_acquire' => true,
+        'qr_bank_comission' => false,
+        'qr_bank_percent' => false,
+        'received_cash' => false,
+        'received_no_cash' => false,
+        'shared' => false,
+        'store' => false,
+        'sync_id' => false,
+        'updated' => false,
+        'vat_enabled' => false,
+        'vat_included' => false
     ];
 
     /**
@@ -165,6 +268,17 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
     public static function openAPIPolymorphicDiscriminatorMappings(): array
     {
         return self::$openAPIPolymorphicDiscriminatorMappings;
+    }
+
+    /**
+     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * discriminator mappings do not match.
+     *
+     * @return bool
+     */
+    public static function openAPIPolymorphicBatchErrorFallback(): bool
+    {
+        return self::$openAPIPolymorphicBatchErrorFallback;
     }
 
     /**
@@ -232,7 +346,41 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'name',
         'moment' => 'moment',
         'retail_store' => 'retailStore',
-        'payments' => 'payments'
+        'payments' => 'payments',
+        'acquire' => 'acquire',
+        'agent_account' => 'agentAccount',
+        'attributes' => 'attributes',
+        'bank_comission' => 'bankComission',
+        'bank_percent' => 'bankPercent',
+        'cheque' => 'cheque',
+        'close_date' => 'closeDate',
+        'contract' => 'contract',
+        'created' => 'created',
+        'deleted' => 'deleted',
+        'description' => 'description',
+        'external_code' => 'externalCode',
+        'files' => 'files',
+        'group' => 'group',
+        'operations' => 'operations',
+        'organization' => 'organization',
+        'organization_account' => 'organizationAccount',
+        'owner' => 'owner',
+        'payment_operations' => 'paymentOperations',
+        'printed' => 'printed',
+        'proceeds_cash' => 'proceedsCash',
+        'proceeds_no_cash' => 'proceedsNoCash',
+        'published' => 'published',
+        'qr_acquire' => 'qrAcquire',
+        'qr_bank_comission' => 'qrBankComission',
+        'qr_bank_percent' => 'qrBankPercent',
+        'received_cash' => 'receivedCash',
+        'received_no_cash' => 'receivedNoCash',
+        'shared' => 'shared',
+        'store' => 'store',
+        'sync_id' => 'syncId',
+        'updated' => 'updated',
+        'vat_enabled' => 'vatEnabled',
+        'vat_included' => 'vatIncluded'
     ];
 
     /**
@@ -247,7 +395,41 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'setName',
         'moment' => 'setMoment',
         'retail_store' => 'setRetailStore',
-        'payments' => 'setPayments'
+        'payments' => 'setPayments',
+        'acquire' => 'setAcquire',
+        'agent_account' => 'setAgentAccount',
+        'attributes' => 'setAttributes',
+        'bank_comission' => 'setBankComission',
+        'bank_percent' => 'setBankPercent',
+        'cheque' => 'setCheque',
+        'close_date' => 'setCloseDate',
+        'contract' => 'setContract',
+        'created' => 'setCreated',
+        'deleted' => 'setDeleted',
+        'description' => 'setDescription',
+        'external_code' => 'setExternalCode',
+        'files' => 'setFiles',
+        'group' => 'setGroup',
+        'operations' => 'setOperations',
+        'organization' => 'setOrganization',
+        'organization_account' => 'setOrganizationAccount',
+        'owner' => 'setOwner',
+        'payment_operations' => 'setPaymentOperations',
+        'printed' => 'setPrinted',
+        'proceeds_cash' => 'setProceedsCash',
+        'proceeds_no_cash' => 'setProceedsNoCash',
+        'published' => 'setPublished',
+        'qr_acquire' => 'setQrAcquire',
+        'qr_bank_comission' => 'setQrBankComission',
+        'qr_bank_percent' => 'setQrBankPercent',
+        'received_cash' => 'setReceivedCash',
+        'received_no_cash' => 'setReceivedNoCash',
+        'shared' => 'setShared',
+        'store' => 'setStore',
+        'sync_id' => 'setSyncId',
+        'updated' => 'setUpdated',
+        'vat_enabled' => 'setVatEnabled',
+        'vat_included' => 'setVatIncluded'
     ];
 
     /**
@@ -262,7 +444,41 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'getName',
         'moment' => 'getMoment',
         'retail_store' => 'getRetailStore',
-        'payments' => 'getPayments'
+        'payments' => 'getPayments',
+        'acquire' => 'getAcquire',
+        'agent_account' => 'getAgentAccount',
+        'attributes' => 'getAttributes',
+        'bank_comission' => 'getBankComission',
+        'bank_percent' => 'getBankPercent',
+        'cheque' => 'getCheque',
+        'close_date' => 'getCloseDate',
+        'contract' => 'getContract',
+        'created' => 'getCreated',
+        'deleted' => 'getDeleted',
+        'description' => 'getDescription',
+        'external_code' => 'getExternalCode',
+        'files' => 'getFiles',
+        'group' => 'getGroup',
+        'operations' => 'getOperations',
+        'organization' => 'getOrganization',
+        'organization_account' => 'getOrganizationAccount',
+        'owner' => 'getOwner',
+        'payment_operations' => 'getPaymentOperations',
+        'printed' => 'getPrinted',
+        'proceeds_cash' => 'getProceedsCash',
+        'proceeds_no_cash' => 'getProceedsNoCash',
+        'published' => 'getPublished',
+        'qr_acquire' => 'getQrAcquire',
+        'qr_bank_comission' => 'getQrBankComission',
+        'qr_bank_percent' => 'getQrBankPercent',
+        'received_cash' => 'getReceivedCash',
+        'received_no_cash' => 'getReceivedNoCash',
+        'shared' => 'getShared',
+        'store' => 'getStore',
+        'sync_id' => 'getSyncId',
+        'updated' => 'getUpdated',
+        'vat_enabled' => 'getVatEnabled',
+        'vat_included' => 'getVatIncluded'
     ];
 
     /**
@@ -332,6 +548,40 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('moment', $data ?? [], null);
         $this->setIfExists('retail_store', $data ?? [], null);
         $this->setIfExists('payments', $data ?? [], null);
+        $this->setIfExists('acquire', $data ?? [], null);
+        $this->setIfExists('agent_account', $data ?? [], null);
+        $this->setIfExists('attributes', $data ?? [], null);
+        $this->setIfExists('bank_comission', $data ?? [], null);
+        $this->setIfExists('bank_percent', $data ?? [], null);
+        $this->setIfExists('cheque', $data ?? [], null);
+        $this->setIfExists('close_date', $data ?? [], null);
+        $this->setIfExists('contract', $data ?? [], null);
+        $this->setIfExists('created', $data ?? [], null);
+        $this->setIfExists('deleted', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('external_code', $data ?? [], null);
+        $this->setIfExists('files', $data ?? [], null);
+        $this->setIfExists('group', $data ?? [], null);
+        $this->setIfExists('operations', $data ?? [], null);
+        $this->setIfExists('organization', $data ?? [], null);
+        $this->setIfExists('organization_account', $data ?? [], null);
+        $this->setIfExists('owner', $data ?? [], null);
+        $this->setIfExists('payment_operations', $data ?? [], null);
+        $this->setIfExists('printed', $data ?? [], null);
+        $this->setIfExists('proceeds_cash', $data ?? [], null);
+        $this->setIfExists('proceeds_no_cash', $data ?? [], null);
+        $this->setIfExists('published', $data ?? [], null);
+        $this->setIfExists('qr_acquire', $data ?? [], null);
+        $this->setIfExists('qr_bank_comission', $data ?? [], null);
+        $this->setIfExists('qr_bank_percent', $data ?? [], null);
+        $this->setIfExists('received_cash', $data ?? [], null);
+        $this->setIfExists('received_no_cash', $data ?? [], null);
+        $this->setIfExists('shared', $data ?? [], null);
+        $this->setIfExists('store', $data ?? [], null);
+        $this->setIfExists('sync_id', $data ?? [], null);
+        $this->setIfExists('updated', $data ?? [], null);
+        $this->setIfExists('vat_enabled', $data ?? [], null);
+        $this->setIfExists('vat_included', $data ?? [], null);
     }
 
     /**
@@ -366,6 +616,30 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
 
         if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 255)) {
             $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['bank_percent']) && ($this->container['bank_percent'] > 100)) {
+            $invalidProperties[] = "invalid value for 'bank_percent', must be smaller than or equal to 100.";
+        }
+
+        if (!is_null($this->container['bank_percent']) && ($this->container['bank_percent'] < 0)) {
+            $invalidProperties[] = "invalid value for 'bank_percent', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['description']) && (mb_strlen($this->container['description']) > 4096)) {
+            $invalidProperties[] = "invalid value for 'description', the character length must be smaller than or equal to 4096.";
+        }
+
+        if (!is_null($this->container['external_code']) && (mb_strlen($this->container['external_code']) > 255)) {
+            $invalidProperties[] = "invalid value for 'external_code', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['qr_bank_percent']) && ($this->container['qr_bank_percent'] > 100)) {
+            $invalidProperties[] = "invalid value for 'qr_bank_percent', must be smaller than or equal to 100.";
+        }
+
+        if (!is_null($this->container['qr_bank_percent']) && ($this->container['qr_bank_percent'] < 0)) {
+            $invalidProperties[] = "invalid value for 'qr_bank_percent', must be bigger than or equal to 0.";
         }
 
         return $invalidProperties;
@@ -423,7 +697,7 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param string|null $id ID смены
+     * @param string|null $id ID Розничной смены
      *
      * @return self
      */
@@ -586,6 +860,1072 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['payments'] = $payments;
+
+        return $this;
+    }
+
+    /**
+     * Gets acquire
+     *
+     * @return \OpenAPI\Client\Model\Agent|null
+     */
+    public function getAcquire()
+    {
+        return $this->container['acquire'];
+    }
+
+    /**
+     * Sets acquire
+     *
+     * Accepts a Counterparty, Organization, or Agent instance (or null when nullable).
+     * On the wire the server only reads `meta`; non-meta fields are kept locally for
+     * type-safe access and serialized verbatim.
+     *
+     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $acquire Метаданные Банка-эквайера по операциям по карте
+     *
+     * @return self
+     */
+    public function setAcquire($acquire)
+    {
+        if (is_null($acquire)) {
+            array_push($this->openAPINullablesSetToNull, 'acquire');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('acquire', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($acquire)
+            && !($acquire instanceof \OpenAPI\Client\Model\Counterparty)
+            && !($acquire instanceof \OpenAPI\Client\Model\Organization)
+            && !($acquire instanceof \OpenAPI\Client\Model\Agent)) {
+            throw new \InvalidArgumentException(
+                "Argument for 'acquire' must be one of Counterparty, Organization, or Agent; got "
+                . (is_object($acquire) ? get_class($acquire) : gettype($acquire))
+            );
+        }
+        $this->container['acquire'] = $acquire;
+
+        return $this;
+    }
+
+    /**
+     * Gets agent_account
+     *
+     * @return \OpenAPI\Client\Model\Account|null
+     */
+    public function getAgentAccount()
+    {
+        return $this->container['agent_account'];
+    }
+
+    /**
+     * Sets agent_account
+     *
+     * @param \OpenAPI\Client\Model\Account|null $agent_account Метаданные счета контрагента
+     *
+     * @return self
+     */
+    public function setAgentAccount($agent_account)
+    {
+        if (is_null($agent_account)) {
+            array_push($this->openAPINullablesSetToNull, 'agent_account');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('agent_account', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['agent_account'] = $agent_account;
+
+        return $this;
+    }
+
+    /**
+     * Gets attributes
+     *
+     * @return \OpenAPI\Client\Model\AttributeAbstract[]|null
+     */
+    public function getAttributes()
+    {
+        return $this->container['attributes'];
+    }
+
+    /**
+     * Sets attributes
+     *
+     * @param \OpenAPI\Client\Model\AttributeAbstract[]|null $attributes Коллекция метаданных доп. полей
+     *
+     * @return self
+     */
+    public function setAttributes($attributes)
+    {
+        if (is_null($attributes)) {
+            array_push($this->openAPINullablesSetToNull, 'attributes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('attributes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['attributes'] = $attributes;
+
+        return $this;
+    }
+
+    /**
+     * Gets bank_comission
+     *
+     * @return float|null
+     */
+    public function getBankComission()
+    {
+        return $this->container['bank_comission'];
+    }
+
+    /**
+     * Sets bank_comission
+     *
+     * @param float|null $bank_comission Сумма комиссии эквайера за проведение безналичных платежей по банковской карте
+     *
+     * @return self
+     */
+    public function setBankComission($bank_comission)
+    {
+        if (is_null($bank_comission)) {
+            throw new \InvalidArgumentException('non-nullable bank_comission cannot be null');
+        }
+        $this->container['bank_comission'] = $bank_comission;
+
+        return $this;
+    }
+
+    /**
+     * Gets bank_percent
+     *
+     * @return float|null
+     */
+    public function getBankPercent()
+    {
+        return $this->container['bank_percent'];
+    }
+
+    /**
+     * Sets bank_percent
+     *
+     * @param float|null $bank_percent Комиссия банка-эквайера по операциям по карте (в процентах)
+     *
+     * @return self
+     */
+    public function setBankPercent($bank_percent)
+    {
+        if (is_null($bank_percent)) {
+            throw new \InvalidArgumentException('non-nullable bank_percent cannot be null');
+        }
+
+        if (($bank_percent > 100)) {
+            throw new \InvalidArgumentException('invalid value for $bank_percent when calling RetailShift., must be smaller than or equal to 100.');
+        }
+        if (($bank_percent < 0)) {
+            throw new \InvalidArgumentException('invalid value for $bank_percent when calling RetailShift., must be bigger than or equal to 0.');
+        }
+
+        $this->container['bank_percent'] = $bank_percent;
+
+        return $this;
+    }
+
+    /**
+     * Gets cheque
+     *
+     * @return \OpenAPI\Client\Model\RetailShiftCheque|null
+     */
+    public function getCheque()
+    {
+        return $this->container['cheque'];
+    }
+
+    /**
+     * Sets cheque
+     *
+     * @param \OpenAPI\Client\Model\RetailShiftCheque|null $cheque Информация о смене ККТ
+     *
+     * @return self
+     */
+    public function setCheque($cheque)
+    {
+        if (is_null($cheque)) {
+            array_push($this->openAPINullablesSetToNull, 'cheque');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('cheque', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['cheque'] = $cheque;
+
+        return $this;
+    }
+
+    /**
+     * Gets close_date
+     *
+     * @return string|null
+     */
+    public function getCloseDate()
+    {
+        return $this->container['close_date'];
+    }
+
+    /**
+     * Sets close_date
+     *
+     * @param string|null $close_date Дата закрытия смены
+     *
+     * @return self
+     */
+    public function setCloseDate($close_date)
+    {
+        if (is_null($close_date)) {
+            array_push($this->openAPINullablesSetToNull, 'close_date');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('close_date', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['close_date'] = $close_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets contract
+     *
+     * @return \OpenAPI\Client\Model\Contract|null
+     */
+    public function getContract()
+    {
+        return $this->container['contract'];
+    }
+
+    /**
+     * Sets contract
+     *
+     * @param \OpenAPI\Client\Model\Contract|null $contract Метаданные договора
+     *
+     * @return self
+     */
+    public function setContract($contract)
+    {
+        if (is_null($contract)) {
+            array_push($this->openAPINullablesSetToNull, 'contract');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('contract', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['contract'] = $contract;
+
+        return $this;
+    }
+
+    /**
+     * Gets created
+     *
+     * @return string|null
+     */
+    public function getCreated()
+    {
+        return $this->container['created'];
+    }
+
+    /**
+     * Sets created
+     *
+     * @param string|null $created Дата создания
+     *
+     * @return self
+     */
+    public function setCreated($created)
+    {
+        if (is_null($created)) {
+            throw new \InvalidArgumentException('non-nullable created cannot be null');
+        }
+        $this->container['created'] = $created;
+
+        return $this;
+    }
+
+    /**
+     * Gets deleted
+     *
+     * @return string|null
+     */
+    public function getDeleted()
+    {
+        return $this->container['deleted'];
+    }
+
+    /**
+     * Sets deleted
+     *
+     * @param string|null $deleted Момент последнего удаления Розничной смены
+     *
+     * @return self
+     */
+    public function setDeleted($deleted)
+    {
+        if (is_null($deleted)) {
+            array_push($this->openAPINullablesSetToNull, 'deleted');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('deleted', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['deleted'] = $deleted;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description Комментарий Розничной смены
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            array_push($this->openAPINullablesSetToNull, 'description');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('description', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($description) && (mb_strlen($description) > 4096)) {
+            throw new \InvalidArgumentException('invalid length for $description when calling RetailShift., must be smaller than or equal to 4096.');
+        }
+
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets external_code
+     *
+     * @return string|null
+     */
+    public function getExternalCode()
+    {
+        return $this->container['external_code'];
+    }
+
+    /**
+     * Sets external_code
+     *
+     * @param string|null $external_code Внешний код Розничной смены
+     *
+     * @return self
+     */
+    public function setExternalCode($external_code)
+    {
+        if (is_null($external_code)) {
+            throw new \InvalidArgumentException('non-nullable external_code cannot be null');
+        }
+        if ((mb_strlen($external_code) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $external_code when calling RetailShift., must be smaller than or equal to 255.');
+        }
+
+        $this->container['external_code'] = $external_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets files
+     *
+     * @return \OpenAPI\Client\Model\FileList|null
+     */
+    public function getFiles()
+    {
+        return $this->container['files'];
+    }
+
+    /**
+     * Sets files
+     *
+     * @param \OpenAPI\Client\Model\FileList|null $files Метаданные массива Файлов
+     *
+     * @return self
+     */
+    public function setFiles($files)
+    {
+        if (is_null($files)) {
+            array_push($this->openAPINullablesSetToNull, 'files');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('files', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['files'] = $files;
+
+        return $this;
+    }
+
+    /**
+     * Gets group
+     *
+     * @return \OpenAPI\Client\Model\Group|null
+     */
+    public function getGroup()
+    {
+        return $this->container['group'];
+    }
+
+    /**
+     * Sets group
+     *
+     * @param \OpenAPI\Client\Model\Group|null $group Отдел сотрудника
+     *
+     * @return self
+     */
+    public function setGroup($group)
+    {
+        if (is_null($group)) {
+            throw new \InvalidArgumentException('non-nullable group cannot be null');
+        }
+        $this->container['group'] = $group;
+
+        return $this;
+    }
+
+    /**
+     * Gets operations
+     *
+     * @return \OpenAPI\Client\Model\RetailShiftOperation[]|null
+     */
+    public function getOperations()
+    {
+        return $this->container['operations'];
+    }
+
+    /**
+     * Sets operations
+     *
+     * @param \OpenAPI\Client\Model\RetailShiftOperation[]|null $operations Связанные операции. Допустимые типы по `meta.type`: retaildemand, retailsalesreturn, retaildrawercashin, retaildrawercashout, prepayment, prepaymentreturn.
+     *
+     * @return self
+     */
+    public function setOperations($operations)
+    {
+        if (is_null($operations)) {
+            array_push($this->openAPINullablesSetToNull, 'operations');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('operations', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['operations'] = $operations;
+
+        return $this;
+    }
+
+    /**
+     * Gets organization
+     *
+     * @return \OpenAPI\Client\Model\Organization|null
+     */
+    public function getOrganization()
+    {
+        return $this->container['organization'];
+    }
+
+    /**
+     * Sets organization
+     *
+     * @param \OpenAPI\Client\Model\Organization|null $organization organization
+     *
+     * @return self
+     */
+    public function setOrganization($organization)
+    {
+        if (is_null($organization)) {
+            throw new \InvalidArgumentException('non-nullable organization cannot be null');
+        }
+        $this->container['organization'] = $organization;
+
+        return $this;
+    }
+
+    /**
+     * Gets organization_account
+     *
+     * @return \OpenAPI\Client\Model\Account|null
+     */
+    public function getOrganizationAccount()
+    {
+        return $this->container['organization_account'];
+    }
+
+    /**
+     * Sets organization_account
+     *
+     * @param \OpenAPI\Client\Model\Account|null $organization_account Метаданные счета юрлица
+     *
+     * @return self
+     */
+    public function setOrganizationAccount($organization_account)
+    {
+        if (is_null($organization_account)) {
+            array_push($this->openAPINullablesSetToNull, 'organization_account');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('organization_account', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['organization_account'] = $organization_account;
+
+        return $this;
+    }
+
+    /**
+     * Gets owner
+     *
+     * @return \OpenAPI\Client\Model\Employee|null
+     */
+    public function getOwner()
+    {
+        return $this->container['owner'];
+    }
+
+    /**
+     * Sets owner
+     *
+     * @param \OpenAPI\Client\Model\Employee|null $owner Владелец (Сотрудник)
+     *
+     * @return self
+     */
+    public function setOwner($owner)
+    {
+        if (is_null($owner)) {
+            array_push($this->openAPINullablesSetToNull, 'owner');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('owner', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['owner'] = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Gets payment_operations
+     *
+     * @return \OpenAPI\Client\Model\RetailShiftPaymentOperation[]|null
+     */
+    public function getPaymentOperations()
+    {
+        return $this->container['payment_operations'];
+    }
+
+    /**
+     * Sets payment_operations
+     *
+     * @param \OpenAPI\Client\Model\RetailShiftPaymentOperation[]|null $payment_operations Коллекция метаданных платежных операций
+     *
+     * @return self
+     */
+    public function setPaymentOperations($payment_operations)
+    {
+        if (is_null($payment_operations)) {
+            array_push($this->openAPINullablesSetToNull, 'payment_operations');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('payment_operations', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['payment_operations'] = $payment_operations;
+
+        return $this;
+    }
+
+    /**
+     * Gets printed
+     *
+     * @return bool|null
+     */
+    public function getPrinted()
+    {
+        return $this->container['printed'];
+    }
+
+    /**
+     * Sets printed
+     *
+     * @param bool|null $printed Напечатан ли документ
+     *
+     * @return self
+     */
+    public function setPrinted($printed)
+    {
+        if (is_null($printed)) {
+            throw new \InvalidArgumentException('non-nullable printed cannot be null');
+        }
+        $this->container['printed'] = $printed;
+
+        return $this;
+    }
+
+    /**
+     * Gets proceeds_cash
+     *
+     * @return float|null
+     */
+    public function getProceedsCash()
+    {
+        return $this->container['proceeds_cash'];
+    }
+
+    /**
+     * Sets proceeds_cash
+     *
+     * @param float|null $proceeds_cash Выручка наличными
+     *
+     * @return self
+     */
+    public function setProceedsCash($proceeds_cash)
+    {
+        if (is_null($proceeds_cash)) {
+            throw new \InvalidArgumentException('non-nullable proceeds_cash cannot be null');
+        }
+        $this->container['proceeds_cash'] = $proceeds_cash;
+
+        return $this;
+    }
+
+    /**
+     * Gets proceeds_no_cash
+     *
+     * @return float|null
+     */
+    public function getProceedsNoCash()
+    {
+        return $this->container['proceeds_no_cash'];
+    }
+
+    /**
+     * Sets proceeds_no_cash
+     *
+     * @param float|null $proceeds_no_cash Выручка безнал
+     *
+     * @return self
+     */
+    public function setProceedsNoCash($proceeds_no_cash)
+    {
+        if (is_null($proceeds_no_cash)) {
+            throw new \InvalidArgumentException('non-nullable proceeds_no_cash cannot be null');
+        }
+        $this->container['proceeds_no_cash'] = $proceeds_no_cash;
+
+        return $this;
+    }
+
+    /**
+     * Gets published
+     *
+     * @return bool|null
+     */
+    public function getPublished()
+    {
+        return $this->container['published'];
+    }
+
+    /**
+     * Sets published
+     *
+     * @param bool|null $published Опубликован ли документ
+     *
+     * @return self
+     */
+    public function setPublished($published)
+    {
+        if (is_null($published)) {
+            throw new \InvalidArgumentException('non-nullable published cannot be null');
+        }
+        $this->container['published'] = $published;
+
+        return $this;
+    }
+
+    /**
+     * Gets qr_acquire
+     *
+     * @return \OpenAPI\Client\Model\Agent|null
+     */
+    public function getQrAcquire()
+    {
+        return $this->container['qr_acquire'];
+    }
+
+    /**
+     * Sets qr_acquire
+     *
+     * Accepts a Counterparty, Organization, or Agent instance (or null when nullable).
+     * On the wire the server only reads `meta`; non-meta fields are kept locally for
+     * type-safe access and serialized verbatim.
+     *
+     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $qr_acquire Метаданные Банка-эквайера по операциям по QR-коду
+     *
+     * @return self
+     */
+    public function setQrAcquire($qr_acquire)
+    {
+        if (is_null($qr_acquire)) {
+            array_push($this->openAPINullablesSetToNull, 'qr_acquire');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('qr_acquire', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($qr_acquire)
+            && !($qr_acquire instanceof \OpenAPI\Client\Model\Counterparty)
+            && !($qr_acquire instanceof \OpenAPI\Client\Model\Organization)
+            && !($qr_acquire instanceof \OpenAPI\Client\Model\Agent)) {
+            throw new \InvalidArgumentException(
+                "Argument for 'qr_acquire' must be one of Counterparty, Organization, or Agent; got "
+                . (is_object($qr_acquire) ? get_class($qr_acquire) : gettype($qr_acquire))
+            );
+        }
+        $this->container['qr_acquire'] = $qr_acquire;
+
+        return $this;
+    }
+
+    /**
+     * Gets qr_bank_comission
+     *
+     * @return float|null
+     */
+    public function getQrBankComission()
+    {
+        return $this->container['qr_bank_comission'];
+    }
+
+    /**
+     * Sets qr_bank_comission
+     *
+     * @param float|null $qr_bank_comission Сумма комиссии эквайера за проведение безналичных платежей по QR-коду
+     *
+     * @return self
+     */
+    public function setQrBankComission($qr_bank_comission)
+    {
+        if (is_null($qr_bank_comission)) {
+            throw new \InvalidArgumentException('non-nullable qr_bank_comission cannot be null');
+        }
+        $this->container['qr_bank_comission'] = $qr_bank_comission;
+
+        return $this;
+    }
+
+    /**
+     * Gets qr_bank_percent
+     *
+     * @return float|null
+     */
+    public function getQrBankPercent()
+    {
+        return $this->container['qr_bank_percent'];
+    }
+
+    /**
+     * Sets qr_bank_percent
+     *
+     * @param float|null $qr_bank_percent Комиссия банка-эквайера по операция по QR-коду (в процентах)
+     *
+     * @return self
+     */
+    public function setQrBankPercent($qr_bank_percent)
+    {
+        if (is_null($qr_bank_percent)) {
+            throw new \InvalidArgumentException('non-nullable qr_bank_percent cannot be null');
+        }
+
+        if (($qr_bank_percent > 100)) {
+            throw new \InvalidArgumentException('invalid value for $qr_bank_percent when calling RetailShift., must be smaller than or equal to 100.');
+        }
+        if (($qr_bank_percent < 0)) {
+            throw new \InvalidArgumentException('invalid value for $qr_bank_percent when calling RetailShift., must be bigger than or equal to 0.');
+        }
+
+        $this->container['qr_bank_percent'] = $qr_bank_percent;
+
+        return $this;
+    }
+
+    /**
+     * Gets received_cash
+     *
+     * @return float|null
+     */
+    public function getReceivedCash()
+    {
+        return $this->container['received_cash'];
+    }
+
+    /**
+     * Sets received_cash
+     *
+     * @param float|null $received_cash Получено наличными
+     *
+     * @return self
+     */
+    public function setReceivedCash($received_cash)
+    {
+        if (is_null($received_cash)) {
+            throw new \InvalidArgumentException('non-nullable received_cash cannot be null');
+        }
+        $this->container['received_cash'] = $received_cash;
+
+        return $this;
+    }
+
+    /**
+     * Gets received_no_cash
+     *
+     * @return float|null
+     */
+    public function getReceivedNoCash()
+    {
+        return $this->container['received_no_cash'];
+    }
+
+    /**
+     * Sets received_no_cash
+     *
+     * @param float|null $received_no_cash Получено безнал
+     *
+     * @return self
+     */
+    public function setReceivedNoCash($received_no_cash)
+    {
+        if (is_null($received_no_cash)) {
+            throw new \InvalidArgumentException('non-nullable received_no_cash cannot be null');
+        }
+        $this->container['received_no_cash'] = $received_no_cash;
+
+        return $this;
+    }
+
+    /**
+     * Gets shared
+     *
+     * @return bool|null
+     */
+    public function getShared()
+    {
+        return $this->container['shared'];
+    }
+
+    /**
+     * Sets shared
+     *
+     * @param bool|null $shared Общий доступ
+     *
+     * @return self
+     */
+    public function setShared($shared)
+    {
+        if (is_null($shared)) {
+            throw new \InvalidArgumentException('non-nullable shared cannot be null');
+        }
+        $this->container['shared'] = $shared;
+
+        return $this;
+    }
+
+    /**
+     * Gets store
+     *
+     * @return \OpenAPI\Client\Model\Store|null
+     */
+    public function getStore()
+    {
+        return $this->container['store'];
+    }
+
+    /**
+     * Sets store
+     *
+     * @param \OpenAPI\Client\Model\Store|null $store store
+     *
+     * @return self
+     */
+    public function setStore($store)
+    {
+        if (is_null($store)) {
+            throw new \InvalidArgumentException('non-nullable store cannot be null');
+        }
+        $this->container['store'] = $store;
+
+        return $this;
+    }
+
+    /**
+     * Gets sync_id
+     *
+     * @return string|null
+     */
+    public function getSyncId()
+    {
+        return $this->container['sync_id'];
+    }
+
+    /**
+     * Sets sync_id
+     *
+     * @param string|null $sync_id ID синхронизации
+     *
+     * @return self
+     */
+    public function setSyncId($sync_id)
+    {
+        if (is_null($sync_id)) {
+            throw new \InvalidArgumentException('non-nullable sync_id cannot be null');
+        }
+        $this->container['sync_id'] = $sync_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets updated
+     *
+     * @return string|null
+     */
+    public function getUpdated()
+    {
+        return $this->container['updated'];
+    }
+
+    /**
+     * Sets updated
+     *
+     * @param string|null $updated Момент последнего обновления Розничной смены
+     *
+     * @return self
+     */
+    public function setUpdated($updated)
+    {
+        if (is_null($updated)) {
+            throw new \InvalidArgumentException('non-nullable updated cannot be null');
+        }
+        $this->container['updated'] = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Gets vat_enabled
+     *
+     * @return bool|null
+     */
+    public function getVatEnabled()
+    {
+        return $this->container['vat_enabled'];
+    }
+
+    /**
+     * Sets vat_enabled
+     *
+     * @param bool|null $vat_enabled Учитывается ли НДС
+     *
+     * @return self
+     */
+    public function setVatEnabled($vat_enabled)
+    {
+        if (is_null($vat_enabled)) {
+            throw new \InvalidArgumentException('non-nullable vat_enabled cannot be null');
+        }
+        $this->container['vat_enabled'] = $vat_enabled;
+
+        return $this;
+    }
+
+    /**
+     * Gets vat_included
+     *
+     * @return bool|null
+     */
+    public function getVatIncluded()
+    {
+        return $this->container['vat_included'];
+    }
+
+    /**
+     * Sets vat_included
+     *
+     * @param bool|null $vat_included Включен ли НДС в цену
+     *
+     * @return self
+     */
+    public function setVatIncluded($vat_included)
+    {
+        if (is_null($vat_included)) {
+            throw new \InvalidArgumentException('non-nullable vat_included cannot be null');
+        }
+        $this->container['vat_included'] = $vat_included;
 
         return $this;
     }

@@ -132,6 +132,18 @@ class CommissionReportOutsApiTest extends TestCase
     }
 
     /**
+     * Test case for createCommissionReportOutMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов CommissionReportOut.
+     *
+     */
+    public function testCreateCommissionReportOutMetadataStatesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createCommissionReportOutPosition
      *
      * Создать и обновить позицию Выданного отчета комиссионера.

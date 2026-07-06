@@ -45,9 +45,9 @@ $apiInstance = new OpenAPI\Client\Api\BonusTransactionsApi(
     $config
 );
 $create_bonus_transaction_request = new \OpenAPI\Client\Model\CreateBonusTransactionRequest(); // \OpenAPI\Client\Model\CreateBonusTransactionRequest
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -117,9 +117,9 @@ $apiInstance = new OpenAPI\Client\Api\BonusTransactionsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteBonusTransaction($id, $accept, $accept_encoding);
@@ -156,7 +156,7 @@ void (empty response body)
 ## `deleteBonusTransactionsBatch()`
 
 ```php
-deleteBonusTransactionsBatch($bonus_transaction, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteBonusTransactionsBatch($bonus_transaction, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Удалить бонусные операции
@@ -187,7 +187,7 @@ $apiInstance = new OpenAPI\Client\Api\BonusTransactionsApi(
 );
 $bonus_transaction = array(new \OpenAPI\Client\Model\BonusTransaction()); // \OpenAPI\Client\Model\BonusTransaction[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -209,7 +209,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -256,10 +256,10 @@ $apiInstance = new OpenAPI\Client\Api\BonusTransactionsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$id = 'id_example'; // string | ID сущности
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getBonusTransactionById($id, $expand, $accept, $accept_encoding);
@@ -329,12 +329,12 @@ $apiInstance = new OpenAPI\Client\Api\BonusTransactionsApi(
 );
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$search = name=123; // string | Контекстный поиск по строковым полям сущностей
-$filter = archived=false; // string | Фильтрация выборки
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$order = name; // string | Сортировка
+$search = 'search_example'; // string | Контекстный поиск по строковым полям сущностей
+$filter = 'filter_example'; // string | Фильтрация выборки
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$order = 'order_example'; // string | Сортировка
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getBonusTransactions($limit, $offset, $search, $filter, $expand, $order, $accept, $accept_encoding);
@@ -406,11 +406,11 @@ $apiInstance = new OpenAPI\Client\Api\BonusTransactionsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $bonus_transaction = new \OpenAPI\Client\Model\BonusTransaction(); // \OpenAPI\Client\Model\BonusTransaction
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {

@@ -41,10 +41,11 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class CommissionReportIn implements ModelInterface, ArrayAccess, \JsonSerializable
+class CommissionReportIn extends EntityWithMeta 
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+    protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
     /**
       * Array of nested discriminator mappings. Used for polymorphic deserialization
@@ -121,7 +122,7 @@ class CommissionReportIn implements ModelInterface, ArrayAccess, \JsonSerializab
         'vat_enabled' => 'bool',
         'vat_included' => 'bool',
         'vat_sum' => 'float',
-        'payments' => '\OpenAPI\Client\Model\CustomerOrderPaymentsInner[]'
+        'payments' => '\OpenAPI\Client\Model\RetailShiftPaymentsInner[]'
     ];
 
     /**
@@ -242,7 +243,7 @@ class CommissionReportIn implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -252,7 +253,7 @@ class CommissionReportIn implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -276,13 +277,24 @@ class CommissionReportIn implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * discriminator mappings do not match.
+     *
+     * @return bool
+     */
+    public static function openAPIPolymorphicBatchErrorFallback(): bool
+    {
+        return self::$openAPIPolymorphicBatchErrorFallback;
+    }
+
+    /**
      * Array of nullable properties
      *
      * @return array
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables;
+        return self::$openAPINullables + parent::openAPINullables();
     }
 
     /**
@@ -489,7 +501,7 @@ class CommissionReportIn implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -499,7 +511,7 @@ class CommissionReportIn implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -509,7 +521,7 @@ class CommissionReportIn implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -524,13 +536,6 @@ class CommissionReportIn implements ModelInterface, ArrayAccess, \JsonSerializab
 
 
     
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-    
 
     /**
      * Constructor
@@ -540,6 +545,9 @@ class CommissionReportIn implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(?array $data = null)
     {
+        
+        parent::__construct($data);
+
         
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -612,8 +620,8 @@ class CommissionReportIn implements ModelInterface, ArrayAccess, \JsonSerializab
     public function listInvalidProperties()
     {
         
+        $invalidProperties = parent::listInvalidProperties();
         
-        $invalidProperties = [];
         
 
         if (!is_null($this->container['code']) && (mb_strlen($this->container['code']) > 255)) {
@@ -1907,7 +1915,7 @@ class CommissionReportIn implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets payments
      *
-     * @return \OpenAPI\Client\Model\CustomerOrderPaymentsInner[]|null
+     * @return \OpenAPI\Client\Model\RetailShiftPaymentsInner[]|null
      */
     public function getPayments()
     {
@@ -1917,7 +1925,7 @@ class CommissionReportIn implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets payments
      *
-     * @param \OpenAPI\Client\Model\CustomerOrderPaymentsInner[]|null $payments Массив ссылок на связанные платежи
+     * @param \OpenAPI\Client\Model\RetailShiftPaymentsInner[]|null $payments Массив ссылок на связанные платежи
      *
      * @return self
      */

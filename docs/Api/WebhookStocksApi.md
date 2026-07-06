@@ -16,7 +16,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 ## `createOrUpdateWebhookStocksBatch()`
 
 ```php
-createOrUpdateWebhookStocksBatch($webhook_stock, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateOrUpdateWebhookStocksBatch200ResponseInner[]
+createOrUpdateWebhookStocksBatch($webhook_stock, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
 ```
 
 Массово создать/обновить вебхуки на изменение остатков
@@ -45,10 +45,10 @@ $apiInstance = new OpenAPI\Client\Api\WebhookStocksApi(
     new GuzzleHttp\Client(),
     $config
 );
-$webhook_stock = array(new \OpenAPI\Client\Model\WebhookStock()); // \OpenAPI\Client\Model\WebhookStock[]
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$webhook_stock = [{url=http://www.example.com, enabled=true, stockType=stock, reportType=bystore}]; // \OpenAPI\Client\Model\WebhookStock[]
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -71,7 +71,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateOrUpdateWebhookStocksBatch200ResponseInner[]**](../Model/CreateOrUpdateWebhookStocksBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -118,10 +118,10 @@ $apiInstance = new OpenAPI\Client\Api\WebhookStocksApi(
     new GuzzleHttp\Client(),
     $config
 );
-$webhook_stock = new \OpenAPI\Client\Model\WebhookStock(); // \OpenAPI\Client\Model\WebhookStock
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$webhook_stock = {url=http://www.example.com, enabled=true, reportType=all, stockType=stock}; // \OpenAPI\Client\Model\WebhookStock
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -191,9 +191,9 @@ $apiInstance = new OpenAPI\Client\Api\WebhookStocksApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteWebhookStock($id, $accept, $accept_encoding);
@@ -230,7 +230,7 @@ void (empty response body)
 ## `deleteWebhookStocksBatch()`
 
 ```php
-deleteWebhookStocksBatch($webhook_stock, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteWebhookStocksBatch($webhook_stock, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Массовое удаление вебхуков на изменение остатков
@@ -261,7 +261,7 @@ $apiInstance = new OpenAPI\Client\Api\WebhookStocksApi(
 );
 $webhook_stock = array(new \OpenAPI\Client\Model\WebhookStock()); // \OpenAPI\Client\Model\WebhookStock[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -283,7 +283,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -330,10 +330,10 @@ $apiInstance = new OpenAPI\Client\Api\WebhookStocksApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$id = 'id_example'; // string | ID сущности
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getWebhookStockById($id, $expand, $accept, $accept_encoding);
@@ -403,12 +403,12 @@ $apiInstance = new OpenAPI\Client\Api\WebhookStocksApi(
 );
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$search = name=123; // string | Контекстный поиск по строковым полям сущностей
-$filter = archived=false; // string | Фильтрация выборки
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$order = name; // string | Сортировка
+$search = 'search_example'; // string | Контекстный поиск по строковым полям сущностей
+$filter = 'filter_example'; // string | Фильтрация выборки
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$order = 'order_example'; // string | Сортировка
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getWebhookStocks($limit, $offset, $search, $filter, $expand, $order, $accept, $accept_encoding);
@@ -480,11 +480,11 @@ $apiInstance = new OpenAPI\Client\Api\WebhookStocksApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $webhook_stock = new \OpenAPI\Client\Model\WebhookStock(); // \OpenAPI\Client\Model\WebhookStock
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {

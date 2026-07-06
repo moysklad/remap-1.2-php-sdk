@@ -132,6 +132,18 @@ class EntersApiTest extends TestCase
     }
 
     /**
+     * Test case for createEnterMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов Оприходования.
+     *
+     */
+    public function testCreateEnterMetadataStatesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createEnterPosition
      *
      * Создать и обновить позицию Оприходования.

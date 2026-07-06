@@ -42,7 +42,7 @@ $apiInstance = new OpenAPI\Client\Api\CompanySettingsApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getCompanySettings($accept, $accept_encoding);
@@ -109,7 +109,7 @@ $apiInstance = new OpenAPI\Client\Api\CompanySettingsApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getCompanySettingsMetadata($accept, $accept_encoding);
@@ -177,7 +177,7 @@ $apiInstance = new OpenAPI\Client\Api\CompanySettingsApi(
 );
 $company_settings = new \OpenAPI\Client\Model\CompanySettings(); // \OpenAPI\Client\Model\CompanySettings
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {

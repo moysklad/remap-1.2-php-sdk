@@ -46,7 +46,7 @@ Name | Type | Description | Notes
 **customer_order** | [**\OpenAPI\Client\Model\CustomerOrder**](CustomerOrder.md) | Заказ покупателя, с которым связана Отгрузка | [optional]
 **facture_out** | [**\OpenAPI\Client\Model\FactureOut**](FactureOut.md) | Счёт-фактура выданный, с которым связана Отгрузка | [optional]
 **returns** | [**\OpenAPI\Client\Model\SalesReturn[]**](SalesReturn.md) | Связанные возвраты | [optional]
-**payments** | [**\OpenAPI\Client\Model\CustomerOrderPaymentsInner[]**](CustomerOrderPaymentsInner.md) | Связанные платежи | [optional]
+**payments** | [**\OpenAPI\Client\Model\RetailShiftPaymentsInner[]**](RetailShiftPaymentsInner.md) | Связанные платежи | [optional]
 **production_tasks** | [**\OpenAPI\Client\Model\ProductionTask[]**](ProductionTask.md) | Связанные производственные задания | [optional]
 **invoices_out** | [**\OpenAPI\Client\Model\InvoiceOut[]**](InvoiceOut.md) | Связанные счета покупателям | [optional]
 **cargo_name** | **string** | Наименование груза | [optional]

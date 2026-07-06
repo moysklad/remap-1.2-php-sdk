@@ -52,9 +52,9 @@ $apiInstance = new OpenAPI\Client\Api\ConsignmentsApi(
     $config
 );
 $consignment = new \OpenAPI\Client\Model\Consignment(); // \OpenAPI\Client\Model\Consignment
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -126,7 +126,7 @@ $apiInstance = new OpenAPI\Client\Api\ConsignmentsApi(
 );
 $attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -166,7 +166,7 @@ try {
 ## `createConsignmentsBatch()`
 
 ```php
-createConsignmentsBatch($consignment, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateConsignmentsBatch200ResponseInner[]
+createConsignmentsBatch($consignment, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
 ```
 
 Создать или изменить партии
@@ -196,9 +196,9 @@ $apiInstance = new OpenAPI\Client\Api\ConsignmentsApi(
     $config
 );
 $consignment = array(new \OpenAPI\Client\Model\Consignment()); // \OpenAPI\Client\Model\Consignment[]
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -221,7 +221,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateConsignmentsBatch200ResponseInner[]**](../Model/CreateConsignmentsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -268,9 +268,9 @@ $apiInstance = new OpenAPI\Client\Api\ConsignmentsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteConsignment($id, $accept, $accept_encoding);
@@ -336,9 +336,9 @@ $apiInstance = new OpenAPI\Client\Api\ConsignmentsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteConsignmentMetadataAttribute($id, $accept, $accept_encoding);
@@ -375,7 +375,7 @@ void (empty response body)
 ## `deleteConsignmentsBatch()`
 
 ```php
-deleteConsignmentsBatch($consignment, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteConsignmentsBatch($consignment, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Удалить партии
@@ -406,7 +406,7 @@ $apiInstance = new OpenAPI\Client\Api\ConsignmentsApi(
 );
 $consignment = array(new \OpenAPI\Client\Model\Consignment()); // \OpenAPI\Client\Model\Consignment[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -428,7 +428,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -475,10 +475,10 @@ $apiInstance = new OpenAPI\Client\Api\ConsignmentsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$id = 'id_example'; // string | ID сущности
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getConsignmentById($id, $expand, $accept, $accept_encoding);
@@ -547,7 +547,7 @@ $apiInstance = new OpenAPI\Client\Api\ConsignmentsApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getConsignmentMetadata($accept, $accept_encoding);
@@ -613,9 +613,9 @@ $apiInstance = new OpenAPI\Client\Api\ConsignmentsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getConsignmentMetadataAttributeById($id, $accept, $accept_encoding);
@@ -683,7 +683,7 @@ $apiInstance = new OpenAPI\Client\Api\ConsignmentsApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getConsignmentMetadataAttributes($accept, $accept_encoding);
@@ -751,12 +751,12 @@ $apiInstance = new OpenAPI\Client\Api\ConsignmentsApi(
 );
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$search = name=123; // string | Контекстный поиск по строковым полям сущностей
-$filter = archived=false; // string | Фильтрация выборки
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$order = name; // string | Сортировка
+$search = 'search_example'; // string | Контекстный поиск по строковым полям сущностей
+$filter = 'filter_example'; // string | Фильтрация выборки
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$order = 'order_example'; // string | Сортировка
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getConsignments($limit, $offset, $search, $filter, $expand, $order, $accept, $accept_encoding);
@@ -828,11 +828,11 @@ $apiInstance = new OpenAPI\Client\Api\ConsignmentsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $consignment = new \OpenAPI\Client\Model\Consignment(); // \OpenAPI\Client\Model\Consignment
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -903,10 +903,10 @@ $apiInstance = new OpenAPI\Client\Api\ConsignmentsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {

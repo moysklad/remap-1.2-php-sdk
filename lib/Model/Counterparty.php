@@ -41,10 +41,11 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
+class Counterparty extends EntityWithMeta 
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+    protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
     /**
       * Array of nested discriminator mappings. Used for polymorphic deserialization
@@ -257,7 +258,7 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -267,7 +268,7 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -291,13 +292,24 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * discriminator mappings do not match.
+     *
+     * @return bool
+     */
+    public static function openAPIPolymorphicBatchErrorFallback(): bool
+    {
+        return self::$openAPIPolymorphicBatchErrorFallback;
+    }
+
+    /**
      * Array of nullable properties
      *
      * @return array
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables;
+        return self::$openAPINullables + parent::openAPINullables();
     }
 
     /**
@@ -519,7 +531,7 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -529,7 +541,7 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -539,7 +551,7 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -554,13 +566,6 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-    
 
     /**
      * Constructor
@@ -570,6 +575,9 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        
+        parent::__construct($data);
+
         
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -647,8 +655,8 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties()
     {
         
+        $invalidProperties = parent::listInvalidProperties();
         
-        $invalidProperties = [];
         
 
         if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 255)) {

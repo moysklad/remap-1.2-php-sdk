@@ -9,6 +9,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createRetailDrawerCashOutBatch()**](RetailDrawerCashOutsApi.md#createRetailDrawerCashOutBatch) | **POST** /entity/retaildrawercashout/batch | Массовое создание и обновление Выплат денег |
 | [**createRetailDrawerCashOutMetadataAttribute()**](RetailDrawerCashOutsApi.md#createRetailDrawerCashOutMetadataAttribute) | **POST** /entity/retaildrawercashout/metadata/attributes | Создать доп. поле Выплат денег |
 | [**createRetailDrawerCashOutMetadataState()**](RetailDrawerCashOutsApi.md#createRetailDrawerCashOutMetadataState) | **POST** /entity/retaildrawercashout/metadata/states | Создать статус Выплат денег |
+| [**createRetailDrawerCashOutMetadataStatesBatch()**](RetailDrawerCashOutsApi.md#createRetailDrawerCashOutMetadataStatesBatch) | **POST** /entity/retaildrawercashout/metadata/states/batch | Массовое создание и обновление статусов Выплат денег |
 | [**deleteRetailDrawerCashOut()**](RetailDrawerCashOutsApi.md#deleteRetailDrawerCashOut) | **DELETE** /entity/retaildrawercashout/{id} | Удалить Выплату денег |
 | [**deleteRetailDrawerCashOutBatch()**](RetailDrawerCashOutsApi.md#deleteRetailDrawerCashOutBatch) | **POST** /entity/retaildrawercashout/delete | Массовое удаление Выплат денег |
 | [**deleteRetailDrawerCashOutFile()**](RetailDrawerCashOutsApi.md#deleteRetailDrawerCashOutFile) | **DELETE** /entity/retaildrawercashout/{id}/files/{fileId} | Удалить файл выплаты денег |
@@ -60,10 +61,10 @@ $apiInstance = new OpenAPI\Client\Api\RetailDrawerCashOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $file_upload = array(new \OpenAPI\Client\Model\FileUpload()); // \OpenAPI\Client\Model\FileUpload[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -132,9 +133,9 @@ $apiInstance = new OpenAPI\Client\Api\RetailDrawerCashOutsApi(
     $config
 );
 $retail_drawer_cash_out = new \OpenAPI\Client\Model\RetailDrawerCashOut(); // \OpenAPI\Client\Model\RetailDrawerCashOut
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -175,7 +176,7 @@ try {
 ## `createRetailDrawerCashOutBatch()`
 
 ```php
-createRetailDrawerCashOutBatch($retail_drawer_cash_out, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateRetailDrawerCashOutBatch200ResponseInner[]
+createRetailDrawerCashOutBatch($retail_drawer_cash_out, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
 ```
 
 Массовое создание и обновление Выплат денег
@@ -203,9 +204,9 @@ $apiInstance = new OpenAPI\Client\Api\RetailDrawerCashOutsApi(
     $config
 );
 $retail_drawer_cash_out = array(new \OpenAPI\Client\Model\RetailDrawerCashOut()); // \OpenAPI\Client\Model\RetailDrawerCashOut[]
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -228,7 +229,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateRetailDrawerCashOutBatch200ResponseInner[]**](../Model/CreateRetailDrawerCashOutBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -275,7 +276,7 @@ $apiInstance = new OpenAPI\Client\Api\RetailDrawerCashOutsApi(
 );
 $attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -342,9 +343,9 @@ $apiInstance = new OpenAPI\Client\Api\RetailDrawerCashOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$state = new \OpenAPI\Client\Model\State(); // \OpenAPI\Client\Model\State
+$state = {name=Одобрено, color=69446, stateType=Regular}; // \OpenAPI\Client\Model\State
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -367,6 +368,75 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\State**](../Model/State.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createRetailDrawerCashOutMetadataStatesBatch()`
+
+```php
+createRetailDrawerCashOutMetadataStatesBatch($state, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\StateRowResult[]
+```
+
+Массовое создание и обновление статусов Выплат денег
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\RetailDrawerCashOutsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$state = array(new \OpenAPI\Client\Model\State()); // \OpenAPI\Client\Model\State[]
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createRetailDrawerCashOutMetadataStatesBatch($state, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling RetailDrawerCashOutsApi->createRetailDrawerCashOutMetadataStatesBatch: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **state** | [**\OpenAPI\Client\Model\State[]**](../Model/State.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\StateRowResult[]**](../Model/StateRowResult.md)
 
 ### Authorization
 
@@ -411,9 +481,9 @@ $apiInstance = new OpenAPI\Client\Api\RetailDrawerCashOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteRetailDrawerCashOut($id, $accept, $accept_encoding);
@@ -450,7 +520,7 @@ void (empty response body)
 ## `deleteRetailDrawerCashOutBatch()`
 
 ```php
-deleteRetailDrawerCashOutBatch($retail_drawer_cash_out, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteRetailDrawerCashOutBatch($retail_drawer_cash_out, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Массовое удаление Выплат денег
@@ -479,7 +549,7 @@ $apiInstance = new OpenAPI\Client\Api\RetailDrawerCashOutsApi(
 );
 $retail_drawer_cash_out = array(new \OpenAPI\Client\Model\RetailDrawerCashOut()); // \OpenAPI\Client\Model\RetailDrawerCashOut[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -501,7 +571,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -548,10 +618,10 @@ $apiInstance = new OpenAPI\Client\Api\RetailDrawerCashOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $file_id = 'file_id_example'; // string | ID файла
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteRetailDrawerCashOutFile($id, $file_id, $accept, $accept_encoding);
@@ -616,9 +686,9 @@ $apiInstance = new OpenAPI\Client\Api\RetailDrawerCashOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteRetailDrawerCashOutMetadataAttributeById($id, $accept, $accept_encoding);
@@ -682,9 +752,9 @@ $apiInstance = new OpenAPI\Client\Api\RetailDrawerCashOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteRetailDrawerCashOutMetadataStateById($id, $accept, $accept_encoding);
@@ -748,10 +818,10 @@ $apiInstance = new OpenAPI\Client\Api\RetailDrawerCashOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$id = 'id_example'; // string | ID сущности
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getRetailDrawerCashOutById($id, $expand, $accept, $accept_encoding);
@@ -819,10 +889,10 @@ $apiInstance = new OpenAPI\Client\Api\RetailDrawerCashOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $file_id = 'file_id_example'; // string | ID файла
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getRetailDrawerCashOutFile($id, $file_id, $accept, $accept_encoding);
@@ -890,11 +960,11 @@ $apiInstance = new OpenAPI\Client\Api\RetailDrawerCashOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getRetailDrawerCashOutFiles($id, $limit, $offset, $accept, $accept_encoding);
@@ -963,10 +1033,10 @@ $apiInstance = new OpenAPI\Client\Api\RetailDrawerCashOutsApi(
 );
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$search = name=123; // string | Контекстный поиск по строковым полям сущностей
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$search = 'search_example'; // string | Контекстный поиск по строковым полям сущностей
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getRetailDrawerCashOutList($limit, $offset, $search, $expand, $accept, $accept_encoding);
@@ -1035,8 +1105,8 @@ $apiInstance = new OpenAPI\Client\Api\RetailDrawerCashOutsApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$accept_encoding = 'gzip, deflate, br'; // string
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 
 try {
     $result = $apiInstance->getRetailDrawerCashOutMetadata($accept, $accept_encoding, $expand);
@@ -1104,7 +1174,7 @@ $apiInstance = new OpenAPI\Client\Api\RetailDrawerCashOutsApi(
 $offset = 0; // int | Отступ в выданном списке
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getRetailDrawerCashOutMetadataAttribute($offset, $limit, $accept, $accept_encoding);
@@ -1170,9 +1240,9 @@ $apiInstance = new OpenAPI\Client\Api\RetailDrawerCashOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getRetailDrawerCashOutMetadataAttributeById($id, $accept, $accept_encoding);
@@ -1237,9 +1307,9 @@ $apiInstance = new OpenAPI\Client\Api\RetailDrawerCashOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getRetailDrawerCashOutMetadataStateById($id, $accept, $accept_encoding);
@@ -1305,7 +1375,7 @@ $apiInstance = new OpenAPI\Client\Api\RetailDrawerCashOutsApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 $body = array('key' => new \stdClass); // object
 
@@ -1373,11 +1443,11 @@ $apiInstance = new OpenAPI\Client\Api\RetailDrawerCashOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $retail_drawer_cash_out = new \OpenAPI\Client\Model\RetailDrawerCashOut(); // \OpenAPI\Client\Model\RetailDrawerCashOut
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1446,10 +1516,10 @@ $apiInstance = new OpenAPI\Client\Api\RetailDrawerCashOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1517,10 +1587,10 @@ $apiInstance = new OpenAPI\Client\Api\RetailDrawerCashOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $state = new \OpenAPI\Client\Model\State(); // \OpenAPI\Client\Model\State
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {

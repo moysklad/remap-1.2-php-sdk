@@ -49,7 +49,7 @@ Name | Type | Description | Notes
 **shipment_address_full** | [**\OpenAPI\Client\Model\Address**](Address.md) | Адрес доставки Заказа покупателя с детализацией по отдельным полям | [optional]
 **invoices_out** | [**\OpenAPI\Client\Model\InvoiceOut[]**](InvoiceOut.md) | Массив ссылок на связанные счета покупателям | [optional]
 **demands** | [**\OpenAPI\Client\Model\Demand[]**](Demand.md) | Массив ссылок на связанные отгрузки | [optional]
-**payments** | [**\OpenAPI\Client\Model\CustomerOrderPaymentsInner[]**](CustomerOrderPaymentsInner.md) | Массив ссылок на связанные платежи | [optional]
+**payments** | [**\OpenAPI\Client\Model\RetailShiftPaymentsInner[]**](RetailShiftPaymentsInner.md) | Массив ссылок на связанные платежи | [optional]
 **prepayments** | [**\OpenAPI\Client\Model\Prepayment[]**](Prepayment.md) | Массив ссылок на связанные предоплаты | [optional]
 **purchase_orders** | [**\OpenAPI\Client\Model\PurchaseOrder[]**](PurchaseOrder.md) | Массив ссылок на связанные заказы поставщикам | [optional]
 **moves** | [**\OpenAPI\Client\Model\Move[]**](Move.md) | Массив ссылок на связанные перемещения | [optional]

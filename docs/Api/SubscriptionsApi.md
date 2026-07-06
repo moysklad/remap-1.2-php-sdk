@@ -40,7 +40,7 @@ $apiInstance = new OpenAPI\Client\Api\SubscriptionsApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getSubscription($accept, $accept_encoding);

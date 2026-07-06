@@ -39,9 +39,9 @@ $apiInstance = new OpenAPI\Client\Api\VariantCharacteristicsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$variant_characteristic = new \OpenAPI\Client\Model\VariantCharacteristic(); // \OpenAPI\Client\Model\VariantCharacteristic
+$variant_characteristic = {name=Размер}; // \OpenAPI\Client\Model\VariantCharacteristic
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->createVariantCharacteristic($variant_characteristic, $accept, $accept_encoding);
@@ -106,9 +106,9 @@ $apiInstance = new OpenAPI\Client\Api\VariantCharacteristicsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getVariantCharacteristicById($id, $accept, $accept_encoding);
@@ -174,7 +174,7 @@ $apiInstance = new OpenAPI\Client\Api\VariantCharacteristicsApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getVariantCharacteristics($accept, $accept_encoding);

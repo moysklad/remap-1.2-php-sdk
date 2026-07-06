@@ -44,9 +44,9 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingPlanFoldersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$processing_plan_folder = new \OpenAPI\Client\Model\ProcessingPlanFolder(); // \OpenAPI\Client\Model\ProcessingPlanFolder
+$processing_plan_folder = {name=Группа 1, description=Группа техкарт из примера OpenAPI, shared=true, archived=false, externalCode=ppf-openapi-1}; // \OpenAPI\Client\Model\ProcessingPlanFolder
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -86,7 +86,7 @@ try {
 ## `createProcessingPlanFoldersBatch()`
 
 ```php
-createProcessingPlanFoldersBatch($processing_plan_folder, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateProcessingPlanFoldersBatch200ResponseInner[]
+createProcessingPlanFoldersBatch($processing_plan_folder, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
 ```
 
 Массовое создание и обновление групп техкарт
@@ -113,9 +113,9 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingPlanFoldersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$processing_plan_folder = array(new \OpenAPI\Client\Model\ProcessingPlanFolder()); // \OpenAPI\Client\Model\ProcessingPlanFolder[]
+$processing_plan_folder = [{name=Группа 2, description=Группа техкарт batch из примера OpenAPI, shared=true, archived=false, externalCode=ppf-openapi-2}]; // \OpenAPI\Client\Model\ProcessingPlanFolder[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -137,7 +137,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateProcessingPlanFoldersBatch200ResponseInner[]**](../Model/CreateProcessingPlanFoldersBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -182,9 +182,9 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingPlanFoldersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -223,7 +223,7 @@ void (empty response body)
 ## `deleteProcessingPlanFoldersBatch()`
 
 ```php
-deleteProcessingPlanFoldersBatch($processing_plan_folder, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteProcessingPlanFoldersBatch($processing_plan_folder, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Массовое удаление групп техкарт
@@ -252,7 +252,7 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingPlanFoldersApi(
 );
 $processing_plan_folder = array(new \OpenAPI\Client\Model\ProcessingPlanFolder()); // \OpenAPI\Client\Model\ProcessingPlanFolder[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -274,7 +274,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -319,9 +319,9 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingPlanFoldersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getProcessingPlanFolderById($id, $accept, $accept_encoding);
@@ -387,7 +387,7 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingPlanFoldersApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -456,7 +456,7 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingPlanFoldersApi(
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -524,10 +524,10 @@ $apiInstance = new OpenAPI\Client\Api\ProcessingPlanFoldersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $processing_plan_folder = new \OpenAPI\Client\Model\ProcessingPlanFolder(); // \OpenAPI\Client\Model\ProcessingPlanFolder
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {

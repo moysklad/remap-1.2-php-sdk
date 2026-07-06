@@ -41,10 +41,11 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
+class RetailDemand extends EntityWithMeta 
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+    protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
     /**
       * Array of nested discriminator mappings. Used for polymorphic deserialization
@@ -107,10 +108,10 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
         'prepayment_no_cash_sum' => 'float',
         'prepayment_qr_sum' => 'float',
         'advance_payment_sum' => 'float',
-        'check_number' => 'string',
+        'check_number' => 'int',
         'check_sum' => 'float',
-        'document_number' => 'string',
-        'session_number' => 'string',
+        'document_number' => 'int',
+        'session_number' => 'int',
         'tax_system' => 'string',
         'state' => '\OpenAPI\Client\Model\State',
         'organization' => '\OpenAPI\Client\Model\Organization',
@@ -263,7 +264,7 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -273,7 +274,7 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -297,13 +298,24 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * discriminator mappings do not match.
+     *
+     * @return bool
+     */
+    public static function openAPIPolymorphicBatchErrorFallback(): bool
+    {
+        return self::$openAPIPolymorphicBatchErrorFallback;
+    }
+
+    /**
      * Array of nullable properties
      *
      * @return array
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables;
+        return self::$openAPINullables + parent::openAPINullables();
     }
 
     /**
@@ -531,7 +543,7 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -541,7 +553,7 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -551,7 +563,7 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -566,13 +578,6 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-    
 
     /**
      * Constructor
@@ -582,6 +587,9 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        
+        parent::__construct($data);
+
         
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -661,8 +669,8 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties()
     {
         
+        $invalidProperties = parent::listInvalidProperties();
         
-        $invalidProperties = [];
         
 
         if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 255)) {
@@ -681,16 +689,32 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = "invalid value for 'description', the character length must be smaller than or equal to 4096.";
         }
 
-        if (!is_null($this->container['check_number']) && (mb_strlen($this->container['check_number']) > 255)) {
-            $invalidProperties[] = "invalid value for 'check_number', the character length must be smaller than or equal to 255.";
+        if (!is_null($this->container['cash_sum']) && ($this->container['cash_sum'] < 0)) {
+            $invalidProperties[] = "invalid value for 'cash_sum', must be bigger than or equal to 0.";
         }
 
-        if (!is_null($this->container['document_number']) && (mb_strlen($this->container['document_number']) > 255)) {
-            $invalidProperties[] = "invalid value for 'document_number', the character length must be smaller than or equal to 255.";
+        if (!is_null($this->container['no_cash_sum']) && ($this->container['no_cash_sum'] < 0)) {
+            $invalidProperties[] = "invalid value for 'no_cash_sum', must be bigger than or equal to 0.";
         }
 
-        if (!is_null($this->container['session_number']) && (mb_strlen($this->container['session_number']) > 255)) {
-            $invalidProperties[] = "invalid value for 'session_number', the character length must be smaller than or equal to 255.";
+        if (!is_null($this->container['qr_sum']) && ($this->container['qr_sum'] < 0)) {
+            $invalidProperties[] = "invalid value for 'qr_sum', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['prepayment_cash_sum']) && ($this->container['prepayment_cash_sum'] < 0)) {
+            $invalidProperties[] = "invalid value for 'prepayment_cash_sum', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['prepayment_no_cash_sum']) && ($this->container['prepayment_no_cash_sum'] < 0)) {
+            $invalidProperties[] = "invalid value for 'prepayment_no_cash_sum', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['prepayment_qr_sum']) && ($this->container['prepayment_qr_sum'] < 0)) {
+            $invalidProperties[] = "invalid value for 'prepayment_qr_sum', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['advance_payment_sum']) && ($this->container['advance_payment_sum'] < 0)) {
+            $invalidProperties[] = "invalid value for 'advance_payment_sum', must be bigger than or equal to 0.";
         }
 
         return $invalidProperties;
@@ -1320,6 +1344,11 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($cash_sum)) {
             throw new \InvalidArgumentException('non-nullable cash_sum cannot be null');
         }
+
+        if (($cash_sum < 0)) {
+            throw new \InvalidArgumentException('invalid value for $cash_sum when calling RetailDemand., must be bigger than or equal to 0.');
+        }
+
         $this->container['cash_sum'] = $cash_sum;
 
         return $this;
@@ -1347,6 +1376,11 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($no_cash_sum)) {
             throw new \InvalidArgumentException('non-nullable no_cash_sum cannot be null');
         }
+
+        if (($no_cash_sum < 0)) {
+            throw new \InvalidArgumentException('invalid value for $no_cash_sum when calling RetailDemand., must be bigger than or equal to 0.');
+        }
+
         $this->container['no_cash_sum'] = $no_cash_sum;
 
         return $this;
@@ -1374,6 +1408,11 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($qr_sum)) {
             throw new \InvalidArgumentException('non-nullable qr_sum cannot be null');
         }
+
+        if (($qr_sum < 0)) {
+            throw new \InvalidArgumentException('invalid value for $qr_sum when calling RetailDemand., must be bigger than or equal to 0.');
+        }
+
         $this->container['qr_sum'] = $qr_sum;
 
         return $this;
@@ -1401,6 +1440,11 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($prepayment_cash_sum)) {
             throw new \InvalidArgumentException('non-nullable prepayment_cash_sum cannot be null');
         }
+
+        if (($prepayment_cash_sum < 0)) {
+            throw new \InvalidArgumentException('invalid value for $prepayment_cash_sum when calling RetailDemand., must be bigger than or equal to 0.');
+        }
+
         $this->container['prepayment_cash_sum'] = $prepayment_cash_sum;
 
         return $this;
@@ -1428,6 +1472,11 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($prepayment_no_cash_sum)) {
             throw new \InvalidArgumentException('non-nullable prepayment_no_cash_sum cannot be null');
         }
+
+        if (($prepayment_no_cash_sum < 0)) {
+            throw new \InvalidArgumentException('invalid value for $prepayment_no_cash_sum when calling RetailDemand., must be bigger than or equal to 0.');
+        }
+
         $this->container['prepayment_no_cash_sum'] = $prepayment_no_cash_sum;
 
         return $this;
@@ -1455,6 +1504,11 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($prepayment_qr_sum)) {
             throw new \InvalidArgumentException('non-nullable prepayment_qr_sum cannot be null');
         }
+
+        if (($prepayment_qr_sum < 0)) {
+            throw new \InvalidArgumentException('invalid value for $prepayment_qr_sum when calling RetailDemand., must be bigger than or equal to 0.');
+        }
+
         $this->container['prepayment_qr_sum'] = $prepayment_qr_sum;
 
         return $this;
@@ -1482,6 +1536,11 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($advance_payment_sum)) {
             throw new \InvalidArgumentException('non-nullable advance_payment_sum cannot be null');
         }
+
+        if (($advance_payment_sum < 0)) {
+            throw new \InvalidArgumentException('invalid value for $advance_payment_sum when calling RetailDemand., must be bigger than or equal to 0.');
+        }
+
         $this->container['advance_payment_sum'] = $advance_payment_sum;
 
         return $this;
@@ -1490,7 +1549,7 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets check_number
      *
-     * @return string|null
+     * @return int|null
      */
     public function getCheckNumber()
     {
@@ -1500,7 +1559,7 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets check_number
      *
-     * @param string|null $check_number Номер чека
+     * @param int|null $check_number Номер чека
      *
      * @return self
      */
@@ -1509,10 +1568,6 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($check_number)) {
             throw new \InvalidArgumentException('non-nullable check_number cannot be null');
         }
-        if ((mb_strlen($check_number) > 255)) {
-            throw new \InvalidArgumentException('invalid length for $check_number when calling RetailDemand., must be smaller than or equal to 255.');
-        }
-
         $this->container['check_number'] = $check_number;
 
         return $this;
@@ -1548,7 +1603,7 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets document_number
      *
-     * @return string|null
+     * @return int|null
      */
     public function getDocumentNumber()
     {
@@ -1558,7 +1613,7 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets document_number
      *
-     * @param string|null $document_number Номер документа
+     * @param int|null $document_number Номер документа
      *
      * @return self
      */
@@ -1567,10 +1622,6 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($document_number)) {
             throw new \InvalidArgumentException('non-nullable document_number cannot be null');
         }
-        if ((mb_strlen($document_number) > 255)) {
-            throw new \InvalidArgumentException('invalid length for $document_number when calling RetailDemand., must be smaller than or equal to 255.');
-        }
-
         $this->container['document_number'] = $document_number;
 
         return $this;
@@ -1579,7 +1630,7 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets session_number
      *
-     * @return string|null
+     * @return int|null
      */
     public function getSessionNumber()
     {
@@ -1589,7 +1640,7 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets session_number
      *
-     * @param string|null $session_number Номер сессии
+     * @param int|null $session_number Номер сессии
      *
      * @return self
      */
@@ -1598,10 +1649,6 @@ class RetailDemand implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($session_number)) {
             throw new \InvalidArgumentException('non-nullable session_number cannot be null');
         }
-        if ((mb_strlen($session_number) > 255)) {
-            throw new \InvalidArgumentException('invalid length for $session_number when calling RetailDemand., must be smaller than or equal to 255.');
-        }
-
         $this->container['session_number'] = $session_number;
 
         return $this;

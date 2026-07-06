@@ -7,6 +7,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createFactureOut()**](FactureOutsApi.md#createFactureOut) | **POST** /entity/factureout | Создать Счет-фактуру выданный |
 | [**createFactureOutMetadataAttribute()**](FactureOutsApi.md#createFactureOutMetadataAttribute) | **POST** /entity/factureout/metadata/attributes | Создать доп. поле Счета-фактуры выданного |
 | [**createFactureOutMetadataState()**](FactureOutsApi.md#createFactureOutMetadataState) | **POST** /entity/factureout/metadata/states | Создать статус Счета-фактуры выданного |
+| [**createFactureOutMetadataStatesBatch()**](FactureOutsApi.md#createFactureOutMetadataStatesBatch) | **POST** /entity/factureout/metadata/states/batch | Массовое создание и обновление статусов Счета-фактуры выданного |
 | [**createFactureOutsBatch()**](FactureOutsApi.md#createFactureOutsBatch) | **POST** /entity/factureout/batch | Массовое создание и обновление Счетов-фактур выданных |
 | [**deleteFactureOut()**](FactureOutsApi.md#deleteFactureOut) | **DELETE** /entity/factureout/{id} | Удалить Счет-фактуру выданный |
 | [**deleteFactureOutMetadataAttributeById()**](FactureOutsApi.md#deleteFactureOutMetadataAttributeById) | **DELETE** /entity/factureout/metadata/attributes/{id} | Удалить отдельное доп. поле Счета-фактуры выданного |
@@ -57,9 +58,9 @@ $apiInstance = new OpenAPI\Client\Api\FactureOutsApi(
     $config
 );
 $facture_out = new \OpenAPI\Client\Model\FactureOut(); // \OpenAPI\Client\Model\FactureOut
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -129,7 +130,7 @@ $apiInstance = new OpenAPI\Client\Api\FactureOutsApi(
 );
 $attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -169,7 +170,7 @@ try {
 ## `createFactureOutMetadataState()`
 
 ```php
-createFactureOutMetadataState($create_internal_order_metadata_state_request, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\State
+createFactureOutMetadataState($state, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\State
 ```
 
 Создать статус Счета-фактуры выданного
@@ -196,13 +197,13 @@ $apiInstance = new OpenAPI\Client\Api\FactureOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$create_internal_order_metadata_state_request = new \OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest(); // \OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest
+$state = new \OpenAPI\Client\Model\State(); // \OpenAPI\Client\Model\State
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createFactureOutMetadataState($create_internal_order_metadata_state_request, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->createFactureOutMetadataState($state, $accept, $accept_encoding, $content_type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FactureOutsApi->createFactureOutMetadataState: ', $e->getMessage(), PHP_EOL;
@@ -213,7 +214,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **create_internal_order_metadata_state_request** | [**\OpenAPI\Client\Model\CreateInternalOrderMetadataStateRequest**](../Model/CreateInternalOrderMetadataStateRequest.md)|  | |
+| **state** | [**\OpenAPI\Client\Model\State**](../Model/State.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
@@ -221,6 +222,75 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\State**](../Model/State.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createFactureOutMetadataStatesBatch()`
+
+```php
+createFactureOutMetadataStatesBatch($state, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\StateRowResult[]
+```
+
+Массовое создание и обновление статусов Счета-фактуры выданного
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\FactureOutsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$state = array(new \OpenAPI\Client\Model\State()); // \OpenAPI\Client\Model\State[]
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createFactureOutMetadataStatesBatch($state, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FactureOutsApi->createFactureOutMetadataStatesBatch: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **state** | [**\OpenAPI\Client\Model\State[]**](../Model/State.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\StateRowResult[]**](../Model/StateRowResult.md)
 
 ### Authorization
 
@@ -266,9 +336,9 @@ $apiInstance = new OpenAPI\Client\Api\FactureOutsApi(
     $config
 );
 $facture_out = array(new \OpenAPI\Client\Model\FactureOut()); // \OpenAPI\Client\Model\FactureOut[]
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -338,9 +408,9 @@ $apiInstance = new OpenAPI\Client\Api\FactureOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteFactureOut($id, $accept, $accept_encoding);
@@ -404,9 +474,9 @@ $apiInstance = new OpenAPI\Client\Api\FactureOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteFactureOutMetadataAttributeById($id, $accept, $accept_encoding);
@@ -470,9 +540,9 @@ $apiInstance = new OpenAPI\Client\Api\FactureOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteFactureOutMetadataStateById($id, $accept, $accept_encoding);
@@ -509,7 +579,7 @@ void (empty response body)
 ## `deleteFactureOutsBatch()`
 
 ```php
-deleteFactureOutsBatch($facture_out, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteFactureOutsBatch($facture_out, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]
 ```
 
 Массовое удаление Счетов-фактур выданных
@@ -540,7 +610,7 @@ $apiInstance = new OpenAPI\Client\Api\FactureOutsApi(
 );
 $facture_out = array(new \OpenAPI\Client\Model\FactureOut()); // \OpenAPI\Client\Model\FactureOut[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -562,7 +632,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]**](../Model/DeleteInvoiceOutBatch200ResponseInner.md)
 
 ### Authorization
 
@@ -607,10 +677,10 @@ $apiInstance = new OpenAPI\Client\Api\FactureOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$id = 'id_example'; // string | ID сущности
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getFactureOutById($id, $expand, $accept, $accept_encoding);
@@ -678,9 +748,9 @@ $apiInstance = new OpenAPI\Client\Api\FactureOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getFactureOutMetadata($expand, $accept, $accept_encoding);
@@ -745,9 +815,9 @@ $apiInstance = new OpenAPI\Client\Api\FactureOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getFactureOutMetadataAttributeById($id, $accept, $accept_encoding);
@@ -815,7 +885,7 @@ $apiInstance = new OpenAPI\Client\Api\FactureOutsApi(
 $offset = 0; // int | Отступ в выданном списке
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getFactureOutMetadataAttributes($offset, $limit, $accept, $accept_encoding);
@@ -881,9 +951,9 @@ $apiInstance = new OpenAPI\Client\Api\FactureOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getFactureOutMetadataStateById($id, $accept, $accept_encoding);
@@ -952,7 +1022,7 @@ $apiInstance = new OpenAPI\Client\Api\FactureOutsApi(
 );
 $body = array('key' => new \stdClass); // object
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1023,12 +1093,12 @@ $apiInstance = new OpenAPI\Client\Api\FactureOutsApi(
 );
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$search = name=123; // string | Контекстный поиск по строковым полям сущностей
-$filter = archived=false; // string | Фильтрация выборки
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$order = name; // string | Сортировка
+$search = 'search_example'; // string | Контекстный поиск по строковым полям сущностей
+$filter = 'filter_example'; // string | Фильтрация выборки
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$order = 'order_example'; // string | Сортировка
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getFactureOuts($limit, $offset, $search, $filter, $expand, $order, $accept, $accept_encoding);
@@ -1100,11 +1170,11 @@ $apiInstance = new OpenAPI\Client\Api\FactureOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $facture_out = new \OpenAPI\Client\Model\FactureOut(); // \OpenAPI\Client\Model\FactureOut
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1173,10 +1243,10 @@ $apiInstance = new OpenAPI\Client\Api\FactureOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1244,10 +1314,10 @@ $apiInstance = new OpenAPI\Client\Api\FactureOutsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $state = new \OpenAPI\Client\Model\State(); // \OpenAPI\Client\Model\State
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {

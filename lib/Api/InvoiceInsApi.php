@@ -2532,7 +2532,7 @@ class InvoiceInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function deleteInvoiceInBatch($invoice_in, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteInvoiceInBatch'][0])
     {
@@ -2553,7 +2553,7 @@ class InvoiceInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteInvoiceInBatchWithHttpInfo($invoice_in, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteInvoiceInBatch'][0])
     {
@@ -2585,7 +2585,7 @@ class InvoiceInsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]',
                         $request,
                         $response,
                     );
@@ -2613,7 +2613,7 @@ class InvoiceInsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                '\OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]',
                 $request,
                 $response,
             );
@@ -2622,7 +2622,7 @@ class InvoiceInsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2682,7 +2682,7 @@ class InvoiceInsApi
      */
     public function deleteInvoiceInBatchAsyncWithHttpInfo($invoice_in, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteInvoiceInBatch'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]';
+        $returnType = '\OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]';
         $request = $this->deleteInvoiceInBatchRequest($invoice_in, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
@@ -3959,7 +3959,7 @@ class InvoiceInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function deleteInvoiceInPositionsBatch($id, $invoice_in_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteInvoiceInPositionsBatch'][0])
     {
@@ -3981,7 +3981,7 @@ class InvoiceInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteInvoiceInPositionsBatchWithHttpInfo($id, $invoice_in_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteInvoiceInPositionsBatch'][0])
     {
@@ -4013,7 +4013,7 @@ class InvoiceInsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]',
                         $request,
                         $response,
                     );
@@ -4041,7 +4041,7 @@ class InvoiceInsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                '\OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]',
                 $request,
                 $response,
             );
@@ -4050,7 +4050,7 @@ class InvoiceInsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4112,7 +4112,7 @@ class InvoiceInsApi
      */
     public function deleteInvoiceInPositionsBatchAsyncWithHttpInfo($id, $invoice_in_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteInvoiceInPositionsBatch'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]';
+        $returnType = '\OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]';
         $request = $this->deleteInvoiceInPositionsBatchRequest($id, $invoice_in_position, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client

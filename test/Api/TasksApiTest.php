@@ -96,6 +96,18 @@ class TasksApiTest extends TestCase
     }
 
     /**
+     * Test case for createTaskMetadataStatesBatch
+     *
+     * Массовое создание и обновление типов задач.
+     *
+     */
+    public function testCreateTaskMetadataStatesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createTaskNote
      *
      * Создать комментарий Задачи.

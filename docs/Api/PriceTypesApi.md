@@ -13,7 +13,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 ## `createPriceTypesBatch()`
 
 ```php
-createPriceTypesBatch($price_type, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreatePriceTypesBatch200ResponseInner[]
+createPriceTypesBatch($price_type, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
 ```
 
 Создать или изменить типы цен
@@ -44,7 +44,7 @@ $apiInstance = new OpenAPI\Client\Api\PriceTypesApi(
 );
 $price_type = array(new \OpenAPI\Client\Model\PriceType()); // \OpenAPI\Client\Model\PriceType[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -66,7 +66,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreatePriceTypesBatch200ResponseInner[]**](../Model/CreatePriceTypesBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -114,7 +114,7 @@ $apiInstance = new OpenAPI\Client\Api\PriceTypesApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getDefaultPriceType($accept, $accept_encoding);
@@ -180,9 +180,9 @@ $apiInstance = new OpenAPI\Client\Api\PriceTypesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getPriceTypeById($id, $accept, $accept_encoding);
@@ -250,7 +250,7 @@ $apiInstance = new OpenAPI\Client\Api\PriceTypesApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getPriceTypes($accept, $accept_encoding);

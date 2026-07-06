@@ -132,6 +132,18 @@ class PaymentOutsApiTest extends TestCase
     }
 
     /**
+     * Test case for createPaymentOutMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов PaymentOut.
+     *
+     */
+    public function testCreatePaymentOutMetadataStatesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deletePaymentOut
      *
      * Удалить PaymentOut.

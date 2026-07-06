@@ -120,6 +120,18 @@ class CustomerOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for createCustomerOrderMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов CustomerOrder.
+     *
+     */
+    public function testCreateCustomerOrderMetadataStatesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createCustomerOrderNote
      *
      * Добавить Событие Заказа покупателя.

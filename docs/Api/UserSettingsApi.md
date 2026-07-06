@@ -41,7 +41,7 @@ $apiInstance = new OpenAPI\Client\Api\UserSettingsApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getUserSettings($accept, $accept_encoding);
@@ -109,7 +109,7 @@ $apiInstance = new OpenAPI\Client\Api\UserSettingsApi(
 );
 $user_settings = new \OpenAPI\Client\Model\UserSettings(); // \OpenAPI\Client\Model\UserSettings
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {

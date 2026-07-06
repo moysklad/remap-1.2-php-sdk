@@ -132,6 +132,18 @@ class SuppliesApiTest extends TestCase
     }
 
     /**
+     * Test case for createSupplyMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов Приемки.
+     *
+     */
+    public function testCreateSupplyMetadataStatesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createSupplyPosition
      *
      * Создать и обновить позицию Приемки.

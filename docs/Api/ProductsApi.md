@@ -59,10 +59,10 @@ $apiInstance = new OpenAPI\Client\Api\ProductsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $file_upload = [{filename=doc.pdf, content=SGVsbG8gV29ybGQ=}]; // \OpenAPI\Client\Model\FileUpload[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -132,10 +132,10 @@ $apiInstance = new OpenAPI\Client\Api\ProductsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $add_product_images_request = {filename=birdimage.png, content=iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAA3NCSVQICAjb4U/gAAAAEHRFWHRTb2Z0d2FyZQBTaHV0dGVyY4LQCQAAAAxJREFUCNdj+PePAQAE+gH90KA5ZAAAAABJRU5ErkJggg==}; // \OpenAPI\Client\Model\AddProductImagesRequest
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -205,10 +205,10 @@ $apiInstance = new OpenAPI\Client\Api\ProductsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$product = new \OpenAPI\Client\Model\Product(); // \OpenAPI\Client\Model\Product
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$product = {name=Товар из примера OpenAPI, code=openapi-product, article=ART-001, description=Товар для примера OpenAPI, archived=false, vatEnabled=false, shared=true}; // \OpenAPI\Client\Model\Product
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -278,10 +278,10 @@ $apiInstance = new OpenAPI\Client\Api\ProductsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $store_balance = {store={meta={href=https://api.moysklad.ru/api/remap/1.2/entity/store/da1c5548-0ecf-11f0-ac15-001200000125, type=store, mediaType=application/json}}, quantity=5.0}; // \OpenAPI\Client\Model\StoreBalance
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -322,7 +322,7 @@ try {
 ## `createProductsBatch()`
 
 ```php
-createProductsBatch($product, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateProductsBatch200ResponseInner[]
+createProductsBatch($product, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
 ```
 
 Создать или изменить товары
@@ -351,10 +351,10 @@ $apiInstance = new OpenAPI\Client\Api\ProductsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$product = array(new \OpenAPI\Client\Model\Product()); // \OpenAPI\Client\Model\Product[]
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$product = [{name=Товар batch из примера OpenAPI, code=openapi-product-batch, article=ART-002, description=Товар batch для примера OpenAPI, archived=false, vatEnabled=false, shared=true}]; // \OpenAPI\Client\Model\Product[]
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -377,7 +377,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateProductsBatch200ResponseInner[]**](../Model/CreateProductsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -424,9 +424,9 @@ $apiInstance = new OpenAPI\Client\Api\ProductsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteProduct($id, $accept, $accept_encoding);
@@ -492,10 +492,10 @@ $apiInstance = new OpenAPI\Client\Api\ProductsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $file_id = 'file_id_example'; // string | ID файла
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteProductFile($id, $file_id, $accept, $accept_encoding);
@@ -562,10 +562,10 @@ $apiInstance = new OpenAPI\Client\Api\ProductsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $image_id = 'image_id_example'; // string | ID изображения
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteProductImage($id, $image_id, $accept, $accept_encoding);
@@ -632,10 +632,10 @@ $apiInstance = new OpenAPI\Client\Api\ProductsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $delete_product_images_request_inner = [{meta={href=https://api.moysklad.ru/api/remap/1.2/entity/product/7944ef04-f831-11e5-7a69-971500188b19/images/f2728180-6afd-4d37-8a13-f3b48069bbb6, type=image, mediaType=application/json}}]; // \OpenAPI\Client\Model\DeleteProductImagesRequestInner[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -704,10 +704,10 @@ $apiInstance = new OpenAPI\Client\Api\ProductsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $store_balance_id = 'store_balance_id_example'; // string | ID неснижаемого остатка
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteProductStoreBalance($id, $store_balance_id, $accept, $accept_encoding);
@@ -774,10 +774,10 @@ $apiInstance = new OpenAPI\Client\Api\ProductsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $delete_product_images_request_inner = [{meta={href=https://api.moysklad.ru/api/remap/1.2/entity/product/3e1c03bb-684f-11ee-ac12-000c000000b0/storebalances/7fce2da5-684d-11ee-ac12-000c000000a2, type=minimumstock, mediaType=application/json}}]; // \OpenAPI\Client\Model\DeleteProductImagesRequestInner[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -817,7 +817,7 @@ void (empty response body)
 ## `deleteProductsBatch()`
 
 ```php
-deleteProductsBatch($product, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteProductsBatch($product, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Удалить товары
@@ -848,7 +848,7 @@ $apiInstance = new OpenAPI\Client\Api\ProductsApi(
 );
 $product = array(new \OpenAPI\Client\Model\Product()); // \OpenAPI\Client\Model\Product[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -870,7 +870,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -918,7 +918,7 @@ $apiInstance = new OpenAPI\Client\Api\ProductsApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getMetadata($accept, $accept_encoding);
@@ -984,11 +984,11 @@ $apiInstance = new OpenAPI\Client\Api\ProductsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$fields = minimumStock; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
+$id = 'id_example'; // string | ID сущности
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$fields = 'fields_example'; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getProductById($id, $expand, $fields, $accept, $accept_encoding);
@@ -1057,11 +1057,11 @@ $apiInstance = new OpenAPI\Client\Api\ProductsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getProductFiles($id, $limit, $offset, $accept, $accept_encoding);
@@ -1130,12 +1130,12 @@ $apiInstance = new OpenAPI\Client\Api\ProductsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$fields = minimumStock; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
+$fields = 'fields_example'; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getProductImages($id, $limit, $offset, $fields, $accept, $accept_encoding);
@@ -1205,10 +1205,10 @@ $apiInstance = new OpenAPI\Client\Api\ProductsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $store_balance_id = 'store_balance_id_example'; // string | ID неснижаемого остатка
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getProductStoreBalanceById($id, $store_balance_id, $accept, $accept_encoding);
@@ -1276,11 +1276,11 @@ $apiInstance = new OpenAPI\Client\Api\ProductsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getProductStoreBalances($id, $limit, $offset, $accept, $accept_encoding);
@@ -1351,13 +1351,13 @@ $apiInstance = new OpenAPI\Client\Api\ProductsApi(
 );
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$search = name=123; // string | Контекстный поиск по строковым полям сущностей
-$filter = archived=false; // string | Фильтрация выборки
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$order = name; // string | Сортировка
-$fields = minimumStock; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
+$search = 'search_example'; // string | Контекстный поиск по строковым полям сущностей
+$filter = 'filter_example'; // string | Фильтрация выборки
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$order = 'order_example'; // string | Сортировка
+$fields = 'fields_example'; // string | Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - `minimumStock` — неснижаемый остаток (товар, модификация) - `downloadPermanentHref` — постоянная ссылка на изображение (платный тариф) - `stock` — остатки и себестоимость в позициях документов - `declaration` — прослеживаемость импортных товаров в позициях документов
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getProducts($limit, $offset, $search, $filter, $expand, $order, $fields, $accept, $accept_encoding);
@@ -1430,11 +1430,11 @@ $apiInstance = new OpenAPI\Client\Api\ProductsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $product = new \OpenAPI\Client\Model\Product(); // \OpenAPI\Client\Model\Product
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1505,11 +1505,11 @@ $apiInstance = new OpenAPI\Client\Api\ProductsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $store_balance_id = 'store_balance_id_example'; // string | ID неснижаемого остатка
 $store_balance = new \OpenAPI\Client\Model\StoreBalance(); // \OpenAPI\Client\Model\StoreBalance
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {

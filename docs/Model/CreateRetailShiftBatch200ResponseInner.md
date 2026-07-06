@@ -1,0 +1,50 @@
+# # CreateRetailShiftBatch200ResponseInner
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**meta** | [**\OpenAPI\Client\Model\Meta**](Meta.md) |  | [optional]
+**id** | **string** | ID Розничной смены | [optional] [readonly]
+**account_id** | **string** | ID учетной записи | [optional] [readonly]
+**name** | **string** | Наименование смены | [optional]
+**moment** | **string** | Дата смены | [optional]
+**retail_store** | [**\OpenAPI\Client\Model\RetailStore**](RetailStore.md) | Метаданные точки продаж | [optional]
+**payments** | [**\OpenAPI\Client\Model\RetailShiftPaymentsInner[]**](RetailShiftPaymentsInner.md) | Связанные платежи | [optional]
+**acquire** | [**\OpenAPI\Client\Model\Agent**](Agent.md) | Метаданные Банка-эквайера по операциям по карте | [optional]
+**agent_account** | [**\OpenAPI\Client\Model\Account**](Account.md) | Метаданные счета контрагента | [optional] [readonly]
+**attributes** | [**\OpenAPI\Client\Model\AttributeAbstract[]**](AttributeAbstract.md) | Коллекция метаданных доп. полей | [optional]
+**bank_comission** | **float** | Сумма комиссии эквайера за проведение безналичных платежей по банковской карте | [optional]
+**bank_percent** | **float** | Комиссия банка-эквайера по операциям по карте (в процентах) | [optional]
+**cheque** | [**\OpenAPI\Client\Model\RetailShiftCheque**](RetailShiftCheque.md) | Информация о смене ККТ | [optional]
+**close_date** | **string** | Дата закрытия смены | [optional]
+**contract** | [**\OpenAPI\Client\Model\Contract**](Contract.md) | Метаданные договора | [optional] [readonly]
+**created** | **string** | Дата создания | [optional] [readonly]
+**deleted** | **string** | Момент последнего удаления Розничной смены | [optional] [readonly]
+**description** | **string** | Комментарий Розничной смены | [optional]
+**external_code** | **string** | Внешний код Розничной смены | [optional]
+**files** | [**\OpenAPI\Client\Model\FileList**](FileList.md) | Метаданные массива Файлов | [optional]
+**group** | [**\OpenAPI\Client\Model\Group**](Group.md) | Отдел сотрудника | [optional]
+**operations** | [**\OpenAPI\Client\Model\RetailShiftOperation[]**](RetailShiftOperation.md) | Связанные операции. Допустимые типы по &#x60;meta.type&#x60;: retaildemand, retailsalesreturn, retaildrawercashin, retaildrawercashout, prepayment, prepaymentreturn. | [optional] [readonly]
+**organization** | [**\OpenAPI\Client\Model\Organization**](Organization.md) |  | [optional]
+**organization_account** | [**\OpenAPI\Client\Model\Account**](Account.md) | Метаданные счета юрлица | [optional]
+**owner** | [**\OpenAPI\Client\Model\Employee**](Employee.md) | Владелец (Сотрудник) | [optional]
+**payment_operations** | [**\OpenAPI\Client\Model\RetailShiftPaymentOperation[]**](RetailShiftPaymentOperation.md) | Коллекция метаданных платежных операций | [optional] [readonly]
+**printed** | **bool** | Напечатан ли документ | [optional] [readonly]
+**proceeds_cash** | **float** | Выручка наличными | [optional] [readonly]
+**proceeds_no_cash** | **float** | Выручка безнал | [optional] [readonly]
+**published** | **bool** | Опубликован ли документ | [optional] [readonly]
+**qr_acquire** | [**\OpenAPI\Client\Model\Agent**](Agent.md) | Метаданные Банка-эквайера по операциям по QR-коду | [optional]
+**qr_bank_comission** | **float** | Сумма комиссии эквайера за проведение безналичных платежей по QR-коду | [optional]
+**qr_bank_percent** | **float** | Комиссия банка-эквайера по операция по QR-коду (в процентах) | [optional]
+**received_cash** | **float** | Получено наличными | [optional] [readonly]
+**received_no_cash** | **float** | Получено безнал | [optional] [readonly]
+**shared** | **bool** | Общий доступ | [optional]
+**store** | [**\OpenAPI\Client\Model\Store**](Store.md) |  | [optional]
+**sync_id** | **string** | ID синхронизации | [optional]
+**updated** | **string** | Момент последнего обновления Розничной смены | [optional] [readonly]
+**vat_enabled** | **bool** | Учитывается ли НДС | [optional] [readonly]
+**vat_included** | **bool** | Включен ли НДС в цену | [optional]
+**errors** | [**\OpenAPI\Client\Model\ErrorErrorsInner[]**](ErrorErrorsInner.md) |  |
+
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -44,7 +44,7 @@ Name | Type | Description | Notes
 **sales_channel** | [**\OpenAPI\Client\Model\SalesChannel**](SalesChannel.md) | Метаданные канала продаж | [optional]
 **customer_order** | [**\OpenAPI\Client\Model\CustomerOrder**](CustomerOrder.md) | Заказ покупателя, с которым связан Счет покупателю | [optional]
 **demands** | [**\OpenAPI\Client\Model\Demand[]**](Demand.md) | Массив ссылок на связанные отгрузки | [optional]
-**payments** | [**\OpenAPI\Client\Model\CustomerOrderPaymentsInner[]**](CustomerOrderPaymentsInner.md) | Массив ссылок на связанные операции | [optional]
+**payments** | [**\OpenAPI\Client\Model\RetailShiftPaymentsInner[]**](RetailShiftPaymentsInner.md) | Массив ссылок на связанные операции | [optional]
 **errors** | [**\OpenAPI\Client\Model\ErrorErrorsInner[]**](ErrorErrorsInner.md) |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

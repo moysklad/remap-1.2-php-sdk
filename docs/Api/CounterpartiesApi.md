@@ -64,10 +64,10 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $file_upload = [{filename=doc.pdf, content=SGVsbG8gV29ybGQ=}]; // \OpenAPI\Client\Model\FileUpload[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -108,7 +108,7 @@ try {
 ## `createCounterpartiesBatch()`
 
 ```php
-createCounterpartiesBatch($counterparty, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateCounterpartiesBatch200ResponseInner[]
+createCounterpartiesBatch($counterparty, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
 ```
 
 Создать или изменить контрагентов
@@ -137,10 +137,10 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$counterparty = array(new \OpenAPI\Client\Model\Counterparty()); // \OpenAPI\Client\Model\Counterparty[]
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$counterparty = [{name=ООО Радуга batch, companyType=legal, description=Контрагент batch из примера OpenAPI, email=raduga-batch@stroi.ru, phone=+7 495 162 32 23, inn=1251581244152}]; // \OpenAPI\Client\Model\Counterparty[]
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -163,7 +163,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateCounterpartiesBatch200ResponseInner[]**](../Model/CreateCounterpartiesBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -210,10 +210,10 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$counterparty = new \OpenAPI\Client\Model\Counterparty(); // \OpenAPI\Client\Model\Counterparty
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$counterparty = {name=ООО Радуга, companyType=legal, description=Сеть стройматериалов Радуга ЭКСПО, email=raduga@stroi.ru, phone=+7 495 331 22 33, inn=125152124152}; // \OpenAPI\Client\Model\Counterparty
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -283,10 +283,10 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $account = new \OpenAPI\Client\Model\Account(); // \OpenAPI\Client\Model\Account
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -356,10 +356,10 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$contact_person = new \OpenAPI\Client\Model\ContactPerson(); // \OpenAPI\Client\Model\ContactPerson
+$id = 'id_example'; // string | ID сущности
+$contact_person = {name=Петр}; // \OpenAPI\Client\Model\ContactPerson
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -429,10 +429,10 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$note = new \OpenAPI\Client\Model\Note(); // \OpenAPI\Client\Model\Note
+$id = 'id_example'; // string | ID сущности
+$note = {description=текст}; // \OpenAPI\Client\Model\Note
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -473,7 +473,7 @@ try {
 ## `deleteCounterpartiesBatch()`
 
 ```php
-deleteCounterpartiesBatch($counterparty, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]
+deleteCounterpartiesBatch($counterparty, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DeleteRowResult[]
 ```
 
 Удалить контрагентов
@@ -504,7 +504,7 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
 );
 $counterparty = array(new \OpenAPI\Client\Model\Counterparty()); // \OpenAPI\Client\Model\Counterparty[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -526,7 +526,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]**](../Model/DeleteContractsBatch200ResponseInner.md)
+[**\OpenAPI\Client\Model\DeleteRowResult[]**](../Model/DeleteRowResult.md)
 
 ### Authorization
 
@@ -573,9 +573,9 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteCounterparty($id, $accept, $accept_encoding);
@@ -641,10 +641,10 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $account_id = 'account_id_example'; // string | ID счёта контрагента
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteCounterpartyAccount($id, $account_id, $accept, $accept_encoding);
@@ -711,10 +711,10 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $contact_person_id = 'contact_person_id_example'; // string | ID контактного лица
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteCounterpartyContactPerson($id, $contact_person_id, $accept, $accept_encoding);
@@ -781,10 +781,10 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $file_id = 'file_id_example'; // string | ID файла
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteCounterpartyFile($id, $file_id, $accept, $accept_encoding);
@@ -851,10 +851,10 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $note_id = 'note_id_example'; // string | ID события контрагента
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $apiInstance->deleteCounterpartyNote($id, $note_id, $accept, $accept_encoding);
@@ -923,12 +923,12 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
 );
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
-$search = name=123; // string | Контекстный поиск по строковым полям сущностей
-$filter = archived=false; // string | Фильтрация выборки
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
-$order = name; // string | Сортировка
+$search = 'search_example'; // string | Контекстный поиск по строковым полям сущностей
+$filter = 'filter_example'; // string | Фильтрация выборки
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$order = 'order_example'; // string | Сортировка
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getCounterparties($limit, $offset, $search, $filter, $expand, $order, $accept, $accept_encoding);
@@ -1000,10 +1000,10 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $account_id = 'account_id_example'; // string | ID счёта контрагента
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getCounterpartyAccountById($id, $account_id, $accept, $accept_encoding);
@@ -1071,11 +1071,11 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getCounterpartyAccounts($id, $limit, $offset, $accept, $accept_encoding);
@@ -1144,10 +1144,10 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$id = 'id_example'; // string | ID сущности
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getCounterpartyById($id, $expand, $accept, $accept_encoding);
@@ -1215,10 +1215,10 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $contact_person_id = 'contact_person_id_example'; // string | ID контактного лица
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getCounterpartyContactPersonById($id, $contact_person_id, $accept, $accept_encoding);
@@ -1286,11 +1286,11 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getCounterpartyContactPersons($id, $limit, $offset, $accept, $accept_encoding);
@@ -1359,11 +1359,11 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getCounterpartyFiles($id, $limit, $offset, $accept, $accept_encoding);
@@ -1432,9 +1432,9 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getCounterpartyMetadata($expand, $accept, $accept_encoding);
@@ -1501,10 +1501,10 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $note_id = 'note_id_example'; // string | ID события контрагента
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getCounterpartyNoteById($id, $note_id, $accept, $accept_encoding);
@@ -1572,11 +1572,11 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 
 try {
     $result = $apiInstance->getCounterpartyNotes($id, $limit, $offset, $accept, $accept_encoding);
@@ -1645,11 +1645,11 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $counterparty = new \OpenAPI\Client\Model\Counterparty(); // \OpenAPI\Client\Model\Counterparty
-$expand = agent,organization; // string | Замена ссылок объектами с помощью expand
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1720,11 +1720,11 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $account_id = 'account_id_example'; // string | ID счёта контрагента
 $account = new \OpenAPI\Client\Model\Account(); // \OpenAPI\Client\Model\Account
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1795,11 +1795,11 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $contact_person_id = 'contact_person_id_example'; // string | ID контактного лица
 $contact_person = new \OpenAPI\Client\Model\ContactPerson(); // \OpenAPI\Client\Model\ContactPerson
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1870,11 +1870,11 @@ $apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
+$id = 'id_example'; // string | ID сущности
 $note_id = 'note_id_example'; // string | ID события контрагента
 $note = new \OpenAPI\Client\Model\Note(); // \OpenAPI\Client\Model\Note
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {

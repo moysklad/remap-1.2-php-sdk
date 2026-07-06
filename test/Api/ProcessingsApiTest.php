@@ -144,6 +144,18 @@ class ProcessingsApiTest extends TestCase
     }
 
     /**
+     * Test case for createProcessingMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов Processing.
+     *
+     */
+    public function testCreateProcessingMetadataStatesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createProcessingProducts
      *
      * Создать продукты Processing.

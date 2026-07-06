@@ -39,11 +39,11 @@ $apiInstance = new OpenAPI\Client\Api\LabelsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 12a8b923-692c-11e6-8a84-bae500000053; // string | ID сущности
-$type = product; // string | Тип сущности, для которой запрашивается печать
+$id = 'id_example'; // string | ID сущности
+$type = 'type_example'; // string | Тип сущности, для которой запрашивается печать
 $label_print_request = new \OpenAPI\Client\Model\LabelPrintRequest(); // \OpenAPI\Client\Model\LabelPrintRequest
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = gzip, deflate, br; // string
+$accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {

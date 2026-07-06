@@ -41,10 +41,11 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class MovePosition implements ModelInterface, ArrayAccess, \JsonSerializable
+class MovePosition extends EntityWithMeta 
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+    protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
     /**
       * Array of nested discriminator mappings. Used for polymorphic deserialization
@@ -146,7 +147,7 @@ class MovePosition implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -156,7 +157,7 @@ class MovePosition implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -180,13 +181,24 @@ class MovePosition implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * discriminator mappings do not match.
+     *
+     * @return bool
+     */
+    public static function openAPIPolymorphicBatchErrorFallback(): bool
+    {
+        return self::$openAPIPolymorphicBatchErrorFallback;
+    }
+
+    /**
      * Array of nullable properties
      *
      * @return array
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables;
+        return self::$openAPINullables + parent::openAPINullables();
     }
 
     /**
@@ -297,7 +309,7 @@ class MovePosition implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -307,7 +319,7 @@ class MovePosition implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -317,7 +329,7 @@ class MovePosition implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -332,13 +344,6 @@ class MovePosition implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-    
 
     /**
      * Constructor
@@ -348,6 +353,9 @@ class MovePosition implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        
+        parent::__construct($data);
+
         
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -388,8 +396,8 @@ class MovePosition implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties()
     {
         
+        $invalidProperties = parent::listInvalidProperties();
         
-        $invalidProperties = [];
         
 
         if (!is_null($this->container['quantity']) && ($this->container['quantity'] <= 0)) {

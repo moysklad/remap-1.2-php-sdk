@@ -45,6 +45,7 @@ class FinanceInOperationDemand extends FinanceInOperationAbstract
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+    protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
     /**
       * Array of nested discriminator mappings. Used for polymorphic deserialization
@@ -110,7 +111,7 @@ class FinanceInOperationDemand extends FinanceInOperationAbstract
         'customer_order' => '\OpenAPI\Client\Model\CustomerOrder',
         'facture_out' => '\OpenAPI\Client\Model\FactureOut',
         'returns' => '\OpenAPI\Client\Model\SalesReturn[]',
-        'payments' => '\OpenAPI\Client\Model\CustomerOrderPaymentsInner[]',
+        'payments' => '\OpenAPI\Client\Model\RetailShiftPaymentsInner[]',
         'production_tasks' => '\OpenAPI\Client\Model\ProductionTask[]',
         'invoices_out' => '\OpenAPI\Client\Model\InvoiceOut[]',
         'cargo_name' => 'string',
@@ -292,6 +293,17 @@ class FinanceInOperationDemand extends FinanceInOperationAbstract
     public static function openAPIPolymorphicDiscriminatorMappings(): array
     {
         return self::$openAPIPolymorphicDiscriminatorMappings;
+    }
+
+    /**
+     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * discriminator mappings do not match.
+     *
+     * @return bool
+     */
+    public static function openAPIPolymorphicBatchErrorFallback(): bool
+    {
+        return self::$openAPIPolymorphicBatchErrorFallback;
     }
 
     /**
@@ -2001,7 +2013,7 @@ class FinanceInOperationDemand extends FinanceInOperationAbstract
     /**
      * Gets payments
      *
-     * @return \OpenAPI\Client\Model\CustomerOrderPaymentsInner[]|null
+     * @return \OpenAPI\Client\Model\RetailShiftPaymentsInner[]|null
      */
     public function getPayments()
     {
@@ -2011,7 +2023,7 @@ class FinanceInOperationDemand extends FinanceInOperationAbstract
     /**
      * Sets payments
      *
-     * @param \OpenAPI\Client\Model\CustomerOrderPaymentsInner[]|null $payments Связанные платежи
+     * @param \OpenAPI\Client\Model\RetailShiftPaymentsInner[]|null $payments Связанные платежи
      *
      * @return self
      */

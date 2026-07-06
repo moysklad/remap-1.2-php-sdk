@@ -42,7 +42,7 @@ Name | Type | Description | Notes
 **sales_channel** | [**\OpenAPI\Client\Model\SalesChannel**](SalesChannel.md) | Метаданные канала продаж | [optional]
 **demand** | [**\OpenAPI\Client\Model\Demand**](Demand.md) | Отгрузка, по которой произошел возврат | [optional]
 **losses** | [**\OpenAPI\Client\Model\Loss[]**](Loss.md) | Массив ссылок на связанные списания | [optional]
-**payments** | [**\OpenAPI\Client\Model\CustomerOrderPaymentsInner[]**](CustomerOrderPaymentsInner.md) | Массив ссылок на связанные платежи | [optional]
+**payments** | [**\OpenAPI\Client\Model\RetailShiftPaymentsInner[]**](RetailShiftPaymentsInner.md) | Массив ссылок на связанные платежи | [optional]
 **facture_out** | [**\OpenAPI\Client\Model\FactureOut**](FactureOut.md) | Счет-фактура выданный, с которым связан этот возврат | [optional]
 **supply** | [**\OpenAPI\Client\Model\Supply**](Supply.md) | Приемка, по которой произошел возврат | [optional]
 **facture_in** | [**\OpenAPI\Client\Model\FactureIn**](FactureIn.md) | Счет-фактура полученный, с которым связан этот возврат | [optional]

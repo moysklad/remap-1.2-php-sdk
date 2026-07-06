@@ -89,6 +89,9 @@ class PurchaseReturnsApi
         'createPurchaseReturnMetadataState' => [
             'application/json',
         ],
+        'createPurchaseReturnMetadataStatesBatch' => [
+            'application/json',
+        ],
         'createPurchaseReturnPosition' => [
             'application/json',
         ],
@@ -896,7 +899,7 @@ class PurchaseReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreatePurchaseReturnBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function createPurchaseReturnBatch($purchase_return, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnBatch'][0])
     {
@@ -918,7 +921,7 @@ class PurchaseReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreatePurchaseReturnBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function createPurchaseReturnBatchWithHttpInfo($purchase_return, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnBatch'][0])
     {
@@ -950,7 +953,7 @@ class PurchaseReturnsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CreatePurchaseReturnBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
                         $request,
                         $response,
                     );
@@ -978,7 +981,7 @@ class PurchaseReturnsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\CreatePurchaseReturnBatch200ResponseInner[]',
+                '\OpenAPI\Client\Model\BatchResponseEntity[]',
                 $request,
                 $response,
             );
@@ -987,7 +990,7 @@ class PurchaseReturnsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreatePurchaseReturnBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1049,7 +1052,7 @@ class PurchaseReturnsApi
      */
     public function createPurchaseReturnBatchAsyncWithHttpInfo($purchase_return, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnBatch'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CreatePurchaseReturnBatch200ResponseInner[]';
+        $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
         $request = $this->createPurchaseReturnBatchRequest($purchase_return, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
@@ -1770,6 +1773,331 @@ class PurchaseReturnsApi
 
 
         $resourcePath = '/entity/purchasereturn/metadata/states';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // header params
+        if ($accept !== null) {
+            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+        }
+        // header params
+        if ($accept_encoding !== null) {
+            $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+        // header params
+        if ($content_type !== null) {
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
+        }
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'text/html;charset=UTF-8', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($state)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($state));
+            } else {
+                $httpBody = $state;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createPurchaseReturnMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов Возврата поставщику
+     *
+     * @param  \OpenAPI\Client\Model\State[] $state state (required)
+     * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnMetadataStatesBatch'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\StateRowResult[]|\OpenAPI\Client\Model\ErrorOrArray
+     */
+    public function createPurchaseReturnMetadataStatesBatch($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnMetadataStatesBatch'][0])
+    {
+        list($response) = $this->createPurchaseReturnMetadataStatesBatchWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createPurchaseReturnMetadataStatesBatchWithHttpInfo
+     *
+     * Массовое создание и обновление статусов Возврата поставщику
+     *
+     * @param  \OpenAPI\Client\Model\State[] $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnMetadataStatesBatch'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\StateRowResult[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createPurchaseReturnMetadataStatesBatchWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnMetadataStatesBatch'][0])
+    {
+        $request = $this->createPurchaseReturnMetadataStatesBatchRequest($state, $accept, $accept_encoding, $content_type, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\StateRowResult[]',
+                        $request,
+                        $response,
+                    );
+                default:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\OpenAPI\Client\Model\StateRowResult[]',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\StateRowResult[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createPurchaseReturnMetadataStatesBatchAsync
+     *
+     * Массовое создание и обновление статусов Возврата поставщику
+     *
+     * @param  \OpenAPI\Client\Model\State[] $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnMetadataStatesBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createPurchaseReturnMetadataStatesBatchAsync($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnMetadataStatesBatch'][0])
+    {
+        return $this->createPurchaseReturnMetadataStatesBatchAsyncWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createPurchaseReturnMetadataStatesBatchAsyncWithHttpInfo
+     *
+     * Массовое создание и обновление статусов Возврата поставщику
+     *
+     * @param  \OpenAPI\Client\Model\State[] $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnMetadataStatesBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createPurchaseReturnMetadataStatesBatchAsyncWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnMetadataStatesBatch'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\StateRowResult[]';
+        $request = $this->createPurchaseReturnMetadataStatesBatchRequest($state, $accept, $accept_encoding, $content_type, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createPurchaseReturnMetadataStatesBatch'
+     *
+     * @param  \OpenAPI\Client\Model\State[] $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnMetadataStatesBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createPurchaseReturnMetadataStatesBatchRequest($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnMetadataStatesBatch'][0])
+    {
+
+        // verify the required parameter 'state' is set
+        if ($state === null || (is_array($state) && count($state) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $state when calling createPurchaseReturnMetadataStatesBatch'
+            );
+        }
+        if (count($state) > 1000) {
+            throw new \InvalidArgumentException('invalid value for "$state" when calling PurchaseReturnsApi.createPurchaseReturnMetadataStatesBatch, number of items must be less than or equal to 1000.');
+        }
+        if (count($state) < 1) {
+            throw new \InvalidArgumentException('invalid value for "$state" when calling PurchaseReturnsApi.createPurchaseReturnMetadataStatesBatch, number of items must be greater than or equal to 1.');
+        }
+        
+
+
+
+
+        $resourcePath = '/entity/purchasereturn/metadata/states/batch';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2841,7 +3169,7 @@ class PurchaseReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function deletePurchaseReturnBatch($purchase_return, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deletePurchaseReturnBatch'][0])
     {
@@ -2862,7 +3190,7 @@ class PurchaseReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function deletePurchaseReturnBatchWithHttpInfo($purchase_return, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deletePurchaseReturnBatch'][0])
     {
@@ -2894,7 +3222,7 @@ class PurchaseReturnsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteRowResult[]',
                         $request,
                         $response,
                     );
@@ -2922,7 +3250,7 @@ class PurchaseReturnsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                '\OpenAPI\Client\Model\DeleteRowResult[]',
                 $request,
                 $response,
             );
@@ -2931,7 +3259,7 @@ class PurchaseReturnsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteRowResult[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2991,7 +3319,7 @@ class PurchaseReturnsApi
      */
     public function deletePurchaseReturnBatchAsyncWithHttpInfo($purchase_return, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deletePurchaseReturnBatch'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]';
+        $returnType = '\OpenAPI\Client\Model\DeleteRowResult[]';
         $request = $this->deletePurchaseReturnBatchRequest($purchase_return, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
@@ -4238,7 +4566,7 @@ class PurchaseReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function deletePurchaseReturnPositions($id, $purchase_return_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deletePurchaseReturnPositions'][0])
     {
@@ -4260,7 +4588,7 @@ class PurchaseReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function deletePurchaseReturnPositionsWithHttpInfo($id, $purchase_return_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deletePurchaseReturnPositions'][0])
     {
@@ -4292,7 +4620,7 @@ class PurchaseReturnsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteRowResult[]',
                         $request,
                         $response,
                     );
@@ -4320,7 +4648,7 @@ class PurchaseReturnsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                '\OpenAPI\Client\Model\DeleteRowResult[]',
                 $request,
                 $response,
             );
@@ -4329,7 +4657,7 @@ class PurchaseReturnsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]',
+                        '\OpenAPI\Client\Model\DeleteRowResult[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4391,7 +4719,7 @@ class PurchaseReturnsApi
      */
     public function deletePurchaseReturnPositionsAsyncWithHttpInfo($id, $purchase_return_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deletePurchaseReturnPositions'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\DeleteContractsBatch200ResponseInner[]';
+        $returnType = '\OpenAPI\Client\Model\DeleteRowResult[]';
         $request = $this->deletePurchaseReturnPositionsRequest($id, $purchase_return_position, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client
