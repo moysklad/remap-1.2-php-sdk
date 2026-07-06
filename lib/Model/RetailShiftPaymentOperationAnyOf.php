@@ -1531,7 +1531,7 @@ class RetailShiftPaymentOperationAnyOf implements ModelInterface, ArrayAccess, \
     /**
      * Sets operations
      *
-     * @param \OpenAPI\Client\Model\FinanceInOperationAbstract[]|null $operations Связанные операции. Допустимые типы по `meta.type`: customerorder, purchasereturn, demand, invoiceout, commissionreportin, retailshift
+     * @param \OpenAPI\Client\Model\FinanceInOperationAbstract[]|null $operations Связанные операции. Допустимые типы по `meta.type`: customerorder, purchasereturn, demand, invoiceout, commissionreportin, retailshift.
      *
      * @return self
      */
