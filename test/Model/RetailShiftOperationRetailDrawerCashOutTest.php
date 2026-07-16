@@ -1,6 +1,6 @@
 <?php
 /**
- * RetailShiftPaymentOperationAnyOfTest
+ * RetailShiftOperationRetailDrawerCashOutTest
  *
  * PHP version 8.1
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * RetailShiftPaymentOperationAnyOfTest Class Doc Comment
+ * RetailShiftOperationRetailDrawerCashOutTest Class Doc Comment
  *
  * @category    Class
- * @description Приходный ордер + linkedSum
+ * @description Выплата денег
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class RetailShiftPaymentOperationAnyOfTest extends TestCase
+class RetailShiftOperationRetailDrawerCashOutTest extends TestCase
 {
 
     /**
@@ -71,9 +71,9 @@ class RetailShiftPaymentOperationAnyOfTest extends TestCase
     }
 
     /**
-     * Test "RetailShiftPaymentOperationAnyOf"
+     * Test "RetailShiftOperationRetailDrawerCashOut"
      */
-    public function testRetailShiftPaymentOperationAnyOf()
+    public function testRetailShiftOperationRetailDrawerCashOut()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -107,6 +107,15 @@ class RetailShiftPaymentOperationAnyOfTest extends TestCase
     }
 
     /**
+     * Test attribute "agent"
+     */
+    public function testPropertyAgent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "applicable"
      */
     public function testPropertyApplicable()
@@ -116,9 +125,9 @@ class RetailShiftPaymentOperationAnyOfTest extends TestCase
     }
 
     /**
-     * Test attribute "name"
+     * Test attribute "attributes"
      */
-    public function testPropertyName()
+    public function testPropertyAttributes()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -128,33 +137,6 @@ class RetailShiftPaymentOperationAnyOfTest extends TestCase
      * Test attribute "code"
      */
     public function testPropertyCode()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "external_code"
-     */
-    public function testPropertyExternalCode()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "sync_id"
-     */
-    public function testPropertySyncId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "description"
-     */
-    public function testPropertyDescription()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -179,36 +161,18 @@ class RetailShiftPaymentOperationAnyOfTest extends TestCase
     }
 
     /**
-     * Test attribute "updated"
+     * Test attribute "description"
      */
-    public function testPropertyUpdated()
+    public function testPropertyDescription()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "moment"
+     * Test attribute "external_code"
      */
-    public function testPropertyMoment()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "attributes"
-     */
-    public function testPropertyAttributes()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "contract"
-     */
-    public function testPropertyContract()
+    public function testPropertyExternalCode()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -224,36 +188,36 @@ class RetailShiftPaymentOperationAnyOfTest extends TestCase
     }
 
     /**
-     * Test attribute "payment_purpose"
+     * Test attribute "group"
      */
-    public function testPropertyPaymentPurpose()
+    public function testPropertyGroup()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "printed"
+     * Test attribute "moment"
      */
-    public function testPropertyPrinted()
+    public function testPropertyMoment()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "project"
+     * Test attribute "name"
      */
-    public function testPropertyProject()
+    public function testPropertyName()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "published"
+     * Test attribute "organization"
      */
-    public function testPropertyPublished()
+    public function testPropertyOrganization()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -269,18 +233,36 @@ class RetailShiftPaymentOperationAnyOfTest extends TestCase
     }
 
     /**
-     * Test attribute "group"
+     * Test attribute "printed"
      */
-    public function testPropertyGroup()
+    public function testPropertyPrinted()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "sales_channel"
+     * Test attribute "published"
      */
-    public function testPropertySalesChannel()
+    public function testPropertyPublished()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "rate"
+     */
+    public function testPropertyRate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "retail_shift"
+     */
+    public function testPropertyRetailShift()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -305,33 +287,6 @@ class RetailShiftPaymentOperationAnyOfTest extends TestCase
     }
 
     /**
-     * Test attribute "rate"
-     */
-    public function testPropertyRate()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "organization"
-     */
-    public function testPropertyOrganization()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "agent"
-     */
-    public function testPropertyAgent()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "sum"
      */
     public function testPropertySum()
@@ -341,36 +296,18 @@ class RetailShiftPaymentOperationAnyOfTest extends TestCase
     }
 
     /**
-     * Test attribute "vat_sum"
+     * Test attribute "sync_id"
      */
-    public function testPropertyVatSum()
+    public function testPropertySyncId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "facture_out"
+     * Test attribute "updated"
      */
-    public function testPropertyFactureOut()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "operations"
-     */
-    public function testPropertyOperations()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "linked_sum"
-     */
-    public function testPropertyLinkedSum()
+    public function testPropertyUpdated()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

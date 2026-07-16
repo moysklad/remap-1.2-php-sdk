@@ -1,4 +1,4 @@
-# # RetailShiftPaymentOperationAnyOf
+# # RetailShiftPaymentOperationCashIn
 
 ## Properties
 
@@ -36,6 +36,5 @@ Name | Type | Description | Notes
 **vat_sum** | **float** | Сумма НДС | [optional] [readonly]
 **facture_out** | [**\OpenAPI\Client\Model\FactureOut**](FactureOut.md) | Счет-фактура выданный, с которым связан этот платеж | [optional]
 **operations** | [**\OpenAPI\Client\Model\FinanceInOperationAbstract[]**](FinanceInOperationAbstract.md) | Связанные операции. Допустимые типы по &#x60;meta.type&#x60;: customerorder, purchasereturn, demand, invoiceout, commissionreportin, retailshift. | [optional]
-**linked_sum** | **float** | Сумма, оплаченная по данному документу |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

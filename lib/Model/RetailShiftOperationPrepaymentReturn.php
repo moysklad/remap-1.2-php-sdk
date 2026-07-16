@@ -1,6 +1,6 @@
 <?php
 /**
- * RetailShiftPaymentOperationAnyOf1
+ * RetailShiftOperationPrepaymentReturn
  *
  * PHP version 8.1
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * RetailShiftPaymentOperationAnyOf1 Class Doc Comment
+ * RetailShiftOperationPrepaymentReturn Class Doc Comment
  *
  * @category Class
- * @description Входящий платеж + linkedSum
+ * @description Возврат предоплаты
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, \JsonSerializable
+class RetailShiftOperationPrepaymentReturn extends RetailShiftOperation 
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
@@ -61,7 +61,7 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
       *
       * @var string
       */
-    protected static $openAPIModelName = 'RetailShiftPaymentOperation_anyOf_1';
+    protected static $openAPIModelName = 'RetailShiftOperationPrepaymentReturn';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -81,31 +81,30 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
         'deleted' => 'string',
         'updated' => 'string',
         'moment' => 'string',
-        'owner' => '\OpenAPI\Client\Model\Employee',
-        'group' => '\OpenAPI\Client\Model\Group',
         'applicable' => 'bool',
         'printed' => 'bool',
         'published' => 'bool',
-        'rate' => '\OpenAPI\Client\Model\CurrencyRate',
-        'organization' => '\OpenAPI\Client\Model\Organization',
-        'agent' => '\OpenAPI\Client\Model\Agent',
-        'agent_account' => '\OpenAPI\Client\Model\Account',
-        'organization_account' => '\OpenAPI\Client\Model\Account',
-        'attributes' => '\OpenAPI\Client\Model\AttributeAbstract[]',
-        'contract' => '\OpenAPI\Client\Model\Contract',
-        'files' => '\OpenAPI\Client\Model\FileList',
-        'payment_purpose' => 'string',
-        'project' => '\OpenAPI\Client\Model\Project',
-        'sales_channel' => '\OpenAPI\Client\Model\SalesChannel',
         'shared' => 'bool',
-        'state' => '\OpenAPI\Client\Model\State',
-        'sum' => 'float',
+        'vat_enabled' => 'bool',
+        'vat_included' => 'bool',
         'vat_sum' => 'float',
-        'incoming_number' => 'string',
-        'incoming_date' => 'string',
-        'facture_out' => '\OpenAPI\Client\Model\FactureOut',
-        'operations' => '\OpenAPI\Client\Model\FinanceInOperationAbstract[]',
-        'linked_sum' => 'float'
+        'sum' => 'float',
+        'cash_sum' => 'float',
+        'no_cash_sum' => 'float',
+        'qr_sum' => 'float',
+        'agent' => '\OpenAPI\Client\Model\Agent',
+        'organization' => '\OpenAPI\Client\Model\Organization',
+        'owner' => '\OpenAPI\Client\Model\Employee',
+        'group' => '\OpenAPI\Client\Model\Group',
+        'attributes' => '\OpenAPI\Client\Model\AttributeAbstract[]',
+        'files' => '\OpenAPI\Client\Model\FileList',
+        'rate' => '\OpenAPI\Client\Model\CurrencyRate',
+        'positions' => '\OpenAPI\Client\Model\PrepaymentReturnPositionList',
+        'prepayment' => '\OpenAPI\Client\Model\Prepayment',
+        'retail_shift' => '\OpenAPI\Client\Model\RetailShift',
+        'retail_store' => '\OpenAPI\Client\Model\RetailStore',
+        'state' => '\OpenAPI\Client\Model\State',
+        'tax_system' => 'string'
     ];
 
     /**
@@ -128,31 +127,30 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
         'deleted' => null,
         'updated' => null,
         'moment' => null,
-        'owner' => null,
-        'group' => null,
         'applicable' => null,
         'printed' => null,
         'published' => null,
-        'rate' => null,
-        'organization' => null,
-        'agent' => null,
-        'agent_account' => null,
-        'organization_account' => null,
-        'attributes' => null,
-        'contract' => null,
-        'files' => null,
-        'payment_purpose' => null,
-        'project' => null,
-        'sales_channel' => null,
         'shared' => null,
-        'state' => null,
-        'sum' => 'double',
+        'vat_enabled' => null,
+        'vat_included' => null,
         'vat_sum' => 'double',
-        'incoming_number' => null,
-        'incoming_date' => null,
-        'facture_out' => null,
-        'operations' => null,
-        'linked_sum' => 'double'
+        'sum' => 'double',
+        'cash_sum' => 'double',
+        'no_cash_sum' => 'double',
+        'qr_sum' => 'double',
+        'agent' => null,
+        'organization' => null,
+        'owner' => null,
+        'group' => null,
+        'attributes' => null,
+        'files' => null,
+        'rate' => null,
+        'positions' => null,
+        'prepayment' => null,
+        'retail_shift' => null,
+        'retail_store' => null,
+        'state' => null,
+        'tax_system' => null
     ];
 
     /**
@@ -173,31 +171,30 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
         'deleted' => false,
         'updated' => false,
         'moment' => false,
-        'owner' => true,
-        'group' => false,
         'applicable' => false,
         'printed' => false,
         'published' => false,
-        'rate' => false,
-        'organization' => false,
-        'agent' => false,
-        'agent_account' => true,
-        'organization_account' => true,
-        'attributes' => true,
-        'contract' => true,
-        'files' => true,
-        'payment_purpose' => false,
-        'project' => true,
-        'sales_channel' => true,
         'shared' => false,
-        'state' => true,
-        'sum' => false,
+        'vat_enabled' => false,
+        'vat_included' => false,
         'vat_sum' => false,
-        'incoming_number' => true,
-        'incoming_date' => true,
-        'facture_out' => true,
-        'operations' => true,
-        'linked_sum' => false
+        'sum' => false,
+        'cash_sum' => false,
+        'no_cash_sum' => false,
+        'qr_sum' => false,
+        'agent' => false,
+        'organization' => false,
+        'owner' => true,
+        'group' => false,
+        'attributes' => true,
+        'files' => true,
+        'rate' => false,
+        'positions' => false,
+        'prepayment' => false,
+        'retail_shift' => false,
+        'retail_store' => false,
+        'state' => true,
+        'tax_system' => false
     ];
 
     /**
@@ -214,7 +211,7 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -224,7 +221,7 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -265,7 +262,7 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables;
+        return self::$openAPINullables + parent::openAPINullables();
     }
 
     /**
@@ -329,31 +326,30 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
         'deleted' => 'deleted',
         'updated' => 'updated',
         'moment' => 'moment',
-        'owner' => 'owner',
-        'group' => 'group',
         'applicable' => 'applicable',
         'printed' => 'printed',
         'published' => 'published',
-        'rate' => 'rate',
-        'organization' => 'organization',
-        'agent' => 'agent',
-        'agent_account' => 'agentAccount',
-        'organization_account' => 'organizationAccount',
-        'attributes' => 'attributes',
-        'contract' => 'contract',
-        'files' => 'files',
-        'payment_purpose' => 'paymentPurpose',
-        'project' => 'project',
-        'sales_channel' => 'salesChannel',
         'shared' => 'shared',
-        'state' => 'state',
-        'sum' => 'sum',
+        'vat_enabled' => 'vatEnabled',
+        'vat_included' => 'vatIncluded',
         'vat_sum' => 'vatSum',
-        'incoming_number' => 'incomingNumber',
-        'incoming_date' => 'incomingDate',
-        'facture_out' => 'factureOut',
-        'operations' => 'operations',
-        'linked_sum' => 'linkedSum'
+        'sum' => 'sum',
+        'cash_sum' => 'cashSum',
+        'no_cash_sum' => 'noCashSum',
+        'qr_sum' => 'qrSum',
+        'agent' => 'agent',
+        'organization' => 'organization',
+        'owner' => 'owner',
+        'group' => 'group',
+        'attributes' => 'attributes',
+        'files' => 'files',
+        'rate' => 'rate',
+        'positions' => 'positions',
+        'prepayment' => 'prepayment',
+        'retail_shift' => 'retailShift',
+        'retail_store' => 'retailStore',
+        'state' => 'state',
+        'tax_system' => 'taxSystem'
     ];
 
     /**
@@ -374,31 +370,30 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
         'deleted' => 'setDeleted',
         'updated' => 'setUpdated',
         'moment' => 'setMoment',
-        'owner' => 'setOwner',
-        'group' => 'setGroup',
         'applicable' => 'setApplicable',
         'printed' => 'setPrinted',
         'published' => 'setPublished',
-        'rate' => 'setRate',
-        'organization' => 'setOrganization',
-        'agent' => 'setAgent',
-        'agent_account' => 'setAgentAccount',
-        'organization_account' => 'setOrganizationAccount',
-        'attributes' => 'setAttributes',
-        'contract' => 'setContract',
-        'files' => 'setFiles',
-        'payment_purpose' => 'setPaymentPurpose',
-        'project' => 'setProject',
-        'sales_channel' => 'setSalesChannel',
         'shared' => 'setShared',
-        'state' => 'setState',
-        'sum' => 'setSum',
+        'vat_enabled' => 'setVatEnabled',
+        'vat_included' => 'setVatIncluded',
         'vat_sum' => 'setVatSum',
-        'incoming_number' => 'setIncomingNumber',
-        'incoming_date' => 'setIncomingDate',
-        'facture_out' => 'setFactureOut',
-        'operations' => 'setOperations',
-        'linked_sum' => 'setLinkedSum'
+        'sum' => 'setSum',
+        'cash_sum' => 'setCashSum',
+        'no_cash_sum' => 'setNoCashSum',
+        'qr_sum' => 'setQrSum',
+        'agent' => 'setAgent',
+        'organization' => 'setOrganization',
+        'owner' => 'setOwner',
+        'group' => 'setGroup',
+        'attributes' => 'setAttributes',
+        'files' => 'setFiles',
+        'rate' => 'setRate',
+        'positions' => 'setPositions',
+        'prepayment' => 'setPrepayment',
+        'retail_shift' => 'setRetailShift',
+        'retail_store' => 'setRetailStore',
+        'state' => 'setState',
+        'tax_system' => 'setTaxSystem'
     ];
 
     /**
@@ -419,31 +414,30 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
         'deleted' => 'getDeleted',
         'updated' => 'getUpdated',
         'moment' => 'getMoment',
-        'owner' => 'getOwner',
-        'group' => 'getGroup',
         'applicable' => 'getApplicable',
         'printed' => 'getPrinted',
         'published' => 'getPublished',
-        'rate' => 'getRate',
-        'organization' => 'getOrganization',
-        'agent' => 'getAgent',
-        'agent_account' => 'getAgentAccount',
-        'organization_account' => 'getOrganizationAccount',
-        'attributes' => 'getAttributes',
-        'contract' => 'getContract',
-        'files' => 'getFiles',
-        'payment_purpose' => 'getPaymentPurpose',
-        'project' => 'getProject',
-        'sales_channel' => 'getSalesChannel',
         'shared' => 'getShared',
-        'state' => 'getState',
-        'sum' => 'getSum',
+        'vat_enabled' => 'getVatEnabled',
+        'vat_included' => 'getVatIncluded',
         'vat_sum' => 'getVatSum',
-        'incoming_number' => 'getIncomingNumber',
-        'incoming_date' => 'getIncomingDate',
-        'facture_out' => 'getFactureOut',
-        'operations' => 'getOperations',
-        'linked_sum' => 'getLinkedSum'
+        'sum' => 'getSum',
+        'cash_sum' => 'getCashSum',
+        'no_cash_sum' => 'getNoCashSum',
+        'qr_sum' => 'getQrSum',
+        'agent' => 'getAgent',
+        'organization' => 'getOrganization',
+        'owner' => 'getOwner',
+        'group' => 'getGroup',
+        'attributes' => 'getAttributes',
+        'files' => 'getFiles',
+        'rate' => 'getRate',
+        'positions' => 'getPositions',
+        'prepayment' => 'getPrepayment',
+        'retail_shift' => 'getRetailShift',
+        'retail_store' => 'getRetailStore',
+        'state' => 'getState',
+        'tax_system' => 'getTaxSystem'
     ];
 
     /**
@@ -454,7 +448,7 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -464,7 +458,7 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -474,7 +468,7 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -489,13 +483,6 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
 
 
     
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-    
 
     /**
      * Constructor
@@ -505,6 +492,9 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
      */
     public function __construct(?array $data = null)
     {
+        
+        parent::__construct($data);
+
         
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -518,31 +508,30 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
         $this->setIfExists('deleted', $data ?? [], null);
         $this->setIfExists('updated', $data ?? [], null);
         $this->setIfExists('moment', $data ?? [], null);
-        $this->setIfExists('owner', $data ?? [], null);
-        $this->setIfExists('group', $data ?? [], null);
         $this->setIfExists('applicable', $data ?? [], null);
         $this->setIfExists('printed', $data ?? [], null);
         $this->setIfExists('published', $data ?? [], null);
-        $this->setIfExists('rate', $data ?? [], null);
-        $this->setIfExists('organization', $data ?? [], null);
-        $this->setIfExists('agent', $data ?? [], null);
-        $this->setIfExists('agent_account', $data ?? [], null);
-        $this->setIfExists('organization_account', $data ?? [], null);
-        $this->setIfExists('attributes', $data ?? [], null);
-        $this->setIfExists('contract', $data ?? [], null);
-        $this->setIfExists('files', $data ?? [], null);
-        $this->setIfExists('payment_purpose', $data ?? [], null);
-        $this->setIfExists('project', $data ?? [], null);
-        $this->setIfExists('sales_channel', $data ?? [], null);
         $this->setIfExists('shared', $data ?? [], null);
-        $this->setIfExists('state', $data ?? [], null);
-        $this->setIfExists('sum', $data ?? [], null);
+        $this->setIfExists('vat_enabled', $data ?? [], null);
+        $this->setIfExists('vat_included', $data ?? [], null);
         $this->setIfExists('vat_sum', $data ?? [], null);
-        $this->setIfExists('incoming_number', $data ?? [], null);
-        $this->setIfExists('incoming_date', $data ?? [], null);
-        $this->setIfExists('facture_out', $data ?? [], null);
-        $this->setIfExists('operations', $data ?? [], null);
-        $this->setIfExists('linked_sum', $data ?? [], null);
+        $this->setIfExists('sum', $data ?? [], null);
+        $this->setIfExists('cash_sum', $data ?? [], null);
+        $this->setIfExists('no_cash_sum', $data ?? [], null);
+        $this->setIfExists('qr_sum', $data ?? [], null);
+        $this->setIfExists('agent', $data ?? [], null);
+        $this->setIfExists('organization', $data ?? [], null);
+        $this->setIfExists('owner', $data ?? [], null);
+        $this->setIfExists('group', $data ?? [], null);
+        $this->setIfExists('attributes', $data ?? [], null);
+        $this->setIfExists('files', $data ?? [], null);
+        $this->setIfExists('rate', $data ?? [], null);
+        $this->setIfExists('positions', $data ?? [], null);
+        $this->setIfExists('prepayment', $data ?? [], null);
+        $this->setIfExists('retail_shift', $data ?? [], null);
+        $this->setIfExists('retail_store', $data ?? [], null);
+        $this->setIfExists('state', $data ?? [], null);
+        $this->setIfExists('tax_system', $data ?? [], null);
     }
 
     /**
@@ -571,8 +560,8 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
     public function listInvalidProperties()
     {
         
+        $invalidProperties = parent::listInvalidProperties();
         
-        $invalidProperties = [];
         
 
         if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 255)) {
@@ -591,25 +580,6 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
             $invalidProperties[] = "invalid value for 'description', the character length must be smaller than or equal to 4096.";
         }
 
-        if (!is_null($this->container['payment_purpose']) && (mb_strlen($this->container['payment_purpose']) > 255)) {
-            $invalidProperties[] = "invalid value for 'payment_purpose', the character length must be smaller than or equal to 255.";
-        }
-
-        if (!is_null($this->container['sum']) && ($this->container['sum'] < 0)) {
-            $invalidProperties[] = "invalid value for 'sum', must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['vat_sum']) && ($this->container['vat_sum'] < 0)) {
-            $invalidProperties[] = "invalid value for 'vat_sum', must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['incoming_number']) && (mb_strlen($this->container['incoming_number']) > 255)) {
-            $invalidProperties[] = "invalid value for 'incoming_number', the character length must be smaller than or equal to 255.";
-        }
-
-        if ($this->container['linked_sum'] === null) {
-            $invalidProperties[] = "'linked_sum' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -665,7 +635,7 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
     /**
      * Sets id
      *
-     * @param string|null $id ID Входящего платежа
+     * @param string|null $id ID Возврата предоплаты
      *
      * @return self
      */
@@ -719,7 +689,7 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
     /**
      * Sets name
      *
-     * @param string|null $name Наименование Входящего платежа
+     * @param string|null $name Наименование Возврата предоплаты
      *
      * @return self
      */
@@ -729,7 +699,7 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         if ((mb_strlen($name) > 255)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling RetailShiftPaymentOperationAnyOf1., must be smaller than or equal to 255.');
+            throw new \InvalidArgumentException('invalid length for $name when calling RetailShiftOperationPrepaymentReturn., must be smaller than or equal to 255.');
         }
 
         $this->container['name'] = $name;
@@ -750,7 +720,7 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
     /**
      * Sets code
      *
-     * @param string|null $code Код Входящего платежа
+     * @param string|null $code Код Возврата предоплаты
      *
      * @return self
      */
@@ -760,7 +730,7 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
             throw new \InvalidArgumentException('non-nullable code cannot be null');
         }
         if ((mb_strlen($code) > 255)) {
-            throw new \InvalidArgumentException('invalid length for $code when calling RetailShiftPaymentOperationAnyOf1., must be smaller than or equal to 255.');
+            throw new \InvalidArgumentException('invalid length for $code when calling RetailShiftOperationPrepaymentReturn., must be smaller than or equal to 255.');
         }
 
         $this->container['code'] = $code;
@@ -781,7 +751,7 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
     /**
      * Sets external_code
      *
-     * @param string|null $external_code Внешний код Входящего платежа
+     * @param string|null $external_code Внешний код Возврата предоплаты
      *
      * @return self
      */
@@ -791,7 +761,7 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
             throw new \InvalidArgumentException('non-nullable external_code cannot be null');
         }
         if ((mb_strlen($external_code) > 255)) {
-            throw new \InvalidArgumentException('invalid length for $external_code when calling RetailShiftPaymentOperationAnyOf1., must be smaller than or equal to 255.');
+            throw new \InvalidArgumentException('invalid length for $external_code when calling RetailShiftOperationPrepaymentReturn., must be smaller than or equal to 255.');
         }
 
         $this->container['external_code'] = $external_code;
@@ -839,7 +809,7 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
     /**
      * Sets description
      *
-     * @param string|null $description Комментарий Входящего платежа
+     * @param string|null $description Комментарий Возврата предоплаты
      *
      * @return self
      */
@@ -856,7 +826,7 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
             }
         }
         if (!is_null($description) && (mb_strlen($description) > 4096)) {
-            throw new \InvalidArgumentException('invalid length for $description when calling RetailShiftPaymentOperationAnyOf1., must be smaller than or equal to 4096.');
+            throw new \InvalidArgumentException('invalid length for $description when calling RetailShiftOperationPrepaymentReturn., must be smaller than or equal to 4096.');
         }
 
         $this->container['description'] = $description;
@@ -904,7 +874,7 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
     /**
      * Sets deleted
      *
-     * @param string|null $deleted Момент последнего удаления Входящего платежа
+     * @param string|null $deleted Момент последнего удаления Возврата предоплаты
      *
      * @return self
      */
@@ -931,7 +901,7 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
     /**
      * Sets updated
      *
-     * @param string|null $updated Момент последнего обновления Входящего платежа
+     * @param string|null $updated Момент последнего обновления Возврата предоплаты
      *
      * @return self
      */
@@ -968,67 +938,6 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
             throw new \InvalidArgumentException('non-nullable moment cannot be null');
         }
         $this->container['moment'] = $moment;
-
-        return $this;
-    }
-
-    /**
-     * Gets owner
-     *
-     * @return \OpenAPI\Client\Model\Employee|null
-     */
-    public function getOwner()
-    {
-        return $this->container['owner'];
-    }
-
-    /**
-     * Sets owner
-     *
-     * @param \OpenAPI\Client\Model\Employee|null $owner Владелец (Сотрудник)
-     *
-     * @return self
-     */
-    public function setOwner($owner)
-    {
-        if (is_null($owner)) {
-            array_push($this->openAPINullablesSetToNull, 'owner');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('owner', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['owner'] = $owner;
-
-        return $this;
-    }
-
-    /**
-     * Gets group
-     *
-     * @return \OpenAPI\Client\Model\Group|null
-     */
-    public function getGroup()
-    {
-        return $this->container['group'];
-    }
-
-    /**
-     * Sets group
-     *
-     * @param \OpenAPI\Client\Model\Group|null $group group
-     *
-     * @return self
-     */
-    public function setGroup($group)
-    {
-        if (is_null($group)) {
-            throw new \InvalidArgumentException('non-nullable group cannot be null');
-        }
-        $this->container['group'] = $group;
 
         return $this;
     }
@@ -1115,28 +1024,257 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
     }
 
     /**
-     * Gets rate
+     * Gets shared
      *
-     * @return \OpenAPI\Client\Model\CurrencyRate|null
+     * @return bool|null
      */
-    public function getRate()
+    public function getShared()
     {
-        return $this->container['rate'];
+        return $this->container['shared'];
     }
 
     /**
-     * Sets rate
+     * Sets shared
      *
-     * @param \OpenAPI\Client\Model\CurrencyRate|null $rate rate
+     * @param bool|null $shared Общий доступ
      *
      * @return self
      */
-    public function setRate($rate)
+    public function setShared($shared)
     {
-        if (is_null($rate)) {
-            throw new \InvalidArgumentException('non-nullable rate cannot be null');
+        if (is_null($shared)) {
+            throw new \InvalidArgumentException('non-nullable shared cannot be null');
         }
-        $this->container['rate'] = $rate;
+        $this->container['shared'] = $shared;
+
+        return $this;
+    }
+
+    /**
+     * Gets vat_enabled
+     *
+     * @return bool|null
+     */
+    public function getVatEnabled()
+    {
+        return $this->container['vat_enabled'];
+    }
+
+    /**
+     * Sets vat_enabled
+     *
+     * @param bool|null $vat_enabled Учитывается ли НДС
+     *
+     * @return self
+     */
+    public function setVatEnabled($vat_enabled)
+    {
+        if (is_null($vat_enabled)) {
+            throw new \InvalidArgumentException('non-nullable vat_enabled cannot be null');
+        }
+        $this->container['vat_enabled'] = $vat_enabled;
+
+        return $this;
+    }
+
+    /**
+     * Gets vat_included
+     *
+     * @return bool|null
+     */
+    public function getVatIncluded()
+    {
+        return $this->container['vat_included'];
+    }
+
+    /**
+     * Sets vat_included
+     *
+     * @param bool|null $vat_included Включен ли НДС в цену
+     *
+     * @return self
+     */
+    public function setVatIncluded($vat_included)
+    {
+        if (is_null($vat_included)) {
+            throw new \InvalidArgumentException('non-nullable vat_included cannot be null');
+        }
+        $this->container['vat_included'] = $vat_included;
+
+        return $this;
+    }
+
+    /**
+     * Gets vat_sum
+     *
+     * @return float|null
+     */
+    public function getVatSum()
+    {
+        return $this->container['vat_sum'];
+    }
+
+    /**
+     * Sets vat_sum
+     *
+     * @param float|null $vat_sum Сумма НДС
+     *
+     * @return self
+     */
+    public function setVatSum($vat_sum)
+    {
+        if (is_null($vat_sum)) {
+            throw new \InvalidArgumentException('non-nullable vat_sum cannot be null');
+        }
+        $this->container['vat_sum'] = $vat_sum;
+
+        return $this;
+    }
+
+    /**
+     * Gets sum
+     *
+     * @return float|null
+     */
+    public function getSum()
+    {
+        return $this->container['sum'];
+    }
+
+    /**
+     * Sets sum
+     *
+     * @param float|null $sum Сумма Возврата предоплаты в копейках
+     *
+     * @return self
+     */
+    public function setSum($sum)
+    {
+        if (is_null($sum)) {
+            throw new \InvalidArgumentException('non-nullable sum cannot be null');
+        }
+        $this->container['sum'] = $sum;
+
+        return $this;
+    }
+
+    /**
+     * Gets cash_sum
+     *
+     * @return float|null
+     */
+    public function getCashSum()
+    {
+        return $this->container['cash_sum'];
+    }
+
+    /**
+     * Sets cash_sum
+     *
+     * @param float|null $cash_sum Оплачено наличными
+     *
+     * @return self
+     */
+    public function setCashSum($cash_sum)
+    {
+        if (is_null($cash_sum)) {
+            throw new \InvalidArgumentException('non-nullable cash_sum cannot be null');
+        }
+        $this->container['cash_sum'] = $cash_sum;
+
+        return $this;
+    }
+
+    /**
+     * Gets no_cash_sum
+     *
+     * @return float|null
+     */
+    public function getNoCashSum()
+    {
+        return $this->container['no_cash_sum'];
+    }
+
+    /**
+     * Sets no_cash_sum
+     *
+     * @param float|null $no_cash_sum Оплачено картой
+     *
+     * @return self
+     */
+    public function setNoCashSum($no_cash_sum)
+    {
+        if (is_null($no_cash_sum)) {
+            throw new \InvalidArgumentException('non-nullable no_cash_sum cannot be null');
+        }
+        $this->container['no_cash_sum'] = $no_cash_sum;
+
+        return $this;
+    }
+
+    /**
+     * Gets qr_sum
+     *
+     * @return float|null
+     */
+    public function getQrSum()
+    {
+        return $this->container['qr_sum'];
+    }
+
+    /**
+     * Sets qr_sum
+     *
+     * @param float|null $qr_sum Оплачено по QR-коду
+     *
+     * @return self
+     */
+    public function setQrSum($qr_sum)
+    {
+        if (is_null($qr_sum)) {
+            throw new \InvalidArgumentException('non-nullable qr_sum cannot be null');
+        }
+        $this->container['qr_sum'] = $qr_sum;
+
+        return $this;
+    }
+
+    /**
+     * Gets agent
+     *
+     * @return \OpenAPI\Client\Model\Agent|null
+     */
+    public function getAgent()
+    {
+        return $this->container['agent'];
+    }
+
+    /**
+     * Sets agent
+     *
+     * Accepts a Counterparty, Organization, or Agent instance (or null when nullable).
+     * On the wire the server only reads `meta`; non-meta fields are kept locally for
+     * type-safe access and serialized verbatim.
+     *
+     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $agent Метаданные Контрагента или юрлица
+     *
+     * @return self
+     */
+    public function setAgent($agent)
+    {
+        if (is_null($agent)) {
+            throw new \InvalidArgumentException('non-nullable agent cannot be null');
+        }
+        if (!is_null($agent)
+            && !($agent instanceof \OpenAPI\Client\Model\Counterparty)
+            && !($agent instanceof \OpenAPI\Client\Model\Organization)
+            && !($agent instanceof \OpenAPI\Client\Model\Agent)) {
+            throw new \InvalidArgumentException(
+                "Argument for 'agent' must be one of Counterparty, Organization, or Agent; got "
+                . (is_object($agent) ? get_class($agent) : gettype($agent))
+            );
+        }
+        $this->container['agent'] = $agent;
 
         return $this;
     }
@@ -1169,109 +1307,62 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
     }
 
     /**
-     * Gets agent
+     * Gets owner
      *
-     * @return \OpenAPI\Client\Model\Agent|null
+     * @return \OpenAPI\Client\Model\Employee|null
      */
-    public function getAgent()
+    public function getOwner()
     {
-        return $this->container['agent'];
+        return $this->container['owner'];
     }
 
     /**
-     * Sets agent
+     * Sets owner
      *
-     * Accepts a Counterparty, Organization, or Agent instance (or null when nullable).
-     * On the wire the server only reads `meta`; non-meta fields are kept locally for
-     * type-safe access and serialized verbatim.
-     *
-     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $agent Метаданные контрагента
+     * @param \OpenAPI\Client\Model\Employee|null $owner Владелец (Сотрудник)
      *
      * @return self
      */
-    public function setAgent($agent)
+    public function setOwner($owner)
     {
-        if (is_null($agent)) {
-            throw new \InvalidArgumentException('non-nullable agent cannot be null');
-        }
-        if (!is_null($agent)
-            && !($agent instanceof \OpenAPI\Client\Model\Counterparty)
-            && !($agent instanceof \OpenAPI\Client\Model\Organization)
-            && !($agent instanceof \OpenAPI\Client\Model\Agent)) {
-            throw new \InvalidArgumentException(
-                "Argument for 'agent' must be one of Counterparty, Organization, or Agent; got "
-                . (is_object($agent) ? get_class($agent) : gettype($agent))
-            );
-        }
-        $this->container['agent'] = $agent;
-
-        return $this;
-    }
-
-    /**
-     * Gets agent_account
-     *
-     * @return \OpenAPI\Client\Model\Account|null
-     */
-    public function getAgentAccount()
-    {
-        return $this->container['agent_account'];
-    }
-
-    /**
-     * Sets agent_account
-     *
-     * @param \OpenAPI\Client\Model\Account|null $agent_account Метаданные счета контрагента
-     *
-     * @return self
-     */
-    public function setAgentAccount($agent_account)
-    {
-        if (is_null($agent_account)) {
-            array_push($this->openAPINullablesSetToNull, 'agent_account');
+        if (is_null($owner)) {
+            array_push($this->openAPINullablesSetToNull, 'owner');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('agent_account', $nullablesSetToNull);
+            $index = array_search('owner', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['agent_account'] = $agent_account;
+        $this->container['owner'] = $owner;
 
         return $this;
     }
 
     /**
-     * Gets organization_account
+     * Gets group
      *
-     * @return \OpenAPI\Client\Model\Account|null
+     * @return \OpenAPI\Client\Model\Group|null
      */
-    public function getOrganizationAccount()
+    public function getGroup()
     {
-        return $this->container['organization_account'];
+        return $this->container['group'];
     }
 
     /**
-     * Sets organization_account
+     * Sets group
      *
-     * @param \OpenAPI\Client\Model\Account|null $organization_account Метаданные счета юрлица
+     * @param \OpenAPI\Client\Model\Group|null $group group
      *
      * @return self
      */
-    public function setOrganizationAccount($organization_account)
+    public function setGroup($group)
     {
-        if (is_null($organization_account)) {
-            array_push($this->openAPINullablesSetToNull, 'organization_account');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('organization_account', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($group)) {
+            throw new \InvalidArgumentException('non-nullable group cannot be null');
         }
-        $this->container['organization_account'] = $organization_account;
+        $this->container['group'] = $group;
 
         return $this;
     }
@@ -1311,40 +1402,6 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
     }
 
     /**
-     * Gets contract
-     *
-     * @return \OpenAPI\Client\Model\Contract|null
-     */
-    public function getContract()
-    {
-        return $this->container['contract'];
-    }
-
-    /**
-     * Sets contract
-     *
-     * @param \OpenAPI\Client\Model\Contract|null $contract Метаданные договора
-     *
-     * @return self
-     */
-    public function setContract($contract)
-    {
-        if (is_null($contract)) {
-            array_push($this->openAPINullablesSetToNull, 'contract');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('contract', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['contract'] = $contract;
-
-        return $this;
-    }
-
-    /**
      * Gets files
      *
      * @return \OpenAPI\Client\Model\FileList|null
@@ -1357,7 +1414,7 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
     /**
      * Sets files
      *
-     * @param \OpenAPI\Client\Model\FileList|null $files Метаданные массива файлов
+     * @param \OpenAPI\Client\Model\FileList|null $files Метаданные массива Файлов
      *
      * @return self
      */
@@ -1379,127 +1436,136 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
     }
 
     /**
-     * Gets payment_purpose
+     * Gets rate
      *
-     * @return string|null
+     * @return \OpenAPI\Client\Model\CurrencyRate|null
      */
-    public function getPaymentPurpose()
+    public function getRate()
     {
-        return $this->container['payment_purpose'];
+        return $this->container['rate'];
     }
 
     /**
-     * Sets payment_purpose
+     * Sets rate
      *
-     * @param string|null $payment_purpose Назначение платежа
+     * @param \OpenAPI\Client\Model\CurrencyRate|null $rate rate
      *
      * @return self
      */
-    public function setPaymentPurpose($payment_purpose)
+    public function setRate($rate)
     {
-        if (is_null($payment_purpose)) {
-            throw new \InvalidArgumentException('non-nullable payment_purpose cannot be null');
+        if (is_null($rate)) {
+            throw new \InvalidArgumentException('non-nullable rate cannot be null');
         }
-        if ((mb_strlen($payment_purpose) > 255)) {
-            throw new \InvalidArgumentException('invalid length for $payment_purpose when calling RetailShiftPaymentOperationAnyOf1., must be smaller than or equal to 255.');
-        }
-
-        $this->container['payment_purpose'] = $payment_purpose;
+        $this->container['rate'] = $rate;
 
         return $this;
     }
 
     /**
-     * Gets project
+     * Gets positions
      *
-     * @return \OpenAPI\Client\Model\Project|null
+     * @return \OpenAPI\Client\Model\PrepaymentReturnPositionList|null
      */
-    public function getProject()
+    public function getPositions()
     {
-        return $this->container['project'];
+        return $this->container['positions'];
     }
 
     /**
-     * Sets project
+     * Sets positions
      *
-     * @param \OpenAPI\Client\Model\Project|null $project Метаданные проекта
+     * @param \OpenAPI\Client\Model\PrepaymentReturnPositionList|null $positions positions
      *
      * @return self
      */
-    public function setProject($project)
+    public function setPositions($positions)
     {
-        if (is_null($project)) {
-            array_push($this->openAPINullablesSetToNull, 'project');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('project', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($positions)) {
+            throw new \InvalidArgumentException('non-nullable positions cannot be null');
         }
-        $this->container['project'] = $project;
+        $this->container['positions'] = $positions;
 
         return $this;
     }
 
     /**
-     * Gets sales_channel
+     * Gets prepayment
      *
-     * @return \OpenAPI\Client\Model\SalesChannel|null
+     * @return \OpenAPI\Client\Model\Prepayment|null
      */
-    public function getSalesChannel()
+    public function getPrepayment()
     {
-        return $this->container['sales_channel'];
+        return $this->container['prepayment'];
     }
 
     /**
-     * Sets sales_channel
+     * Sets prepayment
      *
-     * @param \OpenAPI\Client\Model\SalesChannel|null $sales_channel Метаданные канала продаж
+     * @param \OpenAPI\Client\Model\Prepayment|null $prepayment prepayment
      *
      * @return self
      */
-    public function setSalesChannel($sales_channel)
+    public function setPrepayment($prepayment)
     {
-        if (is_null($sales_channel)) {
-            array_push($this->openAPINullablesSetToNull, 'sales_channel');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('sales_channel', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($prepayment)) {
+            throw new \InvalidArgumentException('non-nullable prepayment cannot be null');
         }
-        $this->container['sales_channel'] = $sales_channel;
+        $this->container['prepayment'] = $prepayment;
 
         return $this;
     }
 
     /**
-     * Gets shared
+     * Gets retail_shift
      *
-     * @return bool|null
+     * @return \OpenAPI\Client\Model\RetailShift|null
      */
-    public function getShared()
+    public function getRetailShift()
     {
-        return $this->container['shared'];
+        return $this->container['retail_shift'];
     }
 
     /**
-     * Sets shared
+     * Sets retail_shift
      *
-     * @param bool|null $shared Общий доступ
+     * @param \OpenAPI\Client\Model\RetailShift|null $retail_shift retail_shift
      *
      * @return self
      */
-    public function setShared($shared)
+    public function setRetailShift($retail_shift)
     {
-        if (is_null($shared)) {
-            throw new \InvalidArgumentException('non-nullable shared cannot be null');
+        if (is_null($retail_shift)) {
+            throw new \InvalidArgumentException('non-nullable retail_shift cannot be null');
         }
-        $this->container['shared'] = $shared;
+        $this->container['retail_shift'] = $retail_shift;
+
+        return $this;
+    }
+
+    /**
+     * Gets retail_store
+     *
+     * @return \OpenAPI\Client\Model\RetailStore|null
+     */
+    public function getRetailStore()
+    {
+        return $this->container['retail_store'];
+    }
+
+    /**
+     * Sets retail_store
+     *
+     * @param \OpenAPI\Client\Model\RetailStore|null $retail_store retail_store
+     *
+     * @return self
+     */
+    public function setRetailStore($retail_store)
+    {
+        if (is_null($retail_store)) {
+            throw new \InvalidArgumentException('non-nullable retail_store cannot be null');
+        }
+        $this->container['retail_store'] = $retail_store;
 
         return $this;
     }
@@ -1517,7 +1583,7 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
     /**
      * Sets state
      *
-     * @param \OpenAPI\Client\Model\State|null $state Метаданные статуса Входящего платежа
+     * @param \OpenAPI\Client\Model\State|null $state Метаданные статуса Возврата предоплаты
      *
      * @return self
      */
@@ -1539,232 +1605,28 @@ class RetailShiftPaymentOperationAnyOf1 implements ModelInterface, ArrayAccess, 
     }
 
     /**
-     * Gets sum
-     *
-     * @return float|null
-     */
-    public function getSum()
-    {
-        return $this->container['sum'];
-    }
-
-    /**
-     * Sets sum
-     *
-     * @param float|null $sum Сумма Входящего платежа в установленной валюте
-     *
-     * @return self
-     */
-    public function setSum($sum)
-    {
-        if (is_null($sum)) {
-            throw new \InvalidArgumentException('non-nullable sum cannot be null');
-        }
-
-        if (($sum < 0)) {
-            throw new \InvalidArgumentException('invalid value for $sum when calling RetailShiftPaymentOperationAnyOf1., must be bigger than or equal to 0.');
-        }
-
-        $this->container['sum'] = $sum;
-
-        return $this;
-    }
-
-    /**
-     * Gets vat_sum
-     *
-     * @return float|null
-     */
-    public function getVatSum()
-    {
-        return $this->container['vat_sum'];
-    }
-
-    /**
-     * Sets vat_sum
-     *
-     * @param float|null $vat_sum Сумма НДС
-     *
-     * @return self
-     */
-    public function setVatSum($vat_sum)
-    {
-        if (is_null($vat_sum)) {
-            throw new \InvalidArgumentException('non-nullable vat_sum cannot be null');
-        }
-
-        if (($vat_sum < 0)) {
-            throw new \InvalidArgumentException('invalid value for $vat_sum when calling RetailShiftPaymentOperationAnyOf1., must be bigger than or equal to 0.');
-        }
-
-        $this->container['vat_sum'] = $vat_sum;
-
-        return $this;
-    }
-
-    /**
-     * Gets incoming_number
+     * Gets tax_system
      *
      * @return string|null
      */
-    public function getIncomingNumber()
+    public function getTaxSystem()
     {
-        return $this->container['incoming_number'];
+        return $this->container['tax_system'];
     }
 
     /**
-     * Sets incoming_number
+     * Sets tax_system
      *
-     * @param string|null $incoming_number Входящий номер
+     * @param string|null $tax_system Код системы налогообложения. Известные значения описаны в TaxSystem
      *
      * @return self
      */
-    public function setIncomingNumber($incoming_number)
+    public function setTaxSystem($tax_system)
     {
-        if (is_null($incoming_number)) {
-            array_push($this->openAPINullablesSetToNull, 'incoming_number');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('incoming_number', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($tax_system)) {
+            throw new \InvalidArgumentException('non-nullable tax_system cannot be null');
         }
-        if (!is_null($incoming_number) && (mb_strlen($incoming_number) > 255)) {
-            throw new \InvalidArgumentException('invalid length for $incoming_number when calling RetailShiftPaymentOperationAnyOf1., must be smaller than or equal to 255.');
-        }
-
-        $this->container['incoming_number'] = $incoming_number;
-
-        return $this;
-    }
-
-    /**
-     * Gets incoming_date
-     *
-     * @return string|null
-     */
-    public function getIncomingDate()
-    {
-        return $this->container['incoming_date'];
-    }
-
-    /**
-     * Sets incoming_date
-     *
-     * @param string|null $incoming_date Входящая дата
-     *
-     * @return self
-     */
-    public function setIncomingDate($incoming_date)
-    {
-        if (is_null($incoming_date)) {
-            array_push($this->openAPINullablesSetToNull, 'incoming_date');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('incoming_date', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['incoming_date'] = $incoming_date;
-
-        return $this;
-    }
-
-    /**
-     * Gets facture_out
-     *
-     * @return \OpenAPI\Client\Model\FactureOut|null
-     */
-    public function getFactureOut()
-    {
-        return $this->container['facture_out'];
-    }
-
-    /**
-     * Sets facture_out
-     *
-     * @param \OpenAPI\Client\Model\FactureOut|null $facture_out Счет-фактура выданный, с которым связан этот платеж
-     *
-     * @return self
-     */
-    public function setFactureOut($facture_out)
-    {
-        if (is_null($facture_out)) {
-            array_push($this->openAPINullablesSetToNull, 'facture_out');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('facture_out', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['facture_out'] = $facture_out;
-
-        return $this;
-    }
-
-    /**
-     * Gets operations
-     *
-     * @return \OpenAPI\Client\Model\FinanceInOperationAbstract[]|null
-     */
-    public function getOperations()
-    {
-        return $this->container['operations'];
-    }
-
-    /**
-     * Sets operations
-     *
-     * @param \OpenAPI\Client\Model\FinanceInOperationAbstract[]|null $operations Связанные операции. Допустимые типы по `meta.type`: customerorder, purchasereturn, demand, invoiceout, commissionreportin, retailshift.
-     *
-     * @return self
-     */
-    public function setOperations($operations)
-    {
-        if (is_null($operations)) {
-            array_push($this->openAPINullablesSetToNull, 'operations');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('operations', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['operations'] = $operations;
-
-        return $this;
-    }
-
-    /**
-     * Gets linked_sum
-     *
-     * @return float
-     */
-    public function getLinkedSum()
-    {
-        return $this->container['linked_sum'];
-    }
-
-    /**
-     * Sets linked_sum
-     *
-     * @param float $linked_sum Сумма, оплаченная по данному документу
-     *
-     * @return self
-     */
-    public function setLinkedSum($linked_sum)
-    {
-        if (is_null($linked_sum)) {
-            throw new \InvalidArgumentException('non-nullable linked_sum cannot be null');
-        }
-        $this->container['linked_sum'] = $linked_sum;
+        $this->container['tax_system'] = $tax_system;
 
         return $this;
     }
