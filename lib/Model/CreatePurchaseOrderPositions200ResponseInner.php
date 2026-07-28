@@ -78,7 +78,7 @@ class CreatePurchaseOrderPositions200ResponseInner implements ModelInterface, Ar
         'in_transit' => 'float',
         'vat' => 'int',
         'vat_enabled' => 'bool',
-        'assortment' => '\OpenAPI\Client\Model\AssortmentWithoutBundle',
+        'assortment' => '\OpenAPI\Client\Model\ProductMarker',
         'pack' => '\OpenAPI\Client\Model\Pack',
         'stock' => '\OpenAPI\Client\Model\PositionStock',
         'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
@@ -720,7 +720,7 @@ class CreatePurchaseOrderPositions200ResponseInner implements ModelInterface, Ar
     /**
      * Gets assortment
      *
-     * @return \OpenAPI\Client\Model\AssortmentWithoutBundle|null
+     * @return \OpenAPI\Client\Model\ProductMarker|null
      */
     public function getAssortment()
     {
@@ -730,7 +730,7 @@ class CreatePurchaseOrderPositions200ResponseInner implements ModelInterface, Ar
     /**
      * Sets assortment
      *
-     * @param \OpenAPI\Client\Model\AssortmentWithoutBundle|null $assortment assortment
+     * @param \OpenAPI\Client\Model\ProductMarker|null $assortment Метаданные товара/услуги/модификации/партии, которую представляет собой позиция
      *
      * @return self
      */

@@ -241,7 +241,7 @@ try {
 ## `createTaskNote()`
 
 ```php
-createTaskNote($id, $task_note, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\TaskNote
+createTaskNote($id, $task_note, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\TaskNote[]
 ```
 
 Создать комментарий Задачи
@@ -296,7 +296,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\TaskNote**](../Model/TaskNote.md)
+[**\OpenAPI\Client\Model\TaskNote[]**](../Model/TaskNote.md)
 
 ### Authorization
 

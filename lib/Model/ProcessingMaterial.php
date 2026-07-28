@@ -83,8 +83,9 @@ class ProcessingMaterial implements ModelInterface, ArrayAccess, \JsonSerializab
         'meta' => '\OpenAPI\Client\Model\Meta',
         'id' => 'string',
         'account_id' => 'string',
-        'assortment' => '\OpenAPI\Client\Model\Assortment',
-        'quantity' => 'float'
+        'assortment' => '\OpenAPI\Client\Model\ProductMarker',
+        'quantity' => 'float',
+        'things' => 'string[]'
     ];
 
     /**
@@ -99,7 +100,8 @@ class ProcessingMaterial implements ModelInterface, ArrayAccess, \JsonSerializab
         'id' => 'uuid',
         'account_id' => 'uuid',
         'assortment' => null,
-        'quantity' => 'double'
+        'quantity' => 'double',
+        'things' => null
     ];
 
     /**
@@ -112,7 +114,8 @@ class ProcessingMaterial implements ModelInterface, ArrayAccess, \JsonSerializab
         'id' => false,
         'account_id' => false,
         'assortment' => false,
-        'quantity' => false
+        'quantity' => false,
+        'things' => false
     ];
 
     /**
@@ -236,7 +239,8 @@ class ProcessingMaterial implements ModelInterface, ArrayAccess, \JsonSerializab
         'id' => 'id',
         'account_id' => 'accountId',
         'assortment' => 'assortment',
-        'quantity' => 'quantity'
+        'quantity' => 'quantity',
+        'things' => 'things'
     ];
 
     /**
@@ -249,7 +253,8 @@ class ProcessingMaterial implements ModelInterface, ArrayAccess, \JsonSerializab
         'id' => 'setId',
         'account_id' => 'setAccountId',
         'assortment' => 'setAssortment',
-        'quantity' => 'setQuantity'
+        'quantity' => 'setQuantity',
+        'things' => 'setThings'
     ];
 
     /**
@@ -262,7 +267,8 @@ class ProcessingMaterial implements ModelInterface, ArrayAccess, \JsonSerializab
         'id' => 'getId',
         'account_id' => 'getAccountId',
         'assortment' => 'getAssortment',
-        'quantity' => 'getQuantity'
+        'quantity' => 'getQuantity',
+        'things' => 'getThings'
     ];
 
     /**
@@ -330,6 +336,7 @@ class ProcessingMaterial implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('account_id', $data ?? [], null);
         $this->setIfExists('assortment', $data ?? [], null);
         $this->setIfExists('quantity', $data ?? [], null);
+        $this->setIfExists('things', $data ?? [], null);
     }
 
     /**
@@ -465,8 +472,7 @@ class ProcessingMaterial implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets assortment
      *
-     * @return \OpenAPI\Client\Model\Assortment|null
-     * @deprecated
+     * @return \OpenAPI\Client\Model\ProductMarker|null
      */
     public function getAssortment()
     {
@@ -476,10 +482,9 @@ class ProcessingMaterial implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets assortment
      *
-     * @param \OpenAPI\Client\Model\Assortment|null $assortment assortment
+     * @param \OpenAPI\Client\Model\ProductMarker|null $assortment assortment
      *
      * @return self
-     * @deprecated
      */
     public function setAssortment($assortment)
     {
@@ -519,6 +524,33 @@ class ProcessingMaterial implements ModelInterface, ArrayAccess, \JsonSerializab
         }
 
         $this->container['quantity'] = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Gets things
+     *
+     * @return string[]|null
+     */
+    public function getThings()
+    {
+        return $this->container['things'];
+    }
+
+    /**
+     * Sets things
+     *
+     * @param string[]|null $things Серийные номера. Игнорируется, если товар позиции не на серийном учёте; иначе количество единиц в позиции совпадает с числом переданных серийных номеров.
+     *
+     * @return self
+     */
+    public function setThings($things)
+    {
+        if (is_null($things)) {
+            throw new \InvalidArgumentException('non-nullable things cannot be null');
+        }
+        $this->container['things'] = $things;
 
         return $this;
     }

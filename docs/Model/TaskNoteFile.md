@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **id** | **string** | ID файла | [optional] [readonly]
 **title** | **string** | Название файла | [optional]
 **filename** | **string** | Имя файла | [optional]
+**content** | **string** | Файл, закодированный в Base64 | [optional]
 **size** | **int** | Размер файла в байтах | [optional] [readonly]
 **created** | **string** | Время создания объекта | [optional] [readonly]
 **created_by** | [**\OpenAPI\Client\Model\Employee**](Employee.md) |  | [optional]

@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PurchaseOrderPosition implements ModelInterface, ArrayAccess, \JsonSerializable
+class PurchaseOrderPosition extends EntityWithMeta 
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
@@ -90,7 +90,7 @@ class PurchaseOrderPosition implements ModelInterface, ArrayAccess, \JsonSeriali
         'in_transit' => 'float',
         'vat' => 'int',
         'vat_enabled' => 'bool',
-        'assortment' => '\OpenAPI\Client\Model\AssortmentWithoutBundle',
+        'assortment' => '\OpenAPI\Client\Model\ProductMarker',
         'pack' => '\OpenAPI\Client\Model\Pack',
         'stock' => '\OpenAPI\Client\Model\PositionStock'
     ];
@@ -153,7 +153,7 @@ class PurchaseOrderPosition implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -163,7 +163,7 @@ class PurchaseOrderPosition implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -204,7 +204,7 @@ class PurchaseOrderPosition implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables;
+        return self::$openAPINullables + parent::openAPINullables();
     }
 
     /**
@@ -321,7 +321,7 @@ class PurchaseOrderPosition implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -331,7 +331,7 @@ class PurchaseOrderPosition implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -341,7 +341,7 @@ class PurchaseOrderPosition implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -356,13 +356,6 @@ class PurchaseOrderPosition implements ModelInterface, ArrayAccess, \JsonSeriali
 
 
     
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-    
 
     /**
      * Constructor
@@ -372,6 +365,9 @@ class PurchaseOrderPosition implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(?array $data = null)
     {
+        
+        parent::__construct($data);
+
         
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -414,8 +410,8 @@ class PurchaseOrderPosition implements ModelInterface, ArrayAccess, \JsonSeriali
     public function listInvalidProperties()
     {
         
+        $invalidProperties = parent::listInvalidProperties();
         
-        $invalidProperties = [];
         
 
         if (!is_null($this->container['vat']) && ($this->container['vat'] > 100)) {
@@ -722,7 +718,7 @@ class PurchaseOrderPosition implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets assortment
      *
-     * @return \OpenAPI\Client\Model\AssortmentWithoutBundle|null
+     * @return \OpenAPI\Client\Model\ProductMarker|null
      */
     public function getAssortment()
     {
@@ -732,7 +728,7 @@ class PurchaseOrderPosition implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets assortment
      *
-     * @param \OpenAPI\Client\Model\AssortmentWithoutBundle|null $assortment assortment
+     * @param \OpenAPI\Client\Model\ProductMarker|null $assortment Метаданные товара/услуги/модификации/партии, которую представляет собой позиция
      *
      * @return self
      */

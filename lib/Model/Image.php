@@ -72,6 +72,7 @@ class Image implements ModelInterface, ArrayAccess, \JsonSerializable
         'meta' => '\OpenAPI\Client\Model\Meta',
         'title' => 'string',
         'filename' => 'string',
+        'content' => 'string',
         'size' => 'int',
         'updated' => 'string',
         'tiny' => '\OpenAPI\Client\Model\Meta',
@@ -89,6 +90,7 @@ class Image implements ModelInterface, ArrayAccess, \JsonSerializable
         'meta' => null,
         'title' => null,
         'filename' => null,
+        'content' => null,
         'size' => null,
         'updated' => null,
         'tiny' => null,
@@ -104,6 +106,7 @@ class Image implements ModelInterface, ArrayAccess, \JsonSerializable
         'meta' => false,
         'title' => false,
         'filename' => false,
+        'content' => false,
         'size' => false,
         'updated' => false,
         'tiny' => false,
@@ -230,6 +233,7 @@ class Image implements ModelInterface, ArrayAccess, \JsonSerializable
         'meta' => 'meta',
         'title' => 'title',
         'filename' => 'filename',
+        'content' => 'content',
         'size' => 'size',
         'updated' => 'updated',
         'tiny' => 'tiny',
@@ -245,6 +249,7 @@ class Image implements ModelInterface, ArrayAccess, \JsonSerializable
         'meta' => 'setMeta',
         'title' => 'setTitle',
         'filename' => 'setFilename',
+        'content' => 'setContent',
         'size' => 'setSize',
         'updated' => 'setUpdated',
         'tiny' => 'setTiny',
@@ -260,6 +265,7 @@ class Image implements ModelInterface, ArrayAccess, \JsonSerializable
         'meta' => 'getMeta',
         'title' => 'getTitle',
         'filename' => 'getFilename',
+        'content' => 'getContent',
         'size' => 'getSize',
         'updated' => 'getUpdated',
         'tiny' => 'getTiny',
@@ -329,6 +335,7 @@ class Image implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('title', $data ?? [], null);
         $this->setIfExists('filename', $data ?? [], null);
+        $this->setIfExists('content', $data ?? [], null);
         $this->setIfExists('size', $data ?? [], null);
         $this->setIfExists('updated', $data ?? [], null);
         $this->setIfExists('tiny', $data ?? [], null);
@@ -473,6 +480,33 @@ class Image implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['filename'] = $filename;
+
+        return $this;
+    }
+
+    /**
+     * Gets content
+     *
+     * @return string|null
+     */
+    public function getContent()
+    {
+        return $this->container['content'];
+    }
+
+    /**
+     * Sets content
+     *
+     * @param string|null $content Изображение, закодированное в Base64
+     *
+     * @return self
+     */
+    public function setContent($content)
+    {
+        if (is_null($content)) {
+            throw new \InvalidArgumentException('non-nullable content cannot be null');
+        }
+        $this->container['content'] = $content;
 
         return $this;
     }

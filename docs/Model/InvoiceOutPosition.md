@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **discount** | **float** | Процент скидки или наценки | [optional]
 **vat** | **int** | НДС, которым облагается текущая позиция | [optional]
 **vat_enabled** | **bool** | Включен ли НДС для позиции | [optional]
-**assortment** | [**\OpenAPI\Client\Model\Assortment**](Assortment.md) |  | [optional]
+**assortment** | [**\OpenAPI\Client\Model\ProductMarker**](ProductMarker.md) | Метаданные товара/услуги/партии/модификации/комплекта, которую представляет собой позиция | [optional]
 **pack** | [**\OpenAPI\Client\Model\Pack**](Pack.md) | Упаковка Товара | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

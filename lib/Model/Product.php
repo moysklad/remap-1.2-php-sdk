@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Product extends EntityWithMeta 
+class Product extends ProductMarker 
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
@@ -105,9 +105,9 @@ class Product extends EntityWithMeta
         'updated' => 'string',
         'weight' => 'float',
         'volume' => 'float',
-        'buy_price' => '\OpenAPI\Client\Model\BuyPrice',
+        'buy_price' => '\OpenAPI\Client\Model\Price',
         'sale_prices' => '\OpenAPI\Client\Model\SalePrice[]',
-        'supplier' => '\OpenAPI\Client\Model\Counterparty',
+        'supplier' => '\OpenAPI\Client\Model\Agent',
         'country' => '\OpenAPI\Client\Model\Country',
         'uom' => '\OpenAPI\Client\Model\Uom',
         'product_folder' => '\OpenAPI\Client\Model\ProductFolder',
@@ -121,7 +121,7 @@ class Product extends EntityWithMeta
         'tax_system' => 'string',
         'attributes' => '\OpenAPI\Client\Model\AttributeAbstract[]',
         'minimum_stock' => '\OpenAPI\Client\Model\MinimumStockAbstract',
-        'min_price' => '\OpenAPI\Client\Model\MinPrice',
+        'min_price' => '\OpenAPI\Client\Model\Price',
         'weighed' => 'bool',
         'on_tap' => 'bool',
         'partial_disposal' => 'bool',
@@ -223,7 +223,7 @@ class Product extends EntityWithMeta
         'volume' => false,
         'buy_price' => false,
         'sale_prices' => true,
-        'supplier' => true,
+        'supplier' => false,
         'country' => true,
         'uom' => true,
         'product_folder' => true,
@@ -1477,7 +1477,7 @@ class Product extends EntityWithMeta
     /**
      * Gets buy_price
      *
-     * @return \OpenAPI\Client\Model\BuyPrice|null
+     * @return \OpenAPI\Client\Model\Price|null
      */
     public function getBuyPrice()
     {
@@ -1487,7 +1487,7 @@ class Product extends EntityWithMeta
     /**
      * Sets buy_price
      *
-     * @param \OpenAPI\Client\Model\BuyPrice|null $buy_price buy_price
+     * @param \OpenAPI\Client\Model\Price|null $buy_price buy_price
      *
      * @return self
      */
@@ -1538,7 +1538,7 @@ class Product extends EntityWithMeta
     /**
      * Gets supplier
      *
-     * @return \OpenAPI\Client\Model\Counterparty|null
+     * @return \OpenAPI\Client\Model\Agent|null
      */
     public function getSupplier()
     {
@@ -1548,21 +1548,28 @@ class Product extends EntityWithMeta
     /**
      * Sets supplier
      *
-     * @param \OpenAPI\Client\Model\Counterparty|null $supplier Метаданные контрагента-поставщика
+     * Accepts a Counterparty, Organization, Employee, or Agent instance (or null when nullable).
+     * On the wire the server only reads `meta`; non-meta fields are kept locally for
+     * type-safe access and serialized verbatim.
+     *
+     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $supplier Метаданные контрагента или юрлица
      *
      * @return self
      */
     public function setSupplier($supplier)
     {
         if (is_null($supplier)) {
-            array_push($this->openAPINullablesSetToNull, 'supplier');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('supplier', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable supplier cannot be null');
+        }
+        if (!is_null($supplier)
+            && !($supplier instanceof \OpenAPI\Client\Model\Counterparty)
+            && !($supplier instanceof \OpenAPI\Client\Model\Organization)
+            && !($supplier instanceof \OpenAPI\Client\Model\Employee)
+            && !($supplier instanceof \OpenAPI\Client\Model\Agent)) {
+            throw new \InvalidArgumentException(
+                "Argument for 'supplier' must be one of Counterparty, Organization, Employee, or Agent; got "
+                . (is_object($supplier) ? get_class($supplier) : gettype($supplier))
+            );
         }
         $this->container['supplier'] = $supplier;
 
@@ -1983,7 +1990,7 @@ class Product extends EntityWithMeta
     /**
      * Gets min_price
      *
-     * @return \OpenAPI\Client\Model\MinPrice|null
+     * @return \OpenAPI\Client\Model\Price|null
      */
     public function getMinPrice()
     {
@@ -1993,7 +2000,7 @@ class Product extends EntityWithMeta
     /**
      * Sets min_price
      *
-     * @param \OpenAPI\Client\Model\MinPrice|null $min_price min_price
+     * @param \OpenAPI\Client\Model\Price|null $min_price min_price
      *
      * @return self
      */

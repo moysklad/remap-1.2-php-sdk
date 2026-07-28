@@ -5,6 +5,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**createBonusTransaction()**](BonusTransactionsApi.md#createBonusTransaction) | **POST** /entity/bonustransaction | Создать бонусную операцию |
+| [**createBonusTransactionsBatch()**](BonusTransactionsApi.md#createBonusTransactionsBatch) | **POST** /entity/bonustransaction/batch | Создать или изменить бонусные операции |
 | [**deleteBonusTransaction()**](BonusTransactionsApi.md#deleteBonusTransaction) | **DELETE** /entity/bonustransaction/{id} | Удалить бонусную операцию |
 | [**deleteBonusTransactionsBatch()**](BonusTransactionsApi.md#deleteBonusTransactionsBatch) | **POST** /entity/bonustransaction/delete | Удалить бонусные операции |
 | [**getBonusTransactionById()**](BonusTransactionsApi.md#getBonusTransactionById) | **GET** /entity/bonustransaction/{id} | Получить бонусную операцию по ID |
@@ -15,12 +16,12 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 ## `createBonusTransaction()`
 
 ```php
-createBonusTransaction($create_bonus_transaction_request, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CreateBonusTransaction200Response
+createBonusTransaction($bonus_transaction, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BonusTransaction
 ```
 
 Создать бонусную операцию
 
-Создание бонусной операции и массовое создание/обновление бонусных операций
+Создание новой бонусной операции
 
 ### Example
 
@@ -44,14 +45,14 @@ $apiInstance = new OpenAPI\Client\Api\BonusTransactionsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$create_bonus_transaction_request = new \OpenAPI\Client\Model\CreateBonusTransactionRequest(); // \OpenAPI\Client\Model\CreateBonusTransactionRequest
+$bonus_transaction = new \OpenAPI\Client\Model\BonusTransaction(); // \OpenAPI\Client\Model\BonusTransaction
 $expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
 $accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createBonusTransaction($create_bonus_transaction_request, $expand, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->createBonusTransaction($bonus_transaction, $expand, $accept, $accept_encoding, $content_type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BonusTransactionsApi->createBonusTransaction: ', $e->getMessage(), PHP_EOL;
@@ -62,7 +63,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **create_bonus_transaction_request** | [**\OpenAPI\Client\Model\CreateBonusTransactionRequest**](../Model/CreateBonusTransactionRequest.md)|  | |
+| **bonus_transaction** | [**\OpenAPI\Client\Model\BonusTransaction**](../Model/BonusTransaction.md)|  | |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
@@ -70,7 +71,80 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateBonusTransaction200Response**](../Model/CreateBonusTransaction200Response.md)
+[**\OpenAPI\Client\Model\BonusTransaction**](../Model/BonusTransaction.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createBonusTransactionsBatch()`
+
+```php
+createBonusTransactionsBatch($bonus_transaction, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
+```
+
+Создать или изменить бонусные операции
+
+Создание или изменение нескольких бонусных операций.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\BonusTransactionsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$bonus_transaction = array(new \OpenAPI\Client\Model\BonusTransaction()); // \OpenAPI\Client\Model\BonusTransaction[]
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createBonusTransactionsBatch($bonus_transaction, $expand, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BonusTransactionsApi->createBonusTransactionsBatch: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **bonus_transaction** | [**\OpenAPI\Client\Model\BonusTransaction[]**](../Model/BonusTransaction.md)|  | |
+| **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 

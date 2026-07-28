@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Bundle extends EntityWithMeta 
+class Bundle extends ProductMarker 
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
@@ -116,8 +116,8 @@ class Bundle extends EntityWithMeta
         'barcodes' => '\OpenAPI\Client\Model\Barcode[]',
         'packs' => '\OpenAPI\Client\Model\Pack[]',
         'sale_prices' => '\OpenAPI\Client\Model\SalePrice[]',
-        'buy_price' => '\OpenAPI\Client\Model\BuyPrice',
-        'min_price' => '\OpenAPI\Client\Model\MinPrice',
+        'buy_price' => '\OpenAPI\Client\Model\Price',
+        'min_price' => '\OpenAPI\Client\Model\Price',
         'overhead' => '\OpenAPI\Client\Model\BundleOverhead',
         'attributes' => '\OpenAPI\Client\Model\AttributeAbstract[]',
         'components' => '\OpenAPI\Client\Model\BundleComponentList'
@@ -1718,7 +1718,7 @@ class Bundle extends EntityWithMeta
     /**
      * Gets buy_price
      *
-     * @return \OpenAPI\Client\Model\BuyPrice|null
+     * @return \OpenAPI\Client\Model\Price|null
      */
     public function getBuyPrice()
     {
@@ -1728,7 +1728,7 @@ class Bundle extends EntityWithMeta
     /**
      * Sets buy_price
      *
-     * @param \OpenAPI\Client\Model\BuyPrice|null $buy_price buy_price
+     * @param \OpenAPI\Client\Model\Price|null $buy_price buy_price
      *
      * @return self
      */
@@ -1745,7 +1745,7 @@ class Bundle extends EntityWithMeta
     /**
      * Gets min_price
      *
-     * @return \OpenAPI\Client\Model\MinPrice|null
+     * @return \OpenAPI\Client\Model\Price|null
      */
     public function getMinPrice()
     {
@@ -1755,7 +1755,7 @@ class Bundle extends EntityWithMeta
     /**
      * Sets min_price
      *
-     * @param \OpenAPI\Client\Model\MinPrice|null $min_price min_price
+     * @param \OpenAPI\Client\Model\Price|null $min_price min_price
      *
      * @return self
      */

@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 **marks_check_mode** | **string** | Режим проверки кодов маркировки. Известные значения описаны в MarksCheckMode | [optional]
 **priority_ofd_send** | **string** | Приоритетный способ отправки чека покупателю. Известные значения описаны в PriorityOfdSend | [optional]
 **allow_create_products** | **bool** | Признак разрешения создания новых товаров при продаже | [optional]
-**allow_custom_price** | **bool** | Признак разрешения устанавливать произвольные цены | [optional] [readonly]
+**allow_custom_price** | **bool** | Признак разрешения устанавливать произвольные цены | [optional]
 **allow_delete_receipt_positions** | **bool** | Признак разрешения удалять позиции из чека | [optional]
 **allow_sell_tobacco_without_mrc** | **bool** | Признак разрешения продажи табачной продукции без проверки МРЦ | [optional]
 **auth_token_attached** | **bool** | Признак подключения авторизационного токена | [optional] [readonly]
@@ -75,8 +75,8 @@ Name | Type | Description | Notes
 **demand_prefix** | **string** | Префикс номера заказа | [optional]
 **qr_terminal_id** | **string** | Идентификатор QR-терминала | [optional]
 **id_qr** | **string** | Идентификатор QR | [optional]
-**acquire** | [**\OpenAPI\Client\Model\Counterparty**](Counterparty.md) |  | [optional]
+**acquire** | [**\OpenAPI\Client\Model\Agent**](Agent.md) | Эквайер | [optional]
 **cashiers** | [**\OpenAPI\Client\Model\CashierList**](CashierList.md) | Кассиры, работающие на точке продаж | [optional]
-**qr_acquire** | [**\OpenAPI\Client\Model\Counterparty**](Counterparty.md) | Эквайер для QR-платежей | [optional]
+**qr_acquire** | [**\OpenAPI\Client\Model\Agent**](Agent.md) | Эквайер для QR-платежей | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -132,6 +132,30 @@ class CounterpartiesApiTest extends TestCase
     }
 
     /**
+     * Test case for createCounterpartyMetadataAttribute
+     *
+     * Создать доп. поле контрагента.
+     *
+     */
+    public function testCreateCounterpartyMetadataAttribute()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for createCounterpartyMetadataState
+     *
+     * Создать статус Counterparty.
+     *
+     */
+    public function testCreateCounterpartyMetadataState()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createCounterpartyNote
      *
      * Создать событие контрагента.
@@ -204,6 +228,30 @@ class CounterpartiesApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteCounterpartyMetadataAttributeById
+     *
+     * Удалить отдельное доп. поле контрагента.
+     *
+     */
+    public function testDeleteCounterpartyMetadataAttributeById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteCounterpartyMetadataStateById
+     *
+     * Удалить отдельный статус Контрагента.
+     *
+     */
+    public function testDeleteCounterpartyMetadataStateById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteCounterpartyNote
      *
      * Удалить событие контрагента.
@@ -246,6 +294,18 @@ class CounterpartiesApiTest extends TestCase
      *
      */
     public function testGetCounterpartyAccounts()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getCounterpartyAuditEvents
+     *
+     * Получить события аудита контрагента.
+     *
+     */
+    public function testGetCounterpartyAuditEvents()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -312,6 +372,42 @@ class CounterpartiesApiTest extends TestCase
     }
 
     /**
+     * Test case for getCounterpartyMetadataAttributeById
+     *
+     * Получить доп. поле контрагента по ID.
+     *
+     */
+    public function testGetCounterpartyMetadataAttributeById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getCounterpartyMetadataAttributes
+     *
+     * Получить доп. поля контрагентов.
+     *
+     */
+    public function testGetCounterpartyMetadataAttributes()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getCounterpartyMetadataStateById
+     *
+     * Отдельный статус Контрагента.
+     *
+     */
+    public function testGetCounterpartyMetadataStateById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getCounterpartyNoteById
      *
      * Получить событие контрагента по ID.
@@ -366,6 +462,30 @@ class CounterpartiesApiTest extends TestCase
      *
      */
     public function testUpdateCounterpartyContactPerson()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateCounterpartyMetadataAttributeById
+     *
+     * Обновить отдельное доп. поле контрагента.
+     *
+     */
+    public function testUpdateCounterpartyMetadataAttributeById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateCounterpartyMetadataStateById
+     *
+     * Обновить отдельный статус Контрагента.
+     *
+     */
+    public function testUpdateCounterpartyMetadataStateById()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

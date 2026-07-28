@@ -123,4 +123,13 @@ class ProcessingProductTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "things"
+     */
+    public function testPropertyThings()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

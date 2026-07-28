@@ -70,7 +70,7 @@ class EmployeeRole implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'meta' => '\OpenAPI\Client\Model\Meta',
-        'permissions' => 'array<string,mixed>'
+        'permissions' => '\OpenAPI\Client\Model\EmployeeRolePermissions'
     ];
 
     /**
@@ -375,7 +375,7 @@ class EmployeeRole implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets permissions
      *
-     * @return array<string,mixed>|null
+     * @return \OpenAPI\Client\Model\EmployeeRolePermissions|null
      */
     public function getPermissions()
     {
@@ -385,7 +385,7 @@ class EmployeeRole implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets permissions
      *
-     * @param array<string,mixed>|null $permissions Список пермиссий (только для индивидуальной роли)
+     * @param \OpenAPI\Client\Model\EmployeeRolePermissions|null $permissions permissions
      *
      * @return self
      */

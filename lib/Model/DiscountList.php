@@ -71,7 +71,7 @@ class DiscountList implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'context' => '\OpenAPI\Client\Model\Context',
         'meta' => '\OpenAPI\Client\Model\MetaList',
-        'rows' => '\OpenAPI\Client\Model\DiscountListRowsInner[]'
+        'rows' => '\OpenAPI\Client\Model\DiscountAbstract[]'
     ];
 
     /**
@@ -409,7 +409,7 @@ class DiscountList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets rows
      *
-     * @return \OpenAPI\Client\Model\DiscountListRowsInner[]|null
+     * @return \OpenAPI\Client\Model\DiscountAbstract[]|null
      */
     public function getRows()
     {
@@ -419,7 +419,7 @@ class DiscountList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets rows
      *
-     * @param \OpenAPI\Client\Model\DiscountListRowsInner[]|null $rows Массив скидок всех типов для учётной записи (см. `meta.type`: discount, personaldiscount, specialpricediscount, accumulationdiscount, bonusprogram).
+     * @param \OpenAPI\Client\Model\DiscountAbstract[]|null $rows Массив скидок всех типов для учётной записи (см. `meta.type`: discount, personaldiscount, specialpricediscount, accumulationdiscount, bonusprogram).
      *
      * @return self
      */

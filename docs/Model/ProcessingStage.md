@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **archived** | **bool** | Добавлен ли Этап производства в архив | [optional]
 **all_performers** | **bool** | Признак доступности назначения на этап любого сотрудника | [optional]
 **distribution_required** | **bool** | Признак видимости заданий для исполнителей в веб-приложении МойСклад Производство | [optional]
-**performers** | [**\OpenAPI\Client\Model\Employee[]**](Employee.md) | Метаданные возможных исполнителей | [optional]
+**performers** | [**\OpenAPI\Client\Model\Agent[]**](Agent.md) | Метаданные возможных исполнителей | [optional]
 **material_store** | [**\OpenAPI\Client\Model\Store**](Store.md) | Метаданные склада материалов | [optional] [readonly]
 **standard_hour_cost** | **float** | Стоимость нормо-часа | [optional]
 

@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Variant extends EntityWithMeta 
+class Variant extends ProductMarker 
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
@@ -93,8 +93,8 @@ class Variant extends EntityWithMeta
         'product' => '\OpenAPI\Client\Model\Product',
         'characteristics' => '\OpenAPI\Client\Model\VariantCharacteristicValue[]',
         'sale_prices' => '\OpenAPI\Client\Model\SalePrice[]',
-        'buy_price' => '\OpenAPI\Client\Model\BuyPrice',
-        'min_price' => '\OpenAPI\Client\Model\MinPrice',
+        'buy_price' => '\OpenAPI\Client\Model\Price',
+        'min_price' => '\OpenAPI\Client\Model\Price',
         'barcodes' => '\OpenAPI\Client\Model\Barcode[]',
         'packs' => '\OpenAPI\Client\Model\VariantPack[]',
         'images' => '\OpenAPI\Client\Model\ImageList',
@@ -885,7 +885,7 @@ class Variant extends EntityWithMeta
     /**
      * Gets buy_price
      *
-     * @return \OpenAPI\Client\Model\BuyPrice|null
+     * @return \OpenAPI\Client\Model\Price|null
      */
     public function getBuyPrice()
     {
@@ -895,7 +895,7 @@ class Variant extends EntityWithMeta
     /**
      * Sets buy_price
      *
-     * @param \OpenAPI\Client\Model\BuyPrice|null $buy_price Закупочная цена
+     * @param \OpenAPI\Client\Model\Price|null $buy_price Закупочная цена
      *
      * @return self
      */
@@ -919,7 +919,7 @@ class Variant extends EntityWithMeta
     /**
      * Gets min_price
      *
-     * @return \OpenAPI\Client\Model\MinPrice|null
+     * @return \OpenAPI\Client\Model\Price|null
      */
     public function getMinPrice()
     {
@@ -929,7 +929,7 @@ class Variant extends EntityWithMeta
     /**
      * Sets min_price
      *
-     * @param \OpenAPI\Client\Model\MinPrice|null $min_price min_price
+     * @param \OpenAPI\Client\Model\Price|null $min_price min_price
      *
      * @return self
      */

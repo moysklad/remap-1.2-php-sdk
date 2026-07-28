@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **reward** | **float** | Вознаграждение | [optional]
 **vat** | **int** | НДС для позиции | [optional]
 **vat_enabled** | **bool** | Включен ли НДС для позиции | [optional]
-**assortment** | [**\OpenAPI\Client\Model\Assortment**](Assortment.md) |  | [optional]
+**assortment** | [**\OpenAPI\Client\Model\ProductMarker**](ProductMarker.md) | Метаданные товара/партии/модификации/комплекта, которую представляет позиция | [optional]
 **pack** | [**\OpenAPI\Client\Model\Pack**](Pack.md) | Упаковка Товара | [optional]
 **errors** | [**\OpenAPI\Client\Model\ErrorErrorsInner[]**](ErrorErrorsInner.md) |  |
 

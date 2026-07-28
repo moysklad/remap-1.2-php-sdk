@@ -76,7 +76,7 @@ class CreateCommissionReportInReturnedPositions200ResponseInner implements Model
         'reward' => 'float',
         'vat' => 'int',
         'vat_enabled' => 'bool',
-        'assortment' => '\OpenAPI\Client\Model\Assortment',
+        'assortment' => '\OpenAPI\Client\Model\ProductMarker',
         'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
     ];
 
@@ -638,8 +638,7 @@ class CreateCommissionReportInReturnedPositions200ResponseInner implements Model
     /**
      * Gets assortment
      *
-     * @return \OpenAPI\Client\Model\Assortment|null
-     * @deprecated
+     * @return \OpenAPI\Client\Model\ProductMarker|null
      */
     public function getAssortment()
     {
@@ -649,10 +648,9 @@ class CreateCommissionReportInReturnedPositions200ResponseInner implements Model
     /**
      * Sets assortment
      *
-     * @param \OpenAPI\Client\Model\Assortment|null $assortment assortment
+     * @param \OpenAPI\Client\Model\ProductMarker|null $assortment Метаданные товара/партии/модификации/комплекта, которую представляет позиция
      *
      * @return self
-     * @deprecated
      */
     public function setAssortment($assortment)
     {

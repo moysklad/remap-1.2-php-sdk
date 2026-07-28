@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **vat** | **int** | НДС, которым облагается текущая позиция | [optional]
 **vat_enabled** | **bool** | Включен ли НДС для позиции | [optional]
 **tax_system** | **string** | Код системы налогообложения. Известные значения описаны в TaxSystem | [optional]
-**assortment** | [**\OpenAPI\Client\Model\Assortment**](Assortment.md) |  | [optional]
+**assortment** | [**\OpenAPI\Client\Model\ProductMarker**](ProductMarker.md) | Метаданные товара/услуги/модификации/комплекта, которую представляет собой позиция | [optional]
 **pack** | [**\OpenAPI\Client\Model\Pack**](Pack.md) | Упаковка Товара | [optional]
 **stock** | [**\OpenAPI\Client\Model\PositionStock**](PositionStock.md) | Остатки и себестоимость позиции. Не выводится по умолчанию. Для получения передайте параметр &#x60;?fields&#x3D;stock&#x60;. | [optional]
 **errors** | [**\OpenAPI\Client\Model\ErrorErrorsInner[]**](ErrorErrorsInner.md) |  |

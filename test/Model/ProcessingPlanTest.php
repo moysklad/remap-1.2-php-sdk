@@ -125,6 +125,15 @@ class ProcessingPlanTest extends TestCase
     }
 
     /**
+     * Test attribute "description"
+     */
+    public function testPropertyDescription()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "cost"
      */
     public function testPropertyCost()

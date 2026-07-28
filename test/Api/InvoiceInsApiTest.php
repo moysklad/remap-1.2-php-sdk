@@ -120,6 +120,18 @@ class InvoiceInsApiTest extends TestCase
     }
 
     /**
+     * Test case for createInvoiceInNote
+     *
+     * Добавить Событие Счета поставщику.
+     *
+     */
+    public function testCreateInvoiceInNote()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createInvoiceInPositions
      *
      * Создать позицию Счета поставщику.
@@ -198,6 +210,18 @@ class InvoiceInsApiTest extends TestCase
      *
      */
     public function testDeleteInvoiceInMetadataStateById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteInvoiceInNote
+     *
+     * Удалить Событие Счета поставщику.
+     *
+     */
+    public function testDeleteInvoiceInNote()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -324,6 +348,30 @@ class InvoiceInsApiTest extends TestCase
     }
 
     /**
+     * Test case for getInvoiceInNoteById
+     *
+     * Получить Событие Счета поставщику по ID.
+     *
+     */
+    public function testGetInvoiceInNoteById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getInvoiceInNotes
+     *
+     * Получить список Событий Счета поставщику.
+     *
+     */
+    public function testGetInvoiceInNotes()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getInvoiceInPositionById
      *
      * Получить позицию Счета поставщику.
@@ -390,6 +438,18 @@ class InvoiceInsApiTest extends TestCase
      *
      */
     public function testUpdateInvoiceInMetadataStateById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateInvoiceInNote
+     *
+     * Обновить Событие Счета поставщику.
+     *
+     */
+    public function testUpdateInvoiceInNote()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

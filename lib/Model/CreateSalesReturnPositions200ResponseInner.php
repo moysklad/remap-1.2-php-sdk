@@ -71,7 +71,7 @@ class CreateSalesReturnPositions200ResponseInner implements ModelInterface, Arra
         'meta' => '\OpenAPI\Client\Model\Meta',
         'id' => 'string',
         'account_id' => 'string',
-        'assortment' => '\OpenAPI\Client\Model\Assortment',
+        'assortment' => '\OpenAPI\Client\Model\ProductMarker',
         'cost' => 'int',
         'country' => '\OpenAPI\Client\Model\Country',
         'discount' => 'float',
@@ -537,8 +537,7 @@ class CreateSalesReturnPositions200ResponseInner implements ModelInterface, Arra
     /**
      * Gets assortment
      *
-     * @return \OpenAPI\Client\Model\Assortment|null
-     * @deprecated
+     * @return \OpenAPI\Client\Model\ProductMarker|null
      */
     public function getAssortment()
     {
@@ -548,10 +547,9 @@ class CreateSalesReturnPositions200ResponseInner implements ModelInterface, Arra
     /**
      * Sets assortment
      *
-     * @param \OpenAPI\Client\Model\Assortment|null $assortment assortment
+     * @param \OpenAPI\Client\Model\ProductMarker|null $assortment Метаданные товара/услуги/партии/модификации/комплекта, которую представляет собой позиция
      *
      * @return self
-     * @deprecated
      */
     public function setAssortment($assortment)
     {

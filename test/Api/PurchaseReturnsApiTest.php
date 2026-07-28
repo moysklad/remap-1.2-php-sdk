@@ -144,6 +144,18 @@ class PurchaseReturnsApiTest extends TestCase
     }
 
     /**
+     * Test case for createPurchaseReturnNote
+     *
+     * Добавить Событие Возврата поставщику.
+     *
+     */
+    public function testCreatePurchaseReturnNote()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createPurchaseReturnPosition
      *
      * Создать и обновить позицию Возврата поставщику.
@@ -222,6 +234,18 @@ class PurchaseReturnsApiTest extends TestCase
      *
      */
     public function testDeletePurchaseReturnMetadataStateById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deletePurchaseReturnNote
+     *
+     * Удалить Событие Возврата поставщику.
+     *
+     */
+    public function testDeletePurchaseReturnNote()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -336,6 +360,30 @@ class PurchaseReturnsApiTest extends TestCase
     }
 
     /**
+     * Test case for getPurchaseReturnNoteById
+     *
+     * Получить Событие Возврата поставщику по ID.
+     *
+     */
+    public function testGetPurchaseReturnNoteById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getPurchaseReturnNotes
+     *
+     * Получить список Событий Возврата поставщику.
+     *
+     */
+    public function testGetPurchaseReturnNotes()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getPurchaseReturnPositionById
      *
      * Получить позицию Возврата поставщику.
@@ -402,6 +450,18 @@ class PurchaseReturnsApiTest extends TestCase
      *
      */
     public function testUpdatePurchaseReturnMetadataStateById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updatePurchaseReturnNote
+     *
+     * Обновить Событие Возврата поставщику.
+     *
+     */
+    public function testUpdatePurchaseReturnNote()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

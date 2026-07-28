@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class InternalOrderPosition implements ModelInterface, ArrayAccess, \JsonSerializable
+class InternalOrderPosition extends EntityWithMeta 
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
@@ -87,7 +87,7 @@ class InternalOrderPosition implements ModelInterface, ArrayAccess, \JsonSeriali
         'price' => 'float',
         'vat' => 'int',
         'vat_enabled' => 'bool',
-        'assortment' => '\OpenAPI\Client\Model\Assortment',
+        'assortment' => '\OpenAPI\Client\Model\ProductMarker',
         'pack' => '\OpenAPI\Client\Model\Pack'
     ];
 
@@ -141,7 +141,7 @@ class InternalOrderPosition implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -151,7 +151,7 @@ class InternalOrderPosition implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -192,7 +192,7 @@ class InternalOrderPosition implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables;
+        return self::$openAPINullables + parent::openAPINullables();
     }
 
     /**
@@ -297,7 +297,7 @@ class InternalOrderPosition implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -307,7 +307,7 @@ class InternalOrderPosition implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -317,7 +317,7 @@ class InternalOrderPosition implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -332,13 +332,6 @@ class InternalOrderPosition implements ModelInterface, ArrayAccess, \JsonSeriali
 
 
     
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-    
 
     /**
      * Constructor
@@ -348,6 +341,9 @@ class InternalOrderPosition implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(?array $data = null)
     {
+        
+        parent::__construct($data);
+
         
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -386,8 +382,8 @@ class InternalOrderPosition implements ModelInterface, ArrayAccess, \JsonSeriali
     public function listInvalidProperties()
     {
         
+        $invalidProperties = parent::listInvalidProperties();
         
-        $invalidProperties = [];
         
 
         if (!is_null($this->container['vat']) && ($this->container['vat'] > 100)) {
@@ -613,8 +609,7 @@ class InternalOrderPosition implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets assortment
      *
-     * @return \OpenAPI\Client\Model\Assortment|null
-     * @deprecated
+     * @return \OpenAPI\Client\Model\ProductMarker|null
      */
     public function getAssortment()
     {
@@ -624,10 +619,9 @@ class InternalOrderPosition implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets assortment
      *
-     * @param \OpenAPI\Client\Model\Assortment|null $assortment assortment
+     * @param \OpenAPI\Client\Model\ProductMarker|null $assortment Метаданные товара/услуги/модификации/комплекта, которую представляет собой позиция
      *
      * @return self
-     * @deprecated
      */
     public function setAssortment($assortment)
     {

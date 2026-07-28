@@ -34,8 +34,8 @@ Name | Type | Description | Notes
 **sales_channel** | [**\OpenAPI\Client\Model\SalesChannel**](SalesChannel.md) | Метаданные канала продаж | [optional]
 **shared** | **bool** | Общий доступ | [optional] [readonly]
 **state** | [**\OpenAPI\Client\Model\State**](State.md) | Метаданные статуса Расходного ордера | [optional]
-**sum** | **float** | Сумма расходного ордера в установленной валюте | [optional] [readonly]
-**vat_sum** | **float** | Сумма НДС | [optional] [readonly]
+**sum** | **float** | Сумма расходного ордера в установленной валюте | [optional]
+**vat_sum** | **float** | Сумма НДС | [optional]
 **facture_in** | [**\OpenAPI\Client\Model\FactureIn**](FactureIn.md) | Счет-фактура полученный, с которым связан этот платеж | [optional]
 **operations** | [**\OpenAPI\Client\Model\FinanceOutOperationAbstract[]**](FinanceOutOperationAbstract.md) | Связанные операции: полное тело документа плюс &#x60;linkedSum&#x60;. Допустимые типы по &#x60;meta.type&#x60;: salesreturn, supply, invoicein, purchaseorder, commissionreportout | [optional]
 

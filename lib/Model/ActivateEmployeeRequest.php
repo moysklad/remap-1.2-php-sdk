@@ -69,7 +69,7 @@ class ActivateEmployeeRequest implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPITypes = [
         'login' => 'string',
-        'group' => '\OpenAPI\Client\Model\ActivateEmployeeRequestGroup',
+        'group' => '\OpenAPI\Client\Model\Group',
         'role' => '\OpenAPI\Client\Model\EmployeeRole'
     ];
 
@@ -389,7 +389,7 @@ class ActivateEmployeeRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets group
      *
-     * @return \OpenAPI\Client\Model\ActivateEmployeeRequestGroup|null
+     * @return \OpenAPI\Client\Model\Group|null
      */
     public function getGroup()
     {
@@ -399,7 +399,7 @@ class ActivateEmployeeRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets group
      *
-     * @param \OpenAPI\Client\Model\ActivateEmployeeRequestGroup|null $group group
+     * @param \OpenAPI\Client\Model\Group|null $group group
      *
      * @return self
      */

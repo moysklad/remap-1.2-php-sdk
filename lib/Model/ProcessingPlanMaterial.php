@@ -83,7 +83,7 @@ class ProcessingPlanMaterial implements ModelInterface, ArrayAccess, \JsonSerial
         'meta' => '\OpenAPI\Client\Model\Meta',
         'id' => 'string',
         'account_id' => 'string',
-        'assortment' => '\OpenAPI\Client\Model\Assortment',
+        'assortment' => '\OpenAPI\Client\Model\ProductMarker',
         'product' => '\OpenAPI\Client\Model\Product',
         'quantity' => 'float',
         'processing_process_position' => '\OpenAPI\Client\Model\ProcessingProcessPosition',
@@ -486,8 +486,7 @@ class ProcessingPlanMaterial implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets assortment
      *
-     * @return \OpenAPI\Client\Model\Assortment|null
-     * @deprecated
+     * @return \OpenAPI\Client\Model\ProductMarker|null
      */
     public function getAssortment()
     {
@@ -497,10 +496,9 @@ class ProcessingPlanMaterial implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets assortment
      *
-     * @param \OpenAPI\Client\Model\Assortment|null $assortment assortment
+     * @param \OpenAPI\Client\Model\ProductMarker|null $assortment assortment
      *
      * @return self
-     * @deprecated
      */
     public function setAssortment($assortment)
     {

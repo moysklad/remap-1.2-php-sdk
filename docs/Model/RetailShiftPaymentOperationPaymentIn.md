@@ -35,7 +35,7 @@ Name | Type | Description | Notes
 **shared** | **bool** | Общий доступ | [optional] [readonly]
 **state** | [**\OpenAPI\Client\Model\State**](State.md) | Метаданные статуса Входящего платежа | [optional]
 **sum** | **float** | Сумма Входящего платежа в установленной валюте | [optional] [readonly]
-**vat_sum** | **float** | Сумма НДС | [optional] [readonly]
+**vat_sum** | **float** | Сумма НДС | [optional]
 **incoming_number** | **string** | Входящий номер | [optional]
 **incoming_date** | **string** | Входящая дата | [optional]
 **facture_out** | [**\OpenAPI\Client\Model\FactureOut**](FactureOut.md) | Счет-фактура выданный, с которым связан этот платеж | [optional]

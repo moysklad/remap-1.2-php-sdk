@@ -75,7 +75,7 @@ class CreateInternalOrderPositions200ResponseInner implements ModelInterface, Ar
         'price' => 'float',
         'vat' => 'int',
         'vat_enabled' => 'bool',
-        'assortment' => '\OpenAPI\Client\Model\Assortment',
+        'assortment' => '\OpenAPI\Client\Model\ProductMarker',
         'pack' => '\OpenAPI\Client\Model\Pack',
         'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
     ];
@@ -611,8 +611,7 @@ class CreateInternalOrderPositions200ResponseInner implements ModelInterface, Ar
     /**
      * Gets assortment
      *
-     * @return \OpenAPI\Client\Model\Assortment|null
-     * @deprecated
+     * @return \OpenAPI\Client\Model\ProductMarker|null
      */
     public function getAssortment()
     {
@@ -622,10 +621,9 @@ class CreateInternalOrderPositions200ResponseInner implements ModelInterface, Ar
     /**
      * Sets assortment
      *
-     * @param \OpenAPI\Client\Model\Assortment|null $assortment assortment
+     * @param \OpenAPI\Client\Model\ProductMarker|null $assortment Метаданные товара/услуги/модификации/комплекта, которую представляет собой позиция
      *
      * @return self
-     * @deprecated
      */
     public function setAssortment($assortment)
     {

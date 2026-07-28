@@ -35,7 +35,7 @@ Name | Type | Description | Notes
 **shared** | **bool** | Общий доступ | [optional] [readonly]
 **state** | [**\OpenAPI\Client\Model\State**](State.md) | Метаданные статуса Входящего платежа | [optional]
 **sum** | **float** | Сумма Входящего платежа в установленной валюте | [optional] [readonly]
-**vat_sum** | **float** | Сумма НДС | [optional] [readonly]
+**vat_sum** | **float** | Сумма НДС | [optional]
 **facture_in** | [**\OpenAPI\Client\Model\FactureIn**](FactureIn.md) | Счет-фактура полученный, с которым связан этот платеж | [optional]
 **agent_account** | [**\OpenAPI\Client\Model\Account**](Account.md) | Метаданные счета контрагента | [optional]
 **organization_account** | [**\OpenAPI\Client\Model\Account**](Account.md) | Метаданные счета юрлица | [optional]

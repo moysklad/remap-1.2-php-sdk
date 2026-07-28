@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **meta** | [**\OpenAPI\Client\Model\Meta**](Meta.md) |  | [optional]
 **id** | **string** | ID позиции | [optional] [readonly]
 **account_id** | **string** | ID учетной записи | [optional] [readonly]
-**assortment** | [**\OpenAPI\Client\Model\Assortment**](Assortment.md) |  | [optional]
+**assortment** | [**\OpenAPI\Client\Model\ProductMarker**](ProductMarker.md) |  | [optional]
 **cost** | **int** | Себестоимость (выводится, если документ был создан без основания) | [optional]
 **discount** | **float** | Процент скидки или наценки. Наценка указывается отрицательным числом, например &#x60;-10&#x60; задает наценку 10%. | [optional]
 **pack** | [**\OpenAPI\Client\Model\Pack**](Pack.md) | Упаковка Товара | [optional]

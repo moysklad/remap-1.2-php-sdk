@@ -85,6 +85,7 @@ class ProcessingPlan extends EntityWithMeta
         'account_id' => 'string',
         'archived' => 'bool',
         'code' => 'string',
+        'description' => 'string',
         'cost' => 'float',
         'cost_distribution_type' => 'string',
         'external_code' => 'string',
@@ -115,6 +116,7 @@ class ProcessingPlan extends EntityWithMeta
         'account_id' => 'uuid',
         'archived' => null,
         'code' => null,
+        'description' => null,
         'cost' => 'double',
         'cost_distribution_type' => null,
         'external_code' => null,
@@ -143,6 +145,7 @@ class ProcessingPlan extends EntityWithMeta
         'account_id' => false,
         'archived' => false,
         'code' => false,
+        'description' => true,
         'cost' => false,
         'cost_distribution_type' => false,
         'external_code' => false,
@@ -282,6 +285,7 @@ class ProcessingPlan extends EntityWithMeta
         'account_id' => 'accountId',
         'archived' => 'archived',
         'code' => 'code',
+        'description' => 'description',
         'cost' => 'cost',
         'cost_distribution_type' => 'costDistributionType',
         'external_code' => 'externalCode',
@@ -310,6 +314,7 @@ class ProcessingPlan extends EntityWithMeta
         'account_id' => 'setAccountId',
         'archived' => 'setArchived',
         'code' => 'setCode',
+        'description' => 'setDescription',
         'cost' => 'setCost',
         'cost_distribution_type' => 'setCostDistributionType',
         'external_code' => 'setExternalCode',
@@ -338,6 +343,7 @@ class ProcessingPlan extends EntityWithMeta
         'account_id' => 'getAccountId',
         'archived' => 'getArchived',
         'code' => 'getCode',
+        'description' => 'getDescription',
         'cost' => 'getCost',
         'cost_distribution_type' => 'getCostDistributionType',
         'external_code' => 'getExternalCode',
@@ -416,6 +422,7 @@ class ProcessingPlan extends EntityWithMeta
         $this->setIfExists('account_id', $data ?? [], null);
         $this->setIfExists('archived', $data ?? [], null);
         $this->setIfExists('code', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('cost', $data ?? [], null);
         $this->setIfExists('cost_distribution_type', $data ?? [], null);
         $this->setIfExists('external_code', $data ?? [], null);
@@ -465,6 +472,10 @@ class ProcessingPlan extends EntityWithMeta
 
         if (!is_null($this->container['code']) && (mb_strlen($this->container['code']) > 255)) {
             $invalidProperties[] = "invalid value for 'code', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['description']) && (mb_strlen($this->container['description']) > 4096)) {
+            $invalidProperties[] = "invalid value for 'description', the character length must be smaller than or equal to 4096.";
         }
 
         if (!is_null($this->container['external_code']) && (mb_strlen($this->container['external_code']) > 255)) {
@@ -625,6 +636,44 @@ class ProcessingPlan extends EntityWithMeta
         }
 
         $this->container['code'] = $code;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description Описание Техкарт
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            array_push($this->openAPINullablesSetToNull, 'description');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('description', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($description) && (mb_strlen($description) > 4096)) {
+            throw new \InvalidArgumentException('invalid length for $description when calling ProcessingPlan., must be smaller than or equal to 4096.');
+        }
+
+        $this->container['description'] = $description;
 
         return $this;
     }

@@ -389,7 +389,7 @@ try {
 ## `createPurchaseOrderNote()`
 
 ```php
-createPurchaseOrderNote($id, $event_note, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\EventNote
+createPurchaseOrderNote($id, $event_note, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\EventNote[]
 ```
 
 Добавить Событие Заказа поставщику
@@ -444,7 +444,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\EventNote**](../Model/EventNote.md)
+[**\OpenAPI\Client\Model\EventNote[]**](../Model/EventNote.md)
 
 ### Authorization
 

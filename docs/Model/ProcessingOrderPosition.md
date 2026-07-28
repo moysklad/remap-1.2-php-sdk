@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **account_id** | **string** | ID учетной записи | [optional] [readonly]
 **quantity** | **float** | Количество товаров данного вида в позиции | [optional]
 **reserve** | **float** | Резерв данной позиции | [optional]
-**assortment** | [**\OpenAPI\Client\Model\Assortment**](Assortment.md) |  | [optional]
+**assortment** | [**\OpenAPI\Client\Model\ProductMarker**](ProductMarker.md) | Метаданные товара/услуги/партии/модификации позиции | [optional]
 **pack** | [**\OpenAPI\Client\Model\Pack**](Pack.md) | Упаковка Товара | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

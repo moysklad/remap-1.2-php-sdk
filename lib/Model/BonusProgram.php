@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class BonusProgram implements ModelInterface, ArrayAccess, \JsonSerializable
+class BonusProgram extends DiscountAbstract 
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
@@ -76,15 +76,7 @@ class BonusProgram implements ModelInterface, ArrayAccess, \JsonSerializable
         'welcome_bonuses_enabled' => 'bool',
         'welcome_bonuses_value' => 'int',
         'welcome_bonuses_mode' => 'string',
-        'max_paid_rate_percents' => 'int',
-        'all_products' => 'bool',
-        'id' => 'string',
-        'meta' => '\OpenAPI\Client\Model\Meta',
-        'account_id' => 'string',
-        'name' => 'string',
-        'active' => 'bool',
-        'all_agents' => 'bool',
-        'agent_tags' => 'string[]'
+        'max_paid_rate_percents' => 'int'
     ];
 
     /**
@@ -102,15 +94,7 @@ class BonusProgram implements ModelInterface, ArrayAccess, \JsonSerializable
         'welcome_bonuses_enabled' => null,
         'welcome_bonuses_value' => 'int32',
         'welcome_bonuses_mode' => null,
-        'max_paid_rate_percents' => 'int32',
-        'all_products' => null,
-        'id' => 'uuid',
-        'meta' => null,
-        'account_id' => 'uuid',
-        'name' => null,
-        'active' => null,
-        'all_agents' => null,
-        'agent_tags' => null
+        'max_paid_rate_percents' => 'int32'
     ];
 
     /**
@@ -126,15 +110,7 @@ class BonusProgram implements ModelInterface, ArrayAccess, \JsonSerializable
         'welcome_bonuses_enabled' => false,
         'welcome_bonuses_value' => false,
         'welcome_bonuses_mode' => false,
-        'max_paid_rate_percents' => false,
-        'all_products' => false,
-        'id' => false,
-        'meta' => false,
-        'account_id' => false,
-        'name' => false,
-        'active' => false,
-        'all_agents' => false,
-        'agent_tags' => true
+        'max_paid_rate_percents' => false
     ];
 
     /**
@@ -151,7 +127,7 @@ class BonusProgram implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -161,7 +137,7 @@ class BonusProgram implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -202,7 +178,7 @@ class BonusProgram implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables;
+        return self::$openAPINullables + parent::openAPINullables();
     }
 
     /**
@@ -261,15 +237,7 @@ class BonusProgram implements ModelInterface, ArrayAccess, \JsonSerializable
         'welcome_bonuses_enabled' => 'welcomeBonusesEnabled',
         'welcome_bonuses_value' => 'welcomeBonusesValue',
         'welcome_bonuses_mode' => 'welcomeBonusesMode',
-        'max_paid_rate_percents' => 'maxPaidRatePercents',
-        'all_products' => 'allProducts',
-        'id' => 'id',
-        'meta' => 'meta',
-        'account_id' => 'accountId',
-        'name' => 'name',
-        'active' => 'active',
-        'all_agents' => 'allAgents',
-        'agent_tags' => 'agentTags'
+        'max_paid_rate_percents' => 'maxPaidRatePercents'
     ];
 
     /**
@@ -285,15 +253,7 @@ class BonusProgram implements ModelInterface, ArrayAccess, \JsonSerializable
         'welcome_bonuses_enabled' => 'setWelcomeBonusesEnabled',
         'welcome_bonuses_value' => 'setWelcomeBonusesValue',
         'welcome_bonuses_mode' => 'setWelcomeBonusesMode',
-        'max_paid_rate_percents' => 'setMaxPaidRatePercents',
-        'all_products' => 'setAllProducts',
-        'id' => 'setId',
-        'meta' => 'setMeta',
-        'account_id' => 'setAccountId',
-        'name' => 'setName',
-        'active' => 'setActive',
-        'all_agents' => 'setAllAgents',
-        'agent_tags' => 'setAgentTags'
+        'max_paid_rate_percents' => 'setMaxPaidRatePercents'
     ];
 
     /**
@@ -309,15 +269,7 @@ class BonusProgram implements ModelInterface, ArrayAccess, \JsonSerializable
         'welcome_bonuses_enabled' => 'getWelcomeBonusesEnabled',
         'welcome_bonuses_value' => 'getWelcomeBonusesValue',
         'welcome_bonuses_mode' => 'getWelcomeBonusesMode',
-        'max_paid_rate_percents' => 'getMaxPaidRatePercents',
-        'all_products' => 'getAllProducts',
-        'id' => 'getId',
-        'meta' => 'getMeta',
-        'account_id' => 'getAccountId',
-        'name' => 'getName',
-        'active' => 'getActive',
-        'all_agents' => 'getAllAgents',
-        'agent_tags' => 'getAgentTags'
+        'max_paid_rate_percents' => 'getMaxPaidRatePercents'
     ];
 
     /**
@@ -328,7 +280,7 @@ class BonusProgram implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -338,7 +290,7 @@ class BonusProgram implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -348,7 +300,7 @@ class BonusProgram implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -363,13 +315,6 @@ class BonusProgram implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-    
 
     /**
      * Constructor
@@ -380,6 +325,9 @@ class BonusProgram implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(?array $data = null)
     {
         
+        parent::__construct($data);
+
+        
         $this->setIfExists('earn_rate_roubles_to_point', $data ?? [], null);
         $this->setIfExists('earn_while_redeeming', $data ?? [], null);
         $this->setIfExists('postponed_bonuses_delay_days', $data ?? [], null);
@@ -388,14 +336,6 @@ class BonusProgram implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('welcome_bonuses_value', $data ?? [], null);
         $this->setIfExists('welcome_bonuses_mode', $data ?? [], null);
         $this->setIfExists('max_paid_rate_percents', $data ?? [], null);
-        $this->setIfExists('all_products', $data ?? [], null);
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('meta', $data ?? [], null);
-        $this->setIfExists('account_id', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('active', $data ?? [], null);
-        $this->setIfExists('all_agents', $data ?? [], null);
-        $this->setIfExists('agent_tags', $data ?? [], null);
     }
 
     /**
@@ -424,8 +364,8 @@ class BonusProgram implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties()
     {
         
+        $invalidProperties = parent::listInvalidProperties();
         
-        $invalidProperties = [];
         
 
         if (!is_null($this->container['max_paid_rate_percents']) && ($this->container['max_paid_rate_percents'] > 100)) {
@@ -434,10 +374,6 @@ class BonusProgram implements ModelInterface, ArrayAccess, \JsonSerializable
 
         if (!is_null($this->container['max_paid_rate_percents']) && ($this->container['max_paid_rate_percents'] < 0)) {
             $invalidProperties[] = "invalid value for 'max_paid_rate_percents', must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 255)) {
-            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
         }
 
         return $invalidProperties;
@@ -675,233 +611,6 @@ class BonusProgram implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['max_paid_rate_percents'] = $max_paid_rate_percents;
-
-        return $this;
-    }
-
-    /**
-     * Gets all_products
-     *
-     * @return bool|null
-     */
-    public function getAllProducts()
-    {
-        return $this->container['all_products'];
-    }
-
-    /**
-     * Sets all_products
-     *
-     * @param bool|null $all_products Для всех ли товаров скидка
-     *
-     * @return self
-     */
-    public function setAllProducts($all_products)
-    {
-        if (is_null($all_products)) {
-            throw new \InvalidArgumentException('non-nullable all_products cannot be null');
-        }
-        $this->container['all_products'] = $all_products;
-
-        return $this;
-    }
-
-    /**
-     * Gets id
-     *
-     * @return string|null
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param string|null $id ID дополнительного поля
-     *
-     * @return self
-     */
-    public function setId($id)
-    {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets meta
-     *
-     * @return \OpenAPI\Client\Model\Meta|null
-     */
-    public function getMeta()
-    {
-        return $this->container['meta'];
-    }
-
-    /**
-     * Sets meta
-     *
-     * @param \OpenAPI\Client\Model\Meta|null $meta meta
-     *
-     * @return self
-     */
-    public function setMeta($meta)
-    {
-        if (is_null($meta)) {
-            throw new \InvalidArgumentException('non-nullable meta cannot be null');
-        }
-        $this->container['meta'] = $meta;
-
-        return $this;
-    }
-
-    /**
-     * Gets account_id
-     *
-     * @return string|null
-     */
-    public function getAccountId()
-    {
-        return $this->container['account_id'];
-    }
-
-    /**
-     * Sets account_id
-     *
-     * @param string|null $account_id ID учетной записи
-     *
-     * @return self
-     */
-    public function setAccountId($account_id)
-    {
-        if (is_null($account_id)) {
-            throw new \InvalidArgumentException('non-nullable account_id cannot be null');
-        }
-        $this->container['account_id'] = $account_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Наименование товара
-     *
-     * @return self
-     */
-    public function setName($name)
-    {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
-        if ((mb_strlen($name) > 255)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling BonusProgram., must be smaller than or equal to 255.');
-        }
-
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets active
-     *
-     * @return bool|null
-     */
-    public function getActive()
-    {
-        return $this->container['active'];
-    }
-
-    /**
-     * Sets active
-     *
-     * @param bool|null $active Включена ли скидка
-     *
-     * @return self
-     */
-    public function setActive($active)
-    {
-        if (is_null($active)) {
-            throw new \InvalidArgumentException('non-nullable active cannot be null');
-        }
-        $this->container['active'] = $active;
-
-        return $this;
-    }
-
-    /**
-     * Gets all_agents
-     *
-     * @return bool|null
-     */
-    public function getAllAgents()
-    {
-        return $this->container['all_agents'];
-    }
-
-    /**
-     * Sets all_agents
-     *
-     * @param bool|null $all_agents Для всех ли агентов скидка
-     *
-     * @return self
-     */
-    public function setAllAgents($all_agents)
-    {
-        if (is_null($all_agents)) {
-            throw new \InvalidArgumentException('non-nullable all_agents cannot be null');
-        }
-        $this->container['all_agents'] = $all_agents;
-
-        return $this;
-    }
-
-    /**
-     * Gets agent_tags
-     *
-     * @return string[]|null
-     */
-    public function getAgentTags()
-    {
-        return $this->container['agent_tags'];
-    }
-
-    /**
-     * Sets agent_tags
-     *
-     * @param string[]|null $agent_tags Тэги агентов
-     *
-     * @return self
-     */
-    public function setAgentTags($agent_tags)
-    {
-        if (is_null($agent_tags)) {
-            array_push($this->openAPINullablesSetToNull, 'agent_tags');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('agent_tags', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['agent_tags'] = $agent_tags;
 
         return $this;
     }

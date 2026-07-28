@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **account_id** | **string** | ID учетной записи | [optional] [readonly]
 **archived** | **bool** | Добавлена ли Техкарта в архив | [optional]
 **code** | **string** | Код Техкарты | [optional]
+**description** | **string** | Описание Техкарт | [optional]
 **cost** | **float** | Стоимость производства | [optional]
 **cost_distribution_type** | **string** | Тип распределения себестоимости. Возможные значения описаны в CostDistributionType | [optional] [readonly]
 **external_code** | **string** | Внешний код Техкарты | [optional]

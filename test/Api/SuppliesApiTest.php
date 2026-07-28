@@ -144,6 +144,18 @@ class SuppliesApiTest extends TestCase
     }
 
     /**
+     * Test case for createSupplyNote
+     *
+     * Добавить Событие Приемки.
+     *
+     */
+    public function testCreateSupplyNote()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createSupplyPosition
      *
      * Создать и обновить позицию Приемки.
@@ -222,6 +234,18 @@ class SuppliesApiTest extends TestCase
      *
      */
     public function testDeleteSupplyMetadataStateById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteSupplyNote
+     *
+     * Удалить Событие Приемки.
+     *
+     */
+    public function testDeleteSupplyNote()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -336,6 +360,30 @@ class SuppliesApiTest extends TestCase
     }
 
     /**
+     * Test case for getSupplyNoteById
+     *
+     * Получить Событие Приемки по ID.
+     *
+     */
+    public function testGetSupplyNoteById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getSupplyNotes
+     *
+     * Получить список Событий Приемки.
+     *
+     */
+    public function testGetSupplyNotes()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getSupplyPositionById
      *
      * Получить позицию Приемки.
@@ -372,6 +420,18 @@ class SuppliesApiTest extends TestCase
     }
 
     /**
+     * Test case for moveSupplyToTrash
+     *
+     * Удалить Приемку в корзину.
+     *
+     */
+    public function testMoveSupplyToTrash()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for updateSupply
      *
      * Изменить Приемку.
@@ -402,6 +462,18 @@ class SuppliesApiTest extends TestCase
      *
      */
     public function testUpdateSupplyMetadataStateById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateSupplyNote
+     *
+     * Обновить Событие Приемки.
+     *
+     */
+    public function testUpdateSupplyNote()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -244,7 +244,7 @@ try {
 ## `createDemandPosition()`
 
 ```php
-createDemandPosition($id, $demand_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DemandPosition
+createDemandPosition($id, $demand_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\DemandPosition[]
 ```
 
 Создать и обновить позицию Отгрузки
@@ -299,7 +299,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DemandPosition**](../Model/DemandPosition.md)
+[**\OpenAPI\Client\Model\DemandPosition[]**](../Model/DemandPosition.md)
 
 ### Authorization
 

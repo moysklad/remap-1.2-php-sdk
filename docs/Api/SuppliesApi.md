@@ -10,6 +10,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createSupplyMetadataAttribute()**](SuppliesApi.md#createSupplyMetadataAttribute) | **POST** /entity/supply/metadata/attributes | Создать доп. поле Приемки |
 | [**createSupplyMetadataState()**](SuppliesApi.md#createSupplyMetadataState) | **POST** /entity/supply/metadata/states | Создать статус Приемки |
 | [**createSupplyMetadataStatesBatch()**](SuppliesApi.md#createSupplyMetadataStatesBatch) | **POST** /entity/supply/metadata/states/batch | Массовое создание и обновление статусов Приемки |
+| [**createSupplyNote()**](SuppliesApi.md#createSupplyNote) | **POST** /entity/supply/{id}/notes | Добавить Событие Приемки |
 | [**createSupplyPosition()**](SuppliesApi.md#createSupplyPosition) | **POST** /entity/supply/{id}/positions | Создать и обновить позицию Приемки |
 | [**createSupplyPositions()**](SuppliesApi.md#createSupplyPositions) | **POST** /entity/supply/{id}/positions/batch | Массовое создание и обновление позиций Приемки |
 | [**deleteSupply()**](SuppliesApi.md#deleteSupply) | **DELETE** /entity/supply/{id} | Удалить Приемку |
@@ -17,6 +18,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**deleteSupplyFile()**](SuppliesApi.md#deleteSupplyFile) | **DELETE** /entity/supply/{id}/files/{fileId} | Удалить файл Приемки |
 | [**deleteSupplyMetadataAttributeById()**](SuppliesApi.md#deleteSupplyMetadataAttributeById) | **DELETE** /entity/supply/metadata/attributes/{id} | Удалить отдельное доп. поле Приемки |
 | [**deleteSupplyMetadataStateById()**](SuppliesApi.md#deleteSupplyMetadataStateById) | **DELETE** /entity/supply/metadata/states/{id} | Удалить отдельный статус Приемки |
+| [**deleteSupplyNote()**](SuppliesApi.md#deleteSupplyNote) | **DELETE** /entity/supply/{id}/notes/{noteId} | Удалить Событие Приемки |
 | [**deleteSupplyPosition()**](SuppliesApi.md#deleteSupplyPosition) | **DELETE** /entity/supply/{id}/positions/{positionId} | Удалить позицию Приемки |
 | [**deleteSupplyPositions()**](SuppliesApi.md#deleteSupplyPositions) | **POST** /entity/supply/{id}/positions/delete | Массовое удаление позиций Приемки |
 | [**getSupplyById()**](SuppliesApi.md#getSupplyById) | **GET** /entity/supply/{id} | Получить Приемку |
@@ -26,12 +28,16 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**getSupplyMetadataAttribute()**](SuppliesApi.md#getSupplyMetadataAttribute) | **GET** /entity/supply/metadata/attributes | Доп. поля Приемки |
 | [**getSupplyMetadataAttributeById()**](SuppliesApi.md#getSupplyMetadataAttributeById) | **GET** /entity/supply/metadata/attributes/{id} | Отдельное доп. поле Приемки |
 | [**getSupplyMetadataStateById()**](SuppliesApi.md#getSupplyMetadataStateById) | **GET** /entity/supply/metadata/states/{id} | Отдельный статус Приемки |
+| [**getSupplyNoteById()**](SuppliesApi.md#getSupplyNoteById) | **GET** /entity/supply/{id}/notes/{noteId} | Получить Событие Приемки по ID |
+| [**getSupplyNotes()**](SuppliesApi.md#getSupplyNotes) | **GET** /entity/supply/{id}/notes | Получить список Событий Приемки |
 | [**getSupplyPositionById()**](SuppliesApi.md#getSupplyPositionById) | **GET** /entity/supply/{id}/positions/{positionId} | Получить позицию Приемки |
 | [**getSupplyPositions()**](SuppliesApi.md#getSupplyPositions) | **GET** /entity/supply/{id}/positions | Получить позиции Приемки |
 | [**getSupplyTemplate()**](SuppliesApi.md#getSupplyTemplate) | **PUT** /entity/supply/new | Шаблон Приемки |
+| [**moveSupplyToTrash()**](SuppliesApi.md#moveSupplyToTrash) | **POST** /entity/supply/{id}/trash | Удалить Приемку в корзину |
 | [**updateSupply()**](SuppliesApi.md#updateSupply) | **PUT** /entity/supply/{id} | Изменить Приемку |
 | [**updateSupplyMetadataAttributeById()**](SuppliesApi.md#updateSupplyMetadataAttributeById) | **PUT** /entity/supply/metadata/attributes/{id} | Обновить отдельное доп. поле Приемки |
 | [**updateSupplyMetadataStateById()**](SuppliesApi.md#updateSupplyMetadataStateById) | **PUT** /entity/supply/metadata/states/{id} | Обновить отдельный статус Приемки |
+| [**updateSupplyNote()**](SuppliesApi.md#updateSupplyNote) | **PUT** /entity/supply/{id}/notes/{noteId} | Обновить Событие Приемки |
 | [**updateSupplyPosition()**](SuppliesApi.md#updateSupplyPosition) | **PUT** /entity/supply/{id}/positions/{positionId} | Изменить позицию Приемки |
 
 
@@ -443,6 +449,79 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\StateRowResult[]**](../Model/StateRowResult.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createSupplyNote()`
+
+```php
+createSupplyNote($id, $event_note, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\EventNote[]
+```
+
+Добавить Событие Приемки
+
+Запрос на добавление одного События Приемки
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\SuppliesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$event_note = new \OpenAPI\Client\Model\EventNote(); // \OpenAPI\Client\Model\EventNote
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createSupplyNote($id, $event_note, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling SuppliesApi->createSupplyNote: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **event_note** | [**\OpenAPI\Client\Model\EventNote**](../Model/EventNote.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\EventNote[]**](../Model/EventNote.md)
 
 ### Authorization
 
@@ -920,6 +999,76 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `deleteSupplyNote()`
+
+```php
+deleteSupplyNote($id, $note_id, $accept, $accept_encoding)
+```
+
+Удалить Событие Приемки
+
+Запрос на удаление одного События Приемки
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\SuppliesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$note_id = 'note_id_example'; // string | ID События
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->deleteSupplyNote($id, $note_id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling SuppliesApi->deleteSupplyNote: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **note_id** | **string**| ID События | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
 
@@ -1572,6 +1721,152 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getSupplyNoteById()`
+
+```php
+getSupplyNoteById($id, $note_id, $accept, $accept_encoding): \OpenAPI\Client\Model\EventNote
+```
+
+Получить Событие Приемки по ID
+
+Запрос на получение одного События Приемки
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\SuppliesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$note_id = 'note_id_example'; // string | ID События
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $result = $apiInstance->getSupplyNoteById($id, $note_id, $accept, $accept_encoding);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling SuppliesApi->getSupplyNoteById: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **note_id** | **string**| ID События | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\EventNote**](../Model/EventNote.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getSupplyNotes()`
+
+```php
+getSupplyNotes($id, $limit, $offset, $expand, $accept, $accept_encoding): \OpenAPI\Client\Model\EventNoteList
+```
+
+Получить список Событий Приемки
+
+Запрос на получение всех Событий Приемки для данной учетной записи
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\SuppliesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
+$offset = 0; // int | Отступ в выданном списке
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $result = $apiInstance->getSupplyNotes($id, $limit, $offset, $expand, $accept, $accept_encoding);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling SuppliesApi->getSupplyNotes: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **limit** | **int**| Максимальное количество элементов в выданном списке (максимум 1000) | [optional] [default to 1000] |
+| **offset** | **int**| Отступ в выданном списке | [optional] [default to 0] |
+| **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\EventNoteList**](../Model/EventNoteList.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getSupplyPositionById()`
 
 ```php
@@ -1793,6 +2088,72 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `moveSupplyToTrash()`
+
+```php
+moveSupplyToTrash($id, $accept, $accept_encoding)
+```
+
+Удалить Приемку в корзину
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\SuppliesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->moveSupplyToTrash($id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling SuppliesApi->moveSupplyToTrash: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `updateSupply()`
 
 ```php
@@ -1996,6 +2357,81 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\State**](../Model/State.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateSupplyNote()`
+
+```php
+updateSupplyNote($id, $note_id, $event_note, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\EventNote
+```
+
+Обновить Событие Приемки
+
+Запрос на обновление одного События Приемки
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\SuppliesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$note_id = 'note_id_example'; // string | ID События
+$event_note = new \OpenAPI\Client\Model\EventNote(); // \OpenAPI\Client\Model\EventNote
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->updateSupplyNote($id, $note_id, $event_note, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling SuppliesApi->updateSupplyNote: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **note_id** | **string**| ID События | |
+| **event_note** | [**\OpenAPI\Client\Model\EventNote**](../Model/EventNote.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\EventNote**](../Model/EventNote.md)
 
 ### Authorization
 

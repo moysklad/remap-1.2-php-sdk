@@ -80,42 +80,6 @@ class AccumulationDiscountTest extends TestCase
     }
 
     /**
-     * Test attribute "assortment"
-     */
-    public function testPropertyAssortment()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "product_folders"
-     */
-    public function testPropertyProductFolders()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "all_products"
-     */
-    public function testPropertyAllProducts()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "levels"
-     */
-    public function testPropertyLevels()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "id"
      */
     public function testPropertyId()
@@ -134,45 +98,18 @@ class AccumulationDiscountTest extends TestCase
     }
 
     /**
-     * Test attribute "account_id"
+     * Test attribute "product_folders"
      */
-    public function testPropertyAccountId()
+    public function testPropertyProductFolders()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "name"
+     * Test attribute "levels"
      */
-    public function testPropertyName()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "active"
-     */
-    public function testPropertyActive()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "all_agents"
-     */
-    public function testPropertyAllAgents()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "agent_tags"
-     */
-    public function testPropertyAgentTags()
+    public function testPropertyLevels()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

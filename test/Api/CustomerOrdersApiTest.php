@@ -168,6 +168,18 @@ class CustomerOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for createCustomerOrderPublication
+     *
+     * Создать Публикацию Заказа покупателя.
+     *
+     */
+    public function testCreateCustomerOrderPublication()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteCustomerOrder
      *
      * Удалить CustomerOrders.
@@ -246,6 +258,42 @@ class CustomerOrdersApiTest extends TestCase
      *
      */
     public function testDeleteCustomerOrderPositionsBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteCustomerOrderPublication
+     *
+     * Удалить Публикацию Заказа покупателя.
+     *
+     */
+    public function testDeleteCustomerOrderPublication()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for exportCustomerOrder
+     *
+     * Запрос на печать Заказа покупателя.
+     *
+     */
+    public function testExportCustomerOrder()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getCustomerOrderAuditEvents
+     *
+     * Получить события аудита Заказа покупателя.
+     *
+     */
+    public function testGetCustomerOrderAuditEvents()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -366,6 +414,30 @@ class CustomerOrdersApiTest extends TestCase
      *
      */
     public function testGetCustomerOrderPositions()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getCustomerOrderPublicationById
+     *
+     * Получить Публикацию Заказа покупателя.
+     *
+     */
+    public function testGetCustomerOrderPublicationById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getCustomerOrderPublications
+     *
+     * Получить список Публикаций Заказа покупателя.
+     *
+     */
+    public function testGetCustomerOrderPublications()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **meta** | [**\OpenAPI\Client\Model\Meta**](Meta.md) |  | [optional]
 **id** | **string** | ID валюты | [optional] [readonly]
-**system** | **bool** | Системная валюта | [optional] [readonly]
+**system** | **bool** | Системная валюта | [optional]
 **name** | **string** | Краткое наименование валюты | [optional]
 **full_name** | **string** | Полное наименование валюты | [optional]
 **code** | **string** | Цифровой код валюты | [optional]

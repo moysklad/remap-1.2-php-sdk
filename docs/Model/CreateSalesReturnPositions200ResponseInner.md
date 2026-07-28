@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **meta** | [**\OpenAPI\Client\Model\Meta**](Meta.md) |  | [optional]
 **id** | **string** | ID позиции | [optional] [readonly]
 **account_id** | **string** | ID учетной записи | [optional] [readonly]
-**assortment** | [**\OpenAPI\Client\Model\Assortment**](Assortment.md) |  | [optional]
+**assortment** | [**\OpenAPI\Client\Model\ProductMarker**](ProductMarker.md) | Метаданные товара/услуги/партии/модификации/комплекта, которую представляет собой позиция | [optional]
 **cost** | **int** | Себестоимость | [optional]
 **country** | [**\OpenAPI\Client\Model\Country**](Country.md) | Метаданные Страны | [optional]
 **discount** | **float** | Процент скидки или наценки | [optional]

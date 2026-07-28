@@ -877,7 +877,7 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets acquire
      *
-     * Accepts a Counterparty, Organization, or Agent instance (or null when nullable).
+     * Accepts a Counterparty, Organization, Employee, or Agent instance (or null when nullable).
      * On the wire the server only reads `meta`; non-meta fields are kept locally for
      * type-safe access and serialized verbatim.
      *
@@ -900,9 +900,10 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
         if (!is_null($acquire)
             && !($acquire instanceof \OpenAPI\Client\Model\Counterparty)
             && !($acquire instanceof \OpenAPI\Client\Model\Organization)
+            && !($acquire instanceof \OpenAPI\Client\Model\Employee)
             && !($acquire instanceof \OpenAPI\Client\Model\Agent)) {
             throw new \InvalidArgumentException(
-                "Argument for 'acquire' must be one of Counterparty, Organization, or Agent; got "
+                "Argument for 'acquire' must be one of Counterparty, Organization, Employee, or Agent; got "
                 . (is_object($acquire) ? get_class($acquire) : gettype($acquire))
             );
         }
@@ -1618,7 +1619,7 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets qr_acquire
      *
-     * Accepts a Counterparty, Organization, or Agent instance (or null when nullable).
+     * Accepts a Counterparty, Organization, Employee, or Agent instance (or null when nullable).
      * On the wire the server only reads `meta`; non-meta fields are kept locally for
      * type-safe access and serialized verbatim.
      *
@@ -1641,9 +1642,10 @@ class RetailShift implements ModelInterface, ArrayAccess, \JsonSerializable
         if (!is_null($qr_acquire)
             && !($qr_acquire instanceof \OpenAPI\Client\Model\Counterparty)
             && !($qr_acquire instanceof \OpenAPI\Client\Model\Organization)
+            && !($qr_acquire instanceof \OpenAPI\Client\Model\Employee)
             && !($qr_acquire instanceof \OpenAPI\Client\Model\Agent)) {
             throw new \InvalidArgumentException(
-                "Argument for 'qr_acquire' must be one of Counterparty, Organization, or Agent; got "
+                "Argument for 'qr_acquire' must be one of Counterparty, Organization, Employee, or Agent; got "
                 . (is_object($qr_acquire) ? get_class($qr_acquire) : gettype($qr_acquire))
             );
         }

@@ -55,12 +55,12 @@ class EmbeddedTemplate implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPIPolymorphicDiscriminatorMappings = [
         
     ];
-    public static function createWithMeta(string $id) : EmbeddedTemplate {
+    public static function createWithMeta(string $type, string $id) : EmbeddedTemplate {
         $o = new EmbeddedTemplate();
         $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
         $meta = new Meta();
         $meta->setType('embeddedtemplate');
-        $href = $config->getHost() . '/' . 'entity' . '/' . 'assortment' . '/' . 'metadata' . '/' . 'embeddedtemplate' . '/' . $id;
+        $href = $config->getHost() . '/' . 'entity' . '/' . $type . '/' . 'metadata' . '/' . 'embeddedtemplate' . '/' . $id;
         $meta->setHref($href);
         $o->setMeta($meta);
         $o->setId($id);
@@ -82,7 +82,10 @@ class EmbeddedTemplate implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'meta' => '\OpenAPI\Client\Model\Meta',
         'id' => 'string',
-        'account_id' => 'string'
+        'account_id' => 'string',
+        'name' => 'string',
+        'type' => 'string',
+        'content' => 'string'
     ];
 
     /**
@@ -95,7 +98,10 @@ class EmbeddedTemplate implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'meta' => null,
         'id' => 'uuid',
-        'account_id' => 'uuid'
+        'account_id' => 'uuid',
+        'name' => null,
+        'type' => null,
+        'content' => 'uri'
     ];
 
     /**
@@ -106,7 +112,10 @@ class EmbeddedTemplate implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'meta' => false,
         'id' => false,
-        'account_id' => false
+        'account_id' => false,
+        'name' => false,
+        'type' => false,
+        'content' => false
     ];
 
     /**
@@ -228,7 +237,10 @@ class EmbeddedTemplate implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'meta' => 'meta',
         'id' => 'id',
-        'account_id' => 'accountId'
+        'account_id' => 'accountId',
+        'name' => 'name',
+        'type' => 'type',
+        'content' => 'content'
     ];
 
     /**
@@ -239,7 +251,10 @@ class EmbeddedTemplate implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'meta' => 'setMeta',
         'id' => 'setId',
-        'account_id' => 'setAccountId'
+        'account_id' => 'setAccountId',
+        'name' => 'setName',
+        'type' => 'setType',
+        'content' => 'setContent'
     ];
 
     /**
@@ -250,7 +265,10 @@ class EmbeddedTemplate implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'meta' => 'getMeta',
         'id' => 'getId',
-        'account_id' => 'getAccountId'
+        'account_id' => 'getAccountId',
+        'name' => 'getName',
+        'type' => 'getType',
+        'content' => 'getContent'
     ];
 
     /**
@@ -316,6 +334,9 @@ class EmbeddedTemplate implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('account_id', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('content', $data ?? [], null);
     }
 
     /**
@@ -347,6 +368,14 @@ class EmbeddedTemplate implements ModelInterface, ArrayAccess, \JsonSerializable
         
         $invalidProperties = [];
         
+
+        if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 255)) {
+            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['type']) && (mb_strlen($this->container['type']) > 255)) {
+            $invalidProperties[] = "invalid value for 'type', the character length must be smaller than or equal to 255.";
+        }
 
         return $invalidProperties;
     }
@@ -440,6 +469,95 @@ class EmbeddedTemplate implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable account_id cannot be null');
         }
         $this->container['account_id'] = $account_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string|null $name Наименование шаблона
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+        if ((mb_strlen($name) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling EmbeddedTemplate., must be smaller than or equal to 255.');
+        }
+
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string|null $type Тип шаблона
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+        if ((mb_strlen($type) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $type when calling EmbeddedTemplate., must be smaller than or equal to 255.');
+        }
+
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets content
+     *
+     * @return string|null
+     */
+    public function getContent()
+    {
+        return $this->container['content'];
+    }
+
+    /**
+     * Sets content
+     *
+     * @param string|null $content Ссылка на скачивание шаблона
+     *
+     * @return self
+     */
+    public function setContent($content)
+    {
+        if (is_null($content)) {
+            throw new \InvalidArgumentException('non-nullable content cannot be null');
+        }
+        $this->container['content'] = $content;
 
         return $this;
     }

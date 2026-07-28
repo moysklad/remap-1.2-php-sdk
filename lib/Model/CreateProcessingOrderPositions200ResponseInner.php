@@ -73,7 +73,7 @@ class CreateProcessingOrderPositions200ResponseInner implements ModelInterface, 
         'account_id' => 'string',
         'quantity' => 'float',
         'reserve' => 'float',
-        'assortment' => '\OpenAPI\Client\Model\Assortment',
+        'assortment' => '\OpenAPI\Client\Model\ProductMarker',
         'pack' => '\OpenAPI\Client\Model\Pack',
         'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
     ];
@@ -545,8 +545,7 @@ class CreateProcessingOrderPositions200ResponseInner implements ModelInterface, 
     /**
      * Gets assortment
      *
-     * @return \OpenAPI\Client\Model\Assortment|null
-     * @deprecated
+     * @return \OpenAPI\Client\Model\ProductMarker|null
      */
     public function getAssortment()
     {
@@ -556,10 +555,9 @@ class CreateProcessingOrderPositions200ResponseInner implements ModelInterface, 
     /**
      * Sets assortment
      *
-     * @param \OpenAPI\Client\Model\Assortment|null $assortment assortment
+     * @param \OpenAPI\Client\Model\ProductMarker|null $assortment Метаданные товара/услуги/партии/модификации позиции
      *
      * @return self
-     * @deprecated
      */
     public function setAssortment($assortment)
     {

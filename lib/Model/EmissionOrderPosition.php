@@ -83,7 +83,7 @@ class EmissionOrderPosition extends EntityWithMeta
         'meta' => '\OpenAPI\Client\Model\Meta',
         'id' => 'string',
         'account_id' => 'string',
-        'assortment' => '\OpenAPI\Client\Model\Assortment',
+        'assortment' => '\OpenAPI\Client\Model\ProductMarker',
         'quantity' => 'float',
         'status' => 'string'
     ];
@@ -100,7 +100,7 @@ class EmissionOrderPosition extends EntityWithMeta
         'id' => 'uuid',
         'account_id' => 'uuid',
         'assortment' => null,
-        'quantity' => 'float',
+        'quantity' => 'double',
         'status' => null
     ];
 
@@ -472,8 +472,7 @@ class EmissionOrderPosition extends EntityWithMeta
     /**
      * Gets assortment
      *
-     * @return \OpenAPI\Client\Model\Assortment|null
-     * @deprecated
+     * @return \OpenAPI\Client\Model\ProductMarker|null
      */
     public function getAssortment()
     {
@@ -483,10 +482,9 @@ class EmissionOrderPosition extends EntityWithMeta
     /**
      * Sets assortment
      *
-     * @param \OpenAPI\Client\Model\Assortment|null $assortment assortment
+     * @param \OpenAPI\Client\Model\ProductMarker|null $assortment Метаданные товара/модификации/партии, которую представляет собой позиция
      *
      * @return self
-     * @deprecated
      */
     public function setAssortment($assortment)
     {

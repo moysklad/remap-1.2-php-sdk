@@ -105,4 +105,31 @@ class EmbeddedTemplateTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "name"
+     */
+    public function testPropertyName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "type"
+     */
+    public function testPropertyType()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "content"
+     */
+    public function testPropertyContent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

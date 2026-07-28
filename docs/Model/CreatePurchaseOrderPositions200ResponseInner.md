@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **in_transit** | **float** | Ожидание | [optional] [readonly]
 **vat** | **int** | НДС, которым облагается текущая позиция | [optional]
 **vat_enabled** | **bool** | Включен ли НДС для позиции | [optional]
-**assortment** | [**\OpenAPI\Client\Model\AssortmentWithoutBundle**](AssortmentWithoutBundle.md) |  | [optional]
+**assortment** | [**\OpenAPI\Client\Model\ProductMarker**](ProductMarker.md) | Метаданные товара/услуги/модификации/партии, которую представляет собой позиция | [optional]
 **pack** | [**\OpenAPI\Client\Model\Pack**](Pack.md) | Упаковка Товара | [optional]
 **stock** | [**\OpenAPI\Client\Model\PositionStock**](PositionStock.md) | Остатки и себестоимость позиции. Не выводится по умолчанию. Для получения передайте параметр &#x60;?fields&#x3D;stock&#x60;. | [optional]
 **errors** | [**\OpenAPI\Client\Model\ErrorErrorsInner[]**](ErrorErrorsInner.md) |  |

@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Counterparty extends EntityWithMeta 
+class Counterparty extends Agent 
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
@@ -226,7 +226,7 @@ class Counterparty extends EntityWithMeta
         'legal_middle_name' => false,
         'birth_date' => false,
         'sex' => false,
-        'discount_card_number' => true,
+        'discount_card_number' => false,
         'discounts' => true,
         'shared' => false,
         'group' => false,
@@ -1704,16 +1704,9 @@ class Counterparty extends EntityWithMeta
     public function setDiscountCardNumber($discount_card_number)
     {
         if (is_null($discount_card_number)) {
-            array_push($this->openAPINullablesSetToNull, 'discount_card_number');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('discount_card_number', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable discount_card_number cannot be null');
         }
-        if (!is_null($discount_card_number) && (mb_strlen($discount_card_number) > 255)) {
+        if ((mb_strlen($discount_card_number) > 255)) {
             throw new \InvalidArgumentException('invalid length for $discount_card_number when calling Counterparty., must be smaller than or equal to 255.');
         }
 

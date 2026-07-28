@@ -664,7 +664,7 @@ class CreateFactureInsBatch200ResponseInner implements ModelInterface, ArrayAcce
     /**
      * Sets agent
      *
-     * Accepts a Counterparty, Organization, or Agent instance (or null when nullable).
+     * Accepts a Counterparty, Organization, Employee, or Agent instance (or null when nullable).
      * On the wire the server only reads `meta`; non-meta fields are kept locally for
      * type-safe access and serialized verbatim.
      *
@@ -680,9 +680,10 @@ class CreateFactureInsBatch200ResponseInner implements ModelInterface, ArrayAcce
         if (!is_null($agent)
             && !($agent instanceof \OpenAPI\Client\Model\Counterparty)
             && !($agent instanceof \OpenAPI\Client\Model\Organization)
+            && !($agent instanceof \OpenAPI\Client\Model\Employee)
             && !($agent instanceof \OpenAPI\Client\Model\Agent)) {
             throw new \InvalidArgumentException(
-                "Argument for 'agent' must be one of Counterparty, Organization, or Agent; got "
+                "Argument for 'agent' must be one of Counterparty, Organization, Employee, or Agent; got "
                 . (is_object($agent) ? get_class($agent) : gettype($agent))
             );
         }

@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Consignment extends EntityWithMeta 
+class Consignment extends ProductMarker 
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
@@ -85,7 +85,7 @@ class Consignment extends EntityWithMeta
         'account_id' => 'string',
         'archived' => 'bool',
         'attributes' => '\OpenAPI\Client\Model\AttributeAbstract[]',
-        'assortment' => '\OpenAPI\Client\Model\Assortment',
+        'assortment' => '\OpenAPI\Client\Model\ProductMarker',
         'barcodes' => '\OpenAPI\Client\Model\Barcode[]',
         'code' => 'string',
         'description' => 'string',
@@ -608,8 +608,7 @@ class Consignment extends EntityWithMeta
     /**
      * Gets assortment
      *
-     * @return \OpenAPI\Client\Model\Assortment|null
-     * @deprecated
+     * @return \OpenAPI\Client\Model\ProductMarker|null
      */
     public function getAssortment()
     {
@@ -619,10 +618,9 @@ class Consignment extends EntityWithMeta
     /**
      * Sets assortment
      *
-     * @param \OpenAPI\Client\Model\Assortment|null $assortment assortment
+     * @param \OpenAPI\Client\Model\ProductMarker|null $assortment Метаданные товара/услуги/комплекта/модификации, к которой относится Партия
      *
      * @return self
-     * @deprecated
      */
     public function setAssortment($assortment)
     {

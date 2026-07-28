@@ -80,9 +80,18 @@ class SpecialPriceDiscountTest extends TestCase
     }
 
     /**
-     * Test attribute "assortment"
+     * Test attribute "id"
      */
-    public function testPropertyAssortment()
+    public function testPropertyId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "meta"
+     */
+    public function testPropertyMeta()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -92,15 +101,6 @@ class SpecialPriceDiscountTest extends TestCase
      * Test attribute "product_folders"
      */
     public function testPropertyProductFolders()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "all_products"
-     */
-    public function testPropertyAllProducts()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -128,69 +128,6 @@ class SpecialPriceDiscountTest extends TestCase
      * Test attribute "special_price"
      */
     public function testPropertySpecialPrice()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "id"
-     */
-    public function testPropertyId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "meta"
-     */
-    public function testPropertyMeta()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "account_id"
-     */
-    public function testPropertyAccountId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "name"
-     */
-    public function testPropertyName()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "active"
-     */
-    public function testPropertyActive()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "all_agents"
-     */
-    public function testPropertyAllAgents()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "agent_tags"
-     */
-    public function testPropertyAgentTags()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PurchaseReturnPosition implements ModelInterface, ArrayAccess, \JsonSerializable
+class PurchaseReturnPosition extends EntityWithMeta 
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
@@ -83,7 +83,7 @@ class PurchaseReturnPosition implements ModelInterface, ArrayAccess, \JsonSerial
         'meta' => '\OpenAPI\Client\Model\Meta',
         'id' => 'string',
         'account_id' => 'string',
-        'assortment' => '\OpenAPI\Client\Model\Assortment',
+        'assortment' => '\OpenAPI\Client\Model\ProductMarker',
         'discount' => 'float',
         'pack' => '\OpenAPI\Client\Model\Pack',
         'price' => 'float',
@@ -150,7 +150,7 @@ class PurchaseReturnPosition implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -160,7 +160,7 @@ class PurchaseReturnPosition implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -201,7 +201,7 @@ class PurchaseReturnPosition implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables;
+        return self::$openAPINullables + parent::openAPINullables();
     }
 
     /**
@@ -315,7 +315,7 @@ class PurchaseReturnPosition implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -325,7 +325,7 @@ class PurchaseReturnPosition implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -335,7 +335,7 @@ class PurchaseReturnPosition implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -350,13 +350,6 @@ class PurchaseReturnPosition implements ModelInterface, ArrayAccess, \JsonSerial
 
 
     
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-    
 
     /**
      * Constructor
@@ -366,6 +359,9 @@ class PurchaseReturnPosition implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(?array $data = null)
     {
+        
+        parent::__construct($data);
+
         
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -407,8 +403,8 @@ class PurchaseReturnPosition implements ModelInterface, ArrayAccess, \JsonSerial
     public function listInvalidProperties()
     {
         
+        $invalidProperties = parent::listInvalidProperties();
         
-        $invalidProperties = [];
         
 
         if (!is_null($this->container['quantity']) && ($this->container['quantity'] < 0)) {
@@ -522,8 +518,7 @@ class PurchaseReturnPosition implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets assortment
      *
-     * @return \OpenAPI\Client\Model\Assortment|null
-     * @deprecated
+     * @return \OpenAPI\Client\Model\ProductMarker|null
      */
     public function getAssortment()
     {
@@ -533,10 +528,9 @@ class PurchaseReturnPosition implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets assortment
      *
-     * @param \OpenAPI\Client\Model\Assortment|null $assortment assortment
+     * @param \OpenAPI\Client\Model\ProductMarker|null $assortment Метаданные товара/услуги/партии/модификации, которую представляет собой позиция
      *
      * @return self
-     * @deprecated
      */
     public function setAssortment($assortment)
     {

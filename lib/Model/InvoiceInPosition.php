@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class InvoiceInPosition implements ModelInterface, ArrayAccess, \JsonSerializable
+class InvoiceInPosition extends EntityWithMeta 
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
@@ -88,7 +88,7 @@ class InvoiceInPosition implements ModelInterface, ArrayAccess, \JsonSerializabl
         'discount' => 'float',
         'vat' => 'int',
         'vat_enabled' => 'bool',
-        'assortment' => '\OpenAPI\Client\Model\Assortment',
+        'assortment' => '\OpenAPI\Client\Model\ProductMarker',
         'pack' => '\OpenAPI\Client\Model\Pack'
     ];
 
@@ -144,7 +144,7 @@ class InvoiceInPosition implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -154,7 +154,7 @@ class InvoiceInPosition implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -195,7 +195,7 @@ class InvoiceInPosition implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables;
+        return self::$openAPINullables + parent::openAPINullables();
     }
 
     /**
@@ -303,7 +303,7 @@ class InvoiceInPosition implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -313,7 +313,7 @@ class InvoiceInPosition implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -323,7 +323,7 @@ class InvoiceInPosition implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -338,13 +338,6 @@ class InvoiceInPosition implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-    
 
     /**
      * Constructor
@@ -354,6 +347,9 @@ class InvoiceInPosition implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(?array $data = null)
     {
+        
+        parent::__construct($data);
+
         
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -393,8 +389,8 @@ class InvoiceInPosition implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function listInvalidProperties()
     {
         
+        $invalidProperties = parent::listInvalidProperties();
         
-        $invalidProperties = [];
         
 
         if (!is_null($this->container['quantity']) && ($this->container['quantity'] <= 0)) {
@@ -640,8 +636,7 @@ class InvoiceInPosition implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets assortment
      *
-     * @return \OpenAPI\Client\Model\Assortment|null
-     * @deprecated
+     * @return \OpenAPI\Client\Model\ProductMarker|null
      */
     public function getAssortment()
     {
@@ -651,10 +646,9 @@ class InvoiceInPosition implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets assortment
      *
-     * @param \OpenAPI\Client\Model\Assortment|null $assortment assortment
+     * @param \OpenAPI\Client\Model\ProductMarker|null $assortment Метаданные товара/услуги/партии/модификации/комплекта, которую представляет собой позиция
      *
      * @return self
-     * @deprecated
      */
     public function setAssortment($assortment)
     {

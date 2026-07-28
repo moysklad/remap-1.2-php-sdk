@@ -107,6 +107,15 @@ class FileTest extends TestCase
     }
 
     /**
+     * Test attribute "content"
+     */
+    public function testPropertyContent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "size"
      */
     public function testPropertySize()

@@ -93,7 +93,7 @@ class ProcessingStage extends EntityWithMeta
         'archived' => 'bool',
         'all_performers' => 'bool',
         'distribution_required' => 'bool',
-        'performers' => '\OpenAPI\Client\Model\Employee[]',
+        'performers' => '\OpenAPI\Client\Model\Agent[]',
         'material_store' => '\OpenAPI\Client\Model\Store',
         'standard_hour_cost' => 'float'
     ];
@@ -846,7 +846,7 @@ class ProcessingStage extends EntityWithMeta
     /**
      * Gets performers
      *
-     * @return \OpenAPI\Client\Model\Employee[]|null
+     * @return \OpenAPI\Client\Model\Agent[]|null
      */
     public function getPerformers()
     {
@@ -856,7 +856,7 @@ class ProcessingStage extends EntityWithMeta
     /**
      * Sets performers
      *
-     * @param \OpenAPI\Client\Model\Employee[]|null $performers Метаданные возможных исполнителей
+     * @param \OpenAPI\Client\Model\Agent[]|null $performers Метаданные возможных исполнителей
      *
      * @return self
      */

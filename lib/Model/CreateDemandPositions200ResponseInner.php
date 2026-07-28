@@ -71,7 +71,7 @@ class CreateDemandPositions200ResponseInner implements ModelInterface, ArrayAcce
         'meta' => '\OpenAPI\Client\Model\Meta',
         'id' => 'string',
         'account_id' => 'string',
-        'assortment' => '\OpenAPI\Client\Model\Assortment',
+        'assortment' => '\OpenAPI\Client\Model\ProductMarker',
         'cost' => 'int',
         'declaration' => '\OpenAPI\Client\Model\DeclarationInner[]',
         'discount' => 'float',
@@ -551,8 +551,7 @@ class CreateDemandPositions200ResponseInner implements ModelInterface, ArrayAcce
     /**
      * Gets assortment
      *
-     * @return \OpenAPI\Client\Model\Assortment|null
-     * @deprecated
+     * @return \OpenAPI\Client\Model\ProductMarker|null
      */
     public function getAssortment()
     {
@@ -562,10 +561,9 @@ class CreateDemandPositions200ResponseInner implements ModelInterface, ArrayAcce
     /**
      * Sets assortment
      *
-     * @param \OpenAPI\Client\Model\Assortment|null $assortment assortment
+     * @param \OpenAPI\Client\Model\ProductMarker|null $assortment Метаданные товара/услуги/партии/модификации/комплекта, которую представляет собой позиция
      *
      * @return self
-     * @deprecated
      */
     public function setAssortment($assortment)
     {

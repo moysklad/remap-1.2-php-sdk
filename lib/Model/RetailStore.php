@@ -151,9 +151,9 @@ class RetailStore extends EntityWithMeta
         'demand_prefix' => 'string',
         'qr_terminal_id' => 'string',
         'id_qr' => 'string',
-        'acquire' => '\OpenAPI\Client\Model\Counterparty',
+        'acquire' => '\OpenAPI\Client\Model\Agent',
         'cashiers' => '\OpenAPI\Client\Model\CashierList',
-        'qr_acquire' => '\OpenAPI\Client\Model\Counterparty'
+        'qr_acquire' => '\OpenAPI\Client\Model\Agent'
     ];
 
     /**
@@ -2895,7 +2895,7 @@ class RetailStore extends EntityWithMeta
     /**
      * Gets acquire
      *
-     * @return \OpenAPI\Client\Model\Counterparty|null
+     * @return \OpenAPI\Client\Model\Agent|null
      */
     public function getAcquire()
     {
@@ -2905,7 +2905,11 @@ class RetailStore extends EntityWithMeta
     /**
      * Sets acquire
      *
-     * @param \OpenAPI\Client\Model\Counterparty|null $acquire acquire
+     * Accepts a Counterparty, Organization, Employee, or Agent instance (or null when nullable).
+     * On the wire the server only reads `meta`; non-meta fields are kept locally for
+     * type-safe access and serialized verbatim.
+     *
+     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $acquire Эквайер
      *
      * @return self
      */
@@ -2913,6 +2917,16 @@ class RetailStore extends EntityWithMeta
     {
         if (is_null($acquire)) {
             throw new \InvalidArgumentException('non-nullable acquire cannot be null');
+        }
+        if (!is_null($acquire)
+            && !($acquire instanceof \OpenAPI\Client\Model\Counterparty)
+            && !($acquire instanceof \OpenAPI\Client\Model\Organization)
+            && !($acquire instanceof \OpenAPI\Client\Model\Employee)
+            && !($acquire instanceof \OpenAPI\Client\Model\Agent)) {
+            throw new \InvalidArgumentException(
+                "Argument for 'acquire' must be one of Counterparty, Organization, Employee, or Agent; got "
+                . (is_object($acquire) ? get_class($acquire) : gettype($acquire))
+            );
         }
         $this->container['acquire'] = $acquire;
 
@@ -2956,7 +2970,7 @@ class RetailStore extends EntityWithMeta
     /**
      * Gets qr_acquire
      *
-     * @return \OpenAPI\Client\Model\Counterparty|null
+     * @return \OpenAPI\Client\Model\Agent|null
      */
     public function getQrAcquire()
     {
@@ -2966,7 +2980,11 @@ class RetailStore extends EntityWithMeta
     /**
      * Sets qr_acquire
      *
-     * @param \OpenAPI\Client\Model\Counterparty|null $qr_acquire Эквайер для QR-платежей
+     * Accepts a Counterparty, Organization, Employee, or Agent instance (or null when nullable).
+     * On the wire the server only reads `meta`; non-meta fields are kept locally for
+     * type-safe access and serialized verbatim.
+     *
+     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $qr_acquire Эквайер для QR-платежей
      *
      * @return self
      */
@@ -2981,6 +2999,16 @@ class RetailStore extends EntityWithMeta
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
+        }
+        if (!is_null($qr_acquire)
+            && !($qr_acquire instanceof \OpenAPI\Client\Model\Counterparty)
+            && !($qr_acquire instanceof \OpenAPI\Client\Model\Organization)
+            && !($qr_acquire instanceof \OpenAPI\Client\Model\Employee)
+            && !($qr_acquire instanceof \OpenAPI\Client\Model\Agent)) {
+            throw new \InvalidArgumentException(
+                "Argument for 'qr_acquire' must be one of Counterparty, Organization, Employee, or Agent; got "
+                . (is_object($qr_acquire) ? get_class($qr_acquire) : gettype($qr_acquire))
+            );
         }
         $this->container['qr_acquire'] = $qr_acquire;
 

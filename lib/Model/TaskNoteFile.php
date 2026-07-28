@@ -84,6 +84,7 @@ class TaskNoteFile implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'string',
         'title' => 'string',
         'filename' => 'string',
+        'content' => 'string',
         'size' => 'int',
         'created' => 'string',
         'created_by' => '\OpenAPI\Client\Model\Employee',
@@ -103,6 +104,7 @@ class TaskNoteFile implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'uuid',
         'title' => null,
         'filename' => null,
+        'content' => null,
         'size' => null,
         'created' => null,
         'created_by' => null,
@@ -120,6 +122,7 @@ class TaskNoteFile implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => false,
         'title' => false,
         'filename' => false,
+        'content' => false,
         'size' => false,
         'created' => false,
         'created_by' => false,
@@ -248,6 +251,7 @@ class TaskNoteFile implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'id',
         'title' => 'title',
         'filename' => 'filename',
+        'content' => 'content',
         'size' => 'size',
         'created' => 'created',
         'created_by' => 'createdBy',
@@ -265,6 +269,7 @@ class TaskNoteFile implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'setId',
         'title' => 'setTitle',
         'filename' => 'setFilename',
+        'content' => 'setContent',
         'size' => 'setSize',
         'created' => 'setCreated',
         'created_by' => 'setCreatedBy',
@@ -282,6 +287,7 @@ class TaskNoteFile implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'getId',
         'title' => 'getTitle',
         'filename' => 'getFilename',
+        'content' => 'getContent',
         'size' => 'getSize',
         'created' => 'getCreated',
         'created_by' => 'getCreatedBy',
@@ -353,6 +359,7 @@ class TaskNoteFile implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('title', $data ?? [], null);
         $this->setIfExists('filename', $data ?? [], null);
+        $this->setIfExists('content', $data ?? [], null);
         $this->setIfExists('size', $data ?? [], null);
         $this->setIfExists('created', $data ?? [], null);
         $this->setIfExists('created_by', $data ?? [], null);
@@ -525,6 +532,33 @@ class TaskNoteFile implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['filename'] = $filename;
+
+        return $this;
+    }
+
+    /**
+     * Gets content
+     *
+     * @return string|null
+     */
+    public function getContent()
+    {
+        return $this->container['content'];
+    }
+
+    /**
+     * Sets content
+     *
+     * @param string|null $content Файл, закодированный в Base64
+     *
+     * @return self
+     */
+    public function setContent($content)
+    {
+        if (is_null($content)) {
+            throw new \InvalidArgumentException('non-nullable content cannot be null');
+        }
+        $this->container['content'] = $content;
 
         return $this;
     }

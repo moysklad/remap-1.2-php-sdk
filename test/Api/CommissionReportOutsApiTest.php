@@ -144,6 +144,18 @@ class CommissionReportOutsApiTest extends TestCase
     }
 
     /**
+     * Test case for createCommissionReportOutNote
+     *
+     * Добавить Событие Выданного отчета комиссионера.
+     *
+     */
+    public function testCreateCommissionReportOutNote()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createCommissionReportOutPosition
      *
      * Создать и обновить позицию Выданного отчета комиссионера.
@@ -222,6 +234,18 @@ class CommissionReportOutsApiTest extends TestCase
      *
      */
     public function testDeleteCommissionReportOutMetadataStateById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteCommissionReportOutNote
+     *
+     * Удалить Событие Выданного отчета комиссионера.
+     *
+     */
+    public function testDeleteCommissionReportOutNote()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -336,6 +360,30 @@ class CommissionReportOutsApiTest extends TestCase
     }
 
     /**
+     * Test case for getCommissionReportOutNoteById
+     *
+     * Получить Событие Выданного отчета комиссионера по ID.
+     *
+     */
+    public function testGetCommissionReportOutNoteById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getCommissionReportOutNotes
+     *
+     * Получить список Событий Выданного отчета комиссионера.
+     *
+     */
+    public function testGetCommissionReportOutNotes()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getCommissionReportOutPositionById
      *
      * Получить позицию CommissionReportOut.
@@ -390,6 +438,18 @@ class CommissionReportOutsApiTest extends TestCase
      *
      */
     public function testUpdateCommissionReportOutMetadataStateById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateCommissionReportOutNote
+     *
+     * Обновить Событие Выданного отчета комиссионера.
+     *
+     */
+    public function testUpdateCommissionReportOutNote()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

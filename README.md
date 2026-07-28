@@ -110,6 +110,7 @@ Class | Method | HTTP request | Description
 *BonusProgramsApi* | [**getBonusPrograms**](docs/Api/BonusProgramsApi.md#getbonusprograms) | **GET** /entity/bonusprogram | Получить список бонусных программ
 *BonusProgramsApi* | [**updateBonusProgram**](docs/Api/BonusProgramsApi.md#updatebonusprogram) | **PUT** /entity/bonusprogram/{id} | Изменить бонусную программу
 *BonusTransactionsApi* | [**createBonusTransaction**](docs/Api/BonusTransactionsApi.md#createbonustransaction) | **POST** /entity/bonustransaction | Создать бонусную операцию
+*BonusTransactionsApi* | [**createBonusTransactionsBatch**](docs/Api/BonusTransactionsApi.md#createbonustransactionsbatch) | **POST** /entity/bonustransaction/batch | Создать или изменить бонусные операции
 *BonusTransactionsApi* | [**deleteBonusTransaction**](docs/Api/BonusTransactionsApi.md#deletebonustransaction) | **DELETE** /entity/bonustransaction/{id} | Удалить бонусную операцию
 *BonusTransactionsApi* | [**deleteBonusTransactionsBatch**](docs/Api/BonusTransactionsApi.md#deletebonustransactionsbatch) | **POST** /entity/bonustransaction/delete | Удалить бонусные операции
 *BonusTransactionsApi* | [**getBonusTransactionById**](docs/Api/BonusTransactionsApi.md#getbonustransactionbyid) | **GET** /entity/bonustransaction/{id} | Получить бонусную операцию по ID
@@ -205,6 +206,7 @@ Class | Method | HTTP request | Description
 *CommissionReportOutsApi* | [**createCommissionReportOutMetadataAttribute**](docs/Api/CommissionReportOutsApi.md#createcommissionreportoutmetadataattribute) | **POST** /entity/commissionreportout/metadata/attributes | Создать доп. поле CommissionReportOut
 *CommissionReportOutsApi* | [**createCommissionReportOutMetadataState**](docs/Api/CommissionReportOutsApi.md#createcommissionreportoutmetadatastate) | **POST** /entity/commissionreportout/metadata/states | Создать статус CommissionReportOut
 *CommissionReportOutsApi* | [**createCommissionReportOutMetadataStatesBatch**](docs/Api/CommissionReportOutsApi.md#createcommissionreportoutmetadatastatesbatch) | **POST** /entity/commissionreportout/metadata/states/batch | Массовое создание и обновление статусов CommissionReportOut
+*CommissionReportOutsApi* | [**createCommissionReportOutNote**](docs/Api/CommissionReportOutsApi.md#createcommissionreportoutnote) | **POST** /entity/commissionreportout/{id}/notes | Добавить Событие Выданного отчета комиссионера
 *CommissionReportOutsApi* | [**createCommissionReportOutPosition**](docs/Api/CommissionReportOutsApi.md#createcommissionreportoutposition) | **POST** /entity/commissionreportout/{id}/positions | Создать и обновить позицию Выданного отчета комиссионера
 *CommissionReportOutsApi* | [**createCommissionReportOutPositions**](docs/Api/CommissionReportOutsApi.md#createcommissionreportoutpositions) | **POST** /entity/commissionreportout/{id}/positions/batch | Массовое создание и обновление позиций Выданного отчета комиссионера
 *CommissionReportOutsApi* | [**deleteCommissionReportOut**](docs/Api/CommissionReportOutsApi.md#deletecommissionreportout) | **DELETE** /entity/commissionreportout/{id} | Удалить CommissionReportOut
@@ -212,6 +214,7 @@ Class | Method | HTTP request | Description
 *CommissionReportOutsApi* | [**deleteCommissionReportOutFile**](docs/Api/CommissionReportOutsApi.md#deletecommissionreportoutfile) | **DELETE** /entity/commissionreportout/{id}/files/{fileId} | Удалить файл Выданного отчета комиссионера
 *CommissionReportOutsApi* | [**deleteCommissionReportOutMetadataAttributeById**](docs/Api/CommissionReportOutsApi.md#deletecommissionreportoutmetadataattributebyid) | **DELETE** /entity/commissionreportout/metadata/attributes/{id} | Удалить отдельное доп. поле CommissionReportOut
 *CommissionReportOutsApi* | [**deleteCommissionReportOutMetadataStateById**](docs/Api/CommissionReportOutsApi.md#deletecommissionreportoutmetadatastatebyid) | **DELETE** /entity/commissionreportout/metadata/states/{id} | Удалить отдельный статус CommissionReportOut
+*CommissionReportOutsApi* | [**deleteCommissionReportOutNote**](docs/Api/CommissionReportOutsApi.md#deletecommissionreportoutnote) | **DELETE** /entity/commissionreportout/{id}/notes/{noteId} | Удалить Событие Выданного отчета комиссионера
 *CommissionReportOutsApi* | [**deleteCommissionReportOutPosition**](docs/Api/CommissionReportOutsApi.md#deletecommissionreportoutposition) | **DELETE** /entity/commissionreportout/{id}/positions/{positionId} | Удалить позицию CommissionReportOut
 *CommissionReportOutsApi* | [**deleteCommissionReportOutPositionsBatch**](docs/Api/CommissionReportOutsApi.md#deletecommissionreportoutpositionsbatch) | **POST** /entity/commissionreportout/{id}/positions/delete | Массовое удаление позиций CommissionReportOut
 *CommissionReportOutsApi* | [**getCommissionReportOutById**](docs/Api/CommissionReportOutsApi.md#getcommissionreportoutbyid) | **GET** /entity/commissionreportout/{id} | Получить CommissionReportOut по ID
@@ -221,11 +224,14 @@ Class | Method | HTTP request | Description
 *CommissionReportOutsApi* | [**getCommissionReportOutMetadataAttribute**](docs/Api/CommissionReportOutsApi.md#getcommissionreportoutmetadataattribute) | **GET** /entity/commissionreportout/metadata/attributes | Доп. поля CommissionReportOut
 *CommissionReportOutsApi* | [**getCommissionReportOutMetadataAttributeById**](docs/Api/CommissionReportOutsApi.md#getcommissionreportoutmetadataattributebyid) | **GET** /entity/commissionreportout/metadata/attributes/{id} | Отдельное доп. поле CommissionReportOut
 *CommissionReportOutsApi* | [**getCommissionReportOutMetadataStateById**](docs/Api/CommissionReportOutsApi.md#getcommissionreportoutmetadatastatebyid) | **GET** /entity/commissionreportout/metadata/states/{id} | Отдельный статус CommissionReportOut
+*CommissionReportOutsApi* | [**getCommissionReportOutNoteById**](docs/Api/CommissionReportOutsApi.md#getcommissionreportoutnotebyid) | **GET** /entity/commissionreportout/{id}/notes/{noteId} | Получить Событие Выданного отчета комиссионера по ID
+*CommissionReportOutsApi* | [**getCommissionReportOutNotes**](docs/Api/CommissionReportOutsApi.md#getcommissionreportoutnotes) | **GET** /entity/commissionreportout/{id}/notes | Получить список Событий Выданного отчета комиссионера
 *CommissionReportOutsApi* | [**getCommissionReportOutPositionById**](docs/Api/CommissionReportOutsApi.md#getcommissionreportoutpositionbyid) | **GET** /entity/commissionreportout/{id}/positions/{positionId} | Получить позицию CommissionReportOut
 *CommissionReportOutsApi* | [**getCommissionReportOutPositions**](docs/Api/CommissionReportOutsApi.md#getcommissionreportoutpositions) | **GET** /entity/commissionreportout/{id}/positions | Получить позиции CommissionReportOut
 *CommissionReportOutsApi* | [**updateCommissionReportOut**](docs/Api/CommissionReportOutsApi.md#updatecommissionreportout) | **PUT** /entity/commissionreportout/{id} | Изменить CommissionReportOut
 *CommissionReportOutsApi* | [**updateCommissionReportOutMetadataAttributeById**](docs/Api/CommissionReportOutsApi.md#updatecommissionreportoutmetadataattributebyid) | **PUT** /entity/commissionreportout/metadata/attributes/{id} | Обновить отдельное доп. поле CommissionReportOut
 *CommissionReportOutsApi* | [**updateCommissionReportOutMetadataStateById**](docs/Api/CommissionReportOutsApi.md#updatecommissionreportoutmetadatastatebyid) | **PUT** /entity/commissionreportout/metadata/states/{id} | Обновить отдельный статус CommissionReportOut
+*CommissionReportOutsApi* | [**updateCommissionReportOutNote**](docs/Api/CommissionReportOutsApi.md#updatecommissionreportoutnote) | **PUT** /entity/commissionreportout/{id}/notes/{noteId} | Обновить Событие Выданного отчета комиссионера
 *CommissionReportOutsApi* | [**updateCommissionReportOutPosition**](docs/Api/CommissionReportOutsApi.md#updatecommissionreportoutposition) | **PUT** /entity/commissionreportout/{id}/positions/{positionId} | Изменить позицию CommissionReportOut
 *CompanySettingsApi* | [**getCompanySettings**](docs/Api/CompanySettingsApi.md#getcompanysettings) | **GET** /context/companysettings | Получить настройки компании
 *CompanySettingsApi* | [**getCompanySettingsMetadata**](docs/Api/CompanySettingsApi.md#getcompanysettingsmetadata) | **GET** /context/companysettings/metadata | Получить метаданные настроек компании
@@ -264,26 +270,36 @@ Class | Method | HTTP request | Description
 *CounterpartiesApi* | [**createCounterparty**](docs/Api/CounterpartiesApi.md#createcounterparty) | **POST** /entity/counterparty | Создать контрагента
 *CounterpartiesApi* | [**createCounterpartyAccount**](docs/Api/CounterpartiesApi.md#createcounterpartyaccount) | **POST** /entity/counterparty/{id}/accounts | Создать счёт контрагента
 *CounterpartiesApi* | [**createCounterpartyContactPerson**](docs/Api/CounterpartiesApi.md#createcounterpartycontactperson) | **POST** /entity/counterparty/{id}/contactpersons | Создать контактное лицо контрагента
+*CounterpartiesApi* | [**createCounterpartyMetadataAttribute**](docs/Api/CounterpartiesApi.md#createcounterpartymetadataattribute) | **POST** /entity/counterparty/metadata/attributes | Создать доп. поле контрагента
+*CounterpartiesApi* | [**createCounterpartyMetadataState**](docs/Api/CounterpartiesApi.md#createcounterpartymetadatastate) | **POST** /entity/counterparty/metadata/states | Создать статус Counterparty
 *CounterpartiesApi* | [**createCounterpartyNote**](docs/Api/CounterpartiesApi.md#createcounterpartynote) | **POST** /entity/counterparty/{id}/notes | Создать событие контрагента
 *CounterpartiesApi* | [**deleteCounterpartiesBatch**](docs/Api/CounterpartiesApi.md#deletecounterpartiesbatch) | **POST** /entity/counterparty/delete | Удалить контрагентов
 *CounterpartiesApi* | [**deleteCounterparty**](docs/Api/CounterpartiesApi.md#deletecounterparty) | **DELETE** /entity/counterparty/{id} | Удалить контрагента
 *CounterpartiesApi* | [**deleteCounterpartyAccount**](docs/Api/CounterpartiesApi.md#deletecounterpartyaccount) | **DELETE** /entity/counterparty/{id}/accounts/{accountId} | Удалить счёт контрагента
 *CounterpartiesApi* | [**deleteCounterpartyContactPerson**](docs/Api/CounterpartiesApi.md#deletecounterpartycontactperson) | **DELETE** /entity/counterparty/{id}/contactpersons/{contactPersonId} | Удалить контактное лицо контрагента
 *CounterpartiesApi* | [**deleteCounterpartyFile**](docs/Api/CounterpartiesApi.md#deletecounterpartyfile) | **DELETE** /entity/counterparty/{id}/files/{fileId} | Удалить файл контрагента
+*CounterpartiesApi* | [**deleteCounterpartyMetadataAttributeById**](docs/Api/CounterpartiesApi.md#deletecounterpartymetadataattributebyid) | **DELETE** /entity/counterparty/metadata/attributes/{id} | Удалить отдельное доп. поле контрагента
+*CounterpartiesApi* | [**deleteCounterpartyMetadataStateById**](docs/Api/CounterpartiesApi.md#deletecounterpartymetadatastatebyid) | **DELETE** /entity/counterparty/metadata/states/{id} | Удалить отдельный статус Контрагента
 *CounterpartiesApi* | [**deleteCounterpartyNote**](docs/Api/CounterpartiesApi.md#deletecounterpartynote) | **DELETE** /entity/counterparty/{id}/notes/{noteId} | Удалить событие контрагента
 *CounterpartiesApi* | [**getCounterparties**](docs/Api/CounterpartiesApi.md#getcounterparties) | **GET** /entity/counterparty | Получить список контрагентов
 *CounterpartiesApi* | [**getCounterpartyAccountById**](docs/Api/CounterpartiesApi.md#getcounterpartyaccountbyid) | **GET** /entity/counterparty/{id}/accounts/{accountId} | Получить счёт контрагента по ID
 *CounterpartiesApi* | [**getCounterpartyAccounts**](docs/Api/CounterpartiesApi.md#getcounterpartyaccounts) | **GET** /entity/counterparty/{id}/accounts | Получить счета контрагента
+*CounterpartiesApi* | [**getCounterpartyAuditEvents**](docs/Api/CounterpartiesApi.md#getcounterpartyauditevents) | **GET** /entity/counterparty/{id}/audit | Получить события аудита контрагента
 *CounterpartiesApi* | [**getCounterpartyById**](docs/Api/CounterpartiesApi.md#getcounterpartybyid) | **GET** /entity/counterparty/{id} | Получить контрагента по ID
 *CounterpartiesApi* | [**getCounterpartyContactPersonById**](docs/Api/CounterpartiesApi.md#getcounterpartycontactpersonbyid) | **GET** /entity/counterparty/{id}/contactpersons/{contactPersonId} | Получить контактное лицо контрагента по ID
 *CounterpartiesApi* | [**getCounterpartyContactPersons**](docs/Api/CounterpartiesApi.md#getcounterpartycontactpersons) | **GET** /entity/counterparty/{id}/contactpersons | Получить контактные лица контрагента
 *CounterpartiesApi* | [**getCounterpartyFiles**](docs/Api/CounterpartiesApi.md#getcounterpartyfiles) | **GET** /entity/counterparty/{id}/files | Получить файлы контрагента
 *CounterpartiesApi* | [**getCounterpartyMetadata**](docs/Api/CounterpartiesApi.md#getcounterpartymetadata) | **GET** /entity/counterparty/metadata | Получить метаданные контрагентов
+*CounterpartiesApi* | [**getCounterpartyMetadataAttributeById**](docs/Api/CounterpartiesApi.md#getcounterpartymetadataattributebyid) | **GET** /entity/counterparty/metadata/attributes/{id} | Получить доп. поле контрагента по ID
+*CounterpartiesApi* | [**getCounterpartyMetadataAttributes**](docs/Api/CounterpartiesApi.md#getcounterpartymetadataattributes) | **GET** /entity/counterparty/metadata/attributes | Получить доп. поля контрагентов
+*CounterpartiesApi* | [**getCounterpartyMetadataStateById**](docs/Api/CounterpartiesApi.md#getcounterpartymetadatastatebyid) | **GET** /entity/counterparty/metadata/states/{id} | Отдельный статус Контрагента
 *CounterpartiesApi* | [**getCounterpartyNoteById**](docs/Api/CounterpartiesApi.md#getcounterpartynotebyid) | **GET** /entity/counterparty/{id}/notes/{noteId} | Получить событие контрагента по ID
 *CounterpartiesApi* | [**getCounterpartyNotes**](docs/Api/CounterpartiesApi.md#getcounterpartynotes) | **GET** /entity/counterparty/{id}/notes | Получить события контрагента
 *CounterpartiesApi* | [**updateCounterparty**](docs/Api/CounterpartiesApi.md#updatecounterparty) | **PUT** /entity/counterparty/{id} | Обновить контрагента
 *CounterpartiesApi* | [**updateCounterpartyAccount**](docs/Api/CounterpartiesApi.md#updatecounterpartyaccount) | **PUT** /entity/counterparty/{id}/accounts/{accountId} | Обновить счёт контрагента
 *CounterpartiesApi* | [**updateCounterpartyContactPerson**](docs/Api/CounterpartiesApi.md#updatecounterpartycontactperson) | **PUT** /entity/counterparty/{id}/contactpersons/{contactPersonId} | Обновить контактное лицо контрагента
+*CounterpartiesApi* | [**updateCounterpartyMetadataAttributeById**](docs/Api/CounterpartiesApi.md#updatecounterpartymetadataattributebyid) | **PUT** /entity/counterparty/metadata/attributes/{id} | Обновить отдельное доп. поле контрагента
+*CounterpartiesApi* | [**updateCounterpartyMetadataStateById**](docs/Api/CounterpartiesApi.md#updatecounterpartymetadatastatebyid) | **PUT** /entity/counterparty/metadata/states/{id} | Обновить отдельный статус Контрагента
 *CounterpartiesApi* | [**updateCounterpartyNote**](docs/Api/CounterpartiesApi.md#updatecounterpartynote) | **PUT** /entity/counterparty/{id}/notes/{noteId} | Обновить событие контрагента
 *CountriesApi* | [**createCountriesBatch**](docs/Api/CountriesApi.md#createcountriesbatch) | **POST** /entity/country/batch | Создать или изменить страны
 *CountriesApi* | [**createCountry**](docs/Api/CountriesApi.md#createcountry) | **POST** /entity/country | Создать страну
@@ -308,6 +324,11 @@ Class | Method | HTTP request | Description
 *CustomEntitiesApi* | [**getCustomEntityMetadata**](docs/Api/CustomEntitiesApi.md#getcustomentitymetadata) | **GET** /entity/customentity/{id}/metadata | Метаданные пользовательского справочника
 *CustomEntitiesApi* | [**updateCustomEntity**](docs/Api/CustomEntitiesApi.md#updatecustomentity) | **PUT** /entity/customentity/{id} | Изменить пользовательский справочник
 *CustomEntitiesApi* | [**updateCustomEntityElement**](docs/Api/CustomEntitiesApi.md#updatecustomentityelement) | **PUT** /entity/customentity/{metadataId}/{id} | Изменить элемент пользовательского справочника
+*CustomRolesApi* | [**createCustomRole**](docs/Api/CustomRolesApi.md#createcustomrole) | **POST** /entity/role | Создать пользовательскую роль
+*CustomRolesApi* | [**deleteCustomRole**](docs/Api/CustomRolesApi.md#deletecustomrole) | **DELETE** /entity/role/{id} | Удалить пользовательскую роль
+*CustomRolesApi* | [**getCustomRoleById**](docs/Api/CustomRolesApi.md#getcustomrolebyid) | **GET** /entity/role/{id} | Получить пользовательскую роль по ID
+*CustomRolesApi* | [**getCustomRoles**](docs/Api/CustomRolesApi.md#getcustomroles) | **GET** /entity/role | Получить список пользовательских ролей
+*CustomRolesApi* | [**updateCustomRole**](docs/Api/CustomRolesApi.md#updatecustomrole) | **PUT** /entity/role/{id} | Обновить пользовательскую роль
 *CustomerOrdersApi* | [**createCustomerOrder**](docs/Api/CustomerOrdersApi.md#createcustomerorder) | **POST** /entity/customerorder | Создать CustomerOrders
 *CustomerOrdersApi* | [**createCustomerOrderBatch**](docs/Api/CustomerOrdersApi.md#createcustomerorderbatch) | **POST** /entity/customerorder/batch | Массовое создание и обновление CustomerOrders
 *CustomerOrdersApi* | [**createCustomerOrderMetadataAttribute**](docs/Api/CustomerOrdersApi.md#createcustomerordermetadataattribute) | **POST** /entity/customerorder/metadata/attributes | Создать Доп. поле CustomerOrder
@@ -316,6 +337,7 @@ Class | Method | HTTP request | Description
 *CustomerOrdersApi* | [**createCustomerOrderNote**](docs/Api/CustomerOrdersApi.md#createcustomerordernote) | **POST** /entity/customerorder/{id}/notes | Добавить Событие Заказа покупателя
 *CustomerOrdersApi* | [**createCustomerOrderPosition**](docs/Api/CustomerOrdersApi.md#createcustomerorderposition) | **POST** /entity/customerorder/{id}/positions | Создать и обновить позицию Заказа покупателя
 *CustomerOrdersApi* | [**createCustomerOrderPositions**](docs/Api/CustomerOrdersApi.md#createcustomerorderpositions) | **POST** /entity/customerorder/{id}/positions/batch | Массовое создание и обновление позиций Заказа покупателя
+*CustomerOrdersApi* | [**createCustomerOrderPublication**](docs/Api/CustomerOrdersApi.md#createcustomerorderpublication) | **POST** /entity/customerorder/{id}/publication | Создать Публикацию Заказа покупателя
 *CustomerOrdersApi* | [**deleteCustomerOrder**](docs/Api/CustomerOrdersApi.md#deletecustomerorder) | **DELETE** /entity/customerorder/{id} | Удалить CustomerOrders
 *CustomerOrdersApi* | [**deleteCustomerOrderBatch**](docs/Api/CustomerOrdersApi.md#deletecustomerorderbatch) | **POST** /entity/customerorder/delete | Массовое удаление CustomerOrders
 *CustomerOrdersApi* | [**deleteCustomerOrderMetadataAttributeById**](docs/Api/CustomerOrdersApi.md#deletecustomerordermetadataattributebyid) | **DELETE** /entity/customerorder/metadata/attributes/{id} | Удалить отдельное доп. поле CustomerOrder
@@ -323,6 +345,9 @@ Class | Method | HTTP request | Description
 *CustomerOrdersApi* | [**deleteCustomerOrderNote**](docs/Api/CustomerOrdersApi.md#deletecustomerordernote) | **DELETE** /entity/customerorder/{id}/notes/{noteId} | Удалить Событие Заказа покупателя
 *CustomerOrdersApi* | [**deleteCustomerOrderPosition**](docs/Api/CustomerOrdersApi.md#deletecustomerorderposition) | **DELETE** /entity/customerorder/{id}/positions/{positionId} | Удалить позицию CustomerOrders
 *CustomerOrdersApi* | [**deleteCustomerOrderPositionsBatch**](docs/Api/CustomerOrdersApi.md#deletecustomerorderpositionsbatch) | **POST** /entity/customerorder/{id}/positions/delete | Массовое удаление позиций CustomerOrders
+*CustomerOrdersApi* | [**deleteCustomerOrderPublication**](docs/Api/CustomerOrdersApi.md#deletecustomerorderpublication) | **DELETE** /entity/customerorder/{id}/publication/{publicationId} | Удалить Публикацию Заказа покупателя
+*CustomerOrdersApi* | [**exportCustomerOrder**](docs/Api/CustomerOrdersApi.md#exportcustomerorder) | **POST** /entity/customerorder/{id}/export | Запрос на печать Заказа покупателя
+*CustomerOrdersApi* | [**getCustomerOrderAuditEvents**](docs/Api/CustomerOrdersApi.md#getcustomerorderauditevents) | **GET** /entity/customerorder/{id}/audit | Получить события аудита Заказа покупателя
 *CustomerOrdersApi* | [**getCustomerOrderById**](docs/Api/CustomerOrdersApi.md#getcustomerorderbyid) | **GET** /entity/customerorder/{id} | Получить CustomerOrders
 *CustomerOrdersApi* | [**getCustomerOrderList**](docs/Api/CustomerOrdersApi.md#getcustomerorderlist) | **GET** /entity/customerorder | Получить список CustomerOrders
 *CustomerOrdersApi* | [**getCustomerOrderMetadata**](docs/Api/CustomerOrdersApi.md#getcustomerordermetadata) | **GET** /entity/customerorder/metadata | Метаданные CustomerOrders
@@ -333,6 +358,8 @@ Class | Method | HTTP request | Description
 *CustomerOrdersApi* | [**getCustomerOrderNotes**](docs/Api/CustomerOrdersApi.md#getcustomerordernotes) | **GET** /entity/customerorder/{id}/notes | Получить список Событий Заказа покупателя
 *CustomerOrdersApi* | [**getCustomerOrderPositionById**](docs/Api/CustomerOrdersApi.md#getcustomerorderpositionbyid) | **GET** /entity/customerorder/{id}/positions/{positionId} | Получить позицию CustomerOrders
 *CustomerOrdersApi* | [**getCustomerOrderPositions**](docs/Api/CustomerOrdersApi.md#getcustomerorderpositions) | **GET** /entity/customerorder/{id}/positions | Получить позиции CustomerOrders
+*CustomerOrdersApi* | [**getCustomerOrderPublicationById**](docs/Api/CustomerOrdersApi.md#getcustomerorderpublicationbyid) | **GET** /entity/customerorder/{id}/publication/{publicationId} | Получить Публикацию Заказа покупателя
+*CustomerOrdersApi* | [**getCustomerOrderPublications**](docs/Api/CustomerOrdersApi.md#getcustomerorderpublications) | **GET** /entity/customerorder/{id}/publication | Получить список Публикаций Заказа покупателя
 *CustomerOrdersApi* | [**getCustomerOrderTemplate**](docs/Api/CustomerOrdersApi.md#getcustomerordertemplate) | **PUT** /entity/customerorder/new | Шаблон CustomerOrders
 *CustomerOrdersApi* | [**updateCustomerOrder**](docs/Api/CustomerOrdersApi.md#updatecustomerorder) | **PUT** /entity/customerorder/{id} | Изменить CustomerOrders
 *CustomerOrdersApi* | [**updateCustomerOrderMetadataAttributeById**](docs/Api/CustomerOrdersApi.md#updatecustomerordermetadataattributebyid) | **PUT** /entity/customerorder/metadata/attributes/{id} | Обновить отдельное доп. поле CustomerOrder
@@ -548,6 +575,7 @@ Class | Method | HTTP request | Description
 *InvoiceInsApi* | [**createInvoiceIn**](docs/Api/InvoiceInsApi.md#createinvoicein) | **POST** /entity/invoicein | Создать Счет поставщику
 *InvoiceInsApi* | [**createInvoiceInBatch**](docs/Api/InvoiceInsApi.md#createinvoiceinbatch) | **POST** /entity/invoicein/batch | Массовое создание и обновление Счетов поставщикам
 *InvoiceInsApi* | [**createInvoiceInMetadataAttribute**](docs/Api/InvoiceInsApi.md#createinvoiceinmetadataattribute) | **POST** /entity/invoicein/metadata/attributes | Создать Доп. поле InvoiceIn
+*InvoiceInsApi* | [**createInvoiceInNote**](docs/Api/InvoiceInsApi.md#createinvoiceinnote) | **POST** /entity/invoicein/{id}/notes | Добавить Событие Счета поставщику
 *InvoiceInsApi* | [**createInvoiceInPositions**](docs/Api/InvoiceInsApi.md#createinvoiceinpositions) | **POST** /entity/invoicein/{id}/positions | Создать позицию Счета поставщику
 *InvoiceInsApi* | [**createInvoiceInPositionsBatch**](docs/Api/InvoiceInsApi.md#createinvoiceinpositionsbatch) | **POST** /entity/invoicein/{id}/positions/batch | Создать позиции Счета поставщику
 *InvoiceInsApi* | [**deleteInvoiceIn**](docs/Api/InvoiceInsApi.md#deleteinvoicein) | **DELETE** /entity/invoicein/{id} | Удалить Счет поставщику
@@ -555,6 +583,7 @@ Class | Method | HTTP request | Description
 *InvoiceInsApi* | [**deleteInvoiceInFile**](docs/Api/InvoiceInsApi.md#deleteinvoiceinfile) | **DELETE** /entity/invoicein/{id}/files/{fileId} | Удалить файл Счета поставщику
 *InvoiceInsApi* | [**deleteInvoiceInMetadataAttributeById**](docs/Api/InvoiceInsApi.md#deleteinvoiceinmetadataattributebyid) | **DELETE** /entity/invoicein/metadata/attributes/{id} | Удалить отдельное доп. поле InvoiceIn
 *InvoiceInsApi* | [**deleteInvoiceInMetadataStateById**](docs/Api/InvoiceInsApi.md#deleteinvoiceinmetadatastatebyid) | **DELETE** /entity/invoicein/metadata/states/{id} | Удалить отдельный статус InvoiceIn
+*InvoiceInsApi* | [**deleteInvoiceInNote**](docs/Api/InvoiceInsApi.md#deleteinvoiceinnote) | **DELETE** /entity/invoicein/{id}/notes/{noteId} | Удалить Событие Счета поставщику
 *InvoiceInsApi* | [**deleteInvoiceInPosition**](docs/Api/InvoiceInsApi.md#deleteinvoiceinposition) | **DELETE** /entity/invoicein/{id}/positions/{positionId} | Удалить позицию Счета поставщику
 *InvoiceInsApi* | [**deleteInvoiceInPositionsBatch**](docs/Api/InvoiceInsApi.md#deleteinvoiceinpositionsbatch) | **POST** /entity/invoicein/{id}/positions/delete | Массовое удаление позиций Счета поставщику
 *InvoiceInsApi* | [**getInvoiceInById**](docs/Api/InvoiceInsApi.md#getinvoiceinbyid) | **GET** /entity/invoicein/{id} | Получить Счет поставщику
@@ -565,17 +594,21 @@ Class | Method | HTTP request | Description
 *InvoiceInsApi* | [**getInvoiceInMetadataAttribute**](docs/Api/InvoiceInsApi.md#getinvoiceinmetadataattribute) | **GET** /entity/invoicein/metadata/attributes | Доп. поля InvoiceIn
 *InvoiceInsApi* | [**getInvoiceInMetadataAttributeById**](docs/Api/InvoiceInsApi.md#getinvoiceinmetadataattributebyid) | **GET** /entity/invoicein/metadata/attributes/{id} | Отдельное доп. поле InvoiceIn
 *InvoiceInsApi* | [**getInvoiceInMetadataStateById**](docs/Api/InvoiceInsApi.md#getinvoiceinmetadatastatebyid) | **GET** /entity/invoicein/metadata/states/{id} | Отдельный статус InvoiceIn
+*InvoiceInsApi* | [**getInvoiceInNoteById**](docs/Api/InvoiceInsApi.md#getinvoiceinnotebyid) | **GET** /entity/invoicein/{id}/notes/{noteId} | Получить Событие Счета поставщику по ID
+*InvoiceInsApi* | [**getInvoiceInNotes**](docs/Api/InvoiceInsApi.md#getinvoiceinnotes) | **GET** /entity/invoicein/{id}/notes | Получить список Событий Счета поставщику
 *InvoiceInsApi* | [**getInvoiceInPositionById**](docs/Api/InvoiceInsApi.md#getinvoiceinpositionbyid) | **GET** /entity/invoicein/{id}/positions/{positionId} | Получить позицию Счета поставщику
 *InvoiceInsApi* | [**getInvoiceInPositions**](docs/Api/InvoiceInsApi.md#getinvoiceinpositions) | **GET** /entity/invoicein/{id}/positions | Получить позиции Счета поставщику
 *InvoiceInsApi* | [**getInvoiceInTemplate**](docs/Api/InvoiceInsApi.md#getinvoiceintemplate) | **PUT** /entity/invoicein/new | Шаблон Счета поставщику
 *InvoiceInsApi* | [**updateInvoiceIn**](docs/Api/InvoiceInsApi.md#updateinvoicein) | **PUT** /entity/invoicein/{id} | Изменить Счет поставщику
 *InvoiceInsApi* | [**updateInvoiceInMetadataAttributeById**](docs/Api/InvoiceInsApi.md#updateinvoiceinmetadataattributebyid) | **PUT** /entity/invoicein/metadata/attributes/{id} | Обновить отдельное доп. поле InvoiceIn
 *InvoiceInsApi* | [**updateInvoiceInMetadataStateById**](docs/Api/InvoiceInsApi.md#updateinvoiceinmetadatastatebyid) | **PUT** /entity/invoicein/metadata/states/{id} | Обновить отдельный статус InvoiceIn
+*InvoiceInsApi* | [**updateInvoiceInNote**](docs/Api/InvoiceInsApi.md#updateinvoiceinnote) | **PUT** /entity/invoicein/{id}/notes/{noteId} | Обновить Событие Счета поставщику
 *InvoiceInsApi* | [**updateInvoiceInPosition**](docs/Api/InvoiceInsApi.md#updateinvoiceinposition) | **PUT** /entity/invoicein/{id}/positions/{positionId} | Изменить позицию Счета поставщику
 *InvoiceOutsApi* | [**addInvoiceOutFiles**](docs/Api/InvoiceOutsApi.md#addinvoiceoutfiles) | **POST** /entity/invoiceout/{id}/files | Добавить файлы к Счету покупателю
 *InvoiceOutsApi* | [**createInvoiceOut**](docs/Api/InvoiceOutsApi.md#createinvoiceout) | **POST** /entity/invoiceout | Создать Счет покупателю
 *InvoiceOutsApi* | [**createInvoiceOutBatch**](docs/Api/InvoiceOutsApi.md#createinvoiceoutbatch) | **POST** /entity/invoiceout/batch | Массовое создание и обновление Счетов покупателям
 *InvoiceOutsApi* | [**createInvoiceOutMetadataAttribute**](docs/Api/InvoiceOutsApi.md#createinvoiceoutmetadataattribute) | **POST** /entity/invoiceout/metadata/attributes | Создать Доп. поле InvoiceOut
+*InvoiceOutsApi* | [**createInvoiceOutNote**](docs/Api/InvoiceOutsApi.md#createinvoiceoutnote) | **POST** /entity/invoiceout/{id}/notes | Добавить Событие Счета покупателю
 *InvoiceOutsApi* | [**createInvoiceOutPositions**](docs/Api/InvoiceOutsApi.md#createinvoiceoutpositions) | **POST** /entity/invoiceout/{id}/positions | Создать позицию Счета покупателю
 *InvoiceOutsApi* | [**createInvoiceOutPositionsBatch**](docs/Api/InvoiceOutsApi.md#createinvoiceoutpositionsbatch) | **POST** /entity/invoiceout/{id}/positions/batch | Создать позиции Счета покупателю
 *InvoiceOutsApi* | [**deleteInvoiceOut**](docs/Api/InvoiceOutsApi.md#deleteinvoiceout) | **DELETE** /entity/invoiceout/{id} | Удалить Счет покупателю
@@ -583,6 +616,7 @@ Class | Method | HTTP request | Description
 *InvoiceOutsApi* | [**deleteInvoiceOutFile**](docs/Api/InvoiceOutsApi.md#deleteinvoiceoutfile) | **DELETE** /entity/invoiceout/{id}/files/{fileId} | Удалить файл Счета покупателю
 *InvoiceOutsApi* | [**deleteInvoiceOutMetadataAttributeById**](docs/Api/InvoiceOutsApi.md#deleteinvoiceoutmetadataattributebyid) | **DELETE** /entity/invoiceout/metadata/attributes/{id} | Удалить отдельное доп. поле InvoiceOut
 *InvoiceOutsApi* | [**deleteInvoiceOutMetadataStateById**](docs/Api/InvoiceOutsApi.md#deleteinvoiceoutmetadatastatebyid) | **DELETE** /entity/invoiceout/metadata/states/{id} | Удалить отдельный статус InvoiceOut
+*InvoiceOutsApi* | [**deleteInvoiceOutNote**](docs/Api/InvoiceOutsApi.md#deleteinvoiceoutnote) | **DELETE** /entity/invoiceout/{id}/notes/{noteId} | Удалить Событие Счета покупателю
 *InvoiceOutsApi* | [**deleteInvoiceOutPosition**](docs/Api/InvoiceOutsApi.md#deleteinvoiceoutposition) | **DELETE** /entity/invoiceout/{id}/positions/{positionId} | Удалить позицию Счета покупателю
 *InvoiceOutsApi* | [**deleteInvoiceOutPositionsBatch**](docs/Api/InvoiceOutsApi.md#deleteinvoiceoutpositionsbatch) | **POST** /entity/invoiceout/{id}/positions/delete | Массовое удаление позиций Счета покупателю
 *InvoiceOutsApi* | [**getInvoiceOutById**](docs/Api/InvoiceOutsApi.md#getinvoiceoutbyid) | **GET** /entity/invoiceout/{id} | Получить Счет покупателю
@@ -593,12 +627,15 @@ Class | Method | HTTP request | Description
 *InvoiceOutsApi* | [**getInvoiceOutMetadataAttribute**](docs/Api/InvoiceOutsApi.md#getinvoiceoutmetadataattribute) | **GET** /entity/invoiceout/metadata/attributes | Доп. поля InvoiceOut
 *InvoiceOutsApi* | [**getInvoiceOutMetadataAttributeById**](docs/Api/InvoiceOutsApi.md#getinvoiceoutmetadataattributebyid) | **GET** /entity/invoiceout/metadata/attributes/{id} | Отдельное доп. поле InvoiceOut
 *InvoiceOutsApi* | [**getInvoiceOutMetadataStateById**](docs/Api/InvoiceOutsApi.md#getinvoiceoutmetadatastatebyid) | **GET** /entity/invoiceout/metadata/states/{id} | Отдельный статус InvoiceOut
+*InvoiceOutsApi* | [**getInvoiceOutNoteById**](docs/Api/InvoiceOutsApi.md#getinvoiceoutnotebyid) | **GET** /entity/invoiceout/{id}/notes/{noteId} | Получить Событие Счета покупателю по ID
+*InvoiceOutsApi* | [**getInvoiceOutNotes**](docs/Api/InvoiceOutsApi.md#getinvoiceoutnotes) | **GET** /entity/invoiceout/{id}/notes | Получить список Событий Счета покупателю
 *InvoiceOutsApi* | [**getInvoiceOutPositionById**](docs/Api/InvoiceOutsApi.md#getinvoiceoutpositionbyid) | **GET** /entity/invoiceout/{id}/positions/{positionId} | Получить позицию Счета покупателю
 *InvoiceOutsApi* | [**getInvoiceOutPositions**](docs/Api/InvoiceOutsApi.md#getinvoiceoutpositions) | **GET** /entity/invoiceout/{id}/positions | Получить позиции Счета покупателю
 *InvoiceOutsApi* | [**getInvoiceOutTemplate**](docs/Api/InvoiceOutsApi.md#getinvoiceouttemplate) | **PUT** /entity/invoiceout/new | Шаблон Счета покупателю
 *InvoiceOutsApi* | [**updateInvoiceOut**](docs/Api/InvoiceOutsApi.md#updateinvoiceout) | **PUT** /entity/invoiceout/{id} | Изменить Счет покупателю
 *InvoiceOutsApi* | [**updateInvoiceOutMetadataAttributeById**](docs/Api/InvoiceOutsApi.md#updateinvoiceoutmetadataattributebyid) | **PUT** /entity/invoiceout/metadata/attributes/{id} | Обновить отдельное доп. поле InvoiceOut
 *InvoiceOutsApi* | [**updateInvoiceOutMetadataStateById**](docs/Api/InvoiceOutsApi.md#updateinvoiceoutmetadatastatebyid) | **PUT** /entity/invoiceout/metadata/states/{id} | Обновить отдельный статус InvoiceOut
+*InvoiceOutsApi* | [**updateInvoiceOutNote**](docs/Api/InvoiceOutsApi.md#updateinvoiceoutnote) | **PUT** /entity/invoiceout/{id}/notes/{noteId} | Обновить Событие Счета покупателю
 *InvoiceOutsApi* | [**updateInvoiceOutPosition**](docs/Api/InvoiceOutsApi.md#updateinvoiceoutposition) | **PUT** /entity/invoiceout/{id}/positions/{positionId} | Изменить позицию Счета покупателю
 *LabelsApi* | [**printLabels**](docs/Api/LabelsApi.md#printlabels) | **POST** /entity/{type}/{id}/export | Запрос на печать этикеток и ценников
 *LossesApi* | [**createLoss**](docs/Api/LossesApi.md#createloss) | **POST** /entity/loss | Создать Списание
@@ -874,12 +911,14 @@ Class | Method | HTTP request | Description
 *ProductsApi* | [**addProductFiles**](docs/Api/ProductsApi.md#addproductfiles) | **POST** /entity/product/{id}/files | Добавить файлы к товару
 *ProductsApi* | [**addProductImages**](docs/Api/ProductsApi.md#addproductimages) | **POST** /entity/product/{id}/images | Добавить изображения к товару
 *ProductsApi* | [**createProduct**](docs/Api/ProductsApi.md#createproduct) | **POST** /entity/product | Создать товар
+*ProductsApi* | [**createProductMetadataAttribute**](docs/Api/ProductsApi.md#createproductmetadataattribute) | **POST** /entity/product/metadata/attributes | Создать доп. поле товара
 *ProductsApi* | [**createProductStoreBalance**](docs/Api/ProductsApi.md#createproductstorebalance) | **POST** /entity/product/{id}/storebalances | Создать НСО товара для склада
 *ProductsApi* | [**createProductsBatch**](docs/Api/ProductsApi.md#createproductsbatch) | **POST** /entity/product/batch | Создать или изменить товары
 *ProductsApi* | [**deleteProduct**](docs/Api/ProductsApi.md#deleteproduct) | **DELETE** /entity/product/{id} | Удалить товар
 *ProductsApi* | [**deleteProductFile**](docs/Api/ProductsApi.md#deleteproductfile) | **DELETE** /entity/product/{id}/files/{fileId} | Удалить файл товара
 *ProductsApi* | [**deleteProductImage**](docs/Api/ProductsApi.md#deleteproductimage) | **DELETE** /entity/product/{id}/images/{imageId} | Удалить изображение товара
 *ProductsApi* | [**deleteProductImages**](docs/Api/ProductsApi.md#deleteproductimages) | **POST** /entity/product/{id}/images/delete | Массовое удаление изображений товара
+*ProductsApi* | [**deleteProductMetadataAttributeById**](docs/Api/ProductsApi.md#deleteproductmetadataattributebyid) | **DELETE** /entity/product/metadata/attributes/{id} | Удалить отдельное доп. поле товара
 *ProductsApi* | [**deleteProductStoreBalance**](docs/Api/ProductsApi.md#deleteproductstorebalance) | **DELETE** /entity/product/{id}/storebalances/{storeBalanceId} | Удалить НСО товара по складу
 *ProductsApi* | [**deleteProductStoreBalances**](docs/Api/ProductsApi.md#deleteproductstorebalances) | **POST** /entity/product/{id}/storebalances/delete | Массовое удаление НСО товара по складам
 *ProductsApi* | [**deleteProductsBatch**](docs/Api/ProductsApi.md#deleteproductsbatch) | **POST** /entity/product/delete | Удалить товары
@@ -887,10 +926,13 @@ Class | Method | HTTP request | Description
 *ProductsApi* | [**getProductById**](docs/Api/ProductsApi.md#getproductbyid) | **GET** /entity/product/{id} | Получить товар по ID
 *ProductsApi* | [**getProductFiles**](docs/Api/ProductsApi.md#getproductfiles) | **GET** /entity/product/{id}/files | Получить файлы товара
 *ProductsApi* | [**getProductImages**](docs/Api/ProductsApi.md#getproductimages) | **GET** /entity/product/{id}/images | Получить изображения товара
+*ProductsApi* | [**getProductMetadataAttributeById**](docs/Api/ProductsApi.md#getproductmetadataattributebyid) | **GET** /entity/product/metadata/attributes/{id} | Получить доп. поле товара по ID
+*ProductsApi* | [**getProductMetadataAttributes**](docs/Api/ProductsApi.md#getproductmetadataattributes) | **GET** /entity/product/metadata/attributes | Получить доп. поля товаров
 *ProductsApi* | [**getProductStoreBalanceById**](docs/Api/ProductsApi.md#getproductstorebalancebyid) | **GET** /entity/product/{id}/storebalances/{storeBalanceId} | Получить НСО товара по складу
 *ProductsApi* | [**getProductStoreBalances**](docs/Api/ProductsApi.md#getproductstorebalances) | **GET** /entity/product/{id}/storebalances | Получить НСО товара по складам
 *ProductsApi* | [**getProducts**](docs/Api/ProductsApi.md#getproducts) | **GET** /entity/product | Получить список товаров
 *ProductsApi* | [**updateProduct**](docs/Api/ProductsApi.md#updateproduct) | **PUT** /entity/product/{id} | Обновить товар
+*ProductsApi* | [**updateProductMetadataAttributeById**](docs/Api/ProductsApi.md#updateproductmetadataattributebyid) | **PUT** /entity/product/metadata/attributes/{id} | Обновить отдельное доп. поле товара
 *ProductsApi* | [**updateProductStoreBalance**](docs/Api/ProductsApi.md#updateproductstorebalance) | **PUT** /entity/product/{id}/storebalances/{storeBalanceId} | Изменить НСО товара по складу
 *ProjectsApi* | [**createProject**](docs/Api/ProjectsApi.md#createproject) | **POST** /entity/project | Создать проект
 *ProjectsApi* | [**createProjectMetadataAttribute**](docs/Api/ProjectsApi.md#createprojectmetadataattribute) | **POST** /entity/project/metadata/attributes | Создать доп. поле проекта
@@ -942,6 +984,7 @@ Class | Method | HTTP request | Description
 *PurchaseReturnsApi* | [**createPurchaseReturnMetadataAttribute**](docs/Api/PurchaseReturnsApi.md#createpurchasereturnmetadataattribute) | **POST** /entity/purchasereturn/metadata/attributes | Создать доп. поле Возврата поставщику
 *PurchaseReturnsApi* | [**createPurchaseReturnMetadataState**](docs/Api/PurchaseReturnsApi.md#createpurchasereturnmetadatastate) | **POST** /entity/purchasereturn/metadata/states | Создать статус Возврата поставщику
 *PurchaseReturnsApi* | [**createPurchaseReturnMetadataStatesBatch**](docs/Api/PurchaseReturnsApi.md#createpurchasereturnmetadatastatesbatch) | **POST** /entity/purchasereturn/metadata/states/batch | Массовое создание и обновление статусов Возврата поставщику
+*PurchaseReturnsApi* | [**createPurchaseReturnNote**](docs/Api/PurchaseReturnsApi.md#createpurchasereturnnote) | **POST** /entity/purchasereturn/{id}/notes | Добавить Событие Возврата поставщику
 *PurchaseReturnsApi* | [**createPurchaseReturnPosition**](docs/Api/PurchaseReturnsApi.md#createpurchasereturnposition) | **POST** /entity/purchasereturn/{id}/positions | Создать и обновить позицию Возврата поставщику
 *PurchaseReturnsApi* | [**createPurchaseReturnPositions**](docs/Api/PurchaseReturnsApi.md#createpurchasereturnpositions) | **POST** /entity/purchasereturn/{id}/positions/batch | Массовое создание и обновление позиций Возврата поставщику
 *PurchaseReturnsApi* | [**deletePurchaseReturn**](docs/Api/PurchaseReturnsApi.md#deletepurchasereturn) | **DELETE** /entity/purchasereturn/{id} | Удалить Возврат поставщику
@@ -949,6 +992,7 @@ Class | Method | HTTP request | Description
 *PurchaseReturnsApi* | [**deletePurchaseReturnFile**](docs/Api/PurchaseReturnsApi.md#deletepurchasereturnfile) | **DELETE** /entity/purchasereturn/{id}/files/{fileId} | Удалить файл возврата поставщику
 *PurchaseReturnsApi* | [**deletePurchaseReturnMetadataAttributeById**](docs/Api/PurchaseReturnsApi.md#deletepurchasereturnmetadataattributebyid) | **DELETE** /entity/purchasereturn/metadata/attributes/{id} | Удалить отдельное доп. поле Возврата поставщику
 *PurchaseReturnsApi* | [**deletePurchaseReturnMetadataStateById**](docs/Api/PurchaseReturnsApi.md#deletepurchasereturnmetadatastatebyid) | **DELETE** /entity/purchasereturn/metadata/states/{id} | Удалить отдельный статус Возврата поставщику
+*PurchaseReturnsApi* | [**deletePurchaseReturnNote**](docs/Api/PurchaseReturnsApi.md#deletepurchasereturnnote) | **DELETE** /entity/purchasereturn/{id}/notes/{noteId} | Удалить Событие Возврата поставщику
 *PurchaseReturnsApi* | [**deletePurchaseReturnPosition**](docs/Api/PurchaseReturnsApi.md#deletepurchasereturnposition) | **DELETE** /entity/purchasereturn/{id}/positions/{positionId} | Удалить позицию Возврата поставщику
 *PurchaseReturnsApi* | [**deletePurchaseReturnPositions**](docs/Api/PurchaseReturnsApi.md#deletepurchasereturnpositions) | **POST** /entity/purchasereturn/{id}/positions/delete | Массовое удаление позиций Возврата поставщику
 *PurchaseReturnsApi* | [**getPurchaseReturnById**](docs/Api/PurchaseReturnsApi.md#getpurchasereturnbyid) | **GET** /entity/purchasereturn/{id} | Получить Возврат поставщику
@@ -958,12 +1002,15 @@ Class | Method | HTTP request | Description
 *PurchaseReturnsApi* | [**getPurchaseReturnMetadataAttribute**](docs/Api/PurchaseReturnsApi.md#getpurchasereturnmetadataattribute) | **GET** /entity/purchasereturn/metadata/attributes | Доп. поля Возврата поставщику
 *PurchaseReturnsApi* | [**getPurchaseReturnMetadataAttributeById**](docs/Api/PurchaseReturnsApi.md#getpurchasereturnmetadataattributebyid) | **GET** /entity/purchasereturn/metadata/attributes/{id} | Отдельное доп. поле Возврата поставщику
 *PurchaseReturnsApi* | [**getPurchaseReturnMetadataStateById**](docs/Api/PurchaseReturnsApi.md#getpurchasereturnmetadatastatebyid) | **GET** /entity/purchasereturn/metadata/states/{id} | Отдельный статус Возврата поставщику
+*PurchaseReturnsApi* | [**getPurchaseReturnNoteById**](docs/Api/PurchaseReturnsApi.md#getpurchasereturnnotebyid) | **GET** /entity/purchasereturn/{id}/notes/{noteId} | Получить Событие Возврата поставщику по ID
+*PurchaseReturnsApi* | [**getPurchaseReturnNotes**](docs/Api/PurchaseReturnsApi.md#getpurchasereturnnotes) | **GET** /entity/purchasereturn/{id}/notes | Получить список Событий Возврата поставщику
 *PurchaseReturnsApi* | [**getPurchaseReturnPositionById**](docs/Api/PurchaseReturnsApi.md#getpurchasereturnpositionbyid) | **GET** /entity/purchasereturn/{id}/positions/{positionId} | Получить позицию Возврата поставщику
 *PurchaseReturnsApi* | [**getPurchaseReturnPositions**](docs/Api/PurchaseReturnsApi.md#getpurchasereturnpositions) | **GET** /entity/purchasereturn/{id}/positions | Получить позиции Возврата поставщику
 *PurchaseReturnsApi* | [**getPurchaseReturnTemplate**](docs/Api/PurchaseReturnsApi.md#getpurchasereturntemplate) | **PUT** /entity/purchasereturn/new | Шаблон Возврата поставщику
 *PurchaseReturnsApi* | [**updatePurchaseReturn**](docs/Api/PurchaseReturnsApi.md#updatepurchasereturn) | **PUT** /entity/purchasereturn/{id} | Изменить Возврат поставщику
 *PurchaseReturnsApi* | [**updatePurchaseReturnMetadataAttributeById**](docs/Api/PurchaseReturnsApi.md#updatepurchasereturnmetadataattributebyid) | **PUT** /entity/purchasereturn/metadata/attributes/{id} | Обновить отдельное доп. поле Возврата поставщику
 *PurchaseReturnsApi* | [**updatePurchaseReturnMetadataStateById**](docs/Api/PurchaseReturnsApi.md#updatepurchasereturnmetadatastatebyid) | **PUT** /entity/purchasereturn/metadata/states/{id} | Обновить отдельный статус Возврата поставщику
+*PurchaseReturnsApi* | [**updatePurchaseReturnNote**](docs/Api/PurchaseReturnsApi.md#updatepurchasereturnnote) | **PUT** /entity/purchasereturn/{id}/notes/{noteId} | Обновить Событие Возврата поставщику
 *PurchaseReturnsApi* | [**updatePurchaseReturnPosition**](docs/Api/PurchaseReturnsApi.md#updatepurchasereturnposition) | **PUT** /entity/purchasereturn/{id}/positions/{positionId} | Изменить позицию Возврата поставщику
 *RegionsApi* | [**getRegionById**](docs/Api/RegionsApi.md#getregionbyid) | **GET** /entity/region/{id} | Получить регион по ID
 *RegionsApi* | [**getRegions**](docs/Api/RegionsApi.md#getregions) | **GET** /entity/region | Получить список регионов
@@ -1155,6 +1202,7 @@ Class | Method | HTTP request | Description
 *SuppliesApi* | [**createSupplyMetadataAttribute**](docs/Api/SuppliesApi.md#createsupplymetadataattribute) | **POST** /entity/supply/metadata/attributes | Создать доп. поле Приемки
 *SuppliesApi* | [**createSupplyMetadataState**](docs/Api/SuppliesApi.md#createsupplymetadatastate) | **POST** /entity/supply/metadata/states | Создать статус Приемки
 *SuppliesApi* | [**createSupplyMetadataStatesBatch**](docs/Api/SuppliesApi.md#createsupplymetadatastatesbatch) | **POST** /entity/supply/metadata/states/batch | Массовое создание и обновление статусов Приемки
+*SuppliesApi* | [**createSupplyNote**](docs/Api/SuppliesApi.md#createsupplynote) | **POST** /entity/supply/{id}/notes | Добавить Событие Приемки
 *SuppliesApi* | [**createSupplyPosition**](docs/Api/SuppliesApi.md#createsupplyposition) | **POST** /entity/supply/{id}/positions | Создать и обновить позицию Приемки
 *SuppliesApi* | [**createSupplyPositions**](docs/Api/SuppliesApi.md#createsupplypositions) | **POST** /entity/supply/{id}/positions/batch | Массовое создание и обновление позиций Приемки
 *SuppliesApi* | [**deleteSupply**](docs/Api/SuppliesApi.md#deletesupply) | **DELETE** /entity/supply/{id} | Удалить Приемку
@@ -1162,6 +1210,7 @@ Class | Method | HTTP request | Description
 *SuppliesApi* | [**deleteSupplyFile**](docs/Api/SuppliesApi.md#deletesupplyfile) | **DELETE** /entity/supply/{id}/files/{fileId} | Удалить файл Приемки
 *SuppliesApi* | [**deleteSupplyMetadataAttributeById**](docs/Api/SuppliesApi.md#deletesupplymetadataattributebyid) | **DELETE** /entity/supply/metadata/attributes/{id} | Удалить отдельное доп. поле Приемки
 *SuppliesApi* | [**deleteSupplyMetadataStateById**](docs/Api/SuppliesApi.md#deletesupplymetadatastatebyid) | **DELETE** /entity/supply/metadata/states/{id} | Удалить отдельный статус Приемки
+*SuppliesApi* | [**deleteSupplyNote**](docs/Api/SuppliesApi.md#deletesupplynote) | **DELETE** /entity/supply/{id}/notes/{noteId} | Удалить Событие Приемки
 *SuppliesApi* | [**deleteSupplyPosition**](docs/Api/SuppliesApi.md#deletesupplyposition) | **DELETE** /entity/supply/{id}/positions/{positionId} | Удалить позицию Приемки
 *SuppliesApi* | [**deleteSupplyPositions**](docs/Api/SuppliesApi.md#deletesupplypositions) | **POST** /entity/supply/{id}/positions/delete | Массовое удаление позиций Приемки
 *SuppliesApi* | [**getSupplyById**](docs/Api/SuppliesApi.md#getsupplybyid) | **GET** /entity/supply/{id} | Получить Приемку
@@ -1171,12 +1220,16 @@ Class | Method | HTTP request | Description
 *SuppliesApi* | [**getSupplyMetadataAttribute**](docs/Api/SuppliesApi.md#getsupplymetadataattribute) | **GET** /entity/supply/metadata/attributes | Доп. поля Приемки
 *SuppliesApi* | [**getSupplyMetadataAttributeById**](docs/Api/SuppliesApi.md#getsupplymetadataattributebyid) | **GET** /entity/supply/metadata/attributes/{id} | Отдельное доп. поле Приемки
 *SuppliesApi* | [**getSupplyMetadataStateById**](docs/Api/SuppliesApi.md#getsupplymetadatastatebyid) | **GET** /entity/supply/metadata/states/{id} | Отдельный статус Приемки
+*SuppliesApi* | [**getSupplyNoteById**](docs/Api/SuppliesApi.md#getsupplynotebyid) | **GET** /entity/supply/{id}/notes/{noteId} | Получить Событие Приемки по ID
+*SuppliesApi* | [**getSupplyNotes**](docs/Api/SuppliesApi.md#getsupplynotes) | **GET** /entity/supply/{id}/notes | Получить список Событий Приемки
 *SuppliesApi* | [**getSupplyPositionById**](docs/Api/SuppliesApi.md#getsupplypositionbyid) | **GET** /entity/supply/{id}/positions/{positionId} | Получить позицию Приемки
 *SuppliesApi* | [**getSupplyPositions**](docs/Api/SuppliesApi.md#getsupplypositions) | **GET** /entity/supply/{id}/positions | Получить позиции Приемки
 *SuppliesApi* | [**getSupplyTemplate**](docs/Api/SuppliesApi.md#getsupplytemplate) | **PUT** /entity/supply/new | Шаблон Приемки
+*SuppliesApi* | [**moveSupplyToTrash**](docs/Api/SuppliesApi.md#movesupplytotrash) | **POST** /entity/supply/{id}/trash | Удалить Приемку в корзину
 *SuppliesApi* | [**updateSupply**](docs/Api/SuppliesApi.md#updatesupply) | **PUT** /entity/supply/{id} | Изменить Приемку
 *SuppliesApi* | [**updateSupplyMetadataAttributeById**](docs/Api/SuppliesApi.md#updatesupplymetadataattributebyid) | **PUT** /entity/supply/metadata/attributes/{id} | Обновить отдельное доп. поле Приемки
 *SuppliesApi* | [**updateSupplyMetadataStateById**](docs/Api/SuppliesApi.md#updatesupplymetadatastatebyid) | **PUT** /entity/supply/metadata/states/{id} | Обновить отдельный статус Приемки
+*SuppliesApi* | [**updateSupplyNote**](docs/Api/SuppliesApi.md#updatesupplynote) | **PUT** /entity/supply/{id}/notes/{noteId} | Обновить Событие Приемки
 *SuppliesApi* | [**updateSupplyPosition**](docs/Api/SuppliesApi.md#updatesupplyposition) | **PUT** /entity/supply/{id}/positions/{positionId} | Изменить позицию Приемки
 *TasksApi* | [**createTask**](docs/Api/TasksApi.md#createtask) | **POST** /entity/task | Создать задачу
 *TasksApi* | [**createTaskMetadataStates**](docs/Api/TasksApi.md#createtaskmetadatastates) | **POST** /entity/task/metadata/states | Создать или изменить типы задач
@@ -1245,9 +1298,9 @@ Class | Method | HTTP request | Description
 
 - [Account](docs/Model/Account.md)
 - [AccumulationDiscount](docs/Model/AccumulationDiscount.md)
+- [AccumulationDiscountLevelsInner](docs/Model/AccumulationDiscountLevelsInner.md)
 - [ActivateEmployee200Response](docs/Model/ActivateEmployee200Response.md)
 - [ActivateEmployeeRequest](docs/Model/ActivateEmployeeRequest.md)
-- [ActivateEmployeeRequestGroup](docs/Model/ActivateEmployeeRequestGroup.md)
 - [AddProductImagesRequest](docs/Model/AddProductImagesRequest.md)
 - [Address](docs/Model/Address.md)
 - [Agent](docs/Model/Agent.md)
@@ -1285,7 +1338,6 @@ Class | Method | HTTP request | Description
 - [BundleComponentList](docs/Model/BundleComponentList.md)
 - [BundleList](docs/Model/BundleList.md)
 - [BundleOverhead](docs/Model/BundleOverhead.md)
-- [BuyPrice](docs/Model/BuyPrice.md)
 - [CashIn](docs/Model/CashIn.md)
 - [CashInList](docs/Model/CashInList.md)
 - [CashOut](docs/Model/CashOut.md)
@@ -1323,8 +1375,6 @@ Class | Method | HTTP request | Description
 - [CounterpartyNotes](docs/Model/CounterpartyNotes.md)
 - [Country](docs/Model/Country.md)
 - [CountryList](docs/Model/CountryList.md)
-- [CreateBonusTransaction200Response](docs/Model/CreateBonusTransaction200Response.md)
-- [CreateBonusTransactionRequest](docs/Model/CreateBonusTransactionRequest.md)
 - [CreateBundleComponentsRequest](docs/Model/CreateBundleComponentsRequest.md)
 - [CreateCommissionReportInPositions200ResponseInner](docs/Model/CreateCommissionReportInPositions200ResponseInner.md)
 - [CreateCommissionReportInReturnedPositions200ResponseInner](docs/Model/CreateCommissionReportInReturnedPositions200ResponseInner.md)
@@ -1362,6 +1412,8 @@ Class | Method | HTTP request | Description
 - [CustomEntityElement](docs/Model/CustomEntityElement.md)
 - [CustomEntityElementList](docs/Model/CustomEntityElementList.md)
 - [CustomEntityMetadata](docs/Model/CustomEntityMetadata.md)
+- [CustomRole](docs/Model/CustomRole.md)
+- [CustomRoleList](docs/Model/CustomRoleList.md)
 - [CustomerOrder](docs/Model/CustomerOrder.md)
 - [CustomerOrderList](docs/Model/CustomerOrderList.md)
 - [CustomerOrderPosition](docs/Model/CustomerOrderPosition.md)
@@ -1378,13 +1430,14 @@ Class | Method | HTTP request | Description
 - [DemandPositionList](docs/Model/DemandPositionList.md)
 - [DemandPositionTrackingCode1162](docs/Model/DemandPositionTrackingCode1162.md)
 - [Discount](docs/Model/Discount.md)
+- [DiscountAbstract](docs/Model/DiscountAbstract.md)
 - [DiscountAssortmentItem](docs/Model/DiscountAssortmentItem.md)
 - [DiscountBase](docs/Model/DiscountBase.md)
 - [DiscountList](docs/Model/DiscountList.md)
-- [DiscountListRowsInner](docs/Model/DiscountListRowsInner.md)
 - [DiscountStrategy](docs/Model/DiscountStrategy.md)
 - [DocumentMetadata](docs/Model/DocumentMetadata.md)
 - [EmbeddedTemplate](docs/Model/EmbeddedTemplate.md)
+- [EmbeddedTemplateList](docs/Model/EmbeddedTemplateList.md)
 - [EmissionOrder](docs/Model/EmissionOrder.md)
 - [EmissionOrderDocumentState](docs/Model/EmissionOrderDocumentState.md)
 - [EmissionOrderEmissionType](docs/Model/EmissionOrderEmissionType.md)
@@ -1395,6 +1448,7 @@ Class | Method | HTTP request | Description
 - [Employee](docs/Model/Employee.md)
 - [EmployeeList](docs/Model/EmployeeList.md)
 - [EmployeeRole](docs/Model/EmployeeRole.md)
+- [EmployeeRolePermissions](docs/Model/EmployeeRolePermissions.md)
 - [EmployeeSalary](docs/Model/EmployeeSalary.md)
 - [EmployeeSecurity](docs/Model/EmployeeSecurity.md)
 - [EmployeeSecurityGroup](docs/Model/EmployeeSecurityGroup.md)
@@ -1410,6 +1464,7 @@ Class | Method | HTTP request | Description
 - [EventNoteList](docs/Model/EventNoteList.md)
 - [ExpenseItem](docs/Model/ExpenseItem.md)
 - [ExpenseItemList](docs/Model/ExpenseItemList.md)
+- [ExportRequest](docs/Model/ExportRequest.md)
 - [FactureIn](docs/Model/FactureIn.md)
 - [FactureInList](docs/Model/FactureInList.md)
 - [FactureOut](docs/Model/FactureOut.md)
@@ -1471,7 +1526,6 @@ Class | Method | HTTP request | Description
 - [Meta](docs/Model/Meta.md)
 - [MetaList](docs/Model/MetaList.md)
 - [Metadata](docs/Model/Metadata.md)
-- [MinPrice](docs/Model/MinPrice.md)
 - [MinimumStockAbstract](docs/Model/MinimumStockAbstract.md)
 - [MinimumStockAllWarehouseSame](docs/Model/MinimumStockAllWarehouseSame.md)
 - [MinimumStockAllWarehouseSum](docs/Model/MinimumStockAllWarehouseSum.md)
@@ -1497,6 +1551,8 @@ Class | Method | HTTP request | Description
 - [PaymentItemType](docs/Model/PaymentItemType.md)
 - [PaymentOut](docs/Model/PaymentOut.md)
 - [PaymentOutList](docs/Model/PaymentOutList.md)
+- [PermissionValue](docs/Model/PermissionValue.md)
+- [Permissions](docs/Model/Permissions.md)
 - [PersonalDiscount](docs/Model/PersonalDiscount.md)
 - [PositionStock](docs/Model/PositionStock.md)
 - [PositionTrackingCode](docs/Model/PositionTrackingCode.md)
@@ -1507,6 +1563,7 @@ Class | Method | HTTP request | Description
 - [PrepaymentReturnList](docs/Model/PrepaymentReturnList.md)
 - [PrepaymentReturnPosition](docs/Model/PrepaymentReturnPosition.md)
 - [PrepaymentReturnPositionList](docs/Model/PrepaymentReturnPositionList.md)
+- [Price](docs/Model/Price.md)
 - [PriceType](docs/Model/PriceType.md)
 - [PrintFormat](docs/Model/PrintFormat.md)
 - [PriorityOfdSend](docs/Model/PriorityOfdSend.md)
@@ -1543,9 +1600,12 @@ Class | Method | HTTP request | Description
 - [ProductFolder](docs/Model/ProductFolder.md)
 - [ProductFolderList](docs/Model/ProductFolderList.md)
 - [ProductList](docs/Model/ProductList.md)
+- [ProductMarker](docs/Model/ProductMarker.md)
 - [ProductionTask](docs/Model/ProductionTask.md)
 - [Project](docs/Model/Project.md)
 - [ProjectList](docs/Model/ProjectList.md)
+- [Publication](docs/Model/Publication.md)
+- [PublicationList](docs/Model/PublicationList.md)
 - [PurchaseOrder](docs/Model/PurchaseOrder.md)
 - [PurchaseOrderList](docs/Model/PurchaseOrderList.md)
 - [PurchaseOrderPosition](docs/Model/PurchaseOrderPosition.md)
@@ -1615,10 +1675,14 @@ Class | Method | HTTP request | Description
 - [SalesReturnPaymentsInner](docs/Model/SalesReturnPaymentsInner.md)
 - [SalesReturnPosition](docs/Model/SalesReturnPosition.md)
 - [SalesReturnPositionList](docs/Model/SalesReturnPositionList.md)
+- [ScriptPermissionValue](docs/Model/ScriptPermissionValue.md)
+- [ScriptPermissions](docs/Model/ScriptPermissions.md)
+- [ScriptTemplatePermissions](docs/Model/ScriptTemplatePermissions.md)
 - [Service](docs/Model/Service.md)
 - [ServiceList](docs/Model/ServiceList.md)
 - [Sex](docs/Model/Sex.md)
 - [SpecialPriceDiscount](docs/Model/SpecialPriceDiscount.md)
+- [SpecialPriceDiscountSpecialPrice](docs/Model/SpecialPriceDiscountSpecialPrice.md)
 - [State](docs/Model/State.md)
 - [StateRowResult](docs/Model/StateRowResult.md)
 - [StateType](docs/Model/StateType.md)
@@ -1649,6 +1713,7 @@ Class | Method | HTTP request | Description
 - [TaxRate](docs/Model/TaxRate.md)
 - [TaxRateList](docs/Model/TaxRateList.md)
 - [TaxSystem](docs/Model/TaxSystem.md)
+- [TemplateComposition](docs/Model/TemplateComposition.md)
 - [Thing](docs/Model/Thing.md)
 - [ThingList](docs/Model/ThingList.md)
 - [TobaccoMrcControlType](docs/Model/TobaccoMrcControlType.md)

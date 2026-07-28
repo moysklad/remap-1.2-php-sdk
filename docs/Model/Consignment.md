@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **account_id** | **string** | ID учетной записи | [optional] [readonly]
 **archived** | **bool** | Добавлена ли Партия в архив | [optional]
 **attributes** | [**\OpenAPI\Client\Model\AttributeAbstract[]**](AttributeAbstract.md) | Коллекция доп. полей Партии | [optional]
-**assortment** | [**\OpenAPI\Client\Model\Assortment**](Assortment.md) |  | [optional]
+**assortment** | [**\OpenAPI\Client\Model\ProductMarker**](ProductMarker.md) | Метаданные товара/услуги/комплекта/модификации, к которой относится Партия | [optional]
 **barcodes** | [**\OpenAPI\Client\Model\Barcode[]**](Barcode.md) | Штрихкоды Партии | [optional]
 **code** | **string** | Код Партии | [optional]
 **description** | **string** | Описание Партии | [optional]

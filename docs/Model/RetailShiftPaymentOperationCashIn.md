@@ -32,8 +32,8 @@ Name | Type | Description | Notes
 **rate** | [**\OpenAPI\Client\Model\CurrencyRate**](CurrencyRate.md) |  | [optional]
 **organization** | [**\OpenAPI\Client\Model\Organization**](Organization.md) |  | [optional]
 **agent** | [**\OpenAPI\Client\Model\Agent**](Agent.md) | Метаданные контрагента или юрлица | [optional]
-**sum** | **float** | Сумма Приходного ордера в установленной валюте | [optional] [readonly]
-**vat_sum** | **float** | Сумма НДС | [optional] [readonly]
+**sum** | **float** | Сумма Приходного ордера в установленной валюте | [optional]
+**vat_sum** | **float** | Сумма НДС | [optional]
 **facture_out** | [**\OpenAPI\Client\Model\FactureOut**](FactureOut.md) | Счет-фактура выданный, с которым связан этот платеж | [optional]
 **operations** | [**\OpenAPI\Client\Model\FinanceInOperationAbstract[]**](FinanceInOperationAbstract.md) | Связанные операции. Допустимые типы по &#x60;meta.type&#x60;: customerorder, purchasereturn, demand, invoiceout, commissionreportin, retailshift. | [optional]
 

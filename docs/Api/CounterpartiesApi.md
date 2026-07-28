@@ -9,26 +9,36 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createCounterparty()**](CounterpartiesApi.md#createCounterparty) | **POST** /entity/counterparty | Создать контрагента |
 | [**createCounterpartyAccount()**](CounterpartiesApi.md#createCounterpartyAccount) | **POST** /entity/counterparty/{id}/accounts | Создать счёт контрагента |
 | [**createCounterpartyContactPerson()**](CounterpartiesApi.md#createCounterpartyContactPerson) | **POST** /entity/counterparty/{id}/contactpersons | Создать контактное лицо контрагента |
+| [**createCounterpartyMetadataAttribute()**](CounterpartiesApi.md#createCounterpartyMetadataAttribute) | **POST** /entity/counterparty/metadata/attributes | Создать доп. поле контрагента |
+| [**createCounterpartyMetadataState()**](CounterpartiesApi.md#createCounterpartyMetadataState) | **POST** /entity/counterparty/metadata/states | Создать статус Counterparty |
 | [**createCounterpartyNote()**](CounterpartiesApi.md#createCounterpartyNote) | **POST** /entity/counterparty/{id}/notes | Создать событие контрагента |
 | [**deleteCounterpartiesBatch()**](CounterpartiesApi.md#deleteCounterpartiesBatch) | **POST** /entity/counterparty/delete | Удалить контрагентов |
 | [**deleteCounterparty()**](CounterpartiesApi.md#deleteCounterparty) | **DELETE** /entity/counterparty/{id} | Удалить контрагента |
 | [**deleteCounterpartyAccount()**](CounterpartiesApi.md#deleteCounterpartyAccount) | **DELETE** /entity/counterparty/{id}/accounts/{accountId} | Удалить счёт контрагента |
 | [**deleteCounterpartyContactPerson()**](CounterpartiesApi.md#deleteCounterpartyContactPerson) | **DELETE** /entity/counterparty/{id}/contactpersons/{contactPersonId} | Удалить контактное лицо контрагента |
 | [**deleteCounterpartyFile()**](CounterpartiesApi.md#deleteCounterpartyFile) | **DELETE** /entity/counterparty/{id}/files/{fileId} | Удалить файл контрагента |
+| [**deleteCounterpartyMetadataAttributeById()**](CounterpartiesApi.md#deleteCounterpartyMetadataAttributeById) | **DELETE** /entity/counterparty/metadata/attributes/{id} | Удалить отдельное доп. поле контрагента |
+| [**deleteCounterpartyMetadataStateById()**](CounterpartiesApi.md#deleteCounterpartyMetadataStateById) | **DELETE** /entity/counterparty/metadata/states/{id} | Удалить отдельный статус Контрагента |
 | [**deleteCounterpartyNote()**](CounterpartiesApi.md#deleteCounterpartyNote) | **DELETE** /entity/counterparty/{id}/notes/{noteId} | Удалить событие контрагента |
 | [**getCounterparties()**](CounterpartiesApi.md#getCounterparties) | **GET** /entity/counterparty | Получить список контрагентов |
 | [**getCounterpartyAccountById()**](CounterpartiesApi.md#getCounterpartyAccountById) | **GET** /entity/counterparty/{id}/accounts/{accountId} | Получить счёт контрагента по ID |
 | [**getCounterpartyAccounts()**](CounterpartiesApi.md#getCounterpartyAccounts) | **GET** /entity/counterparty/{id}/accounts | Получить счета контрагента |
+| [**getCounterpartyAuditEvents()**](CounterpartiesApi.md#getCounterpartyAuditEvents) | **GET** /entity/counterparty/{id}/audit | Получить события аудита контрагента |
 | [**getCounterpartyById()**](CounterpartiesApi.md#getCounterpartyById) | **GET** /entity/counterparty/{id} | Получить контрагента по ID |
 | [**getCounterpartyContactPersonById()**](CounterpartiesApi.md#getCounterpartyContactPersonById) | **GET** /entity/counterparty/{id}/contactpersons/{contactPersonId} | Получить контактное лицо контрагента по ID |
 | [**getCounterpartyContactPersons()**](CounterpartiesApi.md#getCounterpartyContactPersons) | **GET** /entity/counterparty/{id}/contactpersons | Получить контактные лица контрагента |
 | [**getCounterpartyFiles()**](CounterpartiesApi.md#getCounterpartyFiles) | **GET** /entity/counterparty/{id}/files | Получить файлы контрагента |
 | [**getCounterpartyMetadata()**](CounterpartiesApi.md#getCounterpartyMetadata) | **GET** /entity/counterparty/metadata | Получить метаданные контрагентов |
+| [**getCounterpartyMetadataAttributeById()**](CounterpartiesApi.md#getCounterpartyMetadataAttributeById) | **GET** /entity/counterparty/metadata/attributes/{id} | Получить доп. поле контрагента по ID |
+| [**getCounterpartyMetadataAttributes()**](CounterpartiesApi.md#getCounterpartyMetadataAttributes) | **GET** /entity/counterparty/metadata/attributes | Получить доп. поля контрагентов |
+| [**getCounterpartyMetadataStateById()**](CounterpartiesApi.md#getCounterpartyMetadataStateById) | **GET** /entity/counterparty/metadata/states/{id} | Отдельный статус Контрагента |
 | [**getCounterpartyNoteById()**](CounterpartiesApi.md#getCounterpartyNoteById) | **GET** /entity/counterparty/{id}/notes/{noteId} | Получить событие контрагента по ID |
 | [**getCounterpartyNotes()**](CounterpartiesApi.md#getCounterpartyNotes) | **GET** /entity/counterparty/{id}/notes | Получить события контрагента |
 | [**updateCounterparty()**](CounterpartiesApi.md#updateCounterparty) | **PUT** /entity/counterparty/{id} | Обновить контрагента |
 | [**updateCounterpartyAccount()**](CounterpartiesApi.md#updateCounterpartyAccount) | **PUT** /entity/counterparty/{id}/accounts/{accountId} | Обновить счёт контрагента |
 | [**updateCounterpartyContactPerson()**](CounterpartiesApi.md#updateCounterpartyContactPerson) | **PUT** /entity/counterparty/{id}/contactpersons/{contactPersonId} | Обновить контактное лицо контрагента |
+| [**updateCounterpartyMetadataAttributeById()**](CounterpartiesApi.md#updateCounterpartyMetadataAttributeById) | **PUT** /entity/counterparty/metadata/attributes/{id} | Обновить отдельное доп. поле контрагента |
+| [**updateCounterpartyMetadataStateById()**](CounterpartiesApi.md#updateCounterpartyMetadataStateById) | **PUT** /entity/counterparty/metadata/states/{id} | Обновить отдельный статус Контрагента |
 | [**updateCounterpartyNote()**](CounterpartiesApi.md#updateCounterpartyNote) | **PUT** /entity/counterparty/{id}/notes/{noteId} | Обновить событие контрагента |
 
 
@@ -327,7 +337,7 @@ try {
 ## `createCounterpartyContactPerson()`
 
 ```php
-createCounterpartyContactPerson($id, $contact_person, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\ContactPerson
+createCounterpartyContactPerson($id, $contact_person, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\ContactPerson[]
 ```
 
 Создать контактное лицо контрагента
@@ -382,7 +392,147 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ContactPerson**](../Model/ContactPerson.md)
+[**\OpenAPI\Client\Model\ContactPerson[]**](../Model/ContactPerson.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createCounterpartyMetadataAttribute()`
+
+```php
+createCounterpartyMetadataAttribute($attribute_meta_info, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\AttributeMetaInfo
+```
+
+Создать доп. поле контрагента
+
+Создание нового доп. поля для контрагентов
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createCounterpartyMetadataAttribute($attribute_meta_info, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CounterpartiesApi->createCounterpartyMetadataAttribute: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **attribute_meta_info** | [**\OpenAPI\Client\Model\AttributeMetaInfo**](../Model/AttributeMetaInfo.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\AttributeMetaInfo**](../Model/AttributeMetaInfo.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createCounterpartyMetadataState()`
+
+```php
+createCounterpartyMetadataState($state, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\State
+```
+
+Создать статус Counterparty
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$state = new \OpenAPI\Client\Model\State(); // \OpenAPI\Client\Model\State
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createCounterpartyMetadataState($state, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CounterpartiesApi->createCounterpartyMetadataState: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **state** | [**\OpenAPI\Client\Model\State**](../Model/State.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\State**](../Model/State.md)
 
 ### Authorization
 
@@ -400,7 +550,7 @@ try {
 ## `createCounterpartyNote()`
 
 ```php
-createCounterpartyNote($id, $note, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\Note
+createCounterpartyNote($id, $note, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\Note[]
 ```
 
 Создать событие контрагента
@@ -455,7 +605,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Note**](../Model/Note.md)
+[**\OpenAPI\Client\Model\Note[]**](../Model/Note.md)
 
 ### Authorization
 
@@ -819,6 +969,138 @@ void (empty response body)
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `deleteCounterpartyMetadataAttributeById()`
+
+```php
+deleteCounterpartyMetadataAttributeById($id, $accept, $accept_encoding)
+```
+
+Удалить отдельное доп. поле контрагента
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->deleteCounterpartyMetadataAttributeById($id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling CounterpartiesApi->deleteCounterpartyMetadataAttributeById: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `deleteCounterpartyMetadataStateById()`
+
+```php
+deleteCounterpartyMetadataStateById($id, $accept, $accept_encoding)
+```
+
+Удалить отдельный статус Контрагента
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->deleteCounterpartyMetadataStateById($id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling CounterpartiesApi->deleteCounterpartyMetadataStateById: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `deleteCounterpartyNote()`
 
 ```php
@@ -1098,6 +1380,79 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\GetCounterpartyAccounts200Response**](../Model/GetCounterpartyAccounts200Response.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getCounterpartyAuditEvents()`
+
+```php
+getCounterpartyAuditEvents($id, $limit, $offset, $accept, $accept_encoding): array<string,mixed>
+```
+
+Получить события аудита контрагента
+
+Возвращает список событий аудита для Контрагента по его ID.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
+$offset = 0; // int | Отступ в выданном списке
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $result = $apiInstance->getCounterpartyAuditEvents($id, $limit, $offset, $accept, $accept_encoding);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CounterpartiesApi->getCounterpartyAuditEvents: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **limit** | **int**| Максимальное количество элементов в выданном списке (максимум 1000) | [optional] [default to 1000] |
+| **offset** | **int**| Отступ в выданном списке | [optional] [default to 0] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+**array<string,mixed>**
 
 ### Authorization
 
@@ -1469,6 +1824,213 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getCounterpartyMetadataAttributeById()`
+
+```php
+getCounterpartyMetadataAttributeById($id, $accept, $accept_encoding): \OpenAPI\Client\Model\AttributeMetaInfo
+```
+
+Получить доп. поле контрагента по ID
+
+Запрос на получение информации по отдельному дополнительному полю контрагента
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $result = $apiInstance->getCounterpartyMetadataAttributeById($id, $accept, $accept_encoding);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CounterpartiesApi->getCounterpartyMetadataAttributeById: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\AttributeMetaInfo**](../Model/AttributeMetaInfo.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getCounterpartyMetadataAttributes()`
+
+```php
+getCounterpartyMetadataAttributes($offset, $limit, $accept, $accept_encoding): \OpenAPI\Client\Model\AttributeMetaInfoList
+```
+
+Получить доп. поля контрагентов
+
+Запрос на получение всех доп. полей для контрагентов
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$offset = 0; // int | Отступ в выданном списке
+$limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $result = $apiInstance->getCounterpartyMetadataAttributes($offset, $limit, $accept, $accept_encoding);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CounterpartiesApi->getCounterpartyMetadataAttributes: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **offset** | **int**| Отступ в выданном списке | [optional] [default to 0] |
+| **limit** | **int**| Максимальное количество элементов в выданном списке (максимум 1000) | [optional] [default to 1000] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\AttributeMetaInfoList**](../Model/AttributeMetaInfoList.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getCounterpartyMetadataStateById()`
+
+```php
+getCounterpartyMetadataStateById($id, $accept, $accept_encoding): \OpenAPI\Client\Model\State
+```
+
+Отдельный статус Контрагента
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $result = $apiInstance->getCounterpartyMetadataStateById($id, $accept, $accept_encoding);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CounterpartiesApi->getCounterpartyMetadataStateById: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\State**](../Model/State.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getCounterpartyNoteById()`
 
 ```php
@@ -1824,6 +2386,148 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\ContactPerson**](../Model/ContactPerson.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateCounterpartyMetadataAttributeById()`
+
+```php
+updateCounterpartyMetadataAttributeById($id, $attribute_meta_info, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\AttributeMetaInfo
+```
+
+Обновить отдельное доп. поле контрагента
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->updateCounterpartyMetadataAttributeById($id, $attribute_meta_info, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CounterpartiesApi->updateCounterpartyMetadataAttributeById: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **attribute_meta_info** | [**\OpenAPI\Client\Model\AttributeMetaInfo**](../Model/AttributeMetaInfo.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\AttributeMetaInfo**](../Model/AttributeMetaInfo.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateCounterpartyMetadataStateById()`
+
+```php
+updateCounterpartyMetadataStateById($id, $state, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\State
+```
+
+Обновить отдельный статус Контрагента
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$state = new \OpenAPI\Client\Model\State(); // \OpenAPI\Client\Model\State
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->updateCounterpartyMetadataStateById($id, $state, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CounterpartiesApi->updateCounterpartyMetadataStateById: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **state** | [**\OpenAPI\Client\Model\State**](../Model/State.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\State**](../Model/State.md)
 
 ### Authorization
 

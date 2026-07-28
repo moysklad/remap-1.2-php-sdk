@@ -10,6 +10,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createPurchaseReturnMetadataAttribute()**](PurchaseReturnsApi.md#createPurchaseReturnMetadataAttribute) | **POST** /entity/purchasereturn/metadata/attributes | Создать доп. поле Возврата поставщику |
 | [**createPurchaseReturnMetadataState()**](PurchaseReturnsApi.md#createPurchaseReturnMetadataState) | **POST** /entity/purchasereturn/metadata/states | Создать статус Возврата поставщику |
 | [**createPurchaseReturnMetadataStatesBatch()**](PurchaseReturnsApi.md#createPurchaseReturnMetadataStatesBatch) | **POST** /entity/purchasereturn/metadata/states/batch | Массовое создание и обновление статусов Возврата поставщику |
+| [**createPurchaseReturnNote()**](PurchaseReturnsApi.md#createPurchaseReturnNote) | **POST** /entity/purchasereturn/{id}/notes | Добавить Событие Возврата поставщику |
 | [**createPurchaseReturnPosition()**](PurchaseReturnsApi.md#createPurchaseReturnPosition) | **POST** /entity/purchasereturn/{id}/positions | Создать и обновить позицию Возврата поставщику |
 | [**createPurchaseReturnPositions()**](PurchaseReturnsApi.md#createPurchaseReturnPositions) | **POST** /entity/purchasereturn/{id}/positions/batch | Массовое создание и обновление позиций Возврата поставщику |
 | [**deletePurchaseReturn()**](PurchaseReturnsApi.md#deletePurchaseReturn) | **DELETE** /entity/purchasereturn/{id} | Удалить Возврат поставщику |
@@ -17,6 +18,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**deletePurchaseReturnFile()**](PurchaseReturnsApi.md#deletePurchaseReturnFile) | **DELETE** /entity/purchasereturn/{id}/files/{fileId} | Удалить файл возврата поставщику |
 | [**deletePurchaseReturnMetadataAttributeById()**](PurchaseReturnsApi.md#deletePurchaseReturnMetadataAttributeById) | **DELETE** /entity/purchasereturn/metadata/attributes/{id} | Удалить отдельное доп. поле Возврата поставщику |
 | [**deletePurchaseReturnMetadataStateById()**](PurchaseReturnsApi.md#deletePurchaseReturnMetadataStateById) | **DELETE** /entity/purchasereturn/metadata/states/{id} | Удалить отдельный статус Возврата поставщику |
+| [**deletePurchaseReturnNote()**](PurchaseReturnsApi.md#deletePurchaseReturnNote) | **DELETE** /entity/purchasereturn/{id}/notes/{noteId} | Удалить Событие Возврата поставщику |
 | [**deletePurchaseReturnPosition()**](PurchaseReturnsApi.md#deletePurchaseReturnPosition) | **DELETE** /entity/purchasereturn/{id}/positions/{positionId} | Удалить позицию Возврата поставщику |
 | [**deletePurchaseReturnPositions()**](PurchaseReturnsApi.md#deletePurchaseReturnPositions) | **POST** /entity/purchasereturn/{id}/positions/delete | Массовое удаление позиций Возврата поставщику |
 | [**getPurchaseReturnById()**](PurchaseReturnsApi.md#getPurchaseReturnById) | **GET** /entity/purchasereturn/{id} | Получить Возврат поставщику |
@@ -26,12 +28,15 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**getPurchaseReturnMetadataAttribute()**](PurchaseReturnsApi.md#getPurchaseReturnMetadataAttribute) | **GET** /entity/purchasereturn/metadata/attributes | Доп. поля Возврата поставщику |
 | [**getPurchaseReturnMetadataAttributeById()**](PurchaseReturnsApi.md#getPurchaseReturnMetadataAttributeById) | **GET** /entity/purchasereturn/metadata/attributes/{id} | Отдельное доп. поле Возврата поставщику |
 | [**getPurchaseReturnMetadataStateById()**](PurchaseReturnsApi.md#getPurchaseReturnMetadataStateById) | **GET** /entity/purchasereturn/metadata/states/{id} | Отдельный статус Возврата поставщику |
+| [**getPurchaseReturnNoteById()**](PurchaseReturnsApi.md#getPurchaseReturnNoteById) | **GET** /entity/purchasereturn/{id}/notes/{noteId} | Получить Событие Возврата поставщику по ID |
+| [**getPurchaseReturnNotes()**](PurchaseReturnsApi.md#getPurchaseReturnNotes) | **GET** /entity/purchasereturn/{id}/notes | Получить список Событий Возврата поставщику |
 | [**getPurchaseReturnPositionById()**](PurchaseReturnsApi.md#getPurchaseReturnPositionById) | **GET** /entity/purchasereturn/{id}/positions/{positionId} | Получить позицию Возврата поставщику |
 | [**getPurchaseReturnPositions()**](PurchaseReturnsApi.md#getPurchaseReturnPositions) | **GET** /entity/purchasereturn/{id}/positions | Получить позиции Возврата поставщику |
 | [**getPurchaseReturnTemplate()**](PurchaseReturnsApi.md#getPurchaseReturnTemplate) | **PUT** /entity/purchasereturn/new | Шаблон Возврата поставщику |
 | [**updatePurchaseReturn()**](PurchaseReturnsApi.md#updatePurchaseReturn) | **PUT** /entity/purchasereturn/{id} | Изменить Возврат поставщику |
 | [**updatePurchaseReturnMetadataAttributeById()**](PurchaseReturnsApi.md#updatePurchaseReturnMetadataAttributeById) | **PUT** /entity/purchasereturn/metadata/attributes/{id} | Обновить отдельное доп. поле Возврата поставщику |
 | [**updatePurchaseReturnMetadataStateById()**](PurchaseReturnsApi.md#updatePurchaseReturnMetadataStateById) | **PUT** /entity/purchasereturn/metadata/states/{id} | Обновить отдельный статус Возврата поставщику |
+| [**updatePurchaseReturnNote()**](PurchaseReturnsApi.md#updatePurchaseReturnNote) | **PUT** /entity/purchasereturn/{id}/notes/{noteId} | Обновить Событие Возврата поставщику |
 | [**updatePurchaseReturnPosition()**](PurchaseReturnsApi.md#updatePurchaseReturnPosition) | **PUT** /entity/purchasereturn/{id}/positions/{positionId} | Изменить позицию Возврата поставщику |
 
 
@@ -443,6 +448,79 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\StateRowResult[]**](../Model/StateRowResult.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createPurchaseReturnNote()`
+
+```php
+createPurchaseReturnNote($id, $event_note, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\EventNote[]
+```
+
+Добавить Событие Возврата поставщику
+
+Запрос на добавление одного События Возврата поставщику
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\PurchaseReturnsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$event_note = new \OpenAPI\Client\Model\EventNote(); // \OpenAPI\Client\Model\EventNote
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createPurchaseReturnNote($id, $event_note, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PurchaseReturnsApi->createPurchaseReturnNote: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **event_note** | [**\OpenAPI\Client\Model\EventNote**](../Model/EventNote.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\EventNote[]**](../Model/EventNote.md)
 
 ### Authorization
 
@@ -920,6 +998,76 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `deletePurchaseReturnNote()`
+
+```php
+deletePurchaseReturnNote($id, $note_id, $accept, $accept_encoding)
+```
+
+Удалить Событие Возврата поставщику
+
+Запрос на удаление одного События Возврата поставщику
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\PurchaseReturnsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$note_id = 'note_id_example'; // string | ID События
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->deletePurchaseReturnNote($id, $note_id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling PurchaseReturnsApi->deletePurchaseReturnNote: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **note_id** | **string**| ID События | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
 
@@ -1572,6 +1720,152 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getPurchaseReturnNoteById()`
+
+```php
+getPurchaseReturnNoteById($id, $note_id, $accept, $accept_encoding): \OpenAPI\Client\Model\EventNote
+```
+
+Получить Событие Возврата поставщику по ID
+
+Запрос на получение одного События Возврата поставщику
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\PurchaseReturnsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$note_id = 'note_id_example'; // string | ID События
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $result = $apiInstance->getPurchaseReturnNoteById($id, $note_id, $accept, $accept_encoding);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PurchaseReturnsApi->getPurchaseReturnNoteById: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **note_id** | **string**| ID События | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\EventNote**](../Model/EventNote.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getPurchaseReturnNotes()`
+
+```php
+getPurchaseReturnNotes($id, $limit, $offset, $expand, $accept, $accept_encoding): \OpenAPI\Client\Model\EventNoteList
+```
+
+Получить список Событий Возврата поставщику
+
+Запрос на получение всех Событий Возврата поставщику для данной учетной записи
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\PurchaseReturnsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
+$offset = 0; // int | Отступ в выданном списке
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $result = $apiInstance->getPurchaseReturnNotes($id, $limit, $offset, $expand, $accept, $accept_encoding);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PurchaseReturnsApi->getPurchaseReturnNotes: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **limit** | **int**| Максимальное количество элементов в выданном списке (максимум 1000) | [optional] [default to 1000] |
+| **offset** | **int**| Отступ в выданном списке | [optional] [default to 0] |
+| **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\EventNoteList**](../Model/EventNoteList.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getPurchaseReturnPositionById()`
 
 ```php
@@ -1994,6 +2288,81 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\State**](../Model/State.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updatePurchaseReturnNote()`
+
+```php
+updatePurchaseReturnNote($id, $note_id, $event_note, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\EventNote
+```
+
+Обновить Событие Возврата поставщику
+
+Запрос на обновление одного События Возврата поставщику
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\PurchaseReturnsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$note_id = 'note_id_example'; // string | ID События
+$event_note = new \OpenAPI\Client\Model\EventNote(); // \OpenAPI\Client\Model\EventNote
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->updatePurchaseReturnNote($id, $note_id, $event_note, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PurchaseReturnsApi->updatePurchaseReturnNote: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **note_id** | **string**| ID События | |
+| **event_note** | [**\OpenAPI\Client\Model\EventNote**](../Model/EventNote.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\EventNote**](../Model/EventNote.md)
 
 ### Authorization
 

@@ -10,6 +10,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createCommissionReportOutMetadataAttribute()**](CommissionReportOutsApi.md#createCommissionReportOutMetadataAttribute) | **POST** /entity/commissionreportout/metadata/attributes | Создать доп. поле CommissionReportOut |
 | [**createCommissionReportOutMetadataState()**](CommissionReportOutsApi.md#createCommissionReportOutMetadataState) | **POST** /entity/commissionreportout/metadata/states | Создать статус CommissionReportOut |
 | [**createCommissionReportOutMetadataStatesBatch()**](CommissionReportOutsApi.md#createCommissionReportOutMetadataStatesBatch) | **POST** /entity/commissionreportout/metadata/states/batch | Массовое создание и обновление статусов CommissionReportOut |
+| [**createCommissionReportOutNote()**](CommissionReportOutsApi.md#createCommissionReportOutNote) | **POST** /entity/commissionreportout/{id}/notes | Добавить Событие Выданного отчета комиссионера |
 | [**createCommissionReportOutPosition()**](CommissionReportOutsApi.md#createCommissionReportOutPosition) | **POST** /entity/commissionreportout/{id}/positions | Создать и обновить позицию Выданного отчета комиссионера |
 | [**createCommissionReportOutPositions()**](CommissionReportOutsApi.md#createCommissionReportOutPositions) | **POST** /entity/commissionreportout/{id}/positions/batch | Массовое создание и обновление позиций Выданного отчета комиссионера |
 | [**deleteCommissionReportOut()**](CommissionReportOutsApi.md#deleteCommissionReportOut) | **DELETE** /entity/commissionreportout/{id} | Удалить CommissionReportOut |
@@ -17,6 +18,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**deleteCommissionReportOutFile()**](CommissionReportOutsApi.md#deleteCommissionReportOutFile) | **DELETE** /entity/commissionreportout/{id}/files/{fileId} | Удалить файл Выданного отчета комиссионера |
 | [**deleteCommissionReportOutMetadataAttributeById()**](CommissionReportOutsApi.md#deleteCommissionReportOutMetadataAttributeById) | **DELETE** /entity/commissionreportout/metadata/attributes/{id} | Удалить отдельное доп. поле CommissionReportOut |
 | [**deleteCommissionReportOutMetadataStateById()**](CommissionReportOutsApi.md#deleteCommissionReportOutMetadataStateById) | **DELETE** /entity/commissionreportout/metadata/states/{id} | Удалить отдельный статус CommissionReportOut |
+| [**deleteCommissionReportOutNote()**](CommissionReportOutsApi.md#deleteCommissionReportOutNote) | **DELETE** /entity/commissionreportout/{id}/notes/{noteId} | Удалить Событие Выданного отчета комиссионера |
 | [**deleteCommissionReportOutPosition()**](CommissionReportOutsApi.md#deleteCommissionReportOutPosition) | **DELETE** /entity/commissionreportout/{id}/positions/{positionId} | Удалить позицию CommissionReportOut |
 | [**deleteCommissionReportOutPositionsBatch()**](CommissionReportOutsApi.md#deleteCommissionReportOutPositionsBatch) | **POST** /entity/commissionreportout/{id}/positions/delete | Массовое удаление позиций CommissionReportOut |
 | [**getCommissionReportOutById()**](CommissionReportOutsApi.md#getCommissionReportOutById) | **GET** /entity/commissionreportout/{id} | Получить CommissionReportOut по ID |
@@ -26,11 +28,14 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**getCommissionReportOutMetadataAttribute()**](CommissionReportOutsApi.md#getCommissionReportOutMetadataAttribute) | **GET** /entity/commissionreportout/metadata/attributes | Доп. поля CommissionReportOut |
 | [**getCommissionReportOutMetadataAttributeById()**](CommissionReportOutsApi.md#getCommissionReportOutMetadataAttributeById) | **GET** /entity/commissionreportout/metadata/attributes/{id} | Отдельное доп. поле CommissionReportOut |
 | [**getCommissionReportOutMetadataStateById()**](CommissionReportOutsApi.md#getCommissionReportOutMetadataStateById) | **GET** /entity/commissionreportout/metadata/states/{id} | Отдельный статус CommissionReportOut |
+| [**getCommissionReportOutNoteById()**](CommissionReportOutsApi.md#getCommissionReportOutNoteById) | **GET** /entity/commissionreportout/{id}/notes/{noteId} | Получить Событие Выданного отчета комиссионера по ID |
+| [**getCommissionReportOutNotes()**](CommissionReportOutsApi.md#getCommissionReportOutNotes) | **GET** /entity/commissionreportout/{id}/notes | Получить список Событий Выданного отчета комиссионера |
 | [**getCommissionReportOutPositionById()**](CommissionReportOutsApi.md#getCommissionReportOutPositionById) | **GET** /entity/commissionreportout/{id}/positions/{positionId} | Получить позицию CommissionReportOut |
 | [**getCommissionReportOutPositions()**](CommissionReportOutsApi.md#getCommissionReportOutPositions) | **GET** /entity/commissionreportout/{id}/positions | Получить позиции CommissionReportOut |
 | [**updateCommissionReportOut()**](CommissionReportOutsApi.md#updateCommissionReportOut) | **PUT** /entity/commissionreportout/{id} | Изменить CommissionReportOut |
 | [**updateCommissionReportOutMetadataAttributeById()**](CommissionReportOutsApi.md#updateCommissionReportOutMetadataAttributeById) | **PUT** /entity/commissionreportout/metadata/attributes/{id} | Обновить отдельное доп. поле CommissionReportOut |
 | [**updateCommissionReportOutMetadataStateById()**](CommissionReportOutsApi.md#updateCommissionReportOutMetadataStateById) | **PUT** /entity/commissionreportout/metadata/states/{id} | Обновить отдельный статус CommissionReportOut |
+| [**updateCommissionReportOutNote()**](CommissionReportOutsApi.md#updateCommissionReportOutNote) | **PUT** /entity/commissionreportout/{id}/notes/{noteId} | Обновить Событие Выданного отчета комиссионера |
 | [**updateCommissionReportOutPosition()**](CommissionReportOutsApi.md#updateCommissionReportOutPosition) | **PUT** /entity/commissionreportout/{id}/positions/{positionId} | Изменить позицию CommissionReportOut |
 
 
@@ -442,6 +447,79 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\StateRowResult[]**](../Model/StateRowResult.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createCommissionReportOutNote()`
+
+```php
+createCommissionReportOutNote($id, $event_note, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\EventNote[]
+```
+
+Добавить Событие Выданного отчета комиссионера
+
+Запрос на добавление одного События Выданного отчета комиссионера
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$event_note = new \OpenAPI\Client\Model\EventNote(); // \OpenAPI\Client\Model\EventNote
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createCommissionReportOutNote($id, $event_note, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CommissionReportOutsApi->createCommissionReportOutNote: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **event_note** | [**\OpenAPI\Client\Model\EventNote**](../Model/EventNote.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\EventNote[]**](../Model/EventNote.md)
 
 ### Authorization
 
@@ -927,6 +1005,76 @@ try {
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `deleteCommissionReportOutNote()`
+
+```php
+deleteCommissionReportOutNote($id, $note_id, $accept, $accept_encoding)
+```
+
+Удалить Событие Выданного отчета комиссионера
+
+Запрос на удаление одного События Выданного отчета комиссионера
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$note_id = 'note_id_example'; // string | ID События
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->deleteCommissionReportOutNote($id, $note_id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling CommissionReportOutsApi->deleteCommissionReportOutNote: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **note_id** | **string**| ID События | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
 
 ### Return type
 
@@ -1583,6 +1731,152 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getCommissionReportOutNoteById()`
+
+```php
+getCommissionReportOutNoteById($id, $note_id, $accept, $accept_encoding): \OpenAPI\Client\Model\EventNote
+```
+
+Получить Событие Выданного отчета комиссионера по ID
+
+Запрос на получение одного События Выданного отчета комиссионера
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$note_id = 'note_id_example'; // string | ID События
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $result = $apiInstance->getCommissionReportOutNoteById($id, $note_id, $accept, $accept_encoding);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CommissionReportOutsApi->getCommissionReportOutNoteById: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **note_id** | **string**| ID События | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\EventNote**](../Model/EventNote.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getCommissionReportOutNotes()`
+
+```php
+getCommissionReportOutNotes($id, $limit, $offset, $expand, $accept, $accept_encoding): \OpenAPI\Client\Model\EventNoteList
+```
+
+Получить список Событий Выданного отчета комиссионера
+
+Запрос на получение всех Событий Выданного отчета комиссионера для данной учетной записи
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
+$offset = 0; // int | Отступ в выданном списке
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $result = $apiInstance->getCommissionReportOutNotes($id, $limit, $offset, $expand, $accept, $accept_encoding);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CommissionReportOutsApi->getCommissionReportOutNotes: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **limit** | **int**| Максимальное количество элементов в выданном списке (максимум 1000) | [optional] [default to 1000] |
+| **offset** | **int**| Отступ в выданном списке | [optional] [default to 0] |
+| **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\EventNoteList**](../Model/EventNoteList.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getCommissionReportOutPositionById()`
 
 ```php
@@ -1932,6 +2226,81 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\State**](../Model/State.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateCommissionReportOutNote()`
+
+```php
+updateCommissionReportOutNote($id, $note_id, $event_note, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\EventNote
+```
+
+Обновить Событие Выданного отчета комиссионера
+
+Запрос на обновление одного События Выданного отчета комиссионера
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CommissionReportOutsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$note_id = 'note_id_example'; // string | ID События
+$event_note = new \OpenAPI\Client\Model\EventNote(); // \OpenAPI\Client\Model\EventNote
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->updateCommissionReportOutNote($id, $note_id, $event_note, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CommissionReportOutsApi->updateCommissionReportOutNote: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **note_id** | **string**| ID События | |
+| **event_note** | [**\OpenAPI\Client\Model\EventNote**](../Model/EventNote.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\EventNote**](../Model/EventNote.md)
 
 ### Authorization
 

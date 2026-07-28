@@ -84,6 +84,18 @@ class BonusTransactionsApiTest extends TestCase
     }
 
     /**
+     * Test case for createBonusTransactionsBatch
+     *
+     * Создать или изменить бонусные операции.
+     *
+     */
+    public function testCreateBonusTransactionsBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteBonusTransaction
      *
      * Удалить бонусную операцию.

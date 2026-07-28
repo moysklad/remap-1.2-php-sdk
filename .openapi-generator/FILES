@@ -20,6 +20,7 @@ docs/Api/CounterpartiesApi.md
 docs/Api/CountriesApi.md
 docs/Api/CurrenciesApi.md
 docs/Api/CustomEntitiesApi.md
+docs/Api/CustomRolesApi.md
 docs/Api/CustomerOrdersApi.md
 docs/Api/DemandsApi.md
 docs/Api/DiscountsApi.md
@@ -81,9 +82,9 @@ docs/Api/WebhookStocksApi.md
 docs/Api/WebhooksApi.md
 docs/Model/Account.md
 docs/Model/AccumulationDiscount.md
+docs/Model/AccumulationDiscountLevelsInner.md
 docs/Model/ActivateEmployee200Response.md
 docs/Model/ActivateEmployeeRequest.md
-docs/Model/ActivateEmployeeRequestGroup.md
 docs/Model/AddProductImagesRequest.md
 docs/Model/Address.md
 docs/Model/Agent.md
@@ -121,7 +122,6 @@ docs/Model/BundleComponent.md
 docs/Model/BundleComponentList.md
 docs/Model/BundleList.md
 docs/Model/BundleOverhead.md
-docs/Model/BuyPrice.md
 docs/Model/CashIn.md
 docs/Model/CashInList.md
 docs/Model/CashOut.md
@@ -159,8 +159,6 @@ docs/Model/CounterpartyMetadata.md
 docs/Model/CounterpartyNotes.md
 docs/Model/Country.md
 docs/Model/CountryList.md
-docs/Model/CreateBonusTransaction200Response.md
-docs/Model/CreateBonusTransactionRequest.md
 docs/Model/CreateBundleComponentsRequest.md
 docs/Model/CreateCommissionReportInPositions200ResponseInner.md
 docs/Model/CreateCommissionReportInReturnedPositions200ResponseInner.md
@@ -198,6 +196,8 @@ docs/Model/CustomEntity.md
 docs/Model/CustomEntityElement.md
 docs/Model/CustomEntityElementList.md
 docs/Model/CustomEntityMetadata.md
+docs/Model/CustomRole.md
+docs/Model/CustomRoleList.md
 docs/Model/CustomerOrder.md
 docs/Model/CustomerOrderList.md
 docs/Model/CustomerOrderPosition.md
@@ -214,13 +214,14 @@ docs/Model/DemandPosition.md
 docs/Model/DemandPositionList.md
 docs/Model/DemandPositionTrackingCode1162.md
 docs/Model/Discount.md
+docs/Model/DiscountAbstract.md
 docs/Model/DiscountAssortmentItem.md
 docs/Model/DiscountBase.md
 docs/Model/DiscountList.md
-docs/Model/DiscountListRowsInner.md
 docs/Model/DiscountStrategy.md
 docs/Model/DocumentMetadata.md
 docs/Model/EmbeddedTemplate.md
+docs/Model/EmbeddedTemplateList.md
 docs/Model/EmissionOrder.md
 docs/Model/EmissionOrderDocumentState.md
 docs/Model/EmissionOrderEmissionType.md
@@ -231,6 +232,7 @@ docs/Model/EmissionOrderPositionStatus.md
 docs/Model/Employee.md
 docs/Model/EmployeeList.md
 docs/Model/EmployeeRole.md
+docs/Model/EmployeeRolePermissions.md
 docs/Model/EmployeeSalary.md
 docs/Model/EmployeeSecurity.md
 docs/Model/EmployeeSecurityGroup.md
@@ -246,6 +248,7 @@ docs/Model/EventNote.md
 docs/Model/EventNoteList.md
 docs/Model/ExpenseItem.md
 docs/Model/ExpenseItemList.md
+docs/Model/ExportRequest.md
 docs/Model/FactureIn.md
 docs/Model/FactureInList.md
 docs/Model/FactureOut.md
@@ -307,7 +310,6 @@ docs/Model/MarksCheckMode.md
 docs/Model/Meta.md
 docs/Model/MetaList.md
 docs/Model/Metadata.md
-docs/Model/MinPrice.md
 docs/Model/MinimumStockAbstract.md
 docs/Model/MinimumStockAllWarehouseSame.md
 docs/Model/MinimumStockAllWarehouseSum.md
@@ -333,6 +335,8 @@ docs/Model/PaymentInList.md
 docs/Model/PaymentItemType.md
 docs/Model/PaymentOut.md
 docs/Model/PaymentOutList.md
+docs/Model/PermissionValue.md
+docs/Model/Permissions.md
 docs/Model/PersonalDiscount.md
 docs/Model/PositionStock.md
 docs/Model/PositionTrackingCode.md
@@ -343,6 +347,7 @@ docs/Model/PrepaymentReturn.md
 docs/Model/PrepaymentReturnList.md
 docs/Model/PrepaymentReturnPosition.md
 docs/Model/PrepaymentReturnPositionList.md
+docs/Model/Price.md
 docs/Model/PriceType.md
 docs/Model/PrintFormat.md
 docs/Model/PriorityOfdSend.md
@@ -379,9 +384,12 @@ docs/Model/ProductAlcoholic.md
 docs/Model/ProductFolder.md
 docs/Model/ProductFolderList.md
 docs/Model/ProductList.md
+docs/Model/ProductMarker.md
 docs/Model/ProductionTask.md
 docs/Model/Project.md
 docs/Model/ProjectList.md
+docs/Model/Publication.md
+docs/Model/PublicationList.md
 docs/Model/PurchaseOrder.md
 docs/Model/PurchaseOrderList.md
 docs/Model/PurchaseOrderPosition.md
@@ -451,10 +459,14 @@ docs/Model/SalesReturnList.md
 docs/Model/SalesReturnPaymentsInner.md
 docs/Model/SalesReturnPosition.md
 docs/Model/SalesReturnPositionList.md
+docs/Model/ScriptPermissionValue.md
+docs/Model/ScriptPermissions.md
+docs/Model/ScriptTemplatePermissions.md
 docs/Model/Service.md
 docs/Model/ServiceList.md
 docs/Model/Sex.md
 docs/Model/SpecialPriceDiscount.md
+docs/Model/SpecialPriceDiscountSpecialPrice.md
 docs/Model/State.md
 docs/Model/StateRowResult.md
 docs/Model/StateType.md
@@ -485,6 +497,7 @@ docs/Model/TaskNotes.md
 docs/Model/TaxRate.md
 docs/Model/TaxRateList.md
 docs/Model/TaxSystem.md
+docs/Model/TemplateComposition.md
 docs/Model/Thing.md
 docs/Model/ThingList.md
 docs/Model/TobaccoMrcControlType.md
@@ -532,6 +545,7 @@ lib/Api/CounterpartiesApi.php
 lib/Api/CountriesApi.php
 lib/Api/CurrenciesApi.php
 lib/Api/CustomEntitiesApi.php
+lib/Api/CustomRolesApi.php
 lib/Api/CustomerOrdersApi.php
 lib/Api/DemandsApi.php
 lib/Api/DiscountsApi.php
@@ -597,9 +611,9 @@ lib/FormDataProcessor.php
 lib/HeaderSelector.php
 lib/Model/Account.php
 lib/Model/AccumulationDiscount.php
+lib/Model/AccumulationDiscountLevelsInner.php
 lib/Model/ActivateEmployee200Response.php
 lib/Model/ActivateEmployeeRequest.php
-lib/Model/ActivateEmployeeRequestGroup.php
 lib/Model/AddProductImagesRequest.php
 lib/Model/Address.php
 lib/Model/Agent.php
@@ -637,7 +651,6 @@ lib/Model/BundleComponent.php
 lib/Model/BundleComponentList.php
 lib/Model/BundleList.php
 lib/Model/BundleOverhead.php
-lib/Model/BuyPrice.php
 lib/Model/CashIn.php
 lib/Model/CashInList.php
 lib/Model/CashOut.php
@@ -675,8 +688,6 @@ lib/Model/CounterpartyMetadata.php
 lib/Model/CounterpartyNotes.php
 lib/Model/Country.php
 lib/Model/CountryList.php
-lib/Model/CreateBonusTransaction200Response.php
-lib/Model/CreateBonusTransactionRequest.php
 lib/Model/CreateBundleComponentsRequest.php
 lib/Model/CreateCommissionReportInPositions200ResponseInner.php
 lib/Model/CreateCommissionReportInReturnedPositions200ResponseInner.php
@@ -714,6 +725,8 @@ lib/Model/CustomEntity.php
 lib/Model/CustomEntityElement.php
 lib/Model/CustomEntityElementList.php
 lib/Model/CustomEntityMetadata.php
+lib/Model/CustomRole.php
+lib/Model/CustomRoleList.php
 lib/Model/CustomerOrder.php
 lib/Model/CustomerOrderList.php
 lib/Model/CustomerOrderPosition.php
@@ -730,13 +743,14 @@ lib/Model/DemandPosition.php
 lib/Model/DemandPositionList.php
 lib/Model/DemandPositionTrackingCode1162.php
 lib/Model/Discount.php
+lib/Model/DiscountAbstract.php
 lib/Model/DiscountAssortmentItem.php
 lib/Model/DiscountBase.php
 lib/Model/DiscountList.php
-lib/Model/DiscountListRowsInner.php
 lib/Model/DiscountStrategy.php
 lib/Model/DocumentMetadata.php
 lib/Model/EmbeddedTemplate.php
+lib/Model/EmbeddedTemplateList.php
 lib/Model/EmissionOrder.php
 lib/Model/EmissionOrderDocumentState.php
 lib/Model/EmissionOrderEmissionType.php
@@ -747,6 +761,7 @@ lib/Model/EmissionOrderPositionStatus.php
 lib/Model/Employee.php
 lib/Model/EmployeeList.php
 lib/Model/EmployeeRole.php
+lib/Model/EmployeeRolePermissions.php
 lib/Model/EmployeeSalary.php
 lib/Model/EmployeeSecurity.php
 lib/Model/EmployeeSecurityGroup.php
@@ -762,6 +777,7 @@ lib/Model/EventNote.php
 lib/Model/EventNoteList.php
 lib/Model/ExpenseItem.php
 lib/Model/ExpenseItemList.php
+lib/Model/ExportRequest.php
 lib/Model/FactureIn.php
 lib/Model/FactureInList.php
 lib/Model/FactureOut.php
@@ -823,7 +839,6 @@ lib/Model/MarksCheckMode.php
 lib/Model/Meta.php
 lib/Model/MetaList.php
 lib/Model/Metadata.php
-lib/Model/MinPrice.php
 lib/Model/MinimumStockAbstract.php
 lib/Model/MinimumStockAllWarehouseSame.php
 lib/Model/MinimumStockAllWarehouseSum.php
@@ -850,6 +865,8 @@ lib/Model/PaymentInList.php
 lib/Model/PaymentItemType.php
 lib/Model/PaymentOut.php
 lib/Model/PaymentOutList.php
+lib/Model/PermissionValue.php
+lib/Model/Permissions.php
 lib/Model/PersonalDiscount.php
 lib/Model/PositionStock.php
 lib/Model/PositionTrackingCode.php
@@ -860,6 +877,7 @@ lib/Model/PrepaymentReturn.php
 lib/Model/PrepaymentReturnList.php
 lib/Model/PrepaymentReturnPosition.php
 lib/Model/PrepaymentReturnPositionList.php
+lib/Model/Price.php
 lib/Model/PriceType.php
 lib/Model/PrintFormat.php
 lib/Model/PriorityOfdSend.php
@@ -896,9 +914,12 @@ lib/Model/ProductAlcoholic.php
 lib/Model/ProductFolder.php
 lib/Model/ProductFolderList.php
 lib/Model/ProductList.php
+lib/Model/ProductMarker.php
 lib/Model/ProductionTask.php
 lib/Model/Project.php
 lib/Model/ProjectList.php
+lib/Model/Publication.php
+lib/Model/PublicationList.php
 lib/Model/PurchaseOrder.php
 lib/Model/PurchaseOrderList.php
 lib/Model/PurchaseOrderPosition.php
@@ -968,10 +989,14 @@ lib/Model/SalesReturnList.php
 lib/Model/SalesReturnPaymentsInner.php
 lib/Model/SalesReturnPosition.php
 lib/Model/SalesReturnPositionList.php
+lib/Model/ScriptPermissionValue.php
+lib/Model/ScriptPermissions.php
+lib/Model/ScriptTemplatePermissions.php
 lib/Model/Service.php
 lib/Model/ServiceList.php
 lib/Model/Sex.php
 lib/Model/SpecialPriceDiscount.php
+lib/Model/SpecialPriceDiscountSpecialPrice.php
 lib/Model/State.php
 lib/Model/StateRowResult.php
 lib/Model/StateType.php
@@ -1002,6 +1027,7 @@ lib/Model/TaskNotes.php
 lib/Model/TaxRate.php
 lib/Model/TaxRateList.php
 lib/Model/TaxSystem.php
+lib/Model/TemplateComposition.php
 lib/Model/Thing.php
 lib/Model/ThingList.php
 lib/Model/TobaccoMrcControlType.php
@@ -1050,6 +1076,7 @@ test/Api/CounterpartiesApiTest.php
 test/Api/CountriesApiTest.php
 test/Api/CurrenciesApiTest.php
 test/Api/CustomEntitiesApiTest.php
+test/Api/CustomRolesApiTest.php
 test/Api/CustomerOrdersApiTest.php
 test/Api/DemandsApiTest.php
 test/Api/DiscountsApiTest.php
@@ -1110,9 +1137,9 @@ test/Api/VariantsApiTest.php
 test/Api/WebhookStocksApiTest.php
 test/Api/WebhooksApiTest.php
 test/Model/AccountTest.php
+test/Model/AccumulationDiscountLevelsInnerTest.php
 test/Model/AccumulationDiscountTest.php
 test/Model/ActivateEmployee200ResponseTest.php
-test/Model/ActivateEmployeeRequestGroupTest.php
 test/Model/ActivateEmployeeRequestTest.php
 test/Model/AddProductImagesRequestTest.php
 test/Model/AddressTest.php
@@ -1151,7 +1178,6 @@ test/Model/BundleComponentTest.php
 test/Model/BundleListTest.php
 test/Model/BundleOverheadTest.php
 test/Model/BundleTest.php
-test/Model/BuyPriceTest.php
 test/Model/CashInListTest.php
 test/Model/CashInTest.php
 test/Model/CashOutListTest.php
@@ -1189,8 +1215,6 @@ test/Model/CounterpartyNotesTest.php
 test/Model/CounterpartyTest.php
 test/Model/CountryListTest.php
 test/Model/CountryTest.php
-test/Model/CreateBonusTransaction200ResponseTest.php
-test/Model/CreateBonusTransactionRequestTest.php
 test/Model/CreateBundleComponentsRequestTest.php
 test/Model/CreateCommissionReportInPositions200ResponseInnerTest.php
 test/Model/CreateCommissionReportInReturnedPositions200ResponseInnerTest.php
@@ -1228,6 +1252,8 @@ test/Model/CustomEntityElementListTest.php
 test/Model/CustomEntityElementTest.php
 test/Model/CustomEntityMetadataTest.php
 test/Model/CustomEntityTest.php
+test/Model/CustomRoleListTest.php
+test/Model/CustomRoleTest.php
 test/Model/CustomerOrderListTest.php
 test/Model/CustomerOrderPositionListTest.php
 test/Model/CustomerOrderPositionTest.php
@@ -1243,13 +1269,14 @@ test/Model/DemandPositionListTest.php
 test/Model/DemandPositionTest.php
 test/Model/DemandPositionTrackingCode1162Test.php
 test/Model/DemandTest.php
+test/Model/DiscountAbstractTest.php
 test/Model/DiscountAssortmentItemTest.php
 test/Model/DiscountBaseTest.php
-test/Model/DiscountListRowsInnerTest.php
 test/Model/DiscountListTest.php
 test/Model/DiscountStrategyTest.php
 test/Model/DiscountTest.php
 test/Model/DocumentMetadataTest.php
+test/Model/EmbeddedTemplateListTest.php
 test/Model/EmbeddedTemplateTest.php
 test/Model/EmissionOrderDocumentStateTest.php
 test/Model/EmissionOrderEmissionTypeTest.php
@@ -1259,6 +1286,7 @@ test/Model/EmissionOrderPositionStatusTest.php
 test/Model/EmissionOrderPositionTest.php
 test/Model/EmissionOrderTest.php
 test/Model/EmployeeListTest.php
+test/Model/EmployeeRolePermissionsTest.php
 test/Model/EmployeeRoleTest.php
 test/Model/EmployeeSalaryTest.php
 test/Model/EmployeeSecurityGroupTest.php
@@ -1276,6 +1304,7 @@ test/Model/EventNoteListTest.php
 test/Model/EventNoteTest.php
 test/Model/ExpenseItemListTest.php
 test/Model/ExpenseItemTest.php
+test/Model/ExportRequestTest.php
 test/Model/FactureInListTest.php
 test/Model/FactureInTest.php
 test/Model/FactureOutListTest.php
@@ -1337,7 +1366,6 @@ test/Model/MarksCheckModeTest.php
 test/Model/MetaListTest.php
 test/Model/MetaTest.php
 test/Model/MetadataTest.php
-test/Model/MinPriceTest.php
 test/Model/MinimumStockAbstractTest.php
 test/Model/MinimumStockAllWarehouseSameTest.php
 test/Model/MinimumStockAllWarehouseSumTest.php
@@ -1363,6 +1391,8 @@ test/Model/PaymentInTest.php
 test/Model/PaymentItemTypeTest.php
 test/Model/PaymentOutListTest.php
 test/Model/PaymentOutTest.php
+test/Model/PermissionValueTest.php
+test/Model/PermissionsTest.php
 test/Model/PersonalDiscountTest.php
 test/Model/PositionStockTest.php
 test/Model/PositionTrackingCodeTest.php
@@ -1373,6 +1403,7 @@ test/Model/PrepaymentReturnPositionListTest.php
 test/Model/PrepaymentReturnPositionTest.php
 test/Model/PrepaymentReturnTest.php
 test/Model/PrepaymentTest.php
+test/Model/PriceTest.php
 test/Model/PriceTypeTest.php
 test/Model/PrintFormatTest.php
 test/Model/PriorityOfdSendTest.php
@@ -1408,10 +1439,13 @@ test/Model/ProductAlcoholicTest.php
 test/Model/ProductFolderListTest.php
 test/Model/ProductFolderTest.php
 test/Model/ProductListTest.php
+test/Model/ProductMarkerTest.php
 test/Model/ProductTest.php
 test/Model/ProductionTaskTest.php
 test/Model/ProjectListTest.php
 test/Model/ProjectTest.php
+test/Model/PublicationListTest.php
+test/Model/PublicationTest.php
 test/Model/PurchaseOrderListTest.php
 test/Model/PurchaseOrderPositionListTest.php
 test/Model/PurchaseOrderPositionTest.php
@@ -1481,9 +1515,13 @@ test/Model/SalesReturnPaymentsInnerTest.php
 test/Model/SalesReturnPositionListTest.php
 test/Model/SalesReturnPositionTest.php
 test/Model/SalesReturnTest.php
+test/Model/ScriptPermissionValueTest.php
+test/Model/ScriptPermissionsTest.php
+test/Model/ScriptTemplatePermissionsTest.php
 test/Model/ServiceListTest.php
 test/Model/ServiceTest.php
 test/Model/SexTest.php
+test/Model/SpecialPriceDiscountSpecialPriceTest.php
 test/Model/SpecialPriceDiscountTest.php
 test/Model/StateRowResultTest.php
 test/Model/StateTest.php
@@ -1515,6 +1553,7 @@ test/Model/TaskTest.php
 test/Model/TaxRateListTest.php
 test/Model/TaxRateTest.php
 test/Model/TaxSystemTest.php
+test/Model/TemplateCompositionTest.php
 test/Model/ThingListTest.php
 test/Model/ThingTest.php
 test/Model/TobaccoMrcControlTypeTest.php

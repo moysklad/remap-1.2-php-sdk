@@ -95,9 +95,9 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
         'updated' => 'string',
         'weight' => 'float',
         'volume' => 'float',
-        'buy_price' => '\OpenAPI\Client\Model\BuyPrice',
+        'buy_price' => '\OpenAPI\Client\Model\Price',
         'sale_prices' => '\OpenAPI\Client\Model\SalePrice[]',
-        'supplier' => '\OpenAPI\Client\Model\Counterparty',
+        'supplier' => '\OpenAPI\Client\Model\Agent',
         'country' => '\OpenAPI\Client\Model\Country',
         'uom' => '\OpenAPI\Client\Model\Uom',
         'product_folder' => '\OpenAPI\Client\Model\ProductFolder',
@@ -111,7 +111,7 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
         'tax_system' => 'string',
         'attributes' => '\OpenAPI\Client\Model\AttributeAbstract[]',
         'minimum_stock' => '\OpenAPI\Client\Model\MinimumStockAbstract',
-        'min_price' => '\OpenAPI\Client\Model\MinPrice',
+        'min_price' => '\OpenAPI\Client\Model\Price',
         'weighed' => 'bool',
         'on_tap' => 'bool',
         'partial_disposal' => 'bool',
@@ -120,7 +120,7 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
         'ppe_type' => 'string',
         'product' => '\OpenAPI\Client\Model\Product',
         'characteristics' => '\OpenAPI\Client\Model\VariantCharacteristicValue[]',
-        'assortment' => '\OpenAPI\Client\Model\Assortment',
+        'assortment' => '\OpenAPI\Client\Model\ProductMarker',
         'expiry_date' => 'string',
         'label' => 'string',
         'stock' => 'float',
@@ -231,7 +231,7 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
         'volume' => false,
         'buy_price' => true,
         'sale_prices' => true,
-        'supplier' => true,
+        'supplier' => false,
         'country' => true,
         'uom' => true,
         'product_folder' => true,
@@ -1538,7 +1538,7 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets buy_price
      *
-     * @return \OpenAPI\Client\Model\BuyPrice|null
+     * @return \OpenAPI\Client\Model\Price|null
      */
     public function getBuyPrice()
     {
@@ -1548,7 +1548,7 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets buy_price
      *
-     * @param \OpenAPI\Client\Model\BuyPrice|null $buy_price Закупочная цена
+     * @param \OpenAPI\Client\Model\Price|null $buy_price Закупочная цена
      *
      * @return self
      */
@@ -1606,7 +1606,7 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets supplier
      *
-     * @return \OpenAPI\Client\Model\Counterparty|null
+     * @return \OpenAPI\Client\Model\Agent|null
      */
     public function getSupplier()
     {
@@ -1616,21 +1616,28 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets supplier
      *
-     * @param \OpenAPI\Client\Model\Counterparty|null $supplier Метаданные контрагента-поставщика
+     * Accepts a Counterparty, Organization, Employee, or Agent instance (or null when nullable).
+     * On the wire the server only reads `meta`; non-meta fields are kept locally for
+     * type-safe access and serialized verbatim.
+     *
+     * @param \OpenAPI\Client\Model\Counterparty|\OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Agent|null $supplier Метаданные контрагента или юрлица
      *
      * @return self
      */
     public function setSupplier($supplier)
     {
         if (is_null($supplier)) {
-            array_push($this->openAPINullablesSetToNull, 'supplier');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('supplier', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable supplier cannot be null');
+        }
+        if (!is_null($supplier)
+            && !($supplier instanceof \OpenAPI\Client\Model\Counterparty)
+            && !($supplier instanceof \OpenAPI\Client\Model\Organization)
+            && !($supplier instanceof \OpenAPI\Client\Model\Employee)
+            && !($supplier instanceof \OpenAPI\Client\Model\Agent)) {
+            throw new \InvalidArgumentException(
+                "Argument for 'supplier' must be one of Counterparty, Organization, Employee, or Agent; got "
+                . (is_object($supplier) ? get_class($supplier) : gettype($supplier))
+            );
         }
         $this->container['supplier'] = $supplier;
 
@@ -2051,7 +2058,7 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets min_price
      *
-     * @return \OpenAPI\Client\Model\MinPrice|null
+     * @return \OpenAPI\Client\Model\Price|null
      */
     public function getMinPrice()
     {
@@ -2061,7 +2068,7 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets min_price
      *
-     * @param \OpenAPI\Client\Model\MinPrice|null $min_price min_price
+     * @param \OpenAPI\Client\Model\Price|null $min_price min_price
      *
      * @return self
      */
@@ -2308,8 +2315,7 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets assortment
      *
-     * @return \OpenAPI\Client\Model\Assortment|null
-     * @deprecated
+     * @return \OpenAPI\Client\Model\ProductMarker|null
      */
     public function getAssortment()
     {
@@ -2319,10 +2325,9 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets assortment
      *
-     * @param \OpenAPI\Client\Model\Assortment|null $assortment assortment
+     * @param \OpenAPI\Client\Model\ProductMarker|null $assortment Метаданные товара/услуги/комплекта/модификации, к которой относится Партия
      *
      * @return self
-     * @deprecated
      */
     public function setAssortment($assortment)
     {

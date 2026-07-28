@@ -120,6 +120,18 @@ class InvoiceOutsApiTest extends TestCase
     }
 
     /**
+     * Test case for createInvoiceOutNote
+     *
+     * Добавить Событие Счета покупателю.
+     *
+     */
+    public function testCreateInvoiceOutNote()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createInvoiceOutPositions
      *
      * Создать позицию Счета покупателю.
@@ -198,6 +210,18 @@ class InvoiceOutsApiTest extends TestCase
      *
      */
     public function testDeleteInvoiceOutMetadataStateById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteInvoiceOutNote
+     *
+     * Удалить Событие Счета покупателю.
+     *
+     */
+    public function testDeleteInvoiceOutNote()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -324,6 +348,30 @@ class InvoiceOutsApiTest extends TestCase
     }
 
     /**
+     * Test case for getInvoiceOutNoteById
+     *
+     * Получить Событие Счета покупателю по ID.
+     *
+     */
+    public function testGetInvoiceOutNoteById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getInvoiceOutNotes
+     *
+     * Получить список Событий Счета покупателю.
+     *
+     */
+    public function testGetInvoiceOutNotes()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getInvoiceOutPositionById
      *
      * Получить позицию Счета покупателю.
@@ -390,6 +438,18 @@ class InvoiceOutsApiTest extends TestCase
      *
      */
     public function testUpdateInvoiceOutMetadataStateById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateInvoiceOutNote
+     *
+     * Обновить Событие Счета покупателю.
+     *
+     */
+    public function testUpdateInvoiceOutNote()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

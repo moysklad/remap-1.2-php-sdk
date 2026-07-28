@@ -1866,7 +1866,7 @@ class PurchaseOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\EventNote|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\EventNote[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function createPurchaseOrderNote($id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseOrderNote'][0])
     {
@@ -1888,7 +1888,7 @@ class PurchaseOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\EventNote|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\EventNote[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function createPurchaseOrderNoteWithHttpInfo($id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseOrderNote'][0])
     {
@@ -1920,7 +1920,7 @@ class PurchaseOrdersApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\EventNote',
+                        '\OpenAPI\Client\Model\EventNote[]',
                         $request,
                         $response,
                     );
@@ -1948,7 +1948,7 @@ class PurchaseOrdersApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\EventNote',
+                '\OpenAPI\Client\Model\EventNote[]',
                 $request,
                 $response,
             );
@@ -1957,7 +1957,7 @@ class PurchaseOrdersApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\EventNote',
+                        '\OpenAPI\Client\Model\EventNote[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2019,7 +2019,7 @@ class PurchaseOrdersApi
      */
     public function createPurchaseOrderNoteAsyncWithHttpInfo($id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseOrderNote'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\EventNote';
+        $returnType = '\OpenAPI\Client\Model\EventNote[]';
         $request = $this->createPurchaseOrderNoteRequest($id, $event_note, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client

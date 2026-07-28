@@ -7,12 +7,14 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**addProductFiles()**](ProductsApi.md#addProductFiles) | **POST** /entity/product/{id}/files | Добавить файлы к товару |
 | [**addProductImages()**](ProductsApi.md#addProductImages) | **POST** /entity/product/{id}/images | Добавить изображения к товару |
 | [**createProduct()**](ProductsApi.md#createProduct) | **POST** /entity/product | Создать товар |
+| [**createProductMetadataAttribute()**](ProductsApi.md#createProductMetadataAttribute) | **POST** /entity/product/metadata/attributes | Создать доп. поле товара |
 | [**createProductStoreBalance()**](ProductsApi.md#createProductStoreBalance) | **POST** /entity/product/{id}/storebalances | Создать НСО товара для склада |
 | [**createProductsBatch()**](ProductsApi.md#createProductsBatch) | **POST** /entity/product/batch | Создать или изменить товары |
 | [**deleteProduct()**](ProductsApi.md#deleteProduct) | **DELETE** /entity/product/{id} | Удалить товар |
 | [**deleteProductFile()**](ProductsApi.md#deleteProductFile) | **DELETE** /entity/product/{id}/files/{fileId} | Удалить файл товара |
 | [**deleteProductImage()**](ProductsApi.md#deleteProductImage) | **DELETE** /entity/product/{id}/images/{imageId} | Удалить изображение товара |
 | [**deleteProductImages()**](ProductsApi.md#deleteProductImages) | **POST** /entity/product/{id}/images/delete | Массовое удаление изображений товара |
+| [**deleteProductMetadataAttributeById()**](ProductsApi.md#deleteProductMetadataAttributeById) | **DELETE** /entity/product/metadata/attributes/{id} | Удалить отдельное доп. поле товара |
 | [**deleteProductStoreBalance()**](ProductsApi.md#deleteProductStoreBalance) | **DELETE** /entity/product/{id}/storebalances/{storeBalanceId} | Удалить НСО товара по складу |
 | [**deleteProductStoreBalances()**](ProductsApi.md#deleteProductStoreBalances) | **POST** /entity/product/{id}/storebalances/delete | Массовое удаление НСО товара по складам |
 | [**deleteProductsBatch()**](ProductsApi.md#deleteProductsBatch) | **POST** /entity/product/delete | Удалить товары |
@@ -20,10 +22,13 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**getProductById()**](ProductsApi.md#getProductById) | **GET** /entity/product/{id} | Получить товар по ID |
 | [**getProductFiles()**](ProductsApi.md#getProductFiles) | **GET** /entity/product/{id}/files | Получить файлы товара |
 | [**getProductImages()**](ProductsApi.md#getProductImages) | **GET** /entity/product/{id}/images | Получить изображения товара |
+| [**getProductMetadataAttributeById()**](ProductsApi.md#getProductMetadataAttributeById) | **GET** /entity/product/metadata/attributes/{id} | Получить доп. поле товара по ID |
+| [**getProductMetadataAttributes()**](ProductsApi.md#getProductMetadataAttributes) | **GET** /entity/product/metadata/attributes | Получить доп. поля товаров |
 | [**getProductStoreBalanceById()**](ProductsApi.md#getProductStoreBalanceById) | **GET** /entity/product/{id}/storebalances/{storeBalanceId} | Получить НСО товара по складу |
 | [**getProductStoreBalances()**](ProductsApi.md#getProductStoreBalances) | **GET** /entity/product/{id}/storebalances | Получить НСО товара по складам |
 | [**getProducts()**](ProductsApi.md#getProducts) | **GET** /entity/product | Получить список товаров |
 | [**updateProduct()**](ProductsApi.md#updateProduct) | **PUT** /entity/product/{id} | Обновить товар |
+| [**updateProductMetadataAttributeById()**](ProductsApi.md#updateProductMetadataAttributeById) | **PUT** /entity/product/metadata/attributes/{id} | Обновить отдельное доп. поле товара |
 | [**updateProductStoreBalance()**](ProductsApi.md#updateProductStoreBalance) | **PUT** /entity/product/{id}/storebalances/{storeBalanceId} | Изменить НСО товара по складу |
 
 
@@ -232,6 +237,77 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\Product**](../Model/Product.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createProductMetadataAttribute()`
+
+```php
+createProductMetadataAttribute($attribute_meta_info, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\AttributeMetaInfo
+```
+
+Создать доп. поле товара
+
+Создание нового доп. поля для товаров
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\ProductsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createProductMetadataAttribute($attribute_meta_info, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProductsApi->createProductMetadataAttribute: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **attribute_meta_info** | [**\OpenAPI\Client\Model\AttributeMetaInfo**](../Model/AttributeMetaInfo.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\AttributeMetaInfo**](../Model/AttributeMetaInfo.md)
 
 ### Authorization
 
@@ -666,6 +742,72 @@ void (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `deleteProductMetadataAttributeById()`
+
+```php
+deleteProductMetadataAttributeById($id, $accept, $accept_encoding)
+```
+
+Удалить отдельное доп. поле товара
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\ProductsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->deleteProductMetadataAttributeById($id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling ProductsApi->deleteProductMetadataAttributeById: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: `application/json`, `text/html;charset=UTF-8`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
@@ -1173,6 +1315,146 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getProductMetadataAttributeById()`
+
+```php
+getProductMetadataAttributeById($id, $accept, $accept_encoding): \OpenAPI\Client\Model\AttributeMetaInfo
+```
+
+Получить доп. поле товара по ID
+
+Запрос на получение информации по отдельному дополнительному полю товара
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\ProductsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $result = $apiInstance->getProductMetadataAttributeById($id, $accept, $accept_encoding);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProductsApi->getProductMetadataAttributeById: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\AttributeMetaInfo**](../Model/AttributeMetaInfo.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getProductMetadataAttributes()`
+
+```php
+getProductMetadataAttributes($offset, $limit, $accept, $accept_encoding): \OpenAPI\Client\Model\AttributeMetaInfoList
+```
+
+Получить доп. поля товаров
+
+Запрос на получение всех доп. полей для товаров
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\ProductsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$offset = 0; // int | Отступ в выданном списке
+$limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $result = $apiInstance->getProductMetadataAttributes($offset, $limit, $accept, $accept_encoding);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProductsApi->getProductMetadataAttributes: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **offset** | **int**| Отступ в выданном списке | [optional] [default to 0] |
+| **limit** | **int**| Максимальное количество элементов в выданном списке (максимум 1000) | [optional] [default to 1000] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\AttributeMetaInfoList**](../Model/AttributeMetaInfoList.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getProductStoreBalanceById()`
 
 ```php
@@ -1459,6 +1741,77 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\Product**](../Model/Product.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateProductMetadataAttributeById()`
+
+```php
+updateProductMetadataAttributeById($id, $attribute_meta_info, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\AttributeMetaInfo
+```
+
+Обновить отдельное доп. поле товара
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\ProductsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->updateProductMetadataAttributeById($id, $attribute_meta_info, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProductsApi->updateProductMetadataAttributeById: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **attribute_meta_info** | [**\OpenAPI\Client\Model\AttributeMetaInfo**](../Model/AttributeMetaInfo.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\AttributeMetaInfo**](../Model/AttributeMetaInfo.md)
 
 ### Authorization
 

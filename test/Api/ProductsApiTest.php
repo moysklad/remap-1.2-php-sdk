@@ -108,6 +108,18 @@ class ProductsApiTest extends TestCase
     }
 
     /**
+     * Test case for createProductMetadataAttribute
+     *
+     * Создать доп. поле товара.
+     *
+     */
+    public function testCreateProductMetadataAttribute()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createProductStoreBalance
      *
      * Создать НСО товара для склада.
@@ -174,6 +186,18 @@ class ProductsApiTest extends TestCase
      *
      */
     public function testDeleteProductImages()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteProductMetadataAttributeById
+     *
+     * Удалить отдельное доп. поле товара.
+     *
+     */
+    public function testDeleteProductMetadataAttributeById()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -264,6 +288,30 @@ class ProductsApiTest extends TestCase
     }
 
     /**
+     * Test case for getProductMetadataAttributeById
+     *
+     * Получить доп. поле товара по ID.
+     *
+     */
+    public function testGetProductMetadataAttributeById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getProductMetadataAttributes
+     *
+     * Получить доп. поля товаров.
+     *
+     */
+    public function testGetProductMetadataAttributes()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getProductStoreBalanceById
      *
      * Получить НСО товара по складу.
@@ -306,6 +354,18 @@ class ProductsApiTest extends TestCase
      *
      */
     public function testUpdateProduct()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateProductMetadataAttributeById
+     *
+     * Обновить отдельное доп. поле товара.
+     *
+     */
+    public function testUpdateProductMetadataAttributeById()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

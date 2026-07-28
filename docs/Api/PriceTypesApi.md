@@ -13,7 +13,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 ## `createPriceTypesBatch()`
 
 ```php
-createPriceTypesBatch($price_type, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
+createPriceTypesBatch($price_type, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\PriceType[]
 ```
 
 Создать или изменить типы цен
@@ -66,7 +66,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
+[**\OpenAPI\Client\Model\PriceType[]**](../Model/PriceType.md)
 
 ### Authorization
 

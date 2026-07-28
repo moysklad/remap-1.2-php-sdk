@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **group** | [**\OpenAPI\Client\Model\Group**](Group.md) |  | [optional]
 **owner** | [**\OpenAPI\Client\Model\Employee**](Employee.md) | Метаданные владельца (Сотрудника) | [optional]
 **updated** | **string** | Момент последнего обновления сущности | [optional] [readonly]
-**buy_price** | [**\OpenAPI\Client\Model\BuyPrice**](BuyPrice.md) |  | [optional]
+**buy_price** | [**\OpenAPI\Client\Model\Price**](Price.md) |  | [optional]
 **sale_prices** | [**\OpenAPI\Client\Model\SalePrice[]**](SalePrice.md) | Цены продажи | [optional]
 **uom** | [**\OpenAPI\Client\Model\Uom**](Uom.md) | Метаданные единиц измерения | [optional]
 **product_folder** | [**\OpenAPI\Client\Model\ProductFolder**](ProductFolder.md) | Метаданные группы Услуги | [optional]
@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 **payment_item_type** | **string** | Признак предмета расчета. Известные значения описаны в PaymentItemType | [optional]
 **tax_system** | **string** | Код системы налогообложения. Известные значения описаны в TaxSystem | [optional]
 **attributes** | [**\OpenAPI\Client\Model\AttributeAbstract[]**](AttributeAbstract.md) | Дополнительные поля | [optional]
-**min_price** | [**\OpenAPI\Client\Model\MinPrice**](MinPrice.md) |  | [optional]
+**min_price** | [**\OpenAPI\Client\Model\Price**](Price.md) |  | [optional]
 **sync_id** | **string** | ID синхронизации | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -8,6 +8,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createInvoiceOut()**](InvoiceOutsApi.md#createInvoiceOut) | **POST** /entity/invoiceout | Создать Счет покупателю |
 | [**createInvoiceOutBatch()**](InvoiceOutsApi.md#createInvoiceOutBatch) | **POST** /entity/invoiceout/batch | Массовое создание и обновление Счетов покупателям |
 | [**createInvoiceOutMetadataAttribute()**](InvoiceOutsApi.md#createInvoiceOutMetadataAttribute) | **POST** /entity/invoiceout/metadata/attributes | Создать Доп. поле InvoiceOut |
+| [**createInvoiceOutNote()**](InvoiceOutsApi.md#createInvoiceOutNote) | **POST** /entity/invoiceout/{id}/notes | Добавить Событие Счета покупателю |
 | [**createInvoiceOutPositions()**](InvoiceOutsApi.md#createInvoiceOutPositions) | **POST** /entity/invoiceout/{id}/positions | Создать позицию Счета покупателю |
 | [**createInvoiceOutPositionsBatch()**](InvoiceOutsApi.md#createInvoiceOutPositionsBatch) | **POST** /entity/invoiceout/{id}/positions/batch | Создать позиции Счета покупателю |
 | [**deleteInvoiceOut()**](InvoiceOutsApi.md#deleteInvoiceOut) | **DELETE** /entity/invoiceout/{id} | Удалить Счет покупателю |
@@ -15,6 +16,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**deleteInvoiceOutFile()**](InvoiceOutsApi.md#deleteInvoiceOutFile) | **DELETE** /entity/invoiceout/{id}/files/{fileId} | Удалить файл Счета покупателю |
 | [**deleteInvoiceOutMetadataAttributeById()**](InvoiceOutsApi.md#deleteInvoiceOutMetadataAttributeById) | **DELETE** /entity/invoiceout/metadata/attributes/{id} | Удалить отдельное доп. поле InvoiceOut |
 | [**deleteInvoiceOutMetadataStateById()**](InvoiceOutsApi.md#deleteInvoiceOutMetadataStateById) | **DELETE** /entity/invoiceout/metadata/states/{id} | Удалить отдельный статус InvoiceOut |
+| [**deleteInvoiceOutNote()**](InvoiceOutsApi.md#deleteInvoiceOutNote) | **DELETE** /entity/invoiceout/{id}/notes/{noteId} | Удалить Событие Счета покупателю |
 | [**deleteInvoiceOutPosition()**](InvoiceOutsApi.md#deleteInvoiceOutPosition) | **DELETE** /entity/invoiceout/{id}/positions/{positionId} | Удалить позицию Счета покупателю |
 | [**deleteInvoiceOutPositionsBatch()**](InvoiceOutsApi.md#deleteInvoiceOutPositionsBatch) | **POST** /entity/invoiceout/{id}/positions/delete | Массовое удаление позиций Счета покупателю |
 | [**getInvoiceOutById()**](InvoiceOutsApi.md#getInvoiceOutById) | **GET** /entity/invoiceout/{id} | Получить Счет покупателю |
@@ -25,12 +27,15 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**getInvoiceOutMetadataAttribute()**](InvoiceOutsApi.md#getInvoiceOutMetadataAttribute) | **GET** /entity/invoiceout/metadata/attributes | Доп. поля InvoiceOut |
 | [**getInvoiceOutMetadataAttributeById()**](InvoiceOutsApi.md#getInvoiceOutMetadataAttributeById) | **GET** /entity/invoiceout/metadata/attributes/{id} | Отдельное доп. поле InvoiceOut |
 | [**getInvoiceOutMetadataStateById()**](InvoiceOutsApi.md#getInvoiceOutMetadataStateById) | **GET** /entity/invoiceout/metadata/states/{id} | Отдельный статус InvoiceOut |
+| [**getInvoiceOutNoteById()**](InvoiceOutsApi.md#getInvoiceOutNoteById) | **GET** /entity/invoiceout/{id}/notes/{noteId} | Получить Событие Счета покупателю по ID |
+| [**getInvoiceOutNotes()**](InvoiceOutsApi.md#getInvoiceOutNotes) | **GET** /entity/invoiceout/{id}/notes | Получить список Событий Счета покупателю |
 | [**getInvoiceOutPositionById()**](InvoiceOutsApi.md#getInvoiceOutPositionById) | **GET** /entity/invoiceout/{id}/positions/{positionId} | Получить позицию Счета покупателю |
 | [**getInvoiceOutPositions()**](InvoiceOutsApi.md#getInvoiceOutPositions) | **GET** /entity/invoiceout/{id}/positions | Получить позиции Счета покупателю |
 | [**getInvoiceOutTemplate()**](InvoiceOutsApi.md#getInvoiceOutTemplate) | **PUT** /entity/invoiceout/new | Шаблон Счета покупателю |
 | [**updateInvoiceOut()**](InvoiceOutsApi.md#updateInvoiceOut) | **PUT** /entity/invoiceout/{id} | Изменить Счет покупателю |
 | [**updateInvoiceOutMetadataAttributeById()**](InvoiceOutsApi.md#updateInvoiceOutMetadataAttributeById) | **PUT** /entity/invoiceout/metadata/attributes/{id} | Обновить отдельное доп. поле InvoiceOut |
 | [**updateInvoiceOutMetadataStateById()**](InvoiceOutsApi.md#updateInvoiceOutMetadataStateById) | **PUT** /entity/invoiceout/metadata/states/{id} | Обновить отдельный статус InvoiceOut |
+| [**updateInvoiceOutNote()**](InvoiceOutsApi.md#updateInvoiceOutNote) | **PUT** /entity/invoiceout/{id}/notes/{noteId} | Обновить Событие Счета покупателю |
 | [**updateInvoiceOutPosition()**](InvoiceOutsApi.md#updateInvoiceOutPosition) | **PUT** /entity/invoiceout/{id}/positions/{positionId} | Изменить позицию Счета покупателю |
 
 
@@ -304,6 +309,79 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\AttributeMetaInfo**](../Model/AttributeMetaInfo.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createInvoiceOutNote()`
+
+```php
+createInvoiceOutNote($id, $event_note, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\EventNote[]
+```
+
+Добавить Событие Счета покупателю
+
+Запрос на добавление одного События Счета покупателю
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\InvoiceOutsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$event_note = new \OpenAPI\Client\Model\EventNote(); // \OpenAPI\Client\Model\EventNote
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createInvoiceOutNote($id, $event_note, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling InvoiceOutsApi->createInvoiceOutNote: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **event_note** | [**\OpenAPI\Client\Model\EventNote**](../Model/EventNote.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\EventNote[]**](../Model/EventNote.md)
 
 ### Authorization
 
@@ -789,6 +867,76 @@ try {
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `deleteInvoiceOutNote()`
+
+```php
+deleteInvoiceOutNote($id, $note_id, $accept, $accept_encoding)
+```
+
+Удалить Событие Счета покупателю
+
+Запрос на удаление одного События Счета покупателю
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\InvoiceOutsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$note_id = 'note_id_example'; // string | ID События
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->deleteInvoiceOutNote($id, $note_id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling InvoiceOutsApi->deleteInvoiceOutNote: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **note_id** | **string**| ID События | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
 
 ### Return type
 
@@ -1516,6 +1664,152 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getInvoiceOutNoteById()`
+
+```php
+getInvoiceOutNoteById($id, $note_id, $accept, $accept_encoding): \OpenAPI\Client\Model\EventNote
+```
+
+Получить Событие Счета покупателю по ID
+
+Запрос на получение одного События Счета покупателю
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\InvoiceOutsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$note_id = 'note_id_example'; // string | ID События
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $result = $apiInstance->getInvoiceOutNoteById($id, $note_id, $accept, $accept_encoding);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling InvoiceOutsApi->getInvoiceOutNoteById: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **note_id** | **string**| ID События | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\EventNote**](../Model/EventNote.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getInvoiceOutNotes()`
+
+```php
+getInvoiceOutNotes($id, $limit, $offset, $expand, $accept, $accept_encoding): \OpenAPI\Client\Model\EventNoteList
+```
+
+Получить список Событий Счета покупателю
+
+Запрос на получение всех Событий Счета покупателю для данной учетной записи
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\InvoiceOutsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
+$offset = 0; // int | Отступ в выданном списке
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $result = $apiInstance->getInvoiceOutNotes($id, $limit, $offset, $expand, $accept, $accept_encoding);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling InvoiceOutsApi->getInvoiceOutNotes: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **limit** | **int**| Максимальное количество элементов в выданном списке (максимум 1000) | [optional] [default to 1000] |
+| **offset** | **int**| Отступ в выданном списке | [optional] [default to 0] |
+| **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\EventNoteList**](../Model/EventNoteList.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getInvoiceOutPositionById()`
 
 ```php
@@ -1942,6 +2236,81 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\State**](../Model/State.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateInvoiceOutNote()`
+
+```php
+updateInvoiceOutNote($id, $note_id, $event_note, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\EventNote
+```
+
+Обновить Событие Счета покупателю
+
+Запрос на обновление одного События Счета покупателю
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\InvoiceOutsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$note_id = 'note_id_example'; // string | ID События
+$event_note = new \OpenAPI\Client\Model\EventNote(); // \OpenAPI\Client\Model\EventNote
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->updateInvoiceOutNote($id, $note_id, $event_note, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling InvoiceOutsApi->updateInvoiceOutNote: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **note_id** | **string**| ID События | |
+| **event_note** | [**\OpenAPI\Client\Model\EventNote**](../Model/EventNote.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\EventNote**](../Model/EventNote.md)
 
 ### Authorization
 

@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Service extends EntityWithMeta 
+class Service extends ProductMarker 
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
@@ -98,7 +98,7 @@ class Service extends EntityWithMeta
         'group' => '\OpenAPI\Client\Model\Group',
         'owner' => '\OpenAPI\Client\Model\Employee',
         'updated' => 'string',
-        'buy_price' => '\OpenAPI\Client\Model\BuyPrice',
+        'buy_price' => '\OpenAPI\Client\Model\Price',
         'sale_prices' => '\OpenAPI\Client\Model\SalePrice[]',
         'uom' => '\OpenAPI\Client\Model\Uom',
         'product_folder' => '\OpenAPI\Client\Model\ProductFolder',
@@ -107,7 +107,7 @@ class Service extends EntityWithMeta
         'payment_item_type' => 'string',
         'tax_system' => 'string',
         'attributes' => '\OpenAPI\Client\Model\AttributeAbstract[]',
-        'min_price' => '\OpenAPI\Client\Model\MinPrice',
+        'min_price' => '\OpenAPI\Client\Model\Price',
         'sync_id' => 'string'
     ];
 
@@ -1125,7 +1125,7 @@ class Service extends EntityWithMeta
     /**
      * Gets buy_price
      *
-     * @return \OpenAPI\Client\Model\BuyPrice|null
+     * @return \OpenAPI\Client\Model\Price|null
      */
     public function getBuyPrice()
     {
@@ -1135,7 +1135,7 @@ class Service extends EntityWithMeta
     /**
      * Sets buy_price
      *
-     * @param \OpenAPI\Client\Model\BuyPrice|null $buy_price buy_price
+     * @param \OpenAPI\Client\Model\Price|null $buy_price buy_price
      *
      * @return self
      */
@@ -1410,7 +1410,7 @@ class Service extends EntityWithMeta
     /**
      * Gets min_price
      *
-     * @return \OpenAPI\Client\Model\MinPrice|null
+     * @return \OpenAPI\Client\Model\Price|null
      */
     public function getMinPrice()
     {
@@ -1420,7 +1420,7 @@ class Service extends EntityWithMeta
     /**
      * Sets min_price
      *
-     * @param \OpenAPI\Client\Model\MinPrice|null $min_price min_price
+     * @param \OpenAPI\Client\Model\Price|null $min_price min_price
      *
      * @return self
      */
