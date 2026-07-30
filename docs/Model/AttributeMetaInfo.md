@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **string** | ID дополнительного поля | [optional]
 **name** | **string** | Наименование дополнительного поля | [optional]
-**type** | **string** | Тип дополнительного поля | [optional]
+**type** | **string** | Тип дополнительного поля. Известные значения описаны в AttributeType | [optional]
 **required** | **bool** | Является ли поле обязательным | [optional]
 **show** | **bool** | Показывать ли поле на UI | [optional]
 **description** | **string** | Описание дополнительного поля | [optional]

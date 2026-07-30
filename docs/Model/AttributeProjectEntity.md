@@ -1,10 +1,10 @@
-# # AttributeObject
+# # AttributeProjectEntity
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **string** |  | [optional]
-**value** | **object** |  | [optional]
+**value** | [**\OpenAPI\Client\Model\Project**](Project.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

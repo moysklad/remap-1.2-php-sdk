@@ -67,7 +67,7 @@ class AttributeCustomEntity extends AttributeAbstract
       */
     protected static $openAPITypes = [
         'type' => 'string',
-        'value' => 'object'
+        'value' => '\OpenAPI\Client\Model\CustomEntityElement'
     ];
 
     /**
@@ -398,7 +398,7 @@ class AttributeCustomEntity extends AttributeAbstract
     /**
      * Gets value
      *
-     * @return object|null
+     * @return \OpenAPI\Client\Model\CustomEntityElement|null
      */
     public function getValue()
     {
@@ -408,7 +408,7 @@ class AttributeCustomEntity extends AttributeAbstract
     /**
      * Sets value
      *
-     * @param object|null $value value
+     * @param \OpenAPI\Client\Model\CustomEntityElement|null $value value
      *
      * @return self
      */

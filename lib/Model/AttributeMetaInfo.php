@@ -454,7 +454,7 @@ class AttributeMetaInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets type
      *
-     * @param string|null $type Тип дополнительного поля
+     * @param string|null $type Тип дополнительного поля. Известные значения описаны в AttributeType
      *
      * @return self
      */

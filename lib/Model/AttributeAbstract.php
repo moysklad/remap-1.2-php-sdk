@@ -567,15 +567,20 @@ class AttributeAbstract implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPIMappings = [
         'boolean' => 'AttributeBool',
+        'contract' => 'AttributeContractEntity',
+        'counterparty' => 'AttributeCounterpartyEntity',
         'customentity' => 'AttributeCustomEntity',
         'double' => 'AttributeDouble',
+        'employee' => 'AttributeEmployeeEntity',
         'file' => 'AttributeFile',
         'link' => 'AttributeLink',
         'long' => 'AttributeLong',
+        'product' => 'AttributeProductEntity',
+        'project' => 'AttributeProjectEntity',
+        'store' => 'AttributeStoreEntity',
         'string' => 'AttributeString',
         'text' => 'AttributeText',
-        'time' => 'AttributeDateTime',
-        'undefined' => 'AttributeObject'
+        'time' => 'AttributeDateTime'
     ];
 
     /**

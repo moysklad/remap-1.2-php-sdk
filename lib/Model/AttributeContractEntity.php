@@ -1,6 +1,6 @@
 <?php
 /**
- * AttributeObject
+ * AttributeContractEntity
  *
  * PHP version 8.1
  *
@@ -30,7 +30,7 @@ namespace OpenAPI\Client\Model;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * AttributeObject Class Doc Comment
+ * AttributeContractEntity Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -38,7 +38,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class AttributeObject extends AttributeAbstract 
+class AttributeContractEntity extends AttributeAbstract 
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
@@ -58,7 +58,7 @@ class AttributeObject extends AttributeAbstract
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AttributeObject';
+    protected static $openAPIModelName = 'AttributeContractEntity';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -67,7 +67,7 @@ class AttributeObject extends AttributeAbstract
       */
     protected static $openAPITypes = [
         'type' => 'string',
-        'value' => 'object'
+        'value' => '\OpenAPI\Client\Model\Contract'
     ];
 
     /**
@@ -274,6 +274,19 @@ class AttributeObject extends AttributeAbstract
         return self::$openAPIModelName;
     }
 
+    public const TYPE_CONTRACT = 'contract';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_CONTRACT,
+        ];
+    }
 
     
 
@@ -321,6 +334,15 @@ class AttributeObject extends AttributeAbstract
         
         
 
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -358,6 +380,16 @@ class AttributeObject extends AttributeAbstract
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['type'] = $type;
 
         return $this;
@@ -366,7 +398,7 @@ class AttributeObject extends AttributeAbstract
     /**
      * Gets value
      *
-     * @return object|null
+     * @return \OpenAPI\Client\Model\Contract|null
      */
     public function getValue()
     {
@@ -376,7 +408,7 @@ class AttributeObject extends AttributeAbstract
     /**
      * Sets value
      *
-     * @param object|null $value value
+     * @param \OpenAPI\Client\Model\Contract|null $value value
      *
      * @return self
      */
