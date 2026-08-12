@@ -58,6 +58,8 @@ docs/Api/ProjectsApi.md
 docs/Api/PurchaseOrdersApi.md
 docs/Api/PurchaseReturnsApi.md
 docs/Api/RegionsApi.md
+docs/Api/ReportsApi.md
+docs/Api/ReportsStockAllApi.md
 docs/Api/RetailDemandsApi.md
 docs/Api/RetailDrawerCashInsApi.md
 docs/Api/RetailDrawerCashOutsApi.md
@@ -408,6 +410,12 @@ docs/Model/PurchaseReturnPositionList.md
 docs/Model/RateUpdateType.md
 docs/Model/Region.md
 docs/Model/RegionList.md
+docs/Model/ReportDashboard.md
+docs/Model/ReportDashboardMoney.md
+docs/Model/ReportDashboardPeriodMetrics.md
+docs/Model/ReportOrdersPlotSeriesList.md
+docs/Model/ReportPlotSeries.md
+docs/Model/ReportSalesPlotSeriesList.md
 docs/Model/RetailDemand.md
 docs/Model/RetailDemandCheque.md
 docs/Model/RetailDemandGiftCard.md
@@ -476,6 +484,8 @@ docs/Model/SpecialPriceDiscountSpecialPrice.md
 docs/Model/State.md
 docs/Model/StateRowResult.md
 docs/Model/StateType.md
+docs/Model/StockAll.md
+docs/Model/StockAllList.md
 docs/Model/Store.md
 docs/Model/StoreBalance.md
 docs/Model/StoreBalanceList.md
@@ -589,6 +599,8 @@ lib/Api/ProjectsApi.php
 lib/Api/PurchaseOrdersApi.php
 lib/Api/PurchaseReturnsApi.php
 lib/Api/RegionsApi.php
+lib/Api/ReportsApi.php
+lib/Api/ReportsStockAllApi.php
 lib/Api/RetailDemandsApi.php
 lib/Api/RetailDrawerCashInsApi.php
 lib/Api/RetailDrawerCashOutsApi.php
@@ -944,6 +956,12 @@ lib/Model/PurchaseReturnPositionList.php
 lib/Model/RateUpdateType.php
 lib/Model/Region.php
 lib/Model/RegionList.php
+lib/Model/ReportDashboard.php
+lib/Model/ReportDashboardMoney.php
+lib/Model/ReportDashboardPeriodMetrics.php
+lib/Model/ReportOrdersPlotSeriesList.php
+lib/Model/ReportPlotSeries.php
+lib/Model/ReportSalesPlotSeriesList.php
 lib/Model/RetailDemand.php
 lib/Model/RetailDemandCheque.php
 lib/Model/RetailDemandGiftCard.php
@@ -1012,6 +1030,8 @@ lib/Model/SpecialPriceDiscountSpecialPrice.php
 lib/Model/State.php
 lib/Model/StateRowResult.php
 lib/Model/StateType.php
+lib/Model/StockAll.php
+lib/Model/StockAllList.php
 lib/Model/Store.php
 lib/Model/StoreBalance.php
 lib/Model/StoreBalanceList.php
@@ -1126,6 +1146,8 @@ test/Api/ProjectsApiTest.php
 test/Api/PurchaseOrdersApiTest.php
 test/Api/PurchaseReturnsApiTest.php
 test/Api/RegionsApiTest.php
+test/Api/ReportsApiTest.php
+test/Api/ReportsStockAllApiTest.php
 test/Api/RetailDemandsApiTest.php
 test/Api/RetailDrawerCashInsApiTest.php
 test/Api/RetailDrawerCashOutsApiTest.php
@@ -1476,6 +1498,12 @@ test/Model/PurchaseReturnTest.php
 test/Model/RateUpdateTypeTest.php
 test/Model/RegionListTest.php
 test/Model/RegionTest.php
+test/Model/ReportDashboardMoneyTest.php
+test/Model/ReportDashboardPeriodMetricsTest.php
+test/Model/ReportDashboardTest.php
+test/Model/ReportOrdersPlotSeriesListTest.php
+test/Model/ReportPlotSeriesTest.php
+test/Model/ReportSalesPlotSeriesListTest.php
 test/Model/RetailDemandChequeTest.php
 test/Model/RetailDemandGiftCardTest.php
 test/Model/RetailDemandListTest.php
@@ -1544,6 +1572,8 @@ test/Model/SpecialPriceDiscountTest.php
 test/Model/StateRowResultTest.php
 test/Model/StateTest.php
 test/Model/StateTypeTest.php
+test/Model/StockAllListTest.php
+test/Model/StockAllTest.php
 test/Model/StoreBalanceListTest.php
 test/Model/StoreBalanceTest.php
 test/Model/StoreListTest.php

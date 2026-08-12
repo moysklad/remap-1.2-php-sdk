@@ -1014,6 +1014,12 @@ Class | Method | HTTP request | Description
 *PurchaseReturnsApi* | [**updatePurchaseReturnPosition**](docs/Api/PurchaseReturnsApi.md#updatepurchasereturnposition) | **PUT** /entity/purchasereturn/{id}/positions/{positionId} | Изменить позицию Возврата поставщику
 *RegionsApi* | [**getRegionById**](docs/Api/RegionsApi.md#getregionbyid) | **GET** /entity/region/{id} | Получить регион по ID
 *RegionsApi* | [**getRegions**](docs/Api/RegionsApi.md#getregions) | **GET** /entity/region | Получить список регионов
+*ReportsApi* | [**getReportDashboardDay**](docs/Api/ReportsApi.md#getreportdashboardday) | **GET** /report/dashboard/day | Получить показатели за день
+*ReportsApi* | [**getReportDashboardMonth**](docs/Api/ReportsApi.md#getreportdashboardmonth) | **GET** /report/dashboard/month | Получить показатели за месяц
+*ReportsApi* | [**getReportDashboardWeek**](docs/Api/ReportsApi.md#getreportdashboardweek) | **GET** /report/dashboard/week | Получить показатели за неделю
+*ReportsApi* | [**getReportOrdersPlotSeries**](docs/Api/ReportsApi.md#getreportordersplotseries) | **GET** /report/orders/plotseries | Получить показатели заказов
+*ReportsApi* | [**getReportSalesPlotSeries**](docs/Api/ReportsApi.md#getreportsalesplotseries) | **GET** /report/sales/plotseries | Получить показатели продаж
+*ReportsStockAllApi* | [**getStockAll**](docs/Api/ReportsStockAllApi.md#getstockall) | **GET** /report/stock/all | Получить Расширенный отчет об остатках
 *RetailDemandsApi* | [**createRetailDemand**](docs/Api/RetailDemandsApi.md#createretaildemand) | **POST** /entity/retaildemand | Создать Розничную продажу
 *RetailDemandsApi* | [**createRetailDemandBatch**](docs/Api/RetailDemandsApi.md#createretaildemandbatch) | **POST** /entity/retaildemand/batch | Массовое создание и обновление Розничных продаж
 *RetailDemandsApi* | [**createRetailDemandMetadataAttribute**](docs/Api/RetailDemandsApi.md#createretaildemandmetadataattribute) | **POST** /entity/retaildemand/metadata/attributes | Создать доп. поле Розничной продажи
@@ -1624,6 +1630,12 @@ Class | Method | HTTP request | Description
 - [RateUpdateType](docs/Model/RateUpdateType.md)
 - [Region](docs/Model/Region.md)
 - [RegionList](docs/Model/RegionList.md)
+- [ReportDashboard](docs/Model/ReportDashboard.md)
+- [ReportDashboardMoney](docs/Model/ReportDashboardMoney.md)
+- [ReportDashboardPeriodMetrics](docs/Model/ReportDashboardPeriodMetrics.md)
+- [ReportOrdersPlotSeriesList](docs/Model/ReportOrdersPlotSeriesList.md)
+- [ReportPlotSeries](docs/Model/ReportPlotSeries.md)
+- [ReportSalesPlotSeriesList](docs/Model/ReportSalesPlotSeriesList.md)
 - [RetailDemand](docs/Model/RetailDemand.md)
 - [RetailDemandCheque](docs/Model/RetailDemandCheque.md)
 - [RetailDemandGiftCard](docs/Model/RetailDemandGiftCard.md)
@@ -1692,6 +1704,8 @@ Class | Method | HTTP request | Description
 - [State](docs/Model/State.md)
 - [StateRowResult](docs/Model/StateRowResult.md)
 - [StateType](docs/Model/StateType.md)
+- [StockAll](docs/Model/StockAll.md)
+- [StockAllList](docs/Model/StockAllList.md)
 - [Store](docs/Model/Store.md)
 - [StoreBalance](docs/Model/StoreBalance.md)
 - [StoreBalanceList](docs/Model/StoreBalanceList.md)
