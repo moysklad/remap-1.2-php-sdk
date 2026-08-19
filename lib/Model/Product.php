@@ -1752,7 +1752,7 @@ class Product extends ProductMarker
     /**
      * Sets barcodes
      *
-     * @param \OpenAPI\Client\Model\Barcode[]|null $barcodes Штрихкоды товара
+     * @param \OpenAPI\Client\Model\Barcode[]|null $barcodes Штрихкоды Товара
      *
      * @return self
      */

@@ -38,7 +38,7 @@ Name | Type | Description | Notes
 **product_folder** | [**\OpenAPI\Client\Model\ProductFolder**](ProductFolder.md) | Метаданные группы Товара | [optional]
 **images** | [**\OpenAPI\Client\Model\ImageList**](ImageList.md) | Массив изображений | [optional]
 **files** | [**\OpenAPI\Client\Model\FileList**](FileList.md) | Метаданные массива Файлов | [optional]
-**barcodes** | [**\OpenAPI\Client\Model\Barcode[]**](Barcode.md) | Штрихкоды товара | [optional]
+**barcodes** | [**\OpenAPI\Client\Model\Barcode[]**](Barcode.md) | Штрихкоды Товара | [optional]
 **packs** | [**\OpenAPI\Client\Model\Pack[]**](Pack.md) | Упаковки товара | [optional]
 **tracking_type** | **string** | Тип маркируемой продукции. Известные значения описаны в TrackingType | [optional]
 **tnved** | **string** | Код ТН ВЭД | [optional]
