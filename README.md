@@ -1019,7 +1019,12 @@ Class | Method | HTTP request | Description
 *ReportsApi* | [**getReportDashboardWeek**](docs/Api/ReportsApi.md#getreportdashboardweek) | **GET** /report/dashboard/week | Получить показатели за неделю
 *ReportsApi* | [**getReportOrdersPlotSeries**](docs/Api/ReportsApi.md#getreportordersplotseries) | **GET** /report/orders/plotseries | Получить показатели заказов
 *ReportsApi* | [**getReportSalesPlotSeries**](docs/Api/ReportsApi.md#getreportsalesplotseries) | **GET** /report/sales/plotseries | Получить показатели продаж
+*ReportsByOperationsApi* | [**getByOperationsInTransit**](docs/Api/ReportsByOperationsApi.md#getbyoperationsintransit) | **GET** /report/byoperations/intransit | Получить Отчет по документам, отображающий ожидание
+*ReportsByOperationsApi* | [**getByOperationsReserve**](docs/Api/ReportsByOperationsApi.md#getbyoperationsreserve) | **GET** /report/byoperations/reserve | Получить Отчет по документам, отображающий резервы
+*ReportsByOperationsApi* | [**getByOperationsStock**](docs/Api/ReportsByOperationsApi.md#getbyoperationsstock) | **GET** /report/byoperations/stock | Получить Отчет по документам, отображающий остатки
 *ReportsStockAllApi* | [**getStockAll**](docs/Api/ReportsStockAllApi.md#getstockall) | **GET** /report/stock/all | Получить Расширенный отчет об остатках
+*ReportsStockByOperationApi* | [**getStockByOperation**](docs/Api/ReportsStockByOperationApi.md#getstockbyoperation) | **GET** /report/stock/byoperation | Получить Остатки по документу
+*ReportsStockByStoreApi* | [**getStockByStore**](docs/Api/ReportsStockByStoreApi.md#getstockbystore) | **GET** /report/stock/bystore | Получить Остатки по складам
 *RetailDemandsApi* | [**createRetailDemand**](docs/Api/RetailDemandsApi.md#createretaildemand) | **POST** /entity/retaildemand | Создать Розничную продажу
 *RetailDemandsApi* | [**createRetailDemandBatch**](docs/Api/RetailDemandsApi.md#createretaildemandbatch) | **POST** /entity/retaildemand/batch | Массовое создание и обновление Розничных продаж
 *RetailDemandsApi* | [**createRetailDemandMetadataAttribute**](docs/Api/RetailDemandsApi.md#createretaildemandmetadataattribute) | **POST** /entity/retaildemand/metadata/attributes | Создать доп. поле Розничной продажи
@@ -1350,6 +1355,15 @@ Class | Method | HTTP request | Description
 - [BundleComponentList](docs/Model/BundleComponentList.md)
 - [BundleList](docs/Model/BundleList.md)
 - [BundleOverhead](docs/Model/BundleOverhead.md)
+- [ByOperationsInTransit](docs/Model/ByOperationsInTransit.md)
+- [ByOperationsInTransitList](docs/Model/ByOperationsInTransitList.md)
+- [ByOperationsReserve](docs/Model/ByOperationsReserve.md)
+- [ByOperationsReserveList](docs/Model/ByOperationsReserveList.md)
+- [ByOperationsStock](docs/Model/ByOperationsStock.md)
+- [ByOperationsStockAssortment](docs/Model/ByOperationsStockAssortment.md)
+- [ByOperationsStockList](docs/Model/ByOperationsStockList.md)
+- [ByOperationsStockOperation](docs/Model/ByOperationsStockOperation.md)
+- [ByOperationsStockStore](docs/Model/ByOperationsStockStore.md)
 - [CashIn](docs/Model/CashIn.md)
 - [CashInList](docs/Model/CashInList.md)
 - [CashOut](docs/Model/CashOut.md)
@@ -1706,6 +1720,12 @@ Class | Method | HTTP request | Description
 - [StateType](docs/Model/StateType.md)
 - [StockAll](docs/Model/StockAll.md)
 - [StockAllList](docs/Model/StockAllList.md)
+- [StockByOperation](docs/Model/StockByOperation.md)
+- [StockByOperationList](docs/Model/StockByOperationList.md)
+- [StockByOperationPosition](docs/Model/StockByOperationPosition.md)
+- [StockByStore](docs/Model/StockByStore.md)
+- [StockByStoreItem](docs/Model/StockByStoreItem.md)
+- [StockByStoreList](docs/Model/StockByStoreList.md)
 - [Store](docs/Model/Store.md)
 - [StoreBalance](docs/Model/StoreBalance.md)
 - [StoreBalanceList](docs/Model/StoreBalanceList.md)

@@ -1046,7 +1046,7 @@ class Product extends ProductMarker
     /**
      * Sets description
      *
-     * @param string|null $description Описание товара
+     * @param string|null $description Описание Товара
      *
      * @return self
      */
