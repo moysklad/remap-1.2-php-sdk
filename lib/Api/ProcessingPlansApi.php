@@ -895,7 +895,7 @@ class ProcessingPlansApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ProcessingPlanMaterial|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\ProcessingPlanMaterial[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function createProcessingPlanMaterials($id, $processing_plan_material, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingPlanMaterials'][0])
     {
@@ -918,7 +918,7 @@ class ProcessingPlansApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ProcessingPlanMaterial|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\ProcessingPlanMaterial[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function createProcessingPlanMaterialsWithHttpInfo($id, $processing_plan_material, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingPlanMaterials'][0])
     {
@@ -950,7 +950,7 @@ class ProcessingPlansApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ProcessingPlanMaterial',
+                        '\OpenAPI\Client\Model\ProcessingPlanMaterial[]',
                         $request,
                         $response,
                     );
@@ -978,7 +978,7 @@ class ProcessingPlansApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\ProcessingPlanMaterial',
+                '\OpenAPI\Client\Model\ProcessingPlanMaterial[]',
                 $request,
                 $response,
             );
@@ -987,7 +987,7 @@ class ProcessingPlansApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ProcessingPlanMaterial',
+                        '\OpenAPI\Client\Model\ProcessingPlanMaterial[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1051,7 +1051,7 @@ class ProcessingPlansApi
      */
     public function createProcessingPlanMaterialsAsyncWithHttpInfo($id, $processing_plan_material, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingPlanMaterials'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\ProcessingPlanMaterial';
+        $returnType = '\OpenAPI\Client\Model\ProcessingPlanMaterial[]';
         $request = $this->createProcessingPlanMaterialsRequest($id, $processing_plan_material, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client

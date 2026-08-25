@@ -461,7 +461,7 @@ try {
 ## `createInventoryPosition()`
 
 ```php
-createInventoryPosition($id, $inventory_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\InventoryPosition
+createInventoryPosition($id, $inventory_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\InventoryPosition[]
 ```
 
 Создать и обновить позицию Инвентаризации
@@ -516,7 +516,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\InventoryPosition**](../Model/InventoryPosition.md)
+[**\OpenAPI\Client\Model\InventoryPosition[]**](../Model/InventoryPosition.md)
 
 ### Authorization
 

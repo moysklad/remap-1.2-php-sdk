@@ -2560,7 +2560,7 @@ class SuppliesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\SupplyPosition|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\SupplyPosition[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function createSupplyPosition($id, $supply_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSupplyPosition'][0])
     {
@@ -2583,7 +2583,7 @@ class SuppliesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\SupplyPosition|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\SupplyPosition[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function createSupplyPositionWithHttpInfo($id, $supply_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSupplyPosition'][0])
     {
@@ -2615,7 +2615,7 @@ class SuppliesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\SupplyPosition',
+                        '\OpenAPI\Client\Model\SupplyPosition[]',
                         $request,
                         $response,
                     );
@@ -2643,7 +2643,7 @@ class SuppliesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\SupplyPosition',
+                '\OpenAPI\Client\Model\SupplyPosition[]',
                 $request,
                 $response,
             );
@@ -2652,7 +2652,7 @@ class SuppliesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\SupplyPosition',
+                        '\OpenAPI\Client\Model\SupplyPosition[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2716,7 +2716,7 @@ class SuppliesApi
      */
     public function createSupplyPositionAsyncWithHttpInfo($id, $supply_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSupplyPosition'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\SupplyPosition';
+        $returnType = '\OpenAPI\Client\Model\SupplyPosition[]';
         $request = $this->createSupplyPositionRequest($id, $supply_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client

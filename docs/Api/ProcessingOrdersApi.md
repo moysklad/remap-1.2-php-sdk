@@ -461,7 +461,7 @@ try {
 ## `createProcessingOrderPosition()`
 
 ```php
-createProcessingOrderPosition($id, $processing_order_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\ProcessingOrderPosition
+createProcessingOrderPosition($id, $processing_order_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\ProcessingOrderPosition[]
 ```
 
 Обновить позицию ProcessingOrder
@@ -516,7 +516,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ProcessingOrderPosition**](../Model/ProcessingOrderPosition.md)
+[**\OpenAPI\Client\Model\ProcessingOrderPosition[]**](../Model/ProcessingOrderPosition.md)
 
 ### Authorization
 

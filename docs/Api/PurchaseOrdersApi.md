@@ -462,7 +462,7 @@ try {
 ## `createPurchaseOrderPosition()`
 
 ```php
-createPurchaseOrderPosition($id, $purchase_order_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\PurchaseOrderPosition
+createPurchaseOrderPosition($id, $purchase_order_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\PurchaseOrderPosition[]
 ```
 
 Создать и обновить позицию Заказа поставщику
@@ -517,7 +517,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\PurchaseOrderPosition**](../Model/PurchaseOrderPosition.md)
+[**\OpenAPI\Client\Model\PurchaseOrderPosition[]**](../Model/PurchaseOrderPosition.md)
 
 ### Authorization
 

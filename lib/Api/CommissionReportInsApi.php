@@ -1867,7 +1867,7 @@ class CommissionReportInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CommissionReportInPosition|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\CommissionReportInPosition[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function createCommissionReportInPosition($id, $commission_report_in_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportInPosition'][0])
     {
@@ -1890,7 +1890,7 @@ class CommissionReportInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CommissionReportInPosition|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\CommissionReportInPosition[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function createCommissionReportInPositionWithHttpInfo($id, $commission_report_in_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportInPosition'][0])
     {
@@ -1922,7 +1922,7 @@ class CommissionReportInsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CommissionReportInPosition',
+                        '\OpenAPI\Client\Model\CommissionReportInPosition[]',
                         $request,
                         $response,
                     );
@@ -1950,7 +1950,7 @@ class CommissionReportInsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\CommissionReportInPosition',
+                '\OpenAPI\Client\Model\CommissionReportInPosition[]',
                 $request,
                 $response,
             );
@@ -1959,7 +1959,7 @@ class CommissionReportInsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CommissionReportInPosition',
+                        '\OpenAPI\Client\Model\CommissionReportInPosition[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2023,7 +2023,7 @@ class CommissionReportInsApi
      */
     public function createCommissionReportInPositionAsyncWithHttpInfo($id, $commission_report_in_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCommissionReportInPosition'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CommissionReportInPosition';
+        $returnType = '\OpenAPI\Client\Model\CommissionReportInPosition[]';
         $request = $this->createCommissionReportInPositionRequest($id, $commission_report_in_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client

@@ -2206,7 +2206,7 @@ class InventoriesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\InventoryPosition|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\InventoryPosition[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function createInventoryPosition($id, $inventory_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryPosition'][0])
     {
@@ -2229,7 +2229,7 @@ class InventoriesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\InventoryPosition|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\InventoryPosition[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function createInventoryPositionWithHttpInfo($id, $inventory_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryPosition'][0])
     {
@@ -2261,7 +2261,7 @@ class InventoriesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\InventoryPosition',
+                        '\OpenAPI\Client\Model\InventoryPosition[]',
                         $request,
                         $response,
                     );
@@ -2289,7 +2289,7 @@ class InventoriesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\InventoryPosition',
+                '\OpenAPI\Client\Model\InventoryPosition[]',
                 $request,
                 $response,
             );
@@ -2298,7 +2298,7 @@ class InventoriesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\InventoryPosition',
+                        '\OpenAPI\Client\Model\InventoryPosition[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2362,7 +2362,7 @@ class InventoriesApi
      */
     public function createInventoryPositionAsyncWithHttpInfo($id, $inventory_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryPosition'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\InventoryPosition';
+        $returnType = '\OpenAPI\Client\Model\InventoryPosition[]';
         $request = $this->createInventoryPositionRequest($id, $inventory_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client

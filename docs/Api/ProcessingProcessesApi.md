@@ -96,7 +96,7 @@ try {
 ## `createProcessingProcessPosition()`
 
 ```php
-createProcessingProcessPosition($id, $processing_process_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\ProcessingProcessPosition
+createProcessingProcessPosition($id, $processing_process_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\ProcessingProcessPosition[]
 ```
 
 Создать и обновить позицию Техпроцесса
@@ -151,7 +151,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ProcessingProcessPosition**](../Model/ProcessingProcessPosition.md)
+[**\OpenAPI\Client\Model\ProcessingProcessPosition[]**](../Model/ProcessingProcessPosition.md)
 
 ### Authorization
 

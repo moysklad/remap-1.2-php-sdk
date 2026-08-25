@@ -183,7 +183,7 @@ try {
 ## `createProcessingPlanMaterials()`
 
 ```php
-createProcessingPlanMaterials($id, $processing_plan_material, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\ProcessingPlanMaterial
+createProcessingPlanMaterials($id, $processing_plan_material, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\ProcessingPlanMaterial[]
 ```
 
 Создать материал Техкарты
@@ -240,7 +240,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ProcessingPlanMaterial**](../Model/ProcessingPlanMaterial.md)
+[**\OpenAPI\Client\Model\ProcessingPlanMaterial[]**](../Model/ProcessingPlanMaterial.md)
 
 ### Authorization
 

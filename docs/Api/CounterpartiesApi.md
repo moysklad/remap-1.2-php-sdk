@@ -264,7 +264,7 @@ try {
 ## `createCounterpartyAccount()`
 
 ```php
-createCounterpartyAccount($id, $account, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\Account
+createCounterpartyAccount($id, $account, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\Account[]
 ```
 
 Создать счёт контрагента
@@ -319,7 +319,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Account**](../Model/Account.md)
+[**\OpenAPI\Client\Model\Account[]**](../Model/Account.md)
 
 ### Authorization
 

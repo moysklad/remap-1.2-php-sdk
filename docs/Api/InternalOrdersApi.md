@@ -384,7 +384,7 @@ try {
 ## `createInternalOrderPosition()`
 
 ```php
-createInternalOrderPosition($id, $internal_order_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\InternalOrderPosition
+createInternalOrderPosition($id, $internal_order_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\InternalOrderPosition[]
 ```
 
 Создать и обновить позицию Внутреннего заказа
@@ -439,7 +439,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\InternalOrderPosition**](../Model/InternalOrderPosition.md)
+[**\OpenAPI\Client\Model\InternalOrderPosition[]**](../Model/InternalOrderPosition.md)
 
 ### Authorization
 

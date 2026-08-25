@@ -165,7 +165,7 @@ try {
 ## `createEmissionOrderPosition()`
 
 ```php
-createEmissionOrderPosition($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\EmissionOrderPosition
+createEmissionOrderPosition($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\EmissionOrderPosition[]
 ```
 
 Создать и обновить позицию Заказа кодов маркировки
@@ -220,7 +220,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\EmissionOrderPosition**](../Model/EmissionOrderPosition.md)
+[**\OpenAPI\Client\Model\EmissionOrderPosition[]**](../Model/EmissionOrderPosition.md)
 
 ### Authorization
 

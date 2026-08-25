@@ -538,7 +538,7 @@ try {
 ## `createPurchaseReturnPosition()`
 
 ```php
-createPurchaseReturnPosition($id, $purchase_return_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\PurchaseReturnPosition
+createPurchaseReturnPosition($id, $purchase_return_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\PurchaseReturnPosition[]
 ```
 
 Создать и обновить позицию Возврата поставщику
@@ -593,7 +593,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\PurchaseReturnPosition**](../Model/PurchaseReturnPosition.md)
+[**\OpenAPI\Client\Model\PurchaseReturnPosition[]**](../Model/PurchaseReturnPosition.md)
 
 ### Authorization
 

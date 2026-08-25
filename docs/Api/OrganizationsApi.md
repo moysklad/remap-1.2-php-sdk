@@ -1250,7 +1250,7 @@ try {
 ## `updateOrganizationAccounts()`
 
 ```php
-updateOrganizationAccounts($id, $account, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\Account
+updateOrganizationAccounts($id, $account, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\Account[]
 ```
 
 Изменить счета юрлица
@@ -1305,7 +1305,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Account**](../Model/Account.md)
+[**\OpenAPI\Client\Model\Account[]**](../Model/Account.md)
 
 ### Authorization
 

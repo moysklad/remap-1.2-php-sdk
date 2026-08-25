@@ -244,7 +244,7 @@ try {
 ## `createLossPosition()`
 
 ```php
-createLossPosition($id, $loss_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\LossPosition
+createLossPosition($id, $loss_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\LossPosition[]
 ```
 
 Создать и обновить позицию Списания
@@ -299,7 +299,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\LossPosition**](../Model/LossPosition.md)
+[**\OpenAPI\Client\Model\LossPosition[]**](../Model/LossPosition.md)
 
 ### Authorization
 

@@ -320,7 +320,7 @@ try {
 ## `createMovePosition()`
 
 ```php
-createMovePosition($id, $move_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\MovePosition
+createMovePosition($id, $move_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\MovePosition[]
 ```
 
 Создать и обновить позицию Перемещения
@@ -375,7 +375,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\MovePosition**](../Model/MovePosition.md)
+[**\OpenAPI\Client\Model\MovePosition[]**](../Model/MovePosition.md)
 
 ### Authorization
 

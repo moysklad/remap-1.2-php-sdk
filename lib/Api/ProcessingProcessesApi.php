@@ -513,7 +513,7 @@ class ProcessingProcessesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ProcessingProcessPosition|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\ProcessingProcessPosition[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function createProcessingProcessPosition($id, $processing_process_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingProcessPosition'][0])
     {
@@ -536,7 +536,7 @@ class ProcessingProcessesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ProcessingProcessPosition|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\ProcessingProcessPosition[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function createProcessingProcessPositionWithHttpInfo($id, $processing_process_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingProcessPosition'][0])
     {
@@ -568,7 +568,7 @@ class ProcessingProcessesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ProcessingProcessPosition',
+                        '\OpenAPI\Client\Model\ProcessingProcessPosition[]',
                         $request,
                         $response,
                     );
@@ -596,7 +596,7 @@ class ProcessingProcessesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\ProcessingProcessPosition',
+                '\OpenAPI\Client\Model\ProcessingProcessPosition[]',
                 $request,
                 $response,
             );
@@ -605,7 +605,7 @@ class ProcessingProcessesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ProcessingProcessPosition',
+                        '\OpenAPI\Client\Model\ProcessingProcessPosition[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -669,7 +669,7 @@ class ProcessingProcessesApi
      */
     public function createProcessingProcessPositionAsyncWithHttpInfo($id, $processing_process_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingProcessPosition'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\ProcessingProcessPosition';
+        $returnType = '\OpenAPI\Client\Model\ProcessingProcessPosition[]';
         $request = $this->createProcessingProcessPositionRequest($id, $processing_process_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client

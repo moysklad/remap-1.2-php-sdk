@@ -325,7 +325,7 @@ try {
 ## `createProductStoreBalance()`
 
 ```php
-createProductStoreBalance($id, $store_balance, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\StoreBalance
+createProductStoreBalance($id, $store_balance, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\StoreBalance[]
 ```
 
 Создать НСО товара для склада
@@ -380,7 +380,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\StoreBalance**](../Model/StoreBalance.md)
+[**\OpenAPI\Client\Model\StoreBalance[]**](../Model/StoreBalance.md)
 
 ### Authorization
 

@@ -468,7 +468,7 @@ try {
 ## `createCustomerOrderPosition()`
 
 ```php
-createCustomerOrderPosition($id, $customer_order_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CustomerOrderPosition
+createCustomerOrderPosition($id, $customer_order_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CustomerOrderPosition[]
 ```
 
 Создать и обновить позицию Заказа покупателя
@@ -523,7 +523,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CustomerOrderPosition**](../Model/CustomerOrderPosition.md)
+[**\OpenAPI\Client\Model\CustomerOrderPosition[]**](../Model/CustomerOrderPosition.md)
 
 ### Authorization
 

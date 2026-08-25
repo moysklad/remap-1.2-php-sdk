@@ -853,7 +853,7 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\EmissionOrderPosition|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\EmissionOrderPosition[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function createEmissionOrderPosition($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPosition'][0])
     {
@@ -876,7 +876,7 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\EmissionOrderPosition|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\EmissionOrderPosition[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function createEmissionOrderPositionWithHttpInfo($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPosition'][0])
     {
@@ -908,7 +908,7 @@ class EmissionOrdersApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\EmissionOrderPosition',
+                        '\OpenAPI\Client\Model\EmissionOrderPosition[]',
                         $request,
                         $response,
                     );
@@ -936,7 +936,7 @@ class EmissionOrdersApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\EmissionOrderPosition',
+                '\OpenAPI\Client\Model\EmissionOrderPosition[]',
                 $request,
                 $response,
             );
@@ -945,7 +945,7 @@ class EmissionOrdersApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\EmissionOrderPosition',
+                        '\OpenAPI\Client\Model\EmissionOrderPosition[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1009,7 +1009,7 @@ class EmissionOrdersApi
      */
     public function createEmissionOrderPositionAsyncWithHttpInfo($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPosition'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\EmissionOrderPosition';
+        $returnType = '\OpenAPI\Client\Model\EmissionOrderPosition[]';
         $request = $this->createEmissionOrderPositionRequest($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client

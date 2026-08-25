@@ -1548,7 +1548,7 @@ class ProductsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\StoreBalance|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\StoreBalance[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function createProductStoreBalance($id, $store_balance, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProductStoreBalance'][0])
     {
@@ -1570,7 +1570,7 @@ class ProductsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\StoreBalance|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\StoreBalance[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function createProductStoreBalanceWithHttpInfo($id, $store_balance, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProductStoreBalance'][0])
     {
@@ -1602,7 +1602,7 @@ class ProductsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\StoreBalance',
+                        '\OpenAPI\Client\Model\StoreBalance[]',
                         $request,
                         $response,
                     );
@@ -1630,7 +1630,7 @@ class ProductsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\StoreBalance',
+                '\OpenAPI\Client\Model\StoreBalance[]',
                 $request,
                 $response,
             );
@@ -1639,7 +1639,7 @@ class ProductsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\StoreBalance',
+                        '\OpenAPI\Client\Model\StoreBalance[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1701,7 +1701,7 @@ class ProductsApi
      */
     public function createProductStoreBalanceAsyncWithHttpInfo($id, $store_balance, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProductStoreBalance'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\StoreBalance';
+        $returnType = '\OpenAPI\Client\Model\StoreBalance[]';
         $request = $this->createProductStoreBalanceRequest($id, $store_balance, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client

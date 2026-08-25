@@ -460,7 +460,7 @@ try {
 ## `createEnterPosition()`
 
 ```php
-createEnterPosition($id, $enter_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\EnterPosition
+createEnterPosition($id, $enter_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\EnterPosition[]
 ```
 
 Создать и обновить позицию Оприходования
@@ -515,7 +515,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\EnterPosition**](../Model/EnterPosition.md)
+[**\OpenAPI\Client\Model\EnterPosition[]**](../Model/EnterPosition.md)
 
 ### Authorization
 

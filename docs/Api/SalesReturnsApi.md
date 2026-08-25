@@ -244,7 +244,7 @@ try {
 ## `createSalesReturnPosition()`
 
 ```php
-createSalesReturnPosition($id, $sales_return_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\SalesReturnPosition
+createSalesReturnPosition($id, $sales_return_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\SalesReturnPosition[]
 ```
 
 Создать и обновить позицию Возврата покупателя
@@ -299,7 +299,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\SalesReturnPosition**](../Model/SalesReturnPosition.md)
+[**\OpenAPI\Client\Model\SalesReturnPosition[]**](../Model/SalesReturnPosition.md)
 
 ### Authorization
 

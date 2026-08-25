@@ -2206,7 +2206,7 @@ class PurchaseOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\PurchaseOrderPosition|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\PurchaseOrderPosition[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function createPurchaseOrderPosition($id, $purchase_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseOrderPosition'][0])
     {
@@ -2229,7 +2229,7 @@ class PurchaseOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\PurchaseOrderPosition|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\PurchaseOrderPosition[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function createPurchaseOrderPositionWithHttpInfo($id, $purchase_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseOrderPosition'][0])
     {
@@ -2261,7 +2261,7 @@ class PurchaseOrdersApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\PurchaseOrderPosition',
+                        '\OpenAPI\Client\Model\PurchaseOrderPosition[]',
                         $request,
                         $response,
                     );
@@ -2289,7 +2289,7 @@ class PurchaseOrdersApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\PurchaseOrderPosition',
+                '\OpenAPI\Client\Model\PurchaseOrderPosition[]',
                 $request,
                 $response,
             );
@@ -2298,7 +2298,7 @@ class PurchaseOrdersApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\PurchaseOrderPosition',
+                        '\OpenAPI\Client\Model\PurchaseOrderPosition[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2362,7 +2362,7 @@ class PurchaseOrdersApi
      */
     public function createPurchaseOrderPositionAsyncWithHttpInfo($id, $purchase_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseOrderPosition'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\PurchaseOrderPosition';
+        $returnType = '\OpenAPI\Client\Model\PurchaseOrderPosition[]';
         $request = $this->createPurchaseOrderPositionRequest($id, $purchase_order_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client

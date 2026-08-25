@@ -537,7 +537,7 @@ try {
 ## `createCommissionReportOutPosition()`
 
 ```php
-createCommissionReportOutPosition($id, $commission_report_out_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CommissionReportOutPosition
+createCommissionReportOutPosition($id, $commission_report_out_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\CommissionReportOutPosition[]
 ```
 
 Создать и обновить позицию Выданного отчета комиссионера
@@ -592,7 +592,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CommissionReportOutPosition**](../Model/CommissionReportOutPosition.md)
+[**\OpenAPI\Client\Model\CommissionReportOutPosition[]**](../Model/CommissionReportOutPosition.md)
 
 ### Authorization
 

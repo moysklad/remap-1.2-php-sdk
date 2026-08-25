@@ -5718,7 +5718,7 @@ class OrganizationsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Account|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\Account[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function updateOrganizationAccounts($id, $account, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateOrganizationAccounts'][0])
     {
@@ -5740,7 +5740,7 @@ class OrganizationsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Account|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\Account[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateOrganizationAccountsWithHttpInfo($id, $account, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateOrganizationAccounts'][0])
     {
@@ -5772,7 +5772,7 @@ class OrganizationsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\Account',
+                        '\OpenAPI\Client\Model\Account[]',
                         $request,
                         $response,
                     );
@@ -5800,7 +5800,7 @@ class OrganizationsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\Account',
+                '\OpenAPI\Client\Model\Account[]',
                 $request,
                 $response,
             );
@@ -5809,7 +5809,7 @@ class OrganizationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Account',
+                        '\OpenAPI\Client\Model\Account[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5871,7 +5871,7 @@ class OrganizationsApi
      */
     public function updateOrganizationAccountsAsyncWithHttpInfo($id, $account, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateOrganizationAccounts'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\Account';
+        $returnType = '\OpenAPI\Client\Model\Account[]';
         $request = $this->updateOrganizationAccountsRequest($id, $account, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client

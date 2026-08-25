@@ -1553,7 +1553,7 @@ class MovesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\MovePosition|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\MovePosition[]|\OpenAPI\Client\Model\ErrorOrArray
      */
     public function createMovePosition($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePosition'][0])
     {
@@ -1576,7 +1576,7 @@ class MovesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\MovePosition|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\MovePosition[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
      */
     public function createMovePositionWithHttpInfo($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePosition'][0])
     {
@@ -1608,7 +1608,7 @@ class MovesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MovePosition',
+                        '\OpenAPI\Client\Model\MovePosition[]',
                         $request,
                         $response,
                     );
@@ -1636,7 +1636,7 @@ class MovesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\MovePosition',
+                '\OpenAPI\Client\Model\MovePosition[]',
                 $request,
                 $response,
             );
@@ -1645,7 +1645,7 @@ class MovesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MovePosition',
+                        '\OpenAPI\Client\Model\MovePosition[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1709,7 +1709,7 @@ class MovesApi
      */
     public function createMovePositionAsyncWithHttpInfo($id, $move_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createMovePosition'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\MovePosition';
+        $returnType = '\OpenAPI\Client\Model\MovePosition[]';
         $request = $this->createMovePositionRequest($id, $move_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
 
         return $this->client

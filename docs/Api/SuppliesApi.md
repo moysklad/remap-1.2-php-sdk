@@ -539,7 +539,7 @@ try {
 ## `createSupplyPosition()`
 
 ```php
-createSupplyPosition($id, $supply_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\SupplyPosition
+createSupplyPosition($id, $supply_position, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\SupplyPosition[]
 ```
 
 Создать и обновить позицию Приемки
@@ -594,7 +594,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\SupplyPosition**](../Model/SupplyPosition.md)
+[**\OpenAPI\Client\Model\SupplyPosition[]**](../Model/SupplyPosition.md)
 
 ### Authorization
 
