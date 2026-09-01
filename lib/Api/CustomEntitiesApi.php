@@ -162,7 +162,7 @@ class CustomEntitiesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CustomEntity|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\CustomEntity|\OpenAPI\Client\Model\Errors
      */
     public function createCustomEntity($custom_entity, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCustomEntity'][0])
     {
@@ -183,12 +183,11 @@ class CustomEntitiesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CustomEntity|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\CustomEntity|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function createCustomEntityWithHttpInfo($custom_entity, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCustomEntity'][0])
     {
         $request = $this->createCustomEntityRequest($custom_entity, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -212,18 +211,19 @@ class CustomEntitiesApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\CustomEntity',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -245,7 +245,7 @@ class CustomEntitiesApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\CustomEntity',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -260,7 +260,7 @@ class CustomEntitiesApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -314,11 +314,12 @@ class CustomEntitiesApi
     {
         $returnType = '\OpenAPI\Client\Model\CustomEntity';
         $request = $this->createCustomEntityRequest($custom_entity, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -483,7 +484,7 @@ class CustomEntitiesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CustomEntityElement|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\CustomEntityElement|\OpenAPI\Client\Model\Errors
      */
     public function createCustomEntityElement($id, $custom_entity_element, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCustomEntityElement'][0])
     {
@@ -506,12 +507,11 @@ class CustomEntitiesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CustomEntityElement|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\CustomEntityElement|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function createCustomEntityElementWithHttpInfo($id, $custom_entity_element, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCustomEntityElement'][0])
     {
         $request = $this->createCustomEntityElementRequest($id, $custom_entity_element, $expand, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -535,18 +535,19 @@ class CustomEntitiesApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\CustomEntityElement',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -568,7 +569,7 @@ class CustomEntitiesApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\CustomEntityElement',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -583,7 +584,7 @@ class CustomEntitiesApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -641,11 +642,12 @@ class CustomEntitiesApi
     {
         $returnType = '\OpenAPI\Client\Model\CustomEntityElement';
         $request = $this->createCustomEntityElementRequest($id, $custom_entity_element, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -747,7 +749,7 @@ class CustomEntitiesApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -858,7 +860,6 @@ class CustomEntitiesApi
     public function deleteCustomEntityWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteCustomEntity'][0])
     {
         $request = $this->deleteCustomEntityRequest($id, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -888,7 +889,7 @@ class CustomEntitiesApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -940,11 +941,12 @@ class CustomEntitiesApi
     {
         $returnType = '';
         $request = $this->deleteCustomEntityRequest($id, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
@@ -1008,7 +1010,7 @@ class CustomEntitiesApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -1114,7 +1116,6 @@ class CustomEntitiesApi
     public function deleteCustomEntityElementWithHttpInfo($metadata_id, $id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteCustomEntityElement'][0])
     {
         $request = $this->deleteCustomEntityElementRequest($metadata_id, $id, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -1144,7 +1145,7 @@ class CustomEntitiesApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1198,11 +1199,12 @@ class CustomEntitiesApi
     {
         $returnType = '';
         $request = $this->deleteCustomEntityElementRequest($metadata_id, $id, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
@@ -1274,7 +1276,7 @@ class CustomEntitiesApi
         // path params
         if ($metadata_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'metadataId' . '}',
+                '{metadataId}',
                 ObjectSerializer::toPathValue($metadata_id),
                 $resourcePath
             );
@@ -1282,7 +1284,7 @@ class CustomEntitiesApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -1364,7 +1366,7 @@ class CustomEntitiesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CustomEntityElement|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\CustomEntityElement|\OpenAPI\Client\Model\Errors
      */
     public function getCustomEntityElementById($metadata_id, $id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, string $contentType = self::contentTypes['getCustomEntityElementById'][0])
     {
@@ -1386,12 +1388,11 @@ class CustomEntitiesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CustomEntityElement|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\CustomEntityElement|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getCustomEntityElementByIdWithHttpInfo($metadata_id, $id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, string $contentType = self::contentTypes['getCustomEntityElementById'][0])
     {
         $request = $this->getCustomEntityElementByIdRequest($metadata_id, $id, $accept, $accept_encoding, $expand, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -1415,18 +1416,19 @@ class CustomEntitiesApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\CustomEntityElement',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -1448,7 +1450,7 @@ class CustomEntitiesApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\CustomEntityElement',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -1463,7 +1465,7 @@ class CustomEntitiesApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1519,11 +1521,12 @@ class CustomEntitiesApi
     {
         $returnType = '\OpenAPI\Client\Model\CustomEntityElement';
         $request = $this->getCustomEntityElementByIdRequest($metadata_id, $id, $accept, $accept_encoding, $expand, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1619,7 +1622,7 @@ class CustomEntitiesApi
         // path params
         if ($metadata_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'metadataId' . '}',
+                '{metadataId}',
                 ObjectSerializer::toPathValue($metadata_id),
                 $resourcePath
             );
@@ -1627,7 +1630,7 @@ class CustomEntitiesApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -1708,7 +1711,7 @@ class CustomEntitiesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CustomEntityElementList|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\CustomEntityElementList|\OpenAPI\Client\Model\Errors
      */
     public function getCustomEntityElements($id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getCustomEntityElements'][0])
     {
@@ -1729,12 +1732,11 @@ class CustomEntitiesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CustomEntityElementList|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\CustomEntityElementList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getCustomEntityElementsWithHttpInfo($id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getCustomEntityElements'][0])
     {
         $request = $this->getCustomEntityElementsRequest($id, $expand, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -1758,18 +1760,19 @@ class CustomEntitiesApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\CustomEntityElementList',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -1791,7 +1794,7 @@ class CustomEntitiesApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\CustomEntityElementList',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -1806,7 +1809,7 @@ class CustomEntitiesApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1860,11 +1863,12 @@ class CustomEntitiesApi
     {
         $returnType = '\OpenAPI\Client\Model\CustomEntityElementList';
         $request = $this->getCustomEntityElementsRequest($id, $expand, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1952,7 +1956,7 @@ class CustomEntitiesApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -2033,7 +2037,7 @@ class CustomEntitiesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CustomEntityMetadata|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\CustomEntityMetadata|\OpenAPI\Client\Model\Errors
      */
     public function getCustomEntityMetadata($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, string $contentType = self::contentTypes['getCustomEntityMetadata'][0])
     {
@@ -2054,12 +2058,11 @@ class CustomEntitiesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CustomEntityMetadata|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\CustomEntityMetadata|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getCustomEntityMetadataWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, string $contentType = self::contentTypes['getCustomEntityMetadata'][0])
     {
         $request = $this->getCustomEntityMetadataRequest($id, $accept, $accept_encoding, $expand, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -2083,18 +2086,19 @@ class CustomEntitiesApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\CustomEntityMetadata',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -2116,7 +2120,7 @@ class CustomEntitiesApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\CustomEntityMetadata',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -2131,7 +2135,7 @@ class CustomEntitiesApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2185,11 +2189,12 @@ class CustomEntitiesApi
     {
         $returnType = '\OpenAPI\Client\Model\CustomEntityMetadata';
         $request = $this->getCustomEntityMetadataRequest($id, $accept, $accept_encoding, $expand, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2277,7 +2282,7 @@ class CustomEntitiesApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -2360,7 +2365,7 @@ class CustomEntitiesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CustomEntity|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\CustomEntity|\OpenAPI\Client\Model\Errors
      */
     public function updateCustomEntity($id, $custom_entity, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateCustomEntity'][0])
     {
@@ -2383,12 +2388,11 @@ class CustomEntitiesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CustomEntity|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\CustomEntity|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateCustomEntityWithHttpInfo($id, $custom_entity, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateCustomEntity'][0])
     {
         $request = $this->updateCustomEntityRequest($id, $custom_entity, $expand, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -2412,18 +2416,19 @@ class CustomEntitiesApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\CustomEntity',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -2445,7 +2450,7 @@ class CustomEntitiesApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\CustomEntity',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -2460,7 +2465,7 @@ class CustomEntitiesApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2518,11 +2523,12 @@ class CustomEntitiesApi
     {
         $returnType = '\OpenAPI\Client\Model\CustomEntity';
         $request = $this->updateCustomEntityRequest($id, $custom_entity, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2624,7 +2630,7 @@ class CustomEntitiesApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -2715,7 +2721,7 @@ class CustomEntitiesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CustomEntityElement|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\CustomEntityElement|\OpenAPI\Client\Model\Errors
      */
     public function updateCustomEntityElement($metadata_id, $id, $custom_entity_element, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $expand = null, string $contentType = self::contentTypes['updateCustomEntityElement'][0])
     {
@@ -2739,12 +2745,11 @@ class CustomEntitiesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CustomEntityElement|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\CustomEntityElement|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateCustomEntityElementWithHttpInfo($metadata_id, $id, $custom_entity_element, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $expand = null, string $contentType = self::contentTypes['updateCustomEntityElement'][0])
     {
         $request = $this->updateCustomEntityElementRequest($metadata_id, $id, $custom_entity_element, $accept, $accept_encoding, $content_type, $expand, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -2768,18 +2773,19 @@ class CustomEntitiesApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\CustomEntityElement',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -2801,7 +2807,7 @@ class CustomEntitiesApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\CustomEntityElement',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -2816,7 +2822,7 @@ class CustomEntitiesApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2876,11 +2882,12 @@ class CustomEntitiesApi
     {
         $returnType = '\OpenAPI\Client\Model\CustomEntityElement';
         $request = $this->updateCustomEntityElementRequest($metadata_id, $id, $custom_entity_element, $accept, $accept_encoding, $content_type, $expand, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2990,7 +2997,7 @@ class CustomEntitiesApi
         // path params
         if ($metadata_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'metadataId' . '}',
+                '{metadataId}',
                 ObjectSerializer::toPathValue($metadata_id),
                 $resourcePath
             );
@@ -2998,7 +3005,7 @@ class CustomEntitiesApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -3115,6 +3122,63 @@ class CustomEntitiesApi
                         $content
                     );
                 }
+            }
+        }
+
+        return [
+            ObjectSerializer::deserialize($content, $dataType, []),
+            $response->getStatusCode(),
+            $response->getHeaders()
+        ];
+    }
+
+    private function handleResponseMassWithDataType(
+        string $dataType,
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
+        $rawContent = (string) $response->getBody();
+        if ($rawContent === '') {
+            return [null, $response->getStatusCode(), $response->getHeaders()];
+        }
+
+        try {
+            $content = json_decode($rawContent, false, 512, JSON_THROW_ON_ERROR);
+        } catch (\JsonException $exception) {
+            throw new ApiException(
+                sprintf(
+                    'Error JSON decoding server response (%s)',
+                    $request->getUri()
+                ),
+                $response->getStatusCode(),
+                $response->getHeaders(),
+                $rawContent
+            );
+        }
+
+        if ($response->getStatusCode() < 200 || $response->getStatusCode() > 299) {
+            if (is_object($content)) {
+                $errorsClass = '\OpenAPI\Client\Model\Errors';
+                $error = ObjectSerializer::deserialize($content, $errorsClass, $response->getHeaders());
+                throw new ApiException(
+                    (string) $error,
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                    $rawContent
+                );
+            }
+
+            if (!is_array($content)) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $response->getStatusCode(),
+                        (string) $request->getUri()
+                    ),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                    $rawContent
+                );
             }
         }
 

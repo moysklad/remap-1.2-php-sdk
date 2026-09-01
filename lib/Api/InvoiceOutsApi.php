@@ -86,6 +86,12 @@ class InvoiceOutsApi
         'createInvoiceOutMetadataAttribute' => [
             'application/json',
         ],
+        'createInvoiceOutMetadataState' => [
+            'application/json',
+        ],
+        'createInvoiceOutMetadataStatesBatch' => [
+            'application/json',
+        ],
         'createInvoiceOutNote' => [
             'application/json',
         ],
@@ -235,7 +241,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\File[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\File[]|\OpenAPI\Client\Model\Errors
      */
     public function addInvoiceOutFiles($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addInvoiceOutFiles'][0])
     {
@@ -257,12 +263,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\File[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\File[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function addInvoiceOutFilesWithHttpInfo($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addInvoiceOutFiles'][0])
     {
         $request = $this->addInvoiceOutFilesRequest($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -286,18 +291,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\File[]',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -319,7 +325,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\File[]',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -334,7 +340,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -390,11 +396,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\File[]';
         $request = $this->addInvoiceOutFilesRequest($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -488,7 +495,7 @@ class InvoiceOutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -577,7 +584,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\InvoiceOut|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\InvoiceOut|\OpenAPI\Client\Model\Errors
      */
     public function createInvoiceOut($invoice_out, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInvoiceOut'][0])
     {
@@ -599,12 +606,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\InvoiceOut|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\InvoiceOut|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function createInvoiceOutWithHttpInfo($invoice_out, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInvoiceOut'][0])
     {
         $request = $this->createInvoiceOutRequest($invoice_out, $expand, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -628,18 +634,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\InvoiceOut',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -661,7 +668,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\InvoiceOut',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -676,7 +683,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -732,11 +739,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\InvoiceOut';
         $request = $this->createInvoiceOutRequest($invoice_out, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -911,7 +919,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreateInvoiceOutBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\CreateInvoiceOutBatch200ResponseInner[]|\OpenAPI\Client\Model\Errors
      */
     public function createInvoiceOutBatch($invoice_out, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInvoiceOutBatch'][0])
     {
@@ -933,12 +941,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreateInvoiceOutBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\CreateInvoiceOutBatch200ResponseInner[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function createInvoiceOutBatchWithHttpInfo($invoice_out, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInvoiceOutBatch'][0])
     {
         $request = $this->createInvoiceOutBatchRequest($invoice_out, $expand, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -962,18 +969,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\CreateInvoiceOutBatch200ResponseInner[]',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -995,7 +1003,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\CreateInvoiceOutBatch200ResponseInner[]',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -1010,7 +1018,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1066,11 +1074,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\CreateInvoiceOutBatch200ResponseInner[]';
         $request = $this->createInvoiceOutBatchRequest($invoice_out, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1250,7 +1259,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors
      */
     public function createInvoiceOutMetadataAttribute($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInvoiceOutMetadataAttribute'][0])
     {
@@ -1271,12 +1280,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function createInvoiceOutMetadataAttributeWithHttpInfo($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInvoiceOutMetadataAttribute'][0])
     {
         $request = $this->createInvoiceOutMetadataAttributeRequest($attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -1300,18 +1308,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\AttributeMetaInfo',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -1333,7 +1342,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\AttributeMetaInfo',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -1348,7 +1357,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1402,11 +1411,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfo';
         $request = $this->createInvoiceOutMetadataAttributeRequest($attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1557,47 +1567,44 @@ class InvoiceOutsApi
     }
 
     /**
-     * Operation createInvoiceOutNote
+     * Operation createInvoiceOutMetadataState
      *
-     * Добавить Событие Счета покупателю
+     * Создать статус InvoiceOut
      *
-     * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\EventNote $event_note event_note (required)
+     * @param  \OpenAPI\Client\Model\State $state state (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInvoiceOutNote'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInvoiceOutMetadataState'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\EventNote[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors
      */
-    public function createInvoiceOutNote($id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInvoiceOutNote'][0])
+    public function createInvoiceOutMetadataState($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInvoiceOutMetadataState'][0])
     {
-        list($response) = $this->createInvoiceOutNoteWithHttpInfo($id, $event_note, $accept, $accept_encoding, $content_type, $contentType);
+        list($response) = $this->createInvoiceOutMetadataStateWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
     }
 
     /**
-     * Operation createInvoiceOutNoteWithHttpInfo
+     * Operation createInvoiceOutMetadataStateWithHttpInfo
      *
-     * Добавить Событие Счета покупателю
+     * Создать статус InvoiceOut
      *
-     * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\EventNote $event_note (required)
+     * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInvoiceOutNote'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInvoiceOutMetadataState'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\EventNote[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createInvoiceOutNoteWithHttpInfo($id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInvoiceOutNote'][0])
+    public function createInvoiceOutMetadataStateWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInvoiceOutMetadataState'][0])
     {
-        $request = $this->createInvoiceOutNoteRequest($id, $event_note, $accept, $accept_encoding, $content_type, $contentType);
-
+        $request = $this->createInvoiceOutMetadataStateRequest($state, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -1621,18 +1628,667 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\State',
+                        $request,
+                        $response
+                    );
+                default:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\Errors',
+                        $request,
+                        $response
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\OpenAPI\Client\Model\State',
+                $request,
+                $response
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\State',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Errors',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createInvoiceOutMetadataStateAsync
+     *
+     * Создать статус InvoiceOut
+     *
+     * @param  \OpenAPI\Client\Model\State $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInvoiceOutMetadataState'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createInvoiceOutMetadataStateAsync($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInvoiceOutMetadataState'][0])
+    {
+        return $this->createInvoiceOutMetadataStateAsyncWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createInvoiceOutMetadataStateAsyncWithHttpInfo
+     *
+     * Создать статус InvoiceOut
+     *
+     * @param  \OpenAPI\Client\Model\State $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInvoiceOutMetadataState'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createInvoiceOutMetadataStateAsyncWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInvoiceOutMetadataState'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\State';
+        $request = $this->createInvoiceOutMetadataStateRequest($state, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
+
+        return $this->client
+            ->sendAsync($request, $options)
+            ->then(
+                function ($response) use ($returnType, $request) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createInvoiceOutMetadataState'
+     *
+     * @param  \OpenAPI\Client\Model\State $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInvoiceOutMetadataState'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createInvoiceOutMetadataStateRequest($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInvoiceOutMetadataState'][0])
+    {
+
+        // verify the required parameter 'state' is set
+        if ($state === null || (is_array($state) && count($state) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $state when calling createInvoiceOutMetadataState'
+            );
+        }
+
+
+
+
+
+        $resourcePath = '/entity/invoiceout/metadata/states';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // header params
+        if ($accept !== null) {
+            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+        }
+        // header params
+        if ($accept_encoding !== null) {
+            $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+        // header params
+        if ($content_type !== null) {
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
+        }
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'text/html;charset=UTF-8', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($state)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($state));
+            } else {
+                $httpBody = $state;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createInvoiceOutMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов InvoiceOut
+     *
+     * @param  \OpenAPI\Client\Model\State[] $state state (required)
+     * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInvoiceOutMetadataStatesBatch'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\StateRowResult[]|\OpenAPI\Client\Model\Errors
+     */
+    public function createInvoiceOutMetadataStatesBatch($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInvoiceOutMetadataStatesBatch'][0])
+    {
+        list($response) = $this->createInvoiceOutMetadataStatesBatchWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createInvoiceOutMetadataStatesBatchWithHttpInfo
+     *
+     * Массовое создание и обновление статусов InvoiceOut
+     *
+     * @param  \OpenAPI\Client\Model\State[] $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInvoiceOutMetadataStatesBatch'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\StateRowResult[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createInvoiceOutMetadataStatesBatchWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInvoiceOutMetadataStatesBatch'][0])
+    {
+        $request = $this->createInvoiceOutMetadataStatesBatchRequest($state, $accept, $accept_encoding, $content_type, $contentType);
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\StateRowResult[]',
+                        $request,
+                        $response
+                    );
+                default:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\Errors',
+                        $request,
+                        $response
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\OpenAPI\Client\Model\StateRowResult[]',
+                $request,
+                $response
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\StateRowResult[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Errors',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createInvoiceOutMetadataStatesBatchAsync
+     *
+     * Массовое создание и обновление статусов InvoiceOut
+     *
+     * @param  \OpenAPI\Client\Model\State[] $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInvoiceOutMetadataStatesBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createInvoiceOutMetadataStatesBatchAsync($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInvoiceOutMetadataStatesBatch'][0])
+    {
+        return $this->createInvoiceOutMetadataStatesBatchAsyncWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createInvoiceOutMetadataStatesBatchAsyncWithHttpInfo
+     *
+     * Массовое создание и обновление статусов InvoiceOut
+     *
+     * @param  \OpenAPI\Client\Model\State[] $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInvoiceOutMetadataStatesBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createInvoiceOutMetadataStatesBatchAsyncWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInvoiceOutMetadataStatesBatch'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\StateRowResult[]';
+        $request = $this->createInvoiceOutMetadataStatesBatchRequest($state, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
+
+        return $this->client
+            ->sendAsync($request, $options)
+            ->then(
+                function ($response) use ($returnType, $request) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createInvoiceOutMetadataStatesBatch'
+     *
+     * @param  \OpenAPI\Client\Model\State[] $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInvoiceOutMetadataStatesBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createInvoiceOutMetadataStatesBatchRequest($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInvoiceOutMetadataStatesBatch'][0])
+    {
+
+        // verify the required parameter 'state' is set
+        if ($state === null || (is_array($state) && count($state) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $state when calling createInvoiceOutMetadataStatesBatch'
+            );
+        }
+        if (count($state) > 1000) {
+            throw new \InvalidArgumentException('invalid value for "$state" when calling InvoiceOutsApi.createInvoiceOutMetadataStatesBatch, number of items must be less than or equal to 1000.');
+        }
+        if (count($state) < 1) {
+            throw new \InvalidArgumentException('invalid value for "$state" when calling InvoiceOutsApi.createInvoiceOutMetadataStatesBatch, number of items must be greater than or equal to 1.');
+        }
+        
+
+
+
+
+        $resourcePath = '/entity/invoiceout/metadata/states/batch';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // header params
+        if ($accept !== null) {
+            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+        }
+        // header params
+        if ($accept_encoding !== null) {
+            $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+        // header params
+        if ($content_type !== null) {
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
+        }
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'text/html;charset=UTF-8', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($state)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($state));
+            } else {
+                $httpBody = $state;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createInvoiceOutNote
+     *
+     * Добавить Событие Счета покупателю
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\EventNote $event_note event_note (required)
+     * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInvoiceOutNote'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\EventNote[]|\OpenAPI\Client\Model\Errors
+     */
+    public function createInvoiceOutNote($id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInvoiceOutNote'][0])
+    {
+        list($response) = $this->createInvoiceOutNoteWithHttpInfo($id, $event_note, $accept, $accept_encoding, $content_type, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createInvoiceOutNoteWithHttpInfo
+     *
+     * Добавить Событие Счета покупателю
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\EventNote $event_note (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInvoiceOutNote'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\EventNote[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createInvoiceOutNoteWithHttpInfo($id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInvoiceOutNote'][0])
+    {
+        $request = $this->createInvoiceOutNoteRequest($id, $event_note, $accept, $accept_encoding, $content_type, $contentType);
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\EventNote[]',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -1654,7 +2310,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\EventNote[]',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -1669,7 +2325,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1725,11 +2381,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\EventNote[]';
         $request = $this->createInvoiceOutNoteRequest($id, $event_note, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1820,7 +2477,7 @@ class InvoiceOutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -1910,7 +2567,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\InvoiceOutPosition|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\InvoiceOutPosition|\OpenAPI\Client\Model\Errors
      */
     public function createInvoiceOutPositions($id, $invoice_out_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInvoiceOutPositions'][0])
     {
@@ -1933,12 +2590,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\InvoiceOutPosition|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\InvoiceOutPosition|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function createInvoiceOutPositionsWithHttpInfo($id, $invoice_out_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInvoiceOutPositions'][0])
     {
         $request = $this->createInvoiceOutPositionsRequest($id, $invoice_out_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -1962,18 +2618,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\InvoiceOutPosition',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -1995,7 +2652,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\InvoiceOutPosition',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -2010,7 +2667,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2068,11 +2725,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\InvoiceOutPosition';
         $request = $this->createInvoiceOutPositionsRequest($id, $invoice_out_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2174,7 +2832,7 @@ class InvoiceOutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -2264,7 +2922,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreateInvoiceOutPositionsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\CreateInvoiceOutPositionsBatch200ResponseInner[]|\OpenAPI\Client\Model\Errors
      */
     public function createInvoiceOutPositionsBatch($id, $invoice_out_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInvoiceOutPositionsBatch'][0])
     {
@@ -2287,12 +2945,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreateInvoiceOutPositionsBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\CreateInvoiceOutPositionsBatch200ResponseInner[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function createInvoiceOutPositionsBatchWithHttpInfo($id, $invoice_out_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInvoiceOutPositionsBatch'][0])
     {
         $request = $this->createInvoiceOutPositionsBatchRequest($id, $invoice_out_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -2316,18 +2973,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\CreateInvoiceOutPositionsBatch200ResponseInner[]',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -2349,7 +3007,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\CreateInvoiceOutPositionsBatch200ResponseInner[]',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -2364,7 +3022,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2422,11 +3080,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\CreateInvoiceOutPositionsBatch200ResponseInner[]';
         $request = $this->createInvoiceOutPositionsBatchRequest($id, $invoice_out_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2534,7 +3193,7 @@ class InvoiceOutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -2647,7 +3306,6 @@ class InvoiceOutsApi
     public function deleteInvoiceOutWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteInvoiceOut'][0])
     {
         $request = $this->deleteInvoiceOutRequest($id, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -2677,7 +3335,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2731,11 +3389,12 @@ class InvoiceOutsApi
     {
         $returnType = '';
         $request = $this->deleteInvoiceOutRequest($id, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
@@ -2805,7 +3464,7 @@ class InvoiceOutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -2886,7 +3545,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]|\OpenAPI\Client\Model\Errors
      */
     public function deleteInvoiceOutBatch($invoice_out, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteInvoiceOutBatch'][0])
     {
@@ -2907,12 +3566,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteInvoiceOutBatchWithHttpInfo($invoice_out, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteInvoiceOutBatch'][0])
     {
         $request = $this->deleteInvoiceOutBatchRequest($invoice_out, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -2936,18 +3594,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -2969,7 +3628,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -2984,7 +3643,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3038,11 +3697,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]';
         $request = $this->deleteInvoiceOutBatchRequest($invoice_out, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3236,7 +3896,6 @@ class InvoiceOutsApi
     public function deleteInvoiceOutFileWithHttpInfo($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInvoiceOutFile'][0])
     {
         $request = $this->deleteInvoiceOutFileRequest($id, $file_id, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -3266,7 +3925,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3320,11 +3979,12 @@ class InvoiceOutsApi
     {
         $returnType = '';
         $request = $this->deleteInvoiceOutFileRequest($id, $file_id, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
@@ -3396,7 +4056,7 @@ class InvoiceOutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -3404,7 +4064,7 @@ class InvoiceOutsApi
         // path params
         if ($file_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'fileId' . '}',
+                '{fileId}',
                 ObjectSerializer::toPathValue($file_id),
                 $resourcePath
             );
@@ -3510,7 +4170,6 @@ class InvoiceOutsApi
     public function deleteInvoiceOutMetadataAttributeByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteInvoiceOutMetadataAttributeById'][0])
     {
         $request = $this->deleteInvoiceOutMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -3540,7 +4199,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3594,11 +4253,12 @@ class InvoiceOutsApi
     {
         $returnType = '';
         $request = $this->deleteInvoiceOutMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
@@ -3668,7 +4328,7 @@ class InvoiceOutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -3774,7 +4434,6 @@ class InvoiceOutsApi
     public function deleteInvoiceOutMetadataStateByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteInvoiceOutMetadataStateById'][0])
     {
         $request = $this->deleteInvoiceOutMetadataStateByIdRequest($id, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -3804,7 +4463,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3858,11 +4517,12 @@ class InvoiceOutsApi
     {
         $returnType = '';
         $request = $this->deleteInvoiceOutMetadataStateByIdRequest($id, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
@@ -3932,7 +4592,7 @@ class InvoiceOutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -4038,7 +4698,6 @@ class InvoiceOutsApi
     public function deleteInvoiceOutNoteWithHttpInfo($id, $note_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInvoiceOutNote'][0])
     {
         $request = $this->deleteInvoiceOutNoteRequest($id, $note_id, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -4068,7 +4727,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4122,11 +4781,12 @@ class InvoiceOutsApi
     {
         $returnType = '';
         $request = $this->deleteInvoiceOutNoteRequest($id, $note_id, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
@@ -4198,7 +4858,7 @@ class InvoiceOutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -4206,7 +4866,7 @@ class InvoiceOutsApi
         // path params
         if ($note_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'noteId' . '}',
+                '{noteId}',
                 ObjectSerializer::toPathValue($note_id),
                 $resourcePath
             );
@@ -4316,7 +4976,6 @@ class InvoiceOutsApi
     public function deleteInvoiceOutPositionWithHttpInfo($id, $position_id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteInvoiceOutPosition'][0])
     {
         $request = $this->deleteInvoiceOutPositionRequest($id, $position_id, $expand, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -4346,7 +5005,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4404,11 +5063,12 @@ class InvoiceOutsApi
     {
         $returnType = '';
         $request = $this->deleteInvoiceOutPositionRequest($id, $position_id, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
@@ -4497,7 +5157,7 @@ class InvoiceOutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -4505,7 +5165,7 @@ class InvoiceOutsApi
         // path params
         if ($position_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'positionId' . '}',
+                '{positionId}',
                 ObjectSerializer::toPathValue($position_id),
                 $resourcePath
             );
@@ -4587,7 +5247,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]|\OpenAPI\Client\Model\Errors
      */
     public function deleteInvoiceOutPositionsBatch($id, $invoice_out_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteInvoiceOutPositionsBatch'][0])
     {
@@ -4609,12 +5269,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteInvoiceOutPositionsBatchWithHttpInfo($id, $invoice_out_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteInvoiceOutPositionsBatch'][0])
     {
         $request = $this->deleteInvoiceOutPositionsBatchRequest($id, $invoice_out_position, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -4638,18 +5297,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -4671,7 +5331,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -4686,7 +5346,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4742,11 +5402,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\DeleteInvoiceOutBatch200ResponseInner[]';
         $request = $this->deleteInvoiceOutPositionsBatchRequest($id, $invoice_out_position, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4843,7 +5504,7 @@ class InvoiceOutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -4932,7 +5593,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\InvoiceOut|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\InvoiceOut|\OpenAPI\Client\Model\Errors
      */
     public function getInvoiceOutById($id, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInvoiceOutById'][0])
     {
@@ -4954,12 +5615,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\InvoiceOut|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\InvoiceOut|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getInvoiceOutByIdWithHttpInfo($id, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInvoiceOutById'][0])
     {
         $request = $this->getInvoiceOutByIdRequest($id, $expand, $fields, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -4983,18 +5643,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\InvoiceOut',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -5016,7 +5677,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\InvoiceOut',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -5031,7 +5692,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5087,11 +5748,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\InvoiceOut';
         $request = $this->getInvoiceOutByIdRequest($id, $expand, $fields, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -5190,7 +5852,7 @@ class InvoiceOutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -5271,7 +5933,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\File|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\File|\OpenAPI\Client\Model\Errors
      */
     public function getInvoiceOutFile($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInvoiceOutFile'][0])
     {
@@ -5292,12 +5954,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\File|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\File|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getInvoiceOutFileWithHttpInfo($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInvoiceOutFile'][0])
     {
         $request = $this->getInvoiceOutFileRequest($id, $file_id, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -5321,18 +5982,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\File',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -5354,7 +6016,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\File',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -5369,7 +6031,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5423,11 +6085,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\File';
         $request = $this->getInvoiceOutFileRequest($id, $file_id, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -5512,7 +6175,7 @@ class InvoiceOutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -5520,7 +6183,7 @@ class InvoiceOutsApi
         // path params
         if ($file_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'fileId' . '}',
+                '{fileId}',
                 ObjectSerializer::toPathValue($file_id),
                 $resourcePath
             );
@@ -5602,7 +6265,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\GetProductFiles200Response|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\GetProductFiles200Response|\OpenAPI\Client\Model\Errors
      */
     public function getInvoiceOutFiles($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInvoiceOutFiles'][0])
     {
@@ -5624,12 +6287,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\GetProductFiles200Response|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\GetProductFiles200Response|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getInvoiceOutFilesWithHttpInfo($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInvoiceOutFiles'][0])
     {
         $request = $this->getInvoiceOutFilesRequest($id, $limit, $offset, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -5653,18 +6315,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\GetProductFiles200Response',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -5686,7 +6349,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\GetProductFiles200Response',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -5701,7 +6364,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5757,11 +6420,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\GetProductFiles200Response';
         $request = $this->getInvoiceOutFilesRequest($id, $limit, $offset, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -5869,7 +6533,7 @@ class InvoiceOutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -5953,7 +6617,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\InvoiceOutList|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\InvoiceOutList|\OpenAPI\Client\Model\Errors
      */
     public function getInvoiceOutList($limit = 1000, $offset = 0, $search = null, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInvoiceOutList'][0])
     {
@@ -5977,12 +6641,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\InvoiceOutList|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\InvoiceOutList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getInvoiceOutListWithHttpInfo($limit = 1000, $offset = 0, $search = null, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInvoiceOutList'][0])
     {
         $request = $this->getInvoiceOutListRequest($limit, $offset, $search, $expand, $fields, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -6006,18 +6669,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\InvoiceOutList',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -6039,7 +6703,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\InvoiceOutList',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -6054,7 +6718,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6114,11 +6778,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\InvoiceOutList';
         $request = $this->getInvoiceOutListRequest($limit, $offset, $search, $expand, $fields, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -6323,7 +6988,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DocumentMetadata|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\DocumentMetadata|\OpenAPI\Client\Model\Errors
      */
     public function getInvoiceOutMetadata($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getInvoiceOutMetadata'][0])
     {
@@ -6343,12 +7008,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DocumentMetadata|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DocumentMetadata|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getInvoiceOutMetadataWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getInvoiceOutMetadata'][0])
     {
         $request = $this->getInvoiceOutMetadataRequest($accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -6372,18 +7036,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\DocumentMetadata',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -6405,7 +7070,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\DocumentMetadata',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -6420,7 +7085,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6472,11 +7137,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\DocumentMetadata';
         $request = $this->getInvoiceOutMetadataRequest($accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -6625,7 +7291,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\AttributeMetaInfoList|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\AttributeMetaInfoList|\OpenAPI\Client\Model\Errors
      */
     public function getInvoiceOutMetadataAttribute($offset = 0, $limit = 1000, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getInvoiceOutMetadataAttribute'][0])
     {
@@ -6647,12 +7313,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\AttributeMetaInfoList|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\AttributeMetaInfoList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getInvoiceOutMetadataAttributeWithHttpInfo($offset = 0, $limit = 1000, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getInvoiceOutMetadataAttribute'][0])
     {
         $request = $this->getInvoiceOutMetadataAttributeRequest($offset, $limit, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -6676,18 +7341,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\AttributeMetaInfoList',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -6709,7 +7375,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\AttributeMetaInfoList',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -6724,7 +7390,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6780,11 +7446,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfoList';
         $request = $this->getInvoiceOutMetadataAttributeRequest($offset, $limit, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -6963,7 +7630,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors
      */
     public function getInvoiceOutMetadataAttributeById($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getInvoiceOutMetadataAttributeById'][0])
     {
@@ -6984,12 +7651,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getInvoiceOutMetadataAttributeByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getInvoiceOutMetadataAttributeById'][0])
     {
         $request = $this->getInvoiceOutMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -7013,18 +7679,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\AttributeMetaInfo',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -7046,7 +7713,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\AttributeMetaInfo',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -7061,7 +7728,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7115,11 +7782,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfo';
         $request = $this->getInvoiceOutMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -7202,7 +7870,7 @@ class InvoiceOutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -7283,7 +7951,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors
      */
     public function getInvoiceOutMetadataStateById($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getInvoiceOutMetadataStateById'][0])
     {
@@ -7304,12 +7972,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getInvoiceOutMetadataStateByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getInvoiceOutMetadataStateById'][0])
     {
         $request = $this->getInvoiceOutMetadataStateByIdRequest($id, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -7333,18 +8000,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\State',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -7366,7 +8034,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\State',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -7381,7 +8049,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7435,11 +8103,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\State';
         $request = $this->getInvoiceOutMetadataStateByIdRequest($id, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -7522,7 +8191,7 @@ class InvoiceOutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -7603,7 +8272,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\EventNote|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\EventNote|\OpenAPI\Client\Model\Errors
      */
     public function getInvoiceOutNoteById($id, $note_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInvoiceOutNoteById'][0])
     {
@@ -7624,12 +8293,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\EventNote|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\EventNote|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getInvoiceOutNoteByIdWithHttpInfo($id, $note_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInvoiceOutNoteById'][0])
     {
         $request = $this->getInvoiceOutNoteByIdRequest($id, $note_id, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -7653,18 +8321,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\EventNote',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -7686,7 +8355,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\EventNote',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -7701,7 +8370,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7755,11 +8424,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\EventNote';
         $request = $this->getInvoiceOutNoteByIdRequest($id, $note_id, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -7844,7 +8514,7 @@ class InvoiceOutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -7852,7 +8522,7 @@ class InvoiceOutsApi
         // path params
         if ($note_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'noteId' . '}',
+                '{noteId}',
                 ObjectSerializer::toPathValue($note_id),
                 $resourcePath
             );
@@ -7935,7 +8605,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\EventNoteList|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\EventNoteList|\OpenAPI\Client\Model\Errors
      */
     public function getInvoiceOutNotes($id, $limit = 1000, $offset = 0, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInvoiceOutNotes'][0])
     {
@@ -7958,12 +8628,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\EventNoteList|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\EventNoteList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getInvoiceOutNotesWithHttpInfo($id, $limit = 1000, $offset = 0, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInvoiceOutNotes'][0])
     {
         $request = $this->getInvoiceOutNotesRequest($id, $limit, $offset, $expand, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -7987,18 +8656,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\EventNoteList',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -8020,7 +8690,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\EventNoteList',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -8035,7 +8705,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -8093,11 +8763,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\EventNoteList';
         $request = $this->getInvoiceOutNotesRequest($id, $limit, $offset, $expand, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -8216,7 +8887,7 @@ class InvoiceOutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -8300,7 +8971,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\InvoiceOutPosition|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\InvoiceOutPosition|\OpenAPI\Client\Model\Errors
      */
     public function getInvoiceOutPositionById($id, $position_id, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getInvoiceOutPositionById'][0])
     {
@@ -8324,12 +8995,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\InvoiceOutPosition|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\InvoiceOutPosition|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getInvoiceOutPositionByIdWithHttpInfo($id, $position_id, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getInvoiceOutPositionById'][0])
     {
         $request = $this->getInvoiceOutPositionByIdRequest($id, $position_id, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -8353,18 +9023,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\InvoiceOutPosition',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -8386,7 +9057,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\InvoiceOutPosition',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -8401,7 +9072,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -8461,11 +9132,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\InvoiceOutPosition';
         $request = $this->getInvoiceOutPositionByIdRequest($id, $position_id, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -8578,7 +9250,7 @@ class InvoiceOutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -8586,7 +9258,7 @@ class InvoiceOutsApi
         // path params
         if ($position_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'positionId' . '}',
+                '{positionId}',
                 ObjectSerializer::toPathValue($position_id),
                 $resourcePath
             );
@@ -8671,7 +9343,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\InvoiceOutPositionList|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\InvoiceOutPositionList|\OpenAPI\Client\Model\Errors
      */
     public function getInvoiceOutPositions($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getInvoiceOutPositions'][0])
     {
@@ -8696,12 +9368,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\InvoiceOutPositionList|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\InvoiceOutPositionList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getInvoiceOutPositionsWithHttpInfo($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getInvoiceOutPositions'][0])
     {
         $request = $this->getInvoiceOutPositionsRequest($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -8725,18 +9396,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\InvoiceOutPositionList',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -8758,7 +9430,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\InvoiceOutPositionList',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -8773,7 +9445,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -8835,11 +9507,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\InvoiceOutPositionList';
         $request = $this->getInvoiceOutPositionsRequest($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -8975,7 +9648,7 @@ class InvoiceOutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -9056,7 +9729,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\InvoiceOut|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\InvoiceOut|\OpenAPI\Client\Model\Errors
      */
     public function getInvoiceOutTemplate($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $body = null, string $contentType = self::contentTypes['getInvoiceOutTemplate'][0])
     {
@@ -9077,12 +9750,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\InvoiceOut|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\InvoiceOut|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getInvoiceOutTemplateWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $body = null, string $contentType = self::contentTypes['getInvoiceOutTemplate'][0])
     {
         $request = $this->getInvoiceOutTemplateRequest($accept, $accept_encoding, $content_type, $body, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -9106,18 +9778,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\InvoiceOut',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -9139,7 +9812,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\InvoiceOut',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -9154,7 +9827,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -9208,11 +9881,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\InvoiceOut';
         $request = $this->getInvoiceOutTemplateRequest($accept, $accept_encoding, $content_type, $body, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -9372,7 +10046,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\InvoiceOut|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\InvoiceOut|\OpenAPI\Client\Model\Errors
      */
     public function updateInvoiceOut($id, $invoice_out, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInvoiceOut'][0])
     {
@@ -9396,12 +10070,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\InvoiceOut|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\InvoiceOut|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateInvoiceOutWithHttpInfo($id, $invoice_out, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInvoiceOut'][0])
     {
         $request = $this->updateInvoiceOutRequest($id, $invoice_out, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -9425,18 +10098,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\InvoiceOut',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -9458,7 +10132,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\InvoiceOut',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -9473,7 +10147,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -9533,11 +10207,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\InvoiceOut';
         $request = $this->updateInvoiceOutRequest($id, $invoice_out, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -9650,7 +10325,7 @@ class InvoiceOutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -9739,7 +10414,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors
      */
     public function updateInvoiceOutMetadataAttributeById($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInvoiceOutMetadataAttributeById'][0])
     {
@@ -9761,12 +10436,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateInvoiceOutMetadataAttributeByIdWithHttpInfo($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInvoiceOutMetadataAttributeById'][0])
     {
         $request = $this->updateInvoiceOutMetadataAttributeByIdRequest($id, $attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -9790,18 +10464,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\AttributeMetaInfo',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -9823,7 +10498,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\AttributeMetaInfo',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -9838,7 +10513,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -9894,11 +10569,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfo';
         $request = $this->updateInvoiceOutMetadataAttributeByIdRequest($id, $attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -9989,7 +10665,7 @@ class InvoiceOutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -10078,7 +10754,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors
      */
     public function updateInvoiceOutMetadataStateById($id, $state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInvoiceOutMetadataStateById'][0])
     {
@@ -10100,12 +10776,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateInvoiceOutMetadataStateByIdWithHttpInfo($id, $state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInvoiceOutMetadataStateById'][0])
     {
         $request = $this->updateInvoiceOutMetadataStateByIdRequest($id, $state, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -10129,18 +10804,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\State',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -10162,7 +10838,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\State',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -10177,7 +10853,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -10233,11 +10909,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\State';
         $request = $this->updateInvoiceOutMetadataStateByIdRequest($id, $state, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -10328,7 +11005,7 @@ class InvoiceOutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -10418,7 +11095,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\EventNote|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\EventNote|\OpenAPI\Client\Model\Errors
      */
     public function updateInvoiceOutNote($id, $note_id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInvoiceOutNote'][0])
     {
@@ -10441,12 +11118,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\EventNote|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\EventNote|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateInvoiceOutNoteWithHttpInfo($id, $note_id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInvoiceOutNote'][0])
     {
         $request = $this->updateInvoiceOutNoteRequest($id, $note_id, $event_note, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -10470,18 +11146,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\EventNote',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -10503,7 +11180,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\EventNote',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -10518,7 +11195,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -10576,11 +11253,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\EventNote';
         $request = $this->updateInvoiceOutNoteRequest($id, $note_id, $event_note, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -10679,7 +11357,7 @@ class InvoiceOutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -10687,7 +11365,7 @@ class InvoiceOutsApi
         // path params
         if ($note_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'noteId' . '}',
+                '{noteId}',
                 ObjectSerializer::toPathValue($note_id),
                 $resourcePath
             );
@@ -10779,7 +11457,7 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\InvoiceOutPosition|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\InvoiceOutPosition|\OpenAPI\Client\Model\Errors
      */
     public function updateInvoiceOutPosition($id, $position_id, $invoice_out_position, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInvoiceOutPosition'][0])
     {
@@ -10804,12 +11482,11 @@ class InvoiceOutsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\InvoiceOutPosition|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\InvoiceOutPosition|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateInvoiceOutPositionWithHttpInfo($id, $position_id, $invoice_out_position, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInvoiceOutPosition'][0])
     {
         $request = $this->updateInvoiceOutPositionRequest($id, $position_id, $invoice_out_position, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -10833,18 +11510,19 @@ class InvoiceOutsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\InvoiceOutPosition',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -10866,7 +11544,7 @@ class InvoiceOutsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\InvoiceOutPosition',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -10881,7 +11559,7 @@ class InvoiceOutsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -10943,11 +11621,12 @@ class InvoiceOutsApi
     {
         $returnType = '\OpenAPI\Client\Model\InvoiceOutPosition';
         $request = $this->updateInvoiceOutPositionRequest($id, $position_id, $invoice_out_position, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -11068,7 +11747,7 @@ class InvoiceOutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -11076,7 +11755,7 @@ class InvoiceOutsApi
         // path params
         if ($position_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'positionId' . '}',
+                '{positionId}',
                 ObjectSerializer::toPathValue($position_id),
                 $resourcePath
             );
@@ -11193,6 +11872,63 @@ class InvoiceOutsApi
                         $content
                     );
                 }
+            }
+        }
+
+        return [
+            ObjectSerializer::deserialize($content, $dataType, []),
+            $response->getStatusCode(),
+            $response->getHeaders()
+        ];
+    }
+
+    private function handleResponseMassWithDataType(
+        string $dataType,
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
+        $rawContent = (string) $response->getBody();
+        if ($rawContent === '') {
+            return [null, $response->getStatusCode(), $response->getHeaders()];
+        }
+
+        try {
+            $content = json_decode($rawContent, false, 512, JSON_THROW_ON_ERROR);
+        } catch (\JsonException $exception) {
+            throw new ApiException(
+                sprintf(
+                    'Error JSON decoding server response (%s)',
+                    $request->getUri()
+                ),
+                $response->getStatusCode(),
+                $response->getHeaders(),
+                $rawContent
+            );
+        }
+
+        if ($response->getStatusCode() < 200 || $response->getStatusCode() > 299) {
+            if (is_object($content)) {
+                $errorsClass = '\OpenAPI\Client\Model\Errors';
+                $error = ObjectSerializer::deserialize($content, $errorsClass, $response->getHeaders());
+                throw new ApiException(
+                    (string) $error,
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                    $rawContent
+                );
+            }
+
+            if (!is_array($content)) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $response->getStatusCode(),
+                        (string) $request->getUri()
+                    ),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                    $rawContent
+                );
             }
         }
 

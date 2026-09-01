@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **meta** | [**\OpenAPI\Client\Model\Meta**](Meta.md) |  | [optional]
-**id** | **string** | ID юрлица | [optional] [readonly]
+**id** | **string** | ID юрлица | [optional]
 **sync_id** | **string** | ID синхронизации | [optional]
 **account_id** | **string** | ID учетной записи | [optional] [readonly]
 **name** | **string** | Наименование юрлица | [optional]

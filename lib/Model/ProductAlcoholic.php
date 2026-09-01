@@ -85,8 +85,8 @@ class ProductAlcoholic implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'excise' => null,
         'type' => null,
-        'strength' => 'float',
-        'volume' => 'float'
+        'strength' => 'double',
+        'volume' => 'double'
     ];
 
     /**

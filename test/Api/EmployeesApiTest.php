@@ -96,6 +96,18 @@ class EmployeesApiTest extends TestCase
     }
 
     /**
+     * Test case for createEmployeeMetadataAttribute
+     *
+     * Создать доп. поле сотрудника.
+     *
+     */
+    public function testCreateEmployeeMetadataAttribute()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createEmployeesBatch
      *
      * Создать или изменить сотрудников.
@@ -132,6 +144,18 @@ class EmployeesApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteEmployeeMetadataAttribute
+     *
+     * Удалить доп. поле сотрудника.
+     *
+     */
+    public function testDeleteEmployeeMetadataAttribute()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteEmployeesBatch
      *
      * Удалить сотрудников.
@@ -158,10 +182,34 @@ class EmployeesApiTest extends TestCase
     /**
      * Test case for getEmployeeMetadata
      *
-     * Получить метаданные товаров.
+     * Получить метаданные сотрудников.
      *
      */
     public function testGetEmployeeMetadata()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getEmployeeMetadataAttributeById
+     *
+     * Получить доп. поле сотрудника по ID.
+     *
+     */
+    public function testGetEmployeeMetadataAttributeById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getEmployeeMetadataAttributes
+     *
+     * Получить доп. поля сотрудников.
+     *
+     */
+    public function testGetEmployeeMetadataAttributes()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -270,6 +318,18 @@ class EmployeesApiTest extends TestCase
      *
      */
     public function testUpdateEmployee()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateEmployeeMetadataAttribute
+     *
+     * Обновить доп. поле сотрудника.
+     *
+     */
+    public function testUpdateEmployeeMetadataAttribute()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -369,6 +369,8 @@ Class | Method | HTTP request | Description
 *DemandsApi* | [**createDemand**](docs/Api/DemandsApi.md#createdemand) | **POST** /entity/demand | Создать Отгрузку
 *DemandsApi* | [**createDemandBatch**](docs/Api/DemandsApi.md#createdemandbatch) | **POST** /entity/demand/batch | Массовое создание и обновление Отгрузок
 *DemandsApi* | [**createDemandMetadataAttribute**](docs/Api/DemandsApi.md#createdemandmetadataattribute) | **POST** /entity/demand/metadata/attributes | Создать доп. поле Отгрузки
+*DemandsApi* | [**createDemandMetadataState**](docs/Api/DemandsApi.md#createdemandmetadatastate) | **POST** /entity/demand/metadata/states | Создать статус Отгрузки
+*DemandsApi* | [**createDemandMetadataStatesBatch**](docs/Api/DemandsApi.md#createdemandmetadatastatesbatch) | **POST** /entity/demand/metadata/states/batch | Массовое создание и обновление статусов Отгрузки
 *DemandsApi* | [**createDemandPosition**](docs/Api/DemandsApi.md#createdemandposition) | **POST** /entity/demand/{id}/positions | Создать и обновить позицию Отгрузки
 *DemandsApi* | [**createDemandPositions**](docs/Api/DemandsApi.md#createdemandpositions) | **POST** /entity/demand/{id}/positions/batch | Массовое создание и обновление позиций Отгрузки
 *DemandsApi* | [**deleteDemand**](docs/Api/DemandsApi.md#deletedemand) | **DELETE** /entity/demand/{id} | Удалить Отгрузку
@@ -406,6 +408,8 @@ Class | Method | HTTP request | Description
 *DiscountsApi* | [**updateSpecialPriceDiscount**](docs/Api/DiscountsApi.md#updatespecialpricediscount) | **PUT** /entity/specialpricediscount/{id} | Изменить специальную цену
 *EmissionOrdersApi* | [**createEmissionOrder**](docs/Api/EmissionOrdersApi.md#createemissionorder) | **POST** /entity/emissionorder | Создать Заказ кодов маркировки
 *EmissionOrdersApi* | [**createEmissionOrderBatch**](docs/Api/EmissionOrdersApi.md#createemissionorderbatch) | **POST** /entity/emissionorder/batch | Массовое создание и обновление Заказов кодов маркировки
+*EmissionOrdersApi* | [**createEmissionOrderMetadataState**](docs/Api/EmissionOrdersApi.md#createemissionordermetadatastate) | **POST** /entity/emissionorder/metadata/states | Создать статус Заказа кодов маркировки
+*EmissionOrdersApi* | [**createEmissionOrderMetadataStatesBatch**](docs/Api/EmissionOrdersApi.md#createemissionordermetadatastatesbatch) | **POST** /entity/emissionorder/metadata/states/batch | Массовое создание и обновление статусов Заказа кодов маркировки
 *EmissionOrdersApi* | [**createEmissionOrderPosition**](docs/Api/EmissionOrdersApi.md#createemissionorderposition) | **POST** /entity/emissionorder/{id}/positions | Создать и обновить позицию Заказа кодов маркировки
 *EmissionOrdersApi* | [**createEmissionOrderPositions**](docs/Api/EmissionOrdersApi.md#createemissionorderpositions) | **POST** /entity/emissionorder/{id}/positions/batch | Массовое создание и обновление позиций Заказа кодов маркировки
 *EmissionOrdersApi* | [**deleteEmissionOrderMetadataStateById**](docs/Api/EmissionOrdersApi.md#deleteemissionordermetadatastatebyid) | **DELETE** /entity/emissionorder/metadata/states/{id} | Удалить отдельный статус Заказа кодов маркировки
@@ -420,12 +424,16 @@ Class | Method | HTTP request | Description
 *EmissionOrdersApi* | [**updateEmissionOrderPosition**](docs/Api/EmissionOrdersApi.md#updateemissionorderposition) | **PUT** /entity/emissionorder/{id}/positions/{positionId} | Изменить позицию Заказа кодов маркировки
 *EmployeesApi* | [**activateEmployee**](docs/Api/EmployeesApi.md#activateemployee) | **PUT** /entity/employee/{id}/access/activate | Активировать сотрудника
 *EmployeesApi* | [**createEmployee**](docs/Api/EmployeesApi.md#createemployee) | **POST** /entity/employee | Создать сотрудника
+*EmployeesApi* | [**createEmployeeMetadataAttribute**](docs/Api/EmployeesApi.md#createemployeemetadataattribute) | **POST** /entity/employee/metadata/attributes | Создать доп. поле сотрудника
 *EmployeesApi* | [**createEmployeesBatch**](docs/Api/EmployeesApi.md#createemployeesbatch) | **POST** /entity/employee/batch | Создать или изменить сотрудников
 *EmployeesApi* | [**deactivateEmployee**](docs/Api/EmployeesApi.md#deactivateemployee) | **PUT** /entity/employee/{id}/access/deactivate | Деактивировать сотрудника
 *EmployeesApi* | [**deleteEmployee**](docs/Api/EmployeesApi.md#deleteemployee) | **DELETE** /entity/employee/{id} | Удалить сотрудника
+*EmployeesApi* | [**deleteEmployeeMetadataAttribute**](docs/Api/EmployeesApi.md#deleteemployeemetadataattribute) | **DELETE** /entity/employee/metadata/attributes/{id} | Удалить доп. поле сотрудника
 *EmployeesApi* | [**deleteEmployeesBatch**](docs/Api/EmployeesApi.md#deleteemployeesbatch) | **POST** /entity/employee/delete | Удалить сотрудников
 *EmployeesApi* | [**getEmployeeById**](docs/Api/EmployeesApi.md#getemployeebyid) | **GET** /entity/employee/{id} | Получить сотрудника по ID
-*EmployeesApi* | [**getEmployeeMetadata**](docs/Api/EmployeesApi.md#getemployeemetadata) | **GET** /entity/employee/metadata | Получить метаданные товаров
+*EmployeesApi* | [**getEmployeeMetadata**](docs/Api/EmployeesApi.md#getemployeemetadata) | **GET** /entity/employee/metadata | Получить метаданные сотрудников
+*EmployeesApi* | [**getEmployeeMetadataAttributeById**](docs/Api/EmployeesApi.md#getemployeemetadataattributebyid) | **GET** /entity/employee/metadata/attributes/{id} | Получить доп. поле сотрудника по ID
+*EmployeesApi* | [**getEmployeeMetadataAttributes**](docs/Api/EmployeesApi.md#getemployeemetadataattributes) | **GET** /entity/employee/metadata/attributes | Получить доп. поля сотрудников
 *EmployeesApi* | [**getEmployeeSecurity**](docs/Api/EmployeesApi.md#getemployeesecurity) | **GET** /entity/employee/{id}/security | Получить права сотрудника
 *EmployeesApi* | [**getEmployees**](docs/Api/EmployeesApi.md#getemployees) | **GET** /entity/employee | Получить список сотрудников
 *EmployeesApi* | [**getRoleAdmin**](docs/Api/EmployeesApi.md#getroleadmin) | **GET** /entity/role/admin | Получить роль администратора
@@ -435,6 +443,7 @@ Class | Method | HTTP request | Description
 *EmployeesApi* | [**getRoleWorker**](docs/Api/EmployeesApi.md#getroleworker) | **GET** /entity/role/worker | Получить роль сотрудника производства
 *EmployeesApi* | [**resetEmployeePassword**](docs/Api/EmployeesApi.md#resetemployeepassword) | **PUT** /entity/employee/{id}/access/resetpassword | Сбросить пароль сотрудника
 *EmployeesApi* | [**updateEmployee**](docs/Api/EmployeesApi.md#updateemployee) | **PUT** /entity/employee/{id} | Обновить сотрудника
+*EmployeesApi* | [**updateEmployeeMetadataAttribute**](docs/Api/EmployeesApi.md#updateemployeemetadataattribute) | **PUT** /entity/employee/metadata/attributes/{id} | Обновить доп. поле сотрудника
 *EmployeesApi* | [**updateEmployeeSecurity**](docs/Api/EmployeesApi.md#updateemployeesecurity) | **PUT** /entity/employee/{id}/security | Изменить права сотрудника
 *EntersApi* | [**addEnterFiles**](docs/Api/EntersApi.md#addenterfiles) | **POST** /entity/enter/{id}/files | Добавить файлы к Оприходованию
 *EntersApi* | [**createEnter**](docs/Api/EntersApi.md#createenter) | **POST** /entity/enter | Создать Оприходование
@@ -575,6 +584,8 @@ Class | Method | HTTP request | Description
 *InvoiceInsApi* | [**createInvoiceIn**](docs/Api/InvoiceInsApi.md#createinvoicein) | **POST** /entity/invoicein | Создать Счет поставщику
 *InvoiceInsApi* | [**createInvoiceInBatch**](docs/Api/InvoiceInsApi.md#createinvoiceinbatch) | **POST** /entity/invoicein/batch | Массовое создание и обновление Счетов поставщикам
 *InvoiceInsApi* | [**createInvoiceInMetadataAttribute**](docs/Api/InvoiceInsApi.md#createinvoiceinmetadataattribute) | **POST** /entity/invoicein/metadata/attributes | Создать Доп. поле InvoiceIn
+*InvoiceInsApi* | [**createInvoiceInMetadataState**](docs/Api/InvoiceInsApi.md#createinvoiceinmetadatastate) | **POST** /entity/invoicein/metadata/states | Создать статус InvoiceIn
+*InvoiceInsApi* | [**createInvoiceInMetadataStatesBatch**](docs/Api/InvoiceInsApi.md#createinvoiceinmetadatastatesbatch) | **POST** /entity/invoicein/metadata/states/batch | Массовое создание и обновление статусов InvoiceIn
 *InvoiceInsApi* | [**createInvoiceInNote**](docs/Api/InvoiceInsApi.md#createinvoiceinnote) | **POST** /entity/invoicein/{id}/notes | Добавить Событие Счета поставщику
 *InvoiceInsApi* | [**createInvoiceInPositions**](docs/Api/InvoiceInsApi.md#createinvoiceinpositions) | **POST** /entity/invoicein/{id}/positions | Создать позицию Счета поставщику
 *InvoiceInsApi* | [**createInvoiceInPositionsBatch**](docs/Api/InvoiceInsApi.md#createinvoiceinpositionsbatch) | **POST** /entity/invoicein/{id}/positions/batch | Создать позиции Счета поставщику
@@ -608,6 +619,8 @@ Class | Method | HTTP request | Description
 *InvoiceOutsApi* | [**createInvoiceOut**](docs/Api/InvoiceOutsApi.md#createinvoiceout) | **POST** /entity/invoiceout | Создать Счет покупателю
 *InvoiceOutsApi* | [**createInvoiceOutBatch**](docs/Api/InvoiceOutsApi.md#createinvoiceoutbatch) | **POST** /entity/invoiceout/batch | Массовое создание и обновление Счетов покупателям
 *InvoiceOutsApi* | [**createInvoiceOutMetadataAttribute**](docs/Api/InvoiceOutsApi.md#createinvoiceoutmetadataattribute) | **POST** /entity/invoiceout/metadata/attributes | Создать Доп. поле InvoiceOut
+*InvoiceOutsApi* | [**createInvoiceOutMetadataState**](docs/Api/InvoiceOutsApi.md#createinvoiceoutmetadatastate) | **POST** /entity/invoiceout/metadata/states | Создать статус InvoiceOut
+*InvoiceOutsApi* | [**createInvoiceOutMetadataStatesBatch**](docs/Api/InvoiceOutsApi.md#createinvoiceoutmetadatastatesbatch) | **POST** /entity/invoiceout/metadata/states/batch | Массовое создание и обновление статусов InvoiceOut
 *InvoiceOutsApi* | [**createInvoiceOutNote**](docs/Api/InvoiceOutsApi.md#createinvoiceoutnote) | **POST** /entity/invoiceout/{id}/notes | Добавить Событие Счета покупателю
 *InvoiceOutsApi* | [**createInvoiceOutPositions**](docs/Api/InvoiceOutsApi.md#createinvoiceoutpositions) | **POST** /entity/invoiceout/{id}/positions | Создать позицию Счета покупателю
 *InvoiceOutsApi* | [**createInvoiceOutPositionsBatch**](docs/Api/InvoiceOutsApi.md#createinvoiceoutpositionsbatch) | **POST** /entity/invoiceout/{id}/positions/batch | Создать позиции Счета покупателю
@@ -641,6 +654,8 @@ Class | Method | HTTP request | Description
 *LossesApi* | [**createLoss**](docs/Api/LossesApi.md#createloss) | **POST** /entity/loss | Создать Списание
 *LossesApi* | [**createLossBatch**](docs/Api/LossesApi.md#createlossbatch) | **POST** /entity/loss/batch | Массовое создание и обновление Списаний
 *LossesApi* | [**createLossMetadataAttribute**](docs/Api/LossesApi.md#createlossmetadataattribute) | **POST** /entity/loss/metadata/attributes | Создать доп. поле Списания
+*LossesApi* | [**createLossMetadataState**](docs/Api/LossesApi.md#createlossmetadatastate) | **POST** /entity/loss/metadata/states | Создать статус Списания
+*LossesApi* | [**createLossMetadataStatesBatch**](docs/Api/LossesApi.md#createlossmetadatastatesbatch) | **POST** /entity/loss/metadata/states/batch | Массовое создание и обновление статусов Списания
 *LossesApi* | [**createLossPosition**](docs/Api/LossesApi.md#createlossposition) | **POST** /entity/loss/{id}/positions | Создать и обновить позицию Списания
 *LossesApi* | [**createLossPositions**](docs/Api/LossesApi.md#createlosspositions) | **POST** /entity/loss/{id}/positions/batch | Массовое создание и обновление позиций Списания
 *LossesApi* | [**deleteLoss**](docs/Api/LossesApi.md#deleteloss) | **DELETE** /entity/loss/{id} | Удалить Списание
@@ -662,10 +677,15 @@ Class | Method | HTTP request | Description
 *LossesApi* | [**updateLossMetadataAttributeById**](docs/Api/LossesApi.md#updatelossmetadataattributebyid) | **PUT** /entity/loss/metadata/attributes/{id} | Обновить отдельное доп. поле Списания
 *LossesApi* | [**updateLossMetadataStateById**](docs/Api/LossesApi.md#updatelossmetadatastatebyid) | **PUT** /entity/loss/metadata/states/{id} | Обновить отдельный статус Списания
 *LossesApi* | [**updateLossPosition**](docs/Api/LossesApi.md#updatelossposition) | **PUT** /entity/loss/{id}/positions/{positionId} | Изменить позицию Списания
+*MetadataApi* | [**getEmbeddedTemplateByTypeAndId**](docs/Api/MetadataApi.md#getembeddedtemplatebytypeandid) | **GET** /entity/{type}/metadata/embeddedtemplate/{id} | Получить Стандартный шаблон печатной формы
+*MetadataApi* | [**getEmbeddedTemplatesForType**](docs/Api/MetadataApi.md#getembeddedtemplatesfortype) | **GET** /entity/{type}/metadata/embeddedtemplate | Получить Стандартные шаблоны печатных форм
+*MetadataApi* | [**getMetadataForType**](docs/Api/MetadataApi.md#getmetadatafortype) | **GET** /entity/{type}/metadata | Получить метаданные сущности
 *MovesApi* | [**addMoveFiles**](docs/Api/MovesApi.md#addmovefiles) | **POST** /entity/move/{id}/files | Добавить файлы к перемещению
 *MovesApi* | [**createMove**](docs/Api/MovesApi.md#createmove) | **POST** /entity/move | Создать Перемещение
 *MovesApi* | [**createMoveBatch**](docs/Api/MovesApi.md#createmovebatch) | **POST** /entity/move/batch | Массовое создание и обновление Перемещений
 *MovesApi* | [**createMoveMetadataAttribute**](docs/Api/MovesApi.md#createmovemetadataattribute) | **POST** /entity/move/metadata/attributes | Создать доп. поле Перемещения
+*MovesApi* | [**createMoveMetadataState**](docs/Api/MovesApi.md#createmovemetadatastate) | **POST** /entity/move/metadata/states | Создать статус Перемещения
+*MovesApi* | [**createMoveMetadataStatesBatch**](docs/Api/MovesApi.md#createmovemetadatastatesbatch) | **POST** /entity/move/metadata/states/batch | Массовое создание и обновление статусов Перемещения
 *MovesApi* | [**createMovePosition**](docs/Api/MovesApi.md#createmoveposition) | **POST** /entity/move/{id}/positions | Создать и обновить позицию Перемещения
 *MovesApi* | [**createMovePositions**](docs/Api/MovesApi.md#createmovepositions) | **POST** /entity/move/{id}/positions/batch | Массовое создание и обновление позиций Перемещения
 *MovesApi* | [**deleteMove**](docs/Api/MovesApi.md#deletemove) | **DELETE** /entity/move/{id} | Удалить Перемещение
@@ -689,7 +709,12 @@ Class | Method | HTTP request | Description
 *MovesApi* | [**updateMoveMetadataAttributeById**](docs/Api/MovesApi.md#updatemovemetadataattributebyid) | **PUT** /entity/move/metadata/attributes/{id} | Обновить отдельное доп. поле Перемещения
 *MovesApi* | [**updateMoveMetadataStateById**](docs/Api/MovesApi.md#updatemovemetadatastatebyid) | **PUT** /entity/move/metadata/states/{id} | Обновить отдельный статус Перемещения
 *MovesApi* | [**updateMovePosition**](docs/Api/MovesApi.md#updatemoveposition) | **PUT** /entity/move/{id}/positions/{positionId} | Изменить позицию Перемещения
+*NotificationsApi* | [**deleteNotification**](docs/Api/NotificationsApi.md#deletenotification) | **DELETE** /notification/{id} | Удалить уведомление
+*NotificationsApi* | [**getNotificationById**](docs/Api/NotificationsApi.md#getnotificationbyid) | **GET** /notification/{id} | Получить уведомление
 *NotificationsApi* | [**getNotificationSettings**](docs/Api/NotificationsApi.md#getnotificationsettings) | **GET** /notification/settings | Получить настройки уведомлений
+*NotificationsApi* | [**getNotifications**](docs/Api/NotificationsApi.md#getnotifications) | **GET** /notification | Получить ленту уведомлений
+*NotificationsApi* | [**markAllNotificationsAsRead**](docs/Api/NotificationsApi.md#markallnotificationsasread) | **PUT** /notification/markasreadall | Отметить все уведомления как прочитанные
+*NotificationsApi* | [**markNotificationAsRead**](docs/Api/NotificationsApi.md#marknotificationasread) | **PUT** /notification/{id}/markasread | Отметить уведомление как прочитанное
 *NotificationsApi* | [**updateNotificationSettings**](docs/Api/NotificationsApi.md#updatenotificationsettings) | **PUT** /notification/settings | Изменить настройки уведомлений
 *OrganizationsApi* | [**createOrganization**](docs/Api/OrganizationsApi.md#createorganization) | **POST** /entity/organization | Создать юрлицо
 *OrganizationsApi* | [**createOrganizationMetadataAttribute**](docs/Api/OrganizationsApi.md#createorganizationmetadataattribute) | **POST** /entity/organization/metadata/attributes | Создать доп. поле юрлица
@@ -1316,6 +1341,8 @@ Class | Method | HTTP request | Description
 - [Address](docs/Model/Address.md)
 - [Agent](docs/Model/Agent.md)
 - [AgentDiscount](docs/Model/AgentDiscount.md)
+- [AppAsyncButton](docs/Model/AppAsyncButton.md)
+- [AppChangePermissions](docs/Model/AppChangePermissions.md)
 - [Application](docs/Model/Application.md)
 - [Assortment](docs/Model/Assortment.md)
 - [AssortmentList](docs/Model/AssortmentList.md)
@@ -1484,13 +1511,13 @@ Class | Method | HTTP request | Description
 - [EnterPositionList](docs/Model/EnterPositionList.md)
 - [EntityWithMeta](docs/Model/EntityWithMeta.md)
 - [Error](docs/Model/Error.md)
-- [ErrorErrorsInner](docs/Model/ErrorErrorsInner.md)
-- [ErrorOrArray](docs/Model/ErrorOrArray.md)
+- [Errors](docs/Model/Errors.md)
 - [EventNote](docs/Model/EventNote.md)
 - [EventNoteList](docs/Model/EventNoteList.md)
 - [ExpenseItem](docs/Model/ExpenseItem.md)
 - [ExpenseItemList](docs/Model/ExpenseItemList.md)
 - [ExportRequest](docs/Model/ExportRequest.md)
+- [FacebookTokenExpirationNotification](docs/Model/FacebookTokenExpirationNotification.md)
 - [FactureIn](docs/Model/FactureIn.md)
 - [FactureInList](docs/Model/FactureInList.md)
 - [FactureOut](docs/Model/FactureOut.md)
@@ -1561,10 +1588,51 @@ Class | Method | HTTP request | Description
 - [MoveList](docs/Model/MoveList.md)
 - [MovePosition](docs/Model/MovePosition.md)
 - [MovePositionList](docs/Model/MovePositionList.md)
+- [NewEventInEventFeed](docs/Model/NewEventInEventFeed.md)
+- [NewMentionInEvent](docs/Model/NewMentionInEvent.md)
+- [NewMentionInTaskNote](docs/Model/NewMentionInTaskNote.md)
 - [Note](docs/Model/Note.md)
+- [NotificationAbstract](docs/Model/NotificationAbstract.md)
+- [NotificationBonusMoney](docs/Model/NotificationBonusMoney.md)
 - [NotificationChannelSettings](docs/Model/NotificationChannelSettings.md)
+- [NotificationDeletedTask](docs/Model/NotificationDeletedTask.md)
+- [NotificationDiffValue](docs/Model/NotificationDiffValue.md)
+- [NotificationEventType](docs/Model/NotificationEventType.md)
+- [NotificationExportCompleted](docs/Model/NotificationExportCompleted.md)
+- [NotificationExportType](docs/Model/NotificationExportType.md)
+- [NotificationGoodCountTooLow](docs/Model/NotificationGoodCountTooLow.md)
 - [NotificationGroupSettings](docs/Model/NotificationGroupSettings.md)
+- [NotificationImportCompleted](docs/Model/NotificationImportCompleted.md)
+- [NotificationImportType](docs/Model/NotificationImportType.md)
+- [NotificationInvoice](docs/Model/NotificationInvoice.md)
+- [NotificationInvoiceOutOverdue](docs/Model/NotificationInvoiceOutOverdue.md)
+- [NotificationList](docs/Model/NotificationList.md)
+- [NotificationNamedEntity](docs/Model/NotificationNamedEntity.md)
+- [NotificationOrder](docs/Model/NotificationOrder.md)
+- [NotificationOrderNew](docs/Model/NotificationOrderNew.md)
+- [NotificationOrderOverdue](docs/Model/NotificationOrderOverdue.md)
+- [NotificationRetailShift](docs/Model/NotificationRetailShift.md)
+- [NotificationRetailShiftClosed](docs/Model/NotificationRetailShiftClosed.md)
+- [NotificationRetailShiftOpened](docs/Model/NotificationRetailShiftOpened.md)
+- [NotificationSalesManagerChatMessage](docs/Model/NotificationSalesManagerChatMessage.md)
+- [NotificationScript](docs/Model/NotificationScript.md)
 - [NotificationSettings](docs/Model/NotificationSettings.md)
+- [NotificationSubscribeExpired](docs/Model/NotificationSubscribeExpired.md)
+- [NotificationSubscribeTermsExpired](docs/Model/NotificationSubscribeTermsExpired.md)
+- [NotificationTask](docs/Model/NotificationTask.md)
+- [NotificationTaskAssigned](docs/Model/NotificationTaskAssigned.md)
+- [NotificationTaskChanged](docs/Model/NotificationTaskChanged.md)
+- [NotificationTaskCommentChanged](docs/Model/NotificationTaskCommentChanged.md)
+- [NotificationTaskCommentDeleted](docs/Model/NotificationTaskCommentDeleted.md)
+- [NotificationTaskCommentDiff](docs/Model/NotificationTaskCommentDiff.md)
+- [NotificationTaskCompleted](docs/Model/NotificationTaskCompleted.md)
+- [NotificationTaskDeleted](docs/Model/NotificationTaskDeleted.md)
+- [NotificationTaskDiff](docs/Model/NotificationTaskDiff.md)
+- [NotificationTaskNewComment](docs/Model/NotificationTaskNewComment.md)
+- [NotificationTaskOverdue](docs/Model/NotificationTaskOverdue.md)
+- [NotificationTaskReopened](docs/Model/NotificationTaskReopened.md)
+- [NotificationTaskState](docs/Model/NotificationTaskState.md)
+- [NotificationTaskUnassigned](docs/Model/NotificationTaskUnassigned.md)
 - [OperationLinkedSum](docs/Model/OperationLinkedSum.md)
 - [Organization](docs/Model/Organization.md)
 - [OrganizationAccounts](docs/Model/OrganizationAccounts.md)
@@ -1694,6 +1762,8 @@ Class | Method | HTTP request | Description
 - [RetailStoreStateFiscalMemoryError](docs/Model/RetailStoreStateFiscalMemoryError.md)
 - [RetailStoreStatePaymentTerminal](docs/Model/RetailStoreStatePaymentTerminal.md)
 - [RetailStoreStateSync](docs/Model/RetailStoreStateSync.md)
+- [RetailStoreUpsert](docs/Model/RetailStoreUpsert.md)
+- [RetireOrderByDemandNotificationCompleted](docs/Model/RetireOrderByDemandNotificationCompleted.md)
 - [RewardType](docs/Model/RewardType.md)
 - [SalePlatform](docs/Model/SalePlatform.md)
 - [SalePlatformGroup](docs/Model/SalePlatformGroup.md)
@@ -1702,6 +1772,7 @@ Class | Method | HTTP request | Description
 - [SalesChannel](docs/Model/SalesChannel.md)
 - [SalesChannelList](docs/Model/SalesChannelList.md)
 - [SalesChannelType](docs/Model/SalesChannelType.md)
+- [SalesManagerChatMessage](docs/Model/SalesManagerChatMessage.md)
 - [SalesReturn](docs/Model/SalesReturn.md)
 - [SalesReturnList](docs/Model/SalesReturnList.md)
 - [SalesReturnPaymentsInner](docs/Model/SalesReturnPaymentsInner.md)
@@ -1746,8 +1817,6 @@ Class | Method | HTTP request | Description
 - [Task](docs/Model/Task.md)
 - [TaskList](docs/Model/TaskList.md)
 - [TaskNote](docs/Model/TaskNote.md)
-- [TaskNoteFile](docs/Model/TaskNoteFile.md)
-- [TaskNoteFileList](docs/Model/TaskNoteFileList.md)
 - [TaskNoteList](docs/Model/TaskNoteList.md)
 - [TaskNotes](docs/Model/TaskNotes.md)
 - [TaxRate](docs/Model/TaxRate.md)

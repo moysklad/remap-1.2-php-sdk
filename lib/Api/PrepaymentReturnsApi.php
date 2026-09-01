@@ -183,7 +183,7 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors
      */
     public function createPrepaymentReturnMetadataAttribute($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPrepaymentReturnMetadataAttribute'][0])
     {
@@ -204,12 +204,11 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function createPrepaymentReturnMetadataAttributeWithHttpInfo($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPrepaymentReturnMetadataAttribute'][0])
     {
         $request = $this->createPrepaymentReturnMetadataAttributeRequest($attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -233,18 +232,19 @@ class PrepaymentReturnsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\AttributeMetaInfo',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -266,7 +266,7 @@ class PrepaymentReturnsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\AttributeMetaInfo',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -281,7 +281,7 @@ class PrepaymentReturnsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -335,11 +335,12 @@ class PrepaymentReturnsApi
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfo';
         $request = $this->createPrepaymentReturnMetadataAttributeRequest($attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -502,7 +503,7 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors
      */
     public function createPrepaymentReturnMetadataState($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPrepaymentReturnMetadataState'][0])
     {
@@ -523,12 +524,11 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function createPrepaymentReturnMetadataStateWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPrepaymentReturnMetadataState'][0])
     {
         $request = $this->createPrepaymentReturnMetadataStateRequest($state, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -552,18 +552,19 @@ class PrepaymentReturnsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\State',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -585,7 +586,7 @@ class PrepaymentReturnsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\State',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -600,7 +601,7 @@ class PrepaymentReturnsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -654,11 +655,12 @@ class PrepaymentReturnsApi
     {
         $returnType = '\OpenAPI\Client\Model\State';
         $request = $this->createPrepaymentReturnMetadataStateRequest($state, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -821,7 +823,7 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\StateRowResult[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\StateRowResult[]|\OpenAPI\Client\Model\Errors
      */
     public function createPrepaymentReturnMetadataStatesBatch($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPrepaymentReturnMetadataStatesBatch'][0])
     {
@@ -842,12 +844,11 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\StateRowResult[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\StateRowResult[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function createPrepaymentReturnMetadataStatesBatchWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPrepaymentReturnMetadataStatesBatch'][0])
     {
         $request = $this->createPrepaymentReturnMetadataStatesBatchRequest($state, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -871,18 +872,19 @@ class PrepaymentReturnsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\StateRowResult[]',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -904,7 +906,7 @@ class PrepaymentReturnsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\StateRowResult[]',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -919,7 +921,7 @@ class PrepaymentReturnsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -973,11 +975,12 @@ class PrepaymentReturnsApi
     {
         $returnType = '\OpenAPI\Client\Model\StateRowResult[]';
         $request = $this->createPrepaymentReturnMetadataStatesBatchRequest($state, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1169,7 +1172,6 @@ class PrepaymentReturnsApi
     public function deletePrepaymentReturnWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePrepaymentReturn'][0])
     {
         $request = $this->deletePrepaymentReturnRequest($id, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -1199,7 +1201,7 @@ class PrepaymentReturnsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1251,11 +1253,12 @@ class PrepaymentReturnsApi
     {
         $returnType = '';
         $request = $this->deletePrepaymentReturnRequest($id, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
@@ -1319,7 +1322,7 @@ class PrepaymentReturnsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -1423,7 +1426,6 @@ class PrepaymentReturnsApi
     public function deletePrepaymentReturnMetadataAttributeByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePrepaymentReturnMetadataAttributeById'][0])
     {
         $request = $this->deletePrepaymentReturnMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -1453,7 +1455,7 @@ class PrepaymentReturnsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1505,11 +1507,12 @@ class PrepaymentReturnsApi
     {
         $returnType = '';
         $request = $this->deletePrepaymentReturnMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
@@ -1573,7 +1576,7 @@ class PrepaymentReturnsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -1677,7 +1680,6 @@ class PrepaymentReturnsApi
     public function deletePrepaymentReturnMetadataStateByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePrepaymentReturnMetadataStateById'][0])
     {
         $request = $this->deletePrepaymentReturnMetadataStateByIdRequest($id, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -1707,7 +1709,7 @@ class PrepaymentReturnsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1759,11 +1761,12 @@ class PrepaymentReturnsApi
     {
         $returnType = '';
         $request = $this->deletePrepaymentReturnMetadataStateByIdRequest($id, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
@@ -1827,7 +1830,7 @@ class PrepaymentReturnsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -1909,7 +1912,7 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\PrepaymentReturn|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\PrepaymentReturn|\OpenAPI\Client\Model\Errors
      */
     public function getPrepaymentReturnById($id, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPrepaymentReturnById'][0])
     {
@@ -1931,12 +1934,11 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\PrepaymentReturn|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\PrepaymentReturn|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getPrepaymentReturnByIdWithHttpInfo($id, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPrepaymentReturnById'][0])
     {
         $request = $this->getPrepaymentReturnByIdRequest($id, $expand, $fields, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -1960,18 +1962,19 @@ class PrepaymentReturnsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\PrepaymentReturn',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -1993,7 +1996,7 @@ class PrepaymentReturnsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\PrepaymentReturn',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -2008,7 +2011,7 @@ class PrepaymentReturnsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2064,11 +2067,12 @@ class PrepaymentReturnsApi
     {
         $returnType = '\OpenAPI\Client\Model\PrepaymentReturn';
         $request = $this->getPrepaymentReturnByIdRequest($id, $expand, $fields, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2167,7 +2171,7 @@ class PrepaymentReturnsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -2251,7 +2255,7 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\PrepaymentReturnList|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\PrepaymentReturnList|\OpenAPI\Client\Model\Errors
      */
     public function getPrepaymentReturnList($limit = 1000, $offset = 0, $search = null, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPrepaymentReturnList'][0])
     {
@@ -2275,12 +2279,11 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\PrepaymentReturnList|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\PrepaymentReturnList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getPrepaymentReturnListWithHttpInfo($limit = 1000, $offset = 0, $search = null, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPrepaymentReturnList'][0])
     {
         $request = $this->getPrepaymentReturnListRequest($limit, $offset, $search, $expand, $fields, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -2304,18 +2307,19 @@ class PrepaymentReturnsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\PrepaymentReturnList',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -2337,7 +2341,7 @@ class PrepaymentReturnsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\PrepaymentReturnList',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -2352,7 +2356,7 @@ class PrepaymentReturnsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2412,11 +2416,12 @@ class PrepaymentReturnsApi
     {
         $returnType = '\OpenAPI\Client\Model\PrepaymentReturnList';
         $request = $this->getPrepaymentReturnListRequest($limit, $offset, $search, $expand, $fields, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2620,7 +2625,7 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DocumentMetadata|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\DocumentMetadata|\OpenAPI\Client\Model\Errors
      */
     public function getPrepaymentReturnMetadata($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPrepaymentReturnMetadata'][0])
     {
@@ -2639,12 +2644,11 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DocumentMetadata|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DocumentMetadata|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getPrepaymentReturnMetadataWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPrepaymentReturnMetadata'][0])
     {
         $request = $this->getPrepaymentReturnMetadataRequest($accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -2668,18 +2672,19 @@ class PrepaymentReturnsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\DocumentMetadata',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -2701,7 +2706,7 @@ class PrepaymentReturnsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\DocumentMetadata',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -2716,7 +2721,7 @@ class PrepaymentReturnsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2766,11 +2771,12 @@ class PrepaymentReturnsApi
     {
         $returnType = '\OpenAPI\Client\Model\DocumentMetadata';
         $request = $this->getPrepaymentReturnMetadataRequest($accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2912,7 +2918,7 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\AttributeMetaInfoList|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\AttributeMetaInfoList|\OpenAPI\Client\Model\Errors
      */
     public function getPrepaymentReturnMetadataAttribute($offset = 0, $limit = 1000, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPrepaymentReturnMetadataAttribute'][0])
     {
@@ -2933,12 +2939,11 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\AttributeMetaInfoList|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\AttributeMetaInfoList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getPrepaymentReturnMetadataAttributeWithHttpInfo($offset = 0, $limit = 1000, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPrepaymentReturnMetadataAttribute'][0])
     {
         $request = $this->getPrepaymentReturnMetadataAttributeRequest($offset, $limit, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -2962,18 +2967,19 @@ class PrepaymentReturnsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\AttributeMetaInfoList',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -2995,7 +3001,7 @@ class PrepaymentReturnsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\AttributeMetaInfoList',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -3010,7 +3016,7 @@ class PrepaymentReturnsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3064,11 +3070,12 @@ class PrepaymentReturnsApi
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfoList';
         $request = $this->getPrepaymentReturnMetadataAttributeRequest($offset, $limit, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3240,7 +3247,7 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors
      */
     public function getPrepaymentReturnMetadataAttributeById($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPrepaymentReturnMetadataAttributeById'][0])
     {
@@ -3260,12 +3267,11 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getPrepaymentReturnMetadataAttributeByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPrepaymentReturnMetadataAttributeById'][0])
     {
         $request = $this->getPrepaymentReturnMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -3289,18 +3295,19 @@ class PrepaymentReturnsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\AttributeMetaInfo',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -3322,7 +3329,7 @@ class PrepaymentReturnsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\AttributeMetaInfo',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -3337,7 +3344,7 @@ class PrepaymentReturnsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3389,11 +3396,12 @@ class PrepaymentReturnsApi
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfo';
         $request = $this->getPrepaymentReturnMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3470,7 +3478,7 @@ class PrepaymentReturnsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -3550,7 +3558,7 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors
      */
     public function getPrepaymentReturnMetadataStateById($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPrepaymentReturnMetadataStateById'][0])
     {
@@ -3570,12 +3578,11 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getPrepaymentReturnMetadataStateByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPrepaymentReturnMetadataStateById'][0])
     {
         $request = $this->getPrepaymentReturnMetadataStateByIdRequest($id, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -3599,18 +3606,19 @@ class PrepaymentReturnsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\State',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -3632,7 +3640,7 @@ class PrepaymentReturnsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\State',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -3647,7 +3655,7 @@ class PrepaymentReturnsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3699,11 +3707,12 @@ class PrepaymentReturnsApi
     {
         $returnType = '\OpenAPI\Client\Model\State';
         $request = $this->getPrepaymentReturnMetadataStateByIdRequest($id, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3780,7 +3789,7 @@ class PrepaymentReturnsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -3863,7 +3872,7 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\PrepaymentReturnPosition|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\PrepaymentReturnPosition|\OpenAPI\Client\Model\Errors
      */
     public function getPrepaymentReturnPositionById($id, $position_id, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPrepaymentReturnPositionById'][0])
     {
@@ -3886,12 +3895,11 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\PrepaymentReturnPosition|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\PrepaymentReturnPosition|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getPrepaymentReturnPositionByIdWithHttpInfo($id, $position_id, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPrepaymentReturnPositionById'][0])
     {
         $request = $this->getPrepaymentReturnPositionByIdRequest($id, $position_id, $expand, $fields, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -3915,18 +3923,19 @@ class PrepaymentReturnsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\PrepaymentReturnPosition',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -3948,7 +3957,7 @@ class PrepaymentReturnsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\PrepaymentReturnPosition',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -3963,7 +3972,7 @@ class PrepaymentReturnsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4021,11 +4030,12 @@ class PrepaymentReturnsApi
     {
         $returnType = '\OpenAPI\Client\Model\PrepaymentReturnPosition';
         $request = $this->getPrepaymentReturnPositionByIdRequest($id, $position_id, $expand, $fields, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4132,7 +4142,7 @@ class PrepaymentReturnsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -4140,7 +4150,7 @@ class PrepaymentReturnsApi
         // path params
         if ($position_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'positionId' . '}',
+                '{positionId}',
                 ObjectSerializer::toPathValue($position_id),
                 $resourcePath
             );
@@ -4224,7 +4234,7 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\PrepaymentReturnPositionList|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\PrepaymentReturnPositionList|\OpenAPI\Client\Model\Errors
      */
     public function getPrepaymentReturnPositions($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPrepaymentReturnPositions'][0])
     {
@@ -4248,12 +4258,11 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\PrepaymentReturnPositionList|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\PrepaymentReturnPositionList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getPrepaymentReturnPositionsWithHttpInfo($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPrepaymentReturnPositions'][0])
     {
         $request = $this->getPrepaymentReturnPositionsRequest($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -4277,18 +4286,19 @@ class PrepaymentReturnsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\PrepaymentReturnPositionList',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -4310,7 +4320,7 @@ class PrepaymentReturnsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\PrepaymentReturnPositionList',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -4325,7 +4335,7 @@ class PrepaymentReturnsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4385,11 +4395,12 @@ class PrepaymentReturnsApi
     {
         $returnType = '\OpenAPI\Client\Model\PrepaymentReturnPositionList';
         $request = $this->getPrepaymentReturnPositionsRequest($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4519,7 +4530,7 @@ class PrepaymentReturnsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -4601,7 +4612,7 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors
      */
     public function updatePrepaymentReturnMetadataAttributeById($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePrepaymentReturnMetadataAttributeById'][0])
     {
@@ -4623,12 +4634,11 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function updatePrepaymentReturnMetadataAttributeByIdWithHttpInfo($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePrepaymentReturnMetadataAttributeById'][0])
     {
         $request = $this->updatePrepaymentReturnMetadataAttributeByIdRequest($id, $attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -4652,18 +4662,19 @@ class PrepaymentReturnsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\AttributeMetaInfo',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -4685,7 +4696,7 @@ class PrepaymentReturnsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\AttributeMetaInfo',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -4700,7 +4711,7 @@ class PrepaymentReturnsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4756,11 +4767,12 @@ class PrepaymentReturnsApi
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfo';
         $request = $this->updatePrepaymentReturnMetadataAttributeByIdRequest($id, $attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4851,7 +4863,7 @@ class PrepaymentReturnsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -4940,7 +4952,7 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors
      */
     public function updatePrepaymentReturnMetadataStateById($id, $state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePrepaymentReturnMetadataStateById'][0])
     {
@@ -4962,12 +4974,11 @@ class PrepaymentReturnsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function updatePrepaymentReturnMetadataStateByIdWithHttpInfo($id, $state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePrepaymentReturnMetadataStateById'][0])
     {
         $request = $this->updatePrepaymentReturnMetadataStateByIdRequest($id, $state, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -4991,18 +5002,19 @@ class PrepaymentReturnsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\State',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -5024,7 +5036,7 @@ class PrepaymentReturnsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\State',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -5039,7 +5051,7 @@ class PrepaymentReturnsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5095,11 +5107,12 @@ class PrepaymentReturnsApi
     {
         $returnType = '\OpenAPI\Client\Model\State';
         $request = $this->updatePrepaymentReturnMetadataStateByIdRequest($id, $state, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -5190,7 +5203,7 @@ class PrepaymentReturnsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -5307,6 +5320,63 @@ class PrepaymentReturnsApi
                         $content
                     );
                 }
+            }
+        }
+
+        return [
+            ObjectSerializer::deserialize($content, $dataType, []),
+            $response->getStatusCode(),
+            $response->getHeaders()
+        ];
+    }
+
+    private function handleResponseMassWithDataType(
+        string $dataType,
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
+        $rawContent = (string) $response->getBody();
+        if ($rawContent === '') {
+            return [null, $response->getStatusCode(), $response->getHeaders()];
+        }
+
+        try {
+            $content = json_decode($rawContent, false, 512, JSON_THROW_ON_ERROR);
+        } catch (\JsonException $exception) {
+            throw new ApiException(
+                sprintf(
+                    'Error JSON decoding server response (%s)',
+                    $request->getUri()
+                ),
+                $response->getStatusCode(),
+                $response->getHeaders(),
+                $rawContent
+            );
+        }
+
+        if ($response->getStatusCode() < 200 || $response->getStatusCode() > 299) {
+            if (is_object($content)) {
+                $errorsClass = '\OpenAPI\Client\Model\Errors';
+                $error = ObjectSerializer::deserialize($content, $errorsClass, $response->getHeaders());
+                throw new ApiException(
+                    (string) $error,
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                    $rawContent
+                );
+            }
+
+            if (!is_array($content)) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $response->getStatusCode(),
+                        (string) $request->getUri()
+                    ),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                    $rawContent
+                );
             }
         }
 

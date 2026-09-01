@@ -78,7 +78,7 @@ class CreateCommissionReportInPositions200ResponseInner implements ModelInterfac
         'vat_enabled' => 'bool',
         'assortment' => '\OpenAPI\Client\Model\ProductMarker',
         'pack' => '\OpenAPI\Client\Model\Pack',
-        'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
+        'errors' => '\OpenAPI\Client\Model\Error[]'
     ];
 
     /**
@@ -715,7 +715,7 @@ class CreateCommissionReportInPositions200ResponseInner implements ModelInterfac
     /**
      * Gets errors
      *
-     * @return \OpenAPI\Client\Model\ErrorErrorsInner[]
+     * @return \OpenAPI\Client\Model\Error[]
      */
     public function getErrors()
     {
@@ -725,7 +725,7 @@ class CreateCommissionReportInPositions200ResponseInner implements ModelInterfac
     /**
      * Sets errors
      *
-     * @param \OpenAPI\Client\Model\ErrorErrorsInner[] $errors errors
+     * @param \OpenAPI\Client\Model\Error[] $errors errors
      *
      * @return self
      */

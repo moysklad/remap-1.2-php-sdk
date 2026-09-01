@@ -43,6 +43,6 @@ Name | Type | Description | Notes
 **vat_enabled** | **bool** | Учитывается ли НДС | [optional]
 **vat_included** | **bool** | Включен ли НДС в цену | [optional]
 **vat_sum** | **float** | Сумма НДС | [optional] [readonly]
-**errors** | [**\OpenAPI\Client\Model\ErrorErrorsInner[]**](ErrorErrorsInner.md) |  |
+**errors** | [**\OpenAPI\Client\Model\Error[]**](Error.md) |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

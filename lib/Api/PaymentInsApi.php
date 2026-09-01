@@ -205,7 +205,7 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\File[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\File[]|\OpenAPI\Client\Model\Errors
      */
     public function addPaymentInFiles($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addPaymentInFiles'][0])
     {
@@ -227,12 +227,11 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\File[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\File[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function addPaymentInFilesWithHttpInfo($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addPaymentInFiles'][0])
     {
         $request = $this->addPaymentInFilesRequest($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -256,18 +255,19 @@ class PaymentInsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\File[]',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -289,7 +289,7 @@ class PaymentInsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\File[]',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -304,7 +304,7 @@ class PaymentInsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -360,11 +360,12 @@ class PaymentInsApi
     {
         $returnType = '\OpenAPI\Client\Model\File[]';
         $request = $this->addPaymentInFilesRequest($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -458,7 +459,7 @@ class PaymentInsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -547,7 +548,7 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\PaymentIn|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\PaymentIn|\OpenAPI\Client\Model\Errors
      */
     public function createPaymentIn($payment_in, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentIn'][0])
     {
@@ -569,12 +570,11 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\PaymentIn|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\PaymentIn|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function createPaymentInWithHttpInfo($payment_in, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentIn'][0])
     {
         $request = $this->createPaymentInRequest($payment_in, $expand, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -598,18 +598,19 @@ class PaymentInsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\PaymentIn',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -631,7 +632,7 @@ class PaymentInsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\PaymentIn',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -646,7 +647,7 @@ class PaymentInsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -702,11 +703,12 @@ class PaymentInsApi
     {
         $returnType = '\OpenAPI\Client\Model\PaymentIn';
         $request = $this->createPaymentInRequest($payment_in, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -881,7 +883,7 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors
      */
     public function createPaymentInBatch($payment_in, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInBatch'][0])
     {
@@ -903,14 +905,14 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function createPaymentInBatchWithHttpInfo($payment_in, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInBatch'][0])
     {
         $request = $this->createPaymentInBatchRequest($payment_in, $expand, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
+            $options[RequestOptions::HTTP_ERRORS] = false;
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -931,38 +933,7 @@ class PaymentInsApi
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
-                        $request,
-                        $response,
-                    );
-                default:
-                    return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
-                        $request,
-                        $response,
-                    );
-            }
-
-            
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            return $this->handleResponseWithDataType(
+            return $this->handleResponseMassWithDataType(
                 '\OpenAPI\Client\Model\BatchResponseEntity[]',
                 $request,
                 $response,
@@ -980,7 +951,7 @@ class PaymentInsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1036,25 +1007,18 @@ class PaymentInsApi
     {
         $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
         $request = $this->createPaymentInBatchRequest($payment_in, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
+        $options[RequestOptions::HTTP_ERRORS] = false;
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) use ($returnType, $request) {
+                    return $this->handleResponseMassWithDataType(
+                        $returnType,
+                        $request,
+                        $response,
+                    );
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -1220,7 +1184,7 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors
      */
     public function createPaymentInMetadataAttribute($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInMetadataAttribute'][0])
     {
@@ -1241,12 +1205,11 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function createPaymentInMetadataAttributeWithHttpInfo($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInMetadataAttribute'][0])
     {
         $request = $this->createPaymentInMetadataAttributeRequest($attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -1270,18 +1233,19 @@ class PaymentInsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\AttributeMetaInfo',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -1303,7 +1267,7 @@ class PaymentInsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\AttributeMetaInfo',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -1318,7 +1282,7 @@ class PaymentInsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1372,11 +1336,12 @@ class PaymentInsApi
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfo';
         $request = $this->createPaymentInMetadataAttributeRequest($attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1539,7 +1504,7 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors
      */
     public function createPaymentInMetadataState($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInMetadataState'][0])
     {
@@ -1560,12 +1525,11 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function createPaymentInMetadataStateWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInMetadataState'][0])
     {
         $request = $this->createPaymentInMetadataStateRequest($state, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -1589,18 +1553,19 @@ class PaymentInsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\State',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -1622,7 +1587,7 @@ class PaymentInsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\State',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -1637,7 +1602,7 @@ class PaymentInsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1691,11 +1656,12 @@ class PaymentInsApi
     {
         $returnType = '\OpenAPI\Client\Model\State';
         $request = $this->createPaymentInMetadataStateRequest($state, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1858,7 +1824,7 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\StateRowResult[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\StateRowResult[]|\OpenAPI\Client\Model\Errors
      */
     public function createPaymentInMetadataStatesBatch($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInMetadataStatesBatch'][0])
     {
@@ -1879,12 +1845,11 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\StateRowResult[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\StateRowResult[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function createPaymentInMetadataStatesBatchWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInMetadataStatesBatch'][0])
     {
         $request = $this->createPaymentInMetadataStatesBatchRequest($state, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -1908,18 +1873,19 @@ class PaymentInsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\StateRowResult[]',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -1941,7 +1907,7 @@ class PaymentInsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\StateRowResult[]',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -1956,7 +1922,7 @@ class PaymentInsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2010,11 +1976,12 @@ class PaymentInsApi
     {
         $returnType = '\OpenAPI\Client\Model\StateRowResult[]';
         $request = $this->createPaymentInMetadataStatesBatchRequest($state, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2206,7 +2173,6 @@ class PaymentInsApi
     public function deletePaymentInWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentIn'][0])
     {
         $request = $this->deletePaymentInRequest($id, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -2236,7 +2202,7 @@ class PaymentInsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2288,11 +2254,12 @@ class PaymentInsApi
     {
         $returnType = '';
         $request = $this->deletePaymentInRequest($id, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
@@ -2356,7 +2323,7 @@ class PaymentInsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -2436,7 +2403,7 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\Errors
      */
     public function deletePaymentInBatch($payment_in, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentInBatch'][0])
     {
@@ -2456,12 +2423,11 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function deletePaymentInBatchWithHttpInfo($payment_in, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentInBatch'][0])
     {
         $request = $this->deletePaymentInBatchRequest($payment_in, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -2485,18 +2451,19 @@ class PaymentInsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\DeleteRowResult[]',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -2518,7 +2485,7 @@ class PaymentInsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\DeleteRowResult[]',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -2533,7 +2500,7 @@ class PaymentInsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2585,11 +2552,12 @@ class PaymentInsApi
     {
         $returnType = '\OpenAPI\Client\Model\DeleteRowResult[]';
         $request = $this->deletePaymentInBatchRequest($payment_in, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2777,7 +2745,6 @@ class PaymentInsApi
     public function deletePaymentInFileWithHttpInfo($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentInFile'][0])
     {
         $request = $this->deletePaymentInFileRequest($id, $file_id, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -2807,7 +2774,7 @@ class PaymentInsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2861,11 +2828,12 @@ class PaymentInsApi
     {
         $returnType = '';
         $request = $this->deletePaymentInFileRequest($id, $file_id, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
@@ -2937,7 +2905,7 @@ class PaymentInsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -2945,7 +2913,7 @@ class PaymentInsApi
         // path params
         if ($file_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'fileId' . '}',
+                '{fileId}',
                 ObjectSerializer::toPathValue($file_id),
                 $resourcePath
             );
@@ -3049,7 +3017,6 @@ class PaymentInsApi
     public function deletePaymentInMetadataAttributeByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentInMetadataAttributeById'][0])
     {
         $request = $this->deletePaymentInMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -3079,7 +3046,7 @@ class PaymentInsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3131,11 +3098,12 @@ class PaymentInsApi
     {
         $returnType = '';
         $request = $this->deletePaymentInMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
@@ -3199,7 +3167,7 @@ class PaymentInsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -3303,7 +3271,6 @@ class PaymentInsApi
     public function deletePaymentInMetadataStateByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentInMetadataStateById'][0])
     {
         $request = $this->deletePaymentInMetadataStateByIdRequest($id, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -3333,7 +3300,7 @@ class PaymentInsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3385,11 +3352,12 @@ class PaymentInsApi
     {
         $returnType = '';
         $request = $this->deletePaymentInMetadataStateByIdRequest($id, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
@@ -3453,7 +3421,7 @@ class PaymentInsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -3534,7 +3502,7 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\PaymentIn|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\PaymentIn|\OpenAPI\Client\Model\Errors
      */
     public function getPaymentInById($id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInById'][0])
     {
@@ -3555,12 +3523,11 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\PaymentIn|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\PaymentIn|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getPaymentInByIdWithHttpInfo($id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInById'][0])
     {
         $request = $this->getPaymentInByIdRequest($id, $expand, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -3584,18 +3551,19 @@ class PaymentInsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\PaymentIn',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -3617,7 +3585,7 @@ class PaymentInsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\PaymentIn',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -3632,7 +3600,7 @@ class PaymentInsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3686,11 +3654,12 @@ class PaymentInsApi
     {
         $returnType = '\OpenAPI\Client\Model\PaymentIn';
         $request = $this->getPaymentInByIdRequest($id, $expand, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3778,7 +3747,7 @@ class PaymentInsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -3859,7 +3828,7 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\File|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\File|\OpenAPI\Client\Model\Errors
      */
     public function getPaymentInFile($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInFile'][0])
     {
@@ -3880,12 +3849,11 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\File|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\File|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getPaymentInFileWithHttpInfo($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInFile'][0])
     {
         $request = $this->getPaymentInFileRequest($id, $file_id, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -3909,18 +3877,19 @@ class PaymentInsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\File',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -3942,7 +3911,7 @@ class PaymentInsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\File',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -3957,7 +3926,7 @@ class PaymentInsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4011,11 +3980,12 @@ class PaymentInsApi
     {
         $returnType = '\OpenAPI\Client\Model\File';
         $request = $this->getPaymentInFileRequest($id, $file_id, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4100,7 +4070,7 @@ class PaymentInsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -4108,7 +4078,7 @@ class PaymentInsApi
         // path params
         if ($file_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'fileId' . '}',
+                '{fileId}',
                 ObjectSerializer::toPathValue($file_id),
                 $resourcePath
             );
@@ -4190,7 +4160,7 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\GetProductFiles200Response|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\GetProductFiles200Response|\OpenAPI\Client\Model\Errors
      */
     public function getPaymentInFiles($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInFiles'][0])
     {
@@ -4212,12 +4182,11 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\GetProductFiles200Response|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\GetProductFiles200Response|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getPaymentInFilesWithHttpInfo($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInFiles'][0])
     {
         $request = $this->getPaymentInFilesRequest($id, $limit, $offset, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -4241,18 +4210,19 @@ class PaymentInsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\GetProductFiles200Response',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -4274,7 +4244,7 @@ class PaymentInsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\GetProductFiles200Response',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -4289,7 +4259,7 @@ class PaymentInsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4345,11 +4315,12 @@ class PaymentInsApi
     {
         $returnType = '\OpenAPI\Client\Model\GetProductFiles200Response';
         $request = $this->getPaymentInFilesRequest($id, $limit, $offset, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4457,7 +4428,7 @@ class PaymentInsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -4540,7 +4511,7 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\PaymentInList|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\PaymentInList|\OpenAPI\Client\Model\Errors
      */
     public function getPaymentInList($limit = 1000, $offset = 0, $search = null, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInList'][0])
     {
@@ -4563,12 +4534,11 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\PaymentInList|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\PaymentInList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getPaymentInListWithHttpInfo($limit = 1000, $offset = 0, $search = null, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInList'][0])
     {
         $request = $this->getPaymentInListRequest($limit, $offset, $search, $expand, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -4592,18 +4562,19 @@ class PaymentInsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\PaymentInList',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -4625,7 +4596,7 @@ class PaymentInsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\PaymentInList',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -4640,7 +4611,7 @@ class PaymentInsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4698,11 +4669,12 @@ class PaymentInsApi
     {
         $returnType = '\OpenAPI\Client\Model\PaymentInList';
         $request = $this->getPaymentInListRequest($limit, $offset, $search, $expand, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4895,7 +4867,7 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DocumentMetadata|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\DocumentMetadata|\OpenAPI\Client\Model\Errors
      */
     public function getPaymentInMetadata($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadata'][0])
     {
@@ -4914,12 +4886,11 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DocumentMetadata|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DocumentMetadata|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getPaymentInMetadataWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadata'][0])
     {
         $request = $this->getPaymentInMetadataRequest($accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -4943,18 +4914,19 @@ class PaymentInsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\DocumentMetadata',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -4976,7 +4948,7 @@ class PaymentInsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\DocumentMetadata',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -4991,7 +4963,7 @@ class PaymentInsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5041,11 +5013,12 @@ class PaymentInsApi
     {
         $returnType = '\OpenAPI\Client\Model\DocumentMetadata';
         $request = $this->getPaymentInMetadataRequest($accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -5187,7 +5160,7 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\AttributeMetaInfoList|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\AttributeMetaInfoList|\OpenAPI\Client\Model\Errors
      */
     public function getPaymentInMetadataAttribute($offset = 0, $limit = 1000, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadataAttribute'][0])
     {
@@ -5208,12 +5181,11 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\AttributeMetaInfoList|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\AttributeMetaInfoList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getPaymentInMetadataAttributeWithHttpInfo($offset = 0, $limit = 1000, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadataAttribute'][0])
     {
         $request = $this->getPaymentInMetadataAttributeRequest($offset, $limit, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -5237,18 +5209,19 @@ class PaymentInsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\AttributeMetaInfoList',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -5270,7 +5243,7 @@ class PaymentInsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\AttributeMetaInfoList',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -5285,7 +5258,7 @@ class PaymentInsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5339,11 +5312,12 @@ class PaymentInsApi
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfoList';
         $request = $this->getPaymentInMetadataAttributeRequest($offset, $limit, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -5515,7 +5489,7 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors
      */
     public function getPaymentInMetadataAttributeById($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadataAttributeById'][0])
     {
@@ -5535,12 +5509,11 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getPaymentInMetadataAttributeByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadataAttributeById'][0])
     {
         $request = $this->getPaymentInMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -5564,18 +5537,19 @@ class PaymentInsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\AttributeMetaInfo',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -5597,7 +5571,7 @@ class PaymentInsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\AttributeMetaInfo',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -5612,7 +5586,7 @@ class PaymentInsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5664,11 +5638,12 @@ class PaymentInsApi
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfo';
         $request = $this->getPaymentInMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -5745,7 +5720,7 @@ class PaymentInsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -5825,7 +5800,7 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors
      */
     public function getPaymentInMetadataStateById($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadataStateById'][0])
     {
@@ -5845,12 +5820,11 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getPaymentInMetadataStateByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadataStateById'][0])
     {
         $request = $this->getPaymentInMetadataStateByIdRequest($id, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -5874,18 +5848,19 @@ class PaymentInsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\State',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -5907,7 +5882,7 @@ class PaymentInsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\State',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -5922,7 +5897,7 @@ class PaymentInsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5974,11 +5949,12 @@ class PaymentInsApi
     {
         $returnType = '\OpenAPI\Client\Model\State';
         $request = $this->getPaymentInMetadataStateByIdRequest($id, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -6055,7 +6031,7 @@ class PaymentInsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -6136,7 +6112,7 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\PaymentIn|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\PaymentIn|\OpenAPI\Client\Model\Errors
      */
     public function getPaymentInTemplate($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $body = null, string $contentType = self::contentTypes['getPaymentInTemplate'][0])
     {
@@ -6157,12 +6133,11 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\PaymentIn|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\PaymentIn|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getPaymentInTemplateWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $body = null, string $contentType = self::contentTypes['getPaymentInTemplate'][0])
     {
         $request = $this->getPaymentInTemplateRequest($accept, $accept_encoding, $content_type, $body, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -6186,18 +6161,19 @@ class PaymentInsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\PaymentIn',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -6219,7 +6195,7 @@ class PaymentInsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\PaymentIn',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -6234,7 +6210,7 @@ class PaymentInsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6288,11 +6264,12 @@ class PaymentInsApi
     {
         $returnType = '\OpenAPI\Client\Model\PaymentIn';
         $request = $this->getPaymentInTemplateRequest($accept, $accept_encoding, $content_type, $body, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -6451,7 +6428,7 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\PaymentIn|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\PaymentIn|\OpenAPI\Client\Model\Errors
      */
     public function updatePaymentIn($id, $payment_in, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePaymentIn'][0])
     {
@@ -6474,12 +6451,11 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\PaymentIn|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\PaymentIn|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function updatePaymentInWithHttpInfo($id, $payment_in, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePaymentIn'][0])
     {
         $request = $this->updatePaymentInRequest($id, $payment_in, $expand, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -6503,18 +6479,19 @@ class PaymentInsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\PaymentIn',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -6536,7 +6513,7 @@ class PaymentInsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\PaymentIn',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -6551,7 +6528,7 @@ class PaymentInsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6609,11 +6586,12 @@ class PaymentInsApi
     {
         $returnType = '\OpenAPI\Client\Model\PaymentIn';
         $request = $this->updatePaymentInRequest($id, $payment_in, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -6715,7 +6693,7 @@ class PaymentInsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -6804,7 +6782,7 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors
      */
     public function updatePaymentInMetadataAttributeById($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePaymentInMetadataAttributeById'][0])
     {
@@ -6826,12 +6804,11 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function updatePaymentInMetadataAttributeByIdWithHttpInfo($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePaymentInMetadataAttributeById'][0])
     {
         $request = $this->updatePaymentInMetadataAttributeByIdRequest($id, $attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -6855,18 +6832,19 @@ class PaymentInsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\AttributeMetaInfo',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -6888,7 +6866,7 @@ class PaymentInsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\AttributeMetaInfo',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -6903,7 +6881,7 @@ class PaymentInsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6959,11 +6937,12 @@ class PaymentInsApi
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfo';
         $request = $this->updatePaymentInMetadataAttributeByIdRequest($id, $attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -7054,7 +7033,7 @@ class PaymentInsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -7143,7 +7122,7 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors
      */
     public function updatePaymentInMetadataStateById($id, $state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePaymentInMetadataStateById'][0])
     {
@@ -7165,12 +7144,11 @@ class PaymentInsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function updatePaymentInMetadataStateByIdWithHttpInfo($id, $state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePaymentInMetadataStateById'][0])
     {
         $request = $this->updatePaymentInMetadataStateByIdRequest($id, $state, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -7194,18 +7172,19 @@ class PaymentInsApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\State',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -7227,7 +7206,7 @@ class PaymentInsApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\State',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -7242,7 +7221,7 @@ class PaymentInsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7298,11 +7277,12 @@ class PaymentInsApi
     {
         $returnType = '\OpenAPI\Client\Model\State';
         $request = $this->updatePaymentInMetadataStateByIdRequest($id, $state, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -7393,7 +7373,7 @@ class PaymentInsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -7510,6 +7490,63 @@ class PaymentInsApi
                         $content
                     );
                 }
+            }
+        }
+
+        return [
+            ObjectSerializer::deserialize($content, $dataType, []),
+            $response->getStatusCode(),
+            $response->getHeaders()
+        ];
+    }
+
+    private function handleResponseMassWithDataType(
+        string $dataType,
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
+        $rawContent = (string) $response->getBody();
+        if ($rawContent === '') {
+            return [null, $response->getStatusCode(), $response->getHeaders()];
+        }
+
+        try {
+            $content = json_decode($rawContent, false, 512, JSON_THROW_ON_ERROR);
+        } catch (\JsonException $exception) {
+            throw new ApiException(
+                sprintf(
+                    'Error JSON decoding server response (%s)',
+                    $request->getUri()
+                ),
+                $response->getStatusCode(),
+                $response->getHeaders(),
+                $rawContent
+            );
+        }
+
+        if ($response->getStatusCode() < 200 || $response->getStatusCode() > 299) {
+            if (is_object($content)) {
+                $errorsClass = '\OpenAPI\Client\Model\Errors';
+                $error = ObjectSerializer::deserialize($content, $errorsClass, $response->getHeaders());
+                throw new ApiException(
+                    (string) $error,
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                    $rawContent
+                );
+            }
+
+            if (!is_array($content)) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $response->getStatusCode(),
+                        (string) $request->getUri()
+                    ),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                    $rawContent
+                );
             }
         }
 

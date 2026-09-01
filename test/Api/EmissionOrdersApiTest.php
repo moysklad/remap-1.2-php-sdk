@@ -96,6 +96,30 @@ class EmissionOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for createEmissionOrderMetadataState
+     *
+     * Создать статус Заказа кодов маркировки.
+     *
+     */
+    public function testCreateEmissionOrderMetadataState()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for createEmissionOrderMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов Заказа кодов маркировки.
+     *
+     */
+    public function testCreateEmissionOrderMetadataStatesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createEmissionOrderPosition
      *
      * Создать и обновить позицию Заказа кодов маркировки.

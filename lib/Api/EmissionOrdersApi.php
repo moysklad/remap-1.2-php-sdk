@@ -80,6 +80,12 @@ class EmissionOrdersApi
         'createEmissionOrderBatch' => [
             'application/json',
         ],
+        'createEmissionOrderMetadataState' => [
+            'application/json',
+        ],
+        'createEmissionOrderMetadataStatesBatch' => [
+            'application/json',
+        ],
         'createEmissionOrderPosition' => [
             'application/json',
         ],
@@ -178,7 +184,7 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\EmissionOrder|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\EmissionOrder|\OpenAPI\Client\Model\Errors
      */
     public function createEmissionOrder($emission_order, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrder'][0])
     {
@@ -200,12 +206,11 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\EmissionOrder|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\EmissionOrder|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function createEmissionOrderWithHttpInfo($emission_order, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrder'][0])
     {
         $request = $this->createEmissionOrderRequest($emission_order, $expand, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -229,18 +234,19 @@ class EmissionOrdersApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\EmissionOrder',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -262,7 +268,7 @@ class EmissionOrdersApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\EmissionOrder',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -277,7 +283,7 @@ class EmissionOrdersApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -333,11 +339,12 @@ class EmissionOrdersApi
     {
         $returnType = '\OpenAPI\Client\Model\EmissionOrder';
         $request = $this->createEmissionOrderRequest($emission_order, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -512,7 +519,7 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors
      */
     public function createEmissionOrderBatch($emission_order, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderBatch'][0])
     {
@@ -534,14 +541,14 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function createEmissionOrderBatchWithHttpInfo($emission_order, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderBatch'][0])
     {
         $request = $this->createEmissionOrderBatchRequest($emission_order, $expand, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
+            $options[RequestOptions::HTTP_ERRORS] = false;
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -562,38 +569,7 @@ class EmissionOrdersApi
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
-                        $request,
-                        $response,
-                    );
-                default:
-                    return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
-                        $request,
-                        $response,
-                    );
-            }
-
-            
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            return $this->handleResponseWithDataType(
+            return $this->handleResponseMassWithDataType(
                 '\OpenAPI\Client\Model\BatchResponseEntity[]',
                 $request,
                 $response,
@@ -611,7 +587,7 @@ class EmissionOrdersApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -667,25 +643,18 @@ class EmissionOrdersApi
     {
         $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
         $request = $this->createEmissionOrderBatchRequest($emission_order, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
+        $options[RequestOptions::HTTP_ERRORS] = false;
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) use ($returnType, $request) {
+                    return $this->handleResponseMassWithDataType(
+                        $returnType,
+                        $request,
+                        $response,
+                    );
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -839,49 +808,44 @@ class EmissionOrdersApi
     }
 
     /**
-     * Operation createEmissionOrderPosition
+     * Operation createEmissionOrderMetadataState
      *
-     * Создать и обновить позицию Заказа кодов маркировки
+     * Создать статус Заказа кодов маркировки
      *
-     * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\EmissionOrderPosition $emission_order_position emission_order_position (required)
-     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  \OpenAPI\Client\Model\State $state state (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderPosition'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderMetadataState'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\EmissionOrderPosition[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors
      */
-    public function createEmissionOrderPosition($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPosition'][0])
+    public function createEmissionOrderMetadataState($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderMetadataState'][0])
     {
-        list($response) = $this->createEmissionOrderPositionWithHttpInfo($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        list($response) = $this->createEmissionOrderMetadataStateWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
     }
 
     /**
-     * Operation createEmissionOrderPositionWithHttpInfo
+     * Operation createEmissionOrderMetadataStateWithHttpInfo
      *
-     * Создать и обновить позицию Заказа кодов маркировки
+     * Создать статус Заказа кодов маркировки
      *
-     * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\EmissionOrderPosition $emission_order_position (required)
-     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderPosition'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderMetadataState'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\EmissionOrderPosition[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createEmissionOrderPositionWithHttpInfo($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPosition'][0])
+    public function createEmissionOrderMetadataStateWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderMetadataState'][0])
     {
-        $request = $this->createEmissionOrderPositionRequest($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
-
+        $request = $this->createEmissionOrderMetadataStateRequest($state, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -905,18 +869,669 @@ class EmissionOrdersApi
             $statusCode = $response->getStatusCode();
 
 
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\State',
+                        $request,
+                        $response
+                    );
+                default:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\Errors',
+                        $request,
+                        $response
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\OpenAPI\Client\Model\State',
+                $request,
+                $response
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\State',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Errors',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createEmissionOrderMetadataStateAsync
+     *
+     * Создать статус Заказа кодов маркировки
+     *
+     * @param  \OpenAPI\Client\Model\State $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderMetadataState'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createEmissionOrderMetadataStateAsync($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderMetadataState'][0])
+    {
+        return $this->createEmissionOrderMetadataStateAsyncWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createEmissionOrderMetadataStateAsyncWithHttpInfo
+     *
+     * Создать статус Заказа кодов маркировки
+     *
+     * @param  \OpenAPI\Client\Model\State $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderMetadataState'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createEmissionOrderMetadataStateAsyncWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderMetadataState'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\State';
+        $request = $this->createEmissionOrderMetadataStateRequest($state, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
+
+        return $this->client
+            ->sendAsync($request, $options)
+            ->then(
+                function ($response) use ($returnType, $request) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createEmissionOrderMetadataState'
+     *
+     * @param  \OpenAPI\Client\Model\State $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderMetadataState'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createEmissionOrderMetadataStateRequest($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderMetadataState'][0])
+    {
+
+        // verify the required parameter 'state' is set
+        if ($state === null || (is_array($state) && count($state) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $state when calling createEmissionOrderMetadataState'
+            );
+        }
+
+
+
+
+
+        $resourcePath = '/entity/emissionorder/metadata/states';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // header params
+        if ($accept !== null) {
+            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+        }
+        // header params
+        if ($accept_encoding !== null) {
+            $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+        // header params
+        if ($content_type !== null) {
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
+        }
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'text/html;charset=UTF-8', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($state)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($state));
+            } else {
+                $httpBody = $state;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createEmissionOrderMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов Заказа кодов маркировки
+     *
+     * @param  \OpenAPI\Client\Model\State[] $state state (required)
+     * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderMetadataStatesBatch'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\StateRowResult[]|\OpenAPI\Client\Model\Errors
+     */
+    public function createEmissionOrderMetadataStatesBatch($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderMetadataStatesBatch'][0])
+    {
+        list($response) = $this->createEmissionOrderMetadataStatesBatchWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createEmissionOrderMetadataStatesBatchWithHttpInfo
+     *
+     * Массовое создание и обновление статусов Заказа кодов маркировки
+     *
+     * @param  \OpenAPI\Client\Model\State[] $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderMetadataStatesBatch'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\StateRowResult[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createEmissionOrderMetadataStatesBatchWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderMetadataStatesBatch'][0])
+    {
+        $request = $this->createEmissionOrderMetadataStatesBatchRequest($state, $accept, $accept_encoding, $content_type, $contentType);
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\StateRowResult[]',
+                        $request,
+                        $response
+                    );
+                default:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\Errors',
+                        $request,
+                        $response
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\OpenAPI\Client\Model\StateRowResult[]',
+                $request,
+                $response
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\StateRowResult[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Errors',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createEmissionOrderMetadataStatesBatchAsync
+     *
+     * Массовое создание и обновление статусов Заказа кодов маркировки
+     *
+     * @param  \OpenAPI\Client\Model\State[] $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderMetadataStatesBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createEmissionOrderMetadataStatesBatchAsync($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderMetadataStatesBatch'][0])
+    {
+        return $this->createEmissionOrderMetadataStatesBatchAsyncWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createEmissionOrderMetadataStatesBatchAsyncWithHttpInfo
+     *
+     * Массовое создание и обновление статусов Заказа кодов маркировки
+     *
+     * @param  \OpenAPI\Client\Model\State[] $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderMetadataStatesBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createEmissionOrderMetadataStatesBatchAsyncWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderMetadataStatesBatch'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\StateRowResult[]';
+        $request = $this->createEmissionOrderMetadataStatesBatchRequest($state, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
+
+        return $this->client
+            ->sendAsync($request, $options)
+            ->then(
+                function ($response) use ($returnType, $request) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createEmissionOrderMetadataStatesBatch'
+     *
+     * @param  \OpenAPI\Client\Model\State[] $state (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderMetadataStatesBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createEmissionOrderMetadataStatesBatchRequest($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderMetadataStatesBatch'][0])
+    {
+
+        // verify the required parameter 'state' is set
+        if ($state === null || (is_array($state) && count($state) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $state when calling createEmissionOrderMetadataStatesBatch'
+            );
+        }
+        if (count($state) > 1000) {
+            throw new \InvalidArgumentException('invalid value for "$state" when calling EmissionOrdersApi.createEmissionOrderMetadataStatesBatch, number of items must be less than or equal to 1000.');
+        }
+        if (count($state) < 1) {
+            throw new \InvalidArgumentException('invalid value for "$state" when calling EmissionOrdersApi.createEmissionOrderMetadataStatesBatch, number of items must be greater than or equal to 1.');
+        }
+        
+
+
+
+
+        $resourcePath = '/entity/emissionorder/metadata/states/batch';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // header params
+        if ($accept !== null) {
+            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+        }
+        // header params
+        if ($accept_encoding !== null) {
+            $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+        // header params
+        if ($content_type !== null) {
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
+        }
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'text/html;charset=UTF-8', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($state)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($state));
+            } else {
+                $httpBody = $state;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createEmissionOrderPosition
+     *
+     * Создать и обновить позицию Заказа кодов маркировки
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\EmissionOrderPosition $emission_order_position emission_order_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderPosition'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\EmissionOrderPosition[]|\OpenAPI\Client\Model\Errors
+     */
+    public function createEmissionOrderPosition($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPosition'][0])
+    {
+        list($response) = $this->createEmissionOrderPositionWithHttpInfo($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createEmissionOrderPositionWithHttpInfo
+     *
+     * Создать и обновить позицию Заказа кодов маркировки
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\EmissionOrderPosition $emission_order_position (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmissionOrderPosition'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\EmissionOrderPosition[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createEmissionOrderPositionWithHttpInfo($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPosition'][0])
+    {
+        $request = $this->createEmissionOrderPositionRequest($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\EmissionOrderPosition[]',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -938,7 +1553,7 @@ class EmissionOrdersApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\EmissionOrderPosition[]',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -953,7 +1568,7 @@ class EmissionOrdersApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1011,11 +1626,12 @@ class EmissionOrdersApi
     {
         $returnType = '\OpenAPI\Client\Model\EmissionOrderPosition[]';
         $request = $this->createEmissionOrderPositionRequest($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1117,7 +1733,7 @@ class EmissionOrdersApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -1207,7 +1823,7 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors
      */
     public function createEmissionOrderPositions($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPositions'][0])
     {
@@ -1230,14 +1846,14 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function createEmissionOrderPositionsWithHttpInfo($id, $emission_order_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmissionOrderPositions'][0])
     {
         $request = $this->createEmissionOrderPositionsRequest($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
+            $options[RequestOptions::HTTP_ERRORS] = false;
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1258,38 +1874,7 @@ class EmissionOrdersApi
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
-                        $request,
-                        $response,
-                    );
-                default:
-                    return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
-                        $request,
-                        $response,
-                    );
-            }
-
-            
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            return $this->handleResponseWithDataType(
+            return $this->handleResponseMassWithDataType(
                 '\OpenAPI\Client\Model\BatchResponseEntity[]',
                 $request,
                 $response,
@@ -1307,7 +1892,7 @@ class EmissionOrdersApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1365,25 +1950,18 @@ class EmissionOrdersApi
     {
         $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
         $request = $this->createEmissionOrderPositionsRequest($id, $emission_order_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
+        $options[RequestOptions::HTTP_ERRORS] = false;
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) use ($returnType, $request) {
+                    return $this->handleResponseMassWithDataType(
+                        $returnType,
+                        $request,
+                        $response,
+                    );
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -1477,7 +2055,7 @@ class EmissionOrdersApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -1590,7 +2168,6 @@ class EmissionOrdersApi
     public function deleteEmissionOrderMetadataStateByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteEmissionOrderMetadataStateById'][0])
     {
         $request = $this->deleteEmissionOrderMetadataStateByIdRequest($id, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -1620,7 +2197,7 @@ class EmissionOrdersApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1674,11 +2251,12 @@ class EmissionOrdersApi
     {
         $returnType = '';
         $request = $this->deleteEmissionOrderMetadataStateByIdRequest($id, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
@@ -1748,7 +2326,7 @@ class EmissionOrdersApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -1830,7 +2408,7 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\EmissionOrder|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\EmissionOrder|\OpenAPI\Client\Model\Errors
      */
     public function getEmissionOrderById($id, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmissionOrderById'][0])
     {
@@ -1852,12 +2430,11 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\EmissionOrder|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\EmissionOrder|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getEmissionOrderByIdWithHttpInfo($id, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmissionOrderById'][0])
     {
         $request = $this->getEmissionOrderByIdRequest($id, $expand, $fields, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -1881,18 +2458,19 @@ class EmissionOrdersApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\EmissionOrder',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -1914,7 +2492,7 @@ class EmissionOrdersApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\EmissionOrder',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -1929,7 +2507,7 @@ class EmissionOrdersApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1985,11 +2563,12 @@ class EmissionOrdersApi
     {
         $returnType = '\OpenAPI\Client\Model\EmissionOrder';
         $request = $this->getEmissionOrderByIdRequest($id, $expand, $fields, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2088,7 +2667,7 @@ class EmissionOrdersApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -2171,7 +2750,7 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\EmissionOrderList|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\EmissionOrderList|\OpenAPI\Client\Model\Errors
      */
     public function getEmissionOrderList($limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmissionOrderList'][0])
     {
@@ -2194,12 +2773,11 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\EmissionOrderList|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\EmissionOrderList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getEmissionOrderListWithHttpInfo($limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmissionOrderList'][0])
     {
         $request = $this->getEmissionOrderListRequest($limit, $offset, $expand, $fields, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -2223,18 +2801,19 @@ class EmissionOrdersApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\EmissionOrderList',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -2256,7 +2835,7 @@ class EmissionOrdersApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\EmissionOrderList',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -2271,7 +2850,7 @@ class EmissionOrdersApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2329,11 +2908,12 @@ class EmissionOrdersApi
     {
         $returnType = '\OpenAPI\Client\Model\EmissionOrderList';
         $request = $this->getEmissionOrderListRequest($limit, $offset, $expand, $fields, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2527,7 +3107,7 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DocumentMetadata|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\DocumentMetadata|\OpenAPI\Client\Model\Errors
      */
     public function getEmissionOrderMetadata($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getEmissionOrderMetadata'][0])
     {
@@ -2547,12 +3127,11 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DocumentMetadata|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DocumentMetadata|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getEmissionOrderMetadataWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getEmissionOrderMetadata'][0])
     {
         $request = $this->getEmissionOrderMetadataRequest($accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -2576,18 +3155,19 @@ class EmissionOrdersApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\DocumentMetadata',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -2609,7 +3189,7 @@ class EmissionOrdersApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\DocumentMetadata',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -2624,7 +3204,7 @@ class EmissionOrdersApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2676,11 +3256,12 @@ class EmissionOrdersApi
     {
         $returnType = '\OpenAPI\Client\Model\DocumentMetadata';
         $request = $this->getEmissionOrderMetadataRequest($accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2828,7 +3409,7 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors
      */
     public function getEmissionOrderMetadataStateById($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getEmissionOrderMetadataStateById'][0])
     {
@@ -2849,12 +3430,11 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getEmissionOrderMetadataStateByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getEmissionOrderMetadataStateById'][0])
     {
         $request = $this->getEmissionOrderMetadataStateByIdRequest($id, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -2878,18 +3458,19 @@ class EmissionOrdersApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\State',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -2911,7 +3492,7 @@ class EmissionOrdersApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\State',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -2926,7 +3507,7 @@ class EmissionOrdersApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2980,11 +3561,12 @@ class EmissionOrdersApi
     {
         $returnType = '\OpenAPI\Client\Model\State';
         $request = $this->getEmissionOrderMetadataStateByIdRequest($id, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3067,7 +3649,7 @@ class EmissionOrdersApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -3150,7 +3732,7 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\EmissionOrderPosition|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\EmissionOrderPosition|\OpenAPI\Client\Model\Errors
      */
     public function getEmissionOrderPositionById($id, $position_id, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmissionOrderPositionById'][0])
     {
@@ -3173,12 +3755,11 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\EmissionOrderPosition|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\EmissionOrderPosition|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getEmissionOrderPositionByIdWithHttpInfo($id, $position_id, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmissionOrderPositionById'][0])
     {
         $request = $this->getEmissionOrderPositionByIdRequest($id, $position_id, $expand, $fields, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -3202,18 +3783,19 @@ class EmissionOrdersApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\EmissionOrderPosition',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -3235,7 +3817,7 @@ class EmissionOrdersApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\EmissionOrderPosition',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -3250,7 +3832,7 @@ class EmissionOrdersApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3308,11 +3890,12 @@ class EmissionOrdersApi
     {
         $returnType = '\OpenAPI\Client\Model\EmissionOrderPosition';
         $request = $this->getEmissionOrderPositionByIdRequest($id, $position_id, $expand, $fields, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3419,7 +4002,7 @@ class EmissionOrdersApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -3427,7 +4010,7 @@ class EmissionOrdersApi
         // path params
         if ($position_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'positionId' . '}',
+                '{positionId}',
                 ObjectSerializer::toPathValue($position_id),
                 $resourcePath
             );
@@ -3511,7 +4094,7 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\EmissionOrderPositionList|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\EmissionOrderPositionList|\OpenAPI\Client\Model\Errors
      */
     public function getEmissionOrderPositions($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmissionOrderPositions'][0])
     {
@@ -3535,12 +4118,11 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\EmissionOrderPositionList|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\EmissionOrderPositionList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getEmissionOrderPositionsWithHttpInfo($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmissionOrderPositions'][0])
     {
         $request = $this->getEmissionOrderPositionsRequest($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -3564,18 +4146,19 @@ class EmissionOrdersApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\EmissionOrderPositionList',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -3597,7 +4180,7 @@ class EmissionOrdersApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\EmissionOrderPositionList',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -3612,7 +4195,7 @@ class EmissionOrdersApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3672,11 +4255,12 @@ class EmissionOrdersApi
     {
         $returnType = '\OpenAPI\Client\Model\EmissionOrderPositionList';
         $request = $this->getEmissionOrderPositionsRequest($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3806,7 +4390,7 @@ class EmissionOrdersApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -3890,7 +4474,7 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\EmissionOrder|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\EmissionOrder|\OpenAPI\Client\Model\Errors
      */
     public function updateEmissionOrder($id, $emission_order, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateEmissionOrder'][0])
     {
@@ -3914,12 +4498,11 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\EmissionOrder|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\EmissionOrder|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateEmissionOrderWithHttpInfo($id, $emission_order, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateEmissionOrder'][0])
     {
         $request = $this->updateEmissionOrderRequest($id, $emission_order, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -3943,18 +4526,19 @@ class EmissionOrdersApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\EmissionOrder',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -3976,7 +4560,7 @@ class EmissionOrdersApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\EmissionOrder',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -3991,7 +4575,7 @@ class EmissionOrdersApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4051,11 +4635,12 @@ class EmissionOrdersApi
     {
         $returnType = '\OpenAPI\Client\Model\EmissionOrder';
         $request = $this->updateEmissionOrderRequest($id, $emission_order, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4168,7 +4753,7 @@ class EmissionOrdersApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -4257,7 +4842,7 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors
      */
     public function updateEmissionOrderMetadataStateById($id, $state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateEmissionOrderMetadataStateById'][0])
     {
@@ -4279,12 +4864,11 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateEmissionOrderMetadataStateByIdWithHttpInfo($id, $state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateEmissionOrderMetadataStateById'][0])
     {
         $request = $this->updateEmissionOrderMetadataStateByIdRequest($id, $state, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -4308,18 +4892,19 @@ class EmissionOrdersApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\State',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -4341,7 +4926,7 @@ class EmissionOrdersApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\State',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -4356,7 +4941,7 @@ class EmissionOrdersApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4412,11 +4997,12 @@ class EmissionOrdersApi
     {
         $returnType = '\OpenAPI\Client\Model\State';
         $request = $this->updateEmissionOrderMetadataStateByIdRequest($id, $state, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4507,7 +5093,7 @@ class EmissionOrdersApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -4599,7 +5185,7 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\EmissionOrderPosition|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\EmissionOrderPosition|\OpenAPI\Client\Model\Errors
      */
     public function updateEmissionOrderPosition($id, $position_id, $emission_order_position, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateEmissionOrderPosition'][0])
     {
@@ -4624,12 +5210,11 @@ class EmissionOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\EmissionOrderPosition|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\EmissionOrderPosition|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateEmissionOrderPositionWithHttpInfo($id, $position_id, $emission_order_position, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateEmissionOrderPosition'][0])
     {
         $request = $this->updateEmissionOrderPositionRequest($id, $position_id, $emission_order_position, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -4653,18 +5238,19 @@ class EmissionOrdersApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\EmissionOrderPosition',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -4686,7 +5272,7 @@ class EmissionOrdersApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\EmissionOrderPosition',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -4701,7 +5287,7 @@ class EmissionOrdersApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4763,11 +5349,12 @@ class EmissionOrdersApi
     {
         $returnType = '\OpenAPI\Client\Model\EmissionOrderPosition';
         $request = $this->updateEmissionOrderPositionRequest($id, $position_id, $emission_order_position, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4888,7 +5475,7 @@ class EmissionOrdersApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -4896,7 +5483,7 @@ class EmissionOrdersApi
         // path params
         if ($position_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'positionId' . '}',
+                '{positionId}',
                 ObjectSerializer::toPathValue($position_id),
                 $resourcePath
             );
@@ -5013,6 +5600,63 @@ class EmissionOrdersApi
                         $content
                     );
                 }
+            }
+        }
+
+        return [
+            ObjectSerializer::deserialize($content, $dataType, []),
+            $response->getStatusCode(),
+            $response->getHeaders()
+        ];
+    }
+
+    private function handleResponseMassWithDataType(
+        string $dataType,
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
+        $rawContent = (string) $response->getBody();
+        if ($rawContent === '') {
+            return [null, $response->getStatusCode(), $response->getHeaders()];
+        }
+
+        try {
+            $content = json_decode($rawContent, false, 512, JSON_THROW_ON_ERROR);
+        } catch (\JsonException $exception) {
+            throw new ApiException(
+                sprintf(
+                    'Error JSON decoding server response (%s)',
+                    $request->getUri()
+                ),
+                $response->getStatusCode(),
+                $response->getHeaders(),
+                $rawContent
+            );
+        }
+
+        if ($response->getStatusCode() < 200 || $response->getStatusCode() > 299) {
+            if (is_object($content)) {
+                $errorsClass = '\OpenAPI\Client\Model\Errors';
+                $error = ObjectSerializer::deserialize($content, $errorsClass, $response->getHeaders());
+                throw new ApiException(
+                    (string) $error,
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                    $rawContent
+                );
+            }
+
+            if (!is_array($content)) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $response->getStatusCode(),
+                        (string) $request->getUri()
+                    ),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                    $rawContent
+                );
             }
         }
 

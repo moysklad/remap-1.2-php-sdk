@@ -85,7 +85,7 @@ class CreateDemandPositions200ResponseInner implements ModelInterface, ArrayAcce
         'overhead' => 'int',
         'vat' => 'int',
         'vat_enabled' => 'bool',
-        'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
+        'errors' => '\OpenAPI\Client\Model\Error[]'
     ];
 
     /**
@@ -951,7 +951,7 @@ class CreateDemandPositions200ResponseInner implements ModelInterface, ArrayAcce
     /**
      * Gets errors
      *
-     * @return \OpenAPI\Client\Model\ErrorErrorsInner[]
+     * @return \OpenAPI\Client\Model\Error[]
      */
     public function getErrors()
     {
@@ -961,7 +961,7 @@ class CreateDemandPositions200ResponseInner implements ModelInterface, ArrayAcce
     /**
      * Sets errors
      *
-     * @param \OpenAPI\Client\Model\ErrorErrorsInner[] $errors errors
+     * @param \OpenAPI\Client\Model\Error[] $errors errors
      *
      * @return self
      */

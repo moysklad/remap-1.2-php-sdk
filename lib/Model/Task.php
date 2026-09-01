@@ -95,7 +95,7 @@ class Task extends EntityWithMeta
         'files' => '\OpenAPI\Client\Model\FileList',
         'implementer' => '\OpenAPI\Client\Model\Employee',
         'notes' => '\OpenAPI\Client\Model\TaskNotes',
-        'operation' => '\OpenAPI\Client\Model\DocumentMetadata',
+        'operation' => '\OpenAPI\Client\Model\EntityWithMeta',
         'state' => '\OpenAPI\Client\Model\State',
         'updated' => 'string'
     ];
@@ -908,7 +908,7 @@ class Task extends EntityWithMeta
     /**
      * Gets operation
      *
-     * @return \OpenAPI\Client\Model\DocumentMetadata|null
+     * @return \OpenAPI\Client\Model\EntityWithMeta|null
      */
     public function getOperation()
     {
@@ -918,7 +918,7 @@ class Task extends EntityWithMeta
     /**
      * Sets operation
      *
-     * @param \OpenAPI\Client\Model\DocumentMetadata|null $operation operation
+     * @param \OpenAPI\Client\Model\EntityWithMeta|null $operation operation
      *
      * @return self
      */

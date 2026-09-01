@@ -87,7 +87,7 @@ class TaskNote extends EntityWithMeta
         'author_application' => '\OpenAPI\Client\Model\Application',
         'moment' => 'string',
         'text' => 'string',
-        'files' => '\OpenAPI\Client\Model\TaskNoteFileList'
+        'files' => '\OpenAPI\Client\Model\FileList'
     ];
 
     /**
@@ -594,7 +594,7 @@ class TaskNote extends EntityWithMeta
     /**
      * Gets files
      *
-     * @return \OpenAPI\Client\Model\TaskNoteFileList|null
+     * @return \OpenAPI\Client\Model\FileList|null
      */
     public function getFiles()
     {
@@ -604,7 +604,7 @@ class TaskNote extends EntityWithMeta
     /**
      * Sets files
      *
-     * @param \OpenAPI\Client\Model\TaskNoteFileList|null $files Метаданные массива Файлов
+     * @param \OpenAPI\Client\Model\FileList|null $files Метаданные массива Файлов
      *
      * @return self
      */

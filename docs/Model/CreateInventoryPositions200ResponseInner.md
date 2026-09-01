@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **meta** | [**\OpenAPI\Client\Model\Meta**](Meta.md) |  | [optional]
-**id** | **string** | ID позиции | [optional] [readonly]
+**id** | **string** | ID позиции | [optional]
 **account_id** | **string** | ID учетной записи | [optional] [readonly]
 **assortment** | [**\OpenAPI\Client\Model\ProductMarker**](ProductMarker.md) | Метаданные товара/услуги/партии/модификации, которую представляет собой позиция | [optional]
 **calculated_quantity** | **float** | Расчетный остаток | [optional]
@@ -15,6 +15,6 @@ Name | Type | Description | Notes
 **price** | **float** | Цена товара/услуги в копейках | [optional]
 **things** | **string[]** | Серийные номера. Игнорируется, если товар позиции не на серийном учёте; иначе количество единиц в позиции совпадает с числом переданных серийных номеров. | [optional]
 **quantity** | **float** | Количество товаров/услуг данного вида в позиции. Если позиция - товар,  у которого включен учет по серийным номерам, то значение в этом поле всегда  будет равно количеству серийных номеров для данной позиции в документе. | [optional]
-**errors** | [**\OpenAPI\Client\Model\ErrorErrorsInner[]**](ErrorErrorsInner.md) |  |
+**errors** | [**\OpenAPI\Client\Model\Error[]**](Error.md) |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

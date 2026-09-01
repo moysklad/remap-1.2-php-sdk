@@ -33,7 +33,7 @@ Name | Type | Description | Notes
 **project** | [**\OpenAPI\Client\Model\Project**](Project.md) | Метаданные проекта | [optional]
 **published** | **bool** | Опубликован ли документ | [optional] [readonly]
 **rate** | [**\OpenAPI\Client\Model\CurrencyRate**](CurrencyRate.md) |  | [optional]
-**reward_percent** | **int** | Процент вознаграждения | [optional]
+**reward_percent** | **float** | Процент вознаграждения | [optional]
 **reward_type** | **string** | Тип Вознаграждения. Известные значения описаны в RewardType | [optional]
 **sales_channel** | [**\OpenAPI\Client\Model\SalesChannel**](SalesChannel.md) | Метаданные канала продаж | [optional]
 **shared** | **bool** | Общий доступ | [optional]

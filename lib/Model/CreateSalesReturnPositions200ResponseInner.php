@@ -83,7 +83,7 @@ class CreateSalesReturnPositions200ResponseInner implements ModelInterface, Arra
         'things' => 'string[]',
         'vat' => 'int',
         'vat_enabled' => 'bool',
-        'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
+        'errors' => '\OpenAPI\Client\Model\Error[]'
     ];
 
     /**
@@ -897,7 +897,7 @@ class CreateSalesReturnPositions200ResponseInner implements ModelInterface, Arra
     /**
      * Gets errors
      *
-     * @return \OpenAPI\Client\Model\ErrorErrorsInner[]
+     * @return \OpenAPI\Client\Model\Error[]
      */
     public function getErrors()
     {
@@ -907,7 +907,7 @@ class CreateSalesReturnPositions200ResponseInner implements ModelInterface, Arra
     /**
      * Sets errors
      *
-     * @param \OpenAPI\Client\Model\ErrorErrorsInner[] $errors errors
+     * @param \OpenAPI\Client\Model\Error[] $errors errors
      *
      * @return self
      */

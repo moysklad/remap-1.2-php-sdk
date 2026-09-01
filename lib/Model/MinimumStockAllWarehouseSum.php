@@ -79,7 +79,7 @@ class MinimumStockAllWarehouseSum extends MinimumStockAbstract
       */
     protected static $openAPIFormats = [
         'type' => null,
-        'quantity' => 'float'
+        'quantity' => 'double'
     ];
 
     /**

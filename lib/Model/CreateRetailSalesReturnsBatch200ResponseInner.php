@@ -107,7 +107,7 @@ class CreateRetailSalesReturnsBatch200ResponseInner implements ModelInterface, A
         'vat_enabled' => 'bool',
         'vat_included' => 'bool',
         'vat_sum' => 'float',
-        'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
+        'errors' => '\OpenAPI\Client\Model\Error[]'
     ];
 
     /**
@@ -1798,7 +1798,7 @@ class CreateRetailSalesReturnsBatch200ResponseInner implements ModelInterface, A
     /**
      * Gets errors
      *
-     * @return \OpenAPI\Client\Model\ErrorErrorsInner[]
+     * @return \OpenAPI\Client\Model\Error[]
      */
     public function getErrors()
     {
@@ -1808,7 +1808,7 @@ class CreateRetailSalesReturnsBatch200ResponseInner implements ModelInterface, A
     /**
      * Sets errors
      *
-     * @param \OpenAPI\Client\Model\ErrorErrorsInner[] $errors errors
+     * @param \OpenAPI\Client\Model\Error[] $errors errors
      *
      * @return self
      */

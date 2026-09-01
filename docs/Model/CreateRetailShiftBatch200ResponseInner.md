@@ -45,6 +45,6 @@ Name | Type | Description | Notes
 **updated** | **string** | Момент последнего обновления Розничной смены | [optional] [readonly]
 **vat_enabled** | **bool** | Учитывается ли НДС | [optional] [readonly]
 **vat_included** | **bool** | Включен ли НДС в цену | [optional]
-**errors** | [**\OpenAPI\Client\Model\ErrorErrorsInner[]**](ErrorErrorsInner.md) |  |
+**errors** | [**\OpenAPI\Client\Model\Error[]**](Error.md) |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

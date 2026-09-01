@@ -75,7 +75,7 @@ class CreateProcessingOrderPositions200ResponseInner implements ModelInterface, 
         'reserve' => 'float',
         'assortment' => '\OpenAPI\Client\Model\ProductMarker',
         'pack' => '\OpenAPI\Client\Model\Pack',
-        'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
+        'errors' => '\OpenAPI\Client\Model\Error[]'
     ];
 
     /**
@@ -606,7 +606,7 @@ class CreateProcessingOrderPositions200ResponseInner implements ModelInterface, 
     /**
      * Gets errors
      *
-     * @return \OpenAPI\Client\Model\ErrorErrorsInner[]
+     * @return \OpenAPI\Client\Model\Error[]
      */
     public function getErrors()
     {
@@ -616,7 +616,7 @@ class CreateProcessingOrderPositions200ResponseInner implements ModelInterface, 
     /**
      * Sets errors
      *
-     * @param \OpenAPI\Client\Model\ErrorErrorsInner[] $errors errors
+     * @param \OpenAPI\Client\Model\Error[] $errors errors
      *
      * @return self
      */

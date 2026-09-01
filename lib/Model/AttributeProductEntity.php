@@ -67,7 +67,7 @@ class AttributeProductEntity extends AttributeAbstract
       */
     protected static $openAPITypes = [
         'type' => 'string',
-        'value' => '\OpenAPI\Client\Model\ProductMarker'
+        'value' => '\OpenAPI\Client\Model\EntityWithMeta'
     ];
 
     /**
@@ -398,7 +398,7 @@ class AttributeProductEntity extends AttributeAbstract
     /**
      * Gets value
      *
-     * @return \OpenAPI\Client\Model\ProductMarker|null
+     * @return \OpenAPI\Client\Model\EntityWithMeta|null
      */
     public function getValue()
     {
@@ -408,7 +408,7 @@ class AttributeProductEntity extends AttributeAbstract
     /**
      * Sets value
      *
-     * @param \OpenAPI\Client\Model\ProductMarker|null $value value
+     * @param \OpenAPI\Client\Model\EntityWithMeta|null $value value
      *
      * @return self
      */

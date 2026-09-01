@@ -87,7 +87,7 @@ class Pack implements ModelInterface, ArrayAccess, \JsonSerializable
         'meta' => null,
         'id' => 'uuid',
         'uom' => null,
-        'quantity' => 'float',
+        'quantity' => 'double',
         'barcodes' => null
     ];
 

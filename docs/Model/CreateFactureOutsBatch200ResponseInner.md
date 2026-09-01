@@ -40,6 +40,6 @@ Name | Type | Description | Notes
 **consignee** | [**\OpenAPI\Client\Model\Agent**](Agent.md) | Грузополучатель (контрагент или юрлицо) | [optional]
 **payment_number** | **string** | Название платежного документа | [optional]
 **payment_date** | **string** | Дата платежного документа | [optional]
-**errors** | [**\OpenAPI\Client\Model\ErrorErrorsInner[]**](ErrorErrorsInner.md) |  |
+**errors** | [**\OpenAPI\Client\Model\Error[]**](Error.md) |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

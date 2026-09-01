@@ -70,6 +70,7 @@ class SpecialPriceDiscountSpecialPrice implements ModelInterface, ArrayAccess, \
       */
     protected static $openAPITypes = [
         'value' => 'int',
+        'meta' => '\OpenAPI\Client\Model\Meta',
         'price_type' => '\OpenAPI\Client\Model\PriceType'
     ];
 
@@ -82,6 +83,7 @@ class SpecialPriceDiscountSpecialPrice implements ModelInterface, ArrayAccess, \
       */
     protected static $openAPIFormats = [
         'value' => 'int32',
+        'meta' => null,
         'price_type' => null
     ];
 
@@ -92,6 +94,7 @@ class SpecialPriceDiscountSpecialPrice implements ModelInterface, ArrayAccess, \
       */
     protected static array $openAPINullables = [
         'value' => false,
+        'meta' => false,
         'price_type' => false
     ];
 
@@ -213,6 +216,7 @@ class SpecialPriceDiscountSpecialPrice implements ModelInterface, ArrayAccess, \
      */
     protected static $attributeMap = [
         'value' => 'value',
+        'meta' => 'meta',
         'price_type' => 'priceType'
     ];
 
@@ -223,6 +227,7 @@ class SpecialPriceDiscountSpecialPrice implements ModelInterface, ArrayAccess, \
      */
     protected static $setters = [
         'value' => 'setValue',
+        'meta' => 'setMeta',
         'price_type' => 'setPriceType'
     ];
 
@@ -233,6 +238,7 @@ class SpecialPriceDiscountSpecialPrice implements ModelInterface, ArrayAccess, \
      */
     protected static $getters = [
         'value' => 'getValue',
+        'meta' => 'getMeta',
         'price_type' => 'getPriceType'
     ];
 
@@ -297,6 +303,7 @@ class SpecialPriceDiscountSpecialPrice implements ModelInterface, ArrayAccess, \
     {
         
         $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('price_type', $data ?? [], null);
     }
 
@@ -368,6 +375,33 @@ class SpecialPriceDiscountSpecialPrice implements ModelInterface, ArrayAccess, \
             throw new \InvalidArgumentException('non-nullable value cannot be null');
         }
         $this->container['value'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Gets meta
+     *
+     * @return \OpenAPI\Client\Model\Meta|null
+     */
+    public function getMeta()
+    {
+        return $this->container['meta'];
+    }
+
+    /**
+     * Sets meta
+     *
+     * @param \OpenAPI\Client\Model\Meta|null $meta meta
+     *
+     * @return self
+     */
+    public function setMeta($meta)
+    {
+        if (is_null($meta)) {
+            throw new \InvalidArgumentException('non-nullable meta cannot be null');
+        }
+        $this->container['meta'] = $meta;
 
         return $this;
     }

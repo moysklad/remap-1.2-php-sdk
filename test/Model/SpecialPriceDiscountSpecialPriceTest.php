@@ -89,6 +89,15 @@ class SpecialPriceDiscountSpecialPriceTest extends TestCase
     }
 
     /**
+     * Test attribute "meta"
+     */
+    public function testPropertyMeta()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "price_type"
      */
     public function testPropertyPriceType()

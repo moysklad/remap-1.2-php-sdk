@@ -6,12 +6,16 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | ------------- | ------------- | ------------- |
 | [**activateEmployee()**](EmployeesApi.md#activateEmployee) | **PUT** /entity/employee/{id}/access/activate | Активировать сотрудника |
 | [**createEmployee()**](EmployeesApi.md#createEmployee) | **POST** /entity/employee | Создать сотрудника |
+| [**createEmployeeMetadataAttribute()**](EmployeesApi.md#createEmployeeMetadataAttribute) | **POST** /entity/employee/metadata/attributes | Создать доп. поле сотрудника |
 | [**createEmployeesBatch()**](EmployeesApi.md#createEmployeesBatch) | **POST** /entity/employee/batch | Создать или изменить сотрудников |
 | [**deactivateEmployee()**](EmployeesApi.md#deactivateEmployee) | **PUT** /entity/employee/{id}/access/deactivate | Деактивировать сотрудника |
 | [**deleteEmployee()**](EmployeesApi.md#deleteEmployee) | **DELETE** /entity/employee/{id} | Удалить сотрудника |
+| [**deleteEmployeeMetadataAttribute()**](EmployeesApi.md#deleteEmployeeMetadataAttribute) | **DELETE** /entity/employee/metadata/attributes/{id} | Удалить доп. поле сотрудника |
 | [**deleteEmployeesBatch()**](EmployeesApi.md#deleteEmployeesBatch) | **POST** /entity/employee/delete | Удалить сотрудников |
 | [**getEmployeeById()**](EmployeesApi.md#getEmployeeById) | **GET** /entity/employee/{id} | Получить сотрудника по ID |
-| [**getEmployeeMetadata()**](EmployeesApi.md#getEmployeeMetadata) | **GET** /entity/employee/metadata | Получить метаданные товаров |
+| [**getEmployeeMetadata()**](EmployeesApi.md#getEmployeeMetadata) | **GET** /entity/employee/metadata | Получить метаданные сотрудников |
+| [**getEmployeeMetadataAttributeById()**](EmployeesApi.md#getEmployeeMetadataAttributeById) | **GET** /entity/employee/metadata/attributes/{id} | Получить доп. поле сотрудника по ID |
+| [**getEmployeeMetadataAttributes()**](EmployeesApi.md#getEmployeeMetadataAttributes) | **GET** /entity/employee/metadata/attributes | Получить доп. поля сотрудников |
 | [**getEmployeeSecurity()**](EmployeesApi.md#getEmployeeSecurity) | **GET** /entity/employee/{id}/security | Получить права сотрудника |
 | [**getEmployees()**](EmployeesApi.md#getEmployees) | **GET** /entity/employee | Получить список сотрудников |
 | [**getRoleAdmin()**](EmployeesApi.md#getRoleAdmin) | **GET** /entity/role/admin | Получить роль администратора |
@@ -21,6 +25,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**getRoleWorker()**](EmployeesApi.md#getRoleWorker) | **GET** /entity/role/worker | Получить роль сотрудника производства |
 | [**resetEmployeePassword()**](EmployeesApi.md#resetEmployeePassword) | **PUT** /entity/employee/{id}/access/resetpassword | Сбросить пароль сотрудника |
 | [**updateEmployee()**](EmployeesApi.md#updateEmployee) | **PUT** /entity/employee/{id} | Обновить сотрудника |
+| [**updateEmployeeMetadataAttribute()**](EmployeesApi.md#updateEmployeeMetadataAttribute) | **PUT** /entity/employee/metadata/attributes/{id} | Обновить доп. поле сотрудника |
 | [**updateEmployeeSecurity()**](EmployeesApi.md#updateEmployeeSecurity) | **PUT** /entity/employee/{id}/security | Изменить права сотрудника |
 
 
@@ -156,6 +161,77 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\Employee**](../Model/Employee.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createEmployeeMetadataAttribute()`
+
+```php
+createEmployeeMetadataAttribute($attribute_meta_info, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\AttributeMetaInfo
+```
+
+Создать доп. поле сотрудника
+
+Создание нового доп. поля для сотрудников
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\EmployeesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createEmployeeMetadataAttribute($attribute_meta_info, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling EmployeesApi->createEmployeeMetadataAttribute: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **attribute_meta_info** | [**\OpenAPI\Client\Model\AttributeMetaInfo**](../Model/AttributeMetaInfo.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\AttributeMetaInfo**](../Model/AttributeMetaInfo.md)
 
 ### Authorization
 
@@ -379,6 +455,74 @@ void (empty response body)
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `deleteEmployeeMetadataAttribute()`
+
+```php
+deleteEmployeeMetadataAttribute($id, $accept, $accept_encoding)
+```
+
+Удалить доп. поле сотрудника
+
+Удаление доп. поля
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\EmployeesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->deleteEmployeeMetadataAttribute($id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling EmployeesApi->deleteEmployeeMetadataAttribute: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `deleteEmployeesBatch()`
 
 ```php
@@ -524,12 +668,150 @@ try {
 ## `getEmployeeMetadata()`
 
 ```php
-getEmployeeMetadata($accept, $accept_encoding): \OpenAPI\Client\Model\Metadata
+getEmployeeMetadata($expand, $accept, $accept_encoding): \OpenAPI\Client\Model\Metadata
 ```
 
-Получить метаданные товаров
+Получить метаданные сотрудников
 
-Запрос на получение метаданных товаров
+Запрос на получение метаданных сотрудников.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\EmployeesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $result = $apiInstance->getEmployeeMetadata($expand, $accept, $accept_encoding);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling EmployeesApi->getEmployeeMetadata: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\Metadata**](../Model/Metadata.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getEmployeeMetadataAttributeById()`
+
+```php
+getEmployeeMetadataAttributeById($id, $accept, $accept_encoding): \OpenAPI\Client\Model\AttributeMetaInfo
+```
+
+Получить доп. поле сотрудника по ID
+
+Запрос на получение отдельного доп. поля
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\EmployeesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $result = $apiInstance->getEmployeeMetadataAttributeById($id, $accept, $accept_encoding);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling EmployeesApi->getEmployeeMetadataAttributeById: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\AttributeMetaInfo**](../Model/AttributeMetaInfo.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getEmployeeMetadataAttributes()`
+
+```php
+getEmployeeMetadataAttributes($accept, $accept_encoding): \OpenAPI\Client\Model\AttributeMetaInfoList
+```
+
+Получить доп. поля сотрудников
+
+Запрос на получение всех доп. полей для сотрудников
 
 ### Example
 
@@ -557,10 +839,10 @@ $accept = 'application/json;charset=utf-8'; // string
 $accept_encoding = 'gzip, deflate, br'; // string
 
 try {
-    $result = $apiInstance->getEmployeeMetadata($accept, $accept_encoding);
+    $result = $apiInstance->getEmployeeMetadataAttributes($accept, $accept_encoding);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling EmployeesApi->getEmployeeMetadata: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling EmployeesApi->getEmployeeMetadataAttributes: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -573,7 +855,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Metadata**](../Model/Metadata.md)
+[**\OpenAPI\Client\Model\AttributeMetaInfoList**](../Model/AttributeMetaInfoList.md)
 
 ### Authorization
 
@@ -1200,6 +1482,79 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\Employee**](../Model/Employee.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateEmployeeMetadataAttribute()`
+
+```php
+updateEmployeeMetadataAttribute($id, $attribute_meta_info, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\AttributeMetaInfo
+```
+
+Обновить доп. поле сотрудника
+
+Обновление доп. поля для сотрудников
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\EmployeesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->updateEmployeeMetadataAttribute($id, $attribute_meta_info, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling EmployeesApi->updateEmployeeMetadataAttribute: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **attribute_meta_info** | [**\OpenAPI\Client\Model\AttributeMetaInfo**](../Model/AttributeMetaInfo.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\AttributeMetaInfo**](../Model/AttributeMetaInfo.md)
 
 ### Authorization
 

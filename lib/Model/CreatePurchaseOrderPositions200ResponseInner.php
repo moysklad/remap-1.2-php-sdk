@@ -81,7 +81,7 @@ class CreatePurchaseOrderPositions200ResponseInner implements ModelInterface, Ar
         'assortment' => '\OpenAPI\Client\Model\ProductMarker',
         'pack' => '\OpenAPI\Client\Model\Pack',
         'stock' => '\OpenAPI\Client\Model\PositionStock',
-        'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
+        'errors' => '\OpenAPI\Client\Model\Error[]'
     ];
 
     /**
@@ -815,7 +815,7 @@ class CreatePurchaseOrderPositions200ResponseInner implements ModelInterface, Ar
     /**
      * Gets errors
      *
-     * @return \OpenAPI\Client\Model\ErrorErrorsInner[]
+     * @return \OpenAPI\Client\Model\Error[]
      */
     public function getErrors()
     {
@@ -825,7 +825,7 @@ class CreatePurchaseOrderPositions200ResponseInner implements ModelInterface, Ar
     /**
      * Sets errors
      *
-     * @param \OpenAPI\Client\Model\ErrorErrorsInner[] $errors errors
+     * @param \OpenAPI\Client\Model\Error[] $errors errors
      *
      * @return self
      */

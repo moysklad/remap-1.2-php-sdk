@@ -72,12 +72,72 @@ class NotificationsApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteNotification
+     *
+     * Удалить уведомление.
+     *
+     */
+    public function testDeleteNotification()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getNotificationById
+     *
+     * Получить уведомление.
+     *
+     */
+    public function testGetNotificationById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getNotificationSettings
      *
      * Получить настройки уведомлений.
      *
      */
     public function testGetNotificationSettings()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getNotifications
+     *
+     * Получить ленту уведомлений.
+     *
+     */
+    public function testGetNotifications()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for markAllNotificationsAsRead
+     *
+     * Отметить все уведомления как прочитанные.
+     *
+     */
+    public function testMarkAllNotificationsAsRead()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for markNotificationAsRead
+     *
+     * Отметить уведомление как прочитанное.
+     *
+     */
+    public function testMarkNotificationAsRead()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

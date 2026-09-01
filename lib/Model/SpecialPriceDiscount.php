@@ -100,7 +100,7 @@ class SpecialPriceDiscount extends DiscountAbstract
         'meta' => null,
         'product_folders' => null,
         'use_price_type' => null,
-        'discount' => 'float',
+        'discount' => 'double',
         'special_price' => null
     ];
 

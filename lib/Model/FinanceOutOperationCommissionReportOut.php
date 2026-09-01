@@ -98,7 +98,7 @@ class FinanceOutOperationCommissionReportOut extends FinanceOutOperationAbstract
         'project' => '\OpenAPI\Client\Model\Project',
         'published' => 'bool',
         'rate' => '\OpenAPI\Client\Model\CurrencyRate',
-        'reward_percent' => 'int',
+        'reward_percent' => 'float',
         'reward_type' => 'string',
         'sales_channel' => '\OpenAPI\Client\Model\SalesChannel',
         'shared' => 'bool',
@@ -149,7 +149,7 @@ class FinanceOutOperationCommissionReportOut extends FinanceOutOperationAbstract
         'project' => null,
         'published' => null,
         'rate' => null,
-        'reward_percent' => null,
+        'reward_percent' => 'double',
         'reward_type' => null,
         'sales_channel' => null,
         'shared' => null,
@@ -1514,7 +1514,7 @@ class FinanceOutOperationCommissionReportOut extends FinanceOutOperationAbstract
     /**
      * Gets reward_percent
      *
-     * @return int|null
+     * @return float|null
      */
     public function getRewardPercent()
     {
@@ -1524,7 +1524,7 @@ class FinanceOutOperationCommissionReportOut extends FinanceOutOperationAbstract
     /**
      * Sets reward_percent
      *
-     * @param int|null $reward_percent Процент вознаграждения
+     * @param float|null $reward_percent Процент вознаграждения
      *
      * @return self
      */

@@ -81,7 +81,7 @@ class CreateEnterPositions200ResponseInner implements ModelInterface, ArrayAcces
         'reason' => 'string',
         'slot' => '\OpenAPI\Client\Model\StoreSlot',
         'things' => 'string[]',
-        'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
+        'errors' => '\OpenAPI\Client\Model\Error[]'
     ];
 
     /**
@@ -828,7 +828,7 @@ class CreateEnterPositions200ResponseInner implements ModelInterface, ArrayAcces
     /**
      * Gets errors
      *
-     * @return \OpenAPI\Client\Model\ErrorErrorsInner[]
+     * @return \OpenAPI\Client\Model\Error[]
      */
     public function getErrors()
     {
@@ -838,7 +838,7 @@ class CreateEnterPositions200ResponseInner implements ModelInterface, ArrayAcces
     /**
      * Sets errors
      *
-     * @param \OpenAPI\Client\Model\ErrorErrorsInner[] $errors errors
+     * @param \OpenAPI\Client\Model\Error[] $errors errors
      *
      * @return self
      */

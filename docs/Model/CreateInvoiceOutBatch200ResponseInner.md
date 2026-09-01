@@ -45,6 +45,6 @@ Name | Type | Description | Notes
 **customer_order** | [**\OpenAPI\Client\Model\CustomerOrder**](CustomerOrder.md) | Заказ покупателя, с которым связан Счет покупателю | [optional]
 **demands** | [**\OpenAPI\Client\Model\Demand[]**](Demand.md) | Массив ссылок на связанные отгрузки | [optional]
 **payments** | [**\OpenAPI\Client\Model\RetailShiftPaymentsInner[]**](RetailShiftPaymentsInner.md) | Массив ссылок на связанные операции | [optional]
-**errors** | [**\OpenAPI\Client\Model\ErrorErrorsInner[]**](ErrorErrorsInner.md) |  |
+**errors** | [**\OpenAPI\Client\Model\Error[]**](Error.md) |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

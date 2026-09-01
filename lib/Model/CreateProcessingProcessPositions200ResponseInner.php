@@ -73,7 +73,7 @@ class CreateProcessingProcessPositions200ResponseInner implements ModelInterface
         'account_id' => 'string',
         'processingstage' => '\OpenAPI\Client\Model\ProcessingStage',
         'next_positions' => '\OpenAPI\Client\Model\ProcessingProcessPositionNextPositionsInner[]',
-        'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
+        'errors' => '\OpenAPI\Client\Model\Error[]'
     ];
 
     /**
@@ -520,7 +520,7 @@ class CreateProcessingProcessPositions200ResponseInner implements ModelInterface
     /**
      * Gets errors
      *
-     * @return \OpenAPI\Client\Model\ErrorErrorsInner[]
+     * @return \OpenAPI\Client\Model\Error[]
      */
     public function getErrors()
     {
@@ -530,7 +530,7 @@ class CreateProcessingProcessPositions200ResponseInner implements ModelInterface
     /**
      * Sets errors
      *
-     * @param \OpenAPI\Client\Model\ErrorErrorsInner[] $errors errors
+     * @param \OpenAPI\Client\Model\Error[] $errors errors
      *
      * @return self
      */

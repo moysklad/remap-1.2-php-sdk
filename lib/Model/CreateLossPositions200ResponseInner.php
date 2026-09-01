@@ -79,7 +79,7 @@ class CreateLossPositions200ResponseInner implements ModelInterface, ArrayAccess
         'reason' => 'string',
         'slot' => '\OpenAPI\Client\Model\StoreSlot',
         'things' => 'string[]',
-        'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
+        'errors' => '\OpenAPI\Client\Model\Error[]'
     ];
 
     /**
@@ -739,7 +739,7 @@ class CreateLossPositions200ResponseInner implements ModelInterface, ArrayAccess
     /**
      * Gets errors
      *
-     * @return \OpenAPI\Client\Model\ErrorErrorsInner[]
+     * @return \OpenAPI\Client\Model\Error[]
      */
     public function getErrors()
     {
@@ -749,7 +749,7 @@ class CreateLossPositions200ResponseInner implements ModelInterface, ArrayAccess
     /**
      * Sets errors
      *
-     * @param \OpenAPI\Client\Model\ErrorErrorsInner[] $errors errors
+     * @param \OpenAPI\Client\Model\Error[] $errors errors
      *
      * @return self
      */

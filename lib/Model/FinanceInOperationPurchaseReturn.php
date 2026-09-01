@@ -199,7 +199,7 @@ class FinanceInOperationPurchaseReturn extends FinanceInOperationAbstract
         'attributes' => true,
         'files' => true,
         'rate' => false,
-        'positions' => true,
+        'positions' => false,
         'supply' => true,
         'facture_out' => true,
         'facture_in' => true,
@@ -1647,14 +1647,7 @@ class FinanceInOperationPurchaseReturn extends FinanceInOperationAbstract
     public function setPositions($positions)
     {
         if (is_null($positions)) {
-            array_push($this->openAPINullablesSetToNull, 'positions');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('positions', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable positions cannot be null');
         }
         $this->container['positions'] = $positions;
 

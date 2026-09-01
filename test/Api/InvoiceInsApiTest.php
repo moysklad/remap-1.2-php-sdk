@@ -120,6 +120,30 @@ class InvoiceInsApiTest extends TestCase
     }
 
     /**
+     * Test case for createInvoiceInMetadataState
+     *
+     * Создать статус InvoiceIn.
+     *
+     */
+    public function testCreateInvoiceInMetadataState()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for createInvoiceInMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов InvoiceIn.
+     *
+     */
+    public function testCreateInvoiceInMetadataStatesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createInvoiceInNote
      *
      * Добавить Событие Счета поставщику.

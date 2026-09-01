@@ -11,6 +11,6 @@ Name | Type | Description | Notes
 **color** | **int** | Цвет Статуса | [optional]
 **entity_type** | **string** | Тип сущности, к которой относится Статус (ключевое слово в рамках JSON API) | [optional] [readonly]
 **state_type** | **string** | Тип Статуса. Известные значения описаны в StateType | [optional]
-**errors** | [**\OpenAPI\Client\Model\ErrorErrorsInner[]**](ErrorErrorsInner.md) |  |
+**errors** | [**\OpenAPI\Client\Model\Error[]**](Error.md) |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

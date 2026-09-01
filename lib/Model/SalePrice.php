@@ -82,7 +82,7 @@ class SalePrice implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'value' => 'float',
+        'value' => 'double',
         'currency' => null,
         'price_type' => null
     ];

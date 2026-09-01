@@ -46,6 +46,6 @@ Name | Type | Description | Notes
 **purchase_order** | [**\OpenAPI\Client\Model\PurchaseOrder**](PurchaseOrder.md) | Заказ поставщику, с которым связан Счет поставщика | [optional]
 **supplies** | [**\OpenAPI\Client\Model\Supply[]**](Supply.md) | Массив ссылок на связанные приемки | [optional]
 **payments** | [**\OpenAPI\Client\Model\SalesReturnPaymentsInner[]**](SalesReturnPaymentsInner.md) | Массив ссылок на связанные операции | [optional]
-**errors** | [**\OpenAPI\Client\Model\ErrorErrorsInner[]**](ErrorErrorsInner.md) |  |
+**errors** | [**\OpenAPI\Client\Model\Error[]**](Error.md) |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -108,6 +108,30 @@ class DemandsApiTest extends TestCase
     }
 
     /**
+     * Test case for createDemandMetadataState
+     *
+     * Создать статус Отгрузки.
+     *
+     */
+    public function testCreateDemandMetadataState()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for createDemandMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов Отгрузки.
+     *
+     */
+    public function testCreateDemandMetadataStatesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createDemandPosition
      *
      * Создать и обновить позицию Отгрузки.

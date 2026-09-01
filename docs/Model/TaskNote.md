@@ -11,6 +11,6 @@ Name | Type | Description | Notes
 **author_application** | [**\OpenAPI\Client\Model\Application**](Application.md) |  | [optional]
 **moment** | **string** | Момент создания комментария | [optional] [readonly]
 **text** | **string** | Текст комментария | [optional]
-**files** | [**\OpenAPI\Client\Model\TaskNoteFileList**](TaskNoteFileList.md) | Метаданные массива Файлов | [optional]
+**files** | [**\OpenAPI\Client\Model\FileList**](FileList.md) | Метаданные массива Файлов | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

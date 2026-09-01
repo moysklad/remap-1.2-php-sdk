@@ -100,7 +100,7 @@ class FinanceInOperationCommissionReportIn extends FinanceInOperationAbstract
         'published' => 'bool',
         'rate' => '\OpenAPI\Client\Model\CurrencyRate',
         'return_to_commissioner_positions' => '\OpenAPI\Client\Model\CommissionReportInReturnedPositionList',
-        'reward_percent' => 'int',
+        'reward_percent' => 'float',
         'reward_type' => 'string',
         'sales_channel' => '\OpenAPI\Client\Model\SalesChannel',
         'shared' => 'bool',
@@ -153,7 +153,7 @@ class FinanceInOperationCommissionReportIn extends FinanceInOperationAbstract
         'published' => null,
         'rate' => null,
         'return_to_commissioner_positions' => null,
-        'reward_percent' => null,
+        'reward_percent' => 'double',
         'reward_type' => null,
         'sales_channel' => null,
         'shared' => null,
@@ -1582,7 +1582,7 @@ class FinanceInOperationCommissionReportIn extends FinanceInOperationAbstract
     /**
      * Gets reward_percent
      *
-     * @return int|null
+     * @return float|null
      */
     public function getRewardPercent()
     {
@@ -1592,7 +1592,7 @@ class FinanceInOperationCommissionReportIn extends FinanceInOperationAbstract
     /**
      * Sets reward_percent
      *
-     * @param int|null $reward_percent Процент вознаграждения
+     * @param float|null $reward_percent Процент вознаграждения
      *
      * @return self
      */

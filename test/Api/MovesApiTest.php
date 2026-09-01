@@ -120,6 +120,30 @@ class MovesApiTest extends TestCase
     }
 
     /**
+     * Test case for createMoveMetadataState
+     *
+     * Создать статус Перемещения.
+     *
+     */
+    public function testCreateMoveMetadataState()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for createMoveMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов Перемещения.
+     *
+     */
+    public function testCreateMoveMetadataStatesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createMovePosition
      *
      * Создать и обновить позицию Перемещения.

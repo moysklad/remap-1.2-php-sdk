@@ -86,7 +86,7 @@ class CreateBundleComponentsRequest implements ModelInterface, ArrayAccess, \Jso
         'meta' => null,
         'id' => 'uuid',
         'account_id' => 'uuid',
-        'quantity' => 'float',
+        'quantity' => 'double',
         'assortment' => null
     ];
 

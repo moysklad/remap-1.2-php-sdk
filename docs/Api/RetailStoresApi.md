@@ -91,7 +91,7 @@ try {
 ## `createRetailStore()`
 
 ```php
-createRetailStore($retail_store, $accept, $accept_encoding, $expand, $content_type): \OpenAPI\Client\Model\RetailStore
+createRetailStore($retail_store_upsert, $accept, $accept_encoding, $expand, $content_type): \OpenAPI\Client\Model\RetailStore
 ```
 
 Создать точку продаж
@@ -118,14 +118,14 @@ $apiInstance = new OpenAPI\Client\Api\RetailStoresApi(
     new GuzzleHttp\Client(),
     $config
 );
-$retail_store = new \OpenAPI\Client\Model\RetailStore(); // \OpenAPI\Client\Model\RetailStore
+$retail_store_upsert = new \OpenAPI\Client\Model\RetailStoreUpsert(); // \OpenAPI\Client\Model\RetailStoreUpsert
 $accept = 'application/json;charset=utf-8'; // string
 $accept_encoding = 'gzip, deflate, br'; // string
 $expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createRetailStore($retail_store, $accept, $accept_encoding, $expand, $content_type);
+    $result = $apiInstance->createRetailStore($retail_store_upsert, $accept, $accept_encoding, $expand, $content_type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RetailStoresApi->createRetailStore: ', $e->getMessage(), PHP_EOL;
@@ -136,7 +136,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **retail_store** | [**\OpenAPI\Client\Model\RetailStore**](../Model/RetailStore.md)|  | |
+| **retail_store_upsert** | [**\OpenAPI\Client\Model\RetailStoreUpsert**](../Model/RetailStoreUpsert.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
@@ -162,7 +162,7 @@ try {
 ## `createRetailStoresBatch()`
 
 ```php
-createRetailStoresBatch($retail_store, $accept, $accept_encoding, $expand, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
+createRetailStoresBatch($retail_store_upsert, $accept, $accept_encoding, $expand, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
 ```
 
 Массовое создание и обновление точек продаж
@@ -189,14 +189,14 @@ $apiInstance = new OpenAPI\Client\Api\RetailStoresApi(
     new GuzzleHttp\Client(),
     $config
 );
-$retail_store = array(new \OpenAPI\Client\Model\RetailStore()); // \OpenAPI\Client\Model\RetailStore[]
+$retail_store_upsert = array(new \OpenAPI\Client\Model\RetailStoreUpsert()); // \OpenAPI\Client\Model\RetailStoreUpsert[]
 $accept = 'application/json;charset=utf-8'; // string
 $accept_encoding = 'gzip, deflate, br'; // string
 $expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createRetailStoresBatch($retail_store, $accept, $accept_encoding, $expand, $content_type);
+    $result = $apiInstance->createRetailStoresBatch($retail_store_upsert, $accept, $accept_encoding, $expand, $content_type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RetailStoresApi->createRetailStoresBatch: ', $e->getMessage(), PHP_EOL;
@@ -207,7 +207,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **retail_store** | [**\OpenAPI\Client\Model\RetailStore[]**](../Model/RetailStore.md)|  | |
+| **retail_store_upsert** | [**\OpenAPI\Client\Model\RetailStoreUpsert[]**](../Model/RetailStoreUpsert.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
@@ -593,7 +593,7 @@ try {
 ## `updateRetailStore()`
 
 ```php
-updateRetailStore($id, $retail_store, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\RetailStore
+updateRetailStore($id, $retail_store_upsert, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\RetailStore
 ```
 
 Изменить точку продаж
@@ -621,14 +621,14 @@ $apiInstance = new OpenAPI\Client\Api\RetailStoresApi(
     $config
 );
 $id = 'id_example'; // string | ID сущности
-$retail_store = new \OpenAPI\Client\Model\RetailStore(); // \OpenAPI\Client\Model\RetailStore
+$retail_store_upsert = new \OpenAPI\Client\Model\RetailStoreUpsert(); // \OpenAPI\Client\Model\RetailStoreUpsert
 $expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
 $accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->updateRetailStore($id, $retail_store, $expand, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->updateRetailStore($id, $retail_store_upsert, $expand, $accept, $accept_encoding, $content_type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RetailStoresApi->updateRetailStore: ', $e->getMessage(), PHP_EOL;
@@ -640,7 +640,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
-| **retail_store** | [**\OpenAPI\Client\Model\RetailStore**](../Model/RetailStore.md)|  | |
+| **retail_store_upsert** | [**\OpenAPI\Client\Model\RetailStoreUpsert**](../Model/RetailStoreUpsert.md)|  | |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |

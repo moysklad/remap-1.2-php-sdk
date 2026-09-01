@@ -84,7 +84,7 @@ class EmissionOrderPosition extends EntityWithMeta
         'id' => 'string',
         'account_id' => 'string',
         'assortment' => '\OpenAPI\Client\Model\ProductMarker',
-        'quantity' => 'float',
+        'quantity' => 'int',
         'status' => 'string'
     ];
 
@@ -100,7 +100,7 @@ class EmissionOrderPosition extends EntityWithMeta
         'id' => 'uuid',
         'account_id' => 'uuid',
         'assortment' => null,
-        'quantity' => 'double',
+        'quantity' => null,
         'status' => null
     ];
 
@@ -499,7 +499,7 @@ class EmissionOrderPosition extends EntityWithMeta
     /**
      * Gets quantity
      *
-     * @return float|null
+     * @return int|null
      */
     public function getQuantity()
     {
@@ -509,7 +509,7 @@ class EmissionOrderPosition extends EntityWithMeta
     /**
      * Sets quantity
      *
-     * @param float|null $quantity Количество товаров данного вида в позиции
+     * @param int|null $quantity Количество товаров данного вида в позиции
      *
      * @return self
      */

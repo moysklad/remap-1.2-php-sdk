@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Error extends BatchResponseEntity 
+class Error implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
@@ -60,7 +60,7 @@ class Error extends BatchResponseEntity
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Error';
+    protected static $openAPIModelName = 'error';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -68,7 +68,15 @@ class Error extends BatchResponseEntity
       * @var string[]
       */
     protected static $openAPITypes = [
-        'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
+        'error' => 'string',
+        'parameter' => 'string',
+        'code' => 'int',
+        'error_message' => 'string',
+        'more_info' => 'string',
+        'line' => 'int',
+        'column' => 'int',
+        'dependencies' => '\OpenAPI\Client\Model\Meta[]',
+        'meta' => '\OpenAPI\Client\Model\Meta'
     ];
 
     /**
@@ -79,7 +87,15 @@ class Error extends BatchResponseEntity
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'errors' => null
+        'error' => null,
+        'parameter' => null,
+        'code' => null,
+        'error_message' => null,
+        'more_info' => 'uri-reference',
+        'line' => null,
+        'column' => null,
+        'dependencies' => null,
+        'meta' => null
     ];
 
     /**
@@ -88,7 +104,15 @@ class Error extends BatchResponseEntity
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'errors' => false
+        'error' => false,
+        'parameter' => false,
+        'code' => false,
+        'error_message' => false,
+        'more_info' => false,
+        'line' => false,
+        'column' => false,
+        'dependencies' => false,
+        'meta' => false
     ];
 
     /**
@@ -105,7 +129,7 @@ class Error extends BatchResponseEntity
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes + parent::openAPITypes();
+        return self::$openAPITypes;
     }
 
     /**
@@ -115,7 +139,7 @@ class Error extends BatchResponseEntity
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats + parent::openAPIFormats();
+        return self::$openAPIFormats;
     }
 
     /**
@@ -156,7 +180,7 @@ class Error extends BatchResponseEntity
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables + parent::openAPINullables();
+        return self::$openAPINullables;
     }
 
     /**
@@ -208,7 +232,15 @@ class Error extends BatchResponseEntity
      * @var string[]
      */
     protected static $attributeMap = [
-        'errors' => 'errors'
+        'error' => 'error',
+        'parameter' => 'parameter',
+        'code' => 'code',
+        'error_message' => 'error_message',
+        'more_info' => 'moreInfo',
+        'line' => 'line',
+        'column' => 'column',
+        'dependencies' => 'dependencies',
+        'meta' => 'meta'
     ];
 
     /**
@@ -217,7 +249,15 @@ class Error extends BatchResponseEntity
      * @var string[]
      */
     protected static $setters = [
-        'errors' => 'setErrors'
+        'error' => 'setError',
+        'parameter' => 'setParameter',
+        'code' => 'setCode',
+        'error_message' => 'setErrorMessage',
+        'more_info' => 'setMoreInfo',
+        'line' => 'setLine',
+        'column' => 'setColumn',
+        'dependencies' => 'setDependencies',
+        'meta' => 'setMeta'
     ];
 
     /**
@@ -226,7 +266,15 @@ class Error extends BatchResponseEntity
      * @var string[]
      */
     protected static $getters = [
-        'errors' => 'getErrors'
+        'error' => 'getError',
+        'parameter' => 'getParameter',
+        'code' => 'getCode',
+        'error_message' => 'getErrorMessage',
+        'more_info' => 'getMoreInfo',
+        'line' => 'getLine',
+        'column' => 'getColumn',
+        'dependencies' => 'getDependencies',
+        'meta' => 'getMeta'
     ];
 
     /**
@@ -237,7 +285,7 @@ class Error extends BatchResponseEntity
      */
     public static function attributeMap()
     {
-        return parent::attributeMap() + self::$attributeMap;
+        return self::$attributeMap;
     }
 
     /**
@@ -247,7 +295,7 @@ class Error extends BatchResponseEntity
      */
     public static function setters()
     {
-        return parent::setters() + self::$setters;
+        return self::$setters;
     }
 
     /**
@@ -257,7 +305,7 @@ class Error extends BatchResponseEntity
      */
     public static function getters()
     {
-        return parent::getters() + self::$getters;
+        return self::$getters;
     }
 
     /**
@@ -272,6 +320,13 @@ class Error extends BatchResponseEntity
 
 
     
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+    
 
     /**
      * Constructor
@@ -282,10 +337,15 @@ class Error extends BatchResponseEntity
     public function __construct(?array $data = null)
     {
         
-        parent::__construct($data);
-
-        
-        $this->setIfExists('errors', $data ?? [], null);
+        $this->setIfExists('error', $data ?? [], null);
+        $this->setIfExists('parameter', $data ?? [], null);
+        $this->setIfExists('code', $data ?? [], null);
+        $this->setIfExists('error_message', $data ?? [], null);
+        $this->setIfExists('more_info', $data ?? [], null);
+        $this->setIfExists('line', $data ?? [], null);
+        $this->setIfExists('column', $data ?? [], null);
+        $this->setIfExists('dependencies', $data ?? [], null);
+        $this->setIfExists('meta', $data ?? [], null);
     }
 
     /**
@@ -314,12 +374,12 @@ class Error extends BatchResponseEntity
     public function listInvalidProperties()
     {
         
-        $invalidProperties = parent::listInvalidProperties();
         
+        $invalidProperties = [];
         
 
-        if ($this->container['errors'] === null) {
-            $invalidProperties[] = "'errors' can't be null";
+        if ($this->container['error'] === null) {
+            $invalidProperties[] = "'error' can't be null";
         }
         return $invalidProperties;
     }
@@ -337,28 +397,244 @@ class Error extends BatchResponseEntity
 
 
     /**
-     * Gets errors
+     * Gets error
      *
-     * @return \OpenAPI\Client\Model\ErrorErrorsInner[]
+     * @return string
      */
-    public function getErrors()
+    public function getError()
     {
-        return $this->container['errors'];
+        return $this->container['error'];
     }
 
     /**
-     * Sets errors
+     * Sets error
      *
-     * @param \OpenAPI\Client\Model\ErrorErrorsInner[] $errors errors
+     * @param string $error Заголовок ошибки
      *
      * @return self
      */
-    public function setErrors($errors)
+    public function setError($error)
     {
-        if (is_null($errors)) {
-            throw new \InvalidArgumentException('non-nullable errors cannot be null');
+        if (is_null($error)) {
+            throw new \InvalidArgumentException('non-nullable error cannot be null');
         }
-        $this->container['errors'] = $errors;
+        $this->container['error'] = $error;
+
+        return $this;
+    }
+
+    /**
+     * Gets parameter
+     *
+     * @return string|null
+     */
+    public function getParameter()
+    {
+        return $this->container['parameter'];
+    }
+
+    /**
+     * Sets parameter
+     *
+     * @param string|null $parameter Параметр, на котором произошла ошибка
+     *
+     * @return self
+     */
+    public function setParameter($parameter)
+    {
+        if (is_null($parameter)) {
+            throw new \InvalidArgumentException('non-nullable parameter cannot be null');
+        }
+        $this->container['parameter'] = $parameter;
+
+        return $this;
+    }
+
+    /**
+     * Gets code
+     *
+     * @return int|null
+     */
+    public function getCode()
+    {
+        return $this->container['code'];
+    }
+
+    /**
+     * Sets code
+     *
+     * @param int|null $code Код ошибки
+     *
+     * @return self
+     */
+    public function setCode($code)
+    {
+        if (is_null($code)) {
+            throw new \InvalidArgumentException('non-nullable code cannot be null');
+        }
+        $this->container['code'] = $code;
+
+        return $this;
+    }
+
+    /**
+     * Gets error_message
+     *
+     * @return string|null
+     */
+    public function getErrorMessage()
+    {
+        return $this->container['error_message'];
+    }
+
+    /**
+     * Sets error_message
+     *
+     * @param string|null $error_message Сообщение, прилагаемое к ошибке
+     *
+     * @return self
+     */
+    public function setErrorMessage($error_message)
+    {
+        if (is_null($error_message)) {
+            throw new \InvalidArgumentException('non-nullable error_message cannot be null');
+        }
+        $this->container['error_message'] = $error_message;
+
+        return $this;
+    }
+
+    /**
+     * Gets more_info
+     *
+     * @return string|null
+     */
+    public function getMoreInfo()
+    {
+        return $this->container['more_info'];
+    }
+
+    /**
+     * Sets more_info
+     *
+     * @param string|null $more_info Ссылка на документацию с описанием ошибки
+     *
+     * @return self
+     */
+    public function setMoreInfo($more_info)
+    {
+        if (is_null($more_info)) {
+            throw new \InvalidArgumentException('non-nullable more_info cannot be null');
+        }
+        $this->container['more_info'] = $more_info;
+
+        return $this;
+    }
+
+    /**
+     * Gets line
+     *
+     * @return int|null
+     */
+    public function getLine()
+    {
+        return $this->container['line'];
+    }
+
+    /**
+     * Sets line
+     *
+     * @param int|null $line Строка JSON, на которой произошла ошибка
+     *
+     * @return self
+     */
+    public function setLine($line)
+    {
+        if (is_null($line)) {
+            throw new \InvalidArgumentException('non-nullable line cannot be null');
+        }
+        $this->container['line'] = $line;
+
+        return $this;
+    }
+
+    /**
+     * Gets column
+     *
+     * @return int|null
+     */
+    public function getColumn()
+    {
+        return $this->container['column'];
+    }
+
+    /**
+     * Sets column
+     *
+     * @param int|null $column Координата элемента в строке, на котором произошла ошибка
+     *
+     * @return self
+     */
+    public function setColumn($column)
+    {
+        if (is_null($column)) {
+            throw new \InvalidArgumentException('non-nullable column cannot be null');
+        }
+        $this->container['column'] = $column;
+
+        return $this;
+    }
+
+    /**
+     * Gets dependencies
+     *
+     * @return \OpenAPI\Client\Model\Meta[]|null
+     */
+    public function getDependencies()
+    {
+        return $this->container['dependencies'];
+    }
+
+    /**
+     * Sets dependencies
+     *
+     * @param \OpenAPI\Client\Model\Meta[]|null $dependencies Список метаданных зависимых сущностей
+     *
+     * @return self
+     */
+    public function setDependencies($dependencies)
+    {
+        if (is_null($dependencies)) {
+            throw new \InvalidArgumentException('non-nullable dependencies cannot be null');
+        }
+        $this->container['dependencies'] = $dependencies;
+
+        return $this;
+    }
+
+    /**
+     * Gets meta
+     *
+     * @return \OpenAPI\Client\Model\Meta|null
+     */
+    public function getMeta()
+    {
+        return $this->container['meta'];
+    }
+
+    /**
+     * Sets meta
+     *
+     * @param \OpenAPI\Client\Model\Meta|null $meta meta
+     *
+     * @return self
+     */
+    public function setMeta($meta)
+    {
+        if (is_null($meta)) {
+            throw new \InvalidArgumentException('non-nullable meta cannot be null');
+        }
+        $this->container['meta'] = $meta;
 
         return $this;
     }

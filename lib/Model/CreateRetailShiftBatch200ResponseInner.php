@@ -109,7 +109,7 @@ class CreateRetailShiftBatch200ResponseInner implements ModelInterface, ArrayAcc
         'updated' => 'string',
         'vat_enabled' => 'bool',
         'vat_included' => 'bool',
-        'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
+        'errors' => '\OpenAPI\Client\Model\Error[]'
     ];
 
     /**
@@ -1933,7 +1933,7 @@ class CreateRetailShiftBatch200ResponseInner implements ModelInterface, ArrayAcc
     /**
      * Gets errors
      *
-     * @return \OpenAPI\Client\Model\ErrorErrorsInner[]
+     * @return \OpenAPI\Client\Model\Error[]
      */
     public function getErrors()
     {
@@ -1943,7 +1943,7 @@ class CreateRetailShiftBatch200ResponseInner implements ModelInterface, ArrayAcc
     /**
      * Sets errors
      *
-     * @param \OpenAPI\Client\Model\ErrorErrorsInner[] $errors errors
+     * @param \OpenAPI\Client\Model\Error[] $errors errors
      *
      * @return self
      */

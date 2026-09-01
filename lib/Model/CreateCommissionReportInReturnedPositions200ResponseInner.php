@@ -77,7 +77,7 @@ class CreateCommissionReportInReturnedPositions200ResponseInner implements Model
         'vat' => 'int',
         'vat_enabled' => 'bool',
         'assortment' => '\OpenAPI\Client\Model\ProductMarker',
-        'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
+        'errors' => '\OpenAPI\Client\Model\Error[]'
     ];
 
     /**
@@ -665,7 +665,7 @@ class CreateCommissionReportInReturnedPositions200ResponseInner implements Model
     /**
      * Gets errors
      *
-     * @return \OpenAPI\Client\Model\ErrorErrorsInner[]
+     * @return \OpenAPI\Client\Model\Error[]
      */
     public function getErrors()
     {
@@ -675,7 +675,7 @@ class CreateCommissionReportInReturnedPositions200ResponseInner implements Model
     /**
      * Sets errors
      *
-     * @param \OpenAPI\Client\Model\ErrorErrorsInner[] $errors errors
+     * @param \OpenAPI\Client\Model\Error[] $errors errors
      *
      * @return self
      */

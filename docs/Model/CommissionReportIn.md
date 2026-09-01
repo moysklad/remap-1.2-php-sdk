@@ -35,7 +35,7 @@ Name | Type | Description | Notes
 **published** | **bool** | Опубликован ли документ | [optional] [readonly]
 **rate** | [**\OpenAPI\Client\Model\CurrencyRate**](CurrencyRate.md) |  | [optional]
 **return_to_commissioner_positions** | [**\OpenAPI\Client\Model\CommissionReportInReturnedPositionList**](.md) | Метаданные позиций возврата на склад комиссионера Полученного отчета комиссионера | [optional]
-**reward_percent** | **int** | Процент вознаграждения | [optional]
+**reward_percent** | **float** | Процент вознаграждения | [optional]
 **reward_type** | **string** | Тип Вознаграждения. Известные значения описаны в RewardType | [optional]
 **sales_channel** | [**\OpenAPI\Client\Model\SalesChannel**](SalesChannel.md) | Метаданные канала продаж | [optional]
 **shared** | **bool** | Общий доступ | [optional]

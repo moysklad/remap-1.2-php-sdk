@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **files** | [**\OpenAPI\Client\Model\FileList**](FileList.md) | Метаданные массива Файлов | [optional]
 **implementer** | [**\OpenAPI\Client\Model\Employee**](Employee.md) |  | [optional]
 **notes** | [**\OpenAPI\Client\Model\TaskNotes**](TaskNotes.md) |  | [optional]
-**operation** | [**\OpenAPI\Client\Model\DocumentMetadata**](DocumentMetadata.md) |  | [optional]
+**operation** | [**\OpenAPI\Client\Model\EntityWithMeta**](EntityWithMeta.md) |  | [optional]
 **state** | [**\OpenAPI\Client\Model\State**](State.md) | Метаданные типа задачи | [optional]
 **updated** | **string** | Момент последнего обновления Задачи | [optional] [readonly]
 

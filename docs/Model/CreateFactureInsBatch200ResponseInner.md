@@ -34,6 +34,6 @@ Name | Type | Description | Notes
 **payments** | [**\OpenAPI\Client\Model\PaymentOut[]**](PaymentOut.md) | Массив ссылок на связанные исходящие платежи | [optional]
 **incoming_number** | **string** | Входящий номер | [optional]
 **incoming_date** | **string** | Входящая дата | [optional]
-**errors** | [**\OpenAPI\Client\Model\ErrorErrorsInner[]**](ErrorErrorsInner.md) |  |
+**errors** | [**\OpenAPI\Client\Model\Error[]**](Error.md) |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

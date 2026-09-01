@@ -98,7 +98,7 @@ class CreateFactureInsBatch200ResponseInner implements ModelInterface, ArrayAcce
         'payments' => '\OpenAPI\Client\Model\PaymentOut[]',
         'incoming_number' => 'string',
         'incoming_date' => 'string',
-        'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
+        'errors' => '\OpenAPI\Client\Model\Error[]'
     ];
 
     /**
@@ -1487,7 +1487,7 @@ class CreateFactureInsBatch200ResponseInner implements ModelInterface, ArrayAcce
     /**
      * Gets errors
      *
-     * @return \OpenAPI\Client\Model\ErrorErrorsInner[]
+     * @return \OpenAPI\Client\Model\Error[]
      */
     public function getErrors()
     {
@@ -1497,7 +1497,7 @@ class CreateFactureInsBatch200ResponseInner implements ModelInterface, ArrayAcce
     /**
      * Sets errors
      *
-     * @param \OpenAPI\Client\Model\ErrorErrorsInner[] $errors errors
+     * @param \OpenAPI\Client\Model\Error[] $errors errors
      *
      * @return self
      */

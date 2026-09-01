@@ -79,7 +79,7 @@ class AttributeDouble extends AttributeAbstract
       */
     protected static $openAPIFormats = [
         'type' => null,
-        'value' => 'float'
+        'value' => 'double'
     ];
 
     /**

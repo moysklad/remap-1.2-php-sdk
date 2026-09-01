@@ -92,7 +92,7 @@ class Contract extends EntityWithMeta
         'sum' => 'int',
         'contract_type' => 'string',
         'reward_type' => 'string',
-        'reward_percent' => 'int',
+        'reward_percent' => 'float',
         'shared' => 'bool',
         'printed' => 'bool',
         'published' => 'bool',
@@ -128,7 +128,7 @@ class Contract extends EntityWithMeta
         'sum' => null,
         'contract_type' => null,
         'reward_type' => null,
-        'reward_percent' => null,
+        'reward_percent' => 'double',
         'shared' => null,
         'printed' => null,
         'published' => null,
@@ -894,7 +894,7 @@ class Contract extends EntityWithMeta
     /**
      * Gets reward_percent
      *
-     * @return int|null
+     * @return float|null
      */
     public function getRewardPercent()
     {
@@ -904,7 +904,7 @@ class Contract extends EntityWithMeta
     /**
      * Sets reward_percent
      *
-     * @param int|null $reward_percent Вознаграждение в процентах (от 0 до 100)
+     * @param float|null $reward_percent Вознаграждение в процентах (от 0 до 100)
      *
      * @return self
      */

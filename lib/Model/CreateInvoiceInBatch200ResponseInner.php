@@ -110,7 +110,7 @@ class CreateInvoiceInBatch200ResponseInner implements ModelInterface, ArrayAcces
         'purchase_order' => '\OpenAPI\Client\Model\PurchaseOrder',
         'supplies' => '\OpenAPI\Client\Model\Supply[]',
         'payments' => '\OpenAPI\Client\Model\SalesReturnPaymentsInner[]',
-        'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
+        'errors' => '\OpenAPI\Client\Model\Error[]'
     ];
 
     /**
@@ -1930,7 +1930,7 @@ class CreateInvoiceInBatch200ResponseInner implements ModelInterface, ArrayAcces
     /**
      * Gets errors
      *
-     * @return \OpenAPI\Client\Model\ErrorErrorsInner[]
+     * @return \OpenAPI\Client\Model\Error[]
      */
     public function getErrors()
     {
@@ -1940,7 +1940,7 @@ class CreateInvoiceInBatch200ResponseInner implements ModelInterface, ArrayAcces
     /**
      * Sets errors
      *
-     * @param \OpenAPI\Client\Model\ErrorErrorsInner[] $errors errors
+     * @param \OpenAPI\Client\Model\Error[] $errors errors
      *
      * @return self
      */

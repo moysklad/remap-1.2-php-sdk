@@ -68,7 +68,7 @@ class AccumulationDiscountLevelsInner implements ModelInterface, ArrayAccess, \J
       * @var string[]
       */
     protected static $openAPITypes = [
-        'amount' => 'int',
+        'amount' => 'float',
         'discount' => 'float'
     ];
 
@@ -80,8 +80,8 @@ class AccumulationDiscountLevelsInner implements ModelInterface, ArrayAccess, \J
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'amount' => 'int32',
-        'discount' => 'float'
+        'amount' => 'double',
+        'discount' => 'double'
     ];
 
     /**
@@ -347,7 +347,7 @@ class AccumulationDiscountLevelsInner implements ModelInterface, ArrayAccess, \J
     /**
      * Gets amount
      *
-     * @return int|null
+     * @return float|null
      */
     public function getAmount()
     {
@@ -357,7 +357,7 @@ class AccumulationDiscountLevelsInner implements ModelInterface, ArrayAccess, \J
     /**
      * Sets amount
      *
-     * @param int|null $amount Сумма накоплений в копейках
+     * @param float|null $amount Сумма накоплений в копейках
      *
      * @return self
      */

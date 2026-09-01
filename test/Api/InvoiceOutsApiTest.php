@@ -120,6 +120,30 @@ class InvoiceOutsApiTest extends TestCase
     }
 
     /**
+     * Test case for createInvoiceOutMetadataState
+     *
+     * Создать статус InvoiceOut.
+     *
+     */
+    public function testCreateInvoiceOutMetadataState()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for createInvoiceOutMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов InvoiceOut.
+     *
+     */
+    public function testCreateInvoiceOutMetadataStatesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createInvoiceOutNote
      *
      * Добавить Событие Счета покупателю.

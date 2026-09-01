@@ -108,6 +108,30 @@ class LossesApiTest extends TestCase
     }
 
     /**
+     * Test case for createLossMetadataState
+     *
+     * Создать статус Списания.
+     *
+     */
+    public function testCreateLossMetadataState()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for createLossMetadataStatesBatch
+     *
+     * Массовое создание и обновление статусов Списания.
+     *
+     */
+    public function testCreateLossMetadataStatesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createLossPosition
      *
      * Создать и обновить позицию Списания.

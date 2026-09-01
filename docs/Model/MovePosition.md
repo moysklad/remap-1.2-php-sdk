@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **meta** | [**\OpenAPI\Client\Model\Meta**](Meta.md) |  | [optional]
-**id** | **string** | ID позиции | [optional] [readonly]
+**id** | **string** | ID позиции | [optional]
 **account_id** | **string** | ID учетной записи | [optional] [readonly]
 **assortment** | [**\OpenAPI\Client\Model\ProductMarker**](ProductMarker.md) | Метаданные товара/услуги/партии/модификации, которую представляет собой позиция | [optional]
 **overhead** | **int** | Накладные расходы по позиции. Если позиции Перемещения не заданы, накладные расходы на уровне документа задать нельзя. | [optional] [readonly]

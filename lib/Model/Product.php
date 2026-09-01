@@ -162,7 +162,7 @@ class Product extends ProductMarker
         'group' => null,
         'owner' => null,
         'updated' => null,
-        'weight' => 'float',
+        'weight' => 'double',
         'volume' => 'double',
         'buy_price' => null,
         'sale_prices' => null,

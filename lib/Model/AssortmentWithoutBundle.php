@@ -161,7 +161,7 @@ class AssortmentWithoutBundle implements ModelInterface, ArrayAccess, \JsonSeria
         'group' => null,
         'owner' => null,
         'updated' => null,
-        'weight' => 'float',
+        'weight' => 'double',
         'volume' => 'double',
         'buy_price' => null,
         'sale_prices' => null,

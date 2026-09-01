@@ -98,7 +98,7 @@ class BundleComponent implements ModelInterface, ArrayAccess, \JsonSerializable
         'meta' => null,
         'id' => 'uuid',
         'account_id' => 'uuid',
-        'quantity' => 'float',
+        'quantity' => 'double',
         'assortment' => null
     ];
 

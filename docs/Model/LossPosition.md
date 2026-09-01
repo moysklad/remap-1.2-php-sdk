@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **meta** | [**\OpenAPI\Client\Model\Meta**](Meta.md) |  | [optional]
-**id** | **string** | ID позиции | [optional] [readonly]
+**id** | **string** | ID позиции | [optional]
 **account_id** | **string** | ID учетной записи | [optional] [readonly]
 **assortment** | [**\OpenAPI\Client\Model\ProductMarker**](ProductMarker.md) | Метаданные товара/услуги/партии/модификации, которую представляет собой позиция | [optional]
 **declaration** | [**\OpenAPI\Client\Model\DeclarationInner[]**](DeclarationInner.md) | Информация о прослеживаемости импортных товаров. Не входит в ответ по умолчанию; может быть возвращена только при явном запросе &#x60;fields&#x3D;declaration&#x60;. Только для чтения. | [optional] [readonly]

@@ -79,7 +79,7 @@ class CreateInventoryPositions200ResponseInner implements ModelInterface, ArrayA
         'price' => 'float',
         'things' => 'string[]',
         'quantity' => 'float',
-        'errors' => '\OpenAPI\Client\Model\ErrorErrorsInner[]'
+        'errors' => '\OpenAPI\Client\Model\Error[]'
     ];
 
     /**
@@ -724,7 +724,7 @@ class CreateInventoryPositions200ResponseInner implements ModelInterface, ArrayA
     /**
      * Gets errors
      *
-     * @return \OpenAPI\Client\Model\ErrorErrorsInner[]
+     * @return \OpenAPI\Client\Model\Error[]
      */
     public function getErrors()
     {
@@ -734,7 +734,7 @@ class CreateInventoryPositions200ResponseInner implements ModelInterface, ArrayA
     /**
      * Sets errors
      *
-     * @param \OpenAPI\Client\Model\ErrorErrorsInner[] $errors errors
+     * @param \OpenAPI\Client\Model\Error[] $errors errors
      *
      * @return self
      */

@@ -164,7 +164,7 @@ class RetailStoresApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\RetailStore|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\RetailStore|\OpenAPI\Client\Model\Errors
      */
     public function addMasterRetailStore($retail_store_id, $retail_store, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['addMasterRetailStore'][0])
     {
@@ -187,12 +187,11 @@ class RetailStoresApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\RetailStore|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\RetailStore|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function addMasterRetailStoreWithHttpInfo($retail_store_id, $retail_store, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['addMasterRetailStore'][0])
     {
         $request = $this->addMasterRetailStoreRequest($retail_store_id, $retail_store, $accept, $accept_encoding, $expand, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -216,18 +215,19 @@ class RetailStoresApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\RetailStore',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -249,7 +249,7 @@ class RetailStoresApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\RetailStore',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -264,7 +264,7 @@ class RetailStoresApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -322,11 +322,12 @@ class RetailStoresApi
     {
         $returnType = '\OpenAPI\Client\Model\RetailStore';
         $request = $this->addMasterRetailStoreRequest($retail_store_id, $retail_store, $accept, $accept_encoding, $expand, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -428,7 +429,7 @@ class RetailStoresApi
         // path params
         if ($retail_store_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'retailStoreId' . '}',
+                '{retailStoreId}',
                 ObjectSerializer::toPathValue($retail_store_id),
                 $resourcePath
             );
@@ -508,7 +509,7 @@ class RetailStoresApi
      *
      * Создать точку продаж
      *
-     * @param  \OpenAPI\Client\Model\RetailStore $retail_store retail_store (required)
+     * @param  \OpenAPI\Client\Model\RetailStoreUpsert $retail_store_upsert retail_store_upsert (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
@@ -517,11 +518,11 @@ class RetailStoresApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\RetailStore|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\RetailStore|\OpenAPI\Client\Model\Errors
      */
-    public function createRetailStore($retail_store, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createRetailStore'][0])
+    public function createRetailStore($retail_store_upsert, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createRetailStore'][0])
     {
-        list($response) = $this->createRetailStoreWithHttpInfo($retail_store, $accept, $accept_encoding, $expand, $content_type, $contentType);
+        list($response) = $this->createRetailStoreWithHttpInfo($retail_store_upsert, $accept, $accept_encoding, $expand, $content_type, $contentType);
         return $response;
     }
 
@@ -530,7 +531,7 @@ class RetailStoresApi
      *
      * Создать точку продаж
      *
-     * @param  \OpenAPI\Client\Model\RetailStore $retail_store (required)
+     * @param  \OpenAPI\Client\Model\RetailStoreUpsert $retail_store_upsert (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
@@ -539,12 +540,11 @@ class RetailStoresApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\RetailStore|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\RetailStore|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createRetailStoreWithHttpInfo($retail_store, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createRetailStore'][0])
+    public function createRetailStoreWithHttpInfo($retail_store_upsert, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createRetailStore'][0])
     {
-        $request = $this->createRetailStoreRequest($retail_store, $accept, $accept_encoding, $expand, $content_type, $contentType);
-
+        $request = $this->createRetailStoreRequest($retail_store_upsert, $accept, $accept_encoding, $expand, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -568,18 +568,19 @@ class RetailStoresApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\RetailStore',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -601,7 +602,7 @@ class RetailStoresApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\RetailStore',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -616,7 +617,7 @@ class RetailStoresApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -633,7 +634,7 @@ class RetailStoresApi
      *
      * Создать точку продаж
      *
-     * @param  \OpenAPI\Client\Model\RetailStore $retail_store (required)
+     * @param  \OpenAPI\Client\Model\RetailStoreUpsert $retail_store_upsert (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
@@ -643,9 +644,9 @@ class RetailStoresApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createRetailStoreAsync($retail_store, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createRetailStore'][0])
+    public function createRetailStoreAsync($retail_store_upsert, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createRetailStore'][0])
     {
-        return $this->createRetailStoreAsyncWithHttpInfo($retail_store, $accept, $accept_encoding, $expand, $content_type, $contentType)
+        return $this->createRetailStoreAsyncWithHttpInfo($retail_store_upsert, $accept, $accept_encoding, $expand, $content_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -658,7 +659,7 @@ class RetailStoresApi
      *
      * Создать точку продаж
      *
-     * @param  \OpenAPI\Client\Model\RetailStore $retail_store (required)
+     * @param  \OpenAPI\Client\Model\RetailStoreUpsert $retail_store_upsert (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
@@ -668,15 +669,16 @@ class RetailStoresApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createRetailStoreAsyncWithHttpInfo($retail_store, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createRetailStore'][0])
+    public function createRetailStoreAsyncWithHttpInfo($retail_store_upsert, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createRetailStore'][0])
     {
         $returnType = '\OpenAPI\Client\Model\RetailStore';
-        $request = $this->createRetailStoreRequest($retail_store, $accept, $accept_encoding, $expand, $content_type, $contentType);
+        $request = $this->createRetailStoreRequest($retail_store_upsert, $accept, $accept_encoding, $expand, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -712,7 +714,7 @@ class RetailStoresApi
     /**
      * Create request for operation 'createRetailStore'
      *
-     * @param  \OpenAPI\Client\Model\RetailStore $retail_store (required)
+     * @param  \OpenAPI\Client\Model\RetailStoreUpsert $retail_store_upsert (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
@@ -722,13 +724,13 @@ class RetailStoresApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createRetailStoreRequest($retail_store, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createRetailStore'][0])
+    public function createRetailStoreRequest($retail_store_upsert, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createRetailStore'][0])
     {
 
-        // verify the required parameter 'retail_store' is set
-        if ($retail_store === null || (is_array($retail_store) && count($retail_store) === 0)) {
+        // verify the required parameter 'retail_store_upsert' is set
+        if ($retail_store_upsert === null || (is_array($retail_store_upsert) && count($retail_store_upsert) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $retail_store when calling createRetailStore'
+                'Missing the required parameter $retail_store_upsert when calling createRetailStore'
             );
         }
 
@@ -776,12 +778,12 @@ class RetailStoresApi
         );
 
         // for model (json/xml)
-        if (isset($retail_store)) {
+        if (isset($retail_store_upsert)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($retail_store));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($retail_store_upsert));
             } else {
-                $httpBody = $retail_store;
+                $httpBody = $retail_store_upsert;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -842,7 +844,7 @@ class RetailStoresApi
      *
      * Массовое создание и обновление точек продаж
      *
-     * @param  \OpenAPI\Client\Model\RetailStore[] $retail_store retail_store (required)
+     * @param  \OpenAPI\Client\Model\RetailStoreUpsert[] $retail_store_upsert retail_store_upsert (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
@@ -851,11 +853,11 @@ class RetailStoresApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors
      */
-    public function createRetailStoresBatch($retail_store, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createRetailStoresBatch'][0])
+    public function createRetailStoresBatch($retail_store_upsert, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createRetailStoresBatch'][0])
     {
-        list($response) = $this->createRetailStoresBatchWithHttpInfo($retail_store, $accept, $accept_encoding, $expand, $content_type, $contentType);
+        list($response) = $this->createRetailStoresBatchWithHttpInfo($retail_store_upsert, $accept, $accept_encoding, $expand, $content_type, $contentType);
         return $response;
     }
 
@@ -864,7 +866,7 @@ class RetailStoresApi
      *
      * Массовое создание и обновление точек продаж
      *
-     * @param  \OpenAPI\Client\Model\RetailStore[] $retail_store (required)
+     * @param  \OpenAPI\Client\Model\RetailStoreUpsert[] $retail_store_upsert (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
@@ -873,14 +875,14 @@ class RetailStoresApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createRetailStoresBatchWithHttpInfo($retail_store, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createRetailStoresBatch'][0])
+    public function createRetailStoresBatchWithHttpInfo($retail_store_upsert, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createRetailStoresBatch'][0])
     {
-        $request = $this->createRetailStoresBatchRequest($retail_store, $accept, $accept_encoding, $expand, $content_type, $contentType);
-
+        $request = $this->createRetailStoresBatchRequest($retail_store_upsert, $accept, $accept_encoding, $expand, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            $options[RequestOptions::HTTP_ERRORS] = false;
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -901,38 +903,7 @@ class RetailStoresApi
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
-                        $request,
-                        $response,
-                    );
-                default:
-                    return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
-                        $request,
-                        $response,
-                    );
-            }
-
-            
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            return $this->handleResponseWithDataType(
+            return $this->handleResponseMassWithDataType(
                 '\OpenAPI\Client\Model\BatchResponseEntity[]',
                 $request,
                 $response,
@@ -950,7 +921,7 @@ class RetailStoresApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -967,7 +938,7 @@ class RetailStoresApi
      *
      * Массовое создание и обновление точек продаж
      *
-     * @param  \OpenAPI\Client\Model\RetailStore[] $retail_store (required)
+     * @param  \OpenAPI\Client\Model\RetailStoreUpsert[] $retail_store_upsert (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
@@ -977,9 +948,9 @@ class RetailStoresApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createRetailStoresBatchAsync($retail_store, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createRetailStoresBatch'][0])
+    public function createRetailStoresBatchAsync($retail_store_upsert, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createRetailStoresBatch'][0])
     {
-        return $this->createRetailStoresBatchAsyncWithHttpInfo($retail_store, $accept, $accept_encoding, $expand, $content_type, $contentType)
+        return $this->createRetailStoresBatchAsyncWithHttpInfo($retail_store_upsert, $accept, $accept_encoding, $expand, $content_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -992,7 +963,7 @@ class RetailStoresApi
      *
      * Массовое создание и обновление точек продаж
      *
-     * @param  \OpenAPI\Client\Model\RetailStore[] $retail_store (required)
+     * @param  \OpenAPI\Client\Model\RetailStoreUpsert[] $retail_store_upsert (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
@@ -1002,29 +973,22 @@ class RetailStoresApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createRetailStoresBatchAsyncWithHttpInfo($retail_store, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createRetailStoresBatch'][0])
+    public function createRetailStoresBatchAsyncWithHttpInfo($retail_store_upsert, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createRetailStoresBatch'][0])
     {
         $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
-        $request = $this->createRetailStoresBatchRequest($retail_store, $accept, $accept_encoding, $expand, $content_type, $contentType);
+        $request = $this->createRetailStoresBatchRequest($retail_store_upsert, $accept, $accept_encoding, $expand, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
+        $options[RequestOptions::HTTP_ERRORS] = false;
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) use ($returnType, $request) {
+                    return $this->handleResponseMassWithDataType(
+                        $returnType,
+                        $request,
+                        $response,
+                    );
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -1046,7 +1010,7 @@ class RetailStoresApi
     /**
      * Create request for operation 'createRetailStoresBatch'
      *
-     * @param  \OpenAPI\Client\Model\RetailStore[] $retail_store (required)
+     * @param  \OpenAPI\Client\Model\RetailStoreUpsert[] $retail_store_upsert (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
@@ -1056,20 +1020,20 @@ class RetailStoresApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createRetailStoresBatchRequest($retail_store, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createRetailStoresBatch'][0])
+    public function createRetailStoresBatchRequest($retail_store_upsert, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createRetailStoresBatch'][0])
     {
 
-        // verify the required parameter 'retail_store' is set
-        if ($retail_store === null || (is_array($retail_store) && count($retail_store) === 0)) {
+        // verify the required parameter 'retail_store_upsert' is set
+        if ($retail_store_upsert === null || (is_array($retail_store_upsert) && count($retail_store_upsert) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $retail_store when calling createRetailStoresBatch'
+                'Missing the required parameter $retail_store_upsert when calling createRetailStoresBatch'
             );
         }
-        if (count($retail_store) > 1000) {
-            throw new \InvalidArgumentException('invalid value for "$retail_store" when calling RetailStoresApi.createRetailStoresBatch, number of items must be less than or equal to 1000.');
+        if (count($retail_store_upsert) > 1000) {
+            throw new \InvalidArgumentException('invalid value for "$retail_store_upsert" when calling RetailStoresApi.createRetailStoresBatch, number of items must be less than or equal to 1000.');
         }
-        if (count($retail_store) < 1) {
-            throw new \InvalidArgumentException('invalid value for "$retail_store" when calling RetailStoresApi.createRetailStoresBatch, number of items must be greater than or equal to 1.');
+        if (count($retail_store_upsert) < 1) {
+            throw new \InvalidArgumentException('invalid value for "$retail_store_upsert" when calling RetailStoresApi.createRetailStoresBatch, number of items must be greater than or equal to 1.');
         }
         
 
@@ -1116,12 +1080,12 @@ class RetailStoresApi
         );
 
         // for model (json/xml)
-        if (isset($retail_store)) {
+        if (isset($retail_store_upsert)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($retail_store));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($retail_store_upsert));
             } else {
-                $httpBody = $retail_store;
+                $httpBody = $retail_store_upsert;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1213,7 +1177,6 @@ class RetailStoresApi
     public function deleteRetailStoreWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteRetailStore'][0])
     {
         $request = $this->deleteRetailStoreRequest($id, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -1243,7 +1206,7 @@ class RetailStoresApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1295,11 +1258,12 @@ class RetailStoresApi
     {
         $returnType = '';
         $request = $this->deleteRetailStoreRequest($id, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
@@ -1363,7 +1327,7 @@ class RetailStoresApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -1444,7 +1408,7 @@ class RetailStoresApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\Errors
      */
     public function deleteRetailStoresBatch($retail_store, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteRetailStoresBatch'][0])
     {
@@ -1465,12 +1429,11 @@ class RetailStoresApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteRetailStoresBatchWithHttpInfo($retail_store, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteRetailStoresBatch'][0])
     {
         $request = $this->deleteRetailStoresBatchRequest($retail_store, $accept, $accept_encoding, $content_type, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -1494,18 +1457,19 @@ class RetailStoresApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\DeleteRowResult[]',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -1527,7 +1491,7 @@ class RetailStoresApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\DeleteRowResult[]',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -1542,7 +1506,7 @@ class RetailStoresApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1596,11 +1560,12 @@ class RetailStoresApi
     {
         $returnType = '\OpenAPI\Client\Model\DeleteRowResult[]';
         $request = $this->deleteRetailStoresBatchRequest($retail_store, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1774,7 +1739,7 @@ class RetailStoresApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\RetailStoreList|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\RetailStoreList|\OpenAPI\Client\Model\Errors
      */
     public function getMasterRetailStores($retail_store_id, $limit = 1000, $offset = 0, $search = null, $filter = null, $expand = null, $order = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getMasterRetailStores'][0])
     {
@@ -1800,12 +1765,11 @@ class RetailStoresApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\RetailStoreList|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\RetailStoreList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getMasterRetailStoresWithHttpInfo($retail_store_id, $limit = 1000, $offset = 0, $search = null, $filter = null, $expand = null, $order = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getMasterRetailStores'][0])
     {
         $request = $this->getMasterRetailStoresRequest($retail_store_id, $limit, $offset, $search, $filter, $expand, $order, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -1829,18 +1793,19 @@ class RetailStoresApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\RetailStoreList',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -1862,7 +1827,7 @@ class RetailStoresApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\RetailStoreList',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -1877,7 +1842,7 @@ class RetailStoresApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1941,11 +1906,12 @@ class RetailStoresApi
     {
         $returnType = '\OpenAPI\Client\Model\RetailStoreList';
         $request = $this->getMasterRetailStoresRequest($retail_store_id, $limit, $offset, $search, $filter, $expand, $order, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2097,7 +2063,7 @@ class RetailStoresApi
         // path params
         if ($retail_store_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'retailStoreId' . '}',
+                '{retailStoreId}',
                 ObjectSerializer::toPathValue($retail_store_id),
                 $resourcePath
             );
@@ -2178,7 +2144,7 @@ class RetailStoresApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\RetailStore|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\RetailStore|\OpenAPI\Client\Model\Errors
      */
     public function getRetailStoreById($id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRetailStoreById'][0])
     {
@@ -2199,12 +2165,11 @@ class RetailStoresApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\RetailStore|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\RetailStore|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getRetailStoreByIdWithHttpInfo($id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRetailStoreById'][0])
     {
         $request = $this->getRetailStoreByIdRequest($id, $expand, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -2228,18 +2193,19 @@ class RetailStoresApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\RetailStore',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -2261,7 +2227,7 @@ class RetailStoresApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\RetailStore',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -2276,7 +2242,7 @@ class RetailStoresApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2330,11 +2296,12 @@ class RetailStoresApi
     {
         $returnType = '\OpenAPI\Client\Model\RetailStore';
         $request = $this->getRetailStoreByIdRequest($id, $expand, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2422,7 +2389,7 @@ class RetailStoresApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -2507,7 +2474,7 @@ class RetailStoresApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\RetailStoreList|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\RetailStoreList|\OpenAPI\Client\Model\Errors
      */
     public function getRetailStores($limit = 1000, $offset = 0, $search = null, $filter = null, $expand = null, $order = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRetailStores'][0])
     {
@@ -2532,12 +2499,11 @@ class RetailStoresApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\RetailStoreList|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\RetailStoreList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getRetailStoresWithHttpInfo($limit = 1000, $offset = 0, $search = null, $filter = null, $expand = null, $order = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRetailStores'][0])
     {
         $request = $this->getRetailStoresRequest($limit, $offset, $search, $filter, $expand, $order, $accept, $accept_encoding, $contentType);
-
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -2561,18 +2527,19 @@ class RetailStoresApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\RetailStoreList',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -2594,7 +2561,7 @@ class RetailStoresApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\RetailStoreList',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -2609,7 +2576,7 @@ class RetailStoresApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2671,11 +2638,12 @@ class RetailStoresApi
     {
         $returnType = '\OpenAPI\Client\Model\RetailStoreList';
         $request = $this->getRetailStoresRequest($limit, $offset, $search, $filter, $expand, $order, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2885,7 +2853,7 @@ class RetailStoresApi
      * Изменить точку продаж
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\RetailStore $retail_store retail_store (required)
+     * @param  \OpenAPI\Client\Model\RetailStoreUpsert $retail_store_upsert retail_store_upsert (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
@@ -2894,11 +2862,11 @@ class RetailStoresApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\RetailStore|\OpenAPI\Client\Model\ErrorOrArray
+     * @return \OpenAPI\Client\Model\RetailStore|\OpenAPI\Client\Model\Errors
      */
-    public function updateRetailStore($id, $retail_store, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateRetailStore'][0])
+    public function updateRetailStore($id, $retail_store_upsert, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateRetailStore'][0])
     {
-        list($response) = $this->updateRetailStoreWithHttpInfo($id, $retail_store, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        list($response) = $this->updateRetailStoreWithHttpInfo($id, $retail_store_upsert, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
     }
 
@@ -2908,7 +2876,7 @@ class RetailStoresApi
      * Изменить точку продаж
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\RetailStore $retail_store (required)
+     * @param  \OpenAPI\Client\Model\RetailStoreUpsert $retail_store_upsert (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -2917,12 +2885,11 @@ class RetailStoresApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\RetailStore|\OpenAPI\Client\Model\ErrorOrArray, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\RetailStore|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateRetailStoreWithHttpInfo($id, $retail_store, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateRetailStore'][0])
+    public function updateRetailStoreWithHttpInfo($id, $retail_store_upsert, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateRetailStore'][0])
     {
-        $request = $this->updateRetailStoreRequest($id, $retail_store, $expand, $accept, $accept_encoding, $content_type, $contentType);
-
+        $request = $this->updateRetailStoreRequest($id, $retail_store_upsert, $expand, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -2946,18 +2913,19 @@ class RetailStoresApi
             $statusCode = $response->getStatusCode();
 
 
+
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\RetailStore',
                         $request,
-                        $response,
+                        $response
                     );
                 default:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $request,
-                        $response,
+                        $response
                     );
             }
 
@@ -2979,7 +2947,7 @@ class RetailStoresApi
             return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\RetailStore',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -2994,7 +2962,7 @@ class RetailStoresApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorOrArray',
+                        '\OpenAPI\Client\Model\Errors',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3012,7 +2980,7 @@ class RetailStoresApi
      * Изменить точку продаж
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\RetailStore $retail_store (required)
+     * @param  \OpenAPI\Client\Model\RetailStoreUpsert $retail_store_upsert (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -3022,9 +2990,9 @@ class RetailStoresApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateRetailStoreAsync($id, $retail_store, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateRetailStore'][0])
+    public function updateRetailStoreAsync($id, $retail_store_upsert, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateRetailStore'][0])
     {
-        return $this->updateRetailStoreAsyncWithHttpInfo($id, $retail_store, $expand, $accept, $accept_encoding, $content_type, $contentType)
+        return $this->updateRetailStoreAsyncWithHttpInfo($id, $retail_store_upsert, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3038,7 +3006,7 @@ class RetailStoresApi
      * Изменить точку продаж
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\RetailStore $retail_store (required)
+     * @param  \OpenAPI\Client\Model\RetailStoreUpsert $retail_store_upsert (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -3048,15 +3016,16 @@ class RetailStoresApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateRetailStoreAsyncWithHttpInfo($id, $retail_store, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateRetailStore'][0])
+    public function updateRetailStoreAsyncWithHttpInfo($id, $retail_store_upsert, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateRetailStore'][0])
     {
         $returnType = '\OpenAPI\Client\Model\RetailStore';
-        $request = $this->updateRetailStoreRequest($id, $retail_store, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->updateRetailStoreRequest($id, $retail_store_upsert, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
 
         return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
+            ->sendAsync($request, $options)
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) use ($returnType, $request) {
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3093,7 +3062,7 @@ class RetailStoresApi
      * Create request for operation 'updateRetailStore'
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\RetailStore $retail_store (required)
+     * @param  \OpenAPI\Client\Model\RetailStoreUpsert $retail_store_upsert (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -3103,7 +3072,7 @@ class RetailStoresApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateRetailStoreRequest($id, $retail_store, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateRetailStore'][0])
+    public function updateRetailStoreRequest($id, $retail_store_upsert, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateRetailStore'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -3113,10 +3082,10 @@ class RetailStoresApi
             );
         }
 
-        // verify the required parameter 'retail_store' is set
-        if ($retail_store === null || (is_array($retail_store) && count($retail_store) === 0)) {
+        // verify the required parameter 'retail_store_upsert' is set
+        if ($retail_store_upsert === null || (is_array($retail_store_upsert) && count($retail_store_upsert) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $retail_store when calling updateRetailStore'
+                'Missing the required parameter $retail_store_upsert when calling updateRetailStore'
             );
         }
 
@@ -3158,7 +3127,7 @@ class RetailStoresApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
@@ -3172,12 +3141,12 @@ class RetailStoresApi
         );
 
         // for model (json/xml)
-        if (isset($retail_store)) {
+        if (isset($retail_store_upsert)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($retail_store));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($retail_store_upsert));
             } else {
-                $httpBody = $retail_store;
+                $httpBody = $retail_store_upsert;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -3275,6 +3244,63 @@ class RetailStoresApi
                         $content
                     );
                 }
+            }
+        }
+
+        return [
+            ObjectSerializer::deserialize($content, $dataType, []),
+            $response->getStatusCode(),
+            $response->getHeaders()
+        ];
+    }
+
+    private function handleResponseMassWithDataType(
+        string $dataType,
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
+        $rawContent = (string) $response->getBody();
+        if ($rawContent === '') {
+            return [null, $response->getStatusCode(), $response->getHeaders()];
+        }
+
+        try {
+            $content = json_decode($rawContent, false, 512, JSON_THROW_ON_ERROR);
+        } catch (\JsonException $exception) {
+            throw new ApiException(
+                sprintf(
+                    'Error JSON decoding server response (%s)',
+                    $request->getUri()
+                ),
+                $response->getStatusCode(),
+                $response->getHeaders(),
+                $rawContent
+            );
+        }
+
+        if ($response->getStatusCode() < 200 || $response->getStatusCode() > 299) {
+            if (is_object($content)) {
+                $errorsClass = '\OpenAPI\Client\Model\Errors';
+                $error = ObjectSerializer::deserialize($content, $errorsClass, $response->getHeaders());
+                throw new ApiException(
+                    (string) $error,
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                    $rawContent
+                );
+            }
+
+            if (!is_array($content)) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $response->getStatusCode(),
+                        (string) $request->getUri()
+                    ),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                    $rawContent
+                );
             }
         }
 
