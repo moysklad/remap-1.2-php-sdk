@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **id** | **string** | ID позиции | [optional]
 **account_id** | **string** | ID учетной записи | [optional] [readonly]
 **assortment** | [**\OpenAPI\Client\Model\ProductMarker**](ProductMarker.md) | Метаданные товара/услуги/партии/модификации/комплекта, которую представляет собой позиция | [optional]
-**cost** | **int** | Себестоимость | [optional]
+**cost** | **float** | Себестоимость | [optional]
 **country** | [**\OpenAPI\Client\Model\Country**](Country.md) | Метаданные Страны | [optional]
 **discount** | **float** | Процент скидки или наценки | [optional]
 **gtd** | [**\OpenAPI\Client\Model\Gtd**](Gtd.md) |  | [optional]

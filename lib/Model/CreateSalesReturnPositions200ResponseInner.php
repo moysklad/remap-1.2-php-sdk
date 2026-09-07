@@ -72,7 +72,7 @@ class CreateSalesReturnPositions200ResponseInner implements ModelInterface, Arra
         'id' => 'string',
         'account_id' => 'string',
         'assortment' => '\OpenAPI\Client\Model\ProductMarker',
-        'cost' => 'int',
+        'cost' => 'float',
         'country' => '\OpenAPI\Client\Model\Country',
         'discount' => 'float',
         'gtd' => '\OpenAPI\Client\Model\Gtd',
@@ -98,7 +98,7 @@ class CreateSalesReturnPositions200ResponseInner implements ModelInterface, Arra
         'id' => 'uuid',
         'account_id' => 'uuid',
         'assortment' => null,
-        'cost' => null,
+        'cost' => 'double',
         'country' => null,
         'discount' => 'double',
         'gtd' => null,
@@ -564,7 +564,7 @@ class CreateSalesReturnPositions200ResponseInner implements ModelInterface, Arra
     /**
      * Gets cost
      *
-     * @return int|null
+     * @return float|null
      */
     public function getCost()
     {
@@ -574,7 +574,7 @@ class CreateSalesReturnPositions200ResponseInner implements ModelInterface, Arra
     /**
      * Sets cost
      *
-     * @param int|null $cost Себестоимость
+     * @param float|null $cost Себестоимость
      *
      * @return self
      */

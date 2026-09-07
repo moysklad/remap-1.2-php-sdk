@@ -177,7 +177,7 @@ class Organization extends Agent
         'director_sign' => null,
         'chief_account_sign' => null,
         'stamp' => null,
-        'bonus_points' => null,
+        'bonus_points' => 'int64',
         'bonus_program' => null,
         'shared' => null,
         'group' => null,

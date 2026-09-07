@@ -84,7 +84,7 @@ class DemandPosition extends EntityWithMeta
         'id' => 'string',
         'account_id' => 'string',
         'assortment' => '\OpenAPI\Client\Model\ProductMarker',
-        'cost' => 'int',
+        'cost' => 'float',
         'declaration' => '\OpenAPI\Client\Model\DeclarationInner[]',
         'discount' => 'float',
         'pack' => '\OpenAPI\Client\Model\Pack',
@@ -94,7 +94,7 @@ class DemandPosition extends EntityWithMeta
         'things' => 'string[]',
         'tracking_codes' => '\OpenAPI\Client\Model\PositionTrackingCode[]',
         'tracking_codes_1162' => '\OpenAPI\Client\Model\DemandPositionTrackingCode1162[]',
-        'overhead' => 'int',
+        'overhead' => 'float',
         'vat' => 'int',
         'vat_enabled' => 'bool'
     ];
@@ -111,7 +111,7 @@ class DemandPosition extends EntityWithMeta
         'id' => 'uuid',
         'account_id' => 'uuid',
         'assortment' => null,
-        'cost' => null,
+        'cost' => 'double',
         'declaration' => null,
         'discount' => 'double',
         'pack' => null,
@@ -121,7 +121,7 @@ class DemandPosition extends EntityWithMeta
         'things' => null,
         'tracking_codes' => null,
         'tracking_codes_1162' => null,
-        'overhead' => null,
+        'overhead' => 'double',
         'vat' => null,
         'vat_enabled' => null
     ];
@@ -576,7 +576,7 @@ class DemandPosition extends EntityWithMeta
     /**
      * Gets cost
      *
-     * @return int|null
+     * @return float|null
      */
     public function getCost()
     {
@@ -586,7 +586,7 @@ class DemandPosition extends EntityWithMeta
     /**
      * Sets cost
      *
-     * @param int|null $cost Себестоимость (только для услуг)
+     * @param float|null $cost Себестоимость (только для услуг)
      *
      * @return self
      */
@@ -860,7 +860,7 @@ class DemandPosition extends EntityWithMeta
     /**
      * Gets overhead
      *
-     * @return int|null
+     * @return float|null
      */
     public function getOverhead()
     {
@@ -870,7 +870,7 @@ class DemandPosition extends EntityWithMeta
     /**
      * Sets overhead
      *
-     * @param int|null $overhead Накладные расходы по позиции. Если позиции Отгрузки не заданы, накладные расходы на уровне документа задать нельзя.
+     * @param float|null $overhead Накладные расходы по позиции. Если позиции Отгрузки не заданы, накладные расходы на уровне документа задать нельзя.
      *
      * @return self
      */

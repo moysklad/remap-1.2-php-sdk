@@ -107,7 +107,7 @@ class TaxRate extends EntityWithMeta
         'shared' => null,
         'group' => null,
         'updated' => null,
-        'rate' => 'float',
+        'rate' => 'double',
         'archived' => null,
         'comment' => null
     ];

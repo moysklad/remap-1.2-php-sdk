@@ -69,7 +69,7 @@ class ReportDashboardMoney implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var string[]
       */
     protected static $openAPITypes = [
-        'income' => 'int',
+        'income' => 'float',
         'outcome' => 'float',
         'balance' => 'float',
         'today_movement' => 'float',
@@ -84,7 +84,7 @@ class ReportDashboardMoney implements ModelInterface, ArrayAccess, \JsonSerializ
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'income' => 'int32',
+        'income' => 'double',
         'outcome' => 'double',
         'balance' => 'double',
         'today_movement' => 'double',
@@ -369,7 +369,7 @@ class ReportDashboardMoney implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets income
      *
-     * @return int|null
+     * @return float|null
      */
     public function getIncome()
     {
@@ -379,7 +379,7 @@ class ReportDashboardMoney implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets income
      *
-     * @param int|null $income Доходы за период
+     * @param float|null $income Доходы за период
      *
      * @return self
      */

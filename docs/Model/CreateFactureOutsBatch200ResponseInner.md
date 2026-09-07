@@ -31,7 +31,7 @@ Name | Type | Description | Notes
 **sum** | **float** | Сумма Счета-фактуры выданного в копейках | [optional] [readonly]
 **sync_id** | **string** | ID синхронизации | [optional]
 **updated** | **string** | Момент последнего обновления Счета-фактуры выданного | [optional] [readonly]
-**advance_payment_vat** | **int** | Ставка НДС для авансового платежа (в процентах). Доступно только для счетов-фактур с основаниями-платежами. | [optional]
+**advance_payment_vat** | **float** | Ставка НДС для авансового платежа (в процентах). Доступно только для счетов-фактур с основаниями-платежами. | [optional]
 **payment_purpose** | **string** | Назначение платежа. Доступно только для счетов-фактур с основаниями-платежами. | [optional]
 **vat_sum** | **float** | Сумма включая НДС. Доступно только для счетов-фактур с основаниями-платежами. | [optional] [readonly]
 **demands** | [**\OpenAPI\Client\Model\Demand[]**](Demand.md) | Связанные отгрузки (метаданные) | [optional]

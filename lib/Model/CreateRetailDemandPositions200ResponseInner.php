@@ -72,7 +72,7 @@ class CreateRetailDemandPositions200ResponseInner implements ModelInterface, Arr
         'id' => 'string',
         'account_id' => 'string',
         'assortment' => '\OpenAPI\Client\Model\ProductMarker',
-        'cost' => 'int',
+        'cost' => 'float',
         'declaration' => '\OpenAPI\Client\Model\DeclarationInner[]',
         'discount' => 'float',
         'pack' => '\OpenAPI\Client\Model\Pack',
@@ -96,7 +96,7 @@ class CreateRetailDemandPositions200ResponseInner implements ModelInterface, Arr
         'id' => 'uuid',
         'account_id' => 'uuid',
         'assortment' => null,
-        'cost' => null,
+        'cost' => 'double',
         'declaration' => null,
         'discount' => 'double',
         'pack' => null,
@@ -558,7 +558,7 @@ class CreateRetailDemandPositions200ResponseInner implements ModelInterface, Arr
     /**
      * Gets cost
      *
-     * @return int|null
+     * @return float|null
      */
     public function getCost()
     {
@@ -568,7 +568,7 @@ class CreateRetailDemandPositions200ResponseInner implements ModelInterface, Arr
     /**
      * Sets cost
      *
-     * @param int|null $cost Себестоимость (только для услуг)
+     * @param float|null $cost Себестоимость (только для услуг)
      *
      * @return self
      */

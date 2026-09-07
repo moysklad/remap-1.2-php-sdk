@@ -84,7 +84,7 @@ class MovePosition extends EntityWithMeta
         'id' => 'string',
         'account_id' => 'string',
         'assortment' => '\OpenAPI\Client\Model\ProductMarker',
-        'overhead' => 'int',
+        'overhead' => 'float',
         'pack' => '\OpenAPI\Client\Model\Pack',
         'price' => 'float',
         'quantity' => 'float',
@@ -105,7 +105,7 @@ class MovePosition extends EntityWithMeta
         'id' => 'uuid',
         'account_id' => 'uuid',
         'assortment' => null,
-        'overhead' => null,
+        'overhead' => 'double',
         'pack' => null,
         'price' => 'double',
         'quantity' => 'double',
@@ -530,7 +530,7 @@ class MovePosition extends EntityWithMeta
     /**
      * Gets overhead
      *
-     * @return int|null
+     * @return float|null
      */
     public function getOverhead()
     {
@@ -540,7 +540,7 @@ class MovePosition extends EntityWithMeta
     /**
      * Sets overhead
      *
-     * @param int|null $overhead Накладные расходы по позиции. Если позиции Перемещения не заданы, накладные расходы на уровне документа задать нельзя.
+     * @param float|null $overhead Накладные расходы по позиции. Если позиции Перемещения не заданы, накладные расходы на уровне документа задать нельзя.
      *
      * @return self
      */

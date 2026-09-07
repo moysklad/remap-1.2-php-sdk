@@ -89,7 +89,7 @@ class Contract extends EntityWithMeta
         'external_code' => 'string',
         'archived' => 'bool',
         'moment' => 'string',
-        'sum' => 'int',
+        'sum' => 'float',
         'contract_type' => 'string',
         'reward_type' => 'string',
         'reward_percent' => 'float',
@@ -125,7 +125,7 @@ class Contract extends EntityWithMeta
         'external_code' => null,
         'archived' => null,
         'moment' => null,
-        'sum' => null,
+        'sum' => 'double',
         'contract_type' => null,
         'reward_type' => null,
         'reward_percent' => 'double',
@@ -813,7 +813,7 @@ class Contract extends EntityWithMeta
     /**
      * Gets sum
      *
-     * @return int|null
+     * @return float|null
      */
     public function getSum()
     {
@@ -823,7 +823,7 @@ class Contract extends EntityWithMeta
     /**
      * Sets sum
      *
-     * @param int|null $sum Сумма Договора
+     * @param float|null $sum Сумма Договора
      *
      * @return self
      */

@@ -74,7 +74,7 @@ class CreateEnterPositions200ResponseInner implements ModelInterface, ArrayAcces
         'assortment' => '\OpenAPI\Client\Model\ProductMarker',
         'country' => '\OpenAPI\Client\Model\Country',
         'gtd' => '\OpenAPI\Client\Model\Gtd',
-        'overhead' => 'int',
+        'overhead' => 'float',
         'pack' => '\OpenAPI\Client\Model\Pack',
         'price' => 'float',
         'quantity' => 'float',
@@ -98,7 +98,7 @@ class CreateEnterPositions200ResponseInner implements ModelInterface, ArrayAcces
         'assortment' => null,
         'country' => null,
         'gtd' => null,
-        'overhead' => null,
+        'overhead' => 'double',
         'pack' => null,
         'price' => 'double',
         'quantity' => 'double',
@@ -614,7 +614,7 @@ class CreateEnterPositions200ResponseInner implements ModelInterface, ArrayAcces
     /**
      * Gets overhead
      *
-     * @return int|null
+     * @return float|null
      */
     public function getOverhead()
     {
@@ -624,7 +624,7 @@ class CreateEnterPositions200ResponseInner implements ModelInterface, ArrayAcces
     /**
      * Sets overhead
      *
-     * @param int|null $overhead Накладные расходы
+     * @param float|null $overhead Накладные расходы
      *
      * @return self
      */

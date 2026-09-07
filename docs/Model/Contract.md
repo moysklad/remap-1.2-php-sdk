@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **external_code** | **string** | Внешний код Договора | [optional]
 **archived** | **bool** | Добавлен ли Договор в архив | [optional]
 **moment** | **string** | Дата Договора | [optional]
-**sum** | **int** | Сумма Договора | [optional]
+**sum** | **float** | Сумма Договора | [optional]
 **contract_type** | **string** | Тип Договора. Известные значения описаны в ContractType | [optional]
 **reward_type** | **string** | Тип Вознаграждения. Известные значения описаны в RewardType | [optional]
 **reward_percent** | **float** | Вознаграждение в процентах (от 0 до 100) | [optional]

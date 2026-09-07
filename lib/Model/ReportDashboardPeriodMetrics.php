@@ -70,8 +70,8 @@ class ReportDashboardPeriodMetrics implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPITypes = [
         'count' => 'int',
-        'amount' => 'int',
-        'movement_amount' => 'int'
+        'amount' => 'float',
+        'movement_amount' => 'float'
     ];
 
     /**
@@ -82,9 +82,9 @@ class ReportDashboardPeriodMetrics implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'count' => 'int32',
-        'amount' => 'int32',
-        'movement_amount' => 'int32'
+        'count' => 'int64',
+        'amount' => 'double',
+        'movement_amount' => 'double'
     ];
 
     /**
@@ -382,7 +382,7 @@ class ReportDashboardPeriodMetrics implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets amount
      *
-     * @return int|null
+     * @return float|null
      */
     public function getAmount()
     {
@@ -392,7 +392,7 @@ class ReportDashboardPeriodMetrics implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets amount
      *
-     * @param int|null $amount Прибыль
+     * @param float|null $amount Прибыль
      *
      * @return self
      */
@@ -409,7 +409,7 @@ class ReportDashboardPeriodMetrics implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets movement_amount
      *
-     * @return int|null
+     * @return float|null
      */
     public function getMovementAmount()
     {
@@ -419,7 +419,7 @@ class ReportDashboardPeriodMetrics implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets movement_amount
      *
-     * @param int|null $movement_amount Дельта по сравнению с прошлым аналогичным периодом
+     * @param float|null $movement_amount Дельта по сравнению с прошлым аналогичным периодом
      *
      * @return self
      */

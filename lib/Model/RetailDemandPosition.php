@@ -84,7 +84,7 @@ class RetailDemandPosition implements ModelInterface, ArrayAccess, \JsonSerializ
         'id' => 'string',
         'account_id' => 'string',
         'assortment' => '\OpenAPI\Client\Model\ProductMarker',
-        'cost' => 'int',
+        'cost' => 'float',
         'declaration' => '\OpenAPI\Client\Model\DeclarationInner[]',
         'discount' => 'float',
         'pack' => '\OpenAPI\Client\Model\Pack',
@@ -107,7 +107,7 @@ class RetailDemandPosition implements ModelInterface, ArrayAccess, \JsonSerializ
         'id' => 'uuid',
         'account_id' => 'uuid',
         'assortment' => null,
-        'cost' => null,
+        'cost' => 'double',
         'declaration' => null,
         'discount' => 'double',
         'pack' => null,
@@ -560,7 +560,7 @@ class RetailDemandPosition implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets cost
      *
-     * @return int|null
+     * @return float|null
      */
     public function getCost()
     {
@@ -570,7 +570,7 @@ class RetailDemandPosition implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets cost
      *
-     * @param int|null $cost Себестоимость (только для услуг)
+     * @param float|null $cost Себестоимость (только для услуг)
      *
      * @return self
      */

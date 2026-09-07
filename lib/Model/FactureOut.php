@@ -107,7 +107,7 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
         'sum' => 'float',
         'sync_id' => 'string',
         'updated' => 'string',
-        'advance_payment_vat' => 'int',
+        'advance_payment_vat' => 'float',
         'payment_purpose' => 'string',
         'vat_sum' => 'float',
         'demands' => '\OpenAPI\Client\Model\Demand[]',
@@ -153,7 +153,7 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
         'sum' => 'double',
         'sync_id' => 'uuid',
         'updated' => null,
-        'advance_payment_vat' => 'int32',
+        'advance_payment_vat' => 'double',
         'payment_purpose' => null,
         'vat_sum' => 'double',
         'demands' => null,
@@ -1430,7 +1430,7 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets advance_payment_vat
      *
-     * @return int|null
+     * @return float|null
      */
     public function getAdvancePaymentVat()
     {
@@ -1440,7 +1440,7 @@ class FactureOut implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets advance_payment_vat
      *
-     * @param int|null $advance_payment_vat Ставка НДС для авансового платежа (в процентах). Доступно только для счетов-фактур с основаниями-платежами.
+     * @param float|null $advance_payment_vat Ставка НДС для авансового платежа (в процентах). Доступно только для счетов-фактур с основаниями-платежами.
      *
      * @return self
      */

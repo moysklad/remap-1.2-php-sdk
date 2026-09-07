@@ -84,7 +84,7 @@ class RetailSalesReturnPosition extends EntityWithMeta
         'id' => 'string',
         'account_id' => 'string',
         'assortment' => '\OpenAPI\Client\Model\ProductMarker',
-        'cost' => 'int',
+        'cost' => 'float',
         'discount' => 'float',
         'pack' => '\OpenAPI\Client\Model\Pack',
         'price' => 'float',
@@ -106,7 +106,7 @@ class RetailSalesReturnPosition extends EntityWithMeta
         'id' => 'uuid',
         'account_id' => 'uuid',
         'assortment' => null,
-        'cost' => null,
+        'cost' => 'double',
         'discount' => 'double',
         'pack' => null,
         'price' => 'double',
@@ -557,7 +557,7 @@ class RetailSalesReturnPosition extends EntityWithMeta
     /**
      * Gets cost
      *
-     * @return int|null
+     * @return float|null
      */
     public function getCost()
     {
@@ -567,7 +567,7 @@ class RetailSalesReturnPosition extends EntityWithMeta
     /**
      * Sets cost
      *
-     * @param int|null $cost Себестоимость (выводится, если документ был создан без основания)
+     * @param float|null $cost Себестоимость (выводится, если документ был создан без основания)
      *
      * @return self
      */

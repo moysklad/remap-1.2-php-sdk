@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **assortment** | [**\OpenAPI\Client\Model\ProductMarker**](ProductMarker.md) | Метаданные товара/услуги/партии/модификации, которую представляет собой позиция | [optional]
 **country** | [**\OpenAPI\Client\Model\Country**](Country.md) | Метаданные страны | [optional]
 **gtd** | [**\OpenAPI\Client\Model\Gtd**](Gtd.md) |  | [optional]
-**overhead** | **int** | Накладные расходы | [optional] [readonly]
+**overhead** | **float** | Накладные расходы | [optional] [readonly]
 **pack** | [**\OpenAPI\Client\Model\Pack**](Pack.md) | Упаковка Товара | [optional]
 **price** | **float** | Цена товара/услуги в копейках | [optional]
 **quantity** | **float** | Количество товаров данного вида в позиции | [optional]

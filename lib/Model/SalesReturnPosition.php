@@ -84,7 +84,7 @@ class SalesReturnPosition extends EntityWithMeta
         'id' => 'string',
         'account_id' => 'string',
         'assortment' => '\OpenAPI\Client\Model\ProductMarker',
-        'cost' => 'int',
+        'cost' => 'float',
         'country' => '\OpenAPI\Client\Model\Country',
         'discount' => 'float',
         'gtd' => '\OpenAPI\Client\Model\Gtd',
@@ -109,7 +109,7 @@ class SalesReturnPosition extends EntityWithMeta
         'id' => 'uuid',
         'account_id' => 'uuid',
         'assortment' => null,
-        'cost' => null,
+        'cost' => 'double',
         'country' => null,
         'discount' => 'double',
         'gtd' => null,
@@ -562,7 +562,7 @@ class SalesReturnPosition extends EntityWithMeta
     /**
      * Gets cost
      *
-     * @return int|null
+     * @return float|null
      */
     public function getCost()
     {
@@ -572,7 +572,7 @@ class SalesReturnPosition extends EntityWithMeta
     /**
      * Sets cost
      *
-     * @param int|null $cost Себестоимость
+     * @param float|null $cost Себестоимость
      *
      * @return self
      */

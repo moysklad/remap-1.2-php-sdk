@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**value** | **int** | Значение цены | [optional]
+**value** | **float** | Значение цены | [optional]
 **meta** | [**\OpenAPI\Client\Model\Meta**](Meta.md) |  | [optional]
 **price_type** | [**\OpenAPI\Client\Model\PriceType**](PriceType.md) |  | [optional]
 

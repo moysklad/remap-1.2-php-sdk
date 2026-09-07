@@ -92,7 +92,7 @@ class File implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => null,
         'filename' => null,
         'content' => null,
-        'size' => null,
+        'size' => 'int64',
         'created' => null,
         'created_by' => null,
         'tiny' => null,

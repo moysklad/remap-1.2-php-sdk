@@ -72,7 +72,7 @@ class CreateRetailSalesReturnPositions200ResponseInner implements ModelInterface
         'id' => 'string',
         'account_id' => 'string',
         'assortment' => '\OpenAPI\Client\Model\ProductMarker',
-        'cost' => 'int',
+        'cost' => 'float',
         'discount' => 'float',
         'pack' => '\OpenAPI\Client\Model\Pack',
         'price' => 'float',
@@ -95,7 +95,7 @@ class CreateRetailSalesReturnPositions200ResponseInner implements ModelInterface
         'id' => 'uuid',
         'account_id' => 'uuid',
         'assortment' => null,
-        'cost' => null,
+        'cost' => 'double',
         'discount' => 'double',
         'pack' => null,
         'price' => 'double',
@@ -559,7 +559,7 @@ class CreateRetailSalesReturnPositions200ResponseInner implements ModelInterface
     /**
      * Gets cost
      *
-     * @return int|null
+     * @return float|null
      */
     public function getCost()
     {
@@ -569,7 +569,7 @@ class CreateRetailSalesReturnPositions200ResponseInner implements ModelInterface
     /**
      * Sets cost
      *
-     * @param int|null $cost Себестоимость (выводится, если документ был создан без основания)
+     * @param float|null $cost Себестоимость (выводится, если документ был создан без основания)
      *
      * @return self
      */

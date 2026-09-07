@@ -79,7 +79,7 @@ class AttributeLong extends AttributeAbstract
       */
     protected static $openAPIFormats = [
         'type' => null,
-        'value' => null
+        'value' => 'int64'
     ];
 
     /**

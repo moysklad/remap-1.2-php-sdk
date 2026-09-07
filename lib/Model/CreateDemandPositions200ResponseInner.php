@@ -72,7 +72,7 @@ class CreateDemandPositions200ResponseInner implements ModelInterface, ArrayAcce
         'id' => 'string',
         'account_id' => 'string',
         'assortment' => '\OpenAPI\Client\Model\ProductMarker',
-        'cost' => 'int',
+        'cost' => 'float',
         'declaration' => '\OpenAPI\Client\Model\DeclarationInner[]',
         'discount' => 'float',
         'pack' => '\OpenAPI\Client\Model\Pack',
@@ -82,7 +82,7 @@ class CreateDemandPositions200ResponseInner implements ModelInterface, ArrayAcce
         'things' => 'string[]',
         'tracking_codes' => '\OpenAPI\Client\Model\PositionTrackingCode[]',
         'tracking_codes_1162' => '\OpenAPI\Client\Model\DemandPositionTrackingCode1162[]',
-        'overhead' => 'int',
+        'overhead' => 'float',
         'vat' => 'int',
         'vat_enabled' => 'bool',
         'errors' => '\OpenAPI\Client\Model\Error[]'
@@ -100,7 +100,7 @@ class CreateDemandPositions200ResponseInner implements ModelInterface, ArrayAcce
         'id' => 'uuid',
         'account_id' => 'uuid',
         'assortment' => null,
-        'cost' => null,
+        'cost' => 'double',
         'declaration' => null,
         'discount' => 'double',
         'pack' => null,
@@ -110,7 +110,7 @@ class CreateDemandPositions200ResponseInner implements ModelInterface, ArrayAcce
         'things' => null,
         'tracking_codes' => null,
         'tracking_codes_1162' => null,
-        'overhead' => null,
+        'overhead' => 'double',
         'vat' => null,
         'vat_enabled' => null,
         'errors' => null
@@ -578,7 +578,7 @@ class CreateDemandPositions200ResponseInner implements ModelInterface, ArrayAcce
     /**
      * Gets cost
      *
-     * @return int|null
+     * @return float|null
      */
     public function getCost()
     {
@@ -588,7 +588,7 @@ class CreateDemandPositions200ResponseInner implements ModelInterface, ArrayAcce
     /**
      * Sets cost
      *
-     * @param int|null $cost Себестоимость (только для услуг)
+     * @param float|null $cost Себестоимость (только для услуг)
      *
      * @return self
      */
@@ -862,7 +862,7 @@ class CreateDemandPositions200ResponseInner implements ModelInterface, ArrayAcce
     /**
      * Gets overhead
      *
-     * @return int|null
+     * @return float|null
      */
     public function getOverhead()
     {
@@ -872,7 +872,7 @@ class CreateDemandPositions200ResponseInner implements ModelInterface, ArrayAcce
     /**
      * Sets overhead
      *
-     * @param int|null $overhead Накладные расходы по позиции. Если позиции Отгрузки не заданы, накладные расходы на уровне документа задать нельзя.
+     * @param float|null $overhead Накладные расходы по позиции. Если позиции Отгрузки не заданы, накладные расходы на уровне документа задать нельзя.
      *
      * @return self
      */

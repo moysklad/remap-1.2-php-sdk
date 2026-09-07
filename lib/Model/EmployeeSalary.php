@@ -80,7 +80,7 @@ class EmployeeSalary implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'value' => 'float'
+        'value' => 'double'
     ];
 
     /**

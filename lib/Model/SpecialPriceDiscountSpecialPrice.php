@@ -69,7 +69,7 @@ class SpecialPriceDiscountSpecialPrice implements ModelInterface, ArrayAccess, \
       * @var string[]
       */
     protected static $openAPITypes = [
-        'value' => 'int',
+        'value' => 'float',
         'meta' => '\OpenAPI\Client\Model\Meta',
         'price_type' => '\OpenAPI\Client\Model\PriceType'
     ];
@@ -82,7 +82,7 @@ class SpecialPriceDiscountSpecialPrice implements ModelInterface, ArrayAccess, \
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'value' => 'int32',
+        'value' => 'double',
         'meta' => null,
         'price_type' => null
     ];
@@ -355,7 +355,7 @@ class SpecialPriceDiscountSpecialPrice implements ModelInterface, ArrayAccess, \
     /**
      * Gets value
      *
-     * @return int|null
+     * @return float|null
      */
     public function getValue()
     {
@@ -365,7 +365,7 @@ class SpecialPriceDiscountSpecialPrice implements ModelInterface, ArrayAccess, \
     /**
      * Sets value
      *
-     * @param int|null $value Значение цены
+     * @param float|null $value Значение цены
      *
      * @return self
      */

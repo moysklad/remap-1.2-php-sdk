@@ -115,7 +115,7 @@ class Currency extends EntityWithMeta
         'iso_code' => null,
         'multiplicity' => null,
         'rate' => 'double',
-        'margin' => 'float',
+        'margin' => 'double',
         'indirect' => null,
         'rate_update_type' => null,
         'archived' => null,

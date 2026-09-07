@@ -86,7 +86,7 @@ class EnterPosition extends EntityWithMeta
         'assortment' => '\OpenAPI\Client\Model\ProductMarker',
         'country' => '\OpenAPI\Client\Model\Country',
         'gtd' => '\OpenAPI\Client\Model\Gtd',
-        'overhead' => 'int',
+        'overhead' => 'float',
         'pack' => '\OpenAPI\Client\Model\Pack',
         'price' => 'float',
         'quantity' => 'float',
@@ -109,7 +109,7 @@ class EnterPosition extends EntityWithMeta
         'assortment' => null,
         'country' => null,
         'gtd' => null,
-        'overhead' => null,
+        'overhead' => 'double',
         'pack' => null,
         'price' => 'double',
         'quantity' => 'double',
@@ -612,7 +612,7 @@ class EnterPosition extends EntityWithMeta
     /**
      * Gets overhead
      *
-     * @return int|null
+     * @return float|null
      */
     public function getOverhead()
     {
@@ -622,7 +622,7 @@ class EnterPosition extends EntityWithMeta
     /**
      * Sets overhead
      *
-     * @param int|null $overhead Накладные расходы
+     * @param float|null $overhead Накладные расходы
      *
      * @return self
      */

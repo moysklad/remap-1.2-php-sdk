@@ -93,7 +93,7 @@ class SupplyPosition extends EntityWithMeta
         'slot' => '\OpenAPI\Client\Model\StoreSlot',
         'things' => 'string[]',
         'tracking_codes' => '\OpenAPI\Client\Model\PositionTrackingCode[]',
-        'overhead' => 'int',
+        'overhead' => 'float',
         'vat' => 'int',
         'vat_enabled' => 'bool'
     ];
@@ -119,7 +119,7 @@ class SupplyPosition extends EntityWithMeta
         'slot' => null,
         'things' => null,
         'tracking_codes' => null,
-        'overhead' => null,
+        'overhead' => 'double',
         'vat' => null,
         'vat_enabled' => null
     ];
@@ -841,7 +841,7 @@ class SupplyPosition extends EntityWithMeta
     /**
      * Gets overhead
      *
-     * @return int|null
+     * @return float|null
      */
     public function getOverhead()
     {
@@ -851,7 +851,7 @@ class SupplyPosition extends EntityWithMeta
     /**
      * Sets overhead
      *
-     * @param int|null $overhead Накладные расходы по позиции. Если позиции Приемки не заданы, накладные расходы на уровне документа задать нельзя.
+     * @param float|null $overhead Накладные расходы по позиции. Если позиции Приемки не заданы, накладные расходы на уровне документа задать нельзя.
      *
      * @return self
      */
