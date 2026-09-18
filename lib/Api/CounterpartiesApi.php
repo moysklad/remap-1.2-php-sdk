@@ -6139,7 +6139,7 @@ class CounterpartiesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array<string,mixed>|\OpenAPI\Client\Model\Errors
+     * @return \OpenAPI\Client\Model\AuditEventList|\OpenAPI\Client\Model\Errors
      */
     public function getCounterpartyAuditEvents($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getCounterpartyAuditEvents'][0])
     {
@@ -6161,7 +6161,7 @@ class CounterpartiesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of array<string,mixed>|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\AuditEventList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getCounterpartyAuditEventsWithHttpInfo($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getCounterpartyAuditEvents'][0])
     {
@@ -6193,7 +6193,7 @@ class CounterpartiesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        'array<string,mixed>',
+                        '\OpenAPI\Client\Model\AuditEventList',
                         $request,
                         $response
                     );
@@ -6221,7 +6221,7 @@ class CounterpartiesApi
             }
 
             return $this->handleResponseWithDataType(
-                'array<string,mixed>',
+                '\OpenAPI\Client\Model\AuditEventList',
                 $request,
                 $response
             );
@@ -6230,7 +6230,7 @@ class CounterpartiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        'array<string,mixed>',
+                        '\OpenAPI\Client\Model\AuditEventList',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6292,7 +6292,7 @@ class CounterpartiesApi
      */
     public function getCounterpartyAuditEventsAsyncWithHttpInfo($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getCounterpartyAuditEvents'][0])
     {
-        $returnType = 'array<string,mixed>';
+        $returnType = '\OpenAPI\Client\Model\AuditEventList';
         $request = $this->getCounterpartyAuditEventsRequest($id, $limit, $offset, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
 

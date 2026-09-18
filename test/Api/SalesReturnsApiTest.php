@@ -312,6 +312,18 @@ class SalesReturnsApiTest extends TestCase
     }
 
     /**
+     * Test case for moveSalesReturnToTrash
+     *
+     * Удалить Возврат покупателя в корзину.
+     *
+     */
+    public function testMoveSalesReturnToTrash()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for updateSalesReturn
      *
      * Изменить Возврат покупателя.

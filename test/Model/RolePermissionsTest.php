@@ -1,6 +1,6 @@
 <?php
 /**
- * EmployeeRolePermissionsTest
+ * RolePermissionsTest
  *
  * PHP version 8.1
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * EmployeeRolePermissionsTest Class Doc Comment
+ * RolePermissionsTest Class Doc Comment
  *
  * @category    Class
- * @description Список пермиссий (только для индивидуальной роли)
+ * @description Права роли. В JSON передаются объектом, где ключи — названия пермиссий, значения — Boolean или объекты прав сущностей. Для currency, country, taxrate и uom право view неизменяемо и равно ALL; попытка изменить его приводит к ошибке.
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class EmployeeRolePermissionsTest extends TestCase
+class RolePermissionsTest extends TestCase
 {
 
     /**
@@ -71,9 +71,9 @@ class EmployeeRolePermissionsTest extends TestCase
     }
 
     /**
-     * Test "EmployeeRolePermissions"
+     * Test "RolePermissions"
      */
-    public function testEmployeeRolePermissions()
+    public function testRolePermissions()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -197,9 +197,9 @@ class EmployeeRolePermissionsTest extends TestCase
     }
 
     /**
-     * Test attribute "restorefrom_recycle_bin"
+     * Test attribute "restore_from_recycle_bin"
      */
-    public function testPropertyRestorefromRecycleBin()
+    public function testPropertyRestoreFromRecycleBin()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -593,9 +593,27 @@ class EmployeeRolePermissionsTest extends TestCase
     }
 
     /**
+     * Test attribute "enroll_return"
+     */
+    public function testPropertyEnrollReturn()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "enter"
      */
     public function testPropertyEnter()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "expenseitem"
+     */
+    public function testPropertyExpenseitem()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

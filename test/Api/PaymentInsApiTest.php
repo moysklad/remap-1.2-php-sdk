@@ -312,6 +312,18 @@ class PaymentInsApiTest extends TestCase
     }
 
     /**
+     * Test case for movePaymentInToTrash
+     *
+     * Удалить PaymentIn в корзину.
+     *
+     */
+    public function testMovePaymentInToTrash()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for updatePaymentIn
      *
      * Изменить PaymentIn.

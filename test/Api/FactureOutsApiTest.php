@@ -264,6 +264,18 @@ class FactureOutsApiTest extends TestCase
     }
 
     /**
+     * Test case for moveFactureOutToTrash
+     *
+     * Удалить Счет-фактуру выданный в корзину.
+     *
+     */
+    public function testMoveFactureOutToTrash()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for updateFactureOut
      *
      * Изменить Счет-фактуру выданный.

@@ -156,6 +156,18 @@ class CommissionReportOutsApiTest extends TestCase
     }
 
     /**
+     * Test case for createCommissionReportOutNotesBatch
+     *
+     * Массовое создание и обновление Событий Выданного отчета комиссионера.
+     *
+     */
+    public function testCreateCommissionReportOutNotesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createCommissionReportOutPosition
      *
      * Создать и обновить позицию Выданного отчета комиссионера.
@@ -246,6 +258,18 @@ class CommissionReportOutsApiTest extends TestCase
      *
      */
     public function testDeleteCommissionReportOutNote()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteCommissionReportOutNotesBatch
+     *
+     * Массовое удаление Событий Выданного отчета комиссионера.
+     *
+     */
+    public function testDeleteCommissionReportOutNotesBatch()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -402,6 +426,18 @@ class CommissionReportOutsApiTest extends TestCase
      *
      */
     public function testGetCommissionReportOutPositions()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for moveCommissionReportOutToTrash
+     *
+     * Удалить CommissionReportOut в корзину.
+     *
+     */
+    public function testMoveCommissionReportOutToTrash()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

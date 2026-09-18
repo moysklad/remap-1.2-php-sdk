@@ -144,6 +144,18 @@ class PurchaseOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for createPurchaseOrderNotesBatch
+     *
+     * Массовое создание и обновление Событий Заказа поставщику.
+     *
+     */
+    public function testCreatePurchaseOrderNotesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createPurchaseOrderPosition
      *
      * Создать и обновить позицию Заказа поставщику.
@@ -222,6 +234,18 @@ class PurchaseOrdersApiTest extends TestCase
      *
      */
     public function testDeletePurchaseOrderNote()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deletePurchaseOrderNotesBatch
+     *
+     * Массовое удаление Событий Заказа поставщику.
+     *
+     */
+    public function testDeletePurchaseOrderNotesBatch()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -378,6 +402,18 @@ class PurchaseOrdersApiTest extends TestCase
      *
      */
     public function testGetPurchaseOrderTemplate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for movePurchaseOrderToTrash
+     *
+     * Удалить PurchaseOrder в корзину.
+     *
+     */
+    public function testMovePurchaseOrderToTrash()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

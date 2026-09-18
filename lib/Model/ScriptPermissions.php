@@ -35,6 +35,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * ScriptPermissions Class Doc Comment
  *
  * @category Class
+ * @description Права на задачи. NO для view и done допустимо, только если остальные права равны NO. Если view отличается от NO, поле done обязательно и должно совпадать с view. Известные значения описаны в ScriptPermissionValue.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -378,7 +379,7 @@ class ScriptPermissions implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets view
      *
-     * @param string|null $view Смотреть. Известные значения описаны в ScriptPermissionValue.
+     * @param string|null $view Смотреть. Допустимые значения — NO, AUTHOR_OR_ASSIGNEE, ALL. Известные значения описаны в ScriptPermissionValue.
      *
      * @return self
      */
@@ -405,7 +406,7 @@ class ScriptPermissions implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets create
      *
-     * @param string|null $create Создавать. Известные значения описаны в ScriptPermissionValue.
+     * @param string|null $create Создавать. Допустимые значения — NO, ALL. Область действия не шире view; поле может отсутствовать. Известные значения описаны в ScriptPermissionValue.
      *
      * @return self
      */
@@ -432,7 +433,7 @@ class ScriptPermissions implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets update
      *
-     * @param string|null $update Редактировать. Известные значения описаны в ScriptPermissionValue.
+     * @param string|null $update Редактировать. Допустимые значения — NO, AUTHOR, AUTHOR_OR_ASSIGNEE, ALL. Область действия не шире view; поле может отсутствовать. Известные значения описаны в ScriptPermissionValue.
      *
      * @return self
      */
@@ -459,7 +460,7 @@ class ScriptPermissions implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets delete
      *
-     * @param string|null $delete Удалять. Известные значения описаны в ScriptPermissionValue.
+     * @param string|null $delete Удалять. Допустимые значения — NO, AUTHOR, AUTHOR_OR_ASSIGNEE, ALL. Область действия не шире update; поле может отсутствовать. Известные значения описаны в ScriptPermissionValue.
      *
      * @return self
      */
@@ -486,7 +487,7 @@ class ScriptPermissions implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets done
      *
-     * @param string|null $done Выполнять. Известные значения описаны в ScriptPermissionValue.
+     * @param string|null $done Выполнять. Допустимые значения — NO, ASSIGNEE, AUTHOR_OR_ASSIGNEE, ALL. Область действия не шире view; при view, отличном от NO, обязательно и совпадает с view. Известные значения описаны в ScriptPermissionValue.
      *
      * @return self
      */

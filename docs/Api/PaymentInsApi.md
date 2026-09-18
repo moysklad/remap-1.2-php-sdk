@@ -24,6 +24,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**getPaymentInMetadataAttributeById()**](PaymentInsApi.md#getPaymentInMetadataAttributeById) | **GET** /entity/paymentin/metadata/attributes/{id} | Отдельное доп. поле PaymentIn |
 | [**getPaymentInMetadataStateById()**](PaymentInsApi.md#getPaymentInMetadataStateById) | **GET** /entity/paymentin/metadata/states/{id} | Отдельный статус PaymentIn |
 | [**getPaymentInTemplate()**](PaymentInsApi.md#getPaymentInTemplate) | **PUT** /entity/paymentin/new | Шаблон PaymentIns |
+| [**movePaymentInToTrash()**](PaymentInsApi.md#movePaymentInToTrash) | **POST** /entity/paymentin/{id}/trash | Удалить PaymentIn в корзину |
 | [**updatePaymentIn()**](PaymentInsApi.md#updatePaymentIn) | **PUT** /entity/paymentin/{id} | Изменить PaymentIn |
 | [**updatePaymentInMetadataAttributeById()**](PaymentInsApi.md#updatePaymentInMetadataAttributeById) | **PUT** /entity/paymentin/metadata/attributes/{id} | Обновить отдельное доп. поле PaymentIn |
 | [**updatePaymentInMetadataStateById()**](PaymentInsApi.md#updatePaymentInMetadataStateById) | **PUT** /entity/paymentin/metadata/states/{id} | Обновить отдельный статус PaymentIn |
@@ -1403,6 +1404,72 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `movePaymentInToTrash()`
+
+```php
+movePaymentInToTrash($id, $accept, $accept_encoding)
+```
+
+Удалить PaymentIn в корзину
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\PaymentInsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->movePaymentInToTrash($id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling PaymentInsApi->movePaymentInToTrash: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: `application/json`, `text/html;charset=UTF-8`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

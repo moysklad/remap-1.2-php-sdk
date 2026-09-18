@@ -26,6 +26,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**getDemandPositionById()**](DemandsApi.md#getDemandPositionById) | **GET** /entity/demand/{id}/positions/{positionId} | Получить позицию Отгрузки |
 | [**getDemandPositions()**](DemandsApi.md#getDemandPositions) | **GET** /entity/demand/{id}/positions | Получить позиции Отгрузки |
 | [**getDemandTemplate()**](DemandsApi.md#getDemandTemplate) | **PUT** /entity/demand/new | Шаблон Отгрузки |
+| [**moveDemandToTrash()**](DemandsApi.md#moveDemandToTrash) | **POST** /entity/demand/{id}/trash | Удалить Отгрузку в корзину |
 | [**updateDemand()**](DemandsApi.md#updateDemand) | **PUT** /entity/demand/{id} | Изменить Отгрузку |
 | [**updateDemandMetadataAttributeById()**](DemandsApi.md#updateDemandMetadataAttributeById) | **PUT** /entity/demand/metadata/attributes/{id} | Обновить отдельное доп. поле Отгрузки |
 | [**updateDemandMetadataStateById()**](DemandsApi.md#updateDemandMetadataStateById) | **PUT** /entity/demand/metadata/states/{id} | Обновить отдельный статус Отгрузки |
@@ -1584,6 +1585,72 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `moveDemandToTrash()`
+
+```php
+moveDemandToTrash($id, $accept, $accept_encoding)
+```
+
+Удалить Отгрузку в корзину
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\DemandsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->moveDemandToTrash($id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling DemandsApi->moveDemandToTrash: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: `application/json`, `text/html;charset=UTF-8`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

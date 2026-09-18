@@ -30,6 +30,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**getCommissionReportInPositions()**](CommissionReportInsApi.md#getCommissionReportInPositions) | **GET** /entity/commissionreportin/{id}/positions | Получить позиции CommissionReportIn |
 | [**getCommissionReportInReturnedPositionById()**](CommissionReportInsApi.md#getCommissionReportInReturnedPositionById) | **GET** /entity/commissionreportin/{id}/returntocommissionerpositions/{positionId} | Получить позицию возврата на склад комиссионера |
 | [**getCommissionReportInReturnedPositions()**](CommissionReportInsApi.md#getCommissionReportInReturnedPositions) | **GET** /entity/commissionreportin/{id}/returntocommissionerpositions | Получить позиции возврата на склад комиссионера |
+| [**moveCommissionReportInToTrash()**](CommissionReportInsApi.md#moveCommissionReportInToTrash) | **POST** /entity/commissionreportin/{id}/trash | Удалить CommissionReportIn в корзину |
 | [**updateCommissionReportIn()**](CommissionReportInsApi.md#updateCommissionReportIn) | **PUT** /entity/commissionreportin/{id} | Изменить CommissionReportIn |
 | [**updateCommissionReportInMetadataAttributeById()**](CommissionReportInsApi.md#updateCommissionReportInMetadataAttributeById) | **PUT** /entity/commissionreportin/metadata/attributes/{id} | Обновить отдельное доп. поле CommissionReportIn |
 | [**updateCommissionReportInMetadataStateById()**](CommissionReportInsApi.md#updateCommissionReportInMetadataStateById) | **PUT** /entity/commissionreportin/metadata/states/{id} | Обновить отдельный статус CommissionReportIn |
@@ -1866,6 +1867,72 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\CommissionReportInReturnedPosition[]**](../Model/CommissionReportInReturnedPosition.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `moveCommissionReportInToTrash()`
+
+```php
+moveCommissionReportInToTrash($id, $accept, $accept_encoding)
+```
+
+Удалить CommissionReportIn в корзину
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CommissionReportInsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->moveCommissionReportInToTrash($id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling CommissionReportInsApi->moveCommissionReportInToTrash: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 

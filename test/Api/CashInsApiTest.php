@@ -264,6 +264,18 @@ class CashInsApiTest extends TestCase
     }
 
     /**
+     * Test case for moveCashInToTrash
+     *
+     * Удалить CashIn в корзину.
+     *
+     */
+    public function testMoveCashInToTrash()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for updateCashIn
      *
      * Изменить CashIn.

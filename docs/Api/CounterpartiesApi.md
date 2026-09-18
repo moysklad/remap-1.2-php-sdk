@@ -1397,7 +1397,7 @@ try {
 ## `getCounterpartyAuditEvents()`
 
 ```php
-getCounterpartyAuditEvents($id, $limit, $offset, $accept, $accept_encoding): array<string,mixed>
+getCounterpartyAuditEvents($id, $limit, $offset, $accept, $accept_encoding): \OpenAPI\Client\Model\AuditEventList
 ```
 
 Получить события аудита контрагента
@@ -1452,7 +1452,7 @@ try {
 
 ### Return type
 
-**array<string,mixed>**
+[**\OpenAPI\Client\Model\AuditEventList**](../Model/AuditEventList.md)
 
 ### Authorization
 

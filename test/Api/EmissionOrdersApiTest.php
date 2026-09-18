@@ -228,6 +228,18 @@ class EmissionOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for moveEmissionOrderToTrash
+     *
+     * Удалить Заказ кодов маркировки в корзину.
+     *
+     */
+    public function testMoveEmissionOrderToTrash()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for updateEmissionOrder
      *
      * Изменить Заказ кодов маркировки.

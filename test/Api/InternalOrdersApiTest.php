@@ -336,6 +336,18 @@ class InternalOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for moveInternalOrderToTrash
+     *
+     * Удалить InternalOrder в корзину.
+     *
+     */
+    public function testMoveInternalOrderToTrash()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for updateInternalOrder
      *
      * Изменить InternalOrder.

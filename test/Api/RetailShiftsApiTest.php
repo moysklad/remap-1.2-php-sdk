@@ -204,6 +204,18 @@ class RetailShiftsApiTest extends TestCase
     }
 
     /**
+     * Test case for moveRetailShiftToTrash
+     *
+     * Удалить Розничную смену в корзину.
+     *
+     */
+    public function testMoveRetailShiftToTrash()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for updateRetailShift
      *
      * Изменить Розничную смену.

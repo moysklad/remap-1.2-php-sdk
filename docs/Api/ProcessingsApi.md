@@ -34,6 +34,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**getProcessingProducts()**](ProcessingsApi.md#getProcessingProducts) | **GET** /entity/processing/{id}/products | Получить продукты Processing |
 | [**getProcessingTemplate()**](ProcessingsApi.md#getProcessingTemplate) | **PUT** /entity/processing/new | Шаблон Processing |
 | [**getProcessings()**](ProcessingsApi.md#getProcessings) | **GET** /entity/processing | Получить список Processing |
+| [**moveProcessingToTrash()**](ProcessingsApi.md#moveProcessingToTrash) | **POST** /entity/processing/{id}/trash | Удалить Processing в корзину |
 | [**updateProcessing()**](ProcessingsApi.md#updateProcessing) | **PUT** /entity/processing/{id} | Изменить Processing |
 | [**updateProcessingMaterial()**](ProcessingsApi.md#updateProcessingMaterial) | **PUT** /entity/processing/{id}/materials/{positionId} | Изменить материал Processing |
 | [**updateProcessingMetadataAttributeById()**](ProcessingsApi.md#updateProcessingMetadataAttributeById) | **PUT** /entity/processing/metadata/attributes/{id} | Обновить отдельное доп. поле Processing |
@@ -2121,6 +2122,72 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\ProcessingList**](../Model/ProcessingList.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `moveProcessingToTrash()`
+
+```php
+moveProcessingToTrash($id, $accept, $accept_encoding)
+```
+
+Удалить Processing в корзину
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\ProcessingsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->moveProcessingToTrash($id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling ProcessingsApi->moveProcessingToTrash: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 

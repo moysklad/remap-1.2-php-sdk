@@ -1786,7 +1786,7 @@ class Product extends ProductMarker
     /**
      * Sets packs
      *
-     * @param \OpenAPI\Client\Model\Pack[]|null $packs Упаковки товара
+     * @param \OpenAPI\Client\Model\Pack[]|null $packs Упаковки товара. При обновлении переданный массив полностью заменяет упаковки; пустой массив удаляет все. Для создания упаковки передайте uom и quantity.
      *
      * @return self
      */

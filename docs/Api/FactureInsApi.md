@@ -20,6 +20,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**getFactureInMetadataStateById()**](FactureInsApi.md#getFactureInMetadataStateById) | **GET** /entity/facturein/metadata/states/{id} | Отдельный статус Счета-фактуры полученного |
 | [**getFactureInTemplate()**](FactureInsApi.md#getFactureInTemplate) | **PUT** /entity/facturein/new | Шаблон Счета-фактуры полученного |
 | [**getFactureIns()**](FactureInsApi.md#getFactureIns) | **GET** /entity/facturein | Получить список Счетов-фактур полученных |
+| [**moveFactureInToTrash()**](FactureInsApi.md#moveFactureInToTrash) | **POST** /entity/facturein/{id}/trash | Удалить Счет-фактуру полученный в корзину |
 | [**updateFactureIn()**](FactureInsApi.md#updateFactureIn) | **PUT** /entity/facturein/{id} | Изменить Счет-фактуру полученный |
 | [**updateFactureInMetadataAttributeById()**](FactureInsApi.md#updateFactureInMetadataAttributeById) | **PUT** /entity/facturein/metadata/attributes/{id} | Обновить отдельное доп. поле Счета-фактуры полученного |
 | [**updateFactureInMetadataStateById()**](FactureInsApi.md#updateFactureInMetadataStateById) | **PUT** /entity/facturein/metadata/states/{id} | Обновить отдельный статус Счета-фактуры полученного |
@@ -1118,6 +1119,72 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\FactureInList**](../Model/FactureInList.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `moveFactureInToTrash()`
+
+```php
+moveFactureInToTrash($id, $accept, $accept_encoding)
+```
+
+Удалить Счет-фактуру полученный в корзину
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\FactureInsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->moveFactureInToTrash($id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling FactureInsApi->moveFactureInToTrash: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 

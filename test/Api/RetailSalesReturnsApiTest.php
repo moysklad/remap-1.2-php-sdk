@@ -300,6 +300,18 @@ class RetailSalesReturnsApiTest extends TestCase
     }
 
     /**
+     * Test case for moveRetailSalesReturnToTrash
+     *
+     * Удалить Розничный возврат в корзину.
+     *
+     */
+    public function testMoveRetailSalesReturnToTrash()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for updateRetailSalesReturn
      *
      * Изменить Розничный возврат.

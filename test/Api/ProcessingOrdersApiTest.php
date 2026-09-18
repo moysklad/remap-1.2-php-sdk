@@ -384,6 +384,18 @@ class ProcessingOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for moveProcessingOrderToTrash
+     *
+     * Удалить ProcessingOrder в корзину.
+     *
+     */
+    public function testMoveProcessingOrderToTrash()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for updateProcessingOrder
      *
      * Изменить ProcessingOrder.

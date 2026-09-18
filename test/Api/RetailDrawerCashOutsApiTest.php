@@ -312,6 +312,18 @@ class RetailDrawerCashOutsApiTest extends TestCase
     }
 
     /**
+     * Test case for moveRetailDrawerCashOutToTrash
+     *
+     * Удалить Выплату денег в корзину.
+     *
+     */
+    public function testMoveRetailDrawerCashOutToTrash()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for updateRetailDrawerCashOut
      *
      * Изменить Выплату денег.

@@ -156,6 +156,18 @@ class SuppliesApiTest extends TestCase
     }
 
     /**
+     * Test case for createSupplyNotesBatch
+     *
+     * Массовое создание и обновление Событий Приемки.
+     *
+     */
+    public function testCreateSupplyNotesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createSupplyPosition
      *
      * Создать и обновить позицию Приемки.
@@ -246,6 +258,18 @@ class SuppliesApiTest extends TestCase
      *
      */
     public function testDeleteSupplyNote()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteSupplyNotesBatch
+     *
+     * Массовое удаление Событий Приемки.
+     *
+     */
+    public function testDeleteSupplyNotesBatch()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

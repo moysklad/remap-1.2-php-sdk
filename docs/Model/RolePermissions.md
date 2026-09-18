@@ -1,4 +1,4 @@
-# # EmployeeRolePermissions
+# # RolePermissions
 
 ## Properties
 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **owner_assign** | **bool** | Передавать владение аккаунтом | [optional]
 **owner_data_update** | **bool** | Редактировать данные владельца | [optional]
 **purchase_control** | **bool** | Управление закупками | [optional]
-**restorefrom_recycle_bin** | **bool** | Восстанавливать документы | [optional]
+**restore_from_recycle_bin** | **bool** | Восстанавливать документы из корзины | [optional]
 **send_email** | **bool** | Отправлять почту | [optional]
 **subscription_control** | **bool** | Управление подпиской | [optional]
 **view_audit** | **bool** | Просматривать аудит | [optional]
@@ -61,7 +61,9 @@ Name | Type | Description | Notes
 **retire_order_osu** | [**\OpenAPI\Client\Model\Permissions**](Permissions.md) |  | [optional]
 **employee** | [**\OpenAPI\Client\Model\Permissions**](Permissions.md) |  | [optional]
 **enroll_order** | [**\OpenAPI\Client\Model\Permissions**](Permissions.md) |  | [optional]
+**enroll_return** | [**\OpenAPI\Client\Model\Permissions**](Permissions.md) |  | [optional]
 **enter** | [**\OpenAPI\Client\Model\Permissions**](Permissions.md) |  | [optional]
+**expenseitem** | [**\OpenAPI\Client\Model\Permissions**](Permissions.md) |  | [optional]
 **facture_in** | [**\OpenAPI\Client\Model\Permissions**](Permissions.md) |  | [optional]
 **facture_out** | [**\OpenAPI\Client\Model\Permissions**](Permissions.md) |  | [optional]
 **good** | [**\OpenAPI\Client\Model\Permissions**](Permissions.md) |  | [optional]

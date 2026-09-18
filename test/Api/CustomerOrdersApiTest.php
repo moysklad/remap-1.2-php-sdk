@@ -144,6 +144,18 @@ class CustomerOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for createCustomerOrderNotesBatch
+     *
+     * Массовое создание и обновление Событий Заказа покупателя.
+     *
+     */
+    public function testCreateCustomerOrderNotesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createCustomerOrderPosition
      *
      * Создать и обновить позицию Заказа покупателя.
@@ -234,6 +246,18 @@ class CustomerOrdersApiTest extends TestCase
      *
      */
     public function testDeleteCustomerOrderNote()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteCustomerOrderNotesBatch
+     *
+     * Массовое удаление Событий Заказа покупателя.
+     *
+     */
+    public function testDeleteCustomerOrderNotesBatch()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -450,6 +474,18 @@ class CustomerOrdersApiTest extends TestCase
      *
      */
     public function testGetCustomerOrderTemplate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for moveCustomerOrderToTrash
+     *
+     * Удалить CustomerOrders в корзину.
+     *
+     */
+    public function testMoveCustomerOrderToTrash()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

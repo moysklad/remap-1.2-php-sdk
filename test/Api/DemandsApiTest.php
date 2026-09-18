@@ -336,6 +336,18 @@ class DemandsApiTest extends TestCase
     }
 
     /**
+     * Test case for moveDemandToTrash
+     *
+     * Удалить Отгрузку в корзину.
+     *
+     */
+    public function testMoveDemandToTrash()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for updateDemand
      *
      * Изменить Отгрузку.

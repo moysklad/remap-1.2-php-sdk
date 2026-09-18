@@ -26,6 +26,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**getInternalOrderPositionById()**](InternalOrdersApi.md#getInternalOrderPositionById) | **GET** /entity/internalorder/{id}/positions/{positionId} | Получить позицию InternalOrder |
 | [**getInternalOrderPositions()**](InternalOrdersApi.md#getInternalOrderPositions) | **GET** /entity/internalorder/{id}/positions | Получить позиции InternalOrder |
 | [**getInternalOrderTemplate()**](InternalOrdersApi.md#getInternalOrderTemplate) | **PUT** /entity/internalorder/new | Шаблон InternalOrder |
+| [**moveInternalOrderToTrash()**](InternalOrdersApi.md#moveInternalOrderToTrash) | **POST** /entity/internalorder/{id}/trash | Удалить InternalOrder в корзину |
 | [**updateInternalOrder()**](InternalOrdersApi.md#updateInternalOrder) | **PUT** /entity/internalorder/{id} | Изменить InternalOrder |
 | [**updateInternalOrderMetadataAttributeById()**](InternalOrdersApi.md#updateInternalOrderMetadataAttributeById) | **PUT** /entity/internalorder/metadata/attributes/{id} | Обновить отдельное доп. поле InternalOrder |
 | [**updateInternalOrderMetadataStateById()**](InternalOrdersApi.md#updateInternalOrderMetadataStateById) | **PUT** /entity/internalorder/metadata/states/{id} | Обновить отдельный статус InternalOrder |
@@ -1574,6 +1575,72 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `moveInternalOrderToTrash()`
+
+```php
+moveInternalOrderToTrash($id, $accept, $accept_encoding)
+```
+
+Удалить InternalOrder в корзину
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\InternalOrdersApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->moveInternalOrderToTrash($id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling InternalOrdersApi->moveInternalOrderToTrash: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: `application/json`, `text/html;charset=UTF-8`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

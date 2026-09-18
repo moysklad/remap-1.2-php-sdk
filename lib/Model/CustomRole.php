@@ -35,7 +35,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * CustomRole Class Doc Comment
  *
  * @category Class
- * @description Пользовательская роль
+ * @description Пользовательская роль — именованный набор прав сотрудника. Код сущности в URL — role, значение meta.type — customrole. Получать и изменять роли можно от лица сотрудника с правами системного администратора или от лица Решения. Использование пользовательских ролей доступно на тарифах «Профессиональный» и «Корпоративный».
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -83,7 +83,7 @@ class CustomRole implements ModelInterface, ArrayAccess, \JsonSerializable
         'meta' => '\OpenAPI\Client\Model\Meta',
         'id' => 'string',
         'name' => 'string',
-        'permissions' => '\OpenAPI\Client\Model\EmployeeRolePermissions'
+        'permissions' => '\OpenAPI\Client\Model\RolePermissions'
     ];
 
     /**
@@ -441,7 +441,7 @@ class CustomRole implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      *
-     * @param string|null $name Наименование пользовательской роли
+     * @param string|null $name Наименование пользовательской роли. Необходимо при создании.
      *
      * @return self
      */
@@ -462,7 +462,7 @@ class CustomRole implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets permissions
      *
-     * @return \OpenAPI\Client\Model\EmployeeRolePermissions|null
+     * @return \OpenAPI\Client\Model\RolePermissions|null
      */
     public function getPermissions()
     {
@@ -472,7 +472,7 @@ class CustomRole implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets permissions
      *
-     * @param \OpenAPI\Client\Model\EmployeeRolePermissions|null $permissions permissions
+     * @param \OpenAPI\Client\Model\RolePermissions|null $permissions permissions
      *
      * @return self
      */

@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * PermissionsTest Class Doc Comment
  *
  * @category    Class
- * @description Permissions
+ * @description Права на сущность. BASE включает view, create, update и delete; DICTIONARY дополнительно включает print; OPERATION — print и approve. Для GTINList используются view, create и delete, для trackingCodeList — view и print. Известные значения описаны в PermissionValue. Область действия расширяется по цепочкам NO → OWN → OWN_SHARED → OWN_GROUP_SHARED → ALL и NO → OWN → OWN_GROUP → OWN_GROUP_SHARED → ALL. Неуказанное действие запрещено сотруднику.
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

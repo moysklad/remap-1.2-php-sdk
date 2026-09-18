@@ -156,6 +156,18 @@ class InvoiceInsApiTest extends TestCase
     }
 
     /**
+     * Test case for createInvoiceInNotesBatch
+     *
+     * Массовое создание и обновление Событий Счета поставщику.
+     *
+     */
+    public function testCreateInvoiceInNotesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createInvoiceInPositions
      *
      * Создать позицию Счета поставщику.
@@ -246,6 +258,18 @@ class InvoiceInsApiTest extends TestCase
      *
      */
     public function testDeleteInvoiceInNote()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteInvoiceInNotesBatch
+     *
+     * Массовое удаление Событий Счета поставщику.
+     *
+     */
+    public function testDeleteInvoiceInNotesBatch()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -426,6 +450,18 @@ class InvoiceInsApiTest extends TestCase
      *
      */
     public function testGetInvoiceInTemplate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for moveInvoiceInToTrash
+     *
+     * Удалить Счет поставщику в корзину.
+     *
+     */
+    public function testMoveInvoiceInToTrash()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

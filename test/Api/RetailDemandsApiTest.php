@@ -324,6 +324,18 @@ class RetailDemandsApiTest extends TestCase
     }
 
     /**
+     * Test case for moveRetailDemandToTrash
+     *
+     * Удалить Розничную продажу в корзину.
+     *
+     */
+    public function testMoveRetailDemandToTrash()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for updateRetailDemand
      *
      * Изменить Розничную продажу.

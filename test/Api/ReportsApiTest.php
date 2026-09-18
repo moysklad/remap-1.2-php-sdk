@@ -72,6 +72,30 @@ class ReportsApiTest extends TestCase
     }
 
     /**
+     * Test case for getReportCounterparty
+     *
+     * Получить показатели контрагентов.
+     *
+     */
+    public function testGetReportCounterparty()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getReportCounterpartyById
+     *
+     * Получить показатели контрагента.
+     *
+     */
+    public function testGetReportCounterpartyById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getReportDashboardDay
      *
      * Получить показатели за день.
@@ -108,6 +132,30 @@ class ReportsApiTest extends TestCase
     }
 
     /**
+     * Test case for getReportMoneyByAccount
+     *
+     * Получить остатки денежных средств по кассам и счетам.
+     *
+     */
+    public function testGetReportMoneyByAccount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getReportMoneyPlotSeries
+     *
+     * Получить график движения денежных средств.
+     *
+     */
+    public function testGetReportMoneyPlotSeries()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getReportOrdersPlotSeries
      *
      * Получить показатели заказов.
@@ -120,12 +168,120 @@ class ReportsApiTest extends TestCase
     }
 
     /**
+     * Test case for getReportProfitByCounterparty
+     *
+     * Получить прибыльность по покупателям.
+     *
+     */
+    public function testGetReportProfitByCounterparty()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getReportProfitByEmployee
+     *
+     * Получить прибыльность по сотрудникам.
+     *
+     */
+    public function testGetReportProfitByEmployee()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getReportProfitByProduct
+     *
+     * Получить прибыльность по товарам.
+     *
+     */
+    public function testGetReportProfitByProduct()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getReportProfitBySalesChannel
+     *
+     * Получить прибыльность по каналам продаж.
+     *
+     */
+    public function testGetReportProfitBySalesChannel()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getReportProfitByVariant
+     *
+     * Получить прибыльность по модификациям.
+     *
+     */
+    public function testGetReportProfitByVariant()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getReportSalesPlotSeries
      *
      * Получить показатели продаж.
      *
      */
     public function testGetReportSalesPlotSeries()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getReportTurnoverAll
+     *
+     * Получить Обороты по товарам.
+     *
+     */
+    public function testGetReportTurnoverAll()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getReportTurnoverByOperations
+     *
+     * Получить Обороты по товару с детализацией по документам.
+     *
+     */
+    public function testGetReportTurnoverByOperations()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getReportTurnoverByStore
+     *
+     * Получить Обороты по товару с детализацией по складам.
+     *
+     */
+    public function testGetReportTurnoverByStore()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for queryReportCounterparty
+     *
+     * Получить выборочные показатели контрагентов.
+     *
+     */
+    public function testQueryReportCounterparty()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

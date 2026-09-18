@@ -23,6 +23,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**getRetailDrawerCashInMetadataAttributeById()**](RetailDrawerCashInsApi.md#getRetailDrawerCashInMetadataAttributeById) | **GET** /entity/retaildrawercashin/metadata/attributes/{id} | Отдельное доп. поле Внесений денег |
 | [**getRetailDrawerCashInMetadataStateById()**](RetailDrawerCashInsApi.md#getRetailDrawerCashInMetadataStateById) | **GET** /entity/retaildrawercashin/metadata/states/{id} | Отдельный статус Внесений денег |
 | [**getRetailDrawerCashInTemplate()**](RetailDrawerCashInsApi.md#getRetailDrawerCashInTemplate) | **PUT** /entity/retaildrawercashin/new | Шаблон Внесения денег |
+| [**moveRetailDrawerCashInToTrash()**](RetailDrawerCashInsApi.md#moveRetailDrawerCashInToTrash) | **POST** /entity/retaildrawercashin/{id}/trash | Удалить Внесение денег в корзину |
 | [**updateRetailDrawerCashIn()**](RetailDrawerCashInsApi.md#updateRetailDrawerCashIn) | **PUT** /entity/retaildrawercashin/{id} | Изменить Внесение денег |
 | [**updateRetailDrawerCashInMetadataAttributeById()**](RetailDrawerCashInsApi.md#updateRetailDrawerCashInMetadataAttributeById) | **PUT** /entity/retaildrawercashin/metadata/attributes/{id} | Обновить отдельное доп. поле Внесений денег |
 | [**updateRetailDrawerCashInMetadataStateById()**](RetailDrawerCashInsApi.md#updateRetailDrawerCashInMetadataStateById) | **PUT** /entity/retaildrawercashin/metadata/states/{id} | Обновить отдельный статус Внесений денег |
@@ -1335,6 +1336,72 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `moveRetailDrawerCashInToTrash()`
+
+```php
+moveRetailDrawerCashInToTrash($id, $accept, $accept_encoding)
+```
+
+Удалить Внесение денег в корзину
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\RetailDrawerCashInsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->moveRetailDrawerCashInToTrash($id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling RetailDrawerCashInsApi->moveRetailDrawerCashInToTrash: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: `application/json`, `text/html;charset=UTF-8`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

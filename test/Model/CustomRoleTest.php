@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * CustomRoleTest Class Doc Comment
  *
  * @category    Class
- * @description Пользовательская роль
+ * @description Пользовательская роль — именованный набор прав сотрудника. Код сущности в URL — role, значение meta.type — customrole. Получать и изменять роли можно от лица сотрудника с правами системного администратора или от лица Решения. Использование пользовательских ролей доступно на тарифах «Профессиональный» и «Корпоративный».
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

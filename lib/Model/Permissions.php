@@ -35,6 +35,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * Permissions Class Doc Comment
  *
  * @category Class
+ * @description Права на сущность. BASE включает view, create, update и delete; DICTIONARY дополнительно включает print; OPERATION — print и approve. Для GTINList используются view, create и delete, для trackingCodeList — view и print. Известные значения описаны в PermissionValue. Область действия расширяется по цепочкам NO → OWN → OWN_SHARED → OWN_GROUP_SHARED → ALL и NO → OWN → OWN_GROUP → OWN_GROUP_SHARED → ALL. Неуказанное действие запрещено сотруднику.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -412,7 +413,7 @@ class Permissions implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets print
      *
-     * @param string|null $print Печатать. Известные значения описаны в PermissionValue.
+     * @param string|null $print Печатать. Известные значения описаны в PermissionValue. Значение совпадает с view или отсутствует.
      *
      * @return self
      */
@@ -439,7 +440,7 @@ class Permissions implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets create
      *
-     * @param string|null $create Создавать. Известные значения описаны в PermissionValue.
+     * @param string|null $create Создавать. Известные значения описаны в PermissionValue. Значение совпадает с view или отсутствует.
      *
      * @return self
      */
@@ -466,7 +467,7 @@ class Permissions implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets update
      *
-     * @param string|null $update Редактировать. Известные значения описаны в PermissionValue.
+     * @param string|null $update Редактировать. Известные значения описаны в PermissionValue. Область действия не шире view; поле может отсутствовать.
      *
      * @return self
      */
@@ -493,7 +494,7 @@ class Permissions implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets delete
      *
-     * @param string|null $delete Удалять. Известные значения описаны в PermissionValue.
+     * @param string|null $delete Удалять. Известные значения описаны в PermissionValue. Значение совпадает с update или отсутствует.
      *
      * @return self
      */
@@ -520,7 +521,7 @@ class Permissions implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets approve
      *
-     * @param string|null $approve Проводить. Известные значения описаны в PermissionValue.
+     * @param string|null $approve Проводить. Известные значения описаны в PermissionValue. Значение совпадает с view или отсутствует.
      *
      * @return self
      */

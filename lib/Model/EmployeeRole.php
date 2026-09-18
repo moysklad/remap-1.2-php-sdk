@@ -35,7 +35,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * EmployeeRole Class Doc Comment
  *
  * @category Class
- * @description Роль сотрудника
+ * @description Роль сотрудника: владелец аккаунта, системный администратор, кассир, сотрудник производства, пользовательская или индивидуальная роль. Системные роли имеют meta.type &#x3D; systemrole, индивидуальная — individualrole, пользовательская — customrole. Пользовательская роль описана в CustomRole. Роль сотрудника производства доступна при подключенной опции «Управление производством». Пользовательские роли и индивидуальные права, отличающиеся от значений по умолчанию, доступны на тарифах «Профессиональный» и «Корпоративный».
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -70,7 +70,7 @@ class EmployeeRole implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'meta' => '\OpenAPI\Client\Model\Meta',
-        'permissions' => '\OpenAPI\Client\Model\EmployeeRolePermissions'
+        'permissions' => '\OpenAPI\Client\Model\RolePermissions'
     ];
 
     /**
@@ -375,7 +375,7 @@ class EmployeeRole implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets permissions
      *
-     * @return \OpenAPI\Client\Model\EmployeeRolePermissions|null
+     * @return \OpenAPI\Client\Model\RolePermissions|null
      */
     public function getPermissions()
     {
@@ -385,7 +385,7 @@ class EmployeeRole implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets permissions
      *
-     * @param \OpenAPI\Client\Model\EmployeeRolePermissions|null $permissions permissions
+     * @param \OpenAPI\Client\Model\RolePermissions|null $permissions permissions
      *
      * @return self
      */

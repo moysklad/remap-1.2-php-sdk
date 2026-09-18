@@ -1,6 +1,6 @@
 <?php
 /**
- * EmployeeRolePermissions
+ * RolePermissions
  *
  * PHP version 8.1
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * EmployeeRolePermissions Class Doc Comment
+ * RolePermissions Class Doc Comment
  *
  * @category Class
- * @description Список пермиссий (только для индивидуальной роли)
+ * @description Права роли. В JSON передаются объектом, где ключи — названия пермиссий, значения — Boolean или объекты прав сущностей. Для currency, country, taxrate и uom право view неизменяемо и равно ALL; попытка изменить его приводит к ошибке.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class EmployeeRolePermissions implements ModelInterface, ArrayAccess, \JsonSerializable
+class RolePermissions implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
@@ -61,7 +61,7 @@ class EmployeeRolePermissions implements ModelInterface, ArrayAccess, \JsonSeria
       *
       * @var string
       */
-    protected static $openAPIModelName = 'EmployeeRole_permissions';
+    protected static $openAPIModelName = 'RolePermissions';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -82,7 +82,7 @@ class EmployeeRolePermissions implements ModelInterface, ArrayAccess, \JsonSeria
         'owner_assign' => 'bool',
         'owner_data_update' => 'bool',
         'purchase_control' => 'bool',
-        'restorefrom_recycle_bin' => 'bool',
+        'restore_from_recycle_bin' => 'bool',
         'send_email' => 'bool',
         'subscription_control' => 'bool',
         'view_audit' => 'bool',
@@ -126,7 +126,9 @@ class EmployeeRolePermissions implements ModelInterface, ArrayAccess, \JsonSeria
         'retire_order_osu' => '\OpenAPI\Client\Model\Permissions',
         'employee' => '\OpenAPI\Client\Model\Permissions',
         'enroll_order' => '\OpenAPI\Client\Model\Permissions',
+        'enroll_return' => '\OpenAPI\Client\Model\Permissions',
         'enter' => '\OpenAPI\Client\Model\Permissions',
+        'expenseitem' => '\OpenAPI\Client\Model\Permissions',
         'facture_in' => '\OpenAPI\Client\Model\Permissions',
         'facture_out' => '\OpenAPI\Client\Model\Permissions',
         'good' => '\OpenAPI\Client\Model\Permissions',
@@ -193,7 +195,7 @@ class EmployeeRolePermissions implements ModelInterface, ArrayAccess, \JsonSeria
         'owner_assign' => null,
         'owner_data_update' => null,
         'purchase_control' => null,
-        'restorefrom_recycle_bin' => null,
+        'restore_from_recycle_bin' => null,
         'send_email' => null,
         'subscription_control' => null,
         'view_audit' => null,
@@ -237,7 +239,9 @@ class EmployeeRolePermissions implements ModelInterface, ArrayAccess, \JsonSeria
         'retire_order_osu' => null,
         'employee' => null,
         'enroll_order' => null,
+        'enroll_return' => null,
         'enter' => null,
+        'expenseitem' => null,
         'facture_in' => null,
         'facture_out' => null,
         'good' => null,
@@ -302,7 +306,7 @@ class EmployeeRolePermissions implements ModelInterface, ArrayAccess, \JsonSeria
         'owner_assign' => false,
         'owner_data_update' => false,
         'purchase_control' => false,
-        'restorefrom_recycle_bin' => false,
+        'restore_from_recycle_bin' => false,
         'send_email' => false,
         'subscription_control' => false,
         'view_audit' => false,
@@ -346,7 +350,9 @@ class EmployeeRolePermissions implements ModelInterface, ArrayAccess, \JsonSeria
         'retire_order_osu' => false,
         'employee' => false,
         'enroll_order' => false,
+        'enroll_return' => false,
         'enter' => false,
+        'expenseitem' => false,
         'facture_in' => false,
         'facture_out' => false,
         'good' => false,
@@ -522,7 +528,7 @@ class EmployeeRolePermissions implements ModelInterface, ArrayAccess, \JsonSeria
         'owner_assign' => 'ownerAssign',
         'owner_data_update' => 'ownerDataUpdate',
         'purchase_control' => 'purchaseControl',
-        'restorefrom_recycle_bin' => 'resto$refromRecycleBin',
+        'restore_from_recycle_bin' => 'restoreFromRecycleBin',
         'send_email' => 'sendEmail',
         'subscription_control' => 'subscriptionControl',
         'view_audit' => 'viewAudit',
@@ -566,7 +572,9 @@ class EmployeeRolePermissions implements ModelInterface, ArrayAccess, \JsonSeria
         'retire_order_osu' => 'retireOrderOSU',
         'employee' => 'employee',
         'enroll_order' => 'enrollOrder',
+        'enroll_return' => 'enrollReturn',
         'enter' => 'enter',
+        'expenseitem' => 'expenseitem',
         'facture_in' => 'factureIn',
         'facture_out' => 'factureOut',
         'good' => 'good',
@@ -631,7 +639,7 @@ class EmployeeRolePermissions implements ModelInterface, ArrayAccess, \JsonSeria
         'owner_assign' => 'setOwnerAssign',
         'owner_data_update' => 'setOwnerDataUpdate',
         'purchase_control' => 'setPurchaseControl',
-        'restorefrom_recycle_bin' => 'setRestorefromRecycleBin',
+        'restore_from_recycle_bin' => 'setRestoreFromRecycleBin',
         'send_email' => 'setSendEmail',
         'subscription_control' => 'setSubscriptionControl',
         'view_audit' => 'setViewAudit',
@@ -675,7 +683,9 @@ class EmployeeRolePermissions implements ModelInterface, ArrayAccess, \JsonSeria
         'retire_order_osu' => 'setRetireOrderOsu',
         'employee' => 'setEmployee',
         'enroll_order' => 'setEnrollOrder',
+        'enroll_return' => 'setEnrollReturn',
         'enter' => 'setEnter',
+        'expenseitem' => 'setExpenseitem',
         'facture_in' => 'setFactureIn',
         'facture_out' => 'setFactureOut',
         'good' => 'setGood',
@@ -740,7 +750,7 @@ class EmployeeRolePermissions implements ModelInterface, ArrayAccess, \JsonSeria
         'owner_assign' => 'getOwnerAssign',
         'owner_data_update' => 'getOwnerDataUpdate',
         'purchase_control' => 'getPurchaseControl',
-        'restorefrom_recycle_bin' => 'getRestorefromRecycleBin',
+        'restore_from_recycle_bin' => 'getRestoreFromRecycleBin',
         'send_email' => 'getSendEmail',
         'subscription_control' => 'getSubscriptionControl',
         'view_audit' => 'getViewAudit',
@@ -784,7 +794,9 @@ class EmployeeRolePermissions implements ModelInterface, ArrayAccess, \JsonSeria
         'retire_order_osu' => 'getRetireOrderOsu',
         'employee' => 'getEmployee',
         'enroll_order' => 'getEnrollOrder',
+        'enroll_return' => 'getEnrollReturn',
         'enter' => 'getEnter',
+        'expenseitem' => 'getExpenseitem',
         'facture_in' => 'getFactureIn',
         'facture_out' => 'getFactureOut',
         'good' => 'getGood',
@@ -903,7 +915,7 @@ class EmployeeRolePermissions implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('owner_assign', $data ?? [], null);
         $this->setIfExists('owner_data_update', $data ?? [], null);
         $this->setIfExists('purchase_control', $data ?? [], null);
-        $this->setIfExists('restorefrom_recycle_bin', $data ?? [], null);
+        $this->setIfExists('restore_from_recycle_bin', $data ?? [], null);
         $this->setIfExists('send_email', $data ?? [], null);
         $this->setIfExists('subscription_control', $data ?? [], null);
         $this->setIfExists('view_audit', $data ?? [], null);
@@ -947,7 +959,9 @@ class EmployeeRolePermissions implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('retire_order_osu', $data ?? [], null);
         $this->setIfExists('employee', $data ?? [], null);
         $this->setIfExists('enroll_order', $data ?? [], null);
+        $this->setIfExists('enroll_return', $data ?? [], null);
         $this->setIfExists('enter', $data ?? [], null);
+        $this->setIfExists('expenseitem', $data ?? [], null);
         $this->setIfExists('facture_in', $data ?? [], null);
         $this->setIfExists('facture_out', $data ?? [], null);
         $this->setIfExists('good', $data ?? [], null);
@@ -1390,28 +1404,28 @@ class EmployeeRolePermissions implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Gets restorefrom_recycle_bin
+     * Gets restore_from_recycle_bin
      *
      * @return bool|null
      */
-    public function getRestorefromRecycleBin()
+    public function getRestoreFromRecycleBin()
     {
-        return $this->container['restorefrom_recycle_bin'];
+        return $this->container['restore_from_recycle_bin'];
     }
 
     /**
-     * Sets restorefrom_recycle_bin
+     * Sets restore_from_recycle_bin
      *
-     * @param bool|null $restorefrom_recycle_bin Восстанавливать документы
+     * @param bool|null $restore_from_recycle_bin Восстанавливать документы из корзины
      *
      * @return self
      */
-    public function setRestorefromRecycleBin($restorefrom_recycle_bin)
+    public function setRestoreFromRecycleBin($restore_from_recycle_bin)
     {
-        if (is_null($restorefrom_recycle_bin)) {
-            throw new \InvalidArgumentException('non-nullable restorefrom_recycle_bin cannot be null');
+        if (is_null($restore_from_recycle_bin)) {
+            throw new \InvalidArgumentException('non-nullable restore_from_recycle_bin cannot be null');
         }
-        $this->container['restorefrom_recycle_bin'] = $restorefrom_recycle_bin;
+        $this->container['restore_from_recycle_bin'] = $restore_from_recycle_bin;
 
         return $this;
     }
@@ -2578,6 +2592,33 @@ class EmployeeRolePermissions implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
+     * Gets enroll_return
+     *
+     * @return \OpenAPI\Client\Model\Permissions|null
+     */
+    public function getEnrollReturn()
+    {
+        return $this->container['enroll_return'];
+    }
+
+    /**
+     * Sets enroll_return
+     *
+     * @param \OpenAPI\Client\Model\Permissions|null $enroll_return enroll_return
+     *
+     * @return self
+     */
+    public function setEnrollReturn($enroll_return)
+    {
+        if (is_null($enroll_return)) {
+            throw new \InvalidArgumentException('non-nullable enroll_return cannot be null');
+        }
+        $this->container['enroll_return'] = $enroll_return;
+
+        return $this;
+    }
+
+    /**
      * Gets enter
      *
      * @return \OpenAPI\Client\Model\Permissions|null
@@ -2600,6 +2641,33 @@ class EmployeeRolePermissions implements ModelInterface, ArrayAccess, \JsonSeria
             throw new \InvalidArgumentException('non-nullable enter cannot be null');
         }
         $this->container['enter'] = $enter;
+
+        return $this;
+    }
+
+    /**
+     * Gets expenseitem
+     *
+     * @return \OpenAPI\Client\Model\Permissions|null
+     */
+    public function getExpenseitem()
+    {
+        return $this->container['expenseitem'];
+    }
+
+    /**
+     * Sets expenseitem
+     *
+     * @param \OpenAPI\Client\Model\Permissions|null $expenseitem expenseitem
+     *
+     * @return self
+     */
+    public function setExpenseitem($expenseitem)
+    {
+        if (is_null($expenseitem)) {
+            throw new \InvalidArgumentException('non-nullable expenseitem cannot be null');
+        }
+        $this->container['expenseitem'] = $expenseitem;
 
         return $this;
     }

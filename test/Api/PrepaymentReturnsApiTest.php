@@ -240,6 +240,18 @@ class PrepaymentReturnsApiTest extends TestCase
     }
 
     /**
+     * Test case for movePrepaymentReturnToTrash
+     *
+     * Удалить Возврат предоплаты в корзину.
+     *
+     */
+    public function testMovePrepaymentReturnToTrash()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for updatePrepaymentReturnMetadataAttributeById
      *
      * Обновить отдельное доп. поле Возврата предоплаты.

@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * ScriptPermissionsTest Class Doc Comment
  *
  * @category    Class
- * @description ScriptPermissions
+ * @description Права на задачи. NO для view и done допустимо, только если остальные права равны NO. Если view отличается от NO, поле done обязательно и должно совпадать с view. Известные значения описаны в ScriptPermissionValue.
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

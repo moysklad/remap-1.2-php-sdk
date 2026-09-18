@@ -25,6 +25,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**getRetailDemandPositionById()**](RetailDemandsApi.md#getRetailDemandPositionById) | **GET** /entity/retaildemand/{id}/positions/{positionId} | Получить позицию Розничной продажи |
 | [**getRetailDemandPositions()**](RetailDemandsApi.md#getRetailDemandPositions) | **GET** /entity/retaildemand/{id}/positions | Получить позиции Розничной продажи |
 | [**getRetailDemandTemplate()**](RetailDemandsApi.md#getRetailDemandTemplate) | **PUT** /entity/retaildemand/new | Шаблон Розничной продажи |
+| [**moveRetailDemandToTrash()**](RetailDemandsApi.md#moveRetailDemandToTrash) | **POST** /entity/retaildemand/{id}/trash | Удалить Розничную продажу в корзину |
 | [**updateRetailDemand()**](RetailDemandsApi.md#updateRetailDemand) | **PUT** /entity/retaildemand/{id} | Изменить Розничную продажу |
 | [**updateRetailDemandMetadataAttributeById()**](RetailDemandsApi.md#updateRetailDemandMetadataAttributeById) | **PUT** /entity/retaildemand/metadata/attributes/{id} | Обновить отдельное доп. поле Розничной продажи |
 | [**updateRetailDemandMetadataStateById()**](RetailDemandsApi.md#updateRetailDemandMetadataStateById) | **PUT** /entity/retaildemand/metadata/states/{id} | Обновить отдельный статус Розничной продажи |
@@ -1512,6 +1513,72 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `moveRetailDemandToTrash()`
+
+```php
+moveRetailDemandToTrash($id, $accept, $accept_encoding)
+```
+
+Удалить Розничную продажу в корзину
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\RetailDemandsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->moveRetailDemandToTrash($id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling RetailDemandsApi->moveRetailDemandToTrash: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: `application/json`, `text/html;charset=UTF-8`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

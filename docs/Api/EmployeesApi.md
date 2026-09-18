@@ -1026,7 +1026,7 @@ getRoleAdmin($accept, $accept_encoding): \OpenAPI\Client\Model\EmployeeRole
 
 Получить роль администратора
 
-Запрос на получение роли системного администратора.
+Запрос на получение роли системного администратора. Ответ содержит meta роли с type = systemrole.
 
 ### Example
 
@@ -1093,7 +1093,7 @@ getRoleCashier($accept, $accept_encoding): \OpenAPI\Client\Model\EmployeeRole
 
 Получить роль кассира
 
-Запрос на получение роли кассира.
+Запрос на получение роли кассира. Ответ содержит meta роли с type = systemrole.
 
 ### Example
 
@@ -1160,7 +1160,7 @@ getRoleIndividual($accept, $accept_encoding): \OpenAPI\Client\Model\EmployeeRole
 
 Получить индивидуальную роль
 
-Запрос на получение индивидуальной роли.
+Запрос на получение индивидуальной роли. Ответ содержит meta роли с type = individualrole. Индивидуальные права сотрудника доступны через /entity/employee/{id}/security.
 
 ### Example
 
@@ -1227,7 +1227,7 @@ getRoleOwner($accept, $accept_encoding): \OpenAPI\Client\Model\EmployeeRole
 
 Получить роль владельца аккаунта
 
-Запрос на получение роли владельца аккаунта.
+Запрос на получение роли владельца аккаунта. Ответ содержит meta роли с type = systemrole.
 
 ### Example
 
@@ -1294,7 +1294,7 @@ getRoleWorker($accept, $accept_encoding): \OpenAPI\Client\Model\EmployeeRole
 
 Получить роль сотрудника производства
 
-Запрос на получение роли сотрудника производства. Роль доступна только при подключенной опции Управление производством.
+Запрос на получение роли сотрудника производства. Роль доступна только при подключенной опции Управление производством. Ответ содержит meta роли с type = systemrole.
 
 ### Example
 

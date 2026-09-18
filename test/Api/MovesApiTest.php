@@ -372,6 +372,18 @@ class MovesApiTest extends TestCase
     }
 
     /**
+     * Test case for moveMoveToTrash
+     *
+     * Удалить Перемещение в корзину.
+     *
+     */
+    public function testMoveMoveToTrash()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for updateMove
      *
      * Изменить Перемещение.

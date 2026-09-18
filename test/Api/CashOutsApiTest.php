@@ -264,6 +264,18 @@ class CashOutsApiTest extends TestCase
     }
 
     /**
+     * Test case for moveCashOutToTrash
+     *
+     * Удалить CashOut в корзину.
+     *
+     */
+    public function testMoveCashOutToTrash()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for updateCashOut
      *
      * Изменить CashOut.

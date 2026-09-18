@@ -24,6 +24,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**getPaymentOutMetadataAttributeById()**](PaymentOutsApi.md#getPaymentOutMetadataAttributeById) | **GET** /entity/paymentout/metadata/attributes/{id} | Отдельное доп. поле PaymentOut |
 | [**getPaymentOutMetadataStateById()**](PaymentOutsApi.md#getPaymentOutMetadataStateById) | **GET** /entity/paymentout/metadata/states/{id} | Отдельный статус PaymentOut |
 | [**getPaymentOutTemplate()**](PaymentOutsApi.md#getPaymentOutTemplate) | **PUT** /entity/paymentout/new | Шаблон PaymentOut |
+| [**movePaymentOutToTrash()**](PaymentOutsApi.md#movePaymentOutToTrash) | **POST** /entity/paymentout/{id}/trash | Удалить PaymentOut в корзину |
 | [**updatePaymentOut()**](PaymentOutsApi.md#updatePaymentOut) | **PUT** /entity/paymentout/{id} | Изменить PaymentOut |
 | [**updatePaymentOutMetadataAttributeById()**](PaymentOutsApi.md#updatePaymentOutMetadataAttributeById) | **PUT** /entity/paymentout/metadata/attributes/{id} | Обновить отдельное доп. поле PaymentOut |
 | [**updatePaymentOutMetadataStateById()**](PaymentOutsApi.md#updatePaymentOutMetadataStateById) | **PUT** /entity/paymentout/metadata/states/{id} | Обновить отдельный статус PaymentOut |
@@ -1403,6 +1404,72 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `movePaymentOutToTrash()`
+
+```php
+movePaymentOutToTrash($id, $accept, $accept_encoding)
+```
+
+Удалить PaymentOut в корзину
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\PaymentOutsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->movePaymentOutToTrash($id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling PaymentOutsApi->movePaymentOutToTrash: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: `application/json`, `text/html;charset=UTF-8`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

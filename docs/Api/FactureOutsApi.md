@@ -20,6 +20,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**getFactureOutMetadataStateById()**](FactureOutsApi.md#getFactureOutMetadataStateById) | **GET** /entity/factureout/metadata/states/{id} | Отдельный статус Счета-фактуры выданного |
 | [**getFactureOutTemplate()**](FactureOutsApi.md#getFactureOutTemplate) | **PUT** /entity/factureout/new | Шаблон Счета-фактуры выданного |
 | [**getFactureOuts()**](FactureOutsApi.md#getFactureOuts) | **GET** /entity/factureout | Получить список Счетов-фактур выданных |
+| [**moveFactureOutToTrash()**](FactureOutsApi.md#moveFactureOutToTrash) | **POST** /entity/factureout/{id}/trash | Удалить Счет-фактуру выданный в корзину |
 | [**updateFactureOut()**](FactureOutsApi.md#updateFactureOut) | **PUT** /entity/factureout/{id} | Изменить Счет-фактуру выданный |
 | [**updateFactureOutMetadataAttributeById()**](FactureOutsApi.md#updateFactureOutMetadataAttributeById) | **PUT** /entity/factureout/metadata/attributes/{id} | Обновить отдельное доп. поле Счета-фактуры выданного |
 | [**updateFactureOutMetadataStateById()**](FactureOutsApi.md#updateFactureOutMetadataStateById) | **PUT** /entity/factureout/metadata/states/{id} | Обновить отдельный статус Счета-фактуры выданного |
@@ -1124,6 +1125,72 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\FactureOutList**](../Model/FactureOutList.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `moveFactureOutToTrash()`
+
+```php
+moveFactureOutToTrash($id, $accept, $accept_encoding)
+```
+
+Удалить Счет-фактуру выданный в корзину
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\FactureOutsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->moveFactureOutToTrash($id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling FactureOutsApi->moveFactureOutToTrash: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 

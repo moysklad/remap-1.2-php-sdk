@@ -30,6 +30,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**getProcessingOrderPositionById()**](ProcessingOrdersApi.md#getProcessingOrderPositionById) | **GET** /entity/processingorder/{id}/positions/{positionId} | Получить позицию ProcessingOrder |
 | [**getProcessingOrderPositions()**](ProcessingOrdersApi.md#getProcessingOrderPositions) | **GET** /entity/processingorder/{id}/positions | Получить позиции ProcessingOrder |
 | [**getProcessingOrderTemplate()**](ProcessingOrdersApi.md#getProcessingOrderTemplate) | **PUT** /entity/processingorder/new | Шаблон ProcessingOrder |
+| [**moveProcessingOrderToTrash()**](ProcessingOrdersApi.md#moveProcessingOrderToTrash) | **POST** /entity/processingorder/{id}/trash | Удалить ProcessingOrder в корзину |
 | [**updateProcessingOrder()**](ProcessingOrdersApi.md#updateProcessingOrder) | **PUT** /entity/processingorder/{id} | Изменить ProcessingOrder |
 | [**updateProcessingOrderMetadataAttributeById()**](ProcessingOrdersApi.md#updateProcessingOrderMetadataAttributeById) | **PUT** /entity/processingorder/metadata/attributes/{id} | Обновить отдельное доп. поле ProcessingOrder |
 | [**updateProcessingOrderMetadataStateById()**](ProcessingOrdersApi.md#updateProcessingOrderMetadataStateById) | **PUT** /entity/processingorder/metadata/states/{id} | Обновить отдельный статус ProcessingOrder |
@@ -1841,6 +1842,72 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `moveProcessingOrderToTrash()`
+
+```php
+moveProcessingOrderToTrash($id, $accept, $accept_encoding)
+```
+
+Удалить ProcessingOrder в корзину
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->moveProcessingOrderToTrash($id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling ProcessingOrdersApi->moveProcessingOrderToTrash: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: `application/json`, `text/html;charset=UTF-8`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

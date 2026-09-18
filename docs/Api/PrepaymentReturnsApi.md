@@ -18,6 +18,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**getPrepaymentReturnMetadataStateById()**](PrepaymentReturnsApi.md#getPrepaymentReturnMetadataStateById) | **GET** /entity/prepaymentreturn/metadata/states/{id} | Отдельный статус Возврата предоплаты |
 | [**getPrepaymentReturnPositionById()**](PrepaymentReturnsApi.md#getPrepaymentReturnPositionById) | **GET** /entity/prepaymentreturn/{id}/positions/{positionId} | Получить позицию Возврата предоплаты |
 | [**getPrepaymentReturnPositions()**](PrepaymentReturnsApi.md#getPrepaymentReturnPositions) | **GET** /entity/prepaymentreturn/{id}/positions | Получить позиции Возврата предоплаты |
+| [**movePrepaymentReturnToTrash()**](PrepaymentReturnsApi.md#movePrepaymentReturnToTrash) | **POST** /entity/prepaymentreturn/{id}/trash | Удалить Возврат предоплаты в корзину |
 | [**updatePrepaymentReturnMetadataAttributeById()**](PrepaymentReturnsApi.md#updatePrepaymentReturnMetadataAttributeById) | **PUT** /entity/prepaymentreturn/metadata/attributes/{id} | Обновить отдельное доп. поле Возврата предоплаты |
 | [**updatePrepaymentReturnMetadataStateById()**](PrepaymentReturnsApi.md#updatePrepaymentReturnMetadataStateById) | **PUT** /entity/prepaymentreturn/metadata/states/{id} | Обновить отдельный статус Возврата предоплаты |
 
@@ -975,6 +976,72 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\PrepaymentReturnPositionList**](../Model/PrepaymentReturnPositionList.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `movePrepaymentReturnToTrash()`
+
+```php
+movePrepaymentReturnToTrash($id, $accept, $accept_encoding)
+```
+
+Удалить Возврат предоплаты в корзину
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\PrepaymentReturnsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->movePrepaymentReturnToTrash($id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling PrepaymentReturnsApi->movePrepaymentReturnToTrash: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 

@@ -432,6 +432,18 @@ class ProcessingsApiTest extends TestCase
     }
 
     /**
+     * Test case for moveProcessingToTrash
+     *
+     * Удалить Processing в корзину.
+     *
+     */
+    public function testMoveProcessingToTrash()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for updateProcessing
      *
      * Изменить Processing.

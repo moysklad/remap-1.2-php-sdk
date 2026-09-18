@@ -336,6 +336,18 @@ class LossesApiTest extends TestCase
     }
 
     /**
+     * Test case for moveLossToTrash
+     *
+     * Удалить Списание в корзину.
+     *
+     */
+    public function testMoveLossToTrash()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for updateLoss
      *
      * Изменить Списание.

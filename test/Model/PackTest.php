@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * PackTest Class Doc Comment
  *
  * @category    Class
- * @description Упаковка
+ * @description Упаковка товара
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

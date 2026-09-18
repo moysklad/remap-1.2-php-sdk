@@ -39,7 +39,7 @@ Name | Type | Description | Notes
 **images** | [**\OpenAPI\Client\Model\ImageList**](ImageList.md) | Массив изображений | [optional]
 **files** | [**\OpenAPI\Client\Model\FileList**](FileList.md) | Метаданные массива Файлов | [optional]
 **barcodes** | [**\OpenAPI\Client\Model\Barcode[]**](Barcode.md) | Штрихкоды Товара | [optional]
-**packs** | [**\OpenAPI\Client\Model\Pack[]**](Pack.md) | Упаковки товара | [optional]
+**packs** | [**\OpenAPI\Client\Model\Pack[]**](Pack.md) | Упаковки товара. При обновлении переданный массив полностью заменяет упаковки; пустой массив удаляет все. Для создания упаковки передайте uom и quantity. | [optional]
 **tracking_type** | **string** | Тип маркируемой продукции. Известные значения описаны в TrackingType | [optional]
 **tnved** | **string** | Код ТН ВЭД | [optional]
 **payment_item_type** | **string** | Признак предмета расчета. Известные значения описаны в PaymentItemType | [optional]

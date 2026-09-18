@@ -15,6 +15,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**getRetailShiftMetadataAttribute()**](RetailShiftsApi.md#getRetailShiftMetadataAttribute) | **GET** /entity/retailshift/metadata/attributes | Доп. поля Розничной смены |
 | [**getRetailShiftMetadataAttributeById()**](RetailShiftsApi.md#getRetailShiftMetadataAttributeById) | **GET** /entity/retailshift/metadata/attributes/{id} | Отдельное доп. поле Розничной смены |
 | [**getRetailShifts()**](RetailShiftsApi.md#getRetailShifts) | **GET** /entity/retailshift | Получить список Розничных смен |
+| [**moveRetailShiftToTrash()**](RetailShiftsApi.md#moveRetailShiftToTrash) | **POST** /entity/retailshift/{id}/trash | Удалить Розничную смену в корзину |
 | [**updateRetailShift()**](RetailShiftsApi.md#updateRetailShift) | **PUT** /entity/retailshift/{id} | Изменить Розничную смену |
 | [**updateRetailShiftMetadataAttributeById()**](RetailShiftsApi.md#updateRetailShiftMetadataAttributeById) | **PUT** /entity/retailshift/metadata/attributes/{id} | Обновить отдельное доп. поле Розничной смены |
 
@@ -758,6 +759,72 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\RetailShiftList**](../Model/RetailShiftList.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `moveRetailShiftToTrash()`
+
+```php
+moveRetailShiftToTrash($id, $accept, $accept_encoding)
+```
+
+Удалить Розничную смену в корзину
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\RetailShiftsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->moveRetailShiftToTrash($id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling RetailShiftsApi->moveRetailShiftToTrash: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 

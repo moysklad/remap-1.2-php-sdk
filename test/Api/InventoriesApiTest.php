@@ -372,6 +372,18 @@ class InventoriesApiTest extends TestCase
     }
 
     /**
+     * Test case for moveInventoryToTrash
+     *
+     * Удалить Инвентаризацию в корзину.
+     *
+     */
+    public function testMoveInventoryToTrash()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for recalculateInventoryCalculatedQuantity
      *
      * Пересчитать расчетный остаток в Инвентаризации.

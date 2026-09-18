@@ -384,6 +384,18 @@ class CommissionReportInsApiTest extends TestCase
     }
 
     /**
+     * Test case for moveCommissionReportInToTrash
+     *
+     * Удалить CommissionReportIn в корзину.
+     *
+     */
+    public function testMoveCommissionReportInToTrash()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for updateCommissionReportIn
      *
      * Изменить CommissionReportIn.

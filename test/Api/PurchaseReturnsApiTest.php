@@ -156,6 +156,18 @@ class PurchaseReturnsApiTest extends TestCase
     }
 
     /**
+     * Test case for createPurchaseReturnNotesBatch
+     *
+     * Массовое создание и обновление Событий Возврата поставщику.
+     *
+     */
+    public function testCreatePurchaseReturnNotesBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createPurchaseReturnPosition
      *
      * Создать и обновить позицию Возврата поставщику.
@@ -246,6 +258,18 @@ class PurchaseReturnsApiTest extends TestCase
      *
      */
     public function testDeletePurchaseReturnNote()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deletePurchaseReturnNotesBatch
+     *
+     * Массовое удаление Событий Возврата поставщику.
+     *
+     */
+    public function testDeletePurchaseReturnNotesBatch()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -414,6 +438,18 @@ class PurchaseReturnsApiTest extends TestCase
      *
      */
     public function testGetPurchaseReturnTemplate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for movePurchaseReturnToTrash
+     *
+     * Удалить Возврат поставщику в корзину.
+     *
+     */
+    public function testMovePurchaseReturnToTrash()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

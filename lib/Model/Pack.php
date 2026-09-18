@@ -35,7 +35,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * Pack Class Doc Comment
  *
  * @category Class
- * @description Упаковка
+ * @description Упаковка товара
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -355,6 +355,10 @@ class Pack implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = "invalid value for 'quantity', must be bigger than or equal to 0.";
         }
 
+        if (!is_null($this->container['barcodes']) && (count($this->container['barcodes']) > 1)) {
+            $invalidProperties[] = "invalid value for 'barcodes', number of items must be less than or equal to 1.";
+        }
+
         return $invalidProperties;
     }
 
@@ -410,7 +414,7 @@ class Pack implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param string|null $id ID упаковки
+     * @param string|null $id ID упаковки товара. Обязательное при ответе
      *
      * @return self
      */
@@ -464,7 +468,7 @@ class Pack implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets quantity
      *
-     * @param float|null $quantity Количество товаров в упаковке
+     * @param float|null $quantity Количество товаров в упаковке. Обязательное при ответе
      *
      * @return self
      */
@@ -496,7 +500,7 @@ class Pack implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets barcodes
      *
-     * @param \OpenAPI\Client\Model\Barcode[]|null $barcodes Штрихкоды упаковки
+     * @param \OpenAPI\Client\Model\Barcode[]|null $barcodes Штрихкоды упаковки (не более одного). Без штрихкода поле не выводится. При обновлении переданный массив полностью заменяет штрихкоды упаковки.
      *
      * @return self
      */
@@ -511,6 +515,10 @@ class Pack implements ModelInterface, ArrayAccess, \JsonSerializable
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
+        }
+
+        if (!is_null($barcodes) && (count($barcodes) > 1)) {
+            throw new \InvalidArgumentException('invalid value for $barcodes when calling Pack., number of items must be less than or equal to 1.');
         }
         $this->container['barcodes'] = $barcodes;
 

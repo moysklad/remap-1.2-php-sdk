@@ -372,6 +372,18 @@ class EntersApiTest extends TestCase
     }
 
     /**
+     * Test case for moveEnterToTrash
+     *
+     * Удалить Оприходование в корзину.
+     *
+     */
+    public function testMoveEnterToTrash()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for updateEnter
      *
      * Изменить Оприходование.
