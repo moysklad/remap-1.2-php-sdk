@@ -312,18 +312,6 @@ class CustomerOrdersApiTest extends TestCase
     }
 
     /**
-     * Test case for getCustomerOrderAuditEvents
-     *
-     * Получить события аудита Заказа покупателя.
-     *
-     */
-    public function testGetCustomerOrderAuditEvents()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test case for getCustomerOrderById
      *
      * Получить CustomerOrders.

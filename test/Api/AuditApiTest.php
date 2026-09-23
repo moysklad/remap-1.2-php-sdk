@@ -106,4 +106,16 @@ class AuditApiTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test case for getEntityAuditEvents
+     *
+     * Получить события аудита сущности.
+     *
+     */
+    public function testGetEntityAuditEvents()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

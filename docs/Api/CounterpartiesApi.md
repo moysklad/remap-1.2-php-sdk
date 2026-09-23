@@ -23,7 +23,6 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**getCounterparties()**](CounterpartiesApi.md#getCounterparties) | **GET** /entity/counterparty | Получить список контрагентов |
 | [**getCounterpartyAccountById()**](CounterpartiesApi.md#getCounterpartyAccountById) | **GET** /entity/counterparty/{id}/accounts/{accountId} | Получить счёт контрагента по ID |
 | [**getCounterpartyAccounts()**](CounterpartiesApi.md#getCounterpartyAccounts) | **GET** /entity/counterparty/{id}/accounts | Получить счета контрагента |
-| [**getCounterpartyAuditEvents()**](CounterpartiesApi.md#getCounterpartyAuditEvents) | **GET** /entity/counterparty/{id}/audit | Получить события аудита контрагента |
 | [**getCounterpartyById()**](CounterpartiesApi.md#getCounterpartyById) | **GET** /entity/counterparty/{id} | Получить контрагента по ID |
 | [**getCounterpartyContactPersonById()**](CounterpartiesApi.md#getCounterpartyContactPersonById) | **GET** /entity/counterparty/{id}/contactpersons/{contactPersonId} | Получить контактное лицо контрагента по ID |
 | [**getCounterpartyContactPersons()**](CounterpartiesApi.md#getCounterpartyContactPersons) | **GET** /entity/counterparty/{id}/contactpersons | Получить контактные лица контрагента |
@@ -1380,79 +1379,6 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\GetCounterpartyAccounts200Response**](../Model/GetCounterpartyAccounts200Response.md)
-
-### Authorization
-
-[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `getCounterpartyAuditEvents()`
-
-```php
-getCounterpartyAuditEvents($id, $limit, $offset, $accept, $accept_encoding): \OpenAPI\Client\Model\AuditEventList
-```
-
-Получить события аудита контрагента
-
-Возвращает список событий аудита для Контрагента по его ID.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure HTTP basic authorization: basicAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
-// Configure Bearer authorization: bearerAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-
-$apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$id = 'id_example'; // string | ID сущности
-$limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
-$offset = 0; // int | Отступ в выданном списке
-$accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
-
-try {
-    $result = $apiInstance->getCounterpartyAuditEvents($id, $limit, $offset, $accept, $accept_encoding);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling CounterpartiesApi->getCounterpartyAuditEvents: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **id** | **string**| ID сущности | |
-| **limit** | **int**| Максимальное количество элементов в выданном списке (максимум 1000) | [optional] [default to 1000] |
-| **offset** | **int**| Отступ в выданном списке | [optional] [default to 0] |
-| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
-
-### Return type
-
-[**\OpenAPI\Client\Model\AuditEventList**](../Model/AuditEventList.md)
 
 ### Authorization
 

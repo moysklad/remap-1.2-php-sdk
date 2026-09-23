@@ -300,18 +300,6 @@ class CounterpartiesApiTest extends TestCase
     }
 
     /**
-     * Test case for getCounterpartyAuditEvents
-     *
-     * Получить события аудита контрагента.
-     *
-     */
-    public function testGetCounterpartyAuditEvents()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test case for getCounterpartyById
      *
      * Получить контрагента по ID.

@@ -24,7 +24,6 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**deleteCustomerOrderPositionsBatch()**](CustomerOrdersApi.md#deleteCustomerOrderPositionsBatch) | **POST** /entity/customerorder/{id}/positions/delete | Массовое удаление позиций CustomerOrders |
 | [**deleteCustomerOrderPublication()**](CustomerOrdersApi.md#deleteCustomerOrderPublication) | **DELETE** /entity/customerorder/{id}/publication/{publicationId} | Удалить Публикацию Заказа покупателя |
 | [**exportCustomerOrder()**](CustomerOrdersApi.md#exportCustomerOrder) | **POST** /entity/customerorder/{id}/export | Запрос на печать Заказа покупателя |
-| [**getCustomerOrderAuditEvents()**](CustomerOrdersApi.md#getCustomerOrderAuditEvents) | **GET** /entity/customerorder/{id}/audit | Получить события аудита Заказа покупателя |
 | [**getCustomerOrderById()**](CustomerOrdersApi.md#getCustomerOrderById) | **GET** /entity/customerorder/{id} | Получить CustomerOrders |
 | [**getCustomerOrderList()**](CustomerOrdersApi.md#getCustomerOrderList) | **GET** /entity/customerorder | Получить список CustomerOrders |
 | [**getCustomerOrderMetadata()**](CustomerOrdersApi.md#getCustomerOrderMetadata) | **GET** /entity/customerorder/metadata | Метаданные CustomerOrders |
@@ -1454,79 +1453,6 @@ void (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `getCustomerOrderAuditEvents()`
-
-```php
-getCustomerOrderAuditEvents($id, $limit, $offset, $accept, $accept_encoding): \OpenAPI\Client\Model\AuditEventList
-```
-
-Получить события аудита Заказа покупателя
-
-Возвращает список событий аудита для Заказа покупателя по его ID.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure HTTP basic authorization: basicAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
-// Configure Bearer authorization: bearerAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-
-$apiInstance = new OpenAPI\Client\Api\CustomerOrdersApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$id = 'id_example'; // string | ID сущности
-$limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
-$offset = 0; // int | Отступ в выданном списке
-$accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
-
-try {
-    $result = $apiInstance->getCustomerOrderAuditEvents($id, $limit, $offset, $accept, $accept_encoding);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling CustomerOrdersApi->getCustomerOrderAuditEvents: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **id** | **string**| ID сущности | |
-| **limit** | **int**| Максимальное количество элементов в выданном списке (максимум 1000) | [optional] [default to 1000] |
-| **offset** | **int**| Отступ в выданном списке | [optional] [default to 0] |
-| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
-
-### Return type
-
-[**\OpenAPI\Client\Model\AuditEventList**](../Model/AuditEventList.md)
-
-### Authorization
-
-[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
 - **Accept**: `application/json`, `text/html;charset=UTF-8`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

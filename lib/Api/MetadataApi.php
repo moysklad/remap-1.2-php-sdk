@@ -136,7 +136,7 @@ class MetadataApi
      *
      * Получить Стандартный шаблон печатной формы
      *
-     * @param  string $type type (required)
+     * @param  string $type Тип сущности в URL, например &#x60;product&#x60; или &#x60;customerorder&#x60; (required)
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
@@ -157,7 +157,7 @@ class MetadataApi
      *
      * Получить Стандартный шаблон печатной формы
      *
-     * @param  string $type (required)
+     * @param  string $type Тип сущности в URL, например &#x60;product&#x60; или &#x60;customerorder&#x60; (required)
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -259,7 +259,7 @@ class MetadataApi
      *
      * Получить Стандартный шаблон печатной формы
      *
-     * @param  string $type (required)
+     * @param  string $type Тип сущности в URL, например &#x60;product&#x60; или &#x60;customerorder&#x60; (required)
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -283,7 +283,7 @@ class MetadataApi
      *
      * Получить Стандартный шаблон печатной формы
      *
-     * @param  string $type (required)
+     * @param  string $type Тип сущности в URL, например &#x60;product&#x60; или &#x60;customerorder&#x60; (required)
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -337,7 +337,7 @@ class MetadataApi
     /**
      * Create request for operation 'getEmbeddedTemplateByTypeAndId'
      *
-     * @param  string $type (required)
+     * @param  string $type Тип сущности в URL, например &#x60;product&#x60; или &#x60;customerorder&#x60; (required)
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -467,7 +467,7 @@ class MetadataApi
      *
      * Получить Стандартные шаблоны печатных форм
      *
-     * @param  string $type type (required)
+     * @param  string $type Тип сущности в URL, например &#x60;product&#x60; или &#x60;customerorder&#x60; (required)
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
@@ -489,7 +489,7 @@ class MetadataApi
      *
      * Получить Стандартные шаблоны печатных форм
      *
-     * @param  string $type (required)
+     * @param  string $type Тип сущности в URL, например &#x60;product&#x60; или &#x60;customerorder&#x60; (required)
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
@@ -592,7 +592,7 @@ class MetadataApi
      *
      * Получить Стандартные шаблоны печатных форм
      *
-     * @param  string $type (required)
+     * @param  string $type Тип сущности в URL, например &#x60;product&#x60; или &#x60;customerorder&#x60; (required)
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
@@ -617,7 +617,7 @@ class MetadataApi
      *
      * Получить Стандартные шаблоны печатных форм
      *
-     * @param  string $type (required)
+     * @param  string $type Тип сущности в URL, например &#x60;product&#x60; или &#x60;customerorder&#x60; (required)
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
@@ -672,7 +672,7 @@ class MetadataApi
     /**
      * Create request for operation 'getEmbeddedTemplatesForType'
      *
-     * @param  string $type (required)
+     * @param  string $type Тип сущности в URL, например &#x60;product&#x60; или &#x60;customerorder&#x60; (required)
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
@@ -817,7 +817,7 @@ class MetadataApi
      *
      * Получить метаданные сущности
      *
-     * @param  string $type type (required)
+     * @param  string $type Тип сущности в URL, например &#x60;product&#x60; или &#x60;customerorder&#x60; (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
@@ -838,7 +838,7 @@ class MetadataApi
      *
      * Получить метаданные сущности
      *
-     * @param  string $type (required)
+     * @param  string $type Тип сущности в URL, например &#x60;product&#x60; или &#x60;customerorder&#x60; (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -940,7 +940,7 @@ class MetadataApi
      *
      * Получить метаданные сущности
      *
-     * @param  string $type (required)
+     * @param  string $type Тип сущности в URL, например &#x60;product&#x60; или &#x60;customerorder&#x60; (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -964,7 +964,7 @@ class MetadataApi
      *
      * Получить метаданные сущности
      *
-     * @param  string $type (required)
+     * @param  string $type Тип сущности в URL, например &#x60;product&#x60; или &#x60;customerorder&#x60; (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
@@ -1018,7 +1018,7 @@ class MetadataApi
     /**
      * Create request for operation 'getMetadataForType'
      *
-     * @param  string $type (required)
+     * @param  string $type Тип сущности в URL, например &#x60;product&#x60; или &#x60;customerorder&#x60; (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')

@@ -106,6 +106,7 @@ Class | Method | HTTP request | Description
 *AuditApi* | [**getAuditContextEvents**](docs/Api/AuditApi.md#getauditcontextevents) | **GET** /audit/{id}/events | Получить события по контексту аудита
 *AuditApi* | [**getAuditContexts**](docs/Api/AuditApi.md#getauditcontexts) | **GET** /audit | Получить контексты аудита
 *AuditApi* | [**getAuditMetadataFilters**](docs/Api/AuditApi.md#getauditmetadatafilters) | **GET** /audit/metadata/filters | Получить доступные фильтры аудита
+*AuditApi* | [**getEntityAuditEvents**](docs/Api/AuditApi.md#getentityauditevents) | **GET** /entity/{type}/{id}/audit | Получить события аудита сущности
 *BonusProgramsApi* | [**createBonusProgram**](docs/Api/BonusProgramsApi.md#createbonusprogram) | **POST** /entity/bonusprogram | Создать бонусную программу
 *BonusProgramsApi* | [**deleteBonusProgram**](docs/Api/BonusProgramsApi.md#deletebonusprogram) | **DELETE** /entity/bonusprogram/{id} | Удалить бонусную программу
 *BonusProgramsApi* | [**deleteBonusProgramsBatch**](docs/Api/BonusProgramsApi.md#deletebonusprogramsbatch) | **POST** /entity/bonusprogram/delete | Удалить бонусные программы
@@ -293,7 +294,6 @@ Class | Method | HTTP request | Description
 *CounterpartiesApi* | [**getCounterparties**](docs/Api/CounterpartiesApi.md#getcounterparties) | **GET** /entity/counterparty | Получить список контрагентов
 *CounterpartiesApi* | [**getCounterpartyAccountById**](docs/Api/CounterpartiesApi.md#getcounterpartyaccountbyid) | **GET** /entity/counterparty/{id}/accounts/{accountId} | Получить счёт контрагента по ID
 *CounterpartiesApi* | [**getCounterpartyAccounts**](docs/Api/CounterpartiesApi.md#getcounterpartyaccounts) | **GET** /entity/counterparty/{id}/accounts | Получить счета контрагента
-*CounterpartiesApi* | [**getCounterpartyAuditEvents**](docs/Api/CounterpartiesApi.md#getcounterpartyauditevents) | **GET** /entity/counterparty/{id}/audit | Получить события аудита контрагента
 *CounterpartiesApi* | [**getCounterpartyById**](docs/Api/CounterpartiesApi.md#getcounterpartybyid) | **GET** /entity/counterparty/{id} | Получить контрагента по ID
 *CounterpartiesApi* | [**getCounterpartyContactPersonById**](docs/Api/CounterpartiesApi.md#getcounterpartycontactpersonbyid) | **GET** /entity/counterparty/{id}/contactpersons/{contactPersonId} | Получить контактное лицо контрагента по ID
 *CounterpartiesApi* | [**getCounterpartyContactPersons**](docs/Api/CounterpartiesApi.md#getcounterpartycontactpersons) | **GET** /entity/counterparty/{id}/contactpersons | Получить контактные лица контрагента
@@ -376,7 +376,6 @@ Class | Method | HTTP request | Description
 *CustomerOrdersApi* | [**deleteCustomerOrderPositionsBatch**](docs/Api/CustomerOrdersApi.md#deletecustomerorderpositionsbatch) | **POST** /entity/customerorder/{id}/positions/delete | Массовое удаление позиций CustomerOrders
 *CustomerOrdersApi* | [**deleteCustomerOrderPublication**](docs/Api/CustomerOrdersApi.md#deletecustomerorderpublication) | **DELETE** /entity/customerorder/{id}/publication/{publicationId} | Удалить Публикацию Заказа покупателя
 *CustomerOrdersApi* | [**exportCustomerOrder**](docs/Api/CustomerOrdersApi.md#exportcustomerorder) | **POST** /entity/customerorder/{id}/export | Запрос на печать Заказа покупателя
-*CustomerOrdersApi* | [**getCustomerOrderAuditEvents**](docs/Api/CustomerOrdersApi.md#getcustomerorderauditevents) | **GET** /entity/customerorder/{id}/audit | Получить события аудита Заказа покупателя
 *CustomerOrdersApi* | [**getCustomerOrderById**](docs/Api/CustomerOrdersApi.md#getcustomerorderbyid) | **GET** /entity/customerorder/{id} | Получить CustomerOrders
 *CustomerOrdersApi* | [**getCustomerOrderList**](docs/Api/CustomerOrdersApi.md#getcustomerorderlist) | **GET** /entity/customerorder | Получить список CustomerOrders
 *CustomerOrdersApi* | [**getCustomerOrderMetadata**](docs/Api/CustomerOrdersApi.md#getcustomerordermetadata) | **GET** /entity/customerorder/metadata | Метаданные CustomerOrders
