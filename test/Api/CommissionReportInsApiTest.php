@@ -156,9 +156,21 @@ class CommissionReportInsApiTest extends TestCase
     }
 
     /**
+     * Test case for createCommissionReportInReturnedPosition
+     *
+     * Создать позицию возврата на склад комиссионера.
+     *
+     */
+    public function testCreateCommissionReportInReturnedPosition()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createCommissionReportInReturnedPositions
      *
-     * Создать позиции возврата на склад комиссионера.
+     * Массовое создание и обновление позиций возврата на склад комиссионера.
      *
      */
     public function testCreateCommissionReportInReturnedPositions()

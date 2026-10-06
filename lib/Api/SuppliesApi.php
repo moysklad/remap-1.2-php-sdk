@@ -357,7 +357,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation addSupplyFilesAsync
      *
@@ -700,7 +699,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation createSupplyAsync
      *
@@ -1004,7 +1002,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation createSupplyBatchAsync
      *
@@ -1335,7 +1332,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation createSupplyMetadataAttributeAsync
      *
@@ -1655,7 +1651,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation createSupplyMetadataStateAsync
      *
@@ -1975,7 +1970,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation createSupplyMetadataStatesBatchAsync
      *
@@ -2303,7 +2297,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation createSupplyNoteAsync
      *
@@ -2643,7 +2636,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation createSupplyNotesBatchAsync
      *
@@ -2991,7 +2983,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation createSupplyPositionAsync
      *
@@ -3315,7 +3306,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation createSupplyPositionsAsync
      *
@@ -3618,7 +3608,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteSupplyAsync
      *
@@ -3918,7 +3907,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteSupplyBatchAsync
      *
@@ -4200,7 +4188,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteSupplyFileAsync
      *
@@ -4472,7 +4459,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteSupplyMetadataAttributeByIdAsync
      *
@@ -4726,7 +4712,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteSupplyMetadataStateByIdAsync
      *
@@ -4982,7 +4967,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteSupplyNoteAsync
      *
@@ -5258,7 +5242,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteSupplyNotesBatchAsync
      *
@@ -5547,7 +5530,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteSupplyPositionAsync
      *
@@ -5880,7 +5862,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteSupplyPositionsAsync
      *
@@ -6226,7 +6207,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation getSupplyByIdAsync
      *
@@ -6567,7 +6547,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation getSupplyFilesAsync
      *
@@ -6921,7 +6900,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation getSupplyListAsync
      *
@@ -7288,7 +7266,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation getSupplyMetadataAsync
      *
@@ -7596,7 +7573,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation getSupplyMetadataAttributeAsync
      *
@@ -7926,7 +7902,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation getSupplyMetadataAttributeByIdAsync
      *
@@ -8245,7 +8220,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation getSupplyMetadataStateByIdAsync
      *
@@ -8558,7 +8532,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation getSupplyNoteByIdAsync
      *
@@ -8893,7 +8866,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation getSupplyNotesAsync
      *
@@ -9258,7 +9230,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation getSupplyPositionByIdAsync
      *
@@ -9623,7 +9594,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation getSupplyPositionsAsync
      *
@@ -10005,7 +9975,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation getSupplyTemplateAsync
      *
@@ -10273,7 +10242,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation moveSupplyToTrashAsync
      *
@@ -10579,7 +10547,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateSupplyAsync
      *
@@ -10945,7 +10912,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateSupplyMetadataAttributeByIdAsync
      *
@@ -11285,7 +11251,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateSupplyMetadataStateByIdAsync
      *
@@ -11627,7 +11592,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateSupplyNoteAsync
      *
@@ -11991,7 +11955,6 @@ class SuppliesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateSupplyPositionAsync
      *

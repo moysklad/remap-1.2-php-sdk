@@ -253,7 +253,6 @@ class ReportsStockByStoreApi
             throw $e;
         }
     }
-
     /**
      * Operation getStockByStoreAsync
      *

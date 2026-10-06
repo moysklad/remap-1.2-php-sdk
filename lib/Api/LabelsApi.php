@@ -140,11 +140,13 @@ class LabelsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return void
+     * @return \OpenAPI\Client\LocationResponse статус и заголовок Location ответа; переход по редиректу не выполняется
      */
     public function printLabels($id, $type, $label_print_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['printLabels'][0])
     {
-        $this->printLabelsWithHttpInfo($id, $type, $label_print_request, $accept, $accept_encoding, $content_type, $contentType);
+        list(, $statusCode, $headers) = $this->printLabelsWithHttpInfo($id, $type, $label_print_request, $accept, $accept_encoding, $content_type, $contentType);
+
+        return \OpenAPI\Client\LocationResponse::fromHeaders($statusCode, $headers);
     }
 
     /**
@@ -169,6 +171,7 @@ class LabelsApi
         $request = $this->printLabelsRequest($id, $type, $label_print_request, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            $options[RequestOptions::ALLOW_REDIRECTS] = false;
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -189,6 +192,18 @@ class LabelsApi
 
             $statusCode = $response->getStatusCode();
 
+            if (($statusCode < 200 || $statusCode > 299) && $statusCode !== 303) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
@@ -207,7 +222,6 @@ class LabelsApi
             throw $e;
         }
     }
-
     /**
      * Operation printLabelsAsync
      *
@@ -255,11 +269,25 @@ class LabelsApi
         $returnType = '';
         $request = $this->printLabelsRequest($id, $type, $label_print_request, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        $options[RequestOptions::ALLOW_REDIRECTS] = false;
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    $statusCode = $response->getStatusCode();
+                    if (($statusCode < 200 || $statusCode > 299) && $statusCode !== 303) {
+                        throw new ApiException(
+                            sprintf(
+                                '[%d] Error connecting to the API (%s)',
+                                $statusCode,
+                                (string) $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            (string) $response->getBody()
+                        );
+                    }
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {

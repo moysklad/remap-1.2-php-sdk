@@ -339,7 +339,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation addInventoryFilesAsync
      *
@@ -651,7 +650,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation createInventoriesBatchAsync
      *
@@ -984,7 +982,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation createInventoryAsync
      *
@@ -1317,7 +1314,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation createInventoryMetadataAttributeAsync
      *
@@ -1637,7 +1633,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation createInventoryMetadataStateAsync
      *
@@ -1957,7 +1952,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation createInventoryMetadataStatesBatchAsync
      *
@@ -2287,7 +2281,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation createInventoryPositionAsync
      *
@@ -2642,7 +2635,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation createInventoryPositionsAsync
      *
@@ -2999,7 +2991,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteInventoriesBatchAsync
      *
@@ -3279,7 +3270,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteInventoryAsync
      *
@@ -3535,7 +3525,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteInventoryFileAsync
      *
@@ -3807,7 +3796,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteInventoryMetadataAttributeByIdAsync
      *
@@ -4061,7 +4049,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteInventoryMetadataStateByIdAsync
      *
@@ -4317,7 +4304,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteInventoryPositionAsync
      *
@@ -4637,7 +4623,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteInventoryPositionsBatchAsync
      *
@@ -4981,7 +4966,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation getInventoryByIdAsync
      *
@@ -5309,7 +5293,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation getInventoryFilesAsync
      *
@@ -5661,7 +5644,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation getInventoryListAsync
      *
@@ -6015,7 +5997,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation getInventoryMetadataAsync
      *
@@ -6323,7 +6304,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation getInventoryMetadataAttributeAsync
      *
@@ -6651,7 +6631,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation getInventoryMetadataAttributeByIdAsync
      *
@@ -6962,7 +6941,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation getInventoryMetadataStateByIdAsync
      *
@@ -7277,7 +7255,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation getInventoryPositionByIdAsync
      *
@@ -7625,7 +7602,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation getInventoryPositionsAsync
      *
@@ -7986,7 +7962,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation getInventoryTemplateAsync
      *
@@ -8254,7 +8229,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation moveInventoryToTrashAsync
      *
@@ -8510,7 +8484,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation recalculateInventoryCalculatedQuantityAsync
      *
@@ -8822,7 +8795,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateInventoryAsync
      *
@@ -9175,7 +9147,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateInventoryMetadataAttributeByIdAsync
      *
@@ -9515,7 +9486,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateInventoryMetadataStateByIdAsync
      *
@@ -9859,7 +9829,6 @@ class InventoriesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateInventoryPositionAsync
      *

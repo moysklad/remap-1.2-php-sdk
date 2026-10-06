@@ -5,7 +5,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**createBundle()**](BundlesApi.md#createBundle) | **POST** /entity/bundle | Создать Комплект |
-| [**createBundleComponents()**](BundlesApi.md#createBundleComponents) | **POST** /entity/bundle/{id}/components | Добавить компонент Комплекта |
+| [**createBundleComponent()**](BundlesApi.md#createBundleComponent) | **POST** /entity/bundle/{id}/components | Добавить компонент Комплекта |
+| [**createBundleComponents()**](BundlesApi.md#createBundleComponents) | **POST** /entity/bundle/{id}/components/batch | Массовое добавление и обновление компонентов Комплекта |
 | [**createBundlesBatch()**](BundlesApi.md#createBundlesBatch) | **POST** /entity/bundle/batch | Массовое создание и обновление Комплектов |
 | [**deleteBundle()**](BundlesApi.md#deleteBundle) | **DELETE** /entity/bundle/{id} | Удалить Комплект |
 | [**deleteBundleComponent()**](BundlesApi.md#deleteBundleComponent) | **DELETE** /entity/bundle/{id}/components/{componentId} | Удалить компонент |
@@ -90,10 +91,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createBundleComponents()`
+## `createBundleComponent()`
 
 ```php
-createBundleComponents($id, $create_bundle_components_request, $accept, $accept_encoding, $expand, $content_type): \OpenAPI\Client\Model\BundleComponent[]
+createBundleComponent($id, $bundle_component, $accept, $accept_encoding, $expand, $content_type): \OpenAPI\Client\Model\BundleComponent[]
 ```
 
 Добавить компонент Комплекта
@@ -121,14 +122,87 @@ $apiInstance = new OpenAPI\Client\Api\BundlesApi(
     $config
 );
 $id = 'id_example'; // string | ID сущности
-$create_bundle_components_request = new \OpenAPI\Client\Model\CreateBundleComponentsRequest(); // \OpenAPI\Client\Model\CreateBundleComponentsRequest
+$bundle_component = new \OpenAPI\Client\Model\BundleComponent(); // \OpenAPI\Client\Model\BundleComponent
 $accept = 'application/json;charset=utf-8'; // string
 $accept_encoding = 'gzip, deflate, br'; // string
 $expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->createBundleComponents($id, $create_bundle_components_request, $accept, $accept_encoding, $expand, $content_type);
+    $result = $apiInstance->createBundleComponent($id, $bundle_component, $accept, $accept_encoding, $expand, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BundlesApi->createBundleComponent: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **bundle_component** | [**\OpenAPI\Client\Model\BundleComponent**](../Model/BundleComponent.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\BundleComponent[]**](../Model/BundleComponent.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createBundleComponents()`
+
+```php
+createBundleComponents($id, $bundle_component, $accept, $accept_encoding, $expand, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
+```
+
+Массовое добавление и обновление компонентов Комплекта
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\BundlesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$bundle_component = array(new \OpenAPI\Client\Model\BundleComponent()); // \OpenAPI\Client\Model\BundleComponent[]
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createBundleComponents($id, $bundle_component, $accept, $accept_encoding, $expand, $content_type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BundlesApi->createBundleComponents: ', $e->getMessage(), PHP_EOL;
@@ -140,7 +214,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
-| **create_bundle_components_request** | [**\OpenAPI\Client\Model\CreateBundleComponentsRequest**](../Model/CreateBundleComponentsRequest.md)|  | |
+| **bundle_component** | [**\OpenAPI\Client\Model\BundleComponent[]**](../Model/BundleComponent.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
@@ -148,7 +222,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\BundleComponent[]**](../Model/BundleComponent.md)
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 

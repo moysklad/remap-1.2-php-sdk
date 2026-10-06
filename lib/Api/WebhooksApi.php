@@ -236,7 +236,6 @@ class WebhooksApi
             throw $e;
         }
     }
-
     /**
      * Operation createOrUpdateWebhooksBatchAsync
      *
@@ -569,7 +568,6 @@ class WebhooksApi
             throw $e;
         }
     }
-
     /**
      * Operation createWebhookAsync
      *
@@ -856,7 +854,6 @@ class WebhooksApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteWebhookAsync
      *
@@ -1156,7 +1153,6 @@ class WebhooksApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteWebhooksBatchAsync
      *
@@ -1482,7 +1478,6 @@ class WebhooksApi
             throw $e;
         }
     }
-
     /**
      * Operation getWebhookByIdAsync
      *
@@ -1816,7 +1811,6 @@ class WebhooksApi
             throw $e;
         }
     }
-
     /**
      * Operation getWebhooksAsync
      *
@@ -2202,7 +2196,6 @@ class WebhooksApi
             throw $e;
         }
     }
-
     /**
      * Operation updateWebhookAsync
      *

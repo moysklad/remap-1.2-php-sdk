@@ -246,7 +246,6 @@ class UserSettingsApi
             throw $e;
         }
     }
-
     /**
      * Operation getUserSettingsAsync
      *
@@ -541,7 +540,6 @@ class UserSettingsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateUserSettingsAsync
      *

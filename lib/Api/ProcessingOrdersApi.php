@@ -339,7 +339,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation addProcessingOrderFilesAsync
      *
@@ -682,7 +681,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingOrderAsync
      *
@@ -986,7 +984,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingOrderBatchAsync
      *
@@ -1317,7 +1314,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingOrderMetadataAttributeAsync
      *
@@ -1637,7 +1633,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingOrderMetadataStateAsync
      *
@@ -1957,7 +1952,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingOrderMetadataStatesBatchAsync
      *
@@ -2287,7 +2281,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingOrderPositionAsync
      *
@@ -2642,7 +2635,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingOrderPositionsAsync
      *
@@ -2953,7 +2945,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingOrderAsync
      *
@@ -3253,7 +3244,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingOrderBatchAsync
      *
@@ -3535,7 +3525,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingOrderFileAsync
      *
@@ -3807,7 +3796,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingOrderMetadataAttributeByIdAsync
      *
@@ -4061,7 +4049,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingOrderMetadataStateByIdAsync
      *
@@ -4317,7 +4304,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingOrderPositionAsync
      *
@@ -4637,7 +4623,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingOrderPositionsBatchAsync
      *
@@ -4981,7 +4966,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingOrderByIdAsync
      *
@@ -5307,7 +5291,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingOrderFileAsync
      *
@@ -5640,7 +5623,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingOrderFilesAsync
      *
@@ -5992,7 +5974,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingOrderListAsync
      *
@@ -6344,7 +6325,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingOrderMetadataAsync
      *
@@ -6639,7 +6619,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingOrderMetadataAttributeAsync
      *
@@ -6967,7 +6946,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingOrderMetadataAttributeByIdAsync
      *
@@ -7278,7 +7256,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingOrderMetadataStateByIdAsync
      *
@@ -7593,7 +7570,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingOrderPositionByIdAsync
      *
@@ -7941,7 +7917,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingOrderPositionsAsync
      *
@@ -8302,7 +8277,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingOrderTemplateAsync
      *
@@ -8570,7 +8544,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation moveProcessingOrderToTrashAsync
      *
@@ -8874,7 +8847,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation updateProcessingOrderAsync
      *
@@ -9227,7 +9199,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation updateProcessingOrderMetadataAttributeByIdAsync
      *
@@ -9567,7 +9538,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation updateProcessingOrderMetadataStateByIdAsync
      *
@@ -9911,7 +9881,6 @@ class ProcessingOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation updateProcessingOrderPositionAsync
      *

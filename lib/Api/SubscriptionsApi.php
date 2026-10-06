@@ -243,7 +243,6 @@ class SubscriptionsApi
             throw $e;
         }
     }
-
     /**
      * Operation getSubscriptionAsync
      *

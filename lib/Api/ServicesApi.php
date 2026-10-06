@@ -276,7 +276,6 @@ class ServicesApi
             throw $e;
         }
     }
-
     /**
      * Operation addServiceFilesAsync
      *
@@ -619,7 +618,6 @@ class ServicesApi
             throw $e;
         }
     }
-
     /**
      * Operation createServiceAsync
      *
@@ -923,7 +921,6 @@ class ServicesApi
             throw $e;
         }
     }
-
     /**
      * Operation createServicesBatchAsync
      *
@@ -1208,7 +1205,6 @@ class ServicesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteServiceAsync
      *
@@ -1464,7 +1460,6 @@ class ServicesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteServiceFileAsync
      *
@@ -1782,7 +1777,6 @@ class ServicesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteServicesBatchAsync
      *
@@ -2108,7 +2102,6 @@ class ServicesApi
             throw $e;
         }
     }
-
     /**
      * Operation getServiceByIdAsync
      *
@@ -2436,7 +2429,6 @@ class ServicesApi
             throw $e;
         }
     }
-
     /**
      * Operation getServiceFilesAsync
      *
@@ -2792,7 +2784,6 @@ class ServicesApi
             throw $e;
         }
     }
-
     /**
      * Operation getServicesAsync
      *
@@ -3178,7 +3169,6 @@ class ServicesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateServiceAsync
      *

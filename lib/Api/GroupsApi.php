@@ -261,7 +261,6 @@ class GroupsApi
             throw $e;
         }
     }
-
     /**
      * Operation createGroupAsync
      *
@@ -548,7 +547,6 @@ class GroupsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteGroupAsync
      *
@@ -848,7 +846,6 @@ class GroupsApi
             throw $e;
         }
     }
-
     /**
      * Operation getGroupByIdAsync
      *
@@ -1182,7 +1179,6 @@ class GroupsApi
             throw $e;
         }
     }
-
     /**
      * Operation getGroupsAsync
      *
@@ -1568,7 +1564,6 @@ class GroupsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateGroupAsync
      *

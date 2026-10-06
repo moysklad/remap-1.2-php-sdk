@@ -267,7 +267,6 @@ class SalesChannelsApi
             throw $e;
         }
     }
-
     /**
      * Operation createSalesChannelAsync
      *
@@ -571,7 +570,6 @@ class SalesChannelsApi
             throw $e;
         }
     }
-
     /**
      * Operation createSalesChannelsBatchAsync
      *
@@ -856,7 +854,6 @@ class SalesChannelsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteSalesChannelAsync
      *
@@ -1156,7 +1153,6 @@ class SalesChannelsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteSalesChannelsBatchAsync
      *
@@ -1482,7 +1478,6 @@ class SalesChannelsApi
             throw $e;
         }
     }
-
     /**
      * Operation getSalesChannelByIdAsync
      *
@@ -1816,7 +1811,6 @@ class SalesChannelsApi
             throw $e;
         }
     }
-
     /**
      * Operation getSalesChannelsAsync
      *
@@ -2202,7 +2196,6 @@ class SalesChannelsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateSalesChannelAsync
      *

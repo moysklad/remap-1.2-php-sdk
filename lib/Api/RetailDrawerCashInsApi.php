@@ -315,7 +315,6 @@ class RetailDrawerCashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation addRetailDrawerCashInFilesAsync
      *
@@ -658,7 +657,6 @@ class RetailDrawerCashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation createRetailDrawerCashInAsync
      *
@@ -962,7 +960,6 @@ class RetailDrawerCashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation createRetailDrawerCashInBatchAsync
      *
@@ -1293,7 +1290,6 @@ class RetailDrawerCashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation createRetailDrawerCashInMetadataAttributeAsync
      *
@@ -1613,7 +1609,6 @@ class RetailDrawerCashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation createRetailDrawerCashInMetadataStateAsync
      *
@@ -1933,7 +1928,6 @@ class RetailDrawerCashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation createRetailDrawerCashInMetadataStatesBatchAsync
      *
@@ -2213,7 +2207,6 @@ class RetailDrawerCashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteRetailDrawerCashInAsync
      *
@@ -2513,7 +2506,6 @@ class RetailDrawerCashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteRetailDrawerCashInBatchAsync
      *
@@ -2795,7 +2787,6 @@ class RetailDrawerCashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteRetailDrawerCashInFileAsync
      *
@@ -3067,7 +3058,6 @@ class RetailDrawerCashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteRetailDrawerCashInMetadataAttributeByIdAsync
      *
@@ -3321,7 +3311,6 @@ class RetailDrawerCashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteRetailDrawerCashInMetadataStateByIdAsync
      *
@@ -3621,7 +3610,6 @@ class RetailDrawerCashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getRetailDrawerCashInByIdAsync
      *
@@ -3949,7 +3937,6 @@ class RetailDrawerCashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getRetailDrawerCashInFilesAsync
      *
@@ -4301,7 +4288,6 @@ class RetailDrawerCashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getRetailDrawerCashInListAsync
      *
@@ -4655,7 +4641,6 @@ class RetailDrawerCashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getRetailDrawerCashInMetadataAsync
      *
@@ -4963,7 +4948,6 @@ class RetailDrawerCashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getRetailDrawerCashInMetadataAttributeAsync
      *
@@ -5291,7 +5275,6 @@ class RetailDrawerCashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getRetailDrawerCashInMetadataAttributeByIdAsync
      *
@@ -5602,7 +5585,6 @@ class RetailDrawerCashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getRetailDrawerCashInMetadataStateByIdAsync
      *
@@ -5915,7 +5897,6 @@ class RetailDrawerCashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getRetailDrawerCashInTemplateAsync
      *
@@ -6183,7 +6164,6 @@ class RetailDrawerCashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation moveRetailDrawerCashInToTrashAsync
      *
@@ -6487,7 +6467,6 @@ class RetailDrawerCashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateRetailDrawerCashInAsync
      *
@@ -6840,7 +6819,6 @@ class RetailDrawerCashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateRetailDrawerCashInMetadataAttributeByIdAsync
      *
@@ -7180,7 +7158,6 @@ class RetailDrawerCashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateRetailDrawerCashInMetadataStateByIdAsync
      *

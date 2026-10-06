@@ -288,7 +288,6 @@ class ProcessingProcessesApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingProcessAsync
      *
@@ -625,7 +624,6 @@ class ProcessingProcessesApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingProcessPositionAsync
      *
@@ -980,7 +978,6 @@ class ProcessingProcessesApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingProcessPositionsAsync
      *
@@ -1308,7 +1305,6 @@ class ProcessingProcessesApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingProcessesBatchAsync
      *
@@ -1593,7 +1589,6 @@ class ProcessingProcessesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingProcessAsync
      *
@@ -1849,7 +1844,6 @@ class ProcessingProcessesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingProcessPositionAsync
      *
@@ -2169,7 +2163,6 @@ class ProcessingProcessesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingProcessPositionsBatchAsync
      *
@@ -2513,7 +2506,6 @@ class ProcessingProcessesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingProcessesBatchAsync
      *
@@ -2839,7 +2831,6 @@ class ProcessingProcessesApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingProcessByIdAsync
      *
@@ -3167,7 +3158,6 @@ class ProcessingProcessesApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingProcessPositionByIdAsync
      *
@@ -3515,7 +3505,6 @@ class ProcessingProcessesApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingProcessPositionsAsync
      *
@@ -3882,7 +3871,6 @@ class ProcessingProcessesApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingProcessesAsync
      *
@@ -4255,7 +4243,6 @@ class ProcessingProcessesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateProcessingProcessAsync
      *
@@ -4612,7 +4599,6 @@ class ProcessingProcessesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateProcessingProcessPositionAsync
      *

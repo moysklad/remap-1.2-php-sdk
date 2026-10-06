@@ -285,7 +285,6 @@ class ProjectsApi
             throw $e;
         }
     }
-
     /**
      * Operation createProjectAsync
      *
@@ -618,7 +617,6 @@ class ProjectsApi
             throw $e;
         }
     }
-
     /**
      * Operation createProjectMetadataAttributeAsync
      *
@@ -909,7 +907,6 @@ class ProjectsApi
             throw $e;
         }
     }
-
     /**
      * Operation createProjectsBatchAsync
      *
@@ -1194,7 +1191,6 @@ class ProjectsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProjectAsync
      *
@@ -1448,7 +1444,6 @@ class ProjectsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProjectMetadataAttributeAsync
      *
@@ -1748,7 +1743,6 @@ class ProjectsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProjectsBatchAsync
      *
@@ -2074,7 +2068,6 @@ class ProjectsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProjectByIdAsync
      *
@@ -2396,7 +2389,6 @@ class ProjectsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProjectMetadataAsync
      *
@@ -2689,7 +2681,6 @@ class ProjectsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProjectMetadataAttributeByIdAsync
      *
@@ -2998,7 +2989,6 @@ class ProjectsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProjectMetadataAttributesAsync
      *
@@ -3301,7 +3291,6 @@ class ProjectsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProjectsAsync
      *
@@ -3687,7 +3676,6 @@ class ProjectsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateProjectAsync
      *
@@ -4040,7 +4028,6 @@ class ProjectsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateProjectMetadataAttributeAsync
      *

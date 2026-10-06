@@ -306,7 +306,6 @@ class CashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation createCashInAsync
      *
@@ -610,7 +609,6 @@ class CashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation createCashInBatchAsync
      *
@@ -941,7 +939,6 @@ class CashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation createCashInMetadataAttributeAsync
      *
@@ -1261,7 +1258,6 @@ class CashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation createCashInMetadataStateAsync
      *
@@ -1581,7 +1577,6 @@ class CashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation createCashInMetadataStatesBatchAsync
      *
@@ -1863,7 +1858,6 @@ class CashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCashInAsync
      *
@@ -2171,7 +2165,6 @@ class CashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCashInBatchAsync
      *
@@ -2453,7 +2446,6 @@ class CashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCashInMetadataAttributeByIdAsync
      *
@@ -2717,7 +2709,6 @@ class CashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCashInMetadataStateByIdAsync
      *
@@ -3027,7 +3018,6 @@ class CashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCashInByIdAsync
      *
@@ -3367,7 +3357,6 @@ class CashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCashInListAsync
      *
@@ -3729,7 +3718,6 @@ class CashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCashInMetadataAsync
      *
@@ -4034,7 +4022,6 @@ class CashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCashInMetadataAttributeAsync
      *
@@ -4372,7 +4359,6 @@ class CashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCashInMetadataAttributeByIdAsync
      *
@@ -4693,7 +4679,6 @@ class CashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCashInMetadataStateByIdAsync
      *
@@ -5014,7 +4999,6 @@ class CashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCashInTemplateAsync
      *
@@ -5282,7 +5266,6 @@ class CashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation moveCashInToTrashAsync
      *
@@ -5586,7 +5569,6 @@ class CashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCashInAsync
      *
@@ -5939,7 +5921,6 @@ class CashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCashInMetadataAttributeByIdAsync
      *
@@ -6279,7 +6260,6 @@ class CashInsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCashInMetadataStateByIdAsync
      *

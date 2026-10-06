@@ -339,7 +339,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation addPayrollFilesAsync
      *
@@ -682,7 +681,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPayrollAsync
      *
@@ -1015,7 +1013,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPayrollMetadataAttributeAsync
      *
@@ -1335,7 +1332,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPayrollMetadataStateAsync
      *
@@ -1655,7 +1651,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPayrollMetadataStatesBatchAsync
      *
@@ -1985,7 +1980,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPayrollPositionAsync
      *
@@ -2309,7 +2303,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPayrollPositionsBatchAsync
      *
@@ -2629,7 +2622,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPayrollsBatchAsync
      *
@@ -2914,7 +2906,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePayrollAsync
      *
@@ -3170,7 +3161,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePayrollFileAsync
      *
@@ -3442,7 +3432,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePayrollMetadataAttributeByIdAsync
      *
@@ -3696,7 +3685,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePayrollMetadataStateByIdAsync
      *
@@ -3952,7 +3940,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePayrollPositionAsync
      *
@@ -4272,7 +4259,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePayrollPositionsBatchAsync
      *
@@ -4616,7 +4602,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePayrollsBatchAsync
      *
@@ -4942,7 +4927,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPayrollByIdAsync
      *
@@ -5268,7 +5252,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPayrollFileAsync
      *
@@ -5601,7 +5584,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPayrollFilesAsync
      *
@@ -5947,7 +5929,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPayrollMetadataAsync
      *
@@ -6255,7 +6236,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPayrollMetadataAttributeAsync
      *
@@ -6585,7 +6565,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPayrollMetadataAttributeByIdAsync
      *
@@ -6904,7 +6883,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPayrollMetadataStateByIdAsync
      *
@@ -7219,7 +7197,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPayrollPositionByIdAsync
      *
@@ -7567,7 +7544,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPayrollPositionsAsync
      *
@@ -7928,7 +7904,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPayrollTemplateAsync
      *
@@ -8256,7 +8231,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPayrollsAsync
      *
@@ -8592,7 +8566,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation movePayrollToTrashAsync
      *
@@ -8896,7 +8869,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation updatePayrollAsync
      *
@@ -9249,7 +9221,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation updatePayrollMetadataAttributeByIdAsync
      *
@@ -9589,7 +9560,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation updatePayrollMetadataStateByIdAsync
      *
@@ -9933,7 +9903,6 @@ class PayrollsApi
             throw $e;
         }
     }
-
     /**
      * Operation updatePayrollPositionAsync
      *

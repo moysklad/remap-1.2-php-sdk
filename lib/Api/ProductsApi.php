@@ -77,6 +77,9 @@ class ProductsApi
         'addProductFiles' => [
             'application/json',
         ],
+        'addProductImage' => [
+            'application/json',
+        ],
         'addProductImages' => [
             'application/json',
         ],
@@ -324,7 +327,6 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
      * Operation addProductFilesAsync
      *
@@ -544,46 +546,46 @@ class ProductsApi
     }
 
     /**
-     * Operation addProductImages
+     * Operation addProductImage
      *
-     * Добавить изображения к товару
+     * Добавить изображение к товару
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\AddProductImagesRequest $add_product_images_request add_product_images_request (required)
+     * @param  \OpenAPI\Client\Model\FileUpload $file_upload file_upload (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addProductImages'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addProductImage'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Image[]|\OpenAPI\Client\Model\Errors
      */
-    public function addProductImages($id, $add_product_images_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addProductImages'][0])
+    public function addProductImage($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addProductImage'][0])
     {
-        list($response) = $this->addProductImagesWithHttpInfo($id, $add_product_images_request, $accept, $accept_encoding, $content_type, $contentType);
+        list($response) = $this->addProductImageWithHttpInfo($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
     }
 
     /**
-     * Operation addProductImagesWithHttpInfo
+     * Operation addProductImageWithHttpInfo
      *
-     * Добавить изображения к товару
+     * Добавить изображение к товару
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\AddProductImagesRequest $add_product_images_request (required)
+     * @param  \OpenAPI\Client\Model\FileUpload $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addProductImages'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addProductImage'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Image[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function addProductImagesWithHttpInfo($id, $add_product_images_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addProductImages'][0])
+    public function addProductImageWithHttpInfo($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addProductImage'][0])
     {
-        $request = $this->addProductImagesRequest($id, $add_product_images_request, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->addProductImageRequest($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -667,25 +669,24 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
-     * Operation addProductImagesAsync
+     * Operation addProductImageAsync
      *
-     * Добавить изображения к товару
+     * Добавить изображение к товару
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\AddProductImagesRequest $add_product_images_request (required)
+     * @param  \OpenAPI\Client\Model\FileUpload $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addProductImages'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addProductImage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addProductImagesAsync($id, $add_product_images_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addProductImages'][0])
+    public function addProductImageAsync($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addProductImage'][0])
     {
-        return $this->addProductImagesAsyncWithHttpInfo($id, $add_product_images_request, $accept, $accept_encoding, $content_type, $contentType)
+        return $this->addProductImageAsyncWithHttpInfo($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -694,24 +695,24 @@ class ProductsApi
     }
 
     /**
-     * Operation addProductImagesAsyncWithHttpInfo
+     * Operation addProductImageAsyncWithHttpInfo
      *
-     * Добавить изображения к товару
+     * Добавить изображение к товару
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\AddProductImagesRequest $add_product_images_request (required)
+     * @param  \OpenAPI\Client\Model\FileUpload $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addProductImages'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addProductImage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addProductImagesAsyncWithHttpInfo($id, $add_product_images_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addProductImages'][0])
+    public function addProductImageAsyncWithHttpInfo($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addProductImage'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Image[]';
-        $request = $this->addProductImagesRequest($id, $add_product_images_request, $accept, $accept_encoding, $content_type, $contentType);
+        $request = $this->addProductImageRequest($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
 
         return $this->client
@@ -751,32 +752,32 @@ class ProductsApi
     }
 
     /**
-     * Create request for operation 'addProductImages'
+     * Create request for operation 'addProductImage'
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\AddProductImagesRequest $add_product_images_request (required)
+     * @param  \OpenAPI\Client\Model\FileUpload $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addProductImages'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addProductImage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function addProductImagesRequest($id, $add_product_images_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addProductImages'][0])
+    public function addProductImageRequest($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addProductImage'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling addProductImages'
+                'Missing the required parameter $id when calling addProductImage'
             );
         }
 
-        // verify the required parameter 'add_product_images_request' is set
-        if ($add_product_images_request === null || (is_array($add_product_images_request) && count($add_product_images_request) === 0)) {
+        // verify the required parameter 'file_upload' is set
+        if ($file_upload === null || (is_array($file_upload) && count($file_upload) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $add_product_images_request when calling addProductImages'
+                'Missing the required parameter $file_upload when calling addProductImage'
             );
         }
 
@@ -822,12 +823,354 @@ class ProductsApi
         );
 
         // for model (json/xml)
-        if (isset($add_product_images_request)) {
+        if (isset($file_upload)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($add_product_images_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($file_upload));
             } else {
-                $httpBody = $add_product_images_request;
+                $httpBody = $file_upload;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation addProductImages
+     *
+     * Изменить список изображений товара
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\FileUpload[] $file_upload file_upload (required)
+     * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addProductImages'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\Image[]|\OpenAPI\Client\Model\Errors
+     */
+    public function addProductImages($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addProductImages'][0])
+    {
+        list($response) = $this->addProductImagesWithHttpInfo($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation addProductImagesWithHttpInfo
+     *
+     * Изменить список изображений товара
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\FileUpload[] $file_upload (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addProductImages'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\Image[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function addProductImagesWithHttpInfo($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addProductImages'][0])
+    {
+        $request = $this->addProductImagesRequest($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\Image[]',
+                        $request,
+                        $response
+                    );
+                default:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\Errors',
+                        $request,
+                        $response
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\OpenAPI\Client\Model\Image[]',
+                $request,
+                $response
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Image[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Errors',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+    /**
+     * Operation addProductImagesAsync
+     *
+     * Изменить список изображений товара
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\FileUpload[] $file_upload (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addProductImages'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function addProductImagesAsync($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addProductImages'][0])
+    {
+        return $this->addProductImagesAsyncWithHttpInfo($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation addProductImagesAsyncWithHttpInfo
+     *
+     * Изменить список изображений товара
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\FileUpload[] $file_upload (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addProductImages'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function addProductImagesAsyncWithHttpInfo($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addProductImages'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\Image[]';
+        $request = $this->addProductImagesRequest($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
+
+        return $this->client
+            ->sendAsync($request, $options)
+            ->then(
+                function ($response) use ($returnType, $request) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'addProductImages'
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\FileUpload[] $file_upload (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addProductImages'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function addProductImagesRequest($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addProductImages'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling addProductImages'
+            );
+        }
+
+        // verify the required parameter 'file_upload' is set
+        if ($file_upload === null || (is_array($file_upload) && count($file_upload) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $file_upload when calling addProductImages'
+            );
+        }
+        if (count($file_upload) > 10) {
+            throw new \InvalidArgumentException('invalid value for "$file_upload" when calling ProductsApi.addProductImages, number of items must be less than or equal to 10.');
+        }
+        
+
+
+
+
+        $resourcePath = '/entity/product/{id}/images/batch';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // header params
+        if ($accept !== null) {
+            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+        }
+        // header params
+        if ($accept_encoding !== null) {
+            $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+        // header params
+        if ($content_type !== null) {
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
+        }
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{id}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'text/html;charset=UTF-8', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($file_upload)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($file_upload));
+            } else {
+                $httpBody = $file_upload;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1007,7 +1350,6 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
      * Operation createProductAsync
      *
@@ -1340,7 +1682,6 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
      * Operation createProductMetadataAttributeAsync
      *
@@ -1662,7 +2003,6 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
      * Operation createProductStoreBalanceAsync
      *
@@ -1971,7 +2311,6 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
      * Operation createProductsBatchAsync
      *
@@ -2256,7 +2595,6 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProductAsync
      *
@@ -2512,7 +2850,6 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProductFileAsync
      *
@@ -2786,7 +3123,6 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProductImageAsync
      *
@@ -3062,7 +3398,6 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProductImagesAsync
      *
@@ -3341,7 +3676,6 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProductMetadataAttributeByIdAsync
      *
@@ -3597,7 +3931,6 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProductStoreBalanceAsync
      *
@@ -3873,7 +4206,6 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProductStoreBalancesAsync
      *
@@ -4198,7 +4530,6 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProductsBatchAsync
      *
@@ -4520,7 +4851,6 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
      * Operation getMetadataAsync
      *
@@ -4817,7 +5147,6 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProductByIdAsync
      *
@@ -5158,7 +5487,6 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProductFilesAsync
      *
@@ -5510,7 +5838,6 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProductImagesAsync
      *
@@ -5869,7 +6196,6 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProductMetadataAttributeByIdAsync
      *
@@ -6182,7 +6508,6 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProductMetadataAttributesAsync
      *
@@ -6512,7 +6837,6 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProductStoreBalanceByIdAsync
      *
@@ -6845,7 +7169,6 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProductStoreBalancesAsync
      *
@@ -7203,7 +7526,6 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProductsAsync
      *
@@ -7602,7 +7924,6 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateProductAsync
      *
@@ -7955,7 +8276,6 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateProductMetadataAttributeByIdAsync
      *
@@ -8297,7 +8617,6 @@ class ProductsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateProductStoreBalanceAsync
      *

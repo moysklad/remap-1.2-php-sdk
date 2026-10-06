@@ -285,7 +285,6 @@ class ConsignmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation createConsignmentAsync
      *
@@ -618,7 +617,6 @@ class ConsignmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation createConsignmentMetadataAttributeAsync
      *
@@ -909,7 +907,6 @@ class ConsignmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation createConsignmentsBatchAsync
      *
@@ -1194,7 +1191,6 @@ class ConsignmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteConsignmentAsync
      *
@@ -1448,7 +1444,6 @@ class ConsignmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteConsignmentMetadataAttributeAsync
      *
@@ -1748,7 +1743,6 @@ class ConsignmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteConsignmentsBatchAsync
      *
@@ -2074,7 +2068,6 @@ class ConsignmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation getConsignmentByIdAsync
      *
@@ -2396,7 +2389,6 @@ class ConsignmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation getConsignmentMetadataAsync
      *
@@ -2689,7 +2681,6 @@ class ConsignmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation getConsignmentMetadataAttributeByIdAsync
      *
@@ -2998,7 +2989,6 @@ class ConsignmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation getConsignmentMetadataAttributesAsync
      *
@@ -3301,7 +3291,6 @@ class ConsignmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation getConsignmentsAsync
      *
@@ -3687,7 +3676,6 @@ class ConsignmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateConsignmentAsync
      *
@@ -4040,7 +4028,6 @@ class ConsignmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateConsignmentMetadataAttributeAsync
      *

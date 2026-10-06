@@ -267,7 +267,6 @@ class ProductFoldersApi
             throw $e;
         }
     }
-
     /**
      * Operation createProductFolderAsync
      *
@@ -571,7 +570,6 @@ class ProductFoldersApi
             throw $e;
         }
     }
-
     /**
      * Operation createProductFoldersBatchAsync
      *
@@ -856,7 +854,6 @@ class ProductFoldersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProductFolderAsync
      *
@@ -1156,7 +1153,6 @@ class ProductFoldersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProductFoldersBatchAsync
      *
@@ -1482,7 +1478,6 @@ class ProductFoldersApi
             throw $e;
         }
     }
-
     /**
      * Operation getProductFolderByIdAsync
      *
@@ -1816,7 +1811,6 @@ class ProductFoldersApi
             throw $e;
         }
     }
-
     /**
      * Operation getProductFoldersAsync
      *
@@ -2202,7 +2196,6 @@ class ProductFoldersApi
             throw $e;
         }
     }
-
     /**
      * Operation updateProductFolderAsync
      *

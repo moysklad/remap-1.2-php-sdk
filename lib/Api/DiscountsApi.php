@@ -286,7 +286,6 @@ class DiscountsApi
             throw $e;
         }
     }
-
     /**
      * Operation createAccumulationDiscountAsync
      *
@@ -606,7 +605,6 @@ class DiscountsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPersonalDiscountAsync
      *
@@ -926,7 +924,6 @@ class DiscountsApi
             throw $e;
         }
     }
-
     /**
      * Operation createSpecialPriceDiscountAsync
      *
@@ -1200,7 +1197,6 @@ class DiscountsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteAccumulationDiscountAsync
      *
@@ -1454,7 +1450,6 @@ class DiscountsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePersonalDiscountAsync
      *
@@ -1708,7 +1703,6 @@ class DiscountsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteSpecialPriceDiscountAsync
      *
@@ -2006,7 +2000,6 @@ class DiscountsApi
             throw $e;
         }
     }
-
     /**
      * Operation getAccumulationDiscountByIdAsync
      *
@@ -2321,7 +2314,6 @@ class DiscountsApi
             throw $e;
         }
     }
-
     /**
      * Operation getDiscountsAsync
      *
@@ -2662,7 +2654,6 @@ class DiscountsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPersonalDiscountByIdAsync
      *
@@ -2973,7 +2964,6 @@ class DiscountsApi
             throw $e;
         }
     }
-
     /**
      * Operation getSpecialPriceDiscountByIdAsync
      *
@@ -3288,7 +3278,6 @@ class DiscountsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateAccumulationDiscountAsync
      *
@@ -3628,7 +3617,6 @@ class DiscountsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateDiscountRoundingByIdAsync
      *
@@ -3968,7 +3956,6 @@ class DiscountsApi
             throw $e;
         }
     }
-
     /**
      * Operation updatePersonalDiscountAsync
      *
@@ -4308,7 +4295,6 @@ class DiscountsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateSpecialPriceDiscountAsync
      *

@@ -96,9 +96,21 @@ class StoresApiTest extends TestCase
     }
 
     /**
-     * Test case for createStoreSlots
+     * Test case for createStoreSlot
      *
      * Создать ячейку склада.
+     *
+     */
+    public function testCreateStoreSlot()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for createStoreSlots
+     *
+     * Массовое создание и обновление ячеек склада.
      *
      */
     public function testCreateStoreSlots()
@@ -108,9 +120,21 @@ class StoresApiTest extends TestCase
     }
 
     /**
-     * Test case for createStoreZones
+     * Test case for createStoreZone
      *
      * Создать зону склада.
+     *
+     */
+    public function testCreateStoreZone()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for createStoreZones
+     *
+     * Массовое создание и обновление зон склада.
      *
      */
     public function testCreateStoreZones()

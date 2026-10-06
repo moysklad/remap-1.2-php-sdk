@@ -306,7 +306,6 @@ class CashOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation createCashOutAsync
      *
@@ -610,7 +609,6 @@ class CashOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation createCashOutBatchAsync
      *
@@ -941,7 +939,6 @@ class CashOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation createCashOutMetadataAttributeAsync
      *
@@ -1261,7 +1258,6 @@ class CashOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation createCashOutMetadataStateAsync
      *
@@ -1581,7 +1577,6 @@ class CashOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation createCashOutMetadataStatesBatchAsync
      *
@@ -1863,7 +1858,6 @@ class CashOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCashOutAsync
      *
@@ -2171,7 +2165,6 @@ class CashOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCashOutBatchAsync
      *
@@ -2453,7 +2446,6 @@ class CashOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCashOutMetadataAttributeByIdAsync
      *
@@ -2717,7 +2709,6 @@ class CashOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCashOutMetadataStateByIdAsync
      *
@@ -3027,7 +3018,6 @@ class CashOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCashOutByIdAsync
      *
@@ -3367,7 +3357,6 @@ class CashOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCashOutListAsync
      *
@@ -3729,7 +3718,6 @@ class CashOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCashOutMetadataAsync
      *
@@ -4034,7 +4022,6 @@ class CashOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCashOutMetadataAttributeAsync
      *
@@ -4372,7 +4359,6 @@ class CashOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCashOutMetadataAttributeByIdAsync
      *
@@ -4693,7 +4679,6 @@ class CashOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCashOutMetadataStateByIdAsync
      *
@@ -5014,7 +4999,6 @@ class CashOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCashOutTemplateAsync
      *
@@ -5282,7 +5266,6 @@ class CashOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation moveCashOutToTrashAsync
      *
@@ -5586,7 +5569,6 @@ class CashOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCashOutAsync
      *
@@ -5939,7 +5921,6 @@ class CashOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCashOutMetadataAttributeByIdAsync
      *
@@ -6279,7 +6260,6 @@ class CashOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCashOutMetadataStateByIdAsync
      *

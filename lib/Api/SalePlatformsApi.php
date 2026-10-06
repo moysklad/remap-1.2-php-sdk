@@ -248,7 +248,6 @@ class SalePlatformsApi
             throw $e;
         }
     }
-
     /**
      * Operation getSalePlatformByIdAsync
      *
@@ -565,7 +564,6 @@ class SalePlatformsApi
             throw $e;
         }
     }
-
     /**
      * Operation getSalePlatformsAsync
      *

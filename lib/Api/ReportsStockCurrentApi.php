@@ -257,7 +257,6 @@ class ReportsStockCurrentApi
             throw $e;
         }
     }
-
     /**
      * Operation getStockAllCurrentAsync
      *
@@ -606,7 +605,6 @@ class ReportsStockCurrentApi
             throw $e;
         }
     }
-
     /**
      * Operation getStockBySlotCurrentAsync
      *
@@ -946,7 +944,6 @@ class ReportsStockCurrentApi
             throw $e;
         }
     }
-
     /**
      * Operation getStockByStoreCurrentAsync
      *

@@ -351,7 +351,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation addCounterpartyFilesAsync
      *
@@ -663,7 +662,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation createCounterpartiesBatchAsync
      *
@@ -996,7 +994,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation createCounterpartyAsync
      *
@@ -1331,7 +1328,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation createCounterpartyAccountAsync
      *
@@ -1671,7 +1667,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation createCounterpartyContactPersonAsync
      *
@@ -2009,7 +2004,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation createCounterpartyMetadataAttributeAsync
      *
@@ -2329,7 +2323,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation createCounterpartyMetadataStateAsync
      *
@@ -2651,7 +2644,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation createCounterpartyNoteAsync
      *
@@ -2989,7 +2981,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCounterpartiesBatchAsync
      *
@@ -3269,7 +3260,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCounterpartyAsync
      *
@@ -3525,7 +3515,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCounterpartyAccountAsync
      *
@@ -3799,7 +3788,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCounterpartyContactPersonAsync
      *
@@ -4073,7 +4061,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCounterpartyFileAsync
      *
@@ -4345,7 +4332,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCounterpartyMetadataAttributeByIdAsync
      *
@@ -4599,7 +4585,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCounterpartyMetadataStateByIdAsync
      *
@@ -4855,7 +4840,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCounterpartyNoteAsync
      *
@@ -5181,7 +5165,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation getCounterpartiesAsync
      *
@@ -5563,7 +5546,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation getCounterpartyAccountByIdAsync
      *
@@ -5896,7 +5878,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation getCounterpartyAccountsAsync
      *
@@ -6244,7 +6225,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation getCounterpartyByIdAsync
      *
@@ -6570,7 +6550,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation getCounterpartyContactPersonByIdAsync
      *
@@ -6903,7 +6882,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation getCounterpartyContactPersonsAsync
      *
@@ -7253,7 +7231,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation getCounterpartyFilesAsync
      *
@@ -7599,7 +7576,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation getCounterpartyMetadataAsync
      *
@@ -7905,7 +7881,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation getCounterpartyMetadataAttributeByIdAsync
      *
@@ -8218,7 +8193,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation getCounterpartyMetadataAttributesAsync
      *
@@ -8546,7 +8520,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation getCounterpartyMetadataStateByIdAsync
      *
@@ -8859,7 +8832,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation getCounterpartyNoteByIdAsync
      *
@@ -9192,7 +9164,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation getCounterpartyNotesAsync
      *
@@ -9544,7 +9515,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCounterpartyAsync
      *
@@ -9899,7 +9869,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCounterpartyAccountAsync
      *
@@ -10259,7 +10228,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCounterpartyContactPersonAsync
      *
@@ -10617,7 +10585,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCounterpartyMetadataAttributeByIdAsync
      *
@@ -10957,7 +10924,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCounterpartyMetadataStateByIdAsync
      *
@@ -11299,7 +11265,6 @@ class CounterpartiesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCounterpartyNoteAsync
      *

@@ -300,7 +300,6 @@ class CounterpartyAdjustmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation addCounterpartyAdjustmentFilesAsync
      *
@@ -643,7 +642,6 @@ class CounterpartyAdjustmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation createCounterpartyAdjustmentAsync
      *
@@ -947,7 +945,6 @@ class CounterpartyAdjustmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation createCounterpartyAdjustmentBatchAsync
      *
@@ -1278,7 +1275,6 @@ class CounterpartyAdjustmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation createCounterpartyAdjustmentMetadataAttributeAsync
      *
@@ -1552,7 +1548,6 @@ class CounterpartyAdjustmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCounterpartyAdjustmentAsync
      *
@@ -1852,7 +1847,6 @@ class CounterpartyAdjustmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCounterpartyAdjustmentBatchAsync
      *
@@ -2134,7 +2128,6 @@ class CounterpartyAdjustmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCounterpartyAdjustmentFileAsync
      *
@@ -2406,7 +2399,6 @@ class CounterpartyAdjustmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCounterpartyAdjustmentMetadataAttributeByIdAsync
      *
@@ -2706,7 +2698,6 @@ class CounterpartyAdjustmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCounterpartyAdjustmentByIdAsync
      *
@@ -3032,7 +3023,6 @@ class CounterpartyAdjustmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCounterpartyAdjustmentFileAsync
      *
@@ -3365,7 +3355,6 @@ class CounterpartyAdjustmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCounterpartyAdjustmentFilesAsync
      *
@@ -3721,7 +3710,6 @@ class CounterpartyAdjustmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCounterpartyAdjustmentListAsync
      *
@@ -4099,7 +4087,6 @@ class CounterpartyAdjustmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCounterpartyAdjustmentMetadataAsync
      *
@@ -4394,7 +4381,6 @@ class CounterpartyAdjustmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCounterpartyAdjustmentMetadataAttributeAsync
      *
@@ -4722,7 +4708,6 @@ class CounterpartyAdjustmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCounterpartyAdjustmentMetadataAttributeByIdAsync
      *
@@ -4989,7 +4974,6 @@ class CounterpartyAdjustmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation moveCounterpartyAdjustmentToTrashAsync
      *
@@ -5293,7 +5277,6 @@ class CounterpartyAdjustmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCounterpartyAdjustmentAsync
      *
@@ -5646,7 +5629,6 @@ class CounterpartyAdjustmentsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCounterpartyAdjustmentMetadataAttributeByIdAsync
      *

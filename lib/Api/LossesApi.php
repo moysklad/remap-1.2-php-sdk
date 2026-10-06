@@ -327,7 +327,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation createLossAsync
      *
@@ -631,7 +630,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation createLossBatchAsync
      *
@@ -962,7 +960,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation createLossMetadataAttributeAsync
      *
@@ -1282,7 +1279,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation createLossMetadataStateAsync
      *
@@ -1602,7 +1598,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation createLossMetadataStatesBatchAsync
      *
@@ -1932,7 +1927,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation createLossPositionAsync
      *
@@ -2287,7 +2281,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation createLossPositionsAsync
      *
@@ -2598,7 +2591,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteLossAsync
      *
@@ -2898,7 +2890,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteLossBatchAsync
      *
@@ -3178,7 +3169,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteLossMetadataAttributeByIdAsync
      *
@@ -3432,7 +3422,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteLossMetadataStateByIdAsync
      *
@@ -3690,7 +3679,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteLossPositionAsync
      *
@@ -4023,7 +4011,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteLossPositionsBatchAsync
      *
@@ -4369,7 +4356,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation getLossByIdAsync
      *
@@ -4714,7 +4700,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation getLossListAsync
      *
@@ -5079,7 +5064,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation getLossMetadataAsync
      *
@@ -5374,7 +5358,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation getLossMetadataAttributeAsync
      *
@@ -5702,7 +5685,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation getLossMetadataAttributeByIdAsync
      *
@@ -6013,7 +5995,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation getLossMetadataStateByIdAsync
      *
@@ -6330,7 +6311,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation getLossPositionByIdAsync
      *
@@ -6693,7 +6673,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation getLossPositionsAsync
      *
@@ -7067,7 +7046,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation getLossTemplateAsync
      *
@@ -7335,7 +7313,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation moveLossToTrashAsync
      *
@@ -7641,7 +7618,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateLossAsync
      *
@@ -8007,7 +7983,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateLossMetadataAttributeByIdAsync
      *
@@ -8347,7 +8322,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateLossMetadataStateByIdAsync
      *
@@ -8693,7 +8667,6 @@ class LossesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateLossPositionAsync
      *

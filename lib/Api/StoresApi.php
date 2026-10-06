@@ -80,7 +80,13 @@ class StoresApi
         'createStoreMetadataAttribute' => [
             'application/json',
         ],
+        'createStoreSlot' => [
+            'application/json',
+        ],
         'createStoreSlots' => [
+            'application/json',
+        ],
+        'createStoreZone' => [
             'application/json',
         ],
         'createStoreZones' => [
@@ -315,7 +321,6 @@ class StoresApi
             throw $e;
         }
     }
-
     /**
      * Operation createStoreAsync
      *
@@ -648,7 +653,6 @@ class StoresApi
             throw $e;
         }
     }
-
     /**
      * Operation createStoreMetadataAttributeAsync
      *
@@ -847,44 +851,44 @@ class StoresApi
     }
 
     /**
-     * Operation createStoreSlots
+     * Operation createStoreSlot
      *
      * Создать ячейку склада
      *
      * @param  string $store_id store_id (required)
-     * @param  \OpenAPI\Client\Model\CreateStoreSlotsRequest $create_store_slots_request create_store_slots_request (required)
+     * @param  \OpenAPI\Client\Model\StoreSlot $store_slot store_slot (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreSlots'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreSlot'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\StoreSlot[]|\OpenAPI\Client\Model\Errors
      */
-    public function createStoreSlots($store_id, $create_store_slots_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreSlots'][0])
+    public function createStoreSlot($store_id, $store_slot, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreSlot'][0])
     {
-        list($response) = $this->createStoreSlotsWithHttpInfo($store_id, $create_store_slots_request, $accept, $accept_encoding, $contentType);
+        list($response) = $this->createStoreSlotWithHttpInfo($store_id, $store_slot, $accept, $accept_encoding, $contentType);
         return $response;
     }
 
     /**
-     * Operation createStoreSlotsWithHttpInfo
+     * Operation createStoreSlotWithHttpInfo
      *
      * Создать ячейку склада
      *
      * @param  string $store_id (required)
-     * @param  \OpenAPI\Client\Model\CreateStoreSlotsRequest $create_store_slots_request (required)
+     * @param  \OpenAPI\Client\Model\StoreSlot $store_slot (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreSlots'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreSlot'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\StoreSlot[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createStoreSlotsWithHttpInfo($store_id, $create_store_slots_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreSlots'][0])
+    public function createStoreSlotWithHttpInfo($store_id, $store_slot, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreSlot'][0])
     {
-        $request = $this->createStoreSlotsRequest($store_id, $create_store_slots_request, $accept, $accept_encoding, $contentType);
+        $request = $this->createStoreSlotRequest($store_id, $store_slot, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -968,24 +972,23 @@ class StoresApi
             throw $e;
         }
     }
-
     /**
-     * Operation createStoreSlotsAsync
+     * Operation createStoreSlotAsync
      *
      * Создать ячейку склада
      *
      * @param  string $store_id (required)
-     * @param  \OpenAPI\Client\Model\CreateStoreSlotsRequest $create_store_slots_request (required)
+     * @param  \OpenAPI\Client\Model\StoreSlot $store_slot (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreSlots'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreSlot'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createStoreSlotsAsync($store_id, $create_store_slots_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreSlots'][0])
+    public function createStoreSlotAsync($store_id, $store_slot, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreSlot'][0])
     {
-        return $this->createStoreSlotsAsyncWithHttpInfo($store_id, $create_store_slots_request, $accept, $accept_encoding, $contentType)
+        return $this->createStoreSlotAsyncWithHttpInfo($store_id, $store_slot, $accept, $accept_encoding, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -994,23 +997,23 @@ class StoresApi
     }
 
     /**
-     * Operation createStoreSlotsAsyncWithHttpInfo
+     * Operation createStoreSlotAsyncWithHttpInfo
      *
      * Создать ячейку склада
      *
      * @param  string $store_id (required)
-     * @param  \OpenAPI\Client\Model\CreateStoreSlotsRequest $create_store_slots_request (required)
+     * @param  \OpenAPI\Client\Model\StoreSlot $store_slot (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreSlots'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreSlot'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createStoreSlotsAsyncWithHttpInfo($store_id, $create_store_slots_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreSlots'][0])
+    public function createStoreSlotAsyncWithHttpInfo($store_id, $store_slot, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreSlot'][0])
     {
         $returnType = '\OpenAPI\Client\Model\StoreSlot[]';
-        $request = $this->createStoreSlotsRequest($store_id, $create_store_slots_request, $accept, $accept_encoding, $contentType);
+        $request = $this->createStoreSlotRequest($store_id, $store_slot, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
 
         return $this->client
@@ -1050,31 +1053,31 @@ class StoresApi
     }
 
     /**
-     * Create request for operation 'createStoreSlots'
+     * Create request for operation 'createStoreSlot'
      *
      * @param  string $store_id (required)
-     * @param  \OpenAPI\Client\Model\CreateStoreSlotsRequest $create_store_slots_request (required)
+     * @param  \OpenAPI\Client\Model\StoreSlot $store_slot (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreSlots'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreSlot'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createStoreSlotsRequest($store_id, $create_store_slots_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreSlots'][0])
+    public function createStoreSlotRequest($store_id, $store_slot, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreSlot'][0])
     {
 
         // verify the required parameter 'store_id' is set
         if ($store_id === null || (is_array($store_id) && count($store_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $store_id when calling createStoreSlots'
+                'Missing the required parameter $store_id when calling createStoreSlot'
             );
         }
 
-        // verify the required parameter 'create_store_slots_request' is set
-        if ($create_store_slots_request === null || (is_array($create_store_slots_request) && count($create_store_slots_request) === 0)) {
+        // verify the required parameter 'store_slot' is set
+        if ($store_slot === null || (is_array($store_slot) && count($store_slot) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $create_store_slots_request when calling createStoreSlots'
+                'Missing the required parameter $store_slot when calling createStoreSlot'
             );
         }
 
@@ -1115,12 +1118,12 @@ class StoresApi
         );
 
         // for model (json/xml)
-        if (isset($create_store_slots_request)) {
+        if (isset($store_slot)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_store_slots_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($store_slot));
             } else {
-                $httpBody = $create_store_slots_request;
+                $httpBody = $store_slot;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1177,44 +1180,340 @@ class StoresApi
     }
 
     /**
-     * Operation createStoreZones
+     * Operation createStoreSlots
+     *
+     * Массовое создание и обновление ячеек склада
+     *
+     * @param  string $store_id store_id (required)
+     * @param  \OpenAPI\Client\Model\StoreSlot[] $store_slot store_slot (required)
+     * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreSlots'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors
+     */
+    public function createStoreSlots($store_id, $store_slot, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreSlots'][0])
+    {
+        list($response) = $this->createStoreSlotsWithHttpInfo($store_id, $store_slot, $accept, $accept_encoding, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createStoreSlotsWithHttpInfo
+     *
+     * Массовое создание и обновление ячеек склада
+     *
+     * @param  string $store_id (required)
+     * @param  \OpenAPI\Client\Model\StoreSlot[] $store_slot (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreSlots'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createStoreSlotsWithHttpInfo($store_id, $store_slot, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreSlots'][0])
+    {
+        $request = $this->createStoreSlotsRequest($store_id, $store_slot, $accept, $accept_encoding, $contentType);
+        try {
+            $options = $this->createHttpClientOption();
+            $options[RequestOptions::HTTP_ERRORS] = false;
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            return $this->handleResponseMassWithDataType(
+                '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Errors',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+    /**
+     * Operation createStoreSlotsAsync
+     *
+     * Массовое создание и обновление ячеек склада
+     *
+     * @param  string $store_id (required)
+     * @param  \OpenAPI\Client\Model\StoreSlot[] $store_slot (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreSlots'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createStoreSlotsAsync($store_id, $store_slot, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreSlots'][0])
+    {
+        return $this->createStoreSlotsAsyncWithHttpInfo($store_id, $store_slot, $accept, $accept_encoding, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createStoreSlotsAsyncWithHttpInfo
+     *
+     * Массовое создание и обновление ячеек склада
+     *
+     * @param  string $store_id (required)
+     * @param  \OpenAPI\Client\Model\StoreSlot[] $store_slot (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreSlots'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createStoreSlotsAsyncWithHttpInfo($store_id, $store_slot, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreSlots'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
+        $request = $this->createStoreSlotsRequest($store_id, $store_slot, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
+        $options[RequestOptions::HTTP_ERRORS] = false;
+
+        return $this->client
+            ->sendAsync($request, $options)
+            ->then(
+                function ($response) use ($returnType, $request) {
+                    return $this->handleResponseMassWithDataType(
+                        $returnType,
+                        $request,
+                        $response,
+                    );
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createStoreSlots'
+     *
+     * @param  string $store_id (required)
+     * @param  \OpenAPI\Client\Model\StoreSlot[] $store_slot (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreSlots'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createStoreSlotsRequest($store_id, $store_slot, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreSlots'][0])
+    {
+
+        // verify the required parameter 'store_id' is set
+        if ($store_id === null || (is_array($store_id) && count($store_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $store_id when calling createStoreSlots'
+            );
+        }
+
+        // verify the required parameter 'store_slot' is set
+        if ($store_slot === null || (is_array($store_slot) && count($store_slot) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $store_slot when calling createStoreSlots'
+            );
+        }
+        if (count($store_slot) > 1000) {
+            throw new \InvalidArgumentException('invalid value for "$store_slot" when calling StoresApi.createStoreSlots, number of items must be less than or equal to 1000.');
+        }
+        if (count($store_slot) < 1) {
+            throw new \InvalidArgumentException('invalid value for "$store_slot" when calling StoresApi.createStoreSlots, number of items must be greater than or equal to 1.');
+        }
+        
+
+
+
+        $resourcePath = '/entity/store/{storeId}/slots/batch';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // header params
+        if ($accept !== null) {
+            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+        }
+        // header params
+        if ($accept_encoding !== null) {
+            $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+
+        // path params
+        if ($store_id !== null) {
+            $resourcePath = str_replace(
+                '{storeId}',
+                ObjectSerializer::toPathValue($store_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'text/html;charset=UTF-8', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($store_slot)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($store_slot));
+            } else {
+                $httpBody = $store_slot;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createStoreZone
      *
      * Создать зону склада
      *
      * @param  string $store_id store_id (required)
-     * @param  \OpenAPI\Client\Model\CreateStoreZonesRequest $create_store_zones_request create_store_zones_request (required)
+     * @param  \OpenAPI\Client\Model\StoreZone $store_zone store_zone (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreZones'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreZone'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\StoreZone[]|\OpenAPI\Client\Model\Errors
      */
-    public function createStoreZones($store_id, $create_store_zones_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreZones'][0])
+    public function createStoreZone($store_id, $store_zone, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreZone'][0])
     {
-        list($response) = $this->createStoreZonesWithHttpInfo($store_id, $create_store_zones_request, $accept, $accept_encoding, $contentType);
+        list($response) = $this->createStoreZoneWithHttpInfo($store_id, $store_zone, $accept, $accept_encoding, $contentType);
         return $response;
     }
 
     /**
-     * Operation createStoreZonesWithHttpInfo
+     * Operation createStoreZoneWithHttpInfo
      *
      * Создать зону склада
      *
      * @param  string $store_id (required)
-     * @param  \OpenAPI\Client\Model\CreateStoreZonesRequest $create_store_zones_request (required)
+     * @param  \OpenAPI\Client\Model\StoreZone $store_zone (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreZones'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreZone'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\StoreZone[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createStoreZonesWithHttpInfo($store_id, $create_store_zones_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreZones'][0])
+    public function createStoreZoneWithHttpInfo($store_id, $store_zone, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreZone'][0])
     {
-        $request = $this->createStoreZonesRequest($store_id, $create_store_zones_request, $accept, $accept_encoding, $contentType);
+        $request = $this->createStoreZoneRequest($store_id, $store_zone, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -1298,24 +1597,23 @@ class StoresApi
             throw $e;
         }
     }
-
     /**
-     * Operation createStoreZonesAsync
+     * Operation createStoreZoneAsync
      *
      * Создать зону склада
      *
      * @param  string $store_id (required)
-     * @param  \OpenAPI\Client\Model\CreateStoreZonesRequest $create_store_zones_request (required)
+     * @param  \OpenAPI\Client\Model\StoreZone $store_zone (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreZones'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreZone'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createStoreZonesAsync($store_id, $create_store_zones_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreZones'][0])
+    public function createStoreZoneAsync($store_id, $store_zone, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreZone'][0])
     {
-        return $this->createStoreZonesAsyncWithHttpInfo($store_id, $create_store_zones_request, $accept, $accept_encoding, $contentType)
+        return $this->createStoreZoneAsyncWithHttpInfo($store_id, $store_zone, $accept, $accept_encoding, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1324,23 +1622,23 @@ class StoresApi
     }
 
     /**
-     * Operation createStoreZonesAsyncWithHttpInfo
+     * Operation createStoreZoneAsyncWithHttpInfo
      *
      * Создать зону склада
      *
      * @param  string $store_id (required)
-     * @param  \OpenAPI\Client\Model\CreateStoreZonesRequest $create_store_zones_request (required)
+     * @param  \OpenAPI\Client\Model\StoreZone $store_zone (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreZones'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreZone'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createStoreZonesAsyncWithHttpInfo($store_id, $create_store_zones_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreZones'][0])
+    public function createStoreZoneAsyncWithHttpInfo($store_id, $store_zone, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreZone'][0])
     {
         $returnType = '\OpenAPI\Client\Model\StoreZone[]';
-        $request = $this->createStoreZonesRequest($store_id, $create_store_zones_request, $accept, $accept_encoding, $contentType);
+        $request = $this->createStoreZoneRequest($store_id, $store_zone, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
 
         return $this->client
@@ -1380,31 +1678,31 @@ class StoresApi
     }
 
     /**
-     * Create request for operation 'createStoreZones'
+     * Create request for operation 'createStoreZone'
      *
      * @param  string $store_id (required)
-     * @param  \OpenAPI\Client\Model\CreateStoreZonesRequest $create_store_zones_request (required)
+     * @param  \OpenAPI\Client\Model\StoreZone $store_zone (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreZones'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreZone'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createStoreZonesRequest($store_id, $create_store_zones_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreZones'][0])
+    public function createStoreZoneRequest($store_id, $store_zone, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreZone'][0])
     {
 
         // verify the required parameter 'store_id' is set
         if ($store_id === null || (is_array($store_id) && count($store_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $store_id when calling createStoreZones'
+                'Missing the required parameter $store_id when calling createStoreZone'
             );
         }
 
-        // verify the required parameter 'create_store_zones_request' is set
-        if ($create_store_zones_request === null || (is_array($create_store_zones_request) && count($create_store_zones_request) === 0)) {
+        // verify the required parameter 'store_zone' is set
+        if ($store_zone === null || (is_array($store_zone) && count($store_zone) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $create_store_zones_request when calling createStoreZones'
+                'Missing the required parameter $store_zone when calling createStoreZone'
             );
         }
 
@@ -1445,12 +1743,308 @@ class StoresApi
         );
 
         // for model (json/xml)
-        if (isset($create_store_zones_request)) {
+        if (isset($store_zone)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_store_zones_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($store_zone));
             } else {
-                $httpBody = $create_store_zones_request;
+                $httpBody = $store_zone;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createStoreZones
+     *
+     * Массовое создание и обновление зон склада
+     *
+     * @param  string $store_id store_id (required)
+     * @param  \OpenAPI\Client\Model\StoreZone[] $store_zone store_zone (required)
+     * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreZones'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors
+     */
+    public function createStoreZones($store_id, $store_zone, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreZones'][0])
+    {
+        list($response) = $this->createStoreZonesWithHttpInfo($store_id, $store_zone, $accept, $accept_encoding, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createStoreZonesWithHttpInfo
+     *
+     * Массовое создание и обновление зон склада
+     *
+     * @param  string $store_id (required)
+     * @param  \OpenAPI\Client\Model\StoreZone[] $store_zone (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreZones'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createStoreZonesWithHttpInfo($store_id, $store_zone, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreZones'][0])
+    {
+        $request = $this->createStoreZonesRequest($store_id, $store_zone, $accept, $accept_encoding, $contentType);
+        try {
+            $options = $this->createHttpClientOption();
+            $options[RequestOptions::HTTP_ERRORS] = false;
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            return $this->handleResponseMassWithDataType(
+                '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Errors',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+    /**
+     * Operation createStoreZonesAsync
+     *
+     * Массовое создание и обновление зон склада
+     *
+     * @param  string $store_id (required)
+     * @param  \OpenAPI\Client\Model\StoreZone[] $store_zone (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreZones'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createStoreZonesAsync($store_id, $store_zone, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreZones'][0])
+    {
+        return $this->createStoreZonesAsyncWithHttpInfo($store_id, $store_zone, $accept, $accept_encoding, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createStoreZonesAsyncWithHttpInfo
+     *
+     * Массовое создание и обновление зон склада
+     *
+     * @param  string $store_id (required)
+     * @param  \OpenAPI\Client\Model\StoreZone[] $store_zone (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreZones'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createStoreZonesAsyncWithHttpInfo($store_id, $store_zone, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreZones'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
+        $request = $this->createStoreZonesRequest($store_id, $store_zone, $accept, $accept_encoding, $contentType);
+        $options = $this->createHttpClientOption();
+        $options[RequestOptions::HTTP_ERRORS] = false;
+
+        return $this->client
+            ->sendAsync($request, $options)
+            ->then(
+                function ($response) use ($returnType, $request) {
+                    return $this->handleResponseMassWithDataType(
+                        $returnType,
+                        $request,
+                        $response,
+                    );
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createStoreZones'
+     *
+     * @param  string $store_id (required)
+     * @param  \OpenAPI\Client\Model\StoreZone[] $store_zone (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createStoreZones'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createStoreZonesRequest($store_id, $store_zone, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['createStoreZones'][0])
+    {
+
+        // verify the required parameter 'store_id' is set
+        if ($store_id === null || (is_array($store_id) && count($store_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $store_id when calling createStoreZones'
+            );
+        }
+
+        // verify the required parameter 'store_zone' is set
+        if ($store_zone === null || (is_array($store_zone) && count($store_zone) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $store_zone when calling createStoreZones'
+            );
+        }
+        if (count($store_zone) > 1000) {
+            throw new \InvalidArgumentException('invalid value for "$store_zone" when calling StoresApi.createStoreZones, number of items must be less than or equal to 1000.');
+        }
+        if (count($store_zone) < 1) {
+            throw new \InvalidArgumentException('invalid value for "$store_zone" when calling StoresApi.createStoreZones, number of items must be greater than or equal to 1.');
+        }
+        
+
+
+
+        $resourcePath = '/entity/store/{storeId}/zones/batch';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // header params
+        if ($accept !== null) {
+            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+        }
+        // header params
+        if ($accept_encoding !== null) {
+            $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+
+        // path params
+        if ($store_id !== null) {
+            $resourcePath = str_replace(
+                '{storeId}',
+                ObjectSerializer::toPathValue($store_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'text/html;charset=UTF-8', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($store_zone)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($store_zone));
+            } else {
+                $httpBody = $store_zone;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1599,7 +2193,6 @@ class StoresApi
             throw $e;
         }
     }
-
     /**
      * Operation createStoresBatchAsync
      *
@@ -1884,7 +2477,6 @@ class StoresApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteStoreAsync
      *
@@ -2140,7 +2732,6 @@ class StoresApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteStoreSlotAsync
      *
@@ -2416,7 +3007,6 @@ class StoresApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteStoreSlotsBatchAsync
      *
@@ -2697,7 +3287,6 @@ class StoresApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteStoreZoneAsync
      *
@@ -2973,7 +3562,6 @@ class StoresApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteStoreZonesBatchAsync
      *
@@ -3298,7 +3886,6 @@ class StoresApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteStoresBatchAsync
      *
@@ -3624,7 +4211,6 @@ class StoresApi
             throw $e;
         }
     }
-
     /**
      * Operation getStoreByIdAsync
      *
@@ -3948,7 +4534,6 @@ class StoresApi
             throw $e;
         }
     }
-
     /**
      * Operation getStoreMetadataAsync
      *
@@ -4258,7 +4843,6 @@ class StoresApi
             throw $e;
         }
     }
-
     /**
      * Operation getStoreMetadataAttributeAsync
      *
@@ -4594,7 +5178,6 @@ class StoresApi
             throw $e;
         }
     }
-
     /**
      * Operation getStoreMetadataAttributeByIdAsync
      *
@@ -4907,7 +5490,6 @@ class StoresApi
             throw $e;
         }
     }
-
     /**
      * Operation getStoreSlotByIdAsync
      *
@@ -5236,7 +5818,6 @@ class StoresApi
             throw $e;
         }
     }
-
     /**
      * Operation getStoreSlotsAsync
      *
@@ -5549,7 +6130,6 @@ class StoresApi
             throw $e;
         }
     }
-
     /**
      * Operation getStoreZoneByIdAsync
      *
@@ -5878,7 +6458,6 @@ class StoresApi
             throw $e;
         }
     }
-
     /**
      * Operation getStoreZonesAsync
      *
@@ -6199,7 +6778,6 @@ class StoresApi
             throw $e;
         }
     }
-
     /**
      * Operation getStoresAsync
      *
@@ -6585,7 +7163,6 @@ class StoresApi
             throw $e;
         }
     }
-
     /**
      * Operation updateStoreAsync
      *
@@ -6938,7 +7515,6 @@ class StoresApi
             throw $e;
         }
     }
-
     /**
      * Operation updateStoreSlotAsync
      *
@@ -7288,7 +7864,6 @@ class StoresApi
             throw $e;
         }
     }
-
     /**
      * Operation updateStoreZoneAsync
      *

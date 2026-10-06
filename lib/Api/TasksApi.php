@@ -303,7 +303,6 @@ class TasksApi
             throw $e;
         }
     }
-
     /**
      * Operation createTaskAsync
      *
@@ -636,7 +635,6 @@ class TasksApi
             throw $e;
         }
     }
-
     /**
      * Operation createTaskMetadataStatesAsync
      *
@@ -956,7 +954,6 @@ class TasksApi
             throw $e;
         }
     }
-
     /**
      * Operation createTaskMetadataStatesBatchAsync
      *
@@ -1284,7 +1281,6 @@ class TasksApi
             throw $e;
         }
     }
-
     /**
      * Operation createTaskNoteAsync
      *
@@ -1593,7 +1589,6 @@ class TasksApi
             throw $e;
         }
     }
-
     /**
      * Operation createTaskNotesBatchAsync
      *
@@ -1900,7 +1895,6 @@ class TasksApi
             throw $e;
         }
     }
-
     /**
      * Operation createTasksBatchAsync
      *
@@ -2185,7 +2179,6 @@ class TasksApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteTaskAsync
      *
@@ -2441,7 +2434,6 @@ class TasksApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteTaskMetadataStateByIdAsync
      *
@@ -2705,7 +2697,6 @@ class TasksApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteTaskNoteAsync
      *
@@ -2981,7 +2972,6 @@ class TasksApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteTaskNotesBatchAsync
      *
@@ -3312,7 +3302,6 @@ class TasksApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteTasksBatchAsync
      *
@@ -3638,7 +3627,6 @@ class TasksApi
             throw $e;
         }
     }
-
     /**
      * Operation getTaskByIdAsync
      *
@@ -3960,7 +3948,6 @@ class TasksApi
             throw $e;
         }
     }
-
     /**
      * Operation getTaskMetadataAsync
      *
@@ -4255,7 +4242,6 @@ class TasksApi
             throw $e;
         }
     }
-
     /**
      * Operation getTaskNoteByIdAsync
      *
@@ -4594,7 +4580,6 @@ class TasksApi
             throw $e;
         }
     }
-
     /**
      * Operation getTaskNotesAsync
      *
@@ -4987,7 +4972,6 @@ class TasksApi
             throw $e;
         }
     }
-
     /**
      * Operation getTasksAsync
      *
@@ -5360,7 +5344,6 @@ class TasksApi
             throw $e;
         }
     }
-
     /**
      * Operation updateTaskAsync
      *
@@ -5713,7 +5696,6 @@ class TasksApi
             throw $e;
         }
     }
-
     /**
      * Operation updateTaskMetadataStateByIdAsync
      *
@@ -6055,7 +6037,6 @@ class TasksApi
             throw $e;
         }
     }
-
     /**
      * Operation updateTaskNoteAsync
      *

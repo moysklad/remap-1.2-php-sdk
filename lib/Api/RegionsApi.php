@@ -250,7 +250,6 @@ class RegionsApi
             throw $e;
         }
     }
-
     /**
      * Operation getRegionByIdAsync
      *
@@ -584,7 +583,6 @@ class RegionsApi
             throw $e;
         }
     }
-
     /**
      * Operation getRegionsAsync
      *

@@ -54,6 +54,7 @@ class BatchResponseEntity implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static array $openAPIPolymorphicDiscriminatorMappings = [
         'bundle' => 'Bundle',
+        'bundlecomponent' => 'BundleComponent',
         'cashin' => 'CashIn',
         'cashout' => 'CashOut',
         'commissionreportin' => 'CommissionReportIn',
@@ -116,7 +117,9 @@ class BatchResponseEntity implements ModelInterface, ArrayAccess, \JsonSerializa
         'saleschannel' => 'SalesChannel',
         'salesreturn' => 'SalesReturn',
         'service' => 'Service',
+        'slot' => 'StoreSlot',
         'store' => 'Store',
+        'storezone' => 'StoreZone',
         'supply' => 'Supply',
         'supplyposition' => 'SupplyPosition',
         'task' => 'Task',

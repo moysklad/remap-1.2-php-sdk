@@ -270,7 +270,6 @@ class VariantsApi
             throw $e;
         }
     }
-
     /**
      * Operation createVariantAsync
      *
@@ -574,7 +573,6 @@ class VariantsApi
             throw $e;
         }
     }
-
     /**
      * Operation createVariantsBatchAsync
      *
@@ -859,7 +857,6 @@ class VariantsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteVariantAsync
      *
@@ -1159,7 +1156,6 @@ class VariantsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteVariantsBatchAsync
      *
@@ -1487,7 +1483,6 @@ class VariantsApi
             throw $e;
         }
     }
-
     /**
      * Operation getVariantByIdAsync
      *
@@ -1822,7 +1817,6 @@ class VariantsApi
             throw $e;
         }
     }
-
     /**
      * Operation getVariantMetadataAsync
      *
@@ -2127,7 +2121,6 @@ class VariantsApi
             throw $e;
         }
     }
-
     /**
      * Operation getVariantsAsync
      *
@@ -2526,7 +2519,6 @@ class VariantsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateVariantAsync
      *

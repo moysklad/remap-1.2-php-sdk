@@ -303,7 +303,6 @@ class OrganizationsApi
             throw $e;
         }
     }
-
     /**
      * Operation createOrganizationAsync
      *
@@ -636,7 +635,6 @@ class OrganizationsApi
             throw $e;
         }
     }
-
     /**
      * Operation createOrganizationMetadataAttributeAsync
      *
@@ -927,7 +925,6 @@ class OrganizationsApi
             throw $e;
         }
     }
-
     /**
      * Operation createOrganizationsBatchAsync
      *
@@ -1212,7 +1209,6 @@ class OrganizationsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteOrganizationAsync
      *
@@ -1468,7 +1464,6 @@ class OrganizationsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteOrganizationAccountAsync
      *
@@ -1788,7 +1783,6 @@ class OrganizationsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteOrganizationAccountsBatchAsync
      *
@@ -2086,7 +2080,6 @@ class OrganizationsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteOrganizationMetadataAttributeByIdAsync
      *
@@ -2386,7 +2379,6 @@ class OrganizationsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteOrganizationsBatchAsync
      *
@@ -2714,7 +2706,6 @@ class OrganizationsApi
             throw $e;
         }
     }
-
     /**
      * Operation getOrganizationAccountByIdAsync
      *
@@ -3060,7 +3051,6 @@ class OrganizationsApi
             throw $e;
         }
     }
-
     /**
      * Operation getOrganizationAccountsAsync
      *
@@ -3408,7 +3398,6 @@ class OrganizationsApi
             throw $e;
         }
     }
-
     /**
      * Operation getOrganizationByIdAsync
      *
@@ -3732,7 +3721,6 @@ class OrganizationsApi
             throw $e;
         }
     }
-
     /**
      * Operation getOrganizationMetadataAsync
      *
@@ -4038,7 +4026,6 @@ class OrganizationsApi
             throw $e;
         }
     }
-
     /**
      * Operation getOrganizationMetadataAttributeByIdAsync
      *
@@ -4351,7 +4338,6 @@ class OrganizationsApi
             throw $e;
         }
     }
-
     /**
      * Operation getOrganizationMetadataAttributesAsync
      *
@@ -4689,7 +4675,6 @@ class OrganizationsApi
             throw $e;
         }
     }
-
     /**
      * Operation getOrganizationsAsync
      *
@@ -5075,7 +5060,6 @@ class OrganizationsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateOrganizationAsync
      *
@@ -5432,7 +5416,6 @@ class OrganizationsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateOrganizationAccountAsync
      *
@@ -5803,7 +5786,6 @@ class OrganizationsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateOrganizationAccountsAsync
      *
@@ -6143,7 +6125,6 @@ class OrganizationsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateOrganizationMetadataAttributeByIdAsync
      *

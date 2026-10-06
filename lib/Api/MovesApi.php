@@ -336,7 +336,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation addMoveFilesAsync
      *
@@ -679,7 +678,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation createMoveAsync
      *
@@ -983,7 +981,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation createMoveBatchAsync
      *
@@ -1314,7 +1311,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation createMoveMetadataAttributeAsync
      *
@@ -1634,7 +1630,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation createMoveMetadataStateAsync
      *
@@ -1954,7 +1949,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation createMoveMetadataStatesBatchAsync
      *
@@ -2284,7 +2278,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation createMovePositionAsync
      *
@@ -2608,7 +2601,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation createMovePositionsAsync
      *
@@ -2913,7 +2905,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteMoveAsync
      *
@@ -3221,7 +3212,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteMoveBatchAsync
      *
@@ -3503,7 +3493,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteMoveFileAsync
      *
@@ -3777,7 +3766,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteMoveMetadataAttributeByIdAsync
      *
@@ -4041,7 +4029,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteMoveMetadataStateByIdAsync
      *
@@ -4309,7 +4296,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteMovePositionAsync
      *
@@ -4650,7 +4636,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteMovePositionsBatchAsync
      *
@@ -4996,7 +4981,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation getMoveByIdAsync
      *
@@ -5337,7 +5321,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation getMoveFilesAsync
      *
@@ -5693,7 +5676,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation getMoveListAsync
      *
@@ -6068,7 +6050,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation getMoveMetadataAsync
      *
@@ -6373,7 +6354,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation getMoveMetadataAttributeAsync
      *
@@ -6711,7 +6691,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation getMoveMetadataAttributeByIdAsync
      *
@@ -7032,7 +7011,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation getMoveMetadataStateByIdAsync
      *
@@ -7359,7 +7337,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation getMovePositionByIdAsync
      *
@@ -7734,7 +7711,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation getMovePositionsAsync
      *
@@ -8129,7 +8105,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation getMoveTemplateAsync
      *
@@ -8397,7 +8372,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation moveMoveToTrashAsync
      *
@@ -8703,7 +8677,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateMoveAsync
      *
@@ -9069,7 +9042,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateMoveMetadataAttributeByIdAsync
      *
@@ -9409,7 +9381,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateMoveMetadataStateByIdAsync
      *
@@ -9755,7 +9726,6 @@ class MovesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateMovePositionAsync
      *

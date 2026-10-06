@@ -84,9 +84,21 @@ class ProductsApiTest extends TestCase
     }
 
     /**
+     * Test case for addProductImage
+     *
+     * Добавить изображение к товару.
+     *
+     */
+    public function testAddProductImage()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for addProductImages
      *
-     * Добавить изображения к товару.
+     * Изменить список изображений товара.
      *
      */
     public function testAddProductImages()

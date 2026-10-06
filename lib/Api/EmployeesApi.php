@@ -315,7 +315,6 @@ class EmployeesApi
             throw $e;
         }
     }
-
     /**
      * Operation activateEmployeeAsync
      *
@@ -649,7 +648,6 @@ class EmployeesApi
             throw $e;
         }
     }
-
     /**
      * Operation createEmployeeAsync
      *
@@ -982,7 +980,6 @@ class EmployeesApi
             throw $e;
         }
     }
-
     /**
      * Operation createEmployeeMetadataAttributeAsync
      *
@@ -1273,7 +1270,6 @@ class EmployeesApi
             throw $e;
         }
     }
-
     /**
      * Operation createEmployeesBatchAsync
      *
@@ -1558,7 +1554,6 @@ class EmployeesApi
             throw $e;
         }
     }
-
     /**
      * Operation deactivateEmployeeAsync
      *
@@ -1812,7 +1807,6 @@ class EmployeesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteEmployeeAsync
      *
@@ -2066,7 +2060,6 @@ class EmployeesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteEmployeeMetadataAttributeAsync
      *
@@ -2366,7 +2359,6 @@ class EmployeesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteEmployeesBatchAsync
      *
@@ -2692,7 +2684,6 @@ class EmployeesApi
             throw $e;
         }
     }
-
     /**
      * Operation getEmployeeByIdAsync
      *
@@ -3016,7 +3007,6 @@ class EmployeesApi
             throw $e;
         }
     }
-
     /**
      * Operation getEmployeeMetadataAsync
      *
@@ -3322,7 +3312,6 @@ class EmployeesApi
             throw $e;
         }
     }
-
     /**
      * Operation getEmployeeMetadataAttributeByIdAsync
      *
@@ -3631,7 +3620,6 @@ class EmployeesApi
             throw $e;
         }
     }
-
     /**
      * Operation getEmployeeMetadataAttributesAsync
      *
@@ -3924,7 +3912,6 @@ class EmployeesApi
             throw $e;
         }
     }
-
     /**
      * Operation getEmployeeSecurityAsync
      *
@@ -4245,7 +4232,6 @@ class EmployeesApi
             throw $e;
         }
     }
-
     /**
      * Operation getEmployeesAsync
      *
@@ -4623,7 +4609,6 @@ class EmployeesApi
             throw $e;
         }
     }
-
     /**
      * Operation getRoleAdminAsync
      *
@@ -4914,7 +4899,6 @@ class EmployeesApi
             throw $e;
         }
     }
-
     /**
      * Operation getRoleCashierAsync
      *
@@ -5205,7 +5189,6 @@ class EmployeesApi
             throw $e;
         }
     }
-
     /**
      * Operation getRoleIndividualAsync
      *
@@ -5496,7 +5479,6 @@ class EmployeesApi
             throw $e;
         }
     }
-
     /**
      * Operation getRoleOwnerAsync
      *
@@ -5787,7 +5769,6 @@ class EmployeesApi
             throw $e;
         }
     }
-
     /**
      * Operation getRoleWorkerAsync
      *
@@ -6036,7 +6017,6 @@ class EmployeesApi
             throw $e;
         }
     }
-
     /**
      * Operation resetEmployeePasswordAsync
      *
@@ -6340,7 +6320,6 @@ class EmployeesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateEmployeeAsync
      *
@@ -6693,7 +6672,6 @@ class EmployeesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateEmployeeMetadataAttributeAsync
      *
@@ -7033,7 +7011,6 @@ class EmployeesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateEmployeeSecurityAsync
      *

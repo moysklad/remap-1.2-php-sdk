@@ -267,7 +267,6 @@ class UomsApi
             throw $e;
         }
     }
-
     /**
      * Operation createUomAsync
      *
@@ -571,7 +570,6 @@ class UomsApi
             throw $e;
         }
     }
-
     /**
      * Operation createUomsBatchAsync
      *
@@ -856,7 +854,6 @@ class UomsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteUomAsync
      *
@@ -1156,7 +1153,6 @@ class UomsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteUomsBatchAsync
      *
@@ -1482,7 +1478,6 @@ class UomsApi
             throw $e;
         }
     }
-
     /**
      * Operation getUomByIdAsync
      *
@@ -1816,7 +1811,6 @@ class UomsApi
             throw $e;
         }
     }
-
     /**
      * Operation getUomsAsync
      *
@@ -2202,7 +2196,6 @@ class UomsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateUomAsync
      *

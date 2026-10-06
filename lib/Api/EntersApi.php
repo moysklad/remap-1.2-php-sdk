@@ -336,7 +336,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation addEnterFilesAsync
      *
@@ -679,7 +678,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation createEnterAsync
      *
@@ -983,7 +981,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation createEnterBatchAsync
      *
@@ -1314,7 +1311,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation createEnterMetadataAttributeAsync
      *
@@ -1634,7 +1630,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation createEnterMetadataStateAsync
      *
@@ -1954,7 +1949,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation createEnterMetadataStatesBatchAsync
      *
@@ -2284,7 +2278,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation createEnterPositionAsync
      *
@@ -2639,7 +2632,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation createEnterPositionsAsync
      *
@@ -2950,7 +2942,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteEnterAsync
      *
@@ -3250,7 +3241,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteEnterBatchAsync
      *
@@ -3532,7 +3522,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteEnterFileAsync
      *
@@ -3804,7 +3793,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteEnterMetadataAttributeByIdAsync
      *
@@ -4058,7 +4046,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteEnterMetadataStateByIdAsync
      *
@@ -4314,7 +4301,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteEnterPositionAsync
      *
@@ -4634,7 +4620,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteEnterPositionsAsync
      *
@@ -4978,7 +4963,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation getEnterByIdAsync
      *
@@ -5306,7 +5290,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation getEnterFilesAsync
      *
@@ -5658,7 +5641,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation getEnterListAsync
      *
@@ -6012,7 +5994,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation getEnterMetadataAsync
      *
@@ -6320,7 +6301,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation getEnterMetadataAttributeAsync
      *
@@ -6648,7 +6628,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation getEnterMetadataAttributeByIdAsync
      *
@@ -6959,7 +6938,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation getEnterMetadataStateByIdAsync
      *
@@ -7274,7 +7252,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation getEnterPositionByIdAsync
      *
@@ -7622,7 +7599,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation getEnterPositionsAsync
      *
@@ -7983,7 +7959,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation getEnterTemplateAsync
      *
@@ -8251,7 +8226,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation moveEnterToTrashAsync
      *
@@ -8555,7 +8529,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation updateEnterAsync
      *
@@ -8908,7 +8881,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation updateEnterMetadataAttributeByIdAsync
      *
@@ -9248,7 +9220,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation updateEnterMetadataStateByIdAsync
      *
@@ -9592,7 +9563,6 @@ class EntersApi
             throw $e;
         }
     }
-
     /**
      * Operation updateEnterPositionAsync
      *

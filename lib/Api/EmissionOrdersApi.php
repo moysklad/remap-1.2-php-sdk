@@ -297,7 +297,6 @@ class EmissionOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createEmissionOrderAsync
      *
@@ -601,7 +600,6 @@ class EmissionOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createEmissionOrderBatchAsync
      *
@@ -932,7 +930,6 @@ class EmissionOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createEmissionOrderMetadataStateAsync
      *
@@ -1252,7 +1249,6 @@ class EmissionOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createEmissionOrderMetadataStatesBatchAsync
      *
@@ -1582,7 +1578,6 @@ class EmissionOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createEmissionOrderPositionAsync
      *
@@ -1906,7 +1901,6 @@ class EmissionOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createEmissionOrderPositionsAsync
      *
@@ -2211,7 +2205,6 @@ class EmissionOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteEmissionOrderMetadataStateByIdAsync
      *
@@ -2521,7 +2514,6 @@ class EmissionOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getEmissionOrderByIdAsync
      *
@@ -2864,7 +2856,6 @@ class EmissionOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getEmissionOrderListAsync
      *
@@ -3218,7 +3209,6 @@ class EmissionOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getEmissionOrderMetadataAsync
      *
@@ -3521,7 +3511,6 @@ class EmissionOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getEmissionOrderMetadataStateByIdAsync
      *
@@ -3846,7 +3835,6 @@ class EmissionOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getEmissionOrderPositionByIdAsync
      *
@@ -4209,7 +4197,6 @@ class EmissionOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getEmissionOrderPositionsAsync
      *
@@ -4537,7 +4524,6 @@ class EmissionOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation moveEmissionOrderToTrashAsync
      *
@@ -4843,7 +4829,6 @@ class EmissionOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation updateEmissionOrderAsync
      *
@@ -5209,7 +5194,6 @@ class EmissionOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation updateEmissionOrderMetadataStateByIdAsync
      *
@@ -5555,7 +5539,6 @@ class EmissionOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation updateEmissionOrderPositionAsync
      *

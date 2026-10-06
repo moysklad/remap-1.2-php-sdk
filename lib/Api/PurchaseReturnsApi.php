@@ -357,7 +357,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation addPurchaseReturnFilesAsync
      *
@@ -700,7 +699,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPurchaseReturnAsync
      *
@@ -1004,7 +1002,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPurchaseReturnBatchAsync
      *
@@ -1335,7 +1332,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPurchaseReturnMetadataAttributeAsync
      *
@@ -1655,7 +1651,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPurchaseReturnMetadataStateAsync
      *
@@ -1975,7 +1970,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPurchaseReturnMetadataStatesBatchAsync
      *
@@ -2303,7 +2297,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPurchaseReturnNoteAsync
      *
@@ -2643,7 +2636,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPurchaseReturnNotesBatchAsync
      *
@@ -2991,7 +2983,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPurchaseReturnPositionAsync
      *
@@ -3346,7 +3337,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPurchaseReturnPositionsAsync
      *
@@ -3657,7 +3647,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePurchaseReturnAsync
      *
@@ -3957,7 +3946,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePurchaseReturnBatchAsync
      *
@@ -4239,7 +4227,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePurchaseReturnFileAsync
      *
@@ -4511,7 +4498,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePurchaseReturnMetadataAttributeByIdAsync
      *
@@ -4765,7 +4751,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePurchaseReturnMetadataStateByIdAsync
      *
@@ -5021,7 +5006,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePurchaseReturnNoteAsync
      *
@@ -5297,7 +5281,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePurchaseReturnNotesBatchAsync
      *
@@ -5586,7 +5569,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePurchaseReturnPositionAsync
      *
@@ -5919,7 +5901,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePurchaseReturnPositionsAsync
      *
@@ -6265,7 +6246,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPurchaseReturnByIdAsync
      *
@@ -6606,7 +6586,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPurchaseReturnFilesAsync
      *
@@ -6960,7 +6939,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPurchaseReturnListAsync
      *
@@ -7327,7 +7305,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPurchaseReturnMetadataAsync
      *
@@ -7635,7 +7612,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPurchaseReturnMetadataAttributeAsync
      *
@@ -7965,7 +7941,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPurchaseReturnMetadataAttributeByIdAsync
      *
@@ -8284,7 +8259,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPurchaseReturnMetadataStateByIdAsync
      *
@@ -8597,7 +8571,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPurchaseReturnNoteByIdAsync
      *
@@ -8932,7 +8905,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPurchaseReturnNotesAsync
      *
@@ -9297,7 +9269,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPurchaseReturnPositionByIdAsync
      *
@@ -9660,7 +9631,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPurchaseReturnPositionsAsync
      *
@@ -10034,7 +10004,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPurchaseReturnTemplateAsync
      *
@@ -10302,7 +10271,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation movePurchaseReturnToTrashAsync
      *
@@ -10608,7 +10576,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation updatePurchaseReturnAsync
      *
@@ -10974,7 +10941,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation updatePurchaseReturnMetadataAttributeByIdAsync
      *
@@ -11314,7 +11280,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation updatePurchaseReturnMetadataStateByIdAsync
      *
@@ -11656,7 +11621,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation updatePurchaseReturnNoteAsync
      *
@@ -12020,7 +11984,6 @@ class PurchaseReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation updatePurchaseReturnPositionAsync
      *

@@ -300,7 +300,6 @@ class ReportsApi
             throw $e;
         }
     }
-
     /**
      * Operation getReportCounterpartyAsync
      *
@@ -641,7 +640,6 @@ class ReportsApi
             throw $e;
         }
     }
-
     /**
      * Operation getReportCounterpartyByIdAsync
      *
@@ -950,7 +948,6 @@ class ReportsApi
             throw $e;
         }
     }
-
     /**
      * Operation getReportDashboardDayAsync
      *
@@ -1241,7 +1238,6 @@ class ReportsApi
             throw $e;
         }
     }
-
     /**
      * Operation getReportDashboardMonthAsync
      *
@@ -1532,7 +1528,6 @@ class ReportsApi
             throw $e;
         }
     }
-
     /**
      * Operation getReportDashboardWeekAsync
      *
@@ -1823,7 +1818,6 @@ class ReportsApi
             throw $e;
         }
     }
-
     /**
      * Operation getReportMoneyByAccountAsync
      *
@@ -2124,7 +2118,6 @@ class ReportsApi
             throw $e;
         }
     }
-
     /**
      * Operation getReportMoneyPlotSeriesAsync
      *
@@ -2503,7 +2496,6 @@ class ReportsApi
             throw $e;
         }
     }
-
     /**
      * Operation getReportOrdersPlotSeriesAsync
      *
@@ -2884,7 +2876,6 @@ class ReportsApi
             throw $e;
         }
     }
-
     /**
      * Operation getReportProfitByCounterpartyAsync
      *
@@ -3269,7 +3260,6 @@ class ReportsApi
             throw $e;
         }
     }
-
     /**
      * Operation getReportProfitByEmployeeAsync
      *
@@ -3654,7 +3644,6 @@ class ReportsApi
             throw $e;
         }
     }
-
     /**
      * Operation getReportProfitByProductAsync
      *
@@ -4039,7 +4028,6 @@ class ReportsApi
             throw $e;
         }
     }
-
     /**
      * Operation getReportProfitBySalesChannelAsync
      *
@@ -4424,7 +4412,6 @@ class ReportsApi
             throw $e;
         }
     }
-
     /**
      * Operation getReportProfitByVariantAsync
      *
@@ -4807,7 +4794,6 @@ class ReportsApi
             throw $e;
         }
     }
-
     /**
      * Operation getReportSalesPlotSeriesAsync
      *
@@ -5190,7 +5176,6 @@ class ReportsApi
             throw $e;
         }
     }
-
     /**
      * Operation getReportTurnoverAllAsync
      *
@@ -5584,7 +5569,6 @@ class ReportsApi
             throw $e;
         }
     }
-
     /**
      * Operation getReportTurnoverByOperationsAsync
      *
@@ -5930,7 +5914,6 @@ class ReportsApi
             throw $e;
         }
     }
-
     /**
      * Operation getReportTurnoverByStoreAsync
      *
@@ -6272,7 +6255,6 @@ class ReportsApi
             throw $e;
         }
     }
-
     /**
      * Operation queryReportCounterpartyAsync
      *

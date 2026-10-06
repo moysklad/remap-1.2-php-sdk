@@ -360,7 +360,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation addInvoiceInFilesAsync
      *
@@ -703,7 +702,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation createInvoiceInAsync
      *
@@ -1038,7 +1036,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation createInvoiceInBatchAsync
      *
@@ -1377,7 +1374,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation createInvoiceInMetadataAttributeAsync
      *
@@ -1697,7 +1693,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation createInvoiceInMetadataStateAsync
      *
@@ -2017,7 +2012,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation createInvoiceInMetadataStatesBatchAsync
      *
@@ -2345,7 +2339,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation createInvoiceInNoteAsync
      *
@@ -2685,7 +2678,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation createInvoiceInNotesBatchAsync
      *
@@ -3033,7 +3025,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation createInvoiceInPositionsAsync
      *
@@ -3388,7 +3379,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation createInvoiceInPositionsBatchAsync
      *
@@ -3701,7 +3691,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteInvoiceInAsync
      *
@@ -4009,7 +3998,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteInvoiceInBatchAsync
      *
@@ -4291,7 +4279,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteInvoiceInFileAsync
      *
@@ -4565,7 +4552,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteInvoiceInMetadataAttributeByIdAsync
      *
@@ -4829,7 +4815,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteInvoiceInMetadataStateByIdAsync
      *
@@ -5093,7 +5078,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteInvoiceInNoteAsync
      *
@@ -5369,7 +5353,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteInvoiceInNotesBatchAsync
      *
@@ -5660,7 +5643,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteInvoiceInPositionAsync
      *
@@ -6001,7 +5983,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteInvoiceInPositionsBatchAsync
      *
@@ -6347,7 +6328,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getInvoiceInByIdAsync
      *
@@ -6686,7 +6666,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getInvoiceInFileAsync
      *
@@ -7019,7 +6998,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getInvoiceInFilesAsync
      *
@@ -7373,7 +7351,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getInvoiceInListAsync
      *
@@ -7740,7 +7717,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getInvoiceInMetadataAsync
      *
@@ -8045,7 +8021,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getInvoiceInMetadataAttributeAsync
      *
@@ -8383,7 +8358,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getInvoiceInMetadataAttributeByIdAsync
      *
@@ -8704,7 +8678,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getInvoiceInMetadataStateByIdAsync
      *
@@ -9025,7 +8998,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getInvoiceInNoteByIdAsync
      *
@@ -9360,7 +9332,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getInvoiceInNotesAsync
      *
@@ -9727,7 +9698,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getInvoiceInPositionByIdAsync
      *
@@ -10100,7 +10070,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getInvoiceInPositionsAsync
      *
@@ -10482,7 +10451,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getInvoiceInTemplateAsync
      *
@@ -10750,7 +10718,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation moveInvoiceInToTrashAsync
      *
@@ -11056,7 +11023,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateInvoiceInAsync
      *
@@ -11422,7 +11388,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateInvoiceInMetadataAttributeByIdAsync
      *
@@ -11762,7 +11727,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateInvoiceInMetadataStateByIdAsync
      *
@@ -12104,7 +12068,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateInvoiceInNoteAsync
      *
@@ -12468,7 +12431,6 @@ class InvoiceInsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateInvoiceInPositionAsync
      *

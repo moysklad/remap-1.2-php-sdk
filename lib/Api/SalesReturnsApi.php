@@ -321,7 +321,6 @@ class SalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation createSalesReturnAsync
      *
@@ -625,7 +624,6 @@ class SalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation createSalesReturnBatchAsync
      *
@@ -956,7 +954,6 @@ class SalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation createSalesReturnMetadataAttributeAsync
      *
@@ -1280,7 +1277,6 @@ class SalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation createSalesReturnPositionAsync
      *
@@ -1635,7 +1631,6 @@ class SalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation createSalesReturnPositionsAsync
      *
@@ -1948,7 +1943,6 @@ class SalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteSalesReturnAsync
      *
@@ -2256,7 +2250,6 @@ class SalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteSalesReturnBatchAsync
      *
@@ -2538,7 +2531,6 @@ class SalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteSalesReturnMetadataAttributeByIdAsync
      *
@@ -2802,7 +2794,6 @@ class SalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteSalesReturnMetadataStateByIdAsync
      *
@@ -3070,7 +3061,6 @@ class SalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteSalesReturnPositionAsync
      *
@@ -3411,7 +3401,6 @@ class SalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteSalesReturnPositionsBatchAsync
      *
@@ -3757,7 +3746,6 @@ class SalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getSalesReturnByIdAsync
      *
@@ -4104,7 +4092,6 @@ class SalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getSalesReturnListAsync
      *
@@ -4479,7 +4466,6 @@ class SalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getSalesReturnMetadataAsync
      *
@@ -4784,7 +4770,6 @@ class SalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getSalesReturnMetadataAttributeAsync
      *
@@ -5122,7 +5107,6 @@ class SalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getSalesReturnMetadataAttributeByIdAsync
      *
@@ -5443,7 +5427,6 @@ class SalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getSalesReturnMetadataStateByIdAsync
      *
@@ -5770,7 +5753,6 @@ class SalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getSalesReturnPositionByIdAsync
      *
@@ -6141,7 +6123,6 @@ class SalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getSalesReturnPositionsAsync
      *
@@ -6515,7 +6496,6 @@ class SalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getSalesReturnTemplateAsync
      *
@@ -6783,7 +6763,6 @@ class SalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation moveSalesReturnToTrashAsync
      *
@@ -7089,7 +7068,6 @@ class SalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateSalesReturnAsync
      *
@@ -7455,7 +7433,6 @@ class SalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateSalesReturnMetadataAttributeByIdAsync
      *
@@ -7795,7 +7772,6 @@ class SalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateSalesReturnMetadataStateByIdAsync
      *
@@ -8141,7 +8117,6 @@ class SalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateSalesReturnPositionAsync
      *

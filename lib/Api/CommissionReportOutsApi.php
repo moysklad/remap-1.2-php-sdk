@@ -354,7 +354,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation addCommissionReportOutFilesAsync
      *
@@ -697,7 +696,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation createCommissionReportOutAsync
      *
@@ -1001,7 +999,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation createCommissionReportOutBatchAsync
      *
@@ -1332,7 +1329,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation createCommissionReportOutMetadataAttributeAsync
      *
@@ -1652,7 +1648,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation createCommissionReportOutMetadataStateAsync
      *
@@ -1972,7 +1967,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation createCommissionReportOutMetadataStatesBatchAsync
      *
@@ -2300,7 +2294,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation createCommissionReportOutNoteAsync
      *
@@ -2640,7 +2633,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation createCommissionReportOutNotesBatchAsync
      *
@@ -2988,7 +2980,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation createCommissionReportOutPositionAsync
      *
@@ -3312,7 +3303,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation createCommissionReportOutPositionsAsync
      *
@@ -3617,7 +3607,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCommissionReportOutAsync
      *
@@ -3925,7 +3914,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCommissionReportOutBatchAsync
      *
@@ -4207,7 +4195,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCommissionReportOutFileAsync
      *
@@ -4481,7 +4468,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCommissionReportOutMetadataAttributeByIdAsync
      *
@@ -4745,7 +4731,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCommissionReportOutMetadataStateByIdAsync
      *
@@ -5009,7 +4994,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCommissionReportOutNoteAsync
      *
@@ -5285,7 +5269,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCommissionReportOutNotesBatchAsync
      *
@@ -5576,7 +5559,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCommissionReportOutPositionAsync
      *
@@ -5917,7 +5899,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCommissionReportOutPositionsBatchAsync
      *
@@ -6263,7 +6244,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCommissionReportOutByIdAsync
      *
@@ -6599,7 +6579,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCommissionReportOutFilesAsync
      *
@@ -6953,7 +6932,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCommissionReportOutListAsync
      *
@@ -7315,7 +7293,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCommissionReportOutMetadataAsync
      *
@@ -7620,7 +7597,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCommissionReportOutMetadataAttributeAsync
      *
@@ -7958,7 +7934,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCommissionReportOutMetadataAttributeByIdAsync
      *
@@ -8279,7 +8254,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCommissionReportOutMetadataStateByIdAsync
      *
@@ -8600,7 +8574,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCommissionReportOutNoteByIdAsync
      *
@@ -8935,7 +8908,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCommissionReportOutNotesAsync
      *
@@ -9300,7 +9272,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCommissionReportOutPositionByIdAsync
      *
@@ -9658,7 +9629,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCommissionReportOutPositionsAsync
      *
@@ -9981,7 +9951,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation moveCommissionReportOutToTrashAsync
      *
@@ -10285,7 +10254,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCommissionReportOutAsync
      *
@@ -10638,7 +10606,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCommissionReportOutMetadataAttributeByIdAsync
      *
@@ -10978,7 +10945,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCommissionReportOutMetadataStateByIdAsync
      *
@@ -11320,7 +11286,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCommissionReportOutNoteAsync
      *
@@ -11682,7 +11647,6 @@ class CommissionReportOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCommissionReportOutPositionAsync
      *

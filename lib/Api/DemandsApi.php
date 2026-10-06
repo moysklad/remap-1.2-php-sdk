@@ -327,7 +327,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation createDemandAsync
      *
@@ -631,7 +630,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation createDemandBatchAsync
      *
@@ -962,7 +960,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation createDemandMetadataAttributeAsync
      *
@@ -1282,7 +1279,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation createDemandMetadataStateAsync
      *
@@ -1602,7 +1598,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation createDemandMetadataStatesBatchAsync
      *
@@ -1932,7 +1927,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation createDemandPositionAsync
      *
@@ -2287,7 +2281,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation createDemandPositionsAsync
      *
@@ -2600,7 +2593,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteDemandAsync
      *
@@ -2908,7 +2900,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteDemandBatchAsync
      *
@@ -3190,7 +3181,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteDemandMetadataAttributeByIdAsync
      *
@@ -3454,7 +3444,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteDemandMetadataStateByIdAsync
      *
@@ -3722,7 +3711,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteDemandPositionAsync
      *
@@ -4063,7 +4051,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteDemandPositionsBatchAsync
      *
@@ -4409,7 +4396,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation getDemandByIdAsync
      *
@@ -4756,7 +4742,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation getDemandListAsync
      *
@@ -5131,7 +5116,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation getDemandMetadataAsync
      *
@@ -5436,7 +5420,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation getDemandMetadataAttributeAsync
      *
@@ -5774,7 +5757,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation getDemandMetadataAttributeByIdAsync
      *
@@ -6095,7 +6077,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation getDemandMetadataStateByIdAsync
      *
@@ -6422,7 +6403,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation getDemandPositionByIdAsync
      *
@@ -6795,7 +6775,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation getDemandPositionsAsync
      *
@@ -7177,7 +7156,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation getDemandTemplateAsync
      *
@@ -7445,7 +7423,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation moveDemandToTrashAsync
      *
@@ -7751,7 +7728,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateDemandAsync
      *
@@ -8117,7 +8093,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateDemandMetadataAttributeByIdAsync
      *
@@ -8457,7 +8432,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateDemandMetadataStateByIdAsync
      *
@@ -8803,7 +8777,6 @@ class DemandsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateDemandPositionAsync
      *

@@ -295,7 +295,6 @@ class PrepaymentReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPrepaymentReturnMetadataAttributeAsync
      *
@@ -615,7 +614,6 @@ class PrepaymentReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPrepaymentReturnMetadataStateAsync
      *
@@ -935,7 +933,6 @@ class PrepaymentReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPrepaymentReturnMetadataStatesBatchAsync
      *
@@ -1215,7 +1212,6 @@ class PrepaymentReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePrepaymentReturnAsync
      *
@@ -1469,7 +1465,6 @@ class PrepaymentReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePrepaymentReturnMetadataAttributeByIdAsync
      *
@@ -1723,7 +1718,6 @@ class PrepaymentReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePrepaymentReturnMetadataStateByIdAsync
      *
@@ -2025,7 +2019,6 @@ class PrepaymentReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPrepaymentReturnByIdAsync
      *
@@ -2370,7 +2363,6 @@ class PrepaymentReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPrepaymentReturnListAsync
      *
@@ -2735,7 +2727,6 @@ class PrepaymentReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPrepaymentReturnMetadataAsync
      *
@@ -3030,7 +3021,6 @@ class PrepaymentReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPrepaymentReturnMetadataAttributeAsync
      *
@@ -3358,7 +3348,6 @@ class PrepaymentReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPrepaymentReturnMetadataAttributeByIdAsync
      *
@@ -3669,7 +3658,6 @@ class PrepaymentReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPrepaymentReturnMetadataStateByIdAsync
      *
@@ -3986,7 +3974,6 @@ class PrepaymentReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPrepaymentReturnPositionByIdAsync
      *
@@ -4349,7 +4336,6 @@ class PrepaymentReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPrepaymentReturnPositionsAsync
      *
@@ -4677,7 +4663,6 @@ class PrepaymentReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation movePrepaymentReturnToTrashAsync
      *
@@ -4979,7 +4964,6 @@ class PrepaymentReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation updatePrepaymentReturnMetadataAttributeByIdAsync
      *
@@ -5319,7 +5303,6 @@ class PrepaymentReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation updatePrepaymentReturnMetadataStateByIdAsync
      *

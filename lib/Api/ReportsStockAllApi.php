@@ -255,7 +255,6 @@ class ReportsStockAllApi
             throw $e;
         }
     }
-
     /**
      * Operation getStockAllAsync
      *

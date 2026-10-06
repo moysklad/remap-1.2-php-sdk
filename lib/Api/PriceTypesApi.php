@@ -256,7 +256,6 @@ class PriceTypesApi
             throw $e;
         }
     }
-
     /**
      * Operation createPriceTypesBatchAsync
      *
@@ -575,7 +574,6 @@ class PriceTypesApi
             throw $e;
         }
     }
-
     /**
      * Operation getDefaultPriceTypeAsync
      *
@@ -868,7 +866,6 @@ class PriceTypesApi
             throw $e;
         }
     }
-
     /**
      * Operation getPriceTypeByIdAsync
      *
@@ -1177,7 +1174,6 @@ class PriceTypesApi
             throw $e;
         }
     }
-
     /**
      * Operation getPriceTypesAsync
      *

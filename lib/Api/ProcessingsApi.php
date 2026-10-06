@@ -354,7 +354,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation addProcessingFilesAsync
      *
@@ -697,7 +696,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingAsync
      *
@@ -1001,7 +999,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingBatchAsync
      *
@@ -1336,7 +1333,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingMaterialsAsync
      *
@@ -1687,7 +1683,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingMetadataAttributeAsync
      *
@@ -2007,7 +2002,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingMetadataStateAsync
      *
@@ -2327,7 +2321,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingMetadataStatesBatchAsync
      *
@@ -2657,7 +2650,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingProductsAsync
      *
@@ -2962,7 +2954,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingAsync
      *
@@ -3262,7 +3253,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingBatchAsync
      *
@@ -3544,7 +3534,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingFileAsync
      *
@@ -3818,7 +3807,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingMaterialAsync
      *
@@ -4138,7 +4126,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingMaterialsBatchAsync
      *
@@ -4436,7 +4423,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingMetadataAttributeByIdAsync
      *
@@ -4690,7 +4676,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingMetadataStateByIdAsync
      *
@@ -4946,7 +4931,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingProductAsync
      *
@@ -5266,7 +5250,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingProductsBatchAsync
      *
@@ -5610,7 +5593,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingByIdAsync
      *
@@ -5936,7 +5918,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingFileAsync
      *
@@ -6269,7 +6250,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingFilesAsync
      *
@@ -6619,7 +6599,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingMaterialByIdAsync
      *
@@ -6967,7 +6946,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingMaterialsAsync
      *
@@ -7324,7 +7302,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingMetadataAsync
      *
@@ -7619,7 +7596,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingMetadataAttributeAsync
      *
@@ -7947,7 +7923,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingMetadataAttributeByIdAsync
      *
@@ -8258,7 +8233,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingMetadataStateByIdAsync
      *
@@ -8573,7 +8547,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingProductByIdAsync
      *
@@ -8921,7 +8894,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingProductsAsync
      *
@@ -9282,7 +9254,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingTemplateAsync
      *
@@ -9600,7 +9571,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingsAsync
      *
@@ -9910,7 +9880,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation moveProcessingToTrashAsync
      *
@@ -10214,7 +10183,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateProcessingAsync
      *
@@ -10571,7 +10539,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateProcessingMaterialAsync
      *
@@ -10942,7 +10909,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateProcessingMetadataAttributeByIdAsync
      *
@@ -11282,7 +11248,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateProcessingMetadataStateByIdAsync
      *
@@ -11626,7 +11591,6 @@ class ProcessingsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateProcessingProductAsync
      *

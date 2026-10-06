@@ -264,7 +264,6 @@ class BonusProgramsApi
             throw $e;
         }
     }
-
     /**
      * Operation createBonusProgramAsync
      *
@@ -551,7 +550,6 @@ class BonusProgramsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteBonusProgramAsync
      *
@@ -851,7 +849,6 @@ class BonusProgramsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteBonusProgramsBatchAsync
      *
@@ -1177,7 +1174,6 @@ class BonusProgramsApi
             throw $e;
         }
     }
-
     /**
      * Operation getBonusProgramByIdAsync
      *
@@ -1511,7 +1507,6 @@ class BonusProgramsApi
             throw $e;
         }
     }
-
     /**
      * Operation getBonusProgramsAsync
      *
@@ -1897,7 +1892,6 @@ class BonusProgramsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateBonusProgramAsync
      *

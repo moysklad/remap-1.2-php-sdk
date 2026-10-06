@@ -294,7 +294,6 @@ class ContractsApi
             throw $e;
         }
     }
-
     /**
      * Operation createContractAsync
      *
@@ -627,7 +626,6 @@ class ContractsApi
             throw $e;
         }
     }
-
     /**
      * Operation createContractMetadataAttributeAsync
      *
@@ -918,7 +916,6 @@ class ContractsApi
             throw $e;
         }
     }
-
     /**
      * Operation createContractsBatchAsync
      *
@@ -1203,7 +1200,6 @@ class ContractsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteContractAsync
      *
@@ -1457,7 +1453,6 @@ class ContractsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteContractMetadataAttributeAsync
      *
@@ -1713,7 +1708,6 @@ class ContractsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteContractMetadataStateByIdAsync
      *
@@ -2021,7 +2015,6 @@ class ContractsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteContractsBatchAsync
      *
@@ -2347,7 +2340,6 @@ class ContractsApi
             throw $e;
         }
     }
-
     /**
      * Operation getContractByIdAsync
      *
@@ -2669,7 +2661,6 @@ class ContractsApi
             throw $e;
         }
     }
-
     /**
      * Operation getContractMetadataAsync
      *
@@ -2962,7 +2953,6 @@ class ContractsApi
             throw $e;
         }
     }
-
     /**
      * Operation getContractMetadataAttributeByIdAsync
      *
@@ -3271,7 +3261,6 @@ class ContractsApi
             throw $e;
         }
     }
-
     /**
      * Operation getContractMetadataAttributesAsync
      *
@@ -3568,7 +3557,6 @@ class ContractsApi
             throw $e;
         }
     }
-
     /**
      * Operation getContractMetadataStateByIdAsync
      *
@@ -3914,7 +3902,6 @@ class ContractsApi
             throw $e;
         }
     }
-
     /**
      * Operation getContractsAsync
      *
@@ -4300,7 +4287,6 @@ class ContractsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateContractAsync
      *
@@ -4653,7 +4639,6 @@ class ContractsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateContractMetadataAttributeAsync
      *
@@ -4991,7 +4976,6 @@ class ContractsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateContractMetadataStateByIdAsync
      *

@@ -6,8 +6,10 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | ------------- | ------------- | ------------- |
 | [**createStore()**](StoresApi.md#createStore) | **POST** /entity/store | Создать Склад |
 | [**createStoreMetadataAttribute()**](StoresApi.md#createStoreMetadataAttribute) | **POST** /entity/store/metadata/attributes | Создать Доп. поле Store |
-| [**createStoreSlots()**](StoresApi.md#createStoreSlots) | **POST** /entity/store/{storeId}/slots | Создать ячейку склада |
-| [**createStoreZones()**](StoresApi.md#createStoreZones) | **POST** /entity/store/{storeId}/zones | Создать зону склада |
+| [**createStoreSlot()**](StoresApi.md#createStoreSlot) | **POST** /entity/store/{storeId}/slots | Создать ячейку склада |
+| [**createStoreSlots()**](StoresApi.md#createStoreSlots) | **POST** /entity/store/{storeId}/slots/batch | Массовое создание и обновление ячеек склада |
+| [**createStoreZone()**](StoresApi.md#createStoreZone) | **POST** /entity/store/{storeId}/zones | Создать зону склада |
+| [**createStoreZones()**](StoresApi.md#createStoreZones) | **POST** /entity/store/{storeId}/zones/batch | Массовое создание и обновление зон склада |
 | [**createStoresBatch()**](StoresApi.md#createStoresBatch) | **POST** /entity/store/batch | Массовое создание и обновление Складов |
 | [**deleteStore()**](StoresApi.md#deleteStore) | **DELETE** /entity/store/{id} | Удалить Склад |
 | [**deleteStoreSlot()**](StoresApi.md#deleteStoreSlot) | **DELETE** /entity/store/{storeId}/slots/{id} | Удалить ячейку склада |
@@ -169,10 +171,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createStoreSlots()`
+## `createStoreSlot()`
 
 ```php
-createStoreSlots($store_id, $create_store_slots_request, $accept, $accept_encoding): \OpenAPI\Client\Model\StoreSlot[]
+createStoreSlot($store_id, $store_slot, $accept, $accept_encoding): \OpenAPI\Client\Model\StoreSlot[]
 ```
 
 Создать ячейку склада
@@ -200,15 +202,15 @@ $apiInstance = new OpenAPI\Client\Api\StoresApi(
     $config
 );
 $store_id = 'store_id_example'; // string
-$create_store_slots_request = new \OpenAPI\Client\Model\CreateStoreSlotsRequest(); // \OpenAPI\Client\Model\CreateStoreSlotsRequest
+$store_slot = new \OpenAPI\Client\Model\StoreSlot(); // \OpenAPI\Client\Model\StoreSlot
 $accept = 'application/json;charset=utf-8'; // string
 $accept_encoding = 'gzip, deflate, br'; // string
 
 try {
-    $result = $apiInstance->createStoreSlots($store_id, $create_store_slots_request, $accept, $accept_encoding);
+    $result = $apiInstance->createStoreSlot($store_id, $store_slot, $accept, $accept_encoding);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling StoresApi->createStoreSlots: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling StoresApi->createStoreSlot: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -217,7 +219,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **store_id** | **string**|  | |
-| **create_store_slots_request** | [**\OpenAPI\Client\Model\CreateStoreSlotsRequest**](../Model/CreateStoreSlotsRequest.md)|  | |
+| **store_slot** | [**\OpenAPI\Client\Model\StoreSlot**](../Model/StoreSlot.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
 
@@ -238,10 +240,79 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createStoreZones()`
+## `createStoreSlots()`
 
 ```php
-createStoreZones($store_id, $create_store_zones_request, $accept, $accept_encoding): \OpenAPI\Client\Model\StoreZone[]
+createStoreSlots($store_id, $store_slot, $accept, $accept_encoding): \OpenAPI\Client\Model\BatchResponseEntity[]
+```
+
+Массовое создание и обновление ячеек склада
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\StoresApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$store_id = 'store_id_example'; // string
+$store_slot = array(new \OpenAPI\Client\Model\StoreSlot()); // \OpenAPI\Client\Model\StoreSlot[]
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $result = $apiInstance->createStoreSlots($store_id, $store_slot, $accept, $accept_encoding);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling StoresApi->createStoreSlots: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **store_id** | **string**|  | |
+| **store_slot** | [**\OpenAPI\Client\Model\StoreSlot[]**](../Model/StoreSlot.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createStoreZone()`
+
+```php
+createStoreZone($store_id, $store_zone, $accept, $accept_encoding): \OpenAPI\Client\Model\StoreZone[]
 ```
 
 Создать зону склада
@@ -269,12 +340,81 @@ $apiInstance = new OpenAPI\Client\Api\StoresApi(
     $config
 );
 $store_id = 'store_id_example'; // string
-$create_store_zones_request = new \OpenAPI\Client\Model\CreateStoreZonesRequest(); // \OpenAPI\Client\Model\CreateStoreZonesRequest
+$store_zone = new \OpenAPI\Client\Model\StoreZone(); // \OpenAPI\Client\Model\StoreZone
 $accept = 'application/json;charset=utf-8'; // string
 $accept_encoding = 'gzip, deflate, br'; // string
 
 try {
-    $result = $apiInstance->createStoreZones($store_id, $create_store_zones_request, $accept, $accept_encoding);
+    $result = $apiInstance->createStoreZone($store_id, $store_zone, $accept, $accept_encoding);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling StoresApi->createStoreZone: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **store_id** | **string**|  | |
+| **store_zone** | [**\OpenAPI\Client\Model\StoreZone**](../Model/StoreZone.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\StoreZone[]**](../Model/StoreZone.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createStoreZones()`
+
+```php
+createStoreZones($store_id, $store_zone, $accept, $accept_encoding): \OpenAPI\Client\Model\BatchResponseEntity[]
+```
+
+Массовое создание и обновление зон склада
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\StoresApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$store_id = 'store_id_example'; // string
+$store_zone = array(new \OpenAPI\Client\Model\StoreZone()); // \OpenAPI\Client\Model\StoreZone[]
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $result = $apiInstance->createStoreZones($store_id, $store_zone, $accept, $accept_encoding);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling StoresApi->createStoreZones: ', $e->getMessage(), PHP_EOL;
@@ -286,13 +426,13 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **store_id** | **string**|  | |
-| **create_store_zones_request** | [**\OpenAPI\Client\Model\CreateStoreZonesRequest**](../Model/CreateStoreZonesRequest.md)|  | |
+| **store_zone** | [**\OpenAPI\Client\Model\StoreZone[]**](../Model/StoreZone.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\StoreZone[]**](../Model/StoreZone.md)
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 

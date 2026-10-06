@@ -248,7 +248,6 @@ class ThingsApi
             throw $e;
         }
     }
-
     /**
      * Operation getThingByIdAsync
      *
@@ -567,7 +566,6 @@ class ThingsApi
             throw $e;
         }
     }
-
     /**
      * Operation getThingsAsync
      *

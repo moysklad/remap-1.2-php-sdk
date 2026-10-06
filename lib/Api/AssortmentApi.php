@@ -256,7 +256,6 @@ class AssortmentApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteAssortmentPositionsBatchAsync
      *
@@ -596,7 +595,6 @@ class AssortmentApi
             throw $e;
         }
     }
-
     /**
      * Operation getAssortmentAsync
      *
@@ -1013,7 +1011,6 @@ class AssortmentApi
             throw $e;
         }
     }
-
     /**
      * Operation getAssortmentSettingsAsync
      *
@@ -1308,7 +1305,6 @@ class AssortmentApi
             throw $e;
         }
     }
-
     /**
      * Operation updateAssortmentSettingsAsync
      *

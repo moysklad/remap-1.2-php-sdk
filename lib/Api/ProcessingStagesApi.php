@@ -267,7 +267,6 @@ class ProcessingStagesApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingStageAsync
      *
@@ -571,7 +570,6 @@ class ProcessingStagesApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingStagesBatchAsync
      *
@@ -856,7 +854,6 @@ class ProcessingStagesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingStageAsync
      *
@@ -1156,7 +1153,6 @@ class ProcessingStagesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingStagesBatchAsync
      *
@@ -1482,7 +1478,6 @@ class ProcessingStagesApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingStageByIdAsync
      *
@@ -1814,7 +1809,6 @@ class ProcessingStagesApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingStagesAsync
      *
@@ -2187,7 +2181,6 @@ class ProcessingStagesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateProcessingStageAsync
      *

@@ -267,7 +267,6 @@ class BonusTransactionsApi
             throw $e;
         }
     }
-
     /**
      * Operation createBonusTransactionAsync
      *
@@ -571,7 +570,6 @@ class BonusTransactionsApi
             throw $e;
         }
     }
-
     /**
      * Operation createBonusTransactionsBatchAsync
      *
@@ -856,7 +854,6 @@ class BonusTransactionsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteBonusTransactionAsync
      *
@@ -1156,7 +1153,6 @@ class BonusTransactionsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteBonusTransactionsBatchAsync
      *
@@ -1482,7 +1478,6 @@ class BonusTransactionsApi
             throw $e;
         }
     }
-
     /**
      * Operation getBonusTransactionByIdAsync
      *
@@ -1816,7 +1811,6 @@ class BonusTransactionsApi
             throw $e;
         }
     }
-
     /**
      * Operation getBonusTransactionsAsync
      *
@@ -2202,7 +2196,6 @@ class BonusTransactionsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateBonusTransactionAsync
      *

@@ -363,7 +363,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createCustomerOrderAsync
      *
@@ -667,7 +666,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createCustomerOrderBatchAsync
      *
@@ -998,7 +996,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createCustomerOrderMetadataAttributeAsync
      *
@@ -1318,7 +1315,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createCustomerOrderMetadataStateAsync
      *
@@ -1638,7 +1634,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createCustomerOrderMetadataStatesBatchAsync
      *
@@ -1966,7 +1961,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createCustomerOrderNoteAsync
      *
@@ -2306,7 +2300,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createCustomerOrderNotesBatchAsync
      *
@@ -2654,7 +2647,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createCustomerOrderPositionAsync
      *
@@ -3009,7 +3001,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createCustomerOrderPositionsAsync
      *
@@ -3382,7 +3373,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createCustomerOrderPublicationAsync
      *
@@ -3676,7 +3666,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCustomerOrderAsync
      *
@@ -3984,7 +3973,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCustomerOrderBatchAsync
      *
@@ -4266,7 +4254,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCustomerOrderMetadataAttributeByIdAsync
      *
@@ -4530,7 +4517,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCustomerOrderMetadataStateByIdAsync
      *
@@ -4794,7 +4780,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCustomerOrderNoteAsync
      *
@@ -5070,7 +5055,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCustomerOrderNotesBatchAsync
      *
@@ -5361,7 +5345,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCustomerOrderPositionAsync
      *
@@ -5702,7 +5685,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCustomerOrderPositionsBatchAsync
      *
@@ -6002,7 +5984,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCustomerOrderPublicationAsync
      *
@@ -6212,11 +6193,13 @@ class CustomerOrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return void
+     * @return \OpenAPI\Client\LocationResponse статус и заголовок Location ответа; переход по редиректу не выполняется
      */
     public function exportCustomerOrder($id, $export_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['exportCustomerOrder'][0])
     {
-        $this->exportCustomerOrderWithHttpInfo($id, $export_request, $accept, $accept_encoding, $content_type, $contentType);
+        list(, $statusCode, $headers) = $this->exportCustomerOrderWithHttpInfo($id, $export_request, $accept, $accept_encoding, $content_type, $contentType);
+
+        return \OpenAPI\Client\LocationResponse::fromHeaders($statusCode, $headers);
     }
 
     /**
@@ -6240,6 +6223,7 @@ class CustomerOrdersApi
         $request = $this->exportCustomerOrderRequest($id, $export_request, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            $options[RequestOptions::ALLOW_REDIRECTS] = false;
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -6260,6 +6244,18 @@ class CustomerOrdersApi
 
             $statusCode = $response->getStatusCode();
 
+            if (($statusCode < 200 || $statusCode > 299) && $statusCode !== 303) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
@@ -6278,7 +6274,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation exportCustomerOrderAsync
      *
@@ -6324,11 +6319,25 @@ class CustomerOrdersApi
         $returnType = '';
         $request = $this->exportCustomerOrderRequest($id, $export_request, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        $options[RequestOptions::ALLOW_REDIRECTS] = false;
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    $statusCode = $response->getStatusCode();
+                    if (($statusCode < 200 || $statusCode > 299) && $statusCode !== 303) {
+                        throw new ApiException(
+                            sprintf(
+                                '[%d] Error connecting to the API (%s)',
+                                $statusCode,
+                                (string) $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            (string) $response->getBody()
+                        );
+                    }
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
@@ -6605,7 +6614,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getCustomerOrderByIdAsync
      *
@@ -6952,7 +6960,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getCustomerOrderListAsync
      *
@@ -7327,7 +7334,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getCustomerOrderMetadataAsync
      *
@@ -7632,7 +7638,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getCustomerOrderMetadataAttributeAsync
      *
@@ -7970,7 +7975,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getCustomerOrderMetadataAttributeByIdAsync
      *
@@ -8291,7 +8295,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getCustomerOrderMetadataStateByIdAsync
      *
@@ -8612,7 +8615,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getCustomerOrderNoteByIdAsync
      *
@@ -8947,7 +8949,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getCustomerOrderNotesAsync
      *
@@ -9314,7 +9315,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getCustomerOrderPositionByIdAsync
      *
@@ -9685,7 +9685,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getCustomerOrderPositionsAsync
      *
@@ -10059,7 +10058,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getCustomerOrderPublicationByIdAsync
      *
@@ -10392,7 +10390,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getCustomerOrderPublicationsAsync
      *
@@ -10740,7 +10737,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getCustomerOrderTemplateAsync
      *
@@ -11008,7 +11004,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation moveCustomerOrderToTrashAsync
      *
@@ -11314,7 +11309,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCustomerOrderAsync
      *
@@ -11680,7 +11674,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCustomerOrderMetadataAttributeByIdAsync
      *
@@ -12020,7 +12013,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCustomerOrderMetadataStateByIdAsync
      *
@@ -12362,7 +12354,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCustomerOrderNoteAsync
      *
@@ -12726,7 +12717,6 @@ class CustomerOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCustomerOrderPositionAsync
      *

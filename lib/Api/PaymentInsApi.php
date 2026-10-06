@@ -318,7 +318,6 @@ class PaymentInsApi
             throw $e;
         }
     }
-
     /**
      * Operation addPaymentInFilesAsync
      *
@@ -661,7 +660,6 @@ class PaymentInsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPaymentInAsync
      *
@@ -965,7 +963,6 @@ class PaymentInsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPaymentInBatchAsync
      *
@@ -1296,7 +1293,6 @@ class PaymentInsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPaymentInMetadataAttributeAsync
      *
@@ -1616,7 +1612,6 @@ class PaymentInsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPaymentInMetadataStateAsync
      *
@@ -1936,7 +1931,6 @@ class PaymentInsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPaymentInMetadataStatesBatchAsync
      *
@@ -2216,7 +2210,6 @@ class PaymentInsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePaymentInAsync
      *
@@ -2514,7 +2507,6 @@ class PaymentInsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePaymentInBatchAsync
      *
@@ -2788,7 +2780,6 @@ class PaymentInsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePaymentInFileAsync
      *
@@ -3060,7 +3051,6 @@ class PaymentInsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePaymentInMetadataAttributeByIdAsync
      *
@@ -3314,7 +3304,6 @@ class PaymentInsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePaymentInMetadataStateByIdAsync
      *
@@ -3614,7 +3603,6 @@ class PaymentInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPaymentInByIdAsync
      *
@@ -3940,7 +3928,6 @@ class PaymentInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPaymentInFileAsync
      *
@@ -4273,7 +4260,6 @@ class PaymentInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPaymentInFilesAsync
      *
@@ -4625,7 +4611,6 @@ class PaymentInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPaymentInListAsync
      *
@@ -4977,7 +4962,6 @@ class PaymentInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPaymentInMetadataAsync
      *
@@ -5272,7 +5256,6 @@ class PaymentInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPaymentInMetadataAttributeAsync
      *
@@ -5600,7 +5583,6 @@ class PaymentInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPaymentInMetadataAttributeByIdAsync
      *
@@ -5911,7 +5893,6 @@ class PaymentInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPaymentInMetadataStateByIdAsync
      *
@@ -6224,7 +6205,6 @@ class PaymentInsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPaymentInTemplateAsync
      *
@@ -6492,7 +6472,6 @@ class PaymentInsApi
             throw $e;
         }
     }
-
     /**
      * Operation movePaymentInToTrashAsync
      *
@@ -6796,7 +6775,6 @@ class PaymentInsApi
             throw $e;
         }
     }
-
     /**
      * Operation updatePaymentInAsync
      *
@@ -7149,7 +7127,6 @@ class PaymentInsApi
             throw $e;
         }
     }
-
     /**
      * Operation updatePaymentInMetadataAttributeByIdAsync
      *
@@ -7489,7 +7466,6 @@ class PaymentInsApi
             throw $e;
         }
     }
-
     /**
      * Operation updatePaymentInMetadataStateByIdAsync
      *

@@ -330,7 +330,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingPlanAsync
      *
@@ -634,7 +633,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingPlanBatchAsync
      *
@@ -969,7 +967,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingPlanMaterialsAsync
      *
@@ -1320,7 +1317,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingPlanMetadataAttributeAsync
      *
@@ -1644,7 +1640,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingPlanProductsAsync
      *
@@ -1951,7 +1946,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingPlanAsync
      *
@@ -2215,7 +2209,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingPlanMaterialAsync
      *
@@ -2535,7 +2528,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingPlanMaterialsBatchAsync
      *
@@ -2835,7 +2827,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingPlanMetadataAttributeByIdAsync
      *
@@ -3099,7 +3090,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingPlanProductAsync
      *
@@ -3419,7 +3409,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingPlanProductsBatchAsync
      *
@@ -3763,7 +3752,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingPlansBatchAsync
      *
@@ -4091,7 +4079,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingPlanByIdAsync
      *
@@ -4427,7 +4414,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingPlanMaterialByIdAsync
      *
@@ -4775,7 +4761,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingPlanMaterialsAsync
      *
@@ -5134,7 +5119,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingPlanMetadataAsync
      *
@@ -5444,7 +5428,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingPlanMetadataAttributeAsync
      *
@@ -5780,7 +5763,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingPlanMetadataAttributeByIdAsync
      *
@@ -6095,7 +6077,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingPlanProductByIdAsync
      *
@@ -6443,7 +6424,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingPlanProductsAsync
      *
@@ -6806,7 +6786,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingPlanStageByIdAsync
      *
@@ -7154,7 +7133,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingPlanStagesAsync
      *
@@ -7525,7 +7503,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingPlansAsync
      *
@@ -7919,7 +7896,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation updateProcessingPlanAsync
      *
@@ -8276,7 +8252,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation updateProcessingPlanMaterialAsync
      *
@@ -8647,7 +8622,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation updateProcessingPlanMetadataAttributeByIdAsync
      *
@@ -8991,7 +8965,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation updateProcessingPlanProductAsync
      *
@@ -9366,7 +9339,6 @@ class ProcessingPlansApi
             throw $e;
         }
     }
-
     /**
      * Operation updateProcessingPlanStageAsync
      *

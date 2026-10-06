@@ -247,7 +247,6 @@ class PrepaymentsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPrepaymentMetadataAttributeAsync
      *

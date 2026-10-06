@@ -236,7 +236,6 @@ class CountriesApi
             throw $e;
         }
     }
-
     /**
      * Operation createCountriesBatchAsync
      *
@@ -569,7 +568,6 @@ class CountriesApi
             throw $e;
         }
     }
-
     /**
      * Operation createCountryAsync
      *
@@ -902,7 +900,6 @@ class CountriesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCountriesBatchAsync
      *
@@ -1182,7 +1179,6 @@ class CountriesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCountryAsync
      *
@@ -1490,7 +1486,6 @@ class CountriesApi
             throw $e;
         }
     }
-
     /**
      * Operation getCountriesAsync
      *
@@ -1872,7 +1867,6 @@ class CountriesApi
             throw $e;
         }
     }
-
     /**
      * Operation getCountryByIdAsync
      *
@@ -2202,7 +2196,6 @@ class CountriesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCountryAsync
      *

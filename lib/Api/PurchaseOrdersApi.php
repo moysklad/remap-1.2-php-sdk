@@ -348,7 +348,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createPurchaseOrderAsync
      *
@@ -652,7 +651,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createPurchaseOrderBatchAsync
      *
@@ -983,7 +981,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createPurchaseOrderMetadataAttributeAsync
      *
@@ -1303,7 +1300,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createPurchaseOrderMetadataStateAsync
      *
@@ -1623,7 +1619,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createPurchaseOrderMetadataStatesBatchAsync
      *
@@ -1951,7 +1946,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createPurchaseOrderNoteAsync
      *
@@ -2291,7 +2285,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createPurchaseOrderNotesBatchAsync
      *
@@ -2639,7 +2632,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createPurchaseOrderPositionAsync
      *
@@ -2994,7 +2986,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation createPurchaseOrderPositionsAsync
      *
@@ -3307,7 +3298,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePurchaseOrderAsync
      *
@@ -3615,7 +3605,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePurchaseOrderBatchAsync
      *
@@ -3897,7 +3886,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePurchaseOrderMetadataAttributeByIdAsync
      *
@@ -4161,7 +4149,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePurchaseOrderMetadataStateByIdAsync
      *
@@ -4425,7 +4412,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePurchaseOrderNoteAsync
      *
@@ -4701,7 +4687,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePurchaseOrderNotesBatchAsync
      *
@@ -4992,7 +4977,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePurchaseOrderPositionAsync
      *
@@ -5333,7 +5317,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePurchaseOrderPositionsBatchAsync
      *
@@ -5681,7 +5664,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getPurchaseOrderByIdAsync
      *
@@ -6036,7 +6018,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getPurchaseOrderListAsync
      *
@@ -6411,7 +6392,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getPurchaseOrderMetadataAsync
      *
@@ -6716,7 +6696,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getPurchaseOrderMetadataAttributeAsync
      *
@@ -7054,7 +7033,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getPurchaseOrderMetadataAttributeByIdAsync
      *
@@ -7375,7 +7353,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getPurchaseOrderMetadataStateByIdAsync
      *
@@ -7696,7 +7673,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getPurchaseOrderNoteByIdAsync
      *
@@ -8031,7 +8007,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getPurchaseOrderNotesAsync
      *
@@ -8398,7 +8373,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getPurchaseOrderPositionByIdAsync
      *
@@ -8769,7 +8743,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getPurchaseOrderPositionsAsync
      *
@@ -9143,7 +9116,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation getPurchaseOrderTemplateAsync
      *
@@ -9411,7 +9383,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation movePurchaseOrderToTrashAsync
      *
@@ -9717,7 +9688,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation updatePurchaseOrderAsync
      *
@@ -10083,7 +10053,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation updatePurchaseOrderMetadataAttributeByIdAsync
      *
@@ -10423,7 +10392,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation updatePurchaseOrderMetadataStateByIdAsync
      *
@@ -10765,7 +10733,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation updatePurchaseOrderNoteAsync
      *
@@ -11129,7 +11096,6 @@ class PurchaseOrdersApi
             throw $e;
         }
     }
-
     /**
      * Operation updatePurchaseOrderPositionAsync
      *

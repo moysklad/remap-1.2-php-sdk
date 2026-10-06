@@ -267,7 +267,6 @@ class TaxRatesApi
             throw $e;
         }
     }
-
     /**
      * Operation createTaxRateAsync
      *
@@ -571,7 +570,6 @@ class TaxRatesApi
             throw $e;
         }
     }
-
     /**
      * Operation createTaxRatesBatchAsync
      *
@@ -856,7 +854,6 @@ class TaxRatesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteTaxRateAsync
      *
@@ -1156,7 +1153,6 @@ class TaxRatesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteTaxRatesBatchAsync
      *
@@ -1482,7 +1478,6 @@ class TaxRatesApi
             throw $e;
         }
     }
-
     /**
      * Operation getTaxRateByIdAsync
      *
@@ -1816,7 +1811,6 @@ class TaxRatesApi
             throw $e;
         }
     }
-
     /**
      * Operation getTaxRatesAsync
      *
@@ -2202,7 +2196,6 @@ class TaxRatesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateTaxRateAsync
      *

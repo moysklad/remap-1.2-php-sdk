@@ -267,7 +267,6 @@ class ExpenseItemsApi
             throw $e;
         }
     }
-
     /**
      * Operation createExpenseItemAsync
      *
@@ -571,7 +570,6 @@ class ExpenseItemsApi
             throw $e;
         }
     }
-
     /**
      * Operation createExpenseItemsBatchAsync
      *
@@ -856,7 +854,6 @@ class ExpenseItemsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteExpenseItemAsync
      *
@@ -1156,7 +1153,6 @@ class ExpenseItemsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteExpenseItemsBatchAsync
      *
@@ -1482,7 +1478,6 @@ class ExpenseItemsApi
             throw $e;
         }
     }
-
     /**
      * Operation getExpenseItemByIdAsync
      *
@@ -1816,7 +1811,6 @@ class ExpenseItemsApi
             throw $e;
         }
     }
-
     /**
      * Operation getExpenseItemsAsync
      *
@@ -2202,7 +2196,6 @@ class ExpenseItemsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateExpenseItemAsync
      *

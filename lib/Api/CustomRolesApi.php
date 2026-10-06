@@ -259,7 +259,6 @@ class CustomRolesApi
             throw $e;
         }
     }
-
     /**
      * Operation createCustomRoleAsync
      *
@@ -533,7 +532,6 @@ class CustomRolesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCustomRoleAsync
      *
@@ -831,7 +829,6 @@ class CustomRolesApi
             throw $e;
         }
     }
-
     /**
      * Operation getCustomRoleByIdAsync
      *
@@ -1152,7 +1149,6 @@ class CustomRolesApi
             throw $e;
         }
     }
-
     /**
      * Operation getCustomRolesAsync
      *
@@ -1536,7 +1532,6 @@ class CustomRolesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCustomRoleAsync
      *

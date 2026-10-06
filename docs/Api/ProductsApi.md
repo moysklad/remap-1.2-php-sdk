@@ -5,7 +5,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**addProductFiles()**](ProductsApi.md#addProductFiles) | **POST** /entity/product/{id}/files | Добавить файлы к товару |
-| [**addProductImages()**](ProductsApi.md#addProductImages) | **POST** /entity/product/{id}/images | Добавить изображения к товару |
+| [**addProductImage()**](ProductsApi.md#addProductImage) | **POST** /entity/product/{id}/images | Добавить изображение к товару |
+| [**addProductImages()**](ProductsApi.md#addProductImages) | **POST** /entity/product/{id}/images/batch | Изменить список изображений товара |
 | [**createProduct()**](ProductsApi.md#createProduct) | **POST** /entity/product | Создать товар |
 | [**createProductMetadataAttribute()**](ProductsApi.md#createProductMetadataAttribute) | **POST** /entity/product/metadata/attributes | Создать доп. поле товара |
 | [**createProductStoreBalance()**](ProductsApi.md#createProductStoreBalance) | **POST** /entity/product/{id}/storebalances | Создать НСО товара для склада |
@@ -105,15 +106,15 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `addProductImages()`
+## `addProductImage()`
 
 ```php
-addProductImages($id, $add_product_images_request, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\Image[]
+addProductImage($id, $file_upload, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\Image[]
 ```
 
-Добавить изображения к товару
+Добавить изображение к товару
 
-Добавить новые Изображения к Товару или изменить список Изображений. В поле `content` нужно указать изображение, закодированное в Base64, в поле `filename` — имя файла с расширением. У Товара может быть не более 10 Изображений.
+Добавить новое Изображение к Товару. В поле `content` нужно указать изображение, закодированное в Base64, в поле `filename` — имя файла с расширением. У Товара может быть не более 10 Изображений.
 
 ### Example
 
@@ -138,13 +139,86 @@ $apiInstance = new OpenAPI\Client\Api\ProductsApi(
     $config
 );
 $id = 'id_example'; // string | ID сущности
-$add_product_images_request = {filename=birdimage.png, content=iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAA3NCSVQICAjb4U/gAAAAEHRFWHRTb2Z0d2FyZQBTaHV0dGVyY4LQCQAAAAxJREFUCNdj+PePAQAE+gH90KA5ZAAAAABJRU5ErkJggg==}; // \OpenAPI\Client\Model\AddProductImagesRequest
+$file_upload = {filename=birdimage.png, content=iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAA3NCSVQICAjb4U/gAAAAEHRFWHRTb2Z0d2FyZQBTaHV0dGVyY4LQCQAAAAxJREFUCNdj+PePAQAE+gH90KA5ZAAAAABJRU5ErkJggg==}; // \OpenAPI\Client\Model\FileUpload
 $accept = 'application/json;charset=utf-8'; // string
 $accept_encoding = 'gzip, deflate, br'; // string
 $content_type = 'application/json'; // string
 
 try {
-    $result = $apiInstance->addProductImages($id, $add_product_images_request, $accept, $accept_encoding, $content_type);
+    $result = $apiInstance->addProductImage($id, $file_upload, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProductsApi->addProductImage: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **file_upload** | [**\OpenAPI\Client\Model\FileUpload**](../Model/FileUpload.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\Image[]**](../Model/Image.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `addProductImages()`
+
+```php
+addProductImages($id, $file_upload, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\Image[]
+```
+
+Изменить список изображений товара
+
+Установить список Изображений Товара. В теле запроса нужно передать массив Изображений, которые должны быть у Товара. Чтобы оставить существующие Изображения, передайте их метаданные. Для новых Изображений в поле `content` нужно указать изображение, закодированное в Base64, в поле `filename` — имя файла с расширением. У Товара может быть не более 10 Изображений.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\ProductsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$file_upload = array(new \OpenAPI\Client\Model\FileUpload()); // \OpenAPI\Client\Model\FileUpload[]
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->addProductImages($id, $file_upload, $accept, $accept_encoding, $content_type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProductsApi->addProductImages: ', $e->getMessage(), PHP_EOL;
@@ -156,7 +230,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
-| **add_product_images_request** | [**\OpenAPI\Client\Model\AddProductImagesRequest**](../Model/AddProductImagesRequest.md)|  | |
+| **file_upload** | [**\OpenAPI\Client\Model\FileUpload[]**](../Model/FileUpload.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
 | **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |

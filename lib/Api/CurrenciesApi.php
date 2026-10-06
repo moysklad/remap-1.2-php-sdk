@@ -236,7 +236,6 @@ class CurrenciesApi
             throw $e;
         }
     }
-
     /**
      * Operation createCurrenciesBatchAsync
      *
@@ -569,7 +568,6 @@ class CurrenciesApi
             throw $e;
         }
     }
-
     /**
      * Operation createCurrencyAsync
      *
@@ -902,7 +900,6 @@ class CurrenciesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCurrenciesBatchAsync
      *
@@ -1182,7 +1179,6 @@ class CurrenciesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCurrencyAsync
      *
@@ -1490,7 +1486,6 @@ class CurrenciesApi
             throw $e;
         }
     }
-
     /**
      * Operation getCurrenciesAsync
      *
@@ -1872,7 +1867,6 @@ class CurrenciesApi
             throw $e;
         }
     }
-
     /**
      * Operation getCurrencyByIdAsync
      *
@@ -2202,7 +2196,6 @@ class CurrenciesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCurrencyAsync
      *

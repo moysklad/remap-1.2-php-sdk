@@ -249,7 +249,6 @@ class CompanySettingsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCompanySettingsAsync
      *
@@ -540,7 +539,6 @@ class CompanySettingsApi
             throw $e;
         }
     }
-
     /**
      * Operation getCompanySettingsMetadataAsync
      *
@@ -835,7 +833,6 @@ class CompanySettingsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCompanySettingsAsync
      *

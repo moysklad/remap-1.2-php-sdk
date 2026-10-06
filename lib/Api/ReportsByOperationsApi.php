@@ -255,7 +255,6 @@ class ReportsByOperationsApi
             throw $e;
         }
     }
-
     /**
      * Operation getByOperationsInTransitAsync
      *
@@ -606,7 +605,6 @@ class ReportsByOperationsApi
             throw $e;
         }
     }
-
     /**
      * Operation getByOperationsReserveAsync
      *
@@ -957,7 +955,6 @@ class ReportsByOperationsApi
             throw $e;
         }
     }
-
     /**
      * Operation getByOperationsStockAsync
      *

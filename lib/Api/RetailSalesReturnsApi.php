@@ -318,7 +318,6 @@ class RetailSalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation createRetailSalesReturnAsync
      *
@@ -651,7 +650,6 @@ class RetailSalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation createRetailSalesReturnMetadataAttributeAsync
      *
@@ -975,7 +973,6 @@ class RetailSalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation createRetailSalesReturnPositionAsync
      *
@@ -1330,7 +1327,6 @@ class RetailSalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation createRetailSalesReturnPositionsAsync
      *
@@ -1689,7 +1685,6 @@ class RetailSalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation createRetailSalesReturnsBatchAsync
      *
@@ -1982,7 +1977,6 @@ class RetailSalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteRetailSalesReturnAsync
      *
@@ -2236,7 +2230,6 @@ class RetailSalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteRetailSalesReturnMetadataAttributeByIdAsync
      *
@@ -2490,7 +2483,6 @@ class RetailSalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteRetailSalesReturnMetadataStateByIdAsync
      *
@@ -2748,7 +2740,6 @@ class RetailSalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteRetailSalesReturnPositionAsync
      *
@@ -3081,7 +3072,6 @@ class RetailSalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteRetailSalesReturnPositionsBatchAsync
      *
@@ -3427,7 +3417,6 @@ class RetailSalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getRetailSalesReturnByIdAsync
      *
@@ -3764,7 +3753,6 @@ class RetailSalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getRetailSalesReturnMetadataAsync
      *
@@ -4067,7 +4055,6 @@ class RetailSalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getRetailSalesReturnMetadataAttributeAsync
      *
@@ -4395,7 +4382,6 @@ class RetailSalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getRetailSalesReturnMetadataAttributeByIdAsync
      *
@@ -4706,7 +4692,6 @@ class RetailSalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getRetailSalesReturnMetadataStateByIdAsync
      *
@@ -5023,7 +5008,6 @@ class RetailSalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getRetailSalesReturnPositionByIdAsync
      *
@@ -5386,7 +5370,6 @@ class RetailSalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getRetailSalesReturnPositionsAsync
      *
@@ -5760,7 +5743,6 @@ class RetailSalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getRetailSalesReturnTemplateAsync
      *
@@ -6080,7 +6062,6 @@ class RetailSalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation getRetailSalesReturnsAsync
      *
@@ -6403,7 +6384,6 @@ class RetailSalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation moveRetailSalesReturnToTrashAsync
      *
@@ -6709,7 +6689,6 @@ class RetailSalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateRetailSalesReturnAsync
      *
@@ -7075,7 +7054,6 @@ class RetailSalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateRetailSalesReturnMetadataAttributeByIdAsync
      *
@@ -7415,7 +7393,6 @@ class RetailSalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateRetailSalesReturnMetadataStateByIdAsync
      *
@@ -7761,7 +7738,6 @@ class RetailSalesReturnsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateRetailSalesReturnPositionAsync
      *

@@ -219,7 +219,6 @@ class NotificationsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteNotificationAsync
      *
@@ -517,7 +516,6 @@ class NotificationsApi
             throw $e;
         }
     }
-
     /**
      * Operation getNotificationByIdAsync
      *
@@ -826,7 +824,6 @@ class NotificationsApi
             throw $e;
         }
     }
-
     /**
      * Operation getNotificationSettingsAsync
      *
@@ -1121,7 +1118,6 @@ class NotificationsApi
             throw $e;
         }
     }
-
     /**
      * Operation getNotificationsAsync
      *
@@ -1403,7 +1399,6 @@ class NotificationsApi
             throw $e;
         }
     }
-
     /**
      * Operation markAllNotificationsAsReadAsync
      *
@@ -1639,7 +1634,6 @@ class NotificationsApi
             throw $e;
         }
     }
-
     /**
      * Operation markNotificationAsReadAsync
      *
@@ -1939,7 +1933,6 @@ class NotificationsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateNotificationSettingsAsync
      *

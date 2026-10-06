@@ -268,7 +268,6 @@ class ProcessingPlanFoldersApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingPlanFolderAsync
      *
@@ -557,7 +556,6 @@ class ProcessingPlanFoldersApi
             throw $e;
         }
     }
-
     /**
      * Operation createProcessingPlanFoldersBatchAsync
      *
@@ -831,7 +829,6 @@ class ProcessingPlanFoldersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingPlanFolderAsync
      *
@@ -1139,7 +1136,6 @@ class ProcessingPlanFoldersApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteProcessingPlanFoldersBatchAsync
      *
@@ -1463,7 +1459,6 @@ class ProcessingPlanFoldersApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingPlanFolderByIdAsync
      *
@@ -1774,7 +1769,6 @@ class ProcessingPlanFoldersApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingPlanFolderMetadataAsync
      *
@@ -2079,7 +2073,6 @@ class ProcessingPlanFoldersApi
             throw $e;
         }
     }
-
     /**
      * Operation getProcessingPlanFoldersAsync
      *
@@ -2419,7 +2412,6 @@ class ProcessingPlanFoldersApi
             throw $e;
         }
     }
-
     /**
      * Operation updateProcessingPlanFolderAsync
      *

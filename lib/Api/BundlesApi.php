@@ -77,6 +77,9 @@ class BundlesApi
         'createBundle' => [
             'application/json',
         ],
+        'createBundleComponent' => [
+            'application/json',
+        ],
         'createBundleComponents' => [
             'application/json',
         ],
@@ -285,7 +288,6 @@ class BundlesApi
             throw $e;
         }
     }
-
     /**
      * Operation createBundleAsync
      *
@@ -497,48 +499,48 @@ class BundlesApi
     }
 
     /**
-     * Operation createBundleComponents
+     * Operation createBundleComponent
      *
      * Добавить компонент Комплекта
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\CreateBundleComponentsRequest $create_bundle_components_request create_bundle_components_request (required)
+     * @param  \OpenAPI\Client\Model\BundleComponent $bundle_component bundle_component (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $content_type content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createBundleComponents'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createBundleComponent'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\BundleComponent[]|\OpenAPI\Client\Model\Errors
      */
-    public function createBundleComponents($id, $create_bundle_components_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createBundleComponents'][0])
+    public function createBundleComponent($id, $bundle_component, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createBundleComponent'][0])
     {
-        list($response) = $this->createBundleComponentsWithHttpInfo($id, $create_bundle_components_request, $accept, $accept_encoding, $expand, $content_type, $contentType);
+        list($response) = $this->createBundleComponentWithHttpInfo($id, $bundle_component, $accept, $accept_encoding, $expand, $content_type, $contentType);
         return $response;
     }
 
     /**
-     * Operation createBundleComponentsWithHttpInfo
+     * Operation createBundleComponentWithHttpInfo
      *
      * Добавить компонент Комплекта
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\CreateBundleComponentsRequest $create_bundle_components_request (required)
+     * @param  \OpenAPI\Client\Model\BundleComponent $bundle_component (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createBundleComponents'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createBundleComponent'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\BundleComponent[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createBundleComponentsWithHttpInfo($id, $create_bundle_components_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createBundleComponents'][0])
+    public function createBundleComponentWithHttpInfo($id, $bundle_component, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createBundleComponent'][0])
     {
-        $request = $this->createBundleComponentsRequest($id, $create_bundle_components_request, $accept, $accept_encoding, $expand, $content_type, $contentType);
+        $request = $this->createBundleComponentRequest($id, $bundle_component, $accept, $accept_encoding, $expand, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -622,26 +624,25 @@ class BundlesApi
             throw $e;
         }
     }
-
     /**
-     * Operation createBundleComponentsAsync
+     * Operation createBundleComponentAsync
      *
      * Добавить компонент Комплекта
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\CreateBundleComponentsRequest $create_bundle_components_request (required)
+     * @param  \OpenAPI\Client\Model\BundleComponent $bundle_component (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createBundleComponents'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createBundleComponent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createBundleComponentsAsync($id, $create_bundle_components_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createBundleComponents'][0])
+    public function createBundleComponentAsync($id, $bundle_component, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createBundleComponent'][0])
     {
-        return $this->createBundleComponentsAsyncWithHttpInfo($id, $create_bundle_components_request, $accept, $accept_encoding, $expand, $content_type, $contentType)
+        return $this->createBundleComponentAsyncWithHttpInfo($id, $bundle_component, $accept, $accept_encoding, $expand, $content_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -650,25 +651,25 @@ class BundlesApi
     }
 
     /**
-     * Operation createBundleComponentsAsyncWithHttpInfo
+     * Operation createBundleComponentAsyncWithHttpInfo
      *
      * Добавить компонент Комплекта
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\CreateBundleComponentsRequest $create_bundle_components_request (required)
+     * @param  \OpenAPI\Client\Model\BundleComponent $bundle_component (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createBundleComponents'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createBundleComponent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createBundleComponentsAsyncWithHttpInfo($id, $create_bundle_components_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createBundleComponents'][0])
+    public function createBundleComponentAsyncWithHttpInfo($id, $bundle_component, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createBundleComponent'][0])
     {
         $returnType = '\OpenAPI\Client\Model\BundleComponent[]';
-        $request = $this->createBundleComponentsRequest($id, $create_bundle_components_request, $accept, $accept_encoding, $expand, $content_type, $contentType);
+        $request = $this->createBundleComponentRequest($id, $bundle_component, $accept, $accept_encoding, $expand, $content_type, $contentType);
         $options = $this->createHttpClientOption();
 
         return $this->client
@@ -708,33 +709,33 @@ class BundlesApi
     }
 
     /**
-     * Create request for operation 'createBundleComponents'
+     * Create request for operation 'createBundleComponent'
      *
      * @param  string $id ID сущности (required)
-     * @param  \OpenAPI\Client\Model\CreateBundleComponentsRequest $create_bundle_components_request (required)
+     * @param  \OpenAPI\Client\Model\BundleComponent $bundle_component (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
      * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $content_type (optional, default to 'application/json')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createBundleComponents'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createBundleComponent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createBundleComponentsRequest($id, $create_bundle_components_request, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createBundleComponents'][0])
+    public function createBundleComponentRequest($id, $bundle_component, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createBundleComponent'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling createBundleComponents'
+                'Missing the required parameter $id when calling createBundleComponent'
             );
         }
 
-        // verify the required parameter 'create_bundle_components_request' is set
-        if ($create_bundle_components_request === null || (is_array($create_bundle_components_request) && count($create_bundle_components_request) === 0)) {
+        // verify the required parameter 'bundle_component' is set
+        if ($bundle_component === null || (is_array($bundle_component) && count($bundle_component) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $create_bundle_components_request when calling createBundleComponents'
+                'Missing the required parameter $bundle_component when calling createBundleComponent'
             );
         }
 
@@ -790,12 +791,333 @@ class BundlesApi
         );
 
         // for model (json/xml)
-        if (isset($create_bundle_components_request)) {
+        if (isset($bundle_component)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_bundle_components_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($bundle_component));
             } else {
-                $httpBody = $create_bundle_components_request;
+                $httpBody = $bundle_component;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createBundleComponents
+     *
+     * Массовое добавление и обновление компонентов Комплекта
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\BundleComponent[] $bundle_component bundle_component (required)
+     * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $content_type content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createBundleComponents'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors
+     */
+    public function createBundleComponents($id, $bundle_component, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createBundleComponents'][0])
+    {
+        list($response) = $this->createBundleComponentsWithHttpInfo($id, $bundle_component, $accept, $accept_encoding, $expand, $content_type, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createBundleComponentsWithHttpInfo
+     *
+     * Массовое добавление и обновление компонентов Комплекта
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\BundleComponent[] $bundle_component (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createBundleComponents'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createBundleComponentsWithHttpInfo($id, $bundle_component, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createBundleComponents'][0])
+    {
+        $request = $this->createBundleComponentsRequest($id, $bundle_component, $accept, $accept_encoding, $expand, $content_type, $contentType);
+        try {
+            $options = $this->createHttpClientOption();
+            $options[RequestOptions::HTTP_ERRORS] = false;
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            return $this->handleResponseMassWithDataType(
+                '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Errors',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+    /**
+     * Operation createBundleComponentsAsync
+     *
+     * Массовое добавление и обновление компонентов Комплекта
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\BundleComponent[] $bundle_component (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createBundleComponents'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createBundleComponentsAsync($id, $bundle_component, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createBundleComponents'][0])
+    {
+        return $this->createBundleComponentsAsyncWithHttpInfo($id, $bundle_component, $accept, $accept_encoding, $expand, $content_type, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createBundleComponentsAsyncWithHttpInfo
+     *
+     * Массовое добавление и обновление компонентов Комплекта
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\BundleComponent[] $bundle_component (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createBundleComponents'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createBundleComponentsAsyncWithHttpInfo($id, $bundle_component, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createBundleComponents'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
+        $request = $this->createBundleComponentsRequest($id, $bundle_component, $accept, $accept_encoding, $expand, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
+        $options[RequestOptions::HTTP_ERRORS] = false;
+
+        return $this->client
+            ->sendAsync($request, $options)
+            ->then(
+                function ($response) use ($returnType, $request) {
+                    return $this->handleResponseMassWithDataType(
+                        $returnType,
+                        $request,
+                        $response,
+                    );
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createBundleComponents'
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\BundleComponent[] $bundle_component (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createBundleComponents'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createBundleComponentsRequest($id, $bundle_component, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, $content_type = 'application/json', string $contentType = self::contentTypes['createBundleComponents'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling createBundleComponents'
+            );
+        }
+
+        // verify the required parameter 'bundle_component' is set
+        if ($bundle_component === null || (is_array($bundle_component) && count($bundle_component) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $bundle_component when calling createBundleComponents'
+            );
+        }
+        if (count($bundle_component) > 1000) {
+            throw new \InvalidArgumentException('invalid value for "$bundle_component" when calling BundlesApi.createBundleComponents, number of items must be less than or equal to 1000.');
+        }
+        if (count($bundle_component) < 1) {
+            throw new \InvalidArgumentException('invalid value for "$bundle_component" when calling BundlesApi.createBundleComponents, number of items must be greater than or equal to 1.');
+        }
+        
+
+
+
+
+
+        $resourcePath = '/entity/bundle/{id}/components/batch';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $expand,
+            'expand', // param base name
+            'string', // openApiType
+            '', // style
+            false, // explode
+            false // required
+        ) ?? []);
+
+        // header params
+        if ($accept !== null) {
+            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+        }
+        // header params
+        if ($accept_encoding !== null) {
+            $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+        // header params
+        if ($content_type !== null) {
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
+        }
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{id}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'text/html;charset=UTF-8', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($bundle_component)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($bundle_component));
+            } else {
+                $httpBody = $bundle_component;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -944,7 +1266,6 @@ class BundlesApi
             throw $e;
         }
     }
-
     /**
      * Operation createBundlesBatchAsync
      *
@@ -1229,7 +1550,6 @@ class BundlesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteBundleAsync
      *
@@ -1485,7 +1805,6 @@ class BundlesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteBundleComponentAsync
      *
@@ -1761,7 +2080,6 @@ class BundlesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteBundleComponentsBatchAsync
      *
@@ -2086,7 +2404,6 @@ class BundlesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteBundlesBatchAsync
      *
@@ -2412,7 +2729,6 @@ class BundlesApi
             throw $e;
         }
     }
-
     /**
      * Operation getBundleByIdAsync
      *
@@ -2740,7 +3056,6 @@ class BundlesApi
             throw $e;
         }
     }
-
     /**
      * Operation getBundleComponentByIdAsync
      *
@@ -3094,7 +3409,6 @@ class BundlesApi
             throw $e;
         }
     }
-
     /**
      * Operation getBundleComponentsAsync
      *
@@ -3502,7 +3816,6 @@ class BundlesApi
             throw $e;
         }
     }
-
     /**
      * Operation getBundlesAsync
      *
@@ -3888,7 +4201,6 @@ class BundlesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateBundleAsync
      *
@@ -4245,7 +4557,6 @@ class BundlesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateBundleComponentAsync
      *

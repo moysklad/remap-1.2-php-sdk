@@ -258,7 +258,6 @@ class AuditApi
             throw $e;
         }
     }
-
     /**
      * Operation getAuditContextEventsAsync
      *
@@ -608,7 +607,6 @@ class AuditApi
             throw $e;
         }
     }
-
     /**
      * Operation getAuditContextsAsync
      *
@@ -947,7 +945,6 @@ class AuditApi
             throw $e;
         }
     }
-
     /**
      * Operation getAuditMetadataFiltersAsync
      *
@@ -1246,7 +1243,6 @@ class AuditApi
             throw $e;
         }
     }
-
     /**
      * Operation getEntityAuditEventsAsync
      *

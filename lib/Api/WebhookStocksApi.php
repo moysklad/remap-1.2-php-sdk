@@ -236,7 +236,6 @@ class WebhookStocksApi
             throw $e;
         }
     }
-
     /**
      * Operation createOrUpdateWebhookStocksBatchAsync
      *
@@ -569,7 +568,6 @@ class WebhookStocksApi
             throw $e;
         }
     }
-
     /**
      * Operation createWebhookStockAsync
      *
@@ -856,7 +854,6 @@ class WebhookStocksApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteWebhookStockAsync
      *
@@ -1156,7 +1153,6 @@ class WebhookStocksApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteWebhookStocksBatchAsync
      *
@@ -1482,7 +1478,6 @@ class WebhookStocksApi
             throw $e;
         }
     }
-
     /**
      * Operation getWebhookStockByIdAsync
      *
@@ -1816,7 +1811,6 @@ class WebhookStocksApi
             throw $e;
         }
     }
-
     /**
      * Operation getWebhookStocksAsync
      *
@@ -2202,7 +2196,6 @@ class WebhookStocksApi
             throw $e;
         }
     }
-
     /**
      * Operation updateWebhookStockAsync
      *

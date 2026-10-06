@@ -245,7 +245,6 @@ class ReportsStockByOperationApi
             throw $e;
         }
     }
-
     /**
      * Operation getStockByOperationAsync
      *

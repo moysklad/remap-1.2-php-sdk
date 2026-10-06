@@ -288,7 +288,6 @@ class RetailShiftsApi
             throw $e;
         }
     }
-
     /**
      * Operation createRetailShiftAsync
      *
@@ -623,7 +622,6 @@ class RetailShiftsApi
             throw $e;
         }
     }
-
     /**
      * Operation createRetailShiftBatchAsync
      *
@@ -962,7 +960,6 @@ class RetailShiftsApi
             throw $e;
         }
     }
-
     /**
      * Operation createRetailShiftMetadataAttributeAsync
      *
@@ -1236,7 +1233,6 @@ class RetailShiftsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteRetailShiftAsync
      *
@@ -1536,7 +1532,6 @@ class RetailShiftsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteRetailShiftBatchAsync
      *
@@ -1816,7 +1811,6 @@ class RetailShiftsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteRetailShiftMetadataAttributeByIdAsync
      *
@@ -2116,7 +2110,6 @@ class RetailShiftsApi
             throw $e;
         }
     }
-
     /**
      * Operation getRetailShiftByIdAsync
      *
@@ -2438,7 +2431,6 @@ class RetailShiftsApi
             throw $e;
         }
     }
-
     /**
      * Operation getRetailShiftMetadataAsync
      *
@@ -2733,7 +2725,6 @@ class RetailShiftsApi
             throw $e;
         }
     }
-
     /**
      * Operation getRetailShiftMetadataAttributeAsync
      *
@@ -3061,7 +3052,6 @@ class RetailShiftsApi
             throw $e;
         }
     }
-
     /**
      * Operation getRetailShiftMetadataAttributeByIdAsync
      *
@@ -3376,7 +3366,6 @@ class RetailShiftsApi
             throw $e;
         }
     }
-
     /**
      * Operation getRetailShiftsAsync
      *
@@ -3673,7 +3662,6 @@ class RetailShiftsApi
             throw $e;
         }
     }
-
     /**
      * Operation moveRetailShiftToTrashAsync
      *
@@ -3977,7 +3965,6 @@ class RetailShiftsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateRetailShiftAsync
      *
@@ -4330,7 +4317,6 @@ class RetailShiftsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateRetailShiftMetadataAttributeByIdAsync
      *

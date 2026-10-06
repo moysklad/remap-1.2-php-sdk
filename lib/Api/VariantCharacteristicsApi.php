@@ -251,7 +251,6 @@ class VariantCharacteristicsApi
             throw $e;
         }
     }
-
     /**
      * Operation createVariantCharacteristicAsync
      *
@@ -561,7 +560,6 @@ class VariantCharacteristicsApi
             throw $e;
         }
     }
-
     /**
      * Operation getVariantCharacteristicByIdAsync
      *
@@ -870,7 +868,6 @@ class VariantCharacteristicsApi
             throw $e;
         }
     }
-
     /**
      * Operation getVariantCharacteristicsAsync
      *

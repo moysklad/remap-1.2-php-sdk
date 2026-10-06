@@ -271,7 +271,6 @@ class CustomEntitiesApi
             throw $e;
         }
     }
-
     /**
      * Operation createCustomEntityAsync
      *
@@ -595,7 +594,6 @@ class CustomEntitiesApi
             throw $e;
         }
     }
-
     /**
      * Operation createCustomEntityElementAsync
      *
@@ -900,7 +898,6 @@ class CustomEntitiesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCustomEntityAsync
      *
@@ -1156,7 +1153,6 @@ class CustomEntitiesApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteCustomEntityElementAsync
      *
@@ -1476,7 +1472,6 @@ class CustomEntitiesApi
             throw $e;
         }
     }
-
     /**
      * Operation getCustomEntityElementByIdAsync
      *
@@ -1820,7 +1815,6 @@ class CustomEntitiesApi
             throw $e;
         }
     }
-
     /**
      * Operation getCustomEntityElementsAsync
      *
@@ -2146,7 +2140,6 @@ class CustomEntitiesApi
             throw $e;
         }
     }
-
     /**
      * Operation getCustomEntityMetadataAsync
      *
@@ -2476,7 +2469,6 @@ class CustomEntitiesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCustomEntityAsync
      *
@@ -2833,7 +2825,6 @@ class CustomEntitiesApi
             throw $e;
         }
     }
-
     /**
      * Operation updateCustomEntityElementAsync
      *

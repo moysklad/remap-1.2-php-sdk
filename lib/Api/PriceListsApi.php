@@ -336,7 +336,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation addPriceListFilesAsync
      *
@@ -679,7 +678,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPriceListAsync
      *
@@ -1012,7 +1010,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPriceListMetadataAttributeAsync
      *
@@ -1332,7 +1329,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPriceListMetadataStateAsync
      *
@@ -1652,7 +1648,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPriceListMetadataStatesBatchAsync
      *
@@ -1982,7 +1977,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPriceListPositionAsync
      *
@@ -2337,7 +2331,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPriceListPositionsBatchAsync
      *
@@ -2665,7 +2658,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation createPriceListsBatchAsync
      *
@@ -2950,7 +2942,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePriceListAsync
      *
@@ -3206,7 +3197,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePriceListFileAsync
      *
@@ -3478,7 +3468,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePriceListMetadataAttributeByIdAsync
      *
@@ -3732,7 +3721,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePriceListMetadataStateByIdAsync
      *
@@ -3988,7 +3976,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePriceListPositionAsync
      *
@@ -4308,7 +4295,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePriceListPositionsBatchAsync
      *
@@ -4652,7 +4638,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation deletePriceListsBatchAsync
      *
@@ -4978,7 +4963,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPriceListByIdAsync
      *
@@ -5304,7 +5288,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPriceListFileAsync
      *
@@ -5637,7 +5620,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPriceListFilesAsync
      *
@@ -5983,7 +5965,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPriceListMetadataAsync
      *
@@ -6289,7 +6270,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPriceListMetadataAttributeByIdAsync
      *
@@ -6602,7 +6582,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPriceListMetadataAttributesAsync
      *
@@ -6930,7 +6909,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPriceListMetadataStateByIdAsync
      *
@@ -7245,7 +7223,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPriceListPositionByIdAsync
      *
@@ -7593,7 +7570,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPriceListPositionsAsync
      *
@@ -7962,7 +7938,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation getPriceListsAsync
      *
@@ -8298,7 +8273,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation movePriceListToTrashAsync
      *
@@ -8602,7 +8576,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation updatePriceListAsync
      *
@@ -8955,7 +8928,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation updatePriceListMetadataAttributeByIdAsync
      *
@@ -9295,7 +9267,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation updatePriceListMetadataStateByIdAsync
      *
@@ -9639,7 +9610,6 @@ class PriceListsApi
             throw $e;
         }
     }
-
     /**
      * Operation updatePriceListPositionAsync
      *

@@ -250,7 +250,6 @@ class ProductionTasksApi
             throw $e;
         }
     }
-
     /**
      * Operation createProductionTaskMetadataAttributeAsync
      *
@@ -570,7 +569,6 @@ class ProductionTasksApi
             throw $e;
         }
     }
-
     /**
      * Operation getProductionTaskMetadataAttributeAsync
      *

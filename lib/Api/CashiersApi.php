@@ -252,7 +252,6 @@ class CashiersApi
             throw $e;
         }
     }
-
     /**
      * Operation getCashierByIdAsync
      *
@@ -606,7 +605,6 @@ class CashiersApi
             throw $e;
         }
     }
-
     /**
      * Operation getCashiersAsync
      *

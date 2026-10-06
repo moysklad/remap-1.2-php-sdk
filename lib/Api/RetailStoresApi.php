@@ -275,7 +275,6 @@ class RetailStoresApi
             throw $e;
         }
     }
-
     /**
      * Operation addMasterRetailStoreAsync
      *
@@ -628,7 +627,6 @@ class RetailStoresApi
             throw $e;
         }
     }
-
     /**
      * Operation createRetailStoreAsync
      *
@@ -932,7 +930,6 @@ class RetailStoresApi
             throw $e;
         }
     }
-
     /**
      * Operation createRetailStoresBatchAsync
      *
@@ -1217,7 +1214,6 @@ class RetailStoresApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteRetailStoreAsync
      *
@@ -1517,7 +1513,6 @@ class RetailStoresApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteRetailStoresBatchAsync
      *
@@ -1853,7 +1848,6 @@ class RetailStoresApi
             throw $e;
         }
     }
-
     /**
      * Operation getMasterRetailStoresAsync
      *
@@ -2253,7 +2247,6 @@ class RetailStoresApi
             throw $e;
         }
     }
-
     /**
      * Operation getRetailStoreByIdAsync
      *
@@ -2587,7 +2580,6 @@ class RetailStoresApi
             throw $e;
         }
     }
-
     /**
      * Operation getRetailStoresAsync
      *
@@ -2973,7 +2965,6 @@ class RetailStoresApi
             throw $e;
         }
     }
-
     /**
      * Operation updateRetailStoreAsync
      *

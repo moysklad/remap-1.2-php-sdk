@@ -84,9 +84,21 @@ class BundlesApiTest extends TestCase
     }
 
     /**
-     * Test case for createBundleComponents
+     * Test case for createBundleComponent
      *
      * Добавить компонент Комплекта.
+     *
+     */
+    public function testCreateBundleComponent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for createBundleComponents
+     *
+     * Массовое добавление и обновление компонентов Комплекта.
      *
      */
     public function testCreateBundleComponents()

@@ -306,7 +306,6 @@ class FactureOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation createFactureOutAsync
      *
@@ -639,7 +638,6 @@ class FactureOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation createFactureOutMetadataAttributeAsync
      *
@@ -959,7 +957,6 @@ class FactureOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation createFactureOutMetadataStateAsync
      *
@@ -1279,7 +1276,6 @@ class FactureOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation createFactureOutMetadataStatesBatchAsync
      *
@@ -1607,7 +1603,6 @@ class FactureOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation createFactureOutsBatchAsync
      *
@@ -1900,7 +1895,6 @@ class FactureOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteFactureOutAsync
      *
@@ -2154,7 +2148,6 @@ class FactureOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteFactureOutMetadataAttributeByIdAsync
      *
@@ -2408,7 +2401,6 @@ class FactureOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteFactureOutMetadataStateByIdAsync
      *
@@ -2708,7 +2700,6 @@ class FactureOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation deleteFactureOutsBatchAsync
      *
@@ -3034,7 +3025,6 @@ class FactureOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation getFactureOutByIdAsync
      *
@@ -3358,7 +3348,6 @@ class FactureOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation getFactureOutMetadataAsync
      *
@@ -3664,7 +3653,6 @@ class FactureOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation getFactureOutMetadataAttributeByIdAsync
      *
@@ -3977,7 +3965,6 @@ class FactureOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation getFactureOutMetadataAttributesAsync
      *
@@ -4305,7 +4292,6 @@ class FactureOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation getFactureOutMetadataStateByIdAsync
      *
@@ -4618,7 +4604,6 @@ class FactureOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation getFactureOutTemplateAsync
      *
@@ -4946,7 +4931,6 @@ class FactureOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation getFactureOutsAsync
      *
@@ -5282,7 +5266,6 @@ class FactureOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation moveFactureOutToTrashAsync
      *
@@ -5586,7 +5569,6 @@ class FactureOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateFactureOutAsync
      *
@@ -5939,7 +5921,6 @@ class FactureOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateFactureOutMetadataAttributeByIdAsync
      *
@@ -6279,7 +6260,6 @@ class FactureOutsApi
             throw $e;
         }
     }
-
     /**
      * Operation updateFactureOutMetadataStateByIdAsync
      *

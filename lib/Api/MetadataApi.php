@@ -253,7 +253,6 @@ class MetadataApi
             throw $e;
         }
     }
-
     /**
      * Operation getEmbeddedTemplateByTypeAndIdAsync
      *
@@ -586,7 +585,6 @@ class MetadataApi
             throw $e;
         }
     }
-
     /**
      * Operation getEmbeddedTemplatesForTypeAsync
      *
@@ -934,7 +932,6 @@ class MetadataApi
             throw $e;
         }
     }
-
     /**
      * Operation getMetadataForTypeAsync
      *
