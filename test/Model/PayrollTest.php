@@ -215,6 +215,15 @@ class PayrollTest extends TestCase
     }
 
     /**
+     * Test attribute "payments"
+     */
+    public function testPropertyPayments()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "positions"
      */
     public function testPropertyPositions()

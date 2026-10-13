@@ -299,6 +299,7 @@ docs/Model/FinanceInOperationRetailShift.md
 docs/Model/FinanceOutOperationAbstract.md
 docs/Model/FinanceOutOperationCommissionReportOut.md
 docs/Model/FinanceOutOperationInvoiceIn.md
+docs/Model/FinanceOutOperationPayroll.md
 docs/Model/FinanceOutOperationPurchaseOrder.md
 docs/Model/FinanceOutOperationSalesReturn.md
 docs/Model/FinanceOutOperationSupply.md
@@ -411,6 +412,9 @@ docs/Model/PaymentOut.md
 docs/Model/PaymentOutList.md
 docs/Model/Payroll.md
 docs/Model/PayrollList.md
+docs/Model/PayrollPaymentAbstract.md
+docs/Model/PayrollPaymentCashOut.md
+docs/Model/PayrollPaymentPaymentOut.md
 docs/Model/PayrollPosition.md
 docs/Model/PayrollPositionList.md
 docs/Model/PermissionValue.md
@@ -962,6 +966,7 @@ lib/Model/FinanceInOperationRetailShift.php
 lib/Model/FinanceOutOperationAbstract.php
 lib/Model/FinanceOutOperationCommissionReportOut.php
 lib/Model/FinanceOutOperationInvoiceIn.php
+lib/Model/FinanceOutOperationPayroll.php
 lib/Model/FinanceOutOperationPurchaseOrder.php
 lib/Model/FinanceOutOperationSalesReturn.php
 lib/Model/FinanceOutOperationSupply.php
@@ -1075,6 +1080,9 @@ lib/Model/PaymentOut.php
 lib/Model/PaymentOutList.php
 lib/Model/Payroll.php
 lib/Model/PayrollList.php
+lib/Model/PayrollPaymentAbstract.php
+lib/Model/PayrollPaymentCashOut.php
+lib/Model/PayrollPaymentPaymentOut.php
 lib/Model/PayrollPosition.php
 lib/Model/PayrollPositionList.php
 lib/Model/PermissionValue.php
@@ -1622,6 +1630,7 @@ test/Model/FinanceInOperationRetailShiftTest.php
 test/Model/FinanceOutOperationAbstractTest.php
 test/Model/FinanceOutOperationCommissionReportOutTest.php
 test/Model/FinanceOutOperationInvoiceInTest.php
+test/Model/FinanceOutOperationPayrollTest.php
 test/Model/FinanceOutOperationPurchaseOrderTest.php
 test/Model/FinanceOutOperationSalesReturnTest.php
 test/Model/FinanceOutOperationSupplyTest.php
@@ -1733,6 +1742,9 @@ test/Model/PaymentItemTypeTest.php
 test/Model/PaymentOutListTest.php
 test/Model/PaymentOutTest.php
 test/Model/PayrollListTest.php
+test/Model/PayrollPaymentAbstractTest.php
+test/Model/PayrollPaymentCashOutTest.php
+test/Model/PayrollPaymentPaymentOutTest.php
 test/Model/PayrollPositionListTest.php
 test/Model/PayrollPositionTest.php
 test/Model/PayrollTest.php

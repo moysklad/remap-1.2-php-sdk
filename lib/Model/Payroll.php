@@ -95,6 +95,7 @@ class Payroll extends EntityWithMeta
         'name' => 'string',
         'organization' => '\OpenAPI\Client\Model\Organization',
         'owner' => '\OpenAPI\Client\Model\Employee',
+        'payments' => '\OpenAPI\Client\Model\PayrollPaymentAbstract[]',
         'positions' => '\OpenAPI\Client\Model\PayrollPositionList',
         'printed' => 'bool',
         'published' => 'bool',
@@ -129,6 +130,7 @@ class Payroll extends EntityWithMeta
         'name' => null,
         'organization' => null,
         'owner' => null,
+        'payments' => null,
         'positions' => null,
         'printed' => null,
         'published' => null,
@@ -161,6 +163,7 @@ class Payroll extends EntityWithMeta
         'name' => false,
         'organization' => false,
         'owner' => true,
+        'payments' => false,
         'positions' => false,
         'printed' => false,
         'published' => false,
@@ -304,6 +307,7 @@ class Payroll extends EntityWithMeta
         'name' => 'name',
         'organization' => 'organization',
         'owner' => 'owner',
+        'payments' => 'payments',
         'positions' => 'positions',
         'printed' => 'printed',
         'published' => 'published',
@@ -336,6 +340,7 @@ class Payroll extends EntityWithMeta
         'name' => 'setName',
         'organization' => 'setOrganization',
         'owner' => 'setOwner',
+        'payments' => 'setPayments',
         'positions' => 'setPositions',
         'printed' => 'setPrinted',
         'published' => 'setPublished',
@@ -368,6 +373,7 @@ class Payroll extends EntityWithMeta
         'name' => 'getName',
         'organization' => 'getOrganization',
         'owner' => 'getOwner',
+        'payments' => 'getPayments',
         'positions' => 'getPositions',
         'printed' => 'getPrinted',
         'published' => 'getPublished',
@@ -450,6 +456,7 @@ class Payroll extends EntityWithMeta
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('organization', $data ?? [], null);
         $this->setIfExists('owner', $data ?? [], null);
+        $this->setIfExists('payments', $data ?? [], null);
         $this->setIfExists('positions', $data ?? [], null);
         $this->setIfExists('printed', $data ?? [], null);
         $this->setIfExists('published', $data ?? [], null);
@@ -952,6 +959,33 @@ class Payroll extends EntityWithMeta
             }
         }
         $this->container['owner'] = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Gets payments
+     *
+     * @return \OpenAPI\Client\Model\PayrollPaymentAbstract[]|null
+     */
+    public function getPayments()
+    {
+        return $this->container['payments'];
+    }
+
+    /**
+     * Sets payments
+     *
+     * @param \OpenAPI\Client\Model\PayrollPaymentAbstract[]|null $payments Связанные платежи: Исходящий платеж (paymentout) и Расходный ордер (cashout). Каждый элемент содержит метаданные платежа и сумму оплаты `linkedSum`.
+     *
+     * @return self
+     */
+    public function setPayments($payments)
+    {
+        if (is_null($payments)) {
+            throw new \InvalidArgumentException('non-nullable payments cannot be null');
+        }
+        $this->container['payments'] = $payments;
 
         return $this;
     }

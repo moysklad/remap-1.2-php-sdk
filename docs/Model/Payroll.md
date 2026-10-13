@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **name** | **string** | Наименование Начисления зарплаты | [optional]
 **organization** | [**\OpenAPI\Client\Model\Organization**](Organization.md) |  | [optional]
 **owner** | [**\OpenAPI\Client\Model\Employee**](Employee.md) | Владелец (Сотрудник) | [optional]
+**payments** | [**\OpenAPI\Client\Model\PayrollPaymentAbstract[]**](PayrollPaymentAbstract.md) | Связанные платежи: Исходящий платеж (paymentout) и Расходный ордер (cashout). Каждый элемент содержит метаданные платежа и сумму оплаты &#x60;linkedSum&#x60;. | [optional] [readonly]
 **positions** | [**\OpenAPI\Client\Model\PayrollPositionList**](PayrollPositionList.md) |  | [optional]
 **printed** | **bool** | Напечатан ли документ | [optional] [readonly]
 **published** | **bool** | Опубликован ли документ | [optional] [readonly]

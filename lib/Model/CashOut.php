@@ -1604,7 +1604,7 @@ class CashOut extends EntityWithMeta
     /**
      * Sets operations
      *
-     * @param \OpenAPI\Client\Model\FinanceOutOperationAbstract[]|null $operations Связанные операции: полное тело документа плюс `linkedSum`. Допустимые типы по `meta.type`: salesreturn, supply, invoicein, purchaseorder, commissionreportout
+     * @param \OpenAPI\Client\Model\FinanceOutOperationAbstract[]|null $operations Связанные операции: полное тело документа плюс `linkedSum`. Допустимые типы по `meta.type`: salesreturn, supply, invoicein, purchaseorder, commissionreportout, payroll
      *
      * @return self
      */

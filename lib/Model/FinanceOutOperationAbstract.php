@@ -35,7 +35,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * FinanceOutOperationAbstract Class Doc Comment
  *
  * @category Class
- * @description Элемент массива &#x60;operations&#x60; расходного ордера / исходящего платежа: документ одного из допустимых типов плюс обязательное поле &#x60;linkedSum&#x60;.  Допустимые &#x60;meta.type&#x60;: salesreturn, supply, invoicein, purchaseorder, commissionreportout.
+ * @description Элемент массива &#x60;operations&#x60; расходного ордера / исходящего платежа: документ одного из допустимых типов плюс обязательное поле &#x60;linkedSum&#x60;.  Допустимые &#x60;meta.type&#x60;: salesreturn, supply, invoicein, purchaseorder, commissionreportout, payroll.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -57,7 +57,8 @@ class FinanceOutOperationAbstract implements ModelInterface, ArrayAccess, \JsonS
         'supply' => 'FinanceOutOperationSupply',
         'invoicein' => 'FinanceOutOperationInvoiceIn',
         'purchaseorder' => 'FinanceOutOperationPurchaseOrder',
-        'commissionreportout' => 'FinanceOutOperationCommissionReportOut'
+        'commissionreportout' => 'FinanceOutOperationCommissionReportOut',
+        'payroll' => 'FinanceOutOperationPayroll'
     ];
 
     /**
