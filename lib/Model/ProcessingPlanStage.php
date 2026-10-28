@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ProcessingPlanStage implements ModelInterface, ArrayAccess, \JsonSerializable
+class ProcessingPlanStage extends EntityWithMeta 
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
@@ -141,7 +141,7 @@ class ProcessingPlanStage implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -151,7 +151,7 @@ class ProcessingPlanStage implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -192,7 +192,7 @@ class ProcessingPlanStage implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables;
+        return self::$openAPINullables + parent::openAPINullables();
     }
 
     /**
@@ -297,7 +297,7 @@ class ProcessingPlanStage implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -307,7 +307,7 @@ class ProcessingPlanStage implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -317,7 +317,7 @@ class ProcessingPlanStage implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -332,13 +332,6 @@ class ProcessingPlanStage implements ModelInterface, ArrayAccess, \JsonSerializa
 
 
     
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-    
 
     /**
      * Constructor
@@ -348,6 +341,9 @@ class ProcessingPlanStage implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(?array $data = null)
     {
+        
+        parent::__construct($data);
+
         
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -386,8 +382,8 @@ class ProcessingPlanStage implements ModelInterface, ArrayAccess, \JsonSerializa
     public function listInvalidProperties()
     {
         
+        $invalidProperties = parent::listInvalidProperties();
         
-        $invalidProperties = [];
         
 
         if (!is_null($this->container['cost']) && ($this->container['cost'] < 0)) {

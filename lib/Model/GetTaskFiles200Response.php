@@ -1,6 +1,6 @@
 <?php
 /**
- * GetProductFiles200Response
+ * GetTaskFiles200Response
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * GetProductFiles200Response Class Doc Comment
+ * GetTaskFiles200Response Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class GetProductFiles200Response implements ModelInterface, ArrayAccess, \JsonSerializable
+class GetTaskFiles200Response implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
@@ -60,7 +60,7 @@ class GetProductFiles200Response implements ModelInterface, ArrayAccess, \JsonSe
       *
       * @var string
       */
-    protected static $openAPIModelName = 'getProductFiles_200_response';
+    protected static $openAPIModelName = 'getTaskFiles_200_response';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

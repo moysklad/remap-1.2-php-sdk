@@ -7,8 +7,10 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createProcessingPlan()**](ProcessingPlansApi.md#createProcessingPlan) | **POST** /entity/processingplan | Создать Техкарту |
 | [**createProcessingPlanBatch()**](ProcessingPlansApi.md#createProcessingPlanBatch) | **POST** /entity/processingplan/batch | Создать или изменить Техкарты |
 | [**createProcessingPlanMaterials()**](ProcessingPlansApi.md#createProcessingPlanMaterials) | **POST** /entity/processingplan/{id}/materials | Создать материал Техкарты |
+| [**createProcessingPlanMaterialsBatch()**](ProcessingPlansApi.md#createProcessingPlanMaterialsBatch) | **POST** /entity/processingplan/{id}/materials/batch | Массовое создание и обновление материалов техкарты |
 | [**createProcessingPlanMetadataAttribute()**](ProcessingPlansApi.md#createProcessingPlanMetadataAttribute) | **POST** /entity/processingplan/metadata/attributes | Создать Доп. поле ProcessingPlan |
 | [**createProcessingPlanProducts()**](ProcessingPlansApi.md#createProcessingPlanProducts) | **POST** /entity/processingplan/{id}/products | Создать продукт Техкарты |
+| [**createProcessingPlanProductsBatch()**](ProcessingPlansApi.md#createProcessingPlanProductsBatch) | **POST** /entity/processingplan/{id}/products/batch | Массовое создание и обновление продуктов техкарты |
 | [**deleteProcessingPlan()**](ProcessingPlansApi.md#deleteProcessingPlan) | **DELETE** /entity/processingplan/{id} | Удалить Техкарту |
 | [**deleteProcessingPlanMaterial()**](ProcessingPlansApi.md#deleteProcessingPlanMaterial) | **DELETE** /entity/processingplan/{id}/materials/{positionId} | Удалить материал Техкарты |
 | [**deleteProcessingPlanMaterialsBatch()**](ProcessingPlansApi.md#deleteProcessingPlanMaterialsBatch) | **POST** /entity/processingplan/{id}/materials/delete | Массовое удаление материалов Техкарты |
@@ -32,6 +34,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**updateProcessingPlanMetadataAttributeById()**](ProcessingPlansApi.md#updateProcessingPlanMetadataAttributeById) | **PUT** /entity/processingplan/metadata/attributes/{id} | Обновить отдельное доп. поле ProcessingPlan |
 | [**updateProcessingPlanProduct()**](ProcessingPlansApi.md#updateProcessingPlanProduct) | **PUT** /entity/processingplan/{id}/products/{positionId} | Изменить продукт Техкарты |
 | [**updateProcessingPlanStage()**](ProcessingPlansApi.md#updateProcessingPlanStage) | **PUT** /entity/processingplan/{id}/stages/{positionId} | Изменить отдельный этап Техкарты |
+| [**updateProcessingPlanStages()**](ProcessingPlansApi.md#updateProcessingPlanStages) | **POST** /entity/processingplan/{id}/stages/batch | Массовое изменение этапов Техкарты |
 
 
 ## `createProcessingPlan()`
@@ -255,6 +258,81 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `createProcessingPlanMaterialsBatch()`
+
+```php
+createProcessingPlanMaterialsBatch($id, $processing_plan_material, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
+```
+
+Массовое создание и обновление материалов техкарты
+
+В теле запроса передается массив материалов. Для создания требуются assortment и quantity, для обновления — метаданные (meta).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\ProcessingPlansApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$processing_plan_material = array(new \OpenAPI\Client\Model\ProcessingPlanMaterial()); // \OpenAPI\Client\Model\ProcessingPlanMaterial[]
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createProcessingPlanMaterialsBatch($id, $processing_plan_material, $expand, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProcessingPlansApi->createProcessingPlanMaterialsBatch: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **processing_plan_material** | [**\OpenAPI\Client\Model\ProcessingPlanMaterial[]**](../Model/ProcessingPlanMaterial.md)|  | |
+| **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `createProcessingPlanMetadataAttribute()`
 
 ```php
@@ -327,7 +405,7 @@ try {
 ## `createProcessingPlanProducts()`
 
 ```php
-createProcessingPlanProducts($id, $processing_plan_product, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\ProcessingPlanProduct
+createProcessingPlanProducts($id, $processing_plan_product, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\ProcessingPlanProduct[]
 ```
 
 Создать продукт Техкарты
@@ -384,7 +462,82 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ProcessingPlanProduct**](../Model/ProcessingPlanProduct.md)
+[**\OpenAPI\Client\Model\ProcessingPlanProduct[]**](../Model/ProcessingPlanProduct.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createProcessingPlanProductsBatch()`
+
+```php
+createProcessingPlanProductsBatch($id, $processing_plan_product, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
+```
+
+Массовое создание и обновление продуктов техкарты
+
+В теле запроса передается массив продуктов. Для создания требуются assortment и quantity, для обновления — метаданные (meta).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\ProcessingPlansApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$processing_plan_product = array(new \OpenAPI\Client\Model\ProcessingPlanProduct()); // \OpenAPI\Client\Model\ProcessingPlanProduct[]
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createProcessingPlanProductsBatch($id, $processing_plan_product, $expand, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProcessingPlansApi->createProcessingPlanProductsBatch: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **processing_plan_product** | [**\OpenAPI\Client\Model\ProcessingPlanProduct[]**](../Model/ProcessingPlanProduct.md)|  | |
+| **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -2060,6 +2213,81 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\ProcessingPlanStage**](../Model/ProcessingPlanStage.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateProcessingPlanStages()`
+
+```php
+updateProcessingPlanStages($id, $processing_plan_stage, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
+```
+
+Массовое изменение этапов Техкарты
+
+В теле запроса передается массив этапов Техкарты с метаданными (meta). Этапы Техкарты соответствуют этапам позиций привязанного техпроцесса, поэтому создать новый этап нельзя — только изменить существующий.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\ProcessingPlansApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$processing_plan_stage = array(new \OpenAPI\Client\Model\ProcessingPlanStage()); // \OpenAPI\Client\Model\ProcessingPlanStage[]
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->updateProcessingPlanStages($id, $processing_plan_stage, $expand, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProcessingPlansApi->updateProcessingPlanStages: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **processing_plan_stage** | [**\OpenAPI\Client\Model\ProcessingPlanStage[]**](../Model/ProcessingPlanStage.md)|  | |
+| **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 

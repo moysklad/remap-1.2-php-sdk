@@ -72,6 +72,30 @@ class InternalOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for addInternalOrderFile
+     *
+     * Добавить файл к Внутреннему заказу.
+     *
+     */
+    public function testAddInternalOrderFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for addInternalOrderFiles
+     *
+     * Добавить файлы к Внутреннему заказу.
+     *
+     */
+    public function testAddInternalOrderFiles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createInternalOrder
      *
      * Создать InternalOrder.
@@ -180,6 +204,18 @@ class InternalOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteInternalOrderFile
+     *
+     * Удалить файл Внутреннего заказа.
+     *
+     */
+    public function testDeleteInternalOrderFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteInternalOrderMetadataAttributeById
      *
      * Удалить отдельное доп. поле InternalOrder.
@@ -234,6 +270,18 @@ class InternalOrdersApiTest extends TestCase
      *
      */
     public function testGetInternalOrderById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getInternalOrderFiles
+     *
+     * Получить файлы Внутреннего заказа.
+     *
+     */
+    public function testGetInternalOrderFiles()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

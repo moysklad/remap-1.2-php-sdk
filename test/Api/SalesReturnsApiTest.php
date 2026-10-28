@@ -72,6 +72,30 @@ class SalesReturnsApiTest extends TestCase
     }
 
     /**
+     * Test case for addSalesReturnFile
+     *
+     * Добавить файл к Возврату покупателя.
+     *
+     */
+    public function testAddSalesReturnFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for addSalesReturnFiles
+     *
+     * Добавить файлы к Возврату покупателя.
+     *
+     */
+    public function testAddSalesReturnFiles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createSalesReturn
      *
      * Создать Возврат покупателя.
@@ -156,6 +180,18 @@ class SalesReturnsApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteSalesReturnFile
+     *
+     * Удалить файл Возврата покупателя.
+     *
+     */
+    public function testDeleteSalesReturnFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteSalesReturnMetadataAttributeById
      *
      * Удалить отдельное доп. поле Возврата покупателя.
@@ -210,6 +246,18 @@ class SalesReturnsApiTest extends TestCase
      *
      */
     public function testGetSalesReturnById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getSalesReturnFiles
+     *
+     * Получить файлы Возврата покупателя.
+     *
+     */
+    public function testGetSalesReturnFiles()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

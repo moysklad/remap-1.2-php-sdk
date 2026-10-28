@@ -4,6 +4,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**addRetailDemandFile()**](RetailDemandsApi.md#addRetailDemandFile) | **POST** /entity/retaildemand/{id}/files | Добавить файл к Розничной продаже |
+| [**addRetailDemandFiles()**](RetailDemandsApi.md#addRetailDemandFiles) | **POST** /entity/retaildemand/{id}/files/batch | Добавить файлы к Розничной продаже |
 | [**createRetailDemand()**](RetailDemandsApi.md#createRetailDemand) | **POST** /entity/retaildemand | Создать Розничную продажу |
 | [**createRetailDemandBatch()**](RetailDemandsApi.md#createRetailDemandBatch) | **POST** /entity/retaildemand/batch | Массовое создание и обновление Розничных продаж |
 | [**createRetailDemandMetadataAttribute()**](RetailDemandsApi.md#createRetailDemandMetadataAttribute) | **POST** /entity/retaildemand/metadata/attributes | Создать доп. поле Розничной продажи |
@@ -13,11 +15,13 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createRetailDemandPositions()**](RetailDemandsApi.md#createRetailDemandPositions) | **POST** /entity/retaildemand/{id}/positions/batch | Массовое создание и обновление позиций Розничной продажи |
 | [**deleteRetailDemand()**](RetailDemandsApi.md#deleteRetailDemand) | **DELETE** /entity/retaildemand/{id} | Удалить Розничную продажу |
 | [**deleteRetailDemandBatch()**](RetailDemandsApi.md#deleteRetailDemandBatch) | **POST** /entity/retaildemand/delete | Массовое удаление Розничных продаж |
+| [**deleteRetailDemandFile()**](RetailDemandsApi.md#deleteRetailDemandFile) | **DELETE** /entity/retaildemand/{id}/files/{fileId} | Удалить файл Розничной продажи |
 | [**deleteRetailDemandMetadataAttributeById()**](RetailDemandsApi.md#deleteRetailDemandMetadataAttributeById) | **DELETE** /entity/retaildemand/metadata/attributes/{id} | Удалить отдельное доп. поле Розничной продажи |
 | [**deleteRetailDemandMetadataStateById()**](RetailDemandsApi.md#deleteRetailDemandMetadataStateById) | **DELETE** /entity/retaildemand/metadata/states/{id} | Удалить отдельный статус Розничной продажи |
 | [**deleteRetailDemandPosition()**](RetailDemandsApi.md#deleteRetailDemandPosition) | **DELETE** /entity/retaildemand/{id}/positions/{positionId} | Удалить позицию Розничной продажи |
 | [**deleteRetailDemandPositionsBatch()**](RetailDemandsApi.md#deleteRetailDemandPositionsBatch) | **POST** /entity/retaildemand/{id}/positions/delete | Массовое удаление позиций Розничной продажи |
 | [**getRetailDemandById()**](RetailDemandsApi.md#getRetailDemandById) | **GET** /entity/retaildemand/{id} | Получить Розничную продажу |
+| [**getRetailDemandFiles()**](RetailDemandsApi.md#getRetailDemandFiles) | **GET** /entity/retaildemand/{id}/files | Получить файлы Розничной продажи |
 | [**getRetailDemandList()**](RetailDemandsApi.md#getRetailDemandList) | **GET** /entity/retaildemand | Получить список Розничных продаж |
 | [**getRetailDemandMetadata()**](RetailDemandsApi.md#getRetailDemandMetadata) | **GET** /entity/retaildemand/metadata | Метаданные Розничных продаж |
 | [**getRetailDemandMetadataAttribute()**](RetailDemandsApi.md#getRetailDemandMetadataAttribute) | **GET** /entity/retaildemand/metadata/attributes | Доп. поля Розничной продажи |
@@ -32,6 +36,152 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**updateRetailDemandMetadataStateById()**](RetailDemandsApi.md#updateRetailDemandMetadataStateById) | **PUT** /entity/retaildemand/metadata/states/{id} | Обновить отдельный статус Розничной продажи |
 | [**updateRetailDemandPosition()**](RetailDemandsApi.md#updateRetailDemandPosition) | **PUT** /entity/retaildemand/{id}/positions/{positionId} | Изменить позицию Розничной продажи |
 
+
+## `addRetailDemandFile()`
+
+```php
+addRetailDemandFile($id, $file_upload, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\File[]
+```
+
+Добавить файл к Розничной продаже
+
+Добавить новый Файл к Розничной продаже. В поле `content` нужно указать файл, закодированный в Base64, в поле `filename` — имя файла с расширением.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\RetailDemandsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$file_upload = new \OpenAPI\Client\Model\FileUpload(); // \OpenAPI\Client\Model\FileUpload
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->addRetailDemandFile($id, $file_upload, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling RetailDemandsApi->addRetailDemandFile: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **file_upload** | [**\OpenAPI\Client\Model\FileUpload**](../Model/FileUpload.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\File[]**](../Model/File.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `addRetailDemandFiles()`
+
+```php
+addRetailDemandFiles($id, $file_upload, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\File[]
+```
+
+Добавить файлы к Розничной продаже
+
+Добавить новые Файлы к Розничной продаже. В одном запросе можно добавить максимум 10 Файлов. В поле `content` нужно указать файл, закодированный в Base64, в поле `filename` — имя файла с расширением.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\RetailDemandsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$file_upload = array(new \OpenAPI\Client\Model\FileUpload()); // \OpenAPI\Client\Model\FileUpload[]
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->addRetailDemandFiles($id, $file_upload, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling RetailDemandsApi->addRetailDemandFiles: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **file_upload** | [**\OpenAPI\Client\Model\FileUpload[]**](../Model/FileUpload.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\File[]**](../Model/File.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `createRetailDemand()`
 
@@ -665,6 +815,76 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `deleteRetailDemandFile()`
+
+```php
+deleteRetailDemandFile($id, $file_id, $accept, $accept_encoding)
+```
+
+Удалить файл Розничной продажи
+
+Удаление Файла Розничной продажи.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\RetailDemandsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$file_id = 'file_id_example'; // string | ID файла
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->deleteRetailDemandFile($id, $file_id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling RetailDemandsApi->deleteRetailDemandFile: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **file_id** | **string**| ID файла | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `deleteRetailDemandMetadataAttributeById()`
 
 ```php
@@ -1001,6 +1221,79 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\RetailDemand**](../Model/RetailDemand.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getRetailDemandFiles()`
+
+```php
+getRetailDemandFiles($id, $limit, $offset, $accept, $accept_encoding): \OpenAPI\Client\Model\GetTaskFiles200Response
+```
+
+Получить файлы Розничной продажи
+
+Запрос на получение списка всех Файлов Розничной продажи.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\RetailDemandsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
+$offset = 0; // int | Отступ в выданном списке
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $result = $apiInstance->getRetailDemandFiles($id, $limit, $offset, $accept, $accept_encoding);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling RetailDemandsApi->getRetailDemandFiles: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **limit** | **int**| Максимальное количество элементов в выданном списке (максимум 1000) | [optional] [default to 1000] |
+| **offset** | **int**| Отступ в выданном списке | [optional] [default to 0] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\GetTaskFiles200Response**](../Model/GetTaskFiles200Response.md)
 
 ### Authorization
 

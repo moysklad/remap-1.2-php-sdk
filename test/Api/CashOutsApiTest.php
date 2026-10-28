@@ -72,6 +72,30 @@ class CashOutsApiTest extends TestCase
     }
 
     /**
+     * Test case for addCashOutFile
+     *
+     * Добавить файл к Расходному ордеру.
+     *
+     */
+    public function testAddCashOutFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for addCashOutFiles
+     *
+     * Добавить файлы к Расходному ордеру.
+     *
+     */
+    public function testAddCashOutFiles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createCashOut
      *
      * Создать CashOut.
@@ -156,6 +180,18 @@ class CashOutsApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteCashOutFile
+     *
+     * Удалить файл Расходного ордера.
+     *
+     */
+    public function testDeleteCashOutFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteCashOutMetadataAttributeById
      *
      * Удалить отдельное доп. поле CashOut.
@@ -186,6 +222,18 @@ class CashOutsApiTest extends TestCase
      *
      */
     public function testGetCashOutById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getCashOutFiles
+     *
+     * Получить файлы Расходного ордера.
+     *
+     */
+    public function testGetCashOutFiles()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

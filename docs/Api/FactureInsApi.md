@@ -4,16 +4,20 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**addFactureInFile()**](FactureInsApi.md#addFactureInFile) | **POST** /entity/facturein/{id}/files | Добавить файл к Счету-фактуре полученному |
+| [**addFactureInFiles()**](FactureInsApi.md#addFactureInFiles) | **POST** /entity/facturein/{id}/files/batch | Добавить файлы к Счету-фактуре полученному |
 | [**createFactureIn()**](FactureInsApi.md#createFactureIn) | **POST** /entity/facturein | Создать Счет-фактуру полученный |
 | [**createFactureInMetadataAttribute()**](FactureInsApi.md#createFactureInMetadataAttribute) | **POST** /entity/facturein/metadata/attributes | Создать доп. поле Счета-фактуры полученного |
 | [**createFactureInMetadataState()**](FactureInsApi.md#createFactureInMetadataState) | **POST** /entity/facturein/metadata/states | Создать статус Счета-фактуры полученного |
 | [**createFactureInMetadataStatesBatch()**](FactureInsApi.md#createFactureInMetadataStatesBatch) | **POST** /entity/facturein/metadata/states/batch | Массовое создание и обновление статусов Счета-фактуры полученного |
 | [**createFactureInsBatch()**](FactureInsApi.md#createFactureInsBatch) | **POST** /entity/facturein/batch | Массовое создание и обновление Счетов-фактур полученных |
 | [**deleteFactureIn()**](FactureInsApi.md#deleteFactureIn) | **DELETE** /entity/facturein/{id} | Удалить Счет-фактуру полученный |
+| [**deleteFactureInFile()**](FactureInsApi.md#deleteFactureInFile) | **DELETE** /entity/facturein/{id}/files/{fileId} | Удалить файл Счета-фактуры полученного |
 | [**deleteFactureInMetadataAttributeById()**](FactureInsApi.md#deleteFactureInMetadataAttributeById) | **DELETE** /entity/facturein/metadata/attributes/{id} | Удалить отдельное доп. поле Счета-фактуры полученного |
 | [**deleteFactureInMetadataStateById()**](FactureInsApi.md#deleteFactureInMetadataStateById) | **DELETE** /entity/facturein/metadata/states/{id} | Удалить отдельный статус Счета-фактуры полученного |
 | [**deleteFactureInsBatch()**](FactureInsApi.md#deleteFactureInsBatch) | **POST** /entity/facturein/delete | Массовое удаление Счетов-фактур полученных |
 | [**getFactureInById()**](FactureInsApi.md#getFactureInById) | **GET** /entity/facturein/{id} | Получить Счет-фактуру полученный |
+| [**getFactureInFiles()**](FactureInsApi.md#getFactureInFiles) | **GET** /entity/facturein/{id}/files | Получить файлы Счета-фактуры полученного |
 | [**getFactureInMetadata()**](FactureInsApi.md#getFactureInMetadata) | **GET** /entity/facturein/metadata | Метаданные Счетов-фактур полученных |
 | [**getFactureInMetadataAttributeById()**](FactureInsApi.md#getFactureInMetadataAttributeById) | **GET** /entity/facturein/metadata/attributes/{id} | Отдельное доп. поле Счета-фактуры полученного |
 | [**getFactureInMetadataAttributes()**](FactureInsApi.md#getFactureInMetadataAttributes) | **GET** /entity/facturein/metadata/attributes | Доп. поля Счетов-фактур полученных |
@@ -25,6 +29,152 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**updateFactureInMetadataAttributeById()**](FactureInsApi.md#updateFactureInMetadataAttributeById) | **PUT** /entity/facturein/metadata/attributes/{id} | Обновить отдельное доп. поле Счета-фактуры полученного |
 | [**updateFactureInMetadataStateById()**](FactureInsApi.md#updateFactureInMetadataStateById) | **PUT** /entity/facturein/metadata/states/{id} | Обновить отдельный статус Счета-фактуры полученного |
 
+
+## `addFactureInFile()`
+
+```php
+addFactureInFile($id, $file_upload, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\File[]
+```
+
+Добавить файл к Счету-фактуре полученному
+
+Добавить новый Файл к Счету-фактуре полученному. В поле `content` нужно указать файл, закодированный в Base64, в поле `filename` — имя файла с расширением.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\FactureInsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$file_upload = new \OpenAPI\Client\Model\FileUpload(); // \OpenAPI\Client\Model\FileUpload
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->addFactureInFile($id, $file_upload, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FactureInsApi->addFactureInFile: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **file_upload** | [**\OpenAPI\Client\Model\FileUpload**](../Model/FileUpload.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\File[]**](../Model/File.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `addFactureInFiles()`
+
+```php
+addFactureInFiles($id, $file_upload, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\File[]
+```
+
+Добавить файлы к Счету-фактуре полученному
+
+Добавить новые Файлы к Счету-фактуре полученному. В одном запросе можно добавить максимум 10 Файлов. В поле `content` нужно указать файл, закодированный в Base64, в поле `filename` — имя файла с расширением.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\FactureInsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$file_upload = array(new \OpenAPI\Client\Model\FileUpload()); // \OpenAPI\Client\Model\FileUpload[]
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->addFactureInFiles($id, $file_upload, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FactureInsApi->addFactureInFiles: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **file_upload** | [**\OpenAPI\Client\Model\FileUpload[]**](../Model/FileUpload.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\File[]**](../Model/File.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `createFactureIn()`
 
@@ -441,6 +591,76 @@ void (empty response body)
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `deleteFactureInFile()`
+
+```php
+deleteFactureInFile($id, $file_id, $accept, $accept_encoding)
+```
+
+Удалить файл Счета-фактуры полученного
+
+Удаление Файла Счета-фактуры полученного.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\FactureInsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$file_id = 'file_id_example'; // string | ID файла
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->deleteFactureInFile($id, $file_id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling FactureInsApi->deleteFactureInFile: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **file_id** | **string**| ID файла | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `deleteFactureInMetadataAttributeById()`
 
 ```php
@@ -699,6 +919,79 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\FactureIn**](../Model/FactureIn.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getFactureInFiles()`
+
+```php
+getFactureInFiles($id, $limit, $offset, $accept, $accept_encoding): \OpenAPI\Client\Model\GetTaskFiles200Response
+```
+
+Получить файлы Счета-фактуры полученного
+
+Запрос на получение списка всех Файлов Счета-фактуры полученного.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\FactureInsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
+$offset = 0; // int | Отступ в выданном списке
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $result = $apiInstance->getFactureInFiles($id, $limit, $offset, $accept, $accept_encoding);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FactureInsApi->getFactureInFiles: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **limit** | **int**| Максимальное количество элементов в выданном списке (максимум 1000) | [optional] [default to 1000] |
+| **offset** | **int**| Отступ в выданном списке | [optional] [default to 0] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\GetTaskFiles200Response**](../Model/GetTaskFiles200Response.md)
 
 ### Authorization
 

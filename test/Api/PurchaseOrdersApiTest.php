@@ -72,6 +72,30 @@ class PurchaseOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for addPurchaseOrderFile
+     *
+     * Добавить файл к Заказу поставщику.
+     *
+     */
+    public function testAddPurchaseOrderFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for addPurchaseOrderFiles
+     *
+     * Добавить файлы к Заказу поставщику.
+     *
+     */
+    public function testAddPurchaseOrderFiles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createPurchaseOrder
      *
      * Создать PurchaseOrder.
@@ -204,6 +228,18 @@ class PurchaseOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for deletePurchaseOrderFile
+     *
+     * Удалить файл Заказа поставщику.
+     *
+     */
+    public function testDeletePurchaseOrderFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deletePurchaseOrderMetadataAttributeById
      *
      * Удалить отдельное доп. поле PurchaseOrder.
@@ -282,6 +318,18 @@ class PurchaseOrdersApiTest extends TestCase
      *
      */
     public function testGetPurchaseOrderById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getPurchaseOrderFiles
+     *
+     * Получить файлы Заказа поставщику.
+     *
+     */
+    public function testGetPurchaseOrderFiles()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

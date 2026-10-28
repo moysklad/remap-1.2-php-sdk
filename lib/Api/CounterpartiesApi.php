@@ -74,6 +74,9 @@ class CounterpartiesApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
+        'addCounterpartyFile' => [
+            'application/json',
+        ],
         'addCounterpartyFiles' => [
             'application/json',
         ],
@@ -86,7 +89,13 @@ class CounterpartiesApi
         'createCounterpartyAccount' => [
             'application/json',
         ],
+        'createCounterpartyAccounts' => [
+            'application/json',
+        ],
         'createCounterpartyContactPerson' => [
+            'application/json',
+        ],
+        'createCounterpartyContactPersons' => [
             'application/json',
         ],
         'createCounterpartyMetadataAttribute' => [
@@ -96,6 +105,9 @@ class CounterpartiesApi
             'application/json',
         ],
         'createCounterpartyNote' => [
+            'application/json',
+        ],
+        'createCounterpartyNotes' => [
             'application/json',
         ],
         'deleteCounterpartiesBatch' => [
@@ -225,6 +237,345 @@ class CounterpartiesApi
     public function getConfig()
     {
         return $this->config;
+    }
+
+    /**
+     * Operation addCounterpartyFile
+     *
+     * Добавить файл к контрагенту
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\FileUpload $file_upload file_upload (required)
+     * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addCounterpartyFile'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\File[]|\OpenAPI\Client\Model\Errors
+     */
+    public function addCounterpartyFile($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addCounterpartyFile'][0])
+    {
+        list($response) = $this->addCounterpartyFileWithHttpInfo($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation addCounterpartyFileWithHttpInfo
+     *
+     * Добавить файл к контрагенту
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\FileUpload $file_upload (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addCounterpartyFile'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\File[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function addCounterpartyFileWithHttpInfo($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addCounterpartyFile'][0])
+    {
+        $request = $this->addCounterpartyFileRequest($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\File[]',
+                        $request,
+                        $response
+                    );
+                default:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\Errors',
+                        $request,
+                        $response
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\OpenAPI\Client\Model\File[]',
+                $request,
+                $response
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\File[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Errors',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+    /**
+     * Operation addCounterpartyFileAsync
+     *
+     * Добавить файл к контрагенту
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\FileUpload $file_upload (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addCounterpartyFile'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function addCounterpartyFileAsync($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addCounterpartyFile'][0])
+    {
+        return $this->addCounterpartyFileAsyncWithHttpInfo($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation addCounterpartyFileAsyncWithHttpInfo
+     *
+     * Добавить файл к контрагенту
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\FileUpload $file_upload (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addCounterpartyFile'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function addCounterpartyFileAsyncWithHttpInfo($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addCounterpartyFile'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\File[]';
+        $request = $this->addCounterpartyFileRequest($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
+
+        return $this->client
+            ->sendAsync($request, $options)
+            ->then(
+                function ($response) use ($returnType, $request) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'addCounterpartyFile'
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\FileUpload $file_upload (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addCounterpartyFile'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function addCounterpartyFileRequest($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addCounterpartyFile'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling addCounterpartyFile'
+            );
+        }
+
+        // verify the required parameter 'file_upload' is set
+        if ($file_upload === null || (is_array($file_upload) && count($file_upload) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $file_upload when calling addCounterpartyFile'
+            );
+        }
+
+
+
+
+
+        $resourcePath = '/entity/counterparty/{id}/files';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // header params
+        if ($accept !== null) {
+            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+        }
+        // header params
+        if ($accept_encoding !== null) {
+            $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+        // header params
+        if ($content_type !== null) {
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
+        }
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{id}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'text/html;charset=UTF-8', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($file_upload)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($file_upload));
+            } else {
+                $httpBody = $file_upload;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
     }
 
     /**
@@ -465,12 +816,15 @@ class CounterpartiesApi
         if (count($file_upload) > 10) {
             throw new \InvalidArgumentException('invalid value for "$file_upload" when calling CounterpartiesApi.addCounterpartyFiles, number of items must be less than or equal to 10.');
         }
+        if (count($file_upload) < 1) {
+            throw new \InvalidArgumentException('invalid value for "$file_upload" when calling CounterpartiesApi.addCounterpartyFiles, number of items must be greater than or equal to 1.');
+        }
         
 
 
 
 
-        $resourcePath = '/entity/counterparty/{id}/files';
+        $resourcePath = '/entity/counterparty/{id}/files/batch';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1544,6 +1898,312 @@ class CounterpartiesApi
     }
 
     /**
+     * Operation createCounterpartyAccounts
+     *
+     * Массовое создание и обновление счетов контрагента
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\Account[] $account account (required)
+     * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCounterpartyAccounts'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors
+     */
+    public function createCounterpartyAccounts($id, $account, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCounterpartyAccounts'][0])
+    {
+        list($response) = $this->createCounterpartyAccountsWithHttpInfo($id, $account, $accept, $accept_encoding, $content_type, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createCounterpartyAccountsWithHttpInfo
+     *
+     * Массовое создание и обновление счетов контрагента
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\Account[] $account (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCounterpartyAccounts'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createCounterpartyAccountsWithHttpInfo($id, $account, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCounterpartyAccounts'][0])
+    {
+        $request = $this->createCounterpartyAccountsRequest($id, $account, $accept, $accept_encoding, $content_type, $contentType);
+        try {
+            $options = $this->createHttpClientOption();
+            $options[RequestOptions::HTTP_ERRORS] = false;
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            return $this->handleResponseMassWithDataType(
+                '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Errors',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+    /**
+     * Operation createCounterpartyAccountsAsync
+     *
+     * Массовое создание и обновление счетов контрагента
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\Account[] $account (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCounterpartyAccounts'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createCounterpartyAccountsAsync($id, $account, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCounterpartyAccounts'][0])
+    {
+        return $this->createCounterpartyAccountsAsyncWithHttpInfo($id, $account, $accept, $accept_encoding, $content_type, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createCounterpartyAccountsAsyncWithHttpInfo
+     *
+     * Массовое создание и обновление счетов контрагента
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\Account[] $account (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCounterpartyAccounts'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createCounterpartyAccountsAsyncWithHttpInfo($id, $account, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCounterpartyAccounts'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
+        $request = $this->createCounterpartyAccountsRequest($id, $account, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
+        $options[RequestOptions::HTTP_ERRORS] = false;
+
+        return $this->client
+            ->sendAsync($request, $options)
+            ->then(
+                function ($response) use ($returnType, $request) {
+                    return $this->handleResponseMassWithDataType(
+                        $returnType,
+                        $request,
+                        $response,
+                    );
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createCounterpartyAccounts'
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\Account[] $account (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCounterpartyAccounts'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createCounterpartyAccountsRequest($id, $account, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCounterpartyAccounts'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling createCounterpartyAccounts'
+            );
+        }
+
+        // verify the required parameter 'account' is set
+        if ($account === null || (is_array($account) && count($account) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $account when calling createCounterpartyAccounts'
+            );
+        }
+        if (count($account) > 1000) {
+            throw new \InvalidArgumentException('invalid value for "$account" when calling CounterpartiesApi.createCounterpartyAccounts, number of items must be less than or equal to 1000.');
+        }
+        if (count($account) < 1) {
+            throw new \InvalidArgumentException('invalid value for "$account" when calling CounterpartiesApi.createCounterpartyAccounts, number of items must be greater than or equal to 1.');
+        }
+        
+
+
+
+
+        $resourcePath = '/entity/counterparty/{id}/accounts/batch';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // header params
+        if ($accept !== null) {
+            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+        }
+        // header params
+        if ($accept_encoding !== null) {
+            $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+        // header params
+        if ($content_type !== null) {
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
+        }
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{id}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'text/html;charset=UTF-8', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($account)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($account));
+            } else {
+                $httpBody = $account;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation createCounterpartyContactPerson
      *
      * Создать контактное лицо контрагента
@@ -1784,6 +2444,312 @@ class CounterpartiesApi
 
 
         $resourcePath = '/entity/counterparty/{id}/contactpersons';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // header params
+        if ($accept !== null) {
+            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+        }
+        // header params
+        if ($accept_encoding !== null) {
+            $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+        // header params
+        if ($content_type !== null) {
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
+        }
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{id}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'text/html;charset=UTF-8', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($contact_person)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($contact_person));
+            } else {
+                $httpBody = $contact_person;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createCounterpartyContactPersons
+     *
+     * Массовое создание и обновление контактных лиц контрагента
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\ContactPerson[] $contact_person contact_person (required)
+     * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCounterpartyContactPersons'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors
+     */
+    public function createCounterpartyContactPersons($id, $contact_person, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCounterpartyContactPersons'][0])
+    {
+        list($response) = $this->createCounterpartyContactPersonsWithHttpInfo($id, $contact_person, $accept, $accept_encoding, $content_type, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createCounterpartyContactPersonsWithHttpInfo
+     *
+     * Массовое создание и обновление контактных лиц контрагента
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\ContactPerson[] $contact_person (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCounterpartyContactPersons'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createCounterpartyContactPersonsWithHttpInfo($id, $contact_person, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCounterpartyContactPersons'][0])
+    {
+        $request = $this->createCounterpartyContactPersonsRequest($id, $contact_person, $accept, $accept_encoding, $content_type, $contentType);
+        try {
+            $options = $this->createHttpClientOption();
+            $options[RequestOptions::HTTP_ERRORS] = false;
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            return $this->handleResponseMassWithDataType(
+                '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Errors',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+    /**
+     * Operation createCounterpartyContactPersonsAsync
+     *
+     * Массовое создание и обновление контактных лиц контрагента
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\ContactPerson[] $contact_person (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCounterpartyContactPersons'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createCounterpartyContactPersonsAsync($id, $contact_person, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCounterpartyContactPersons'][0])
+    {
+        return $this->createCounterpartyContactPersonsAsyncWithHttpInfo($id, $contact_person, $accept, $accept_encoding, $content_type, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createCounterpartyContactPersonsAsyncWithHttpInfo
+     *
+     * Массовое создание и обновление контактных лиц контрагента
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\ContactPerson[] $contact_person (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCounterpartyContactPersons'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createCounterpartyContactPersonsAsyncWithHttpInfo($id, $contact_person, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCounterpartyContactPersons'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
+        $request = $this->createCounterpartyContactPersonsRequest($id, $contact_person, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
+        $options[RequestOptions::HTTP_ERRORS] = false;
+
+        return $this->client
+            ->sendAsync($request, $options)
+            ->then(
+                function ($response) use ($returnType, $request) {
+                    return $this->handleResponseMassWithDataType(
+                        $returnType,
+                        $request,
+                        $response,
+                    );
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createCounterpartyContactPersons'
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\ContactPerson[] $contact_person (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCounterpartyContactPersons'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createCounterpartyContactPersonsRequest($id, $contact_person, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCounterpartyContactPersons'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling createCounterpartyContactPersons'
+            );
+        }
+
+        // verify the required parameter 'contact_person' is set
+        if ($contact_person === null || (is_array($contact_person) && count($contact_person) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $contact_person when calling createCounterpartyContactPersons'
+            );
+        }
+        if (count($contact_person) > 1000) {
+            throw new \InvalidArgumentException('invalid value for "$contact_person" when calling CounterpartiesApi.createCounterpartyContactPersons, number of items must be less than or equal to 1000.');
+        }
+        if (count($contact_person) < 1) {
+            throw new \InvalidArgumentException('invalid value for "$contact_person" when calling CounterpartiesApi.createCounterpartyContactPersons, number of items must be greater than or equal to 1.');
+        }
+        
+
+
+
+
+        $resourcePath = '/entity/counterparty/{id}/contactpersons/batch';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2761,6 +3727,312 @@ class CounterpartiesApi
 
 
         $resourcePath = '/entity/counterparty/{id}/notes';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // header params
+        if ($accept !== null) {
+            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+        }
+        // header params
+        if ($accept_encoding !== null) {
+            $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+        // header params
+        if ($content_type !== null) {
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
+        }
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{id}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'text/html;charset=UTF-8', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($note)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($note));
+            } else {
+                $httpBody = $note;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createCounterpartyNotes
+     *
+     * Массовое создание и обновление событий контрагента
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\Note[] $note note (required)
+     * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCounterpartyNotes'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors
+     */
+    public function createCounterpartyNotes($id, $note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCounterpartyNotes'][0])
+    {
+        list($response) = $this->createCounterpartyNotesWithHttpInfo($id, $note, $accept, $accept_encoding, $content_type, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createCounterpartyNotesWithHttpInfo
+     *
+     * Массовое создание и обновление событий контрагента
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\Note[] $note (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCounterpartyNotes'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createCounterpartyNotesWithHttpInfo($id, $note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCounterpartyNotes'][0])
+    {
+        $request = $this->createCounterpartyNotesRequest($id, $note, $accept, $accept_encoding, $content_type, $contentType);
+        try {
+            $options = $this->createHttpClientOption();
+            $options[RequestOptions::HTTP_ERRORS] = false;
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            return $this->handleResponseMassWithDataType(
+                '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Errors',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+    /**
+     * Operation createCounterpartyNotesAsync
+     *
+     * Массовое создание и обновление событий контрагента
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\Note[] $note (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCounterpartyNotes'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createCounterpartyNotesAsync($id, $note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCounterpartyNotes'][0])
+    {
+        return $this->createCounterpartyNotesAsyncWithHttpInfo($id, $note, $accept, $accept_encoding, $content_type, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createCounterpartyNotesAsyncWithHttpInfo
+     *
+     * Массовое создание и обновление событий контрагента
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\Note[] $note (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCounterpartyNotes'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createCounterpartyNotesAsyncWithHttpInfo($id, $note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCounterpartyNotes'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
+        $request = $this->createCounterpartyNotesRequest($id, $note, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
+        $options[RequestOptions::HTTP_ERRORS] = false;
+
+        return $this->client
+            ->sendAsync($request, $options)
+            ->then(
+                function ($response) use ($returnType, $request) {
+                    return $this->handleResponseMassWithDataType(
+                        $returnType,
+                        $request,
+                        $response,
+                    );
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createCounterpartyNotes'
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\Note[] $note (required)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCounterpartyNotes'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createCounterpartyNotesRequest($id, $note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createCounterpartyNotes'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling createCounterpartyNotes'
+            );
+        }
+
+        // verify the required parameter 'note' is set
+        if ($note === null || (is_array($note) && count($note) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $note when calling createCounterpartyNotes'
+            );
+        }
+        if (count($note) > 1000) {
+            throw new \InvalidArgumentException('invalid value for "$note" when calling CounterpartiesApi.createCounterpartyNotes, number of items must be less than or equal to 1000.');
+        }
+        if (count($note) < 1) {
+            throw new \InvalidArgumentException('invalid value for "$note" when calling CounterpartiesApi.createCounterpartyNotes, number of items must be greater than or equal to 1.');
+        }
+        
+
+
+
+
+        $resourcePath = '/entity/counterparty/{id}/notes/batch';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -7121,7 +8393,7 @@ class CounterpartiesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\GetProductFiles200Response|\OpenAPI\Client\Model\Errors
+     * @return \OpenAPI\Client\Model\GetTaskFiles200Response|\OpenAPI\Client\Model\Errors
      */
     public function getCounterpartyFiles($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getCounterpartyFiles'][0])
     {
@@ -7143,7 +8415,7 @@ class CounterpartiesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\GetProductFiles200Response|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\GetTaskFiles200Response|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function getCounterpartyFilesWithHttpInfo($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getCounterpartyFiles'][0])
     {
@@ -7175,7 +8447,7 @@ class CounterpartiesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\GetProductFiles200Response',
+                        '\OpenAPI\Client\Model\GetTaskFiles200Response',
                         $request,
                         $response
                     );
@@ -7203,7 +8475,7 @@ class CounterpartiesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\GetProductFiles200Response',
+                '\OpenAPI\Client\Model\GetTaskFiles200Response',
                 $request,
                 $response
             );
@@ -7212,7 +8484,7 @@ class CounterpartiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\GetProductFiles200Response',
+                        '\OpenAPI\Client\Model\GetTaskFiles200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7273,7 +8545,7 @@ class CounterpartiesApi
      */
     public function getCounterpartyFilesAsyncWithHttpInfo($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getCounterpartyFiles'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\GetProductFiles200Response';
+        $returnType = '\OpenAPI\Client\Model\GetTaskFiles200Response';
         $request = $this->getCounterpartyFilesRequest($id, $limit, $offset, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
 

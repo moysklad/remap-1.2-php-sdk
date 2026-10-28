@@ -72,6 +72,18 @@ class ProcessingOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for addProcessingOrderFile
+     *
+     * Добавить файл к Заказу на производство.
+     *
+     */
+    public function testAddProcessingOrderFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for addProcessingOrderFiles
      *
      * Добавить файлы к Заказу на производство.

@@ -80,6 +80,7 @@ class SalesReturnPaymentsInner implements ModelInterface, ArrayAccess, \JsonSeri
         'deleted' => 'string',
         'updated' => 'string',
         'moment' => 'string',
+        'accrual_date' => 'string',
         'owner' => '\OpenAPI\Client\Model\Employee',
         'group' => '\OpenAPI\Client\Model\Group',
         'applicable' => 'bool',
@@ -126,6 +127,7 @@ class SalesReturnPaymentsInner implements ModelInterface, ArrayAccess, \JsonSeri
         'deleted' => null,
         'updated' => null,
         'moment' => null,
+        'accrual_date' => null,
         'owner' => null,
         'group' => null,
         'applicable' => null,
@@ -170,6 +172,7 @@ class SalesReturnPaymentsInner implements ModelInterface, ArrayAccess, \JsonSeri
         'deleted' => false,
         'updated' => false,
         'moment' => false,
+        'accrual_date' => false,
         'owner' => true,
         'group' => false,
         'applicable' => false,
@@ -325,6 +328,7 @@ class SalesReturnPaymentsInner implements ModelInterface, ArrayAccess, \JsonSeri
         'deleted' => 'deleted',
         'updated' => 'updated',
         'moment' => 'moment',
+        'accrual_date' => 'accrualDate',
         'owner' => 'owner',
         'group' => 'group',
         'applicable' => 'applicable',
@@ -369,6 +373,7 @@ class SalesReturnPaymentsInner implements ModelInterface, ArrayAccess, \JsonSeri
         'deleted' => 'setDeleted',
         'updated' => 'setUpdated',
         'moment' => 'setMoment',
+        'accrual_date' => 'setAccrualDate',
         'owner' => 'setOwner',
         'group' => 'setGroup',
         'applicable' => 'setApplicable',
@@ -413,6 +418,7 @@ class SalesReturnPaymentsInner implements ModelInterface, ArrayAccess, \JsonSeri
         'deleted' => 'getDeleted',
         'updated' => 'getUpdated',
         'moment' => 'getMoment',
+        'accrual_date' => 'getAccrualDate',
         'owner' => 'getOwner',
         'group' => 'getGroup',
         'applicable' => 'getApplicable',
@@ -511,6 +517,7 @@ class SalesReturnPaymentsInner implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('deleted', $data ?? [], null);
         $this->setIfExists('updated', $data ?? [], null);
         $this->setIfExists('moment', $data ?? [], null);
+        $this->setIfExists('accrual_date', $data ?? [], null);
         $this->setIfExists('owner', $data ?? [], null);
         $this->setIfExists('group', $data ?? [], null);
         $this->setIfExists('applicable', $data ?? [], null);
@@ -945,6 +952,33 @@ class SalesReturnPaymentsInner implements ModelInterface, ArrayAccess, \JsonSeri
             throw new \InvalidArgumentException('non-nullable moment cannot be null');
         }
         $this->container['moment'] = $moment;
+
+        return $this;
+    }
+
+    /**
+     * Gets accrual_date
+     *
+     * @return string|null
+     */
+    public function getAccrualDate()
+    {
+        return $this->container['accrual_date'];
+    }
+
+    /**
+     * Sets accrual_date
+     *
+     * @param string|null $accrual_date Дата начисления
+     *
+     * @return self
+     */
+    public function setAccrualDate($accrual_date)
+    {
+        if (is_null($accrual_date)) {
+            throw new \InvalidArgumentException('non-nullable accrual_date cannot be null');
+        }
+        $this->container['accrual_date'] = $accrual_date;
 
         return $this;
     }

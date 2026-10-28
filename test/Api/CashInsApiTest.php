@@ -72,6 +72,30 @@ class CashInsApiTest extends TestCase
     }
 
     /**
+     * Test case for addCashInFile
+     *
+     * Добавить файл к Приходному ордеру.
+     *
+     */
+    public function testAddCashInFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for addCashInFiles
+     *
+     * Добавить файлы к Приходному ордеру.
+     *
+     */
+    public function testAddCashInFiles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createCashIn
      *
      * Создать CashIn.
@@ -156,6 +180,18 @@ class CashInsApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteCashInFile
+     *
+     * Удалить файл Приходного ордера.
+     *
+     */
+    public function testDeleteCashInFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteCashInMetadataAttributeById
      *
      * Удалить отдельное доп. поле CashIn.
@@ -186,6 +222,18 @@ class CashInsApiTest extends TestCase
      *
      */
     public function testGetCashInById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getCashInFiles
+     *
+     * Получить файлы Приходного ордера.
+     *
+     */
+    public function testGetCashInFiles()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

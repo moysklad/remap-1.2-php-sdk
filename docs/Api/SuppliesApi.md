@@ -4,7 +4,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**addSupplyFiles()**](SuppliesApi.md#addSupplyFiles) | **POST** /entity/supply/{id}/files | Добавить файлы к Приемке |
+| [**addSupplyFile()**](SuppliesApi.md#addSupplyFile) | **POST** /entity/supply/{id}/files | Добавить файл к Приемке |
+| [**addSupplyFiles()**](SuppliesApi.md#addSupplyFiles) | **POST** /entity/supply/{id}/files/batch | Добавить файлы к Приемке |
 | [**createSupply()**](SuppliesApi.md#createSupply) | **POST** /entity/supply | Создать Приемку |
 | [**createSupplyBatch()**](SuppliesApi.md#createSupplyBatch) | **POST** /entity/supply/batch | Массовое создание и обновление Приемок |
 | [**createSupplyMetadataAttribute()**](SuppliesApi.md#createSupplyMetadataAttribute) | **POST** /entity/supply/metadata/attributes | Создать доп. поле Приемки |
@@ -42,6 +43,79 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**updateSupplyNote()**](SuppliesApi.md#updateSupplyNote) | **PUT** /entity/supply/{id}/notes/{noteId} | Обновить Событие Приемки |
 | [**updateSupplyPosition()**](SuppliesApi.md#updateSupplyPosition) | **PUT** /entity/supply/{id}/positions/{positionId} | Изменить позицию Приемки |
 
+
+## `addSupplyFile()`
+
+```php
+addSupplyFile($id, $file_upload, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\File[]
+```
+
+Добавить файл к Приемке
+
+Добавить новый Файл к Приемке. В поле `content` нужно указать файл, закодированный в Base64, в поле `filename` — имя файла с расширением.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\SuppliesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$file_upload = new \OpenAPI\Client\Model\FileUpload(); // \OpenAPI\Client\Model\FileUpload
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->addSupplyFile($id, $file_upload, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling SuppliesApi->addSupplyFile: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **file_upload** | [**\OpenAPI\Client\Model\FileUpload**](../Model/FileUpload.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\File[]**](../Model/File.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `addSupplyFiles()`
 
@@ -1451,7 +1525,7 @@ try {
 ## `getSupplyFiles()`
 
 ```php
-getSupplyFiles($id, $limit, $offset, $accept, $accept_encoding): \OpenAPI\Client\Model\GetProductFiles200Response
+getSupplyFiles($id, $limit, $offset, $accept, $accept_encoding): \OpenAPI\Client\Model\GetTaskFiles200Response
 ```
 
 Получить файлы Приемки
@@ -1506,7 +1580,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetProductFiles200Response**](../Model/GetProductFiles200Response.md)
+[**\OpenAPI\Client\Model\GetTaskFiles200Response**](../Model/GetTaskFiles200Response.md)
 
 ### Authorization
 

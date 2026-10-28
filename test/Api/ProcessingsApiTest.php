@@ -72,6 +72,18 @@ class ProcessingsApiTest extends TestCase
     }
 
     /**
+     * Test case for addProcessingFile
+     *
+     * Добавить файл к техоперации.
+     *
+     */
+    public function testAddProcessingFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for addProcessingFiles
      *
      * Добавить файлы к техоперации.
@@ -120,6 +132,18 @@ class ProcessingsApiTest extends TestCase
     }
 
     /**
+     * Test case for createProcessingMaterialsBatch
+     *
+     * Массовое создание и обновление материалов техоперации.
+     *
+     */
+    public function testCreateProcessingMaterialsBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createProcessingMetadataAttribute
      *
      * Создать Доп. поле Processing.
@@ -162,6 +186,18 @@ class ProcessingsApiTest extends TestCase
      *
      */
     public function testCreateProcessingProducts()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for createProcessingProductsBatch
+     *
+     * Массовое создание и обновление продуктов техоперации.
+     *
+     */
+    public function testCreateProcessingProductsBatch()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

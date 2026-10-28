@@ -72,6 +72,30 @@ class RetailShiftsApiTest extends TestCase
     }
 
     /**
+     * Test case for addRetailShiftFile
+     *
+     * Добавить файл к Розничной смене.
+     *
+     */
+    public function testAddRetailShiftFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for addRetailShiftFiles
+     *
+     * Добавить файлы к Розничной смене.
+     *
+     */
+    public function testAddRetailShiftFiles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createRetailShift
      *
      * Создать Розничную смену.
@@ -132,6 +156,18 @@ class RetailShiftsApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteRetailShiftFile
+     *
+     * Удалить файл Розничной смены.
+     *
+     */
+    public function testDeleteRetailShiftFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteRetailShiftMetadataAttributeById
      *
      * Удалить отдельное доп. поле Розничной смены.
@@ -150,6 +186,18 @@ class RetailShiftsApiTest extends TestCase
      *
      */
     public function testGetRetailShiftById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getRetailShiftFiles
+     *
+     * Получить файлы Розничной смены.
+     *
+     */
+    public function testGetRetailShiftFiles()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

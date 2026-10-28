@@ -4,7 +4,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**addPriceListFiles()**](PriceListsApi.md#addPriceListFiles) | **POST** /entity/pricelist/{id}/files | Добавить файлы к Прайс-листу |
+| [**addPriceListFile()**](PriceListsApi.md#addPriceListFile) | **POST** /entity/pricelist/{id}/files | Добавить файл к Прайс-листу |
+| [**addPriceListFiles()**](PriceListsApi.md#addPriceListFiles) | **POST** /entity/pricelist/{id}/files/batch | Добавить файлы к Прайс-листу |
 | [**createPriceList()**](PriceListsApi.md#createPriceList) | **POST** /entity/pricelist | Создать Прайс-лист |
 | [**createPriceListMetadataAttribute()**](PriceListsApi.md#createPriceListMetadataAttribute) | **POST** /entity/pricelist/metadata/attributes | Создать доп. поле Прайс-листов |
 | [**createPriceListMetadataState()**](PriceListsApi.md#createPriceListMetadataState) | **POST** /entity/pricelist/metadata/states | Создать статус Прайс-листа |
@@ -35,6 +36,79 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**updatePriceListMetadataStateById()**](PriceListsApi.md#updatePriceListMetadataStateById) | **PUT** /entity/pricelist/metadata/states/{id} | Обновить отдельный статус Прайс-листа |
 | [**updatePriceListPosition()**](PriceListsApi.md#updatePriceListPosition) | **PUT** /entity/pricelist/{id}/positions/{positionId} | Изменить позицию Прайс-листа |
 
+
+## `addPriceListFile()`
+
+```php
+addPriceListFile($id, $file_upload, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\File[]
+```
+
+Добавить файл к Прайс-листу
+
+Добавить новый Файл к Прайс-листу. В поле `content` нужно указать файл, закодированный в Base64, в поле `filename` — имя файла с расширением.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\PriceListsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$file_upload = new \OpenAPI\Client\Model\FileUpload(); // \OpenAPI\Client\Model\FileUpload
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->addPriceListFile($id, $file_upload, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PriceListsApi->addPriceListFile: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **file_upload** | [**\OpenAPI\Client\Model\FileUpload**](../Model/FileUpload.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\File[]**](../Model/File.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `addPriceListFiles()`
 
@@ -1233,7 +1307,7 @@ try {
 ## `getPriceListFiles()`
 
 ```php
-getPriceListFiles($id, $limit, $offset, $accept, $accept_encoding): \OpenAPI\Client\Model\GetProductFiles200Response
+getPriceListFiles($id, $limit, $offset, $accept, $accept_encoding): \OpenAPI\Client\Model\GetTaskFiles200Response
 ```
 
 Получить файлы Прайс-листа
@@ -1288,7 +1362,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetProductFiles200Response**](../Model/GetProductFiles200Response.md)
+[**\OpenAPI\Client\Model\GetTaskFiles200Response**](../Model/GetTaskFiles200Response.md)
 
 ### Authorization
 

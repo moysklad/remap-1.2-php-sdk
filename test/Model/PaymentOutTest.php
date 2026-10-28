@@ -188,6 +188,15 @@ class PaymentOutTest extends TestCase
     }
 
     /**
+     * Test attribute "accrual_date"
+     */
+    public function testPropertyAccrualDate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "owner"
      */
     public function testPropertyOwner()

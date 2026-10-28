@@ -72,6 +72,30 @@ class FactureOutsApiTest extends TestCase
     }
 
     /**
+     * Test case for addFactureOutFile
+     *
+     * Добавить файл к Счету-фактуре выданному.
+     *
+     */
+    public function testAddFactureOutFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for addFactureOutFiles
+     *
+     * Добавить файлы к Счету-фактуре выданному.
+     *
+     */
+    public function testAddFactureOutFiles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createFactureOut
      *
      * Создать Счет-фактуру выданный.
@@ -144,6 +168,18 @@ class FactureOutsApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteFactureOutFile
+     *
+     * Удалить файл Счета-фактуры выданного.
+     *
+     */
+    public function testDeleteFactureOutFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteFactureOutMetadataAttributeById
      *
      * Удалить отдельное доп. поле Счета-фактуры выданного.
@@ -186,6 +222,18 @@ class FactureOutsApiTest extends TestCase
      *
      */
     public function testGetFactureOutById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getFactureOutFiles
+     *
+     * Получить файлы Счета-фактуры выданного.
+     *
+     */
+    public function testGetFactureOutFiles()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

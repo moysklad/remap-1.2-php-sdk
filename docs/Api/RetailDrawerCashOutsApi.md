@@ -4,7 +4,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**addRetailDrawerCashOutFiles()**](RetailDrawerCashOutsApi.md#addRetailDrawerCashOutFiles) | **POST** /entity/retaildrawercashout/{id}/files | Добавить файлы к выплате денег |
+| [**addRetailDrawerCashOutFile()**](RetailDrawerCashOutsApi.md#addRetailDrawerCashOutFile) | **POST** /entity/retaildrawercashout/{id}/files | Добавить файл к выплате денег |
+| [**addRetailDrawerCashOutFiles()**](RetailDrawerCashOutsApi.md#addRetailDrawerCashOutFiles) | **POST** /entity/retaildrawercashout/{id}/files/batch | Добавить файлы к выплате денег |
 | [**createRetailDrawerCashOut()**](RetailDrawerCashOutsApi.md#createRetailDrawerCashOut) | **POST** /entity/retaildrawercashout | Создать Выплату денег |
 | [**createRetailDrawerCashOutBatch()**](RetailDrawerCashOutsApi.md#createRetailDrawerCashOutBatch) | **POST** /entity/retaildrawercashout/batch | Массовое создание и обновление Выплат денег |
 | [**createRetailDrawerCashOutMetadataAttribute()**](RetailDrawerCashOutsApi.md#createRetailDrawerCashOutMetadataAttribute) | **POST** /entity/retaildrawercashout/metadata/attributes | Создать доп. поле Выплат денег |
@@ -29,6 +30,79 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**updateRetailDrawerCashOutMetadataAttributeById()**](RetailDrawerCashOutsApi.md#updateRetailDrawerCashOutMetadataAttributeById) | **PUT** /entity/retaildrawercashout/metadata/attributes/{id} | Обновить отдельное доп. поле Выплат денег |
 | [**updateRetailDrawerCashOutMetadataStateById()**](RetailDrawerCashOutsApi.md#updateRetailDrawerCashOutMetadataStateById) | **PUT** /entity/retaildrawercashout/metadata/states/{id} | Обновить отдельный статус Выплат денег |
 
+
+## `addRetailDrawerCashOutFile()`
+
+```php
+addRetailDrawerCashOutFile($id, $file_upload, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\File[]
+```
+
+Добавить файл к выплате денег
+
+Добавить новый Файл к Выплате денег. В поле `content` нужно указать файл, закодированный в Base64, в поле `filename` — имя файла с расширением.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\RetailDrawerCashOutsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$file_upload = new \OpenAPI\Client\Model\FileUpload(); // \OpenAPI\Client\Model\FileUpload
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->addRetailDrawerCashOutFile($id, $file_upload, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling RetailDrawerCashOutsApi->addRetailDrawerCashOutFile: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **file_upload** | [**\OpenAPI\Client\Model\FileUpload**](../Model/FileUpload.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\File[]**](../Model/File.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `addRetailDrawerCashOutFiles()`
 
@@ -932,7 +1006,7 @@ try {
 ## `getRetailDrawerCashOutFiles()`
 
 ```php
-getRetailDrawerCashOutFiles($id, $limit, $offset, $accept, $accept_encoding): \OpenAPI\Client\Model\GetProductFiles200Response
+getRetailDrawerCashOutFiles($id, $limit, $offset, $accept, $accept_encoding): \OpenAPI\Client\Model\GetTaskFiles200Response
 ```
 
 Получить файлы выплаты денег
@@ -987,7 +1061,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetProductFiles200Response**](../Model/GetProductFiles200Response.md)
+[**\OpenAPI\Client\Model\GetTaskFiles200Response**](../Model/GetTaskFiles200Response.md)
 
 ### Authorization
 

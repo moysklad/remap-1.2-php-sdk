@@ -72,6 +72,30 @@ class CommissionReportInsApiTest extends TestCase
     }
 
     /**
+     * Test case for addCommissionReportInFile
+     *
+     * Добавить файл к Полученному отчету комиссионера.
+     *
+     */
+    public function testAddCommissionReportInFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for addCommissionReportInFiles
+     *
+     * Добавить файлы к Полученному отчету комиссионера.
+     *
+     */
+    public function testAddCommissionReportInFiles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createCommissionReportIn
      *
      * Создать CommissionReportIn.
@@ -204,6 +228,18 @@ class CommissionReportInsApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteCommissionReportInFile
+     *
+     * Удалить файл Полученного отчета комиссионера.
+     *
+     */
+    public function testDeleteCommissionReportInFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteCommissionReportInMetadataAttributeById
      *
      * Удалить отдельное доп. поле CommissionReportIn.
@@ -282,6 +318,18 @@ class CommissionReportInsApiTest extends TestCase
      *
      */
     public function testGetCommissionReportInById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getCommissionReportInFiles
+     *
+     * Получить файлы Полученного отчета комиссионера.
+     *
+     */
+    public function testGetCommissionReportInFiles()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

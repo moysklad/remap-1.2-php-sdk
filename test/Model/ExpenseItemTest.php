@@ -107,6 +107,15 @@ class ExpenseItemTest extends TestCase
     }
 
     /**
+     * Test attribute "archived"
+     */
+    public function testPropertyArchived()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "code"
      */
     public function testPropertyCode()

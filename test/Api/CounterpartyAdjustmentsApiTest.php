@@ -72,6 +72,18 @@ class CounterpartyAdjustmentsApiTest extends TestCase
     }
 
     /**
+     * Test case for addCounterpartyAdjustmentFile
+     *
+     * Добавить файл к Корректировке взаиморасчетов.
+     *
+     */
+    public function testAddCounterpartyAdjustmentFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for addCounterpartyAdjustmentFiles
      *
      * Добавить файлы к Корректировке взаиморасчетов.

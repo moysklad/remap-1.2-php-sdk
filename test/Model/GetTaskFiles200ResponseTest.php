@@ -1,6 +1,6 @@
 <?php
 /**
- * GetProductFiles200ResponseTest
+ * GetTaskFiles200ResponseTest
  *
  * PHP version 8.1
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * GetProductFiles200ResponseTest Class Doc Comment
+ * GetTaskFiles200ResponseTest Class Doc Comment
  *
  * @category    Class
- * @description GetProductFiles200Response
+ * @description GetTaskFiles200Response
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class GetProductFiles200ResponseTest extends TestCase
+class GetTaskFiles200ResponseTest extends TestCase
 {
 
     /**
@@ -71,9 +71,9 @@ class GetProductFiles200ResponseTest extends TestCase
     }
 
     /**
-     * Test "GetProductFiles200Response"
+     * Test "GetTaskFiles200Response"
      */
-    public function testGetProductFiles200Response()
+    public function testGetTaskFiles200Response()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

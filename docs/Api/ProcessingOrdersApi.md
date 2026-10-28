@@ -4,7 +4,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**addProcessingOrderFiles()**](ProcessingOrdersApi.md#addProcessingOrderFiles) | **POST** /entity/processingorder/{id}/files | Добавить файлы к Заказу на производство |
+| [**addProcessingOrderFile()**](ProcessingOrdersApi.md#addProcessingOrderFile) | **POST** /entity/processingorder/{id}/files | Добавить файл к Заказу на производство |
+| [**addProcessingOrderFiles()**](ProcessingOrdersApi.md#addProcessingOrderFiles) | **POST** /entity/processingorder/{id}/files/batch | Добавить файлы к Заказу на производство |
 | [**createProcessingOrder()**](ProcessingOrdersApi.md#createProcessingOrder) | **POST** /entity/processingorder | Создать ProcessingOrder |
 | [**createProcessingOrderBatch()**](ProcessingOrdersApi.md#createProcessingOrderBatch) | **POST** /entity/processingorder/batch | Массовое создание и обновление ProcessingOrder |
 | [**createProcessingOrderMetadataAttribute()**](ProcessingOrdersApi.md#createProcessingOrderMetadataAttribute) | **POST** /entity/processingorder/metadata/attributes | Создать Доп. поле ProcessingOrder |
@@ -36,6 +37,79 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**updateProcessingOrderMetadataStateById()**](ProcessingOrdersApi.md#updateProcessingOrderMetadataStateById) | **PUT** /entity/processingorder/metadata/states/{id} | Обновить отдельный статус ProcessingOrder |
 | [**updateProcessingOrderPosition()**](ProcessingOrdersApi.md#updateProcessingOrderPosition) | **PUT** /entity/processingorder/{id}/positions/{positionId} | Изменить позицию ProcessingOrder |
 
+
+## `addProcessingOrderFile()`
+
+```php
+addProcessingOrderFile($id, $file_upload, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\File[]
+```
+
+Добавить файл к Заказу на производство
+
+Добавить новый Файл к Заказу на производство. В поле `content` нужно указать файл, закодированный в Base64, в поле `filename` — имя файла с расширением.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\ProcessingOrdersApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$file_upload = new \OpenAPI\Client\Model\FileUpload(); // \OpenAPI\Client\Model\FileUpload
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->addProcessingOrderFile($id, $file_upload, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProcessingOrdersApi->addProcessingOrderFile: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **file_upload** | [**\OpenAPI\Client\Model\FileUpload**](../Model/FileUpload.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\File[]**](../Model/File.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `addProcessingOrderFiles()`
 
@@ -1224,7 +1298,7 @@ try {
 ## `getProcessingOrderFiles()`
 
 ```php
-getProcessingOrderFiles($id, $limit, $offset, $accept, $accept_encoding): \OpenAPI\Client\Model\GetProductFiles200Response
+getProcessingOrderFiles($id, $limit, $offset, $accept, $accept_encoding): \OpenAPI\Client\Model\GetTaskFiles200Response
 ```
 
 Получить файлы Заказа на производство
@@ -1279,7 +1353,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetProductFiles200Response**](../Model/GetProductFiles200Response.md)
+[**\OpenAPI\Client\Model\GetTaskFiles200Response**](../Model/GetTaskFiles200Response.md)
 
 ### Authorization
 

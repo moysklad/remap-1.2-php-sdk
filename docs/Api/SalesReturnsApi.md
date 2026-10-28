@@ -4,6 +4,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**addSalesReturnFile()**](SalesReturnsApi.md#addSalesReturnFile) | **POST** /entity/salesreturn/{id}/files | Добавить файл к Возврату покупателя |
+| [**addSalesReturnFiles()**](SalesReturnsApi.md#addSalesReturnFiles) | **POST** /entity/salesreturn/{id}/files/batch | Добавить файлы к Возврату покупателя |
 | [**createSalesReturn()**](SalesReturnsApi.md#createSalesReturn) | **POST** /entity/salesreturn | Создать Возврат покупателя |
 | [**createSalesReturnBatch()**](SalesReturnsApi.md#createSalesReturnBatch) | **POST** /entity/salesreturn/batch | Массовое создание и обновление Возвратов покупателей |
 | [**createSalesReturnMetadataAttribute()**](SalesReturnsApi.md#createSalesReturnMetadataAttribute) | **POST** /entity/salesreturn/metadata/attributes | Создать доп. поле Возврата покупателя |
@@ -11,11 +13,13 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createSalesReturnPositions()**](SalesReturnsApi.md#createSalesReturnPositions) | **POST** /entity/salesreturn/{id}/positions/batch | Массовое создание и обновление позиций Возврата покупателя |
 | [**deleteSalesReturn()**](SalesReturnsApi.md#deleteSalesReturn) | **DELETE** /entity/salesreturn/{id} | Удалить Возврат покупателя |
 | [**deleteSalesReturnBatch()**](SalesReturnsApi.md#deleteSalesReturnBatch) | **POST** /entity/salesreturn/delete | Массовое удаление Возвратов покупателей |
+| [**deleteSalesReturnFile()**](SalesReturnsApi.md#deleteSalesReturnFile) | **DELETE** /entity/salesreturn/{id}/files/{fileId} | Удалить файл Возврата покупателя |
 | [**deleteSalesReturnMetadataAttributeById()**](SalesReturnsApi.md#deleteSalesReturnMetadataAttributeById) | **DELETE** /entity/salesreturn/metadata/attributes/{id} | Удалить отдельное доп. поле Возврата покупателя |
 | [**deleteSalesReturnMetadataStateById()**](SalesReturnsApi.md#deleteSalesReturnMetadataStateById) | **DELETE** /entity/salesreturn/metadata/states/{id} | Удалить отдельный статус Возврата покупателя |
 | [**deleteSalesReturnPosition()**](SalesReturnsApi.md#deleteSalesReturnPosition) | **DELETE** /entity/salesreturn/{id}/positions/{positionId} | Удалить позицию Возврата покупателя |
 | [**deleteSalesReturnPositionsBatch()**](SalesReturnsApi.md#deleteSalesReturnPositionsBatch) | **POST** /entity/salesreturn/{id}/positions/delete | Массовое удаление позиций Возврата покупателя |
 | [**getSalesReturnById()**](SalesReturnsApi.md#getSalesReturnById) | **GET** /entity/salesreturn/{id} | Получить Возврат покупателя |
+| [**getSalesReturnFiles()**](SalesReturnsApi.md#getSalesReturnFiles) | **GET** /entity/salesreturn/{id}/files | Получить файлы Возврата покупателя |
 | [**getSalesReturnList()**](SalesReturnsApi.md#getSalesReturnList) | **GET** /entity/salesreturn | Получить список Возвратов покупателей |
 | [**getSalesReturnMetadata()**](SalesReturnsApi.md#getSalesReturnMetadata) | **GET** /entity/salesreturn/metadata | Метаданные Возвратов покупателей |
 | [**getSalesReturnMetadataAttribute()**](SalesReturnsApi.md#getSalesReturnMetadataAttribute) | **GET** /entity/salesreturn/metadata/attributes | Доп. поля Возврата покупателя |
@@ -30,6 +34,152 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**updateSalesReturnMetadataStateById()**](SalesReturnsApi.md#updateSalesReturnMetadataStateById) | **PUT** /entity/salesreturn/metadata/states/{id} | Обновить отдельный статус Возврата покупателя |
 | [**updateSalesReturnPosition()**](SalesReturnsApi.md#updateSalesReturnPosition) | **PUT** /entity/salesreturn/{id}/positions/{positionId} | Изменить позицию Возврата покупателя |
 
+
+## `addSalesReturnFile()`
+
+```php
+addSalesReturnFile($id, $file_upload, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\File[]
+```
+
+Добавить файл к Возврату покупателя
+
+Добавить новый Файл к Возврату покупателя. В поле `content` нужно указать файл, закодированный в Base64, в поле `filename` — имя файла с расширением.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\SalesReturnsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$file_upload = new \OpenAPI\Client\Model\FileUpload(); // \OpenAPI\Client\Model\FileUpload
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->addSalesReturnFile($id, $file_upload, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling SalesReturnsApi->addSalesReturnFile: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **file_upload** | [**\OpenAPI\Client\Model\FileUpload**](../Model/FileUpload.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\File[]**](../Model/File.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `addSalesReturnFiles()`
+
+```php
+addSalesReturnFiles($id, $file_upload, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\File[]
+```
+
+Добавить файлы к Возврату покупателя
+
+Добавить новые Файлы к Возврату покупателя. В одном запросе можно добавить максимум 10 Файлов. В поле `content` нужно указать файл, закодированный в Base64, в поле `filename` — имя файла с расширением.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\SalesReturnsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$file_upload = array(new \OpenAPI\Client\Model\FileUpload()); // \OpenAPI\Client\Model\FileUpload[]
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->addSalesReturnFiles($id, $file_upload, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling SalesReturnsApi->addSalesReturnFiles: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **file_upload** | [**\OpenAPI\Client\Model\FileUpload[]**](../Model/FileUpload.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\File[]**](../Model/File.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `createSalesReturn()`
 
@@ -525,6 +675,76 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `deleteSalesReturnFile()`
+
+```php
+deleteSalesReturnFile($id, $file_id, $accept, $accept_encoding)
+```
+
+Удалить файл Возврата покупателя
+
+Удаление Файла Возврата покупателя.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\SalesReturnsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$file_id = 'file_id_example'; // string | ID файла
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->deleteSalesReturnFile($id, $file_id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling SalesReturnsApi->deleteSalesReturnFile: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **file_id** | **string**| ID файла | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `deleteSalesReturnMetadataAttributeById()`
 
 ```php
@@ -861,6 +1081,79 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\SalesReturn**](../Model/SalesReturn.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getSalesReturnFiles()`
+
+```php
+getSalesReturnFiles($id, $limit, $offset, $accept, $accept_encoding): \OpenAPI\Client\Model\GetTaskFiles200Response
+```
+
+Получить файлы Возврата покупателя
+
+Запрос на получение списка всех Файлов Возврата покупателя.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\SalesReturnsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
+$offset = 0; // int | Отступ в выданном списке
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $result = $apiInstance->getSalesReturnFiles($id, $limit, $offset, $accept, $accept_encoding);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling SalesReturnsApi->getSalesReturnFiles: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **limit** | **int**| Максимальное количество элементов в выданном списке (максимум 1000) | [optional] [default to 1000] |
+| **offset** | **int**| Отступ в выданном списке | [optional] [default to 0] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\GetTaskFiles200Response**](../Model/GetTaskFiles200Response.md)
 
 ### Authorization
 

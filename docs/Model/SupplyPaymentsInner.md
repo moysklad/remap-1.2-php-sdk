@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **deleted** | **string** | Момент последнего удаления Входящего платежа | [optional] [readonly]
 **updated** | **string** | Момент последнего обновления Входящего платежа | [optional] [readonly]
 **moment** | **string** | Дата документа | [optional]
+**accrual_date** | **string** | Дата начисления | [optional]
 **owner** | [**\OpenAPI\Client\Model\Employee**](Employee.md) | Владелец (Сотрудник) | [optional]
 **group** | [**\OpenAPI\Client\Model\Group**](Group.md) |  | [optional]
 **applicable** | **bool** | Отметка о проведении | [optional]

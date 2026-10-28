@@ -72,6 +72,18 @@ class PurchaseReturnsApiTest extends TestCase
     }
 
     /**
+     * Test case for addPurchaseReturnFile
+     *
+     * Добавить файл к возврату поставщику.
+     *
+     */
+    public function testAddPurchaseReturnFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for addPurchaseReturnFiles
      *
      * Добавить файлы к возврату поставщику.

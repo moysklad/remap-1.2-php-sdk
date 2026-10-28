@@ -4,14 +4,17 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**addProcessingFiles()**](ProcessingsApi.md#addProcessingFiles) | **POST** /entity/processing/{id}/files | Добавить файлы к техоперации |
+| [**addProcessingFile()**](ProcessingsApi.md#addProcessingFile) | **POST** /entity/processing/{id}/files | Добавить файл к техоперации |
+| [**addProcessingFiles()**](ProcessingsApi.md#addProcessingFiles) | **POST** /entity/processing/{id}/files/batch | Добавить файлы к техоперации |
 | [**createProcessing()**](ProcessingsApi.md#createProcessing) | **POST** /entity/processing | Создать Processing |
 | [**createProcessingBatch()**](ProcessingsApi.md#createProcessingBatch) | **POST** /entity/processing/batch | Массовое создание и обновление Processing |
 | [**createProcessingMaterials()**](ProcessingsApi.md#createProcessingMaterials) | **POST** /entity/processing/{id}/materials | Создать материалы Processing |
+| [**createProcessingMaterialsBatch()**](ProcessingsApi.md#createProcessingMaterialsBatch) | **POST** /entity/processing/{id}/materials/batch | Массовое создание и обновление материалов техоперации |
 | [**createProcessingMetadataAttribute()**](ProcessingsApi.md#createProcessingMetadataAttribute) | **POST** /entity/processing/metadata/attributes | Создать Доп. поле Processing |
 | [**createProcessingMetadataState()**](ProcessingsApi.md#createProcessingMetadataState) | **POST** /entity/processing/metadata/states | Создать статус Processing |
 | [**createProcessingMetadataStatesBatch()**](ProcessingsApi.md#createProcessingMetadataStatesBatch) | **POST** /entity/processing/metadata/states/batch | Массовое создание и обновление статусов Processing |
 | [**createProcessingProducts()**](ProcessingsApi.md#createProcessingProducts) | **POST** /entity/processing/{id}/products | Создать продукты Processing |
+| [**createProcessingProductsBatch()**](ProcessingsApi.md#createProcessingProductsBatch) | **POST** /entity/processing/{id}/products/batch | Массовое создание и обновление продуктов техоперации |
 | [**deleteProcessing()**](ProcessingsApi.md#deleteProcessing) | **DELETE** /entity/processing/{id} | Удалить Processing |
 | [**deleteProcessingBatch()**](ProcessingsApi.md#deleteProcessingBatch) | **POST** /entity/processing/delete | Массовое удаление Processing |
 | [**deleteProcessingFile()**](ProcessingsApi.md#deleteProcessingFile) | **DELETE** /entity/processing/{id}/files/{fileId} | Удалить файл техоперации |
@@ -41,6 +44,79 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**updateProcessingMetadataStateById()**](ProcessingsApi.md#updateProcessingMetadataStateById) | **PUT** /entity/processing/metadata/states/{id} | Обновить отдельный статус Processing |
 | [**updateProcessingProduct()**](ProcessingsApi.md#updateProcessingProduct) | **PUT** /entity/processing/{id}/products/{positionId} | Изменить продукт Processing |
 
+
+## `addProcessingFile()`
+
+```php
+addProcessingFile($id, $file_upload, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\File[]
+```
+
+Добавить файл к техоперации
+
+Добавить новый Файл к Техоперации. В поле `content` нужно указать файл, закодированный в Base64, в поле `filename` — имя файла с расширением.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\ProcessingsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$file_upload = new \OpenAPI\Client\Model\FileUpload(); // \OpenAPI\Client\Model\FileUpload
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->addProcessingFile($id, $file_upload, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProcessingsApi->addProcessingFile: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **file_upload** | [**\OpenAPI\Client\Model\FileUpload**](../Model/FileUpload.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\File[]**](../Model/File.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `addProcessingFiles()`
 
@@ -260,7 +336,7 @@ try {
 ## `createProcessingMaterials()`
 
 ```php
-createProcessingMaterials($id, $processing_material, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\ProcessingMaterial
+createProcessingMaterials($id, $processing_material, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\ProcessingMaterial[]
 ```
 
 Создать материалы Processing
@@ -315,7 +391,82 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ProcessingMaterial**](../Model/ProcessingMaterial.md)
+[**\OpenAPI\Client\Model\ProcessingMaterial[]**](../Model/ProcessingMaterial.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createProcessingMaterialsBatch()`
+
+```php
+createProcessingMaterialsBatch($id, $processing_material, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
+```
+
+Массовое создание и обновление материалов техоперации
+
+В теле запроса передается массив материалов. Для создания требуются assortment и quantity, для обновления — метаданные (meta).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\ProcessingsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$processing_material = array(new \OpenAPI\Client\Model\ProcessingMaterial()); // \OpenAPI\Client\Model\ProcessingMaterial[]
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createProcessingMaterialsBatch($id, $processing_material, $expand, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProcessingsApi->createProcessingMaterialsBatch: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **processing_material** | [**\OpenAPI\Client\Model\ProcessingMaterial[]**](../Model/ProcessingMaterial.md)|  | |
+| **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -540,7 +691,7 @@ try {
 ## `createProcessingProducts()`
 
 ```php
-createProcessingProducts($id, $processing_product, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\ProcessingProduct
+createProcessingProducts($id, $processing_product, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\ProcessingProduct[]
 ```
 
 Создать продукты Processing
@@ -595,7 +746,82 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ProcessingProduct**](../Model/ProcessingProduct.md)
+[**\OpenAPI\Client\Model\ProcessingProduct[]**](../Model/ProcessingProduct.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createProcessingProductsBatch()`
+
+```php
+createProcessingProductsBatch($id, $processing_product, $expand, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
+```
+
+Массовое создание и обновление продуктов техоперации
+
+В теле запроса передается массив продуктов. Для создания требуются assortment и quantity, для обновления — метаданные (meta).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\ProcessingsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$processing_product = array(new \OpenAPI\Client\Model\ProcessingProduct()); // \OpenAPI\Client\Model\ProcessingProduct[]
+$expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createProcessingProductsBatch($id, $processing_product, $expand, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProcessingsApi->createProcessingProductsBatch: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **processing_product** | [**\OpenAPI\Client\Model\ProcessingProduct[]**](../Model/ProcessingProduct.md)|  | |
+| **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -1368,7 +1594,7 @@ try {
 ## `getProcessingFiles()`
 
 ```php
-getProcessingFiles($id, $limit, $offset, $accept, $accept_encoding): \OpenAPI\Client\Model\GetProductFiles200Response
+getProcessingFiles($id, $limit, $offset, $accept, $accept_encoding): \OpenAPI\Client\Model\GetTaskFiles200Response
 ```
 
 Получить файлы техоперации
@@ -1423,7 +1649,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetProductFiles200Response**](../Model/GetProductFiles200Response.md)
+[**\OpenAPI\Client\Model\GetTaskFiles200Response**](../Model/GetTaskFiles200Response.md)
 
 ### Authorization
 

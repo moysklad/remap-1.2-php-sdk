@@ -72,6 +72,18 @@ class InvoiceOutsApiTest extends TestCase
     }
 
     /**
+     * Test case for addInvoiceOutFile
+     *
+     * Добавить файл к Счету покупателю.
+     *
+     */
+    public function testAddInvoiceOutFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for addInvoiceOutFiles
      *
      * Добавить файлы к Счету покупателю.

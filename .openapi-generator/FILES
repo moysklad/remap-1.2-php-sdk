@@ -309,8 +309,8 @@ docs/Model/GetCounterpartyAccounts200Response.md
 docs/Model/GetCounterpartyContactPersons200Response.md
 docs/Model/GetCounterpartyNotes200Response.md
 docs/Model/GetOrganizationAccounts200Response.md
-docs/Model/GetProductFiles200Response.md
 docs/Model/GetProductImages200Response.md
+docs/Model/GetTaskFiles200Response.md
 docs/Model/GetVariantCharacteristics200Response.md
 docs/Model/Group.md
 docs/Model/GroupList.md
@@ -976,8 +976,8 @@ lib/Model/GetCounterpartyAccounts200Response.php
 lib/Model/GetCounterpartyContactPersons200Response.php
 lib/Model/GetCounterpartyNotes200Response.php
 lib/Model/GetOrganizationAccounts200Response.php
-lib/Model/GetProductFiles200Response.php
 lib/Model/GetProductImages200Response.php
+lib/Model/GetTaskFiles200Response.php
 lib/Model/GetVariantCharacteristics200Response.php
 lib/Model/Group.php
 lib/Model/GroupList.php
@@ -1640,8 +1640,8 @@ test/Model/GetCounterpartyAccounts200ResponseTest.php
 test/Model/GetCounterpartyContactPersons200ResponseTest.php
 test/Model/GetCounterpartyNotes200ResponseTest.php
 test/Model/GetOrganizationAccounts200ResponseTest.php
-test/Model/GetProductFiles200ResponseTest.php
 test/Model/GetProductImages200ResponseTest.php
+test/Model/GetTaskFiles200ResponseTest.php
 test/Model/GetVariantCharacteristics200ResponseTest.php
 test/Model/GroupListTest.php
 test/Model/GroupTest.php

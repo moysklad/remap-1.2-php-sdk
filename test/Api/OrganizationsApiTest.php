@@ -84,6 +84,30 @@ class OrganizationsApiTest extends TestCase
     }
 
     /**
+     * Test case for createOrganizationAccount
+     *
+     * Создать счёт юрлица.
+     *
+     */
+    public function testCreateOrganizationAccount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for createOrganizationAccounts
+     *
+     * Массовое создание и обновление счетов юрлица.
+     *
+     */
+    public function testCreateOrganizationAccounts()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createOrganizationMetadataAttribute
      *
      * Создать доп. поле юрлица.
@@ -270,18 +294,6 @@ class OrganizationsApiTest extends TestCase
      *
      */
     public function testUpdateOrganizationAccount()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for updateOrganizationAccounts
-     *
-     * Изменить счета юрлица.
-     *
-     */
-    public function testUpdateOrganizationAccounts()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

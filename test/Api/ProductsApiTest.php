@@ -72,6 +72,18 @@ class ProductsApiTest extends TestCase
     }
 
     /**
+     * Test case for addProductFile
+     *
+     * Добавить файл к товару.
+     *
+     */
+    public function testAddProductFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for addProductFiles
      *
      * Добавить файлы к товару.
@@ -138,6 +150,18 @@ class ProductsApiTest extends TestCase
      *
      */
     public function testCreateProductStoreBalance()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for createProductStoreBalances
+     *
+     * Массовое создание и обновление неснижаемых остатков товара.
+     *
+     */
+    public function testCreateProductStoreBalances()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

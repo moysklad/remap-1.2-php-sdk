@@ -72,6 +72,30 @@ class PrepaymentReturnsApiTest extends TestCase
     }
 
     /**
+     * Test case for addPrepaymentReturnFile
+     *
+     * Добавить файл к Возврату предоплаты.
+     *
+     */
+    public function testAddPrepaymentReturnFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for addPrepaymentReturnFiles
+     *
+     * Добавить файлы к Возврату предоплаты.
+     *
+     */
+    public function testAddPrepaymentReturnFiles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createPrepaymentReturnMetadataAttribute
      *
      * Создать доп. поле Возврата предоплаты.
@@ -120,6 +144,18 @@ class PrepaymentReturnsApiTest extends TestCase
     }
 
     /**
+     * Test case for deletePrepaymentReturnFile
+     *
+     * Удалить файл Возврата предоплаты.
+     *
+     */
+    public function testDeletePrepaymentReturnFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deletePrepaymentReturnMetadataAttributeById
      *
      * Удалить отдельное доп. поле Возврата предоплаты.
@@ -150,6 +186,18 @@ class PrepaymentReturnsApiTest extends TestCase
      *
      */
     public function testGetPrepaymentReturnById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getPrepaymentReturnFiles
+     *
+     * Получить файлы Возврата предоплаты.
+     *
+     */
+    public function testGetPrepaymentReturnFiles()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

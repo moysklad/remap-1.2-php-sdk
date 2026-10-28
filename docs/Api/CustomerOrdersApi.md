@@ -4,6 +4,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**addCustomerOrderFile()**](CustomerOrdersApi.md#addCustomerOrderFile) | **POST** /entity/customerorder/{id}/files | Добавить файл к Заказу покупателя |
+| [**addCustomerOrderFiles()**](CustomerOrdersApi.md#addCustomerOrderFiles) | **POST** /entity/customerorder/{id}/files/batch | Добавить файлы к Заказу покупателя |
 | [**createCustomerOrder()**](CustomerOrdersApi.md#createCustomerOrder) | **POST** /entity/customerorder | Создать CustomerOrders |
 | [**createCustomerOrderBatch()**](CustomerOrdersApi.md#createCustomerOrderBatch) | **POST** /entity/customerorder/batch | Массовое создание и обновление CustomerOrders |
 | [**createCustomerOrderMetadataAttribute()**](CustomerOrdersApi.md#createCustomerOrderMetadataAttribute) | **POST** /entity/customerorder/metadata/attributes | Создать Доп. поле CustomerOrder |
@@ -16,6 +18,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createCustomerOrderPublication()**](CustomerOrdersApi.md#createCustomerOrderPublication) | **POST** /entity/customerorder/{id}/publication | Создать Публикацию Заказа покупателя |
 | [**deleteCustomerOrder()**](CustomerOrdersApi.md#deleteCustomerOrder) | **DELETE** /entity/customerorder/{id} | Удалить CustomerOrders |
 | [**deleteCustomerOrderBatch()**](CustomerOrdersApi.md#deleteCustomerOrderBatch) | **POST** /entity/customerorder/delete | Массовое удаление CustomerOrders |
+| [**deleteCustomerOrderFile()**](CustomerOrdersApi.md#deleteCustomerOrderFile) | **DELETE** /entity/customerorder/{id}/files/{fileId} | Удалить файл Заказа покупателя |
 | [**deleteCustomerOrderMetadataAttributeById()**](CustomerOrdersApi.md#deleteCustomerOrderMetadataAttributeById) | **DELETE** /entity/customerorder/metadata/attributes/{id} | Удалить отдельное доп. поле CustomerOrder |
 | [**deleteCustomerOrderMetadataStateById()**](CustomerOrdersApi.md#deleteCustomerOrderMetadataStateById) | **DELETE** /entity/customerorder/metadata/states/{id} | Удалить отдельный статус CustomerOrder |
 | [**deleteCustomerOrderNote()**](CustomerOrdersApi.md#deleteCustomerOrderNote) | **DELETE** /entity/customerorder/{id}/notes/{noteId} | Удалить Событие Заказа покупателя |
@@ -25,6 +28,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**deleteCustomerOrderPublication()**](CustomerOrdersApi.md#deleteCustomerOrderPublication) | **DELETE** /entity/customerorder/{id}/publication/{publicationId} | Удалить Публикацию Заказа покупателя |
 | [**exportCustomerOrder()**](CustomerOrdersApi.md#exportCustomerOrder) | **POST** /entity/customerorder/{id}/export | Запрос на печать Заказа покупателя |
 | [**getCustomerOrderById()**](CustomerOrdersApi.md#getCustomerOrderById) | **GET** /entity/customerorder/{id} | Получить CustomerOrders |
+| [**getCustomerOrderFiles()**](CustomerOrdersApi.md#getCustomerOrderFiles) | **GET** /entity/customerorder/{id}/files | Получить файлы Заказа покупателя |
 | [**getCustomerOrderList()**](CustomerOrdersApi.md#getCustomerOrderList) | **GET** /entity/customerorder | Получить список CustomerOrders |
 | [**getCustomerOrderMetadata()**](CustomerOrdersApi.md#getCustomerOrderMetadata) | **GET** /entity/customerorder/metadata | Метаданные CustomerOrders |
 | [**getCustomerOrderMetadataAttribute()**](CustomerOrdersApi.md#getCustomerOrderMetadataAttribute) | **GET** /entity/customerorder/metadata/attributes | Доп. поля CustomerOrder |
@@ -44,6 +48,152 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**updateCustomerOrderNote()**](CustomerOrdersApi.md#updateCustomerOrderNote) | **PUT** /entity/customerorder/{id}/notes/{noteId} | Обновить Событие Заказа покупателя |
 | [**updateCustomerOrderPosition()**](CustomerOrdersApi.md#updateCustomerOrderPosition) | **PUT** /entity/customerorder/{id}/positions/{positionId} | Изменить позицию CustomerOrders |
 
+
+## `addCustomerOrderFile()`
+
+```php
+addCustomerOrderFile($id, $file_upload, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\File[]
+```
+
+Добавить файл к Заказу покупателя
+
+Добавить новый Файл к Заказу покупателя. В поле `content` нужно указать файл, закодированный в Base64, в поле `filename` — имя файла с расширением.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CustomerOrdersApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$file_upload = new \OpenAPI\Client\Model\FileUpload(); // \OpenAPI\Client\Model\FileUpload
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->addCustomerOrderFile($id, $file_upload, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CustomerOrdersApi->addCustomerOrderFile: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **file_upload** | [**\OpenAPI\Client\Model\FileUpload**](../Model/FileUpload.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\File[]**](../Model/File.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `addCustomerOrderFiles()`
+
+```php
+addCustomerOrderFiles($id, $file_upload, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\File[]
+```
+
+Добавить файлы к Заказу покупателя
+
+Добавить новые Файлы к Заказу покупателя. В одном запросе можно добавить максимум 10 Файлов. В поле `content` нужно указать файл, закодированный в Base64, в поле `filename` — имя файла с расширением.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CustomerOrdersApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$file_upload = array(new \OpenAPI\Client\Model\FileUpload()); // \OpenAPI\Client\Model\FileUpload[]
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->addCustomerOrderFiles($id, $file_upload, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CustomerOrdersApi->addCustomerOrderFiles: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **file_upload** | [**\OpenAPI\Client\Model\FileUpload[]**](../Model/FileUpload.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\File[]**](../Model/File.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `createCustomerOrder()`
 
@@ -896,6 +1046,76 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `deleteCustomerOrderFile()`
+
+```php
+deleteCustomerOrderFile($id, $file_id, $accept, $accept_encoding)
+```
+
+Удалить файл Заказа покупателя
+
+Удаление Файла Заказа покупателя.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CustomerOrdersApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$file_id = 'file_id_example'; // string | ID файла
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->deleteCustomerOrderFile($id, $file_id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling CustomerOrdersApi->deleteCustomerOrderFile: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **file_id** | **string**| ID файла | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `deleteCustomerOrderMetadataAttributeById()`
 
 ```php
@@ -1516,6 +1736,79 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\CustomerOrder**](../Model/CustomerOrder.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getCustomerOrderFiles()`
+
+```php
+getCustomerOrderFiles($id, $limit, $offset, $accept, $accept_encoding): \OpenAPI\Client\Model\GetTaskFiles200Response
+```
+
+Получить файлы Заказа покупателя
+
+Запрос на получение списка всех Файлов Заказа покупателя.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CustomerOrdersApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
+$offset = 0; // int | Отступ в выданном списке
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $result = $apiInstance->getCustomerOrderFiles($id, $limit, $offset, $accept, $accept_encoding);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CustomerOrdersApi->getCustomerOrderFiles: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **limit** | **int**| Максимальное количество элементов в выданном списке (максимум 1000) | [optional] [default to 1000] |
+| **offset** | **int**| Отступ в выданном списке | [optional] [default to 0] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\GetTaskFiles200Response**](../Model/GetTaskFiles200Response.md)
 
 ### Authorization
 

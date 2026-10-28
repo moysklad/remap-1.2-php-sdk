@@ -72,6 +72,18 @@ class MovesApiTest extends TestCase
     }
 
     /**
+     * Test case for addMoveFile
+     *
+     * Добавить файл к перемещению.
+     *
+     */
+    public function testAddMoveFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for addMoveFiles
      *
      * Добавить файлы к перемещению.

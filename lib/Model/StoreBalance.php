@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class StoreBalance implements ModelInterface, ArrayAccess, \JsonSerializable
+class StoreBalance extends EntityWithMeta 
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
@@ -55,12 +55,12 @@ class StoreBalance implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPIPolymorphicDiscriminatorMappings = [
         
     ];
-    public static function createWithMeta(string $parentId, string $id) : StoreBalance {
+    public static function createWithMeta(string $entityType, string $parentId, string $id) : StoreBalance {
         $o = new StoreBalance();
         $config = \OpenAPI\Client\Configuration::getDefaultConfiguration();
         $meta = new Meta();
         $meta->setType('minimumstock');
-        $href = $config->getHost() . '/' . 'entity' . '/' . 'product' . '/' . $parentId . '/' . 'storebalances' . '/' . $id;
+        $href = $config->getHost() . '/' . 'entity' . '/' . $entityType . '/' . $parentId . '/' . 'storebalances' . '/' . $id;
         $meta->setHref($href);
         $o->setMeta($meta);
         $o->setId($id);
@@ -129,7 +129,7 @@ class StoreBalance implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -139,7 +139,7 @@ class StoreBalance implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -180,7 +180,7 @@ class StoreBalance implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables;
+        return self::$openAPINullables + parent::openAPINullables();
     }
 
     /**
@@ -273,7 +273,7 @@ class StoreBalance implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -283,7 +283,7 @@ class StoreBalance implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -293,7 +293,7 @@ class StoreBalance implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -308,13 +308,6 @@ class StoreBalance implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-    
 
     /**
      * Constructor
@@ -324,6 +317,9 @@ class StoreBalance implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        
+        parent::__construct($data);
+
         
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('account_id', $data ?? [], null);
@@ -358,8 +354,8 @@ class StoreBalance implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties()
     {
         
+        $invalidProperties = parent::listInvalidProperties();
         
-        $invalidProperties = [];
         
 
         if (!is_null($this->container['quantity']) && ($this->container['quantity'] < 0)) {

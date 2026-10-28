@@ -72,6 +72,18 @@ class PayrollsApiTest extends TestCase
     }
 
     /**
+     * Test case for addPayrollFile
+     *
+     * Добавить файл к Начислению зарплаты.
+     *
+     */
+    public function testAddPayrollFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for addPayrollFiles
      *
      * Добавить файлы к Начислению зарплаты.

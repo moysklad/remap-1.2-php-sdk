@@ -4,7 +4,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**addInvoiceInFiles()**](InvoiceInsApi.md#addInvoiceInFiles) | **POST** /entity/invoicein/{id}/files | Добавить файлы к Счету поставщику |
+| [**addInvoiceInFile()**](InvoiceInsApi.md#addInvoiceInFile) | **POST** /entity/invoicein/{id}/files | Добавить файл к Счету поставщику |
+| [**addInvoiceInFiles()**](InvoiceInsApi.md#addInvoiceInFiles) | **POST** /entity/invoicein/{id}/files/batch | Добавить файлы к Счету поставщику |
 | [**createInvoiceIn()**](InvoiceInsApi.md#createInvoiceIn) | **POST** /entity/invoicein | Создать Счет поставщику |
 | [**createInvoiceInBatch()**](InvoiceInsApi.md#createInvoiceInBatch) | **POST** /entity/invoicein/batch | Массовое создание и обновление Счетов поставщикам |
 | [**createInvoiceInMetadataAttribute()**](InvoiceInsApi.md#createInvoiceInMetadataAttribute) | **POST** /entity/invoicein/metadata/attributes | Создать Доп. поле InvoiceIn |
@@ -43,6 +44,79 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**updateInvoiceInNote()**](InvoiceInsApi.md#updateInvoiceInNote) | **PUT** /entity/invoicein/{id}/notes/{noteId} | Обновить Событие Счета поставщику |
 | [**updateInvoiceInPosition()**](InvoiceInsApi.md#updateInvoiceInPosition) | **PUT** /entity/invoicein/{id}/positions/{positionId} | Изменить позицию Счета поставщику |
 
+
+## `addInvoiceInFile()`
+
+```php
+addInvoiceInFile($id, $file_upload, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\File[]
+```
+
+Добавить файл к Счету поставщику
+
+Добавить новый Файл к Счету поставщику. В поле `content` нужно указать файл, закодированный в Base64, в поле `filename` — имя файла с расширением.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\InvoiceInsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$file_upload = new \OpenAPI\Client\Model\FileUpload(); // \OpenAPI\Client\Model\FileUpload
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->addInvoiceInFile($id, $file_upload, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling InvoiceInsApi->addInvoiceInFile: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **file_upload** | [**\OpenAPI\Client\Model\FileUpload**](../Model/FileUpload.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\File[]**](../Model/File.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `addInvoiceInFiles()`
 
@@ -1531,7 +1605,7 @@ try {
 ## `getInvoiceInFiles()`
 
 ```php
-getInvoiceInFiles($id, $limit, $offset, $accept, $accept_encoding): \OpenAPI\Client\Model\GetProductFiles200Response
+getInvoiceInFiles($id, $limit, $offset, $accept, $accept_encoding): \OpenAPI\Client\Model\GetTaskFiles200Response
 ```
 
 Получить файлы Счета поставщику
@@ -1586,7 +1660,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetProductFiles200Response**](../Model/GetProductFiles200Response.md)
+[**\OpenAPI\Client\Model\GetTaskFiles200Response**](../Model/GetTaskFiles200Response.md)
 
 ### Authorization
 

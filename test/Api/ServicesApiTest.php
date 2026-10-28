@@ -72,6 +72,18 @@ class ServicesApiTest extends TestCase
     }
 
     /**
+     * Test case for addServiceFile
+     *
+     * Добавить файл к услуге.
+     *
+     */
+    public function testAddServiceFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for addServiceFiles
      *
      * Добавить файлы к услуге.

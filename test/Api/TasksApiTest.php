@@ -72,6 +72,54 @@ class TasksApiTest extends TestCase
     }
 
     /**
+     * Test case for addTaskFile
+     *
+     * Добавить файл к Задаче.
+     *
+     */
+    public function testAddTaskFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for addTaskFiles
+     *
+     * Добавить файлы к Задаче.
+     *
+     */
+    public function testAddTaskFiles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for addTaskNoteFile
+     *
+     * Добавить файл к комментарию к Задаче.
+     *
+     */
+    public function testAddTaskNoteFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for addTaskNoteFiles
+     *
+     * Добавить файлы к комментарию к Задаче.
+     *
+     */
+    public function testAddTaskNoteFiles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createTask
      *
      * Создать задачу.
@@ -156,6 +204,18 @@ class TasksApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteTaskFile
+     *
+     * Удалить файл Задачи.
+     *
+     */
+    public function testDeleteTaskFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteTaskMetadataStateById
      *
      * Удалить тип задачи.
@@ -174,6 +234,18 @@ class TasksApiTest extends TestCase
      *
      */
     public function testDeleteTaskNote()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteTaskNoteFile
+     *
+     * Удалить файл комментария к Задаче.
+     *
+     */
+    public function testDeleteTaskNoteFile()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -216,6 +288,18 @@ class TasksApiTest extends TestCase
     }
 
     /**
+     * Test case for getTaskFiles
+     *
+     * Получить файлы Задачи.
+     *
+     */
+    public function testGetTaskFiles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getTaskMetadata
      *
      * Получить метаданные задач.
@@ -234,6 +318,18 @@ class TasksApiTest extends TestCase
      *
      */
     public function testGetTaskNoteById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getTaskNoteFiles
+     *
+     * Получить файлы комментария к Задаче.
+     *
+     */
+    public function testGetTaskNoteFiles()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

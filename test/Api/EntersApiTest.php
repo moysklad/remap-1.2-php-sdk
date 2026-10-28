@@ -72,6 +72,18 @@ class EntersApiTest extends TestCase
     }
 
     /**
+     * Test case for addEnterFile
+     *
+     * Добавить файл к Оприходованию.
+     *
+     */
+    public function testAddEnterFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for addEnterFiles
      *
      * Добавить файлы к Оприходованию.

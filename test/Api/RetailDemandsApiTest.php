@@ -72,6 +72,30 @@ class RetailDemandsApiTest extends TestCase
     }
 
     /**
+     * Test case for addRetailDemandFile
+     *
+     * Добавить файл к Розничной продаже.
+     *
+     */
+    public function testAddRetailDemandFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for addRetailDemandFiles
+     *
+     * Добавить файлы к Розничной продаже.
+     *
+     */
+    public function testAddRetailDemandFiles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createRetailDemand
      *
      * Создать Розничную продажу.
@@ -180,6 +204,18 @@ class RetailDemandsApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteRetailDemandFile
+     *
+     * Удалить файл Розничной продажи.
+     *
+     */
+    public function testDeleteRetailDemandFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteRetailDemandMetadataAttributeById
      *
      * Удалить отдельное доп. поле Розничной продажи.
@@ -234,6 +270,18 @@ class RetailDemandsApiTest extends TestCase
      *
      */
     public function testGetRetailDemandById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getRetailDemandFiles
+     *
+     * Получить файлы Розничной продажи.
+     *
+     */
+    public function testGetRetailDemandFiles()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

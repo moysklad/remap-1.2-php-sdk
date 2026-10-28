@@ -53,6 +53,7 @@ class EntityWithMeta extends BatchResponseEntity
       * @var string[]
       */
     protected static array $openAPIPolymorphicDiscriminatorMappings = [
+        'account' => 'Account',
         'bundle' => 'Bundle',
         'bundlecomponent' => 'BundleComponent',
         'cashin' => 'CashIn',
@@ -63,6 +64,7 @@ class EntityWithMeta extends BatchResponseEntity
         'commissionreportout' => 'CommissionReportOut',
         'commissionreportoutposition' => 'CommissionReportOutPosition',
         'consignment' => 'Consignment',
+        'contactperson' => 'ContactPerson',
         'contract' => 'Contract',
         'counterparty' => 'Counterparty',
         'counterpartyadjustment' => 'CounterpartyAdjustment',
@@ -84,8 +86,10 @@ class EntityWithMeta extends BatchResponseEntity
         'inventoryposition' => 'InventoryPosition',
         'loss' => 'Loss',
         'lossposition' => 'LossPosition',
+        'minimumstock' => 'StoreBalance',
         'move' => 'Move',
         'moveposition' => 'MovePosition',
+        'note' => 'Note',
         'organization' => 'Organization',
         'paymentin' => 'PaymentIn',
         'paymentout' => 'PaymentOut',
@@ -100,6 +104,11 @@ class EntityWithMeta extends BatchResponseEntity
         'processingorderposition' => 'ProcessingOrderPosition',
         'processingplan' => 'ProcessingPlan',
         'processingplanfolder' => 'ProcessingPlanFolder',
+        'processingplanmaterial' => 'ProcessingPlanMaterial',
+        'processingplanresult' => 'ProcessingPlanProduct',
+        'processingplanstages' => 'ProcessingPlanStage',
+        'processingpositionmaterial' => 'ProcessingMaterial',
+        'processingpositionresult' => 'ProcessingProduct',
         'processingprocess' => 'ProcessingProcess',
         'processingprocessposition' => 'ProcessingProcessPosition',
         'processingstage' => 'ProcessingStage',

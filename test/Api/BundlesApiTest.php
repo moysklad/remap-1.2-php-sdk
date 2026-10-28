@@ -72,6 +72,54 @@ class BundlesApiTest extends TestCase
     }
 
     /**
+     * Test case for addBundleFile
+     *
+     * Добавить файл к Комплекту.
+     *
+     */
+    public function testAddBundleFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for addBundleFiles
+     *
+     * Добавить файлы к Комплекту.
+     *
+     */
+    public function testAddBundleFiles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for addBundleImage
+     *
+     * Добавить изображение к Комплекту.
+     *
+     */
+    public function testAddBundleImage()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for addBundleImages
+     *
+     * Изменить список изображений Комплекта.
+     *
+     */
+    public function testAddBundleImages()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createBundle
      *
      * Создать Комплект.
@@ -156,6 +204,42 @@ class BundlesApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteBundleFile
+     *
+     * Удалить файл Комплекта.
+     *
+     */
+    public function testDeleteBundleFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteBundleImage
+     *
+     * Удалить изображение Комплекта.
+     *
+     */
+    public function testDeleteBundleImage()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteBundleImages
+     *
+     * Массовое удаление изображений Комплекта.
+     *
+     */
+    public function testDeleteBundleImages()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteBundlesBatch
      *
      * Массовое удаление Комплектов.
@@ -198,6 +282,30 @@ class BundlesApiTest extends TestCase
      *
      */
     public function testGetBundleComponents()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getBundleFiles
+     *
+     * Получить файлы Комплекта.
+     *
+     */
+    public function testGetBundleFiles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getBundleImages
+     *
+     * Получить изображения Комплекта.
+     *
+     */
+    public function testGetBundleImages()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

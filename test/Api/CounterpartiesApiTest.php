@@ -72,6 +72,18 @@ class CounterpartiesApiTest extends TestCase
     }
 
     /**
+     * Test case for addCounterpartyFile
+     *
+     * Добавить файл к контрагенту.
+     *
+     */
+    public function testAddCounterpartyFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for addCounterpartyFiles
      *
      * Добавить файлы к контрагенту.
@@ -120,12 +132,36 @@ class CounterpartiesApiTest extends TestCase
     }
 
     /**
+     * Test case for createCounterpartyAccounts
+     *
+     * Массовое создание и обновление счетов контрагента.
+     *
+     */
+    public function testCreateCounterpartyAccounts()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createCounterpartyContactPerson
      *
      * Создать контактное лицо контрагента.
      *
      */
     public function testCreateCounterpartyContactPerson()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for createCounterpartyContactPersons
+     *
+     * Массовое создание и обновление контактных лиц контрагента.
+     *
+     */
+    public function testCreateCounterpartyContactPersons()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -162,6 +198,18 @@ class CounterpartiesApiTest extends TestCase
      *
      */
     public function testCreateCounterpartyNote()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for createCounterpartyNotes
+     *
+     * Массовое создание и обновление событий контрагента.
+     *
+     */
+    public function testCreateCounterpartyNotes()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

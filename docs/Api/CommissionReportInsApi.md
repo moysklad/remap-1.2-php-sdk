@@ -4,6 +4,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**addCommissionReportInFile()**](CommissionReportInsApi.md#addCommissionReportInFile) | **POST** /entity/commissionreportin/{id}/files | Добавить файл к Полученному отчету комиссионера |
+| [**addCommissionReportInFiles()**](CommissionReportInsApi.md#addCommissionReportInFiles) | **POST** /entity/commissionreportin/{id}/files/batch | Добавить файлы к Полученному отчету комиссионера |
 | [**createCommissionReportIn()**](CommissionReportInsApi.md#createCommissionReportIn) | **POST** /entity/commissionreportin | Создать CommissionReportIn |
 | [**createCommissionReportInBatch()**](CommissionReportInsApi.md#createCommissionReportInBatch) | **POST** /entity/commissionreportin/batch | Массовое создание и обновление CommissionReportIn |
 | [**createCommissionReportInMetadataAttribute()**](CommissionReportInsApi.md#createCommissionReportInMetadataAttribute) | **POST** /entity/commissionreportin/metadata/attributes | Создать доп. поле CommissionReportIn |
@@ -15,6 +17,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**createCommissionReportInReturnedPositions()**](CommissionReportInsApi.md#createCommissionReportInReturnedPositions) | **POST** /entity/commissionreportin/{id}/returntocommissionerpositions/batch | Массовое создание и обновление позиций возврата на склад комиссионера |
 | [**deleteCommissionReportIn()**](CommissionReportInsApi.md#deleteCommissionReportIn) | **DELETE** /entity/commissionreportin/{id} | Удалить CommissionReportIn |
 | [**deleteCommissionReportInBatch()**](CommissionReportInsApi.md#deleteCommissionReportInBatch) | **POST** /entity/commissionreportin/delete | Массовое удаление CommissionReportIn |
+| [**deleteCommissionReportInFile()**](CommissionReportInsApi.md#deleteCommissionReportInFile) | **DELETE** /entity/commissionreportin/{id}/files/{fileId} | Удалить файл Полученного отчета комиссионера |
 | [**deleteCommissionReportInMetadataAttributeById()**](CommissionReportInsApi.md#deleteCommissionReportInMetadataAttributeById) | **DELETE** /entity/commissionreportin/metadata/attributes/{id} | Удалить отдельное доп. поле CommissionReportIn |
 | [**deleteCommissionReportInMetadataStateById()**](CommissionReportInsApi.md#deleteCommissionReportInMetadataStateById) | **DELETE** /entity/commissionreportin/metadata/states/{id} | Удалить отдельный статус CommissionReportIn |
 | [**deleteCommissionReportInPosition()**](CommissionReportInsApi.md#deleteCommissionReportInPosition) | **DELETE** /entity/commissionreportin/{id}/positions/{positionId} | Удалить позицию CommissionReportIn |
@@ -22,6 +25,7 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**deleteCommissionReportInReturnedPosition()**](CommissionReportInsApi.md#deleteCommissionReportInReturnedPosition) | **DELETE** /entity/commissionreportin/{id}/returntocommissionerpositions/{positionId} | Удалить позицию возврата на склад комиссионера |
 | [**deleteCommissionReportInReturnedPositionsBatch()**](CommissionReportInsApi.md#deleteCommissionReportInReturnedPositionsBatch) | **POST** /entity/commissionreportin/{id}/returntocommissionerpositions/delete | Массовое удаление позиций возврата на склад комиссионера |
 | [**getCommissionReportInById()**](CommissionReportInsApi.md#getCommissionReportInById) | **GET** /entity/commissionreportin/{id} | Получить CommissionReportIn по ID |
+| [**getCommissionReportInFiles()**](CommissionReportInsApi.md#getCommissionReportInFiles) | **GET** /entity/commissionreportin/{id}/files | Получить файлы Полученного отчета комиссионера |
 | [**getCommissionReportInList()**](CommissionReportInsApi.md#getCommissionReportInList) | **GET** /entity/commissionreportin | Получить список CommissionReportIn |
 | [**getCommissionReportInMetadata()**](CommissionReportInsApi.md#getCommissionReportInMetadata) | **GET** /entity/commissionreportin/metadata | Метаданные CommissionReportIn |
 | [**getCommissionReportInMetadataAttribute()**](CommissionReportInsApi.md#getCommissionReportInMetadataAttribute) | **GET** /entity/commissionreportin/metadata/attributes | Доп. поля CommissionReportIn |
@@ -38,6 +42,152 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**updateCommissionReportInPosition()**](CommissionReportInsApi.md#updateCommissionReportInPosition) | **PUT** /entity/commissionreportin/{id}/positions/{positionId} | Изменить позицию CommissionReportIn |
 | [**updateCommissionReportInReturnedPosition()**](CommissionReportInsApi.md#updateCommissionReportInReturnedPosition) | **PUT** /entity/commissionreportin/{id}/returntocommissionerpositions/{positionId} | Изменить позицию возврата на склад комиссионера |
 
+
+## `addCommissionReportInFile()`
+
+```php
+addCommissionReportInFile($id, $file_upload, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\File[]
+```
+
+Добавить файл к Полученному отчету комиссионера
+
+Добавить новый Файл к Полученному отчету комиссионера. В поле `content` нужно указать файл, закодированный в Base64, в поле `filename` — имя файла с расширением.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CommissionReportInsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$file_upload = new \OpenAPI\Client\Model\FileUpload(); // \OpenAPI\Client\Model\FileUpload
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->addCommissionReportInFile($id, $file_upload, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CommissionReportInsApi->addCommissionReportInFile: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **file_upload** | [**\OpenAPI\Client\Model\FileUpload**](../Model/FileUpload.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\File[]**](../Model/File.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `addCommissionReportInFiles()`
+
+```php
+addCommissionReportInFiles($id, $file_upload, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\File[]
+```
+
+Добавить файлы к Полученному отчету комиссионера
+
+Добавить новые Файлы к Полученному отчету комиссионера. В одном запросе можно добавить максимум 10 Файлов. В поле `content` нужно указать файл, закодированный в Base64, в поле `filename` — имя файла с расширением.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CommissionReportInsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$file_upload = array(new \OpenAPI\Client\Model\FileUpload()); // \OpenAPI\Client\Model\FileUpload[]
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->addCommissionReportInFiles($id, $file_upload, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CommissionReportInsApi->addCommissionReportInFiles: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **file_upload** | [**\OpenAPI\Client\Model\FileUpload[]**](../Model/FileUpload.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\File[]**](../Model/File.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `createCommissionReportIn()`
 
@@ -817,6 +967,76 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `deleteCommissionReportInFile()`
+
+```php
+deleteCommissionReportInFile($id, $file_id, $accept, $accept_encoding)
+```
+
+Удалить файл Полученного отчета комиссионера
+
+Удаление Файла Полученного отчета комиссионера.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CommissionReportInsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$file_id = 'file_id_example'; // string | ID файла
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $apiInstance->deleteCommissionReportInFile($id, $file_id, $accept, $accept_encoding);
+} catch (Exception $e) {
+    echo 'Exception when calling CommissionReportInsApi->deleteCommissionReportInFile: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **file_id** | **string**| ID файла | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `deleteCommissionReportInMetadataAttributeById()`
 
 ```php
@@ -1296,6 +1516,79 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\CommissionReportIn**](../Model/CommissionReportIn.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getCommissionReportInFiles()`
+
+```php
+getCommissionReportInFiles($id, $limit, $offset, $accept, $accept_encoding): \OpenAPI\Client\Model\GetTaskFiles200Response
+```
+
+Получить файлы Полученного отчета комиссионера
+
+Запрос на получение списка всех Файлов Полученного отчета комиссионера.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CommissionReportInsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
+$offset = 0; // int | Отступ в выданном списке
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+
+try {
+    $result = $apiInstance->getCommissionReportInFiles($id, $limit, $offset, $accept, $accept_encoding);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CommissionReportInsApi->getCommissionReportInFiles: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **limit** | **int**| Максимальное количество элементов в выданном списке (максимум 1000) | [optional] [default to 1000] |
+| **offset** | **int**| Отступ в выданном списке | [optional] [default to 0] |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\GetTaskFiles200Response**](../Model/GetTaskFiles200Response.md)
 
 ### Authorization
 

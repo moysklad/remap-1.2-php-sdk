@@ -4,14 +4,18 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**addCounterpartyFiles()**](CounterpartiesApi.md#addCounterpartyFiles) | **POST** /entity/counterparty/{id}/files | Добавить файлы к контрагенту |
+| [**addCounterpartyFile()**](CounterpartiesApi.md#addCounterpartyFile) | **POST** /entity/counterparty/{id}/files | Добавить файл к контрагенту |
+| [**addCounterpartyFiles()**](CounterpartiesApi.md#addCounterpartyFiles) | **POST** /entity/counterparty/{id}/files/batch | Добавить файлы к контрагенту |
 | [**createCounterpartiesBatch()**](CounterpartiesApi.md#createCounterpartiesBatch) | **POST** /entity/counterparty/batch | Создать или изменить контрагентов |
 | [**createCounterparty()**](CounterpartiesApi.md#createCounterparty) | **POST** /entity/counterparty | Создать контрагента |
 | [**createCounterpartyAccount()**](CounterpartiesApi.md#createCounterpartyAccount) | **POST** /entity/counterparty/{id}/accounts | Создать счёт контрагента |
+| [**createCounterpartyAccounts()**](CounterpartiesApi.md#createCounterpartyAccounts) | **POST** /entity/counterparty/{id}/accounts/batch | Массовое создание и обновление счетов контрагента |
 | [**createCounterpartyContactPerson()**](CounterpartiesApi.md#createCounterpartyContactPerson) | **POST** /entity/counterparty/{id}/contactpersons | Создать контактное лицо контрагента |
+| [**createCounterpartyContactPersons()**](CounterpartiesApi.md#createCounterpartyContactPersons) | **POST** /entity/counterparty/{id}/contactpersons/batch | Массовое создание и обновление контактных лиц контрагента |
 | [**createCounterpartyMetadataAttribute()**](CounterpartiesApi.md#createCounterpartyMetadataAttribute) | **POST** /entity/counterparty/metadata/attributes | Создать доп. поле контрагента |
 | [**createCounterpartyMetadataState()**](CounterpartiesApi.md#createCounterpartyMetadataState) | **POST** /entity/counterparty/metadata/states | Создать статус Counterparty |
 | [**createCounterpartyNote()**](CounterpartiesApi.md#createCounterpartyNote) | **POST** /entity/counterparty/{id}/notes | Создать событие контрагента |
+| [**createCounterpartyNotes()**](CounterpartiesApi.md#createCounterpartyNotes) | **POST** /entity/counterparty/{id}/notes/batch | Массовое создание и обновление событий контрагента |
 | [**deleteCounterpartiesBatch()**](CounterpartiesApi.md#deleteCounterpartiesBatch) | **POST** /entity/counterparty/delete | Удалить контрагентов |
 | [**deleteCounterparty()**](CounterpartiesApi.md#deleteCounterparty) | **DELETE** /entity/counterparty/{id} | Удалить контрагента |
 | [**deleteCounterpartyAccount()**](CounterpartiesApi.md#deleteCounterpartyAccount) | **DELETE** /entity/counterparty/{id}/accounts/{accountId} | Удалить счёт контрагента |
@@ -40,6 +44,79 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**updateCounterpartyMetadataStateById()**](CounterpartiesApi.md#updateCounterpartyMetadataStateById) | **PUT** /entity/counterparty/metadata/states/{id} | Обновить отдельный статус Контрагента |
 | [**updateCounterpartyNote()**](CounterpartiesApi.md#updateCounterpartyNote) | **PUT** /entity/counterparty/{id}/notes/{noteId} | Обновить событие контрагента |
 
+
+## `addCounterpartyFile()`
+
+```php
+addCounterpartyFile($id, $file_upload, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\File[]
+```
+
+Добавить файл к контрагенту
+
+Добавить новый Файл к Контрагенту. В поле `content` нужно указать файл, закодированный в Base64, в поле `filename` — имя файла с расширением.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$file_upload = {filename=doc.pdf, content=SGVsbG8gV29ybGQ=}; // \OpenAPI\Client\Model\FileUpload
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->addCounterpartyFile($id, $file_upload, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CounterpartiesApi->addCounterpartyFile: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **file_upload** | [**\OpenAPI\Client\Model\FileUpload**](../Model/FileUpload.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\File[]**](../Model/File.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `addCounterpartyFiles()`
 
@@ -333,6 +410,79 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `createCounterpartyAccounts()`
+
+```php
+createCounterpartyAccounts($id, $account, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
+```
+
+Массовое создание и обновление счетов контрагента
+
+В теле запроса передается массив счетов. Для создания счета требуется accountNumber, для обновления — метаданные (meta).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$account = array(new \OpenAPI\Client\Model\Account()); // \OpenAPI\Client\Model\Account[]
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createCounterpartyAccounts($id, $account, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CounterpartiesApi->createCounterpartyAccounts: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **account** | [**\OpenAPI\Client\Model\Account[]**](../Model/Account.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `createCounterpartyContactPerson()`
 
 ```php
@@ -392,6 +542,79 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\ContactPerson[]**](../Model/ContactPerson.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createCounterpartyContactPersons()`
+
+```php
+createCounterpartyContactPersons($id, $contact_person, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
+```
+
+Массовое создание и обновление контактных лиц контрагента
+
+В теле запроса передается массив контактных лиц. Для создания требуется name, для обновления — метаданные (meta).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$contact_person = array(new \OpenAPI\Client\Model\ContactPerson()); // \OpenAPI\Client\Model\ContactPerson[]
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createCounterpartyContactPersons($id, $contact_person, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CounterpartiesApi->createCounterpartyContactPersons: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **contact_person** | [**\OpenAPI\Client\Model\ContactPerson[]**](../Model/ContactPerson.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -605,6 +828,79 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\Note[]**](../Model/Note.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createCounterpartyNotes()`
+
+```php
+createCounterpartyNotes($id, $note, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
+```
+
+Массовое создание и обновление событий контрагента
+
+В теле запроса передается массив событий. Для создания события требуется description, для обновления — метаданные (meta).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\CounterpartiesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$note = array(new \OpenAPI\Client\Model\Note()); // \OpenAPI\Client\Model\Note[]
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createCounterpartyNotes($id, $note, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CounterpartiesApi->createCounterpartyNotes: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **note** | [**\OpenAPI\Client\Model\Note[]**](../Model/Note.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -1611,7 +1907,7 @@ try {
 ## `getCounterpartyFiles()`
 
 ```php
-getCounterpartyFiles($id, $limit, $offset, $accept, $accept_encoding): \OpenAPI\Client\Model\GetProductFiles200Response
+getCounterpartyFiles($id, $limit, $offset, $accept, $accept_encoding): \OpenAPI\Client\Model\GetTaskFiles200Response
 ```
 
 Получить файлы контрагента
@@ -1666,7 +1962,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetProductFiles200Response**](../Model/GetProductFiles200Response.md)
+[**\OpenAPI\Client\Model\GetTaskFiles200Response**](../Model/GetTaskFiles200Response.md)
 
 ### Authorization
 

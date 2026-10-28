@@ -72,6 +72,18 @@ class PaymentInsApiTest extends TestCase
     }
 
     /**
+     * Test case for addPaymentInFile
+     *
+     * Добавить файл к входящему платежу.
+     *
+     */
+    public function testAddPaymentInFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for addPaymentInFiles
      *
      * Добавить файлы к входящему платежу.

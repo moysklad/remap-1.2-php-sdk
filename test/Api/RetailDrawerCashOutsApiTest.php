@@ -72,6 +72,18 @@ class RetailDrawerCashOutsApiTest extends TestCase
     }
 
     /**
+     * Test case for addRetailDrawerCashOutFile
+     *
+     * Добавить файл к выплате денег.
+     *
+     */
+    public function testAddRetailDrawerCashOutFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for addRetailDrawerCashOutFiles
      *
      * Добавить файлы к выплате денег.

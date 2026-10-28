@@ -72,6 +72,30 @@ class LossesApiTest extends TestCase
     }
 
     /**
+     * Test case for addLossFile
+     *
+     * Добавить файл к Списанию.
+     *
+     */
+    public function testAddLossFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for addLossFiles
+     *
+     * Добавить файлы к Списанию.
+     *
+     */
+    public function testAddLossFiles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createLoss
      *
      * Создать Списание.
@@ -180,6 +204,18 @@ class LossesApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteLossFile
+     *
+     * Удалить файл Списания.
+     *
+     */
+    public function testDeleteLossFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteLossMetadataAttributeById
      *
      * Удалить отдельное доп. поле Списания.
@@ -234,6 +270,18 @@ class LossesApiTest extends TestCase
      *
      */
     public function testGetLossById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getLossFiles
+     *
+     * Получить файлы Списания.
+     *
+     */
+    public function testGetLossFiles()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -72,6 +72,18 @@ class PriceListsApiTest extends TestCase
     }
 
     /**
+     * Test case for addPriceListFile
+     *
+     * Добавить файл к Прайс-листу.
+     *
+     */
+    public function testAddPriceListFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for addPriceListFiles
      *
      * Добавить файлы к Прайс-листу.

@@ -83,10 +83,16 @@ class ProcessingPlansApi
         'createProcessingPlanMaterials' => [
             'application/json',
         ],
+        'createProcessingPlanMaterialsBatch' => [
+            'application/json',
+        ],
         'createProcessingPlanMetadataAttribute' => [
             'application/json',
         ],
         'createProcessingPlanProducts' => [
+            'application/json',
+        ],
+        'createProcessingPlanProductsBatch' => [
             'application/json',
         ],
         'deleteProcessingPlan' => [
@@ -156,6 +162,9 @@ class ProcessingPlansApi
             'application/json',
         ],
         'updateProcessingPlanStage' => [
+            'application/json',
+        ],
+        'updateProcessingPlanStages' => [
             'application/json',
         ],
     ];
@@ -1196,6 +1205,327 @@ class ProcessingPlansApi
     }
 
     /**
+     * Operation createProcessingPlanMaterialsBatch
+     *
+     * Массовое создание и обновление материалов техкарты
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\ProcessingPlanMaterial[] $processing_plan_material processing_plan_material (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProcessingPlanMaterialsBatch'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors
+     */
+    public function createProcessingPlanMaterialsBatch($id, $processing_plan_material, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingPlanMaterialsBatch'][0])
+    {
+        list($response) = $this->createProcessingPlanMaterialsBatchWithHttpInfo($id, $processing_plan_material, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createProcessingPlanMaterialsBatchWithHttpInfo
+     *
+     * Массовое создание и обновление материалов техкарты
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\ProcessingPlanMaterial[] $processing_plan_material (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProcessingPlanMaterialsBatch'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createProcessingPlanMaterialsBatchWithHttpInfo($id, $processing_plan_material, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingPlanMaterialsBatch'][0])
+    {
+        $request = $this->createProcessingPlanMaterialsBatchRequest($id, $processing_plan_material, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        try {
+            $options = $this->createHttpClientOption();
+            $options[RequestOptions::HTTP_ERRORS] = false;
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            return $this->handleResponseMassWithDataType(
+                '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Errors',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+    /**
+     * Operation createProcessingPlanMaterialsBatchAsync
+     *
+     * Массовое создание и обновление материалов техкарты
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\ProcessingPlanMaterial[] $processing_plan_material (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProcessingPlanMaterialsBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createProcessingPlanMaterialsBatchAsync($id, $processing_plan_material, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingPlanMaterialsBatch'][0])
+    {
+        return $this->createProcessingPlanMaterialsBatchAsyncWithHttpInfo($id, $processing_plan_material, $expand, $accept, $accept_encoding, $content_type, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createProcessingPlanMaterialsBatchAsyncWithHttpInfo
+     *
+     * Массовое создание и обновление материалов техкарты
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\ProcessingPlanMaterial[] $processing_plan_material (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProcessingPlanMaterialsBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createProcessingPlanMaterialsBatchAsyncWithHttpInfo($id, $processing_plan_material, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingPlanMaterialsBatch'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
+        $request = $this->createProcessingPlanMaterialsBatchRequest($id, $processing_plan_material, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
+        $options[RequestOptions::HTTP_ERRORS] = false;
+
+        return $this->client
+            ->sendAsync($request, $options)
+            ->then(
+                function ($response) use ($returnType, $request) {
+                    return $this->handleResponseMassWithDataType(
+                        $returnType,
+                        $request,
+                        $response,
+                    );
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createProcessingPlanMaterialsBatch'
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\ProcessingPlanMaterial[] $processing_plan_material (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProcessingPlanMaterialsBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createProcessingPlanMaterialsBatchRequest($id, $processing_plan_material, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingPlanMaterialsBatch'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling createProcessingPlanMaterialsBatch'
+            );
+        }
+
+        // verify the required parameter 'processing_plan_material' is set
+        if ($processing_plan_material === null || (is_array($processing_plan_material) && count($processing_plan_material) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $processing_plan_material when calling createProcessingPlanMaterialsBatch'
+            );
+        }
+        if (count($processing_plan_material) > 1000) {
+            throw new \InvalidArgumentException('invalid value for "$processing_plan_material" when calling ProcessingPlansApi.createProcessingPlanMaterialsBatch, number of items must be less than or equal to 1000.');
+        }
+        if (count($processing_plan_material) < 1) {
+            throw new \InvalidArgumentException('invalid value for "$processing_plan_material" when calling ProcessingPlansApi.createProcessingPlanMaterialsBatch, number of items must be greater than or equal to 1.');
+        }
+        
+
+
+
+
+
+        $resourcePath = '/entity/processingplan/{id}/materials/batch';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $expand,
+            'expand', // param base name
+            'string', // openApiType
+            '', // style
+            false, // explode
+            false // required
+        ) ?? []);
+
+        // header params
+        if ($accept !== null) {
+            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+        }
+        // header params
+        if ($accept_encoding !== null) {
+            $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+        // header params
+        if ($content_type !== null) {
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
+        }
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{id}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'text/html;charset=UTF-8', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($processing_plan_material)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($processing_plan_material));
+            } else {
+                $httpBody = $processing_plan_material;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation createProcessingPlanMetadataAttribute
      *
      * Создать Доп. поле ProcessingPlan
@@ -1529,7 +1859,7 @@ class ProcessingPlansApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ProcessingPlanProduct|\OpenAPI\Client\Model\Errors
+     * @return \OpenAPI\Client\Model\ProcessingPlanProduct[]|\OpenAPI\Client\Model\Errors
      */
     public function createProcessingPlanProducts($id, $processing_plan_product, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingPlanProducts'][0])
     {
@@ -1552,7 +1882,7 @@ class ProcessingPlansApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ProcessingPlanProduct|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\ProcessingPlanProduct[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
     public function createProcessingPlanProductsWithHttpInfo($id, $processing_plan_product, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingPlanProducts'][0])
     {
@@ -1584,7 +1914,7 @@ class ProcessingPlansApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ProcessingPlanProduct',
+                        '\OpenAPI\Client\Model\ProcessingPlanProduct[]',
                         $request,
                         $response
                     );
@@ -1612,7 +1942,7 @@ class ProcessingPlansApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\ProcessingPlanProduct',
+                '\OpenAPI\Client\Model\ProcessingPlanProduct[]',
                 $request,
                 $response
             );
@@ -1621,7 +1951,7 @@ class ProcessingPlansApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ProcessingPlanProduct',
+                        '\OpenAPI\Client\Model\ProcessingPlanProduct[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1684,7 +2014,7 @@ class ProcessingPlansApi
      */
     public function createProcessingPlanProductsAsyncWithHttpInfo($id, $processing_plan_product, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingPlanProducts'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\ProcessingPlanProduct';
+        $returnType = '\OpenAPI\Client\Model\ProcessingPlanProduct[]';
         $request = $this->createProcessingPlanProductsRequest($id, $processing_plan_product, $expand, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
 
@@ -1761,6 +2091,327 @@ class ProcessingPlansApi
 
 
         $resourcePath = '/entity/processingplan/{id}/products';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $expand,
+            'expand', // param base name
+            'string', // openApiType
+            '', // style
+            false, // explode
+            false // required
+        ) ?? []);
+
+        // header params
+        if ($accept !== null) {
+            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+        }
+        // header params
+        if ($accept_encoding !== null) {
+            $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+        // header params
+        if ($content_type !== null) {
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
+        }
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{id}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'text/html;charset=UTF-8', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($processing_plan_product)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($processing_plan_product));
+            } else {
+                $httpBody = $processing_plan_product;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createProcessingPlanProductsBatch
+     *
+     * Массовое создание и обновление продуктов техкарты
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\ProcessingPlanProduct[] $processing_plan_product processing_plan_product (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProcessingPlanProductsBatch'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors
+     */
+    public function createProcessingPlanProductsBatch($id, $processing_plan_product, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingPlanProductsBatch'][0])
+    {
+        list($response) = $this->createProcessingPlanProductsBatchWithHttpInfo($id, $processing_plan_product, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createProcessingPlanProductsBatchWithHttpInfo
+     *
+     * Массовое создание и обновление продуктов техкарты
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\ProcessingPlanProduct[] $processing_plan_product (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProcessingPlanProductsBatch'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createProcessingPlanProductsBatchWithHttpInfo($id, $processing_plan_product, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingPlanProductsBatch'][0])
+    {
+        $request = $this->createProcessingPlanProductsBatchRequest($id, $processing_plan_product, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        try {
+            $options = $this->createHttpClientOption();
+            $options[RequestOptions::HTTP_ERRORS] = false;
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            return $this->handleResponseMassWithDataType(
+                '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Errors',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+    /**
+     * Operation createProcessingPlanProductsBatchAsync
+     *
+     * Массовое создание и обновление продуктов техкарты
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\ProcessingPlanProduct[] $processing_plan_product (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProcessingPlanProductsBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createProcessingPlanProductsBatchAsync($id, $processing_plan_product, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingPlanProductsBatch'][0])
+    {
+        return $this->createProcessingPlanProductsBatchAsyncWithHttpInfo($id, $processing_plan_product, $expand, $accept, $accept_encoding, $content_type, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createProcessingPlanProductsBatchAsyncWithHttpInfo
+     *
+     * Массовое создание и обновление продуктов техкарты
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\ProcessingPlanProduct[] $processing_plan_product (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProcessingPlanProductsBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createProcessingPlanProductsBatchAsyncWithHttpInfo($id, $processing_plan_product, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingPlanProductsBatch'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
+        $request = $this->createProcessingPlanProductsBatchRequest($id, $processing_plan_product, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
+        $options[RequestOptions::HTTP_ERRORS] = false;
+
+        return $this->client
+            ->sendAsync($request, $options)
+            ->then(
+                function ($response) use ($returnType, $request) {
+                    return $this->handleResponseMassWithDataType(
+                        $returnType,
+                        $request,
+                        $response,
+                    );
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createProcessingPlanProductsBatch'
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\ProcessingPlanProduct[] $processing_plan_product (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProcessingPlanProductsBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createProcessingPlanProductsBatchRequest($id, $processing_plan_product, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createProcessingPlanProductsBatch'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling createProcessingPlanProductsBatch'
+            );
+        }
+
+        // verify the required parameter 'processing_plan_product' is set
+        if ($processing_plan_product === null || (is_array($processing_plan_product) && count($processing_plan_product) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $processing_plan_product when calling createProcessingPlanProductsBatch'
+            );
+        }
+        if (count($processing_plan_product) > 1000) {
+            throw new \InvalidArgumentException('invalid value for "$processing_plan_product" when calling ProcessingPlansApi.createProcessingPlanProductsBatch, number of items must be less than or equal to 1000.');
+        }
+        if (count($processing_plan_product) < 1) {
+            throw new \InvalidArgumentException('invalid value for "$processing_plan_product" when calling ProcessingPlansApi.createProcessingPlanProductsBatch, number of items must be greater than or equal to 1.');
+        }
+        
+
+
+
+
+
+        $resourcePath = '/entity/processingplan/{id}/products/batch';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -9579,6 +10230,327 @@ class ProcessingPlansApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation updateProcessingPlanStages
+     *
+     * Массовое изменение этапов Техкарты
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\ProcessingPlanStage[] $processing_plan_stage processing_plan_stage (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateProcessingPlanStages'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors
+     */
+    public function updateProcessingPlanStages($id, $processing_plan_stage, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateProcessingPlanStages'][0])
+    {
+        list($response) = $this->updateProcessingPlanStagesWithHttpInfo($id, $processing_plan_stage, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation updateProcessingPlanStagesWithHttpInfo
+     *
+     * Массовое изменение этапов Техкарты
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\ProcessingPlanStage[] $processing_plan_stage (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateProcessingPlanStages'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updateProcessingPlanStagesWithHttpInfo($id, $processing_plan_stage, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateProcessingPlanStages'][0])
+    {
+        $request = $this->updateProcessingPlanStagesRequest($id, $processing_plan_stage, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        try {
+            $options = $this->createHttpClientOption();
+            $options[RequestOptions::HTTP_ERRORS] = false;
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            return $this->handleResponseMassWithDataType(
+                '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Errors',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+    /**
+     * Operation updateProcessingPlanStagesAsync
+     *
+     * Массовое изменение этапов Техкарты
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\ProcessingPlanStage[] $processing_plan_stage (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateProcessingPlanStages'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateProcessingPlanStagesAsync($id, $processing_plan_stage, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateProcessingPlanStages'][0])
+    {
+        return $this->updateProcessingPlanStagesAsyncWithHttpInfo($id, $processing_plan_stage, $expand, $accept, $accept_encoding, $content_type, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateProcessingPlanStagesAsyncWithHttpInfo
+     *
+     * Массовое изменение этапов Техкарты
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\ProcessingPlanStage[] $processing_plan_stage (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateProcessingPlanStages'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateProcessingPlanStagesAsyncWithHttpInfo($id, $processing_plan_stage, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateProcessingPlanStages'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
+        $request = $this->updateProcessingPlanStagesRequest($id, $processing_plan_stage, $expand, $accept, $accept_encoding, $content_type, $contentType);
+        $options = $this->createHttpClientOption();
+        $options[RequestOptions::HTTP_ERRORS] = false;
+
+        return $this->client
+            ->sendAsync($request, $options)
+            ->then(
+                function ($response) use ($returnType, $request) {
+                    return $this->handleResponseMassWithDataType(
+                        $returnType,
+                        $request,
+                        $response,
+                    );
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updateProcessingPlanStages'
+     *
+     * @param  string $id ID сущности (required)
+     * @param  \OpenAPI\Client\Model\ProcessingPlanStage[] $processing_plan_stage (required)
+     * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
+     * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
+     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $content_type (optional, default to 'application/json')
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateProcessingPlanStages'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function updateProcessingPlanStagesRequest($id, $processing_plan_stage, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateProcessingPlanStages'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling updateProcessingPlanStages'
+            );
+        }
+
+        // verify the required parameter 'processing_plan_stage' is set
+        if ($processing_plan_stage === null || (is_array($processing_plan_stage) && count($processing_plan_stage) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $processing_plan_stage when calling updateProcessingPlanStages'
+            );
+        }
+        if (count($processing_plan_stage) > 1000) {
+            throw new \InvalidArgumentException('invalid value for "$processing_plan_stage" when calling ProcessingPlansApi.updateProcessingPlanStages, number of items must be less than or equal to 1000.');
+        }
+        if (count($processing_plan_stage) < 1) {
+            throw new \InvalidArgumentException('invalid value for "$processing_plan_stage" when calling ProcessingPlansApi.updateProcessingPlanStages, number of items must be greater than or equal to 1.');
+        }
+        
+
+
+
+
+
+        $resourcePath = '/entity/processingplan/{id}/stages/batch';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $expand,
+            'expand', // param base name
+            'string', // openApiType
+            '', // style
+            false, // explode
+            false // required
+        ) ?? []);
+
+        // header params
+        if ($accept !== null) {
+            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+        }
+        // header params
+        if ($accept_encoding !== null) {
+            $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+        // header params
+        if ($content_type !== null) {
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
+        }
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{id}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'text/html;charset=UTF-8', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($processing_plan_stage)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($processing_plan_stage));
+            } else {
+                $httpBody = $processing_plan_stage;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

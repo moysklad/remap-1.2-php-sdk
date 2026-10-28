@@ -72,6 +72,18 @@ class SuppliesApiTest extends TestCase
     }
 
     /**
+     * Test case for addSupplyFile
+     *
+     * Добавить файл к Приемке.
+     *
+     */
+    public function testAddSupplyFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for addSupplyFiles
      *
      * Добавить файлы к Приемке.

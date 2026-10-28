@@ -1,5 +1,5 @@
 {
-    "name": "moysklad/php-remap-1.2-sdk",
+    "name": "moysklad/remap-1.2-php-sdk",
     "type": "library",
     "description": "SDK for manipulating entities and creating reports in the MoySklad online service.",
     "keywords": [
@@ -15,7 +15,7 @@
         "Remap 1.2"
     ],
     "homepage": "https://dev.moysklad.ru/",
-    "license": "unlicense",
+    "license": "Apache-2.0",
     "authors": [
         {
             "name": "OpenAPI",

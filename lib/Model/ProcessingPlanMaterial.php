@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ProcessingPlanMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
+class ProcessingPlanMaterial extends EntityWithMeta 
 {
     public const DISCRIMINATOR = null;
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
@@ -138,7 +138,7 @@ class ProcessingPlanMaterial implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -148,7 +148,7 @@ class ProcessingPlanMaterial implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -189,7 +189,7 @@ class ProcessingPlanMaterial implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables;
+        return self::$openAPINullables + parent::openAPINullables();
     }
 
     /**
@@ -291,7 +291,7 @@ class ProcessingPlanMaterial implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -301,7 +301,7 @@ class ProcessingPlanMaterial implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -311,7 +311,7 @@ class ProcessingPlanMaterial implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -326,13 +326,6 @@ class ProcessingPlanMaterial implements ModelInterface, ArrayAccess, \JsonSerial
 
 
     
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-    
 
     /**
      * Constructor
@@ -342,6 +335,9 @@ class ProcessingPlanMaterial implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(?array $data = null)
     {
+        
+        parent::__construct($data);
+
         
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -379,8 +375,8 @@ class ProcessingPlanMaterial implements ModelInterface, ArrayAccess, \JsonSerial
     public function listInvalidProperties()
     {
         
+        $invalidProperties = parent::listInvalidProperties();
         
-        $invalidProperties = [];
         
 
         if (!is_null($this->container['quantity']) && ($this->container['quantity'] < 0.00010)) {

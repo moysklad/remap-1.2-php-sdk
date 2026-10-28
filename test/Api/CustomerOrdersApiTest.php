@@ -72,6 +72,30 @@ class CustomerOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for addCustomerOrderFile
+     *
+     * Добавить файл к Заказу покупателя.
+     *
+     */
+    public function testAddCustomerOrderFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for addCustomerOrderFiles
+     *
+     * Добавить файлы к Заказу покупателя.
+     *
+     */
+    public function testAddCustomerOrderFiles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createCustomerOrder
      *
      * Создать CustomerOrders.
@@ -216,6 +240,18 @@ class CustomerOrdersApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteCustomerOrderFile
+     *
+     * Удалить файл Заказа покупателя.
+     *
+     */
+    public function testDeleteCustomerOrderFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteCustomerOrderMetadataAttributeById
      *
      * Удалить отдельное доп. поле CustomerOrder.
@@ -318,6 +354,18 @@ class CustomerOrdersApiTest extends TestCase
      *
      */
     public function testGetCustomerOrderById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getCustomerOrderFiles
+     *
+     * Получить файлы Заказа покупателя.
+     *
+     */
+    public function testGetCustomerOrderFiles()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

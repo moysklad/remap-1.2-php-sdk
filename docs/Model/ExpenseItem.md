@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **meta** | [**\OpenAPI\Client\Model\Meta**](Meta.md) |  | [optional]
 **id** | **string** | ID Статьи расходов | [optional] [readonly]
 **account_id** | **string** | ID учетной записи | [optional] [readonly]
+**archived** | **bool** | Добавлена ли Статья расходов в архив | [optional]
 **code** | **string** | Код Статьи расходов | [optional]
 **description** | **string** | Описание Статьи расходов | [optional]
 **external_code** | **string** | Внешний код Статьи расходов | [optional]

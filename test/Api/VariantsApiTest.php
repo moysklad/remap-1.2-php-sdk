@@ -72,12 +72,60 @@ class VariantsApiTest extends TestCase
     }
 
     /**
+     * Test case for addVariantImage
+     *
+     * Добавить изображение к Модификации.
+     *
+     */
+    public function testAddVariantImage()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for addVariantImages
+     *
+     * Изменить список изображений Модификации.
+     *
+     */
+    public function testAddVariantImages()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createVariant
      *
      * Создать Модификацию.
      *
      */
     public function testCreateVariant()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for createVariantStoreBalance
+     *
+     * Создать НСО модификации для склада.
+     *
+     */
+    public function testCreateVariantStoreBalance()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for createVariantStoreBalances
+     *
+     * Массовое создание и обновление неснижаемых остатков модификации.
+     *
+     */
+    public function testCreateVariantStoreBalances()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -108,6 +156,54 @@ class VariantsApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteVariantImage
+     *
+     * Удалить изображение Модификации.
+     *
+     */
+    public function testDeleteVariantImage()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteVariantImages
+     *
+     * Массовое удаление изображений Модификации.
+     *
+     */
+    public function testDeleteVariantImages()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteVariantStoreBalance
+     *
+     * Удалить НСО модификации по складу.
+     *
+     */
+    public function testDeleteVariantStoreBalance()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteVariantStoreBalances
+     *
+     * Массовое удаление НСО модификации по складам.
+     *
+     */
+    public function testDeleteVariantStoreBalances()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteVariantsBatch
      *
      * Массовое удаление Модификаций.
@@ -132,12 +228,48 @@ class VariantsApiTest extends TestCase
     }
 
     /**
+     * Test case for getVariantImages
+     *
+     * Получить изображения Модификации.
+     *
+     */
+    public function testGetVariantImages()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getVariantMetadata
      *
      * Метаданные Модификаций.
      *
      */
     public function testGetVariantMetadata()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getVariantStoreBalanceById
+     *
+     * Получить НСО модификации по складу.
+     *
+     */
+    public function testGetVariantStoreBalanceById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getVariantStoreBalances
+     *
+     * Получить НСО модификации по складам.
+     *
+     */
+    public function testGetVariantStoreBalances()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -162,6 +294,18 @@ class VariantsApiTest extends TestCase
      *
      */
     public function testUpdateVariant()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateVariantStoreBalance
+     *
+     * Изменить НСО модификации по складу.
+     *
+     */
+    public function testUpdateVariantStoreBalance()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

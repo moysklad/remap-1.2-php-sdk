@@ -83,6 +83,7 @@ class ExpenseItem extends EntityWithMeta
         'meta' => '\OpenAPI\Client\Model\Meta',
         'id' => 'string',
         'account_id' => 'string',
+        'archived' => 'bool',
         'code' => 'string',
         'description' => 'string',
         'external_code' => 'string',
@@ -101,6 +102,7 @@ class ExpenseItem extends EntityWithMeta
         'meta' => null,
         'id' => 'uuid',
         'account_id' => 'uuid',
+        'archived' => null,
         'code' => null,
         'description' => null,
         'external_code' => null,
@@ -117,6 +119,7 @@ class ExpenseItem extends EntityWithMeta
         'meta' => false,
         'id' => false,
         'account_id' => false,
+        'archived' => false,
         'code' => false,
         'description' => false,
         'external_code' => false,
@@ -244,6 +247,7 @@ class ExpenseItem extends EntityWithMeta
         'meta' => 'meta',
         'id' => 'id',
         'account_id' => 'accountId',
+        'archived' => 'archived',
         'code' => 'code',
         'description' => 'description',
         'external_code' => 'externalCode',
@@ -260,6 +264,7 @@ class ExpenseItem extends EntityWithMeta
         'meta' => 'setMeta',
         'id' => 'setId',
         'account_id' => 'setAccountId',
+        'archived' => 'setArchived',
         'code' => 'setCode',
         'description' => 'setDescription',
         'external_code' => 'setExternalCode',
@@ -276,6 +281,7 @@ class ExpenseItem extends EntityWithMeta
         'meta' => 'getMeta',
         'id' => 'getId',
         'account_id' => 'getAccountId',
+        'archived' => 'getArchived',
         'code' => 'getCode',
         'description' => 'getDescription',
         'external_code' => 'getExternalCode',
@@ -342,6 +348,7 @@ class ExpenseItem extends EntityWithMeta
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('account_id', $data ?? [], null);
+        $this->setIfExists('archived', $data ?? [], null);
         $this->setIfExists('code', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('external_code', $data ?? [], null);
@@ -487,6 +494,33 @@ class ExpenseItem extends EntityWithMeta
             throw new \InvalidArgumentException('non-nullable account_id cannot be null');
         }
         $this->container['account_id'] = $account_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets archived
+     *
+     * @return bool|null
+     */
+    public function getArchived()
+    {
+        return $this->container['archived'];
+    }
+
+    /**
+     * Sets archived
+     *
+     * @param bool|null $archived Добавлена ли Статья расходов в архив
+     *
+     * @return self
+     */
+    public function setArchived($archived)
+    {
+        if (is_null($archived)) {
+            throw new \InvalidArgumentException('non-nullable archived cannot be null');
+        }
+        $this->container['archived'] = $archived;
 
         return $this;
     }

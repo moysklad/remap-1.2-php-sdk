@@ -72,6 +72,18 @@ class PaymentOutsApiTest extends TestCase
     }
 
     /**
+     * Test case for addPaymentOutFile
+     *
+     * Добавить файл.
+     *
+     */
+    public function testAddPaymentOutFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for addPaymentOutFiles
      *
      * Добавить файлы.

@@ -108,6 +108,18 @@ class ProcessingPlansApiTest extends TestCase
     }
 
     /**
+     * Test case for createProcessingPlanMaterialsBatch
+     *
+     * Массовое создание и обновление материалов техкарты.
+     *
+     */
+    public function testCreateProcessingPlanMaterialsBatch()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createProcessingPlanMetadataAttribute
      *
      * Создать Доп. поле ProcessingPlan.
@@ -126,6 +138,18 @@ class ProcessingPlansApiTest extends TestCase
      *
      */
     public function testCreateProcessingPlanProducts()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for createProcessingPlanProductsBatch
+     *
+     * Массовое создание и обновление продуктов техкарты.
+     *
+     */
+    public function testCreateProcessingPlanProductsBatch()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -402,6 +426,18 @@ class ProcessingPlansApiTest extends TestCase
      *
      */
     public function testUpdateProcessingPlanStage()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateProcessingPlanStages
+     *
+     * Массовое изменение этапов Техкарты.
+     *
+     */
+    public function testUpdateProcessingPlanStages()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

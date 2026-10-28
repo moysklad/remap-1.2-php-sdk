@@ -72,6 +72,18 @@ class InventoriesApiTest extends TestCase
     }
 
     /**
+     * Test case for addInventoryFile
+     *
+     * Добавить файл к Инвентаризации.
+     *
+     */
+    public function testAddInventoryFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for addInventoryFiles
      *
      * Добавить файлы к Инвентаризации.

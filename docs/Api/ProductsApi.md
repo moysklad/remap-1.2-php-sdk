@@ -4,12 +4,14 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**addProductFiles()**](ProductsApi.md#addProductFiles) | **POST** /entity/product/{id}/files | Добавить файлы к товару |
+| [**addProductFile()**](ProductsApi.md#addProductFile) | **POST** /entity/product/{id}/files | Добавить файл к товару |
+| [**addProductFiles()**](ProductsApi.md#addProductFiles) | **POST** /entity/product/{id}/files/batch | Добавить файлы к товару |
 | [**addProductImage()**](ProductsApi.md#addProductImage) | **POST** /entity/product/{id}/images | Добавить изображение к товару |
 | [**addProductImages()**](ProductsApi.md#addProductImages) | **POST** /entity/product/{id}/images/batch | Изменить список изображений товара |
 | [**createProduct()**](ProductsApi.md#createProduct) | **POST** /entity/product | Создать товар |
 | [**createProductMetadataAttribute()**](ProductsApi.md#createProductMetadataAttribute) | **POST** /entity/product/metadata/attributes | Создать доп. поле товара |
 | [**createProductStoreBalance()**](ProductsApi.md#createProductStoreBalance) | **POST** /entity/product/{id}/storebalances | Создать НСО товара для склада |
+| [**createProductStoreBalances()**](ProductsApi.md#createProductStoreBalances) | **POST** /entity/product/{id}/storebalances/batch | Массовое создание и обновление неснижаемых остатков товара |
 | [**createProductsBatch()**](ProductsApi.md#createProductsBatch) | **POST** /entity/product/batch | Создать или изменить товары |
 | [**deleteProduct()**](ProductsApi.md#deleteProduct) | **DELETE** /entity/product/{id} | Удалить товар |
 | [**deleteProductFile()**](ProductsApi.md#deleteProductFile) | **DELETE** /entity/product/{id}/files/{fileId} | Удалить файл товара |
@@ -32,6 +34,79 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**updateProductMetadataAttributeById()**](ProductsApi.md#updateProductMetadataAttributeById) | **PUT** /entity/product/metadata/attributes/{id} | Обновить отдельное доп. поле товара |
 | [**updateProductStoreBalance()**](ProductsApi.md#updateProductStoreBalance) | **PUT** /entity/product/{id}/storebalances/{storeBalanceId} | Изменить НСО товара по складу |
 
+
+## `addProductFile()`
+
+```php
+addProductFile($id, $file_upload, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\File[]
+```
+
+Добавить файл к товару
+
+Добавить новый Файл к Товару. В поле `content` нужно указать файл, закодированный в Base64, в поле `filename` — имя файла с расширением.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\ProductsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$file_upload = {filename=doc.pdf, content=SGVsbG8gV29ybGQ=}; // \OpenAPI\Client\Model\FileUpload
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->addProductFile($id, $file_upload, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProductsApi->addProductFile: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **file_upload** | [**\OpenAPI\Client\Model\FileUpload**](../Model/FileUpload.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\File[]**](../Model/File.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `addProductFiles()`
 
@@ -455,6 +530,79 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\StoreBalance[]**](../Model/StoreBalance.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createProductStoreBalances()`
+
+```php
+createProductStoreBalances($id, $store_balance, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
+```
+
+Массовое создание и обновление неснижаемых остатков товара
+
+В теле запроса передается массив неснижаемых остатков по складам. Для создания требуются store и quantity, для обновления — метаданные (meta).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\ProductsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$store_balance = array(new \OpenAPI\Client\Model\StoreBalance()); // \OpenAPI\Client\Model\StoreBalance[]
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createProductStoreBalances($id, $store_balance, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProductsApi->createProductStoreBalances: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **store_balance** | [**\OpenAPI\Client\Model\StoreBalance[]**](../Model/StoreBalance.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -1244,7 +1392,7 @@ try {
 ## `getProductFiles()`
 
 ```php
-getProductFiles($id, $limit, $offset, $accept, $accept_encoding): \OpenAPI\Client\Model\GetProductFiles200Response
+getProductFiles($id, $limit, $offset, $accept, $accept_encoding): \OpenAPI\Client\Model\GetTaskFiles200Response
 ```
 
 Получить файлы товара
@@ -1299,7 +1447,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetProductFiles200Response**](../Model/GetProductFiles200Response.md)
+[**\OpenAPI\Client\Model\GetTaskFiles200Response**](../Model/GetTaskFiles200Response.md)
 
 ### Authorization
 

@@ -72,6 +72,18 @@ class CommissionReportOutsApiTest extends TestCase
     }
 
     /**
+     * Test case for addCommissionReportOutFile
+     *
+     * Добавить файл к Выданному отчету комиссионера.
+     *
+     */
+    public function testAddCommissionReportOutFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for addCommissionReportOutFiles
      *
      * Добавить файлы к Выданному отчету комиссионера.

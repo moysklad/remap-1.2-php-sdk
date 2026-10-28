@@ -72,6 +72,30 @@ class DemandsApiTest extends TestCase
     }
 
     /**
+     * Test case for addDemandFile
+     *
+     * Добавить файл к Отгрузке.
+     *
+     */
+    public function testAddDemandFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for addDemandFiles
+     *
+     * Добавить файлы к Отгрузке.
+     *
+     */
+    public function testAddDemandFiles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createDemand
      *
      * Создать Отгрузку.
@@ -180,6 +204,18 @@ class DemandsApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteDemandFile
+     *
+     * Удалить файл Отгрузки.
+     *
+     */
+    public function testDeleteDemandFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteDemandMetadataAttributeById
      *
      * Удалить отдельное доп. поле Отгрузки.
@@ -234,6 +270,18 @@ class DemandsApiTest extends TestCase
      *
      */
     public function testGetDemandById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getDemandFiles
+     *
+     * Получить файлы Отгрузки.
+     *
+     */
+    public function testGetDemandFiles()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

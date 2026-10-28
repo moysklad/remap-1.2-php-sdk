@@ -5,6 +5,8 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**createOrganization()**](OrganizationsApi.md#createOrganization) | **POST** /entity/organization | Создать юрлицо |
+| [**createOrganizationAccount()**](OrganizationsApi.md#createOrganizationAccount) | **POST** /entity/organization/{id}/accounts | Создать счёт юрлица |
+| [**createOrganizationAccounts()**](OrganizationsApi.md#createOrganizationAccounts) | **POST** /entity/organization/{id}/accounts/batch | Массовое создание и обновление счетов юрлица |
 | [**createOrganizationMetadataAttribute()**](OrganizationsApi.md#createOrganizationMetadataAttribute) | **POST** /entity/organization/metadata/attributes | Создать доп. поле юрлица |
 | [**createOrganizationsBatch()**](OrganizationsApi.md#createOrganizationsBatch) | **POST** /entity/organization/batch | Создать или изменить юрлица |
 | [**deleteOrganization()**](OrganizationsApi.md#deleteOrganization) | **DELETE** /entity/organization/{id} | Удалить юрлицо |
@@ -21,7 +23,6 @@ All URIs are relative to https://api.moysklad.ru/api/remap/1.2, except if the op
 | [**getOrganizations()**](OrganizationsApi.md#getOrganizations) | **GET** /entity/organization | Получить список юрлиц |
 | [**updateOrganization()**](OrganizationsApi.md#updateOrganization) | **PUT** /entity/organization/{id} | Обновить юрлицо |
 | [**updateOrganizationAccount()**](OrganizationsApi.md#updateOrganizationAccount) | **PUT** /entity/organization/{id}/accounts/{accountId} | Обновить счёт юрлица |
-| [**updateOrganizationAccounts()**](OrganizationsApi.md#updateOrganizationAccounts) | **POST** /entity/organization/{id}/accounts | Изменить счета юрлица |
 | [**updateOrganizationMetadataAttributeById()**](OrganizationsApi.md#updateOrganizationMetadataAttributeById) | **PUT** /entity/organization/metadata/attributes/{id} | Обновить отдельное доп. поле юрлица |
 
 
@@ -84,6 +85,152 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\Organization**](../Model/Organization.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createOrganizationAccount()`
+
+```php
+createOrganizationAccount($id, $account, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\Account[]
+```
+
+Создать счёт юрлица
+
+Создание нового счёта у данного юрлица
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\OrganizationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$account = new \OpenAPI\Client\Model\Account(); // \OpenAPI\Client\Model\Account
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createOrganizationAccount($id, $account, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling OrganizationsApi->createOrganizationAccount: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **account** | [**\OpenAPI\Client\Model\Account**](../Model/Account.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\Account[]**](../Model/Account.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `text/html;charset=UTF-8`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createOrganizationAccounts()`
+
+```php
+createOrganizationAccounts($id, $account, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\BatchResponseEntity[]
+```
+
+Массовое создание и обновление счетов юрлица
+
+В теле запроса передается массив счетов. Для создания счета требуется accountNumber, для обновления — метаданные (meta). Валюту существующего счета изменить нельзя.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: basicAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+// Configure Bearer authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\OrganizationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID сущности
+$account = array(new \OpenAPI\Client\Model\Account()); // \OpenAPI\Client\Model\Account[]
+$accept = 'application/json;charset=utf-8'; // string
+$accept_encoding = 'gzip, deflate, br'; // string
+$content_type = 'application/json'; // string
+
+try {
+    $result = $apiInstance->createOrganizationAccounts($id, $account, $accept, $accept_encoding, $content_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling OrganizationsApi->createOrganizationAccounts: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID сущности | |
+| **account** | [**\OpenAPI\Client\Model\Account[]**](../Model/Account.md)|  | |
+| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\BatchResponseEntity[]**](../Model/BatchResponseEntity.md)
 
 ### Authorization
 
@@ -1233,79 +1380,6 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\Account**](../Model/Account.md)
-
-### Authorization
-
-[basicAuth](../../README.md#basicAuth), [bearerAuth](../../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `updateOrganizationAccounts()`
-
-```php
-updateOrganizationAccounts($id, $account, $accept, $accept_encoding, $content_type): \OpenAPI\Client\Model\Account[]
-```
-
-Изменить счета юрлица
-
-Создание нового счёта у данного юрлица
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure HTTP basic authorization: basicAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
-// Configure Bearer authorization: bearerAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-
-$apiInstance = new OpenAPI\Client\Api\OrganizationsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$id = 'id_example'; // string | ID сущности
-$account = new \OpenAPI\Client\Model\Account(); // \OpenAPI\Client\Model\Account
-$accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
-$content_type = 'application/json'; // string
-
-try {
-    $result = $apiInstance->updateOrganizationAccounts($id, $account, $accept, $accept_encoding, $content_type);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling OrganizationsApi->updateOrganizationAccounts: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **id** | **string**| ID сущности | |
-| **account** | [**\OpenAPI\Client\Model\Account**](../Model/Account.md)|  | |
-| **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
-| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
-
-### Return type
-
-[**\OpenAPI\Client\Model\Account[]**](../Model/Account.md)
 
 ### Authorization
 
