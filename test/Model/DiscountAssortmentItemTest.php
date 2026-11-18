@@ -449,6 +449,15 @@ class DiscountAssortmentItemTest extends TestCase
     }
 
     /**
+     * Test attribute "minimum_balance"
+     */
+    public function testPropertyMinimumBalance()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "minimum_stock"
      */
     public function testPropertyMinimumStock()

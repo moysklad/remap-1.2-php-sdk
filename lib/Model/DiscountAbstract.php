@@ -43,6 +43,34 @@ use \OpenAPI\Client\ObjectSerializer;
 class DiscountAbstract implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const ENTITY_TYPE = null;
+
+    /** @return string[] Model alternatives in oneOf/anyOf, including those nested in allOf. */
+    public static function openAPIComposedTypes(): array
+    {
+        return [
+
+        ];
+    }
+
+    /** @var array<string, string> Fields declared by a composed schema outside this model. */
+    protected array $composedSchemaNames = [];
+
+    public function setComposedSchemaValue(string $property, string $jsonProperty, $value): void
+    {
+        $this->composedSchemaNames[$property] = $jsonProperty;
+        $this->container[$property] = $value;
+    }
+
+    public function getComposedSchemaValues(): array
+    {
+        $values = [];
+        foreach ($this->composedSchemaNames as $property => $jsonProperty) {
+            $values[$jsonProperty] = $this->container[$property];
+        }
+        return $values;
+    }
+
     protected static ?string $openAPIPolymorphicDiscriminatorPath = 'meta.type';
     protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
@@ -56,7 +84,8 @@ class DiscountAbstract implements ModelInterface, ArrayAccess, \JsonSerializable
         'personaldiscount' => 'PersonalDiscount',
         'specialpricediscount' => 'SpecialPriceDiscount',
         'discount' => 'Discount',
-        'bonusprogram' => 'BonusProgram'
+        'bonusprogram' => 'BonusProgram',
+        
     ];
 
     /**
@@ -79,8 +108,7 @@ class DiscountAbstract implements ModelInterface, ArrayAccess, \JsonSerializable
         'active' => 'bool',
         'all_agents' => 'bool',
         'agent_tags' => 'string[]',
-        'all_products' => 'bool',
-        'assortment' => '\OpenAPI\Client\Model\DiscountAssortmentItem[]'
+        'all_products' => 'bool'
     ];
 
     /**
@@ -98,8 +126,7 @@ class DiscountAbstract implements ModelInterface, ArrayAccess, \JsonSerializable
         'active' => null,
         'all_agents' => null,
         'agent_tags' => null,
-        'all_products' => null,
-        'assortment' => null
+        'all_products' => null
     ];
 
     /**
@@ -115,8 +142,7 @@ class DiscountAbstract implements ModelInterface, ArrayAccess, \JsonSerializable
         'active' => false,
         'all_agents' => false,
         'agent_tags' => true,
-        'all_products' => false,
-        'assortment' => true
+        'all_products' => false
     ];
 
     /**
@@ -161,13 +187,14 @@ class DiscountAbstract implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return array
      */
-    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    public static function openAPIPolymorphicDiscriminatorMappings(string $href = ''): array
     {
-        return self::$openAPIPolymorphicDiscriminatorMappings;
+        $mappings = self::$openAPIPolymorphicDiscriminatorMappings;
+        return $mappings;
     }
 
     /**
-     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * Whether batch-error-shaped payloads should resolve to Errors when nested
      * discriminator mappings do not match.
      *
      * @return bool
@@ -243,8 +270,7 @@ class DiscountAbstract implements ModelInterface, ArrayAccess, \JsonSerializable
         'active' => 'active',
         'all_agents' => 'allAgents',
         'agent_tags' => 'agentTags',
-        'all_products' => 'allProducts',
-        'assortment' => 'assortment'
+        'all_products' => 'allProducts'
     ];
 
     /**
@@ -260,8 +286,7 @@ class DiscountAbstract implements ModelInterface, ArrayAccess, \JsonSerializable
         'active' => 'setActive',
         'all_agents' => 'setAllAgents',
         'agent_tags' => 'setAgentTags',
-        'all_products' => 'setAllProducts',
-        'assortment' => 'setAssortment'
+        'all_products' => 'setAllProducts'
     ];
 
     /**
@@ -277,8 +302,7 @@ class DiscountAbstract implements ModelInterface, ArrayAccess, \JsonSerializable
         'active' => 'getActive',
         'all_agents' => 'getAllAgents',
         'agent_tags' => 'getAgentTags',
-        'all_products' => 'getAllProducts',
-        'assortment' => 'getAssortment'
+        'all_products' => 'getAllProducts'
     ];
 
     /**
@@ -349,7 +373,6 @@ class DiscountAbstract implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('all_agents', $data ?? [], null);
         $this->setIfExists('agent_tags', $data ?? [], null);
         $this->setIfExists('all_products', $data ?? [], null);
-        $this->setIfExists('assortment', $data ?? [], null);
     }
 
     /**
@@ -627,40 +650,6 @@ class DiscountAbstract implements ModelInterface, ArrayAccess, \JsonSerializable
 
         return $this;
     }
-
-    /**
-     * Gets assortment
-     *
-     * @return \OpenAPI\Client\Model\DiscountAssortmentItem[]|null
-     */
-    public function getAssortment()
-    {
-        return $this->container['assortment'];
-    }
-
-    /**
-     * Sets assortment
-     *
-     * @param \OpenAPI\Client\Model\DiscountAssortmentItem[]|null $assortment Массив метаданных товаров, услуг и модификаций
-     *
-     * @return self
-     */
-    public function setAssortment($assortment)
-    {
-        if (is_null($assortment)) {
-            array_push($this->openAPINullablesSetToNull, 'assortment');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('assortment', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['assortment'] = $assortment;
-
-        return $this;
-    }
     /**
      * Returns true if offset exists. False otherwise.
      *
@@ -712,7 +701,7 @@ class DiscountAbstract implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function offsetUnset($offset): void
     {
-        unset($this->container[$offset]);
+        unset($this->container[$offset], $this->composedSchemaNames[$offset]);
     }
 
     /**

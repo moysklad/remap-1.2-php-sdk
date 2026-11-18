@@ -10,5 +10,6 @@ Name | Type | Description | Notes
 **use_price_type** | **bool** | Использовать ли специальную цену | [optional]
 **discount** | **float** | Процент скидки (используется при usePriceType&#x3D;false) | [optional]
 **special_price** | [**\OpenAPI\Client\Model\SpecialPriceDiscountSpecialPrice**](SpecialPriceDiscountSpecialPrice.md) |  | [optional]
+**assortment** | [**\OpenAPI\Client\Model\DiscountAssortmentItem[]**](DiscountAssortmentItem.md) | Массив метаданных товаров, услуг и модификаций | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

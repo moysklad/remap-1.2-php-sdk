@@ -226,7 +226,7 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload $file_upload file_upload (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addInventoryFile'] to see the possible values for this operation
      *
@@ -234,7 +234,7 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\File[]|\OpenAPI\Client\Model\Errors
      */
-    public function addInventoryFile($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addInventoryFile'][0])
+    public function addInventoryFile($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addInventoryFile'][0])
     {
         list($response) = $this->addInventoryFileWithHttpInfo($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -248,7 +248,7 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addInventoryFile'] to see the possible values for this operation
      *
@@ -256,11 +256,14 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\File[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function addInventoryFileWithHttpInfo($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addInventoryFile'][0])
+    public function addInventoryFileWithHttpInfo($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addInventoryFile'][0])
     {
         $request = $this->addInventoryFileRequest($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\File[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -281,6 +284,13 @@ class InventoriesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\File[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\File[]',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -319,6 +329,9 @@ class InventoriesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\File[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -350,14 +363,14 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addInventoryFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addInventoryFileAsync($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addInventoryFile'][0])
+    public function addInventoryFileAsync($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addInventoryFile'][0])
     {
         return $this->addInventoryFileAsyncWithHttpInfo($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -375,23 +388,33 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addInventoryFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addInventoryFileAsyncWithHttpInfo($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addInventoryFile'][0])
+    public function addInventoryFileAsyncWithHttpInfo($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addInventoryFile'][0])
     {
         $returnType = '\OpenAPI\Client\Model\File[]';
         $request = $this->addInventoryFileRequest($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\File[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -430,14 +453,14 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addInventoryFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function addInventoryFileRequest($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addInventoryFile'][0])
+    public function addInventoryFileRequest($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addInventoryFile'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -468,7 +491,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -490,7 +513,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -541,10 +564,21 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -565,7 +599,7 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload[] $file_upload file_upload (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addInventoryFiles'] to see the possible values for this operation
      *
@@ -573,7 +607,7 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\File[]|\OpenAPI\Client\Model\Errors
      */
-    public function addInventoryFiles($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addInventoryFiles'][0])
+    public function addInventoryFiles($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addInventoryFiles'][0])
     {
         list($response) = $this->addInventoryFilesWithHttpInfo($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -587,7 +621,7 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload[] $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addInventoryFiles'] to see the possible values for this operation
      *
@@ -595,11 +629,14 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\File[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function addInventoryFilesWithHttpInfo($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addInventoryFiles'][0])
+    public function addInventoryFilesWithHttpInfo($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addInventoryFiles'][0])
     {
         $request = $this->addInventoryFilesRequest($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\File[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -620,6 +657,13 @@ class InventoriesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\File[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\File[]',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -658,6 +702,9 @@ class InventoriesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\File[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -689,14 +736,14 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload[] $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addInventoryFiles'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addInventoryFilesAsync($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addInventoryFiles'][0])
+    public function addInventoryFilesAsync($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addInventoryFiles'][0])
     {
         return $this->addInventoryFilesAsyncWithHttpInfo($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -714,23 +761,33 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload[] $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addInventoryFiles'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addInventoryFilesAsyncWithHttpInfo($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addInventoryFiles'][0])
+    public function addInventoryFilesAsyncWithHttpInfo($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addInventoryFiles'][0])
     {
         $returnType = '\OpenAPI\Client\Model\File[]';
         $request = $this->addInventoryFilesRequest($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\File[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -769,14 +826,14 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload[] $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addInventoryFiles'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function addInventoryFilesRequest($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addInventoryFiles'][0])
+    public function addInventoryFilesRequest($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addInventoryFiles'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -813,7 +870,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -835,7 +892,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -886,10 +943,21 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -910,15 +978,15 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\Inventory[] $inventory inventory (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoriesBatch'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\BatchEntityErrorResponse|\OpenAPI\Client\Model\BatchEntityErrorResponse|\OpenAPI\Client\Model\Errors
      */
-    public function createInventoriesBatch($inventory, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoriesBatch'][0])
+    public function createInventoriesBatch($inventory, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoriesBatch'][0])
     {
         list($response) = $this->createInventoriesBatchWithHttpInfo($inventory, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -932,20 +1000,22 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\Inventory[] $inventory (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoriesBatch'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\BatchEntityErrorResponse|\OpenAPI\Client\Model\BatchEntityErrorResponse|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createInventoriesBatchWithHttpInfo($inventory, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoriesBatch'][0])
+    public function createInventoriesBatchWithHttpInfo($inventory, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoriesBatch'][0])
     {
         $request = $this->createInventoriesBatchRequest($inventory, $expand, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
-            $options[RequestOptions::HTTP_ERRORS] = false;
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\BatchResponseEntity[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -966,17 +1036,87 @@ class InventoriesApi
 
             $statusCode = $response->getStatusCode();
 
-            return $this->handleResponseMassWithDataType(
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\BatchResponseEntity[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                    $request,
+                    $response
+                );
+            }
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                        $request,
+                        $response
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchEntityErrorResponse',
+                        $request,
+                        $response
+                    );
+                case 412:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchEntityErrorResponse',
+                        $request,
+                        $response
+                    );
+                default:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\Errors',
+                        $request,
+                        $response
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\BatchResponseEntity[]',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\BatchResponseEntity[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchEntityErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 412:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchEntityErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1003,14 +1143,14 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\Inventory[] $inventory (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoriesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createInventoriesBatchAsync($inventory, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoriesBatch'][0])
+    public function createInventoriesBatchAsync($inventory, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoriesBatch'][0])
     {
         return $this->createInventoriesBatchAsyncWithHttpInfo($inventory, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -1028,29 +1168,47 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\Inventory[] $inventory (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoriesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createInventoriesBatchAsyncWithHttpInfo($inventory, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoriesBatch'][0])
+    public function createInventoriesBatchAsyncWithHttpInfo($inventory, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoriesBatch'][0])
     {
         $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
         $request = $this->createInventoriesBatchRequest($inventory, $expand, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
-        $options[RequestOptions::HTTP_ERRORS] = false;
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\BatchResponseEntity[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
-                    return $this->handleResponseMassWithDataType(
-                        $returnType,
-                        $request,
-                        $response,
-                    );
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -1075,14 +1233,14 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\Inventory[] $inventory (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoriesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createInventoriesBatchRequest($inventory, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoriesBatch'][0])
+    public function createInventoriesBatchRequest($inventory, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoriesBatch'][0])
     {
 
         // verify the required parameter 'inventory' is set
@@ -1122,7 +1280,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -1136,7 +1294,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1187,10 +1345,21 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -1211,7 +1380,7 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\Inventory $inventory inventory (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventory'] to see the possible values for this operation
      *
@@ -1219,7 +1388,7 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Inventory|\OpenAPI\Client\Model\Errors
      */
-    public function createInventory($inventory, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventory'][0])
+    public function createInventory($inventory, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventory'][0])
     {
         list($response) = $this->createInventoryWithHttpInfo($inventory, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -1233,7 +1402,7 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\Inventory $inventory (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventory'] to see the possible values for this operation
      *
@@ -1241,11 +1410,14 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Inventory|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createInventoryWithHttpInfo($inventory, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventory'][0])
+    public function createInventoryWithHttpInfo($inventory, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventory'][0])
     {
         $request = $this->createInventoryRequest($inventory, $expand, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Inventory')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1266,6 +1438,13 @@ class InventoriesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Inventory')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\Inventory',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -1304,6 +1483,9 @@ class InventoriesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Inventory')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -1335,14 +1517,14 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\Inventory $inventory (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createInventoryAsync($inventory, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventory'][0])
+    public function createInventoryAsync($inventory, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventory'][0])
     {
         return $this->createInventoryAsyncWithHttpInfo($inventory, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -1360,23 +1542,33 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\Inventory $inventory (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createInventoryAsyncWithHttpInfo($inventory, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventory'][0])
+    public function createInventoryAsyncWithHttpInfo($inventory, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventory'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Inventory';
         $request = $this->createInventoryRequest($inventory, $expand, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\Inventory')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1415,14 +1607,14 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\Inventory $inventory (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createInventoryRequest($inventory, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventory'][0])
+    public function createInventoryRequest($inventory, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventory'][0])
     {
 
         // verify the required parameter 'inventory' is set
@@ -1456,7 +1648,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -1470,7 +1662,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1521,10 +1713,21 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -1544,7 +1747,7 @@ class InventoriesApi
      *
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info attribute_meta_info (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoryMetadataAttribute'] to see the possible values for this operation
      *
@@ -1552,7 +1755,7 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors
      */
-    public function createInventoryMetadataAttribute($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryMetadataAttribute'][0])
+    public function createInventoryMetadataAttribute($attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoryMetadataAttribute'][0])
     {
         list($response) = $this->createInventoryMetadataAttributeWithHttpInfo($attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -1565,7 +1768,7 @@ class InventoriesApi
      *
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoryMetadataAttribute'] to see the possible values for this operation
      *
@@ -1573,11 +1776,14 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createInventoryMetadataAttributeWithHttpInfo($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryMetadataAttribute'][0])
+    public function createInventoryMetadataAttributeWithHttpInfo($attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoryMetadataAttribute'][0])
     {
         $request = $this->createInventoryMetadataAttributeRequest($attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1598,6 +1804,13 @@ class InventoriesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\AttributeMetaInfo',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -1636,6 +1849,9 @@ class InventoriesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -1666,14 +1882,14 @@ class InventoriesApi
      *
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoryMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createInventoryMetadataAttributeAsync($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryMetadataAttribute'][0])
+    public function createInventoryMetadataAttributeAsync($attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoryMetadataAttribute'][0])
     {
         return $this->createInventoryMetadataAttributeAsyncWithHttpInfo($attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -1690,23 +1906,33 @@ class InventoriesApi
      *
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoryMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createInventoryMetadataAttributeAsyncWithHttpInfo($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryMetadataAttribute'][0])
+    public function createInventoryMetadataAttributeAsyncWithHttpInfo($attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoryMetadataAttribute'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfo';
         $request = $this->createInventoryMetadataAttributeRequest($attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1744,14 +1970,14 @@ class InventoriesApi
      *
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoryMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createInventoryMetadataAttributeRequest($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryMetadataAttribute'][0])
+    public function createInventoryMetadataAttributeRequest($attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoryMetadataAttribute'][0])
     {
 
         // verify the required parameter 'attribute_meta_info' is set
@@ -1775,7 +2001,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -1789,7 +2015,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1840,10 +2066,21 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -1863,7 +2100,7 @@ class InventoriesApi
      *
      * @param  \OpenAPI\Client\Model\State $state state (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoryMetadataState'] to see the possible values for this operation
      *
@@ -1871,7 +2108,7 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors
      */
-    public function createInventoryMetadataState($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryMetadataState'][0])
+    public function createInventoryMetadataState($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoryMetadataState'][0])
     {
         list($response) = $this->createInventoryMetadataStateWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -1884,7 +2121,7 @@ class InventoriesApi
      *
      * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoryMetadataState'] to see the possible values for this operation
      *
@@ -1892,11 +2129,14 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createInventoryMetadataStateWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryMetadataState'][0])
+    public function createInventoryMetadataStateWithHttpInfo($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoryMetadataState'][0])
     {
         $request = $this->createInventoryMetadataStateRequest($state, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1917,6 +2157,13 @@ class InventoriesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\State',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -1955,6 +2202,9 @@ class InventoriesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -1985,14 +2235,14 @@ class InventoriesApi
      *
      * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoryMetadataState'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createInventoryMetadataStateAsync($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryMetadataState'][0])
+    public function createInventoryMetadataStateAsync($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoryMetadataState'][0])
     {
         return $this->createInventoryMetadataStateAsyncWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -2009,23 +2259,33 @@ class InventoriesApi
      *
      * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoryMetadataState'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createInventoryMetadataStateAsyncWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryMetadataState'][0])
+    public function createInventoryMetadataStateAsyncWithHttpInfo($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoryMetadataState'][0])
     {
         $returnType = '\OpenAPI\Client\Model\State';
         $request = $this->createInventoryMetadataStateRequest($state, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2063,14 +2323,14 @@ class InventoriesApi
      *
      * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoryMetadataState'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createInventoryMetadataStateRequest($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryMetadataState'][0])
+    public function createInventoryMetadataStateRequest($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoryMetadataState'][0])
     {
 
         // verify the required parameter 'state' is set
@@ -2094,7 +2354,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -2108,7 +2368,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -2159,10 +2419,21 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -2182,7 +2453,7 @@ class InventoriesApi
      *
      * @param  \OpenAPI\Client\Model\State[] $state state (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoryMetadataStatesBatch'] to see the possible values for this operation
      *
@@ -2190,7 +2461,7 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\StateRowResult[]|\OpenAPI\Client\Model\Errors
      */
-    public function createInventoryMetadataStatesBatch($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryMetadataStatesBatch'][0])
+    public function createInventoryMetadataStatesBatch($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoryMetadataStatesBatch'][0])
     {
         list($response) = $this->createInventoryMetadataStatesBatchWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -2203,7 +2474,7 @@ class InventoriesApi
      *
      * @param  \OpenAPI\Client\Model\State[] $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoryMetadataStatesBatch'] to see the possible values for this operation
      *
@@ -2211,11 +2482,14 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\StateRowResult[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createInventoryMetadataStatesBatchWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryMetadataStatesBatch'][0])
+    public function createInventoryMetadataStatesBatchWithHttpInfo($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoryMetadataStatesBatch'][0])
     {
         $request = $this->createInventoryMetadataStatesBatchRequest($state, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\StateRowResult[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -2236,6 +2510,13 @@ class InventoriesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\StateRowResult[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\StateRowResult[]',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -2274,6 +2555,9 @@ class InventoriesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\StateRowResult[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -2304,14 +2588,14 @@ class InventoriesApi
      *
      * @param  \OpenAPI\Client\Model\State[] $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoryMetadataStatesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createInventoryMetadataStatesBatchAsync($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryMetadataStatesBatch'][0])
+    public function createInventoryMetadataStatesBatchAsync($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoryMetadataStatesBatch'][0])
     {
         return $this->createInventoryMetadataStatesBatchAsyncWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -2328,23 +2612,33 @@ class InventoriesApi
      *
      * @param  \OpenAPI\Client\Model\State[] $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoryMetadataStatesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createInventoryMetadataStatesBatchAsyncWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryMetadataStatesBatch'][0])
+    public function createInventoryMetadataStatesBatchAsyncWithHttpInfo($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoryMetadataStatesBatch'][0])
     {
         $returnType = '\OpenAPI\Client\Model\StateRowResult[]';
         $request = $this->createInventoryMetadataStatesBatchRequest($state, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\StateRowResult[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2382,14 +2676,14 @@ class InventoriesApi
      *
      * @param  \OpenAPI\Client\Model\State[] $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoryMetadataStatesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createInventoryMetadataStatesBatchRequest($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryMetadataStatesBatch'][0])
+    public function createInventoryMetadataStatesBatchRequest($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoryMetadataStatesBatch'][0])
     {
 
         // verify the required parameter 'state' is set
@@ -2419,7 +2713,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -2433,7 +2727,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -2484,10 +2778,21 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -2509,7 +2814,7 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\InventoryPosition $inventory_position inventory_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoryPosition'] to see the possible values for this operation
      *
@@ -2517,7 +2822,7 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\InventoryPosition[]|\OpenAPI\Client\Model\Errors
      */
-    public function createInventoryPosition($id, $inventory_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryPosition'][0])
+    public function createInventoryPosition($id, $inventory_position, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoryPosition'][0])
     {
         list($response) = $this->createInventoryPositionWithHttpInfo($id, $inventory_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -2532,7 +2837,7 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\InventoryPosition $inventory_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoryPosition'] to see the possible values for this operation
      *
@@ -2540,11 +2845,14 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\InventoryPosition[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createInventoryPositionWithHttpInfo($id, $inventory_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryPosition'][0])
+    public function createInventoryPositionWithHttpInfo($id, $inventory_position, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoryPosition'][0])
     {
         $request = $this->createInventoryPositionRequest($id, $inventory_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\InventoryPosition[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -2565,6 +2873,13 @@ class InventoriesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\InventoryPosition[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\InventoryPosition[]',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -2603,6 +2918,9 @@ class InventoriesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\InventoryPosition[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -2635,14 +2953,14 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\InventoryPosition $inventory_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoryPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createInventoryPositionAsync($id, $inventory_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryPosition'][0])
+    public function createInventoryPositionAsync($id, $inventory_position, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoryPosition'][0])
     {
         return $this->createInventoryPositionAsyncWithHttpInfo($id, $inventory_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -2661,23 +2979,33 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\InventoryPosition $inventory_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoryPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createInventoryPositionAsyncWithHttpInfo($id, $inventory_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryPosition'][0])
+    public function createInventoryPositionAsyncWithHttpInfo($id, $inventory_position, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoryPosition'][0])
     {
         $returnType = '\OpenAPI\Client\Model\InventoryPosition[]';
         $request = $this->createInventoryPositionRequest($id, $inventory_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\InventoryPosition[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2717,14 +3045,14 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\InventoryPosition $inventory_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoryPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createInventoryPositionRequest($id, $inventory_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryPosition'][0])
+    public function createInventoryPositionRequest($id, $inventory_position, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoryPosition'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -2765,7 +3093,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -2787,7 +3115,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -2838,10 +3166,21 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -2863,15 +3202,15 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\InventoryPosition[] $inventory_position inventory_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoryPositions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreateInventoryPositions200ResponseInner[]|\OpenAPI\Client\Model\Errors
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\BatchEntityErrorResponse|\OpenAPI\Client\Model\BatchEntityErrorResponse|\OpenAPI\Client\Model\Errors
      */
-    public function createInventoryPositions($id, $inventory_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryPositions'][0])
+    public function createInventoryPositions($id, $inventory_position, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoryPositions'][0])
     {
         list($response) = $this->createInventoryPositionsWithHttpInfo($id, $inventory_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -2886,19 +3225,22 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\InventoryPosition[] $inventory_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoryPositions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreateInventoryPositions200ResponseInner[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\BatchEntityErrorResponse|\OpenAPI\Client\Model\BatchEntityErrorResponse|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createInventoryPositionsWithHttpInfo($id, $inventory_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryPositions'][0])
+    public function createInventoryPositionsWithHttpInfo($id, $inventory_position, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoryPositions'][0])
     {
         $request = $this->createInventoryPositionsRequest($id, $inventory_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\BatchResponseEntity[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -2919,12 +3261,31 @@ class InventoriesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\BatchResponseEntity[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CreateInventoryPositions200ResponseInner[]',
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                        $request,
+                        $response
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchEntityErrorResponse',
+                        $request,
+                        $response
+                    );
+                case 412:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchEntityErrorResponse',
                         $request,
                         $response
                     );
@@ -2952,16 +3313,35 @@ class InventoriesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\CreateInventoryPositions200ResponseInner[]',
+                '\OpenAPI\Client\Model\BatchResponseEntity[]',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\BatchResponseEntity[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreateInventoryPositions200ResponseInner[]',
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchEntityErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 412:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchEntityErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2989,14 +3369,14 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\InventoryPosition[] $inventory_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoryPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createInventoryPositionsAsync($id, $inventory_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryPositions'][0])
+    public function createInventoryPositionsAsync($id, $inventory_position, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoryPositions'][0])
     {
         return $this->createInventoryPositionsAsyncWithHttpInfo($id, $inventory_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -3015,23 +3395,33 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\InventoryPosition[] $inventory_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoryPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createInventoryPositionsAsyncWithHttpInfo($id, $inventory_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryPositions'][0])
+    public function createInventoryPositionsAsyncWithHttpInfo($id, $inventory_position, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoryPositions'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CreateInventoryPositions200ResponseInner[]';
+        $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
         $request = $this->createInventoryPositionsRequest($id, $inventory_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\BatchResponseEntity[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3071,14 +3461,14 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\InventoryPosition[] $inventory_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createInventoryPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createInventoryPositionsRequest($id, $inventory_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createInventoryPositions'][0])
+    public function createInventoryPositionsRequest($id, $inventory_position, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createInventoryPositions'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -3125,7 +3515,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -3147,7 +3537,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -3198,10 +3588,21 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -3221,15 +3622,15 @@ class InventoriesApi
      *
      * @param  \OpenAPI\Client\Model\Inventory[] $inventory inventory (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoriesBatch'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\Errors
+     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\BatchDeleteErrorResponse|\OpenAPI\Client\Model\BatchDeleteErrorResponse|\OpenAPI\Client\Model\Errors
      */
-    public function deleteInventoriesBatch($inventory, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteInventoriesBatch'][0])
+    public function deleteInventoriesBatch($inventory, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deleteInventoriesBatch'][0])
     {
         list($response) = $this->deleteInventoriesBatchWithHttpInfo($inventory, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -3242,19 +3643,22 @@ class InventoriesApi
      *
      * @param  \OpenAPI\Client\Model\Inventory[] $inventory (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoriesBatch'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\BatchDeleteErrorResponse|\OpenAPI\Client\Model\BatchDeleteErrorResponse|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteInventoriesBatchWithHttpInfo($inventory, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteInventoriesBatch'][0])
+    public function deleteInventoriesBatchWithHttpInfo($inventory, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deleteInventoriesBatch'][0])
     {
         $request = $this->deleteInventoriesBatchRequest($inventory, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DeleteRowResult[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -3275,12 +3679,31 @@ class InventoriesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DeleteRowResult[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\DeleteRowResult[]',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\DeleteRowResult[]',
+                        $request,
+                        $response
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchDeleteErrorResponse',
+                        $request,
+                        $response
+                    );
+                case 412:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchDeleteErrorResponse',
                         $request,
                         $response
                     );
@@ -3313,11 +3736,30 @@ class InventoriesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DeleteRowResult[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\OpenAPI\Client\Model\DeleteRowResult[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchDeleteErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 412:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchDeleteErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3343,14 +3785,14 @@ class InventoriesApi
      *
      * @param  \OpenAPI\Client\Model\Inventory[] $inventory (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoriesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteInventoriesBatchAsync($inventory, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteInventoriesBatch'][0])
+    public function deleteInventoriesBatchAsync($inventory, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deleteInventoriesBatch'][0])
     {
         return $this->deleteInventoriesBatchAsyncWithHttpInfo($inventory, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -3367,23 +3809,33 @@ class InventoriesApi
      *
      * @param  \OpenAPI\Client\Model\Inventory[] $inventory (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoriesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteInventoriesBatchAsyncWithHttpInfo($inventory, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteInventoriesBatch'][0])
+    public function deleteInventoriesBatchAsyncWithHttpInfo($inventory, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deleteInventoriesBatch'][0])
     {
         $returnType = '\OpenAPI\Client\Model\DeleteRowResult[]';
         $request = $this->deleteInventoriesBatchRequest($inventory, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\DeleteRowResult[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3421,14 +3873,14 @@ class InventoriesApi
      *
      * @param  \OpenAPI\Client\Model\Inventory[] $inventory (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoriesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteInventoriesBatchRequest($inventory, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteInventoriesBatch'][0])
+    public function deleteInventoriesBatchRequest($inventory, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deleteInventoriesBatch'][0])
     {
 
         // verify the required parameter 'inventory' is set
@@ -3458,7 +3910,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -3472,7 +3924,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -3523,10 +3975,21 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -3546,14 +4009,14 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventory'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deleteInventory($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInventory'][0])
+    public function deleteInventory($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteInventory'][0])
     {
         $this->deleteInventoryWithHttpInfo($id, $accept, $accept_encoding, $contentType);
     }
@@ -3565,18 +4028,21 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventory'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteInventoryWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInventory'][0])
+    public function deleteInventoryWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteInventory'][0])
     {
         $request = $this->deleteInventoryRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -3600,6 +4066,9 @@ class InventoriesApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -3622,13 +4091,13 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteInventoryAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInventory'][0])
+    public function deleteInventoryAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteInventory'][0])
     {
         return $this->deleteInventoryAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -3645,17 +4114,20 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteInventoryAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInventory'][0])
+    public function deleteInventoryAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteInventory'][0])
     {
         $returnType = '';
         $request = $this->deleteInventoryRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -3685,13 +4157,13 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteInventoryRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInventory'][0])
+    public function deleteInventoryRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteInventory'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -3714,7 +4186,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -3732,7 +4204,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -3776,10 +4248,18 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -3800,14 +4280,14 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  string $file_id ID файла (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoryFile'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deleteInventoryFile($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInventoryFile'][0])
+    public function deleteInventoryFile($id, $file_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteInventoryFile'][0])
     {
         $this->deleteInventoryFileWithHttpInfo($id, $file_id, $accept, $accept_encoding, $contentType);
     }
@@ -3820,18 +4300,21 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  string $file_id ID файла (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoryFile'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteInventoryFileWithHttpInfo($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInventoryFile'][0])
+    public function deleteInventoryFileWithHttpInfo($id, $file_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteInventoryFile'][0])
     {
         $request = $this->deleteInventoryFileRequest($id, $file_id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -3855,6 +4338,9 @@ class InventoriesApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -3878,13 +4364,13 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  string $file_id ID файла (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoryFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteInventoryFileAsync($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInventoryFile'][0])
+    public function deleteInventoryFileAsync($id, $file_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteInventoryFile'][0])
     {
         return $this->deleteInventoryFileAsyncWithHttpInfo($id, $file_id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -3902,17 +4388,20 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  string $file_id ID файла (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoryFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteInventoryFileAsyncWithHttpInfo($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInventoryFile'][0])
+    public function deleteInventoryFileAsyncWithHttpInfo($id, $file_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteInventoryFile'][0])
     {
         $returnType = '';
         $request = $this->deleteInventoryFileRequest($id, $file_id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -3943,13 +4432,13 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  string $file_id ID файла (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoryFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteInventoryFileRequest($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInventoryFile'][0])
+    public function deleteInventoryFileRequest($id, $file_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteInventoryFile'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -3979,7 +4468,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -4005,7 +4494,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -4049,10 +4538,18 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -4072,14 +4569,14 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoryMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deleteInventoryMetadataAttributeById($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInventoryMetadataAttributeById'][0])
+    public function deleteInventoryMetadataAttributeById($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteInventoryMetadataAttributeById'][0])
     {
         $this->deleteInventoryMetadataAttributeByIdWithHttpInfo($id, $accept, $accept_encoding, $contentType);
     }
@@ -4091,18 +4588,21 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoryMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteInventoryMetadataAttributeByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInventoryMetadataAttributeById'][0])
+    public function deleteInventoryMetadataAttributeByIdWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteInventoryMetadataAttributeById'][0])
     {
         $request = $this->deleteInventoryMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -4126,6 +4626,9 @@ class InventoriesApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -4148,13 +4651,13 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoryMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteInventoryMetadataAttributeByIdAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInventoryMetadataAttributeById'][0])
+    public function deleteInventoryMetadataAttributeByIdAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteInventoryMetadataAttributeById'][0])
     {
         return $this->deleteInventoryMetadataAttributeByIdAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -4171,17 +4674,20 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoryMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteInventoryMetadataAttributeByIdAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInventoryMetadataAttributeById'][0])
+    public function deleteInventoryMetadataAttributeByIdAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteInventoryMetadataAttributeById'][0])
     {
         $returnType = '';
         $request = $this->deleteInventoryMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -4211,13 +4717,13 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoryMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteInventoryMetadataAttributeByIdRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInventoryMetadataAttributeById'][0])
+    public function deleteInventoryMetadataAttributeByIdRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteInventoryMetadataAttributeById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -4240,7 +4746,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -4258,7 +4764,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -4302,10 +4808,18 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -4325,14 +4839,14 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoryMetadataStateById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deleteInventoryMetadataStateById($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInventoryMetadataStateById'][0])
+    public function deleteInventoryMetadataStateById($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteInventoryMetadataStateById'][0])
     {
         $this->deleteInventoryMetadataStateByIdWithHttpInfo($id, $accept, $accept_encoding, $contentType);
     }
@@ -4344,18 +4858,21 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoryMetadataStateById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteInventoryMetadataStateByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInventoryMetadataStateById'][0])
+    public function deleteInventoryMetadataStateByIdWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteInventoryMetadataStateById'][0])
     {
         $request = $this->deleteInventoryMetadataStateByIdRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -4379,6 +4896,9 @@ class InventoriesApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -4401,13 +4921,13 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoryMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteInventoryMetadataStateByIdAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInventoryMetadataStateById'][0])
+    public function deleteInventoryMetadataStateByIdAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteInventoryMetadataStateById'][0])
     {
         return $this->deleteInventoryMetadataStateByIdAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -4424,17 +4944,20 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoryMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteInventoryMetadataStateByIdAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInventoryMetadataStateById'][0])
+    public function deleteInventoryMetadataStateByIdAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteInventoryMetadataStateById'][0])
     {
         $returnType = '';
         $request = $this->deleteInventoryMetadataStateByIdRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -4464,13 +4987,13 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoryMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteInventoryMetadataStateByIdRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInventoryMetadataStateById'][0])
+    public function deleteInventoryMetadataStateByIdRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteInventoryMetadataStateById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -4493,7 +5016,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -4511,7 +5034,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -4555,10 +5078,18 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -4579,14 +5110,14 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  string $position_id ID позиции (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoryPosition'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deleteInventoryPosition($id, $position_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInventoryPosition'][0])
+    public function deleteInventoryPosition($id, $position_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteInventoryPosition'][0])
     {
         $this->deleteInventoryPositionWithHttpInfo($id, $position_id, $accept, $accept_encoding, $contentType);
     }
@@ -4599,18 +5130,21 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  string $position_id ID позиции (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoryPosition'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteInventoryPositionWithHttpInfo($id, $position_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInventoryPosition'][0])
+    public function deleteInventoryPositionWithHttpInfo($id, $position_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteInventoryPosition'][0])
     {
         $request = $this->deleteInventoryPositionRequest($id, $position_id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -4634,6 +5168,9 @@ class InventoriesApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -4657,13 +5194,13 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  string $position_id ID позиции (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoryPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteInventoryPositionAsync($id, $position_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInventoryPosition'][0])
+    public function deleteInventoryPositionAsync($id, $position_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteInventoryPosition'][0])
     {
         return $this->deleteInventoryPositionAsyncWithHttpInfo($id, $position_id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -4681,17 +5218,20 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  string $position_id ID позиции (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoryPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteInventoryPositionAsyncWithHttpInfo($id, $position_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInventoryPosition'][0])
+    public function deleteInventoryPositionAsyncWithHttpInfo($id, $position_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteInventoryPosition'][0])
     {
         $returnType = '';
         $request = $this->deleteInventoryPositionRequest($id, $position_id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -4722,13 +5262,13 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  string $position_id ID позиции (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoryPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteInventoryPositionRequest($id, $position_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteInventoryPosition'][0])
+    public function deleteInventoryPositionRequest($id, $position_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteInventoryPosition'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -4758,7 +5298,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -4784,7 +5324,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -4828,10 +5368,18 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -4852,15 +5400,15 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\InventoryPosition[] $inventory_position inventory_position (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoryPositionsBatch'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\Errors
+     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\BatchDeleteErrorResponse|\OpenAPI\Client\Model\BatchDeleteErrorResponse|\OpenAPI\Client\Model\Errors
      */
-    public function deleteInventoryPositionsBatch($id, $inventory_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteInventoryPositionsBatch'][0])
+    public function deleteInventoryPositionsBatch($id, $inventory_position, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deleteInventoryPositionsBatch'][0])
     {
         list($response) = $this->deleteInventoryPositionsBatchWithHttpInfo($id, $inventory_position, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -4874,19 +5422,22 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\InventoryPosition[] $inventory_position (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoryPositionsBatch'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\BatchDeleteErrorResponse|\OpenAPI\Client\Model\BatchDeleteErrorResponse|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteInventoryPositionsBatchWithHttpInfo($id, $inventory_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteInventoryPositionsBatch'][0])
+    public function deleteInventoryPositionsBatchWithHttpInfo($id, $inventory_position, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deleteInventoryPositionsBatch'][0])
     {
         $request = $this->deleteInventoryPositionsBatchRequest($id, $inventory_position, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DeleteRowResult[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -4907,12 +5458,31 @@ class InventoriesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DeleteRowResult[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\DeleteRowResult[]',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\DeleteRowResult[]',
+                        $request,
+                        $response
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchDeleteErrorResponse',
+                        $request,
+                        $response
+                    );
+                case 412:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchDeleteErrorResponse',
                         $request,
                         $response
                     );
@@ -4945,11 +5515,30 @@ class InventoriesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DeleteRowResult[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\OpenAPI\Client\Model\DeleteRowResult[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchDeleteErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 412:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchDeleteErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4976,14 +5565,14 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\InventoryPosition[] $inventory_position (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoryPositionsBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteInventoryPositionsBatchAsync($id, $inventory_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteInventoryPositionsBatch'][0])
+    public function deleteInventoryPositionsBatchAsync($id, $inventory_position, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deleteInventoryPositionsBatch'][0])
     {
         return $this->deleteInventoryPositionsBatchAsyncWithHttpInfo($id, $inventory_position, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -5001,23 +5590,33 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\InventoryPosition[] $inventory_position (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoryPositionsBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteInventoryPositionsBatchAsyncWithHttpInfo($id, $inventory_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteInventoryPositionsBatch'][0])
+    public function deleteInventoryPositionsBatchAsyncWithHttpInfo($id, $inventory_position, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deleteInventoryPositionsBatch'][0])
     {
         $returnType = '\OpenAPI\Client\Model\DeleteRowResult[]';
         $request = $this->deleteInventoryPositionsBatchRequest($id, $inventory_position, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\DeleteRowResult[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -5056,14 +5655,14 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\InventoryPosition[] $inventory_position (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteInventoryPositionsBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteInventoryPositionsBatchRequest($id, $inventory_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteInventoryPositionsBatch'][0])
+    public function deleteInventoryPositionsBatchRequest($id, $inventory_position, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deleteInventoryPositionsBatch'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -5100,7 +5699,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -5122,7 +5721,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -5173,10 +5772,21 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -5197,14 +5807,14 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Inventory|\OpenAPI\Client\Model\Errors
      */
-    public function getInventoryById($id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryById'][0])
+    public function getInventoryById($id, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryById'][0])
     {
         list($response) = $this->getInventoryByIdWithHttpInfo($id, $expand, $accept, $accept_encoding, $contentType);
         return $response;
@@ -5218,18 +5828,21 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Inventory|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getInventoryByIdWithHttpInfo($id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryById'][0])
+    public function getInventoryByIdWithHttpInfo($id, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryById'][0])
     {
         $request = $this->getInventoryByIdRequest($id, $expand, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Inventory')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -5250,6 +5863,13 @@ class InventoriesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Inventory')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\Inventory',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -5288,6 +5908,9 @@ class InventoriesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Inventory')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -5319,13 +5942,13 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getInventoryByIdAsync($id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryById'][0])
+    public function getInventoryByIdAsync($id, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryById'][0])
     {
         return $this->getInventoryByIdAsyncWithHttpInfo($id, $expand, $accept, $accept_encoding, $contentType)
             ->then(
@@ -5343,22 +5966,32 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getInventoryByIdAsyncWithHttpInfo($id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryById'][0])
+    public function getInventoryByIdAsyncWithHttpInfo($id, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryById'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Inventory';
         $request = $this->getInventoryByIdRequest($id, $expand, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\Inventory')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -5397,13 +6030,13 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getInventoryByIdRequest($id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryById'][0])
+    public function getInventoryByIdRequest($id, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -5436,7 +6069,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -5454,7 +6087,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -5498,10 +6131,18 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -5523,14 +6164,14 @@ class InventoriesApi
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryFiles'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\GetTaskFiles200Response|\OpenAPI\Client\Model\Errors
      */
-    public function getInventoryFiles($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryFiles'][0])
+    public function getInventoryFiles($id, $limit = 1000, $offset = 0, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryFiles'][0])
     {
         list($response) = $this->getInventoryFilesWithHttpInfo($id, $limit, $offset, $accept, $accept_encoding, $contentType);
         return $response;
@@ -5545,18 +6186,21 @@ class InventoriesApi
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryFiles'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\GetTaskFiles200Response|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getInventoryFilesWithHttpInfo($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryFiles'][0])
+    public function getInventoryFilesWithHttpInfo($id, $limit = 1000, $offset = 0, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryFiles'][0])
     {
         $request = $this->getInventoryFilesRequest($id, $limit, $offset, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\GetTaskFiles200Response')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -5577,6 +6221,13 @@ class InventoriesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\GetTaskFiles200Response')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\GetTaskFiles200Response',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -5615,6 +6266,9 @@ class InventoriesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\GetTaskFiles200Response')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -5647,13 +6301,13 @@ class InventoriesApi
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryFiles'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getInventoryFilesAsync($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryFiles'][0])
+    public function getInventoryFilesAsync($id, $limit = 1000, $offset = 0, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryFiles'][0])
     {
         return $this->getInventoryFilesAsyncWithHttpInfo($id, $limit, $offset, $accept, $accept_encoding, $contentType)
             ->then(
@@ -5672,22 +6326,32 @@ class InventoriesApi
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryFiles'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getInventoryFilesAsyncWithHttpInfo($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryFiles'][0])
+    public function getInventoryFilesAsyncWithHttpInfo($id, $limit = 1000, $offset = 0, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryFiles'][0])
     {
         $returnType = '\OpenAPI\Client\Model\GetTaskFiles200Response';
         $request = $this->getInventoryFilesRequest($id, $limit, $offset, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\GetTaskFiles200Response')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -5727,13 +6391,13 @@ class InventoriesApi
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryFiles'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getInventoryFilesRequest($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryFiles'][0])
+    public function getInventoryFilesRequest($id, $limit = 1000, $offset = 0, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryFiles'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -5785,7 +6449,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -5803,7 +6467,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -5847,10 +6511,18 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -5873,14 +6545,14 @@ class InventoriesApi
      * @param  string|null $search Контекстный поиск по строковым полям сущностей (optional)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryList'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\InventoryList|\OpenAPI\Client\Model\Errors
      */
-    public function getInventoryList($limit = 1000, $offset = 0, $search = null, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryList'][0])
+    public function getInventoryList($limit = 1000, $offset = 0, $search = null, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryList'][0])
     {
         list($response) = $this->getInventoryListWithHttpInfo($limit, $offset, $search, $expand, $accept, $accept_encoding, $contentType);
         return $response;
@@ -5896,18 +6568,21 @@ class InventoriesApi
      * @param  string|null $search Контекстный поиск по строковым полям сущностей (optional)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryList'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\InventoryList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getInventoryListWithHttpInfo($limit = 1000, $offset = 0, $search = null, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryList'][0])
+    public function getInventoryListWithHttpInfo($limit = 1000, $offset = 0, $search = null, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryList'][0])
     {
         $request = $this->getInventoryListRequest($limit, $offset, $search, $expand, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\InventoryList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -5928,6 +6603,13 @@ class InventoriesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\InventoryList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\InventoryList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -5966,6 +6648,9 @@ class InventoriesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\InventoryList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -5999,13 +6684,13 @@ class InventoriesApi
      * @param  string|null $search Контекстный поиск по строковым полям сущностей (optional)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getInventoryListAsync($limit = 1000, $offset = 0, $search = null, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryList'][0])
+    public function getInventoryListAsync($limit = 1000, $offset = 0, $search = null, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryList'][0])
     {
         return $this->getInventoryListAsyncWithHttpInfo($limit, $offset, $search, $expand, $accept, $accept_encoding, $contentType)
             ->then(
@@ -6025,22 +6710,32 @@ class InventoriesApi
      * @param  string|null $search Контекстный поиск по строковым полям сущностей (optional)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getInventoryListAsyncWithHttpInfo($limit = 1000, $offset = 0, $search = null, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryList'][0])
+    public function getInventoryListAsyncWithHttpInfo($limit = 1000, $offset = 0, $search = null, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryList'][0])
     {
         $returnType = '\OpenAPI\Client\Model\InventoryList';
         $request = $this->getInventoryListRequest($limit, $offset, $search, $expand, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\InventoryList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -6081,13 +6776,13 @@ class InventoriesApi
      * @param  string|null $search Контекстный поиск по строковым полям сущностей (optional)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getInventoryListRequest($limit = 1000, $offset = 0, $search = null, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryList'][0])
+    public function getInventoryListRequest($limit = 1000, $offset = 0, $search = null, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryList'][0])
     {
 
         if ($limit !== null && $limit > 1000) {
@@ -6152,7 +6847,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -6162,7 +6857,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -6206,10 +6901,18 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -6229,14 +6932,14 @@ class InventoriesApi
      *
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryMetadata'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\DocumentMetadata|\OpenAPI\Client\Model\Errors
      */
-    public function getInventoryMetadata($expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryMetadata'][0])
+    public function getInventoryMetadata($expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryMetadata'][0])
     {
         list($response) = $this->getInventoryMetadataWithHttpInfo($expand, $accept, $accept_encoding, $contentType);
         return $response;
@@ -6249,18 +6952,21 @@ class InventoriesApi
      *
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryMetadata'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\DocumentMetadata|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getInventoryMetadataWithHttpInfo($expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryMetadata'][0])
+    public function getInventoryMetadataWithHttpInfo($expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryMetadata'][0])
     {
         $request = $this->getInventoryMetadataRequest($expand, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DocumentMetadata')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -6281,6 +6987,13 @@ class InventoriesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DocumentMetadata')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\DocumentMetadata',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -6319,6 +7032,9 @@ class InventoriesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DocumentMetadata')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -6349,13 +7065,13 @@ class InventoriesApi
      *
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryMetadata'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getInventoryMetadataAsync($expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryMetadata'][0])
+    public function getInventoryMetadataAsync($expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryMetadata'][0])
     {
         return $this->getInventoryMetadataAsyncWithHttpInfo($expand, $accept, $accept_encoding, $contentType)
             ->then(
@@ -6372,22 +7088,32 @@ class InventoriesApi
      *
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryMetadata'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getInventoryMetadataAsyncWithHttpInfo($expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryMetadata'][0])
+    public function getInventoryMetadataAsyncWithHttpInfo($expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryMetadata'][0])
     {
         $returnType = '\OpenAPI\Client\Model\DocumentMetadata';
         $request = $this->getInventoryMetadataRequest($expand, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\DocumentMetadata')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -6425,13 +7151,13 @@ class InventoriesApi
      *
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryMetadata'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getInventoryMetadataRequest($expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryMetadata'][0])
+    public function getInventoryMetadataRequest($expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryMetadata'][0])
     {
 
 
@@ -6457,7 +7183,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -6467,7 +7193,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -6511,10 +7237,18 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -6535,14 +7269,14 @@ class InventoriesApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AttributeMetaInfoList|\OpenAPI\Client\Model\Errors
      */
-    public function getInventoryMetadataAttribute($offset = 0, $limit = 1000, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryMetadataAttribute'][0])
+    public function getInventoryMetadataAttribute($offset = 0, $limit = 1000, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryMetadataAttribute'][0])
     {
         list($response) = $this->getInventoryMetadataAttributeWithHttpInfo($offset, $limit, $accept, $accept_encoding, $contentType);
         return $response;
@@ -6556,18 +7290,21 @@ class InventoriesApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AttributeMetaInfoList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getInventoryMetadataAttributeWithHttpInfo($offset = 0, $limit = 1000, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryMetadataAttribute'][0])
+    public function getInventoryMetadataAttributeWithHttpInfo($offset = 0, $limit = 1000, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryMetadataAttribute'][0])
     {
         $request = $this->getInventoryMetadataAttributeRequest($offset, $limit, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfoList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -6588,6 +7325,13 @@ class InventoriesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfoList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\AttributeMetaInfoList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -6626,6 +7370,9 @@ class InventoriesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfoList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -6657,13 +7404,13 @@ class InventoriesApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getInventoryMetadataAttributeAsync($offset = 0, $limit = 1000, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryMetadataAttribute'][0])
+    public function getInventoryMetadataAttributeAsync($offset = 0, $limit = 1000, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryMetadataAttribute'][0])
     {
         return $this->getInventoryMetadataAttributeAsyncWithHttpInfo($offset, $limit, $accept, $accept_encoding, $contentType)
             ->then(
@@ -6681,22 +7428,32 @@ class InventoriesApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getInventoryMetadataAttributeAsyncWithHttpInfo($offset = 0, $limit = 1000, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryMetadataAttribute'][0])
+    public function getInventoryMetadataAttributeAsyncWithHttpInfo($offset = 0, $limit = 1000, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryMetadataAttribute'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfoList';
         $request = $this->getInventoryMetadataAttributeRequest($offset, $limit, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfoList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -6735,13 +7492,13 @@ class InventoriesApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getInventoryMetadataAttributeRequest($offset = 0, $limit = 1000, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryMetadataAttribute'][0])
+    public function getInventoryMetadataAttributeRequest($offset = 0, $limit = 1000, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryMetadataAttribute'][0])
     {
 
         if ($offset !== null && $offset < 0) {
@@ -6786,7 +7543,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -6796,7 +7553,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -6840,10 +7597,18 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -6863,14 +7628,14 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors
      */
-    public function getInventoryMetadataAttributeById($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryMetadataAttributeById'][0])
+    public function getInventoryMetadataAttributeById($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryMetadataAttributeById'][0])
     {
         list($response) = $this->getInventoryMetadataAttributeByIdWithHttpInfo($id, $accept, $accept_encoding, $contentType);
         return $response;
@@ -6883,18 +7648,21 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getInventoryMetadataAttributeByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryMetadataAttributeById'][0])
+    public function getInventoryMetadataAttributeByIdWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryMetadataAttributeById'][0])
     {
         $request = $this->getInventoryMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -6915,6 +7683,13 @@ class InventoriesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\AttributeMetaInfo',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -6953,6 +7728,9 @@ class InventoriesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -6983,13 +7761,13 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getInventoryMetadataAttributeByIdAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryMetadataAttributeById'][0])
+    public function getInventoryMetadataAttributeByIdAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryMetadataAttributeById'][0])
     {
         return $this->getInventoryMetadataAttributeByIdAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -7006,22 +7784,32 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getInventoryMetadataAttributeByIdAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryMetadataAttributeById'][0])
+    public function getInventoryMetadataAttributeByIdAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryMetadataAttributeById'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfo';
         $request = $this->getInventoryMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -7059,13 +7847,13 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getInventoryMetadataAttributeByIdRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryMetadataAttributeById'][0])
+    public function getInventoryMetadataAttributeByIdRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryMetadataAttributeById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -7088,7 +7876,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -7106,7 +7894,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -7150,10 +7938,18 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -7173,14 +7969,14 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryMetadataStateById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors
      */
-    public function getInventoryMetadataStateById($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryMetadataStateById'][0])
+    public function getInventoryMetadataStateById($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryMetadataStateById'][0])
     {
         list($response) = $this->getInventoryMetadataStateByIdWithHttpInfo($id, $accept, $accept_encoding, $contentType);
         return $response;
@@ -7193,18 +7989,21 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryMetadataStateById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getInventoryMetadataStateByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryMetadataStateById'][0])
+    public function getInventoryMetadataStateByIdWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryMetadataStateById'][0])
     {
         $request = $this->getInventoryMetadataStateByIdRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -7225,6 +8024,13 @@ class InventoriesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\State',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -7263,6 +8069,9 @@ class InventoriesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -7293,13 +8102,13 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getInventoryMetadataStateByIdAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryMetadataStateById'][0])
+    public function getInventoryMetadataStateByIdAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryMetadataStateById'][0])
     {
         return $this->getInventoryMetadataStateByIdAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -7316,22 +8125,32 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getInventoryMetadataStateByIdAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryMetadataStateById'][0])
+    public function getInventoryMetadataStateByIdAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryMetadataStateById'][0])
     {
         $returnType = '\OpenAPI\Client\Model\State';
         $request = $this->getInventoryMetadataStateByIdRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -7369,13 +8188,13 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getInventoryMetadataStateByIdRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryMetadataStateById'][0])
+    public function getInventoryMetadataStateByIdRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryMetadataStateById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -7398,7 +8217,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -7416,7 +8235,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -7460,10 +8279,18 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -7485,14 +8312,14 @@ class InventoriesApi
      * @param  string $position_id ID позиции (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryPositionById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\InventoryPosition|\OpenAPI\Client\Model\Errors
      */
-    public function getInventoryPositionById($id, $position_id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryPositionById'][0])
+    public function getInventoryPositionById($id, $position_id, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryPositionById'][0])
     {
         list($response) = $this->getInventoryPositionByIdWithHttpInfo($id, $position_id, $expand, $accept, $accept_encoding, $contentType);
         return $response;
@@ -7507,18 +8334,21 @@ class InventoriesApi
      * @param  string $position_id ID позиции (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryPositionById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\InventoryPosition|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getInventoryPositionByIdWithHttpInfo($id, $position_id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryPositionById'][0])
+    public function getInventoryPositionByIdWithHttpInfo($id, $position_id, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryPositionById'][0])
     {
         $request = $this->getInventoryPositionByIdRequest($id, $position_id, $expand, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\InventoryPosition')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -7539,6 +8369,13 @@ class InventoriesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\InventoryPosition')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\InventoryPosition',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -7577,6 +8414,9 @@ class InventoriesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\InventoryPosition')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -7609,13 +8449,13 @@ class InventoriesApi
      * @param  string $position_id ID позиции (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryPositionById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getInventoryPositionByIdAsync($id, $position_id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryPositionById'][0])
+    public function getInventoryPositionByIdAsync($id, $position_id, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryPositionById'][0])
     {
         return $this->getInventoryPositionByIdAsyncWithHttpInfo($id, $position_id, $expand, $accept, $accept_encoding, $contentType)
             ->then(
@@ -7634,22 +8474,32 @@ class InventoriesApi
      * @param  string $position_id ID позиции (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryPositionById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getInventoryPositionByIdAsyncWithHttpInfo($id, $position_id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryPositionById'][0])
+    public function getInventoryPositionByIdAsyncWithHttpInfo($id, $position_id, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryPositionById'][0])
     {
         $returnType = '\OpenAPI\Client\Model\InventoryPosition';
         $request = $this->getInventoryPositionByIdRequest($id, $position_id, $expand, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\InventoryPosition')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -7689,13 +8539,13 @@ class InventoriesApi
      * @param  string $position_id ID позиции (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryPositionById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getInventoryPositionByIdRequest($id, $position_id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryPositionById'][0])
+    public function getInventoryPositionByIdRequest($id, $position_id, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryPositionById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -7735,7 +8585,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -7761,7 +8611,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -7805,10 +8655,18 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -7831,14 +8689,14 @@ class InventoriesApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryPositions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\InventoryPositionList|\OpenAPI\Client\Model\Errors
      */
-    public function getInventoryPositions($id, $limit = 1000, $offset = 0, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryPositions'][0])
+    public function getInventoryPositions($id, $limit = 1000, $offset = 0, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryPositions'][0])
     {
         list($response) = $this->getInventoryPositionsWithHttpInfo($id, $limit, $offset, $expand, $accept, $accept_encoding, $contentType);
         return $response;
@@ -7854,18 +8712,21 @@ class InventoriesApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryPositions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\InventoryPositionList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getInventoryPositionsWithHttpInfo($id, $limit = 1000, $offset = 0, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryPositions'][0])
+    public function getInventoryPositionsWithHttpInfo($id, $limit = 1000, $offset = 0, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryPositions'][0])
     {
         $request = $this->getInventoryPositionsRequest($id, $limit, $offset, $expand, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\InventoryPositionList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -7886,6 +8747,13 @@ class InventoriesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\InventoryPositionList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\InventoryPositionList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -7924,6 +8792,9 @@ class InventoriesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\InventoryPositionList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -7957,13 +8828,13 @@ class InventoriesApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getInventoryPositionsAsync($id, $limit = 1000, $offset = 0, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryPositions'][0])
+    public function getInventoryPositionsAsync($id, $limit = 1000, $offset = 0, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryPositions'][0])
     {
         return $this->getInventoryPositionsAsyncWithHttpInfo($id, $limit, $offset, $expand, $accept, $accept_encoding, $contentType)
             ->then(
@@ -7983,22 +8854,32 @@ class InventoriesApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getInventoryPositionsAsyncWithHttpInfo($id, $limit = 1000, $offset = 0, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryPositions'][0])
+    public function getInventoryPositionsAsyncWithHttpInfo($id, $limit = 1000, $offset = 0, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryPositions'][0])
     {
         $returnType = '\OpenAPI\Client\Model\InventoryPositionList';
         $request = $this->getInventoryPositionsRequest($id, $limit, $offset, $expand, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\InventoryPositionList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -8039,13 +8920,13 @@ class InventoriesApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getInventoryPositionsRequest($id, $limit = 1000, $offset = 0, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getInventoryPositions'][0])
+    public function getInventoryPositionsRequest($id, $limit = 1000, $offset = 0, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getInventoryPositions'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -8107,7 +8988,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -8125,7 +9006,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -8169,10 +9050,18 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -8191,7 +9080,7 @@ class InventoriesApi
      * Шаблон Инвентаризации
      *
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  object|null $body body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryTemplate'] to see the possible values for this operation
@@ -8200,7 +9089,7 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Inventory|\OpenAPI\Client\Model\Errors
      */
-    public function getInventoryTemplate($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $body = null, string $contentType = self::contentTypes['getInventoryTemplate'][0])
+    public function getInventoryTemplate($accept = null, $accept_encoding = null, $content_type = null, $body = null, string $contentType = self::contentTypes['getInventoryTemplate'][0])
     {
         list($response) = $this->getInventoryTemplateWithHttpInfo($accept, $accept_encoding, $content_type, $body, $contentType);
         return $response;
@@ -8212,7 +9101,7 @@ class InventoriesApi
      * Шаблон Инвентаризации
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  object|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryTemplate'] to see the possible values for this operation
@@ -8221,11 +9110,14 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Inventory|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getInventoryTemplateWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $body = null, string $contentType = self::contentTypes['getInventoryTemplate'][0])
+    public function getInventoryTemplateWithHttpInfo($accept = null, $accept_encoding = null, $content_type = null, $body = null, string $contentType = self::contentTypes['getInventoryTemplate'][0])
     {
         $request = $this->getInventoryTemplateRequest($accept, $accept_encoding, $content_type, $body, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Inventory')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -8246,6 +9138,13 @@ class InventoriesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Inventory')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\Inventory',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -8284,6 +9183,9 @@ class InventoriesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Inventory')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -8313,7 +9215,7 @@ class InventoriesApi
      * Шаблон Инвентаризации
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  object|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryTemplate'] to see the possible values for this operation
@@ -8321,7 +9223,7 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getInventoryTemplateAsync($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $body = null, string $contentType = self::contentTypes['getInventoryTemplate'][0])
+    public function getInventoryTemplateAsync($accept = null, $accept_encoding = null, $content_type = null, $body = null, string $contentType = self::contentTypes['getInventoryTemplate'][0])
     {
         return $this->getInventoryTemplateAsyncWithHttpInfo($accept, $accept_encoding, $content_type, $body, $contentType)
             ->then(
@@ -8337,7 +9239,7 @@ class InventoriesApi
      * Шаблон Инвентаризации
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  object|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryTemplate'] to see the possible values for this operation
@@ -8345,16 +9247,26 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getInventoryTemplateAsyncWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $body = null, string $contentType = self::contentTypes['getInventoryTemplate'][0])
+    public function getInventoryTemplateAsyncWithHttpInfo($accept = null, $accept_encoding = null, $content_type = null, $body = null, string $contentType = self::contentTypes['getInventoryTemplate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Inventory';
         $request = $this->getInventoryTemplateRequest($accept, $accept_encoding, $content_type, $body, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\Inventory')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -8391,7 +9303,7 @@ class InventoriesApi
      * Create request for operation 'getInventoryTemplate'
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  object|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getInventoryTemplate'] to see the possible values for this operation
@@ -8399,7 +9311,7 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getInventoryTemplateRequest($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $body = null, string $contentType = self::contentTypes['getInventoryTemplate'][0])
+    public function getInventoryTemplateRequest($accept = null, $accept_encoding = null, $content_type = null, $body = null, string $contentType = self::contentTypes['getInventoryTemplate'][0])
     {
 
 
@@ -8417,7 +9329,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -8431,7 +9343,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -8482,10 +9394,21 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -8505,16 +9428,17 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
+     * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['moveInventoryToTrash'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function moveInventoryToTrash($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['moveInventoryToTrash'][0])
+    public function moveInventoryToTrash($id, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['moveInventoryToTrash'][0])
     {
-        $this->moveInventoryToTrashWithHttpInfo($id, $accept, $accept_encoding, $contentType);
+        $this->moveInventoryToTrashWithHttpInfo($id, $accept, $accept_encoding, $content_type, $contentType);
     }
 
     /**
@@ -8524,18 +9448,22 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
+     * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['moveInventoryToTrash'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function moveInventoryToTrashWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['moveInventoryToTrash'][0])
+    public function moveInventoryToTrashWithHttpInfo($id, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['moveInventoryToTrash'][0])
     {
-        $request = $this->moveInventoryToTrashRequest($id, $accept, $accept_encoding, $contentType);
+        $request = $this->moveInventoryToTrashRequest($id, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -8559,6 +9487,9 @@ class InventoriesApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -8581,15 +9512,16 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
+     * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['moveInventoryToTrash'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function moveInventoryToTrashAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['moveInventoryToTrash'][0])
+    public function moveInventoryToTrashAsync($id, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['moveInventoryToTrash'][0])
     {
-        return $this->moveInventoryToTrashAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
+        return $this->moveInventoryToTrashAsyncWithHttpInfo($id, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -8604,17 +9536,21 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
+     * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['moveInventoryToTrash'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function moveInventoryToTrashAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['moveInventoryToTrash'][0])
+    public function moveInventoryToTrashAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['moveInventoryToTrash'][0])
     {
         $returnType = '';
-        $request = $this->moveInventoryToTrashRequest($id, $accept, $accept_encoding, $contentType);
+        $request = $this->moveInventoryToTrashRequest($id, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -8644,13 +9580,14 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
+     * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['moveInventoryToTrash'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function moveInventoryToTrashRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['moveInventoryToTrash'][0])
+    public function moveInventoryToTrashRequest($id, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['moveInventoryToTrash'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -8659,6 +9596,7 @@ class InventoriesApi
                 'Missing the required parameter $id when calling moveInventoryToTrash'
             );
         }
+
 
 
 
@@ -8673,11 +9611,15 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
             $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+        // header params
+        if ($content_type !== null) {
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
         }
 
         // path params
@@ -8691,7 +9633,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -8735,10 +9677,21 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -8758,7 +9711,7 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['recalculateInventoryCalculatedQuantity'] to see the possible values for this operation
      *
@@ -8766,7 +9719,7 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function recalculateInventoryCalculatedQuantity($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['recalculateInventoryCalculatedQuantity'][0])
+    public function recalculateInventoryCalculatedQuantity($id, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['recalculateInventoryCalculatedQuantity'][0])
     {
         $this->recalculateInventoryCalculatedQuantityWithHttpInfo($id, $accept, $accept_encoding, $content_type, $contentType);
     }
@@ -8778,7 +9731,7 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['recalculateInventoryCalculatedQuantity'] to see the possible values for this operation
      *
@@ -8786,11 +9739,14 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function recalculateInventoryCalculatedQuantityWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['recalculateInventoryCalculatedQuantity'][0])
+    public function recalculateInventoryCalculatedQuantityWithHttpInfo($id, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['recalculateInventoryCalculatedQuantity'][0])
     {
         $request = $this->recalculateInventoryCalculatedQuantityRequest($id, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -8814,6 +9770,9 @@ class InventoriesApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -8836,14 +9795,14 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['recalculateInventoryCalculatedQuantity'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function recalculateInventoryCalculatedQuantityAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['recalculateInventoryCalculatedQuantity'][0])
+    public function recalculateInventoryCalculatedQuantityAsync($id, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['recalculateInventoryCalculatedQuantity'][0])
     {
         return $this->recalculateInventoryCalculatedQuantityAsyncWithHttpInfo($id, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -8860,18 +9819,21 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['recalculateInventoryCalculatedQuantity'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function recalculateInventoryCalculatedQuantityAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['recalculateInventoryCalculatedQuantity'][0])
+    public function recalculateInventoryCalculatedQuantityAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['recalculateInventoryCalculatedQuantity'][0])
     {
         $returnType = '';
         $request = $this->recalculateInventoryCalculatedQuantityRequest($id, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -8901,14 +9863,14 @@ class InventoriesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['recalculateInventoryCalculatedQuantity'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function recalculateInventoryCalculatedQuantityRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['recalculateInventoryCalculatedQuantity'][0])
+    public function recalculateInventoryCalculatedQuantityRequest($id, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['recalculateInventoryCalculatedQuantity'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -8932,7 +9894,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -8954,7 +9916,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -8998,10 +9960,21 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -9023,7 +9996,7 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\Inventory $inventory inventory (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateInventory'] to see the possible values for this operation
      *
@@ -9031,7 +10004,7 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Inventory|\OpenAPI\Client\Model\Errors
      */
-    public function updateInventory($id, $inventory, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInventory'][0])
+    public function updateInventory($id, $inventory, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateInventory'][0])
     {
         list($response) = $this->updateInventoryWithHttpInfo($id, $inventory, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -9046,7 +10019,7 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\Inventory $inventory (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateInventory'] to see the possible values for this operation
      *
@@ -9054,11 +10027,14 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Inventory|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateInventoryWithHttpInfo($id, $inventory, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInventory'][0])
+    public function updateInventoryWithHttpInfo($id, $inventory, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateInventory'][0])
     {
         $request = $this->updateInventoryRequest($id, $inventory, $expand, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Inventory')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -9079,6 +10055,13 @@ class InventoriesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Inventory')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\Inventory',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -9117,6 +10100,9 @@ class InventoriesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Inventory')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -9149,14 +10135,14 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\Inventory $inventory (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateInventory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateInventoryAsync($id, $inventory, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInventory'][0])
+    public function updateInventoryAsync($id, $inventory, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateInventory'][0])
     {
         return $this->updateInventoryAsyncWithHttpInfo($id, $inventory, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -9175,23 +10161,33 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\Inventory $inventory (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateInventory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateInventoryAsyncWithHttpInfo($id, $inventory, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInventory'][0])
+    public function updateInventoryAsyncWithHttpInfo($id, $inventory, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateInventory'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Inventory';
         $request = $this->updateInventoryRequest($id, $inventory, $expand, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\Inventory')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -9231,14 +10227,14 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\Inventory $inventory (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateInventory'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateInventoryRequest($id, $inventory, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInventory'][0])
+    public function updateInventoryRequest($id, $inventory, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateInventory'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -9279,7 +10275,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -9301,7 +10297,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -9352,10 +10348,21 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -9376,7 +10383,7 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info attribute_meta_info (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateInventoryMetadataAttributeById'] to see the possible values for this operation
      *
@@ -9384,7 +10391,7 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors
      */
-    public function updateInventoryMetadataAttributeById($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInventoryMetadataAttributeById'][0])
+    public function updateInventoryMetadataAttributeById($id, $attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateInventoryMetadataAttributeById'][0])
     {
         list($response) = $this->updateInventoryMetadataAttributeByIdWithHttpInfo($id, $attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -9398,7 +10405,7 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateInventoryMetadataAttributeById'] to see the possible values for this operation
      *
@@ -9406,11 +10413,14 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateInventoryMetadataAttributeByIdWithHttpInfo($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInventoryMetadataAttributeById'][0])
+    public function updateInventoryMetadataAttributeByIdWithHttpInfo($id, $attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateInventoryMetadataAttributeById'][0])
     {
         $request = $this->updateInventoryMetadataAttributeByIdRequest($id, $attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -9431,6 +10441,13 @@ class InventoriesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\AttributeMetaInfo',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -9469,6 +10486,9 @@ class InventoriesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -9500,14 +10520,14 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateInventoryMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateInventoryMetadataAttributeByIdAsync($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInventoryMetadataAttributeById'][0])
+    public function updateInventoryMetadataAttributeByIdAsync($id, $attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateInventoryMetadataAttributeById'][0])
     {
         return $this->updateInventoryMetadataAttributeByIdAsyncWithHttpInfo($id, $attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -9525,23 +10545,33 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateInventoryMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateInventoryMetadataAttributeByIdAsyncWithHttpInfo($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInventoryMetadataAttributeById'][0])
+    public function updateInventoryMetadataAttributeByIdAsyncWithHttpInfo($id, $attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateInventoryMetadataAttributeById'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfo';
         $request = $this->updateInventoryMetadataAttributeByIdRequest($id, $attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -9580,14 +10610,14 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateInventoryMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateInventoryMetadataAttributeByIdRequest($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInventoryMetadataAttributeById'][0])
+    public function updateInventoryMetadataAttributeByIdRequest($id, $attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateInventoryMetadataAttributeById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -9618,7 +10648,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -9640,7 +10670,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -9691,10 +10721,21 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -9715,7 +10756,7 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\State $state state (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateInventoryMetadataStateById'] to see the possible values for this operation
      *
@@ -9723,7 +10764,7 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors
      */
-    public function updateInventoryMetadataStateById($id, $state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInventoryMetadataStateById'][0])
+    public function updateInventoryMetadataStateById($id, $state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateInventoryMetadataStateById'][0])
     {
         list($response) = $this->updateInventoryMetadataStateByIdWithHttpInfo($id, $state, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -9737,7 +10778,7 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateInventoryMetadataStateById'] to see the possible values for this operation
      *
@@ -9745,11 +10786,14 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateInventoryMetadataStateByIdWithHttpInfo($id, $state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInventoryMetadataStateById'][0])
+    public function updateInventoryMetadataStateByIdWithHttpInfo($id, $state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateInventoryMetadataStateById'][0])
     {
         $request = $this->updateInventoryMetadataStateByIdRequest($id, $state, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -9770,6 +10814,13 @@ class InventoriesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\State',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -9808,6 +10859,9 @@ class InventoriesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -9839,14 +10893,14 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateInventoryMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateInventoryMetadataStateByIdAsync($id, $state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInventoryMetadataStateById'][0])
+    public function updateInventoryMetadataStateByIdAsync($id, $state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateInventoryMetadataStateById'][0])
     {
         return $this->updateInventoryMetadataStateByIdAsyncWithHttpInfo($id, $state, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -9864,23 +10918,33 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateInventoryMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateInventoryMetadataStateByIdAsyncWithHttpInfo($id, $state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInventoryMetadataStateById'][0])
+    public function updateInventoryMetadataStateByIdAsyncWithHttpInfo($id, $state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateInventoryMetadataStateById'][0])
     {
         $returnType = '\OpenAPI\Client\Model\State';
         $request = $this->updateInventoryMetadataStateByIdRequest($id, $state, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -9919,14 +10983,14 @@ class InventoriesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateInventoryMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateInventoryMetadataStateByIdRequest($id, $state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInventoryMetadataStateById'][0])
+    public function updateInventoryMetadataStateByIdRequest($id, $state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateInventoryMetadataStateById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -9957,7 +11021,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -9979,7 +11043,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -10030,10 +11094,21 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -10056,7 +11131,7 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\InventoryPosition $inventory_position inventory_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateInventoryPosition'] to see the possible values for this operation
      *
@@ -10064,7 +11139,7 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\InventoryPosition|\OpenAPI\Client\Model\Errors
      */
-    public function updateInventoryPosition($id, $position_id, $inventory_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInventoryPosition'][0])
+    public function updateInventoryPosition($id, $position_id, $inventory_position, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateInventoryPosition'][0])
     {
         list($response) = $this->updateInventoryPositionWithHttpInfo($id, $position_id, $inventory_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -10080,7 +11155,7 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\InventoryPosition $inventory_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateInventoryPosition'] to see the possible values for this operation
      *
@@ -10088,11 +11163,14 @@ class InventoriesApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\InventoryPosition|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateInventoryPositionWithHttpInfo($id, $position_id, $inventory_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInventoryPosition'][0])
+    public function updateInventoryPositionWithHttpInfo($id, $position_id, $inventory_position, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateInventoryPosition'][0])
     {
         $request = $this->updateInventoryPositionRequest($id, $position_id, $inventory_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\InventoryPosition')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -10113,6 +11191,13 @@ class InventoriesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\InventoryPosition')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\InventoryPosition',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -10151,6 +11236,9 @@ class InventoriesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\InventoryPosition')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -10184,14 +11272,14 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\InventoryPosition $inventory_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateInventoryPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateInventoryPositionAsync($id, $position_id, $inventory_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInventoryPosition'][0])
+    public function updateInventoryPositionAsync($id, $position_id, $inventory_position, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateInventoryPosition'][0])
     {
         return $this->updateInventoryPositionAsyncWithHttpInfo($id, $position_id, $inventory_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -10211,23 +11299,33 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\InventoryPosition $inventory_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateInventoryPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateInventoryPositionAsyncWithHttpInfo($id, $position_id, $inventory_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInventoryPosition'][0])
+    public function updateInventoryPositionAsyncWithHttpInfo($id, $position_id, $inventory_position, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateInventoryPosition'][0])
     {
         $returnType = '\OpenAPI\Client\Model\InventoryPosition';
         $request = $this->updateInventoryPositionRequest($id, $position_id, $inventory_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\InventoryPosition')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -10268,14 +11366,14 @@ class InventoriesApi
      * @param  \OpenAPI\Client\Model\InventoryPosition $inventory_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateInventoryPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateInventoryPositionRequest($id, $position_id, $inventory_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateInventoryPosition'][0])
+    public function updateInventoryPositionRequest($id, $position_id, $inventory_position, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateInventoryPosition'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -10323,7 +11421,7 @@ class InventoriesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -10353,7 +11451,7 @@ class InventoriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -10404,10 +11502,21 @@ class InventoriesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -10472,13 +11581,22 @@ class InventoriesApi
         ];
     }
 
+    private function isBatchResponseType(string $dataType): bool
+    {
+        return in_array($dataType, [
+            '\OpenAPI\Client\Model\BatchResponseEntity[]',
+            '\OpenAPI\Client\Model\DeleteRowResult[]',
+        ], true);
+    }
+
     private function handleResponseMassWithDataType(
         string $dataType,
         RequestInterface $request,
         ResponseInterface $response
     ): array {
         $rawContent = (string) $response->getBody();
-        if ($rawContent === '') {
+        $statusCode = $response->getStatusCode();
+        if ($rawContent === '' && $statusCode >= 200 && $statusCode <= 299) {
             return [null, $response->getStatusCode(), $response->getHeaders()];
         }
 
@@ -10496,37 +11614,44 @@ class InventoriesApi
             );
         }
 
-        if ($response->getStatusCode() < 200 || $response->getStatusCode() > 299) {
-            if (is_object($content)) {
-                $errorsClass = '\OpenAPI\Client\Model\Errors';
-                $error = ObjectSerializer::deserialize($content, $errorsClass, $response->getHeaders());
-                throw new ApiException(
-                    (string) $error,
-                    $response->getStatusCode(),
-                    $response->getHeaders(),
-                    $rawContent
-                );
+        if (($statusCode < 200 || $statusCode > 299)
+            && !(in_array($statusCode, [404, 412], true) && is_array($content))
+        ) {
+            $exception = new ApiException(
+                sprintf('[%d] Error connecting to the API (%s)', $statusCode, $request->getUri()),
+                $statusCode,
+                $response->getHeaders(),
+                $rawContent
+            );
+            if (is_object($content) && property_exists($content, 'errors')) {
+                try {
+                    $exception->setResponseObject(ObjectSerializer::deserialize(
+                        $content,
+                        '\OpenAPI\Client\Model\Errors',
+                        $response->getHeaders()
+                    ));
+                } catch (\InvalidArgumentException | \TypeError $deserializationException) {
+                    // Preserve the HTTP exception and raw response even if Errors is malformed.
+                }
             }
-
-            if (!is_array($content)) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $response->getStatusCode(),
-                    $response->getHeaders(),
-                    $rawContent
-                );
-            }
+            throw $exception;
         }
 
-        return [
-            ObjectSerializer::deserialize($content, $dataType, []),
-            $response->getStatusCode(),
-            $response->getHeaders()
-        ];
+        try {
+            $result = ObjectSerializer::deserialize($content, $dataType, $response->getHeaders());
+        } catch (\InvalidArgumentException | \TypeError $exception) {
+            if ($statusCode >= 200 && $statusCode <= 299) {
+                throw $exception;
+            }
+            throw new ApiException(
+                sprintf('Error deserializing batch response (%s): %s', $request->getUri(), $exception->getMessage()),
+                $statusCode,
+                $response->getHeaders(),
+                $rawContent
+            );
+        }
+
+        return [$result, $statusCode, $response->getHeaders()];
     }
 
     private function responseWithinRangeCode(

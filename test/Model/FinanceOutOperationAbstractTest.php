@@ -80,6 +80,15 @@ class FinanceOutOperationAbstractTest extends TestCase
     }
 
     /**
+     * Test attribute "meta"
+     */
+    public function testPropertyMeta()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "linked_sum"
      */
     public function testPropertyLinkedSum()

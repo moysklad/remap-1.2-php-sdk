@@ -205,7 +205,7 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload $file_upload file_upload (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addPaymentInFile'] to see the possible values for this operation
      *
@@ -213,7 +213,7 @@ class PaymentInsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\File[]|\OpenAPI\Client\Model\Errors
      */
-    public function addPaymentInFile($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addPaymentInFile'][0])
+    public function addPaymentInFile($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addPaymentInFile'][0])
     {
         list($response) = $this->addPaymentInFileWithHttpInfo($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -227,7 +227,7 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addPaymentInFile'] to see the possible values for this operation
      *
@@ -235,11 +235,14 @@ class PaymentInsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\File[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function addPaymentInFileWithHttpInfo($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addPaymentInFile'][0])
+    public function addPaymentInFileWithHttpInfo($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addPaymentInFile'][0])
     {
         $request = $this->addPaymentInFileRequest($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\File[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -260,6 +263,13 @@ class PaymentInsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\File[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\File[]',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -298,6 +308,9 @@ class PaymentInsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\File[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -329,14 +342,14 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addPaymentInFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addPaymentInFileAsync($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addPaymentInFile'][0])
+    public function addPaymentInFileAsync($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addPaymentInFile'][0])
     {
         return $this->addPaymentInFileAsyncWithHttpInfo($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -354,23 +367,33 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addPaymentInFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addPaymentInFileAsyncWithHttpInfo($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addPaymentInFile'][0])
+    public function addPaymentInFileAsyncWithHttpInfo($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addPaymentInFile'][0])
     {
         $returnType = '\OpenAPI\Client\Model\File[]';
         $request = $this->addPaymentInFileRequest($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\File[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -409,14 +432,14 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addPaymentInFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function addPaymentInFileRequest($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addPaymentInFile'][0])
+    public function addPaymentInFileRequest($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addPaymentInFile'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -447,7 +470,7 @@ class PaymentInsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -469,7 +492,7 @@ class PaymentInsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -520,10 +543,21 @@ class PaymentInsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -544,7 +578,7 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload[] $file_upload file_upload (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addPaymentInFiles'] to see the possible values for this operation
      *
@@ -552,7 +586,7 @@ class PaymentInsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\File[]|\OpenAPI\Client\Model\Errors
      */
-    public function addPaymentInFiles($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addPaymentInFiles'][0])
+    public function addPaymentInFiles($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addPaymentInFiles'][0])
     {
         list($response) = $this->addPaymentInFilesWithHttpInfo($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -566,7 +600,7 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload[] $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addPaymentInFiles'] to see the possible values for this operation
      *
@@ -574,11 +608,14 @@ class PaymentInsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\File[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function addPaymentInFilesWithHttpInfo($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addPaymentInFiles'][0])
+    public function addPaymentInFilesWithHttpInfo($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addPaymentInFiles'][0])
     {
         $request = $this->addPaymentInFilesRequest($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\File[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -599,6 +636,13 @@ class PaymentInsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\File[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\File[]',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -637,6 +681,9 @@ class PaymentInsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\File[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -668,14 +715,14 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload[] $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addPaymentInFiles'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addPaymentInFilesAsync($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addPaymentInFiles'][0])
+    public function addPaymentInFilesAsync($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addPaymentInFiles'][0])
     {
         return $this->addPaymentInFilesAsyncWithHttpInfo($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -693,23 +740,33 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload[] $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addPaymentInFiles'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addPaymentInFilesAsyncWithHttpInfo($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addPaymentInFiles'][0])
+    public function addPaymentInFilesAsyncWithHttpInfo($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addPaymentInFiles'][0])
     {
         $returnType = '\OpenAPI\Client\Model\File[]';
         $request = $this->addPaymentInFilesRequest($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\File[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -748,14 +805,14 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload[] $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addPaymentInFiles'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function addPaymentInFilesRequest($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addPaymentInFiles'][0])
+    public function addPaymentInFilesRequest($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addPaymentInFiles'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -792,7 +849,7 @@ class PaymentInsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -814,7 +871,7 @@ class PaymentInsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -865,10 +922,21 @@ class PaymentInsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -889,7 +957,7 @@ class PaymentInsApi
      * @param  \OpenAPI\Client\Model\PaymentIn $payment_in payment_in (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentIn'] to see the possible values for this operation
      *
@@ -897,7 +965,7 @@ class PaymentInsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\PaymentIn|\OpenAPI\Client\Model\Errors
      */
-    public function createPaymentIn($payment_in, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentIn'][0])
+    public function createPaymentIn($payment_in, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPaymentIn'][0])
     {
         list($response) = $this->createPaymentInWithHttpInfo($payment_in, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -911,7 +979,7 @@ class PaymentInsApi
      * @param  \OpenAPI\Client\Model\PaymentIn $payment_in (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentIn'] to see the possible values for this operation
      *
@@ -919,11 +987,14 @@ class PaymentInsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\PaymentIn|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createPaymentInWithHttpInfo($payment_in, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentIn'][0])
+    public function createPaymentInWithHttpInfo($payment_in, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPaymentIn'][0])
     {
         $request = $this->createPaymentInRequest($payment_in, $expand, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PaymentIn')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -944,6 +1015,13 @@ class PaymentInsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PaymentIn')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\PaymentIn',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -982,6 +1060,9 @@ class PaymentInsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PaymentIn')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -1013,14 +1094,14 @@ class PaymentInsApi
      * @param  \OpenAPI\Client\Model\PaymentIn $payment_in (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentIn'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPaymentInAsync($payment_in, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentIn'][0])
+    public function createPaymentInAsync($payment_in, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPaymentIn'][0])
     {
         return $this->createPaymentInAsyncWithHttpInfo($payment_in, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -1038,23 +1119,33 @@ class PaymentInsApi
      * @param  \OpenAPI\Client\Model\PaymentIn $payment_in (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentIn'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPaymentInAsyncWithHttpInfo($payment_in, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentIn'][0])
+    public function createPaymentInAsyncWithHttpInfo($payment_in, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPaymentIn'][0])
     {
         $returnType = '\OpenAPI\Client\Model\PaymentIn';
         $request = $this->createPaymentInRequest($payment_in, $expand, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\PaymentIn')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1093,14 +1184,14 @@ class PaymentInsApi
      * @param  \OpenAPI\Client\Model\PaymentIn $payment_in (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentIn'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createPaymentInRequest($payment_in, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentIn'][0])
+    public function createPaymentInRequest($payment_in, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPaymentIn'][0])
     {
 
         // verify the required parameter 'payment_in' is set
@@ -1134,7 +1225,7 @@ class PaymentInsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -1148,7 +1239,7 @@ class PaymentInsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1199,10 +1290,21 @@ class PaymentInsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -1223,15 +1325,15 @@ class PaymentInsApi
      * @param  \OpenAPI\Client\Model\PaymentIn[] $payment_in payment_in (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentInBatch'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\BatchEntityErrorResponse|\OpenAPI\Client\Model\BatchEntityErrorResponse|\OpenAPI\Client\Model\Errors
      */
-    public function createPaymentInBatch($payment_in, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInBatch'][0])
+    public function createPaymentInBatch($payment_in, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPaymentInBatch'][0])
     {
         list($response) = $this->createPaymentInBatchWithHttpInfo($payment_in, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -1245,20 +1347,22 @@ class PaymentInsApi
      * @param  \OpenAPI\Client\Model\PaymentIn[] $payment_in (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentInBatch'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\BatchEntityErrorResponse|\OpenAPI\Client\Model\BatchEntityErrorResponse|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createPaymentInBatchWithHttpInfo($payment_in, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInBatch'][0])
+    public function createPaymentInBatchWithHttpInfo($payment_in, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPaymentInBatch'][0])
     {
         $request = $this->createPaymentInBatchRequest($payment_in, $expand, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
-            $options[RequestOptions::HTTP_ERRORS] = false;
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\BatchResponseEntity[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1279,17 +1383,87 @@ class PaymentInsApi
 
             $statusCode = $response->getStatusCode();
 
-            return $this->handleResponseMassWithDataType(
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\BatchResponseEntity[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                    $request,
+                    $response
+                );
+            }
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                        $request,
+                        $response
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchEntityErrorResponse',
+                        $request,
+                        $response
+                    );
+                case 412:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchEntityErrorResponse',
+                        $request,
+                        $response
+                    );
+                default:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\Errors',
+                        $request,
+                        $response
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\BatchResponseEntity[]',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\BatchResponseEntity[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchEntityErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 412:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchEntityErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1316,14 +1490,14 @@ class PaymentInsApi
      * @param  \OpenAPI\Client\Model\PaymentIn[] $payment_in (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentInBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPaymentInBatchAsync($payment_in, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInBatch'][0])
+    public function createPaymentInBatchAsync($payment_in, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPaymentInBatch'][0])
     {
         return $this->createPaymentInBatchAsyncWithHttpInfo($payment_in, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -1341,29 +1515,47 @@ class PaymentInsApi
      * @param  \OpenAPI\Client\Model\PaymentIn[] $payment_in (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentInBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPaymentInBatchAsyncWithHttpInfo($payment_in, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInBatch'][0])
+    public function createPaymentInBatchAsyncWithHttpInfo($payment_in, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPaymentInBatch'][0])
     {
         $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
         $request = $this->createPaymentInBatchRequest($payment_in, $expand, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
-        $options[RequestOptions::HTTP_ERRORS] = false;
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\BatchResponseEntity[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
-                    return $this->handleResponseMassWithDataType(
-                        $returnType,
-                        $request,
-                        $response,
-                    );
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -1388,14 +1580,14 @@ class PaymentInsApi
      * @param  \OpenAPI\Client\Model\PaymentIn[] $payment_in (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentInBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createPaymentInBatchRequest($payment_in, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInBatch'][0])
+    public function createPaymentInBatchRequest($payment_in, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPaymentInBatch'][0])
     {
 
         // verify the required parameter 'payment_in' is set
@@ -1435,7 +1627,7 @@ class PaymentInsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -1449,7 +1641,7 @@ class PaymentInsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1500,10 +1692,21 @@ class PaymentInsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -1523,7 +1726,7 @@ class PaymentInsApi
      *
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info attribute_meta_info (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentInMetadataAttribute'] to see the possible values for this operation
      *
@@ -1531,7 +1734,7 @@ class PaymentInsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors
      */
-    public function createPaymentInMetadataAttribute($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInMetadataAttribute'][0])
+    public function createPaymentInMetadataAttribute($attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPaymentInMetadataAttribute'][0])
     {
         list($response) = $this->createPaymentInMetadataAttributeWithHttpInfo($attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -1544,7 +1747,7 @@ class PaymentInsApi
      *
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentInMetadataAttribute'] to see the possible values for this operation
      *
@@ -1552,11 +1755,14 @@ class PaymentInsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createPaymentInMetadataAttributeWithHttpInfo($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInMetadataAttribute'][0])
+    public function createPaymentInMetadataAttributeWithHttpInfo($attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPaymentInMetadataAttribute'][0])
     {
         $request = $this->createPaymentInMetadataAttributeRequest($attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1577,6 +1783,13 @@ class PaymentInsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\AttributeMetaInfo',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -1615,6 +1828,9 @@ class PaymentInsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -1645,14 +1861,14 @@ class PaymentInsApi
      *
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentInMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPaymentInMetadataAttributeAsync($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInMetadataAttribute'][0])
+    public function createPaymentInMetadataAttributeAsync($attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPaymentInMetadataAttribute'][0])
     {
         return $this->createPaymentInMetadataAttributeAsyncWithHttpInfo($attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -1669,23 +1885,33 @@ class PaymentInsApi
      *
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentInMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPaymentInMetadataAttributeAsyncWithHttpInfo($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInMetadataAttribute'][0])
+    public function createPaymentInMetadataAttributeAsyncWithHttpInfo($attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPaymentInMetadataAttribute'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfo';
         $request = $this->createPaymentInMetadataAttributeRequest($attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1723,14 +1949,14 @@ class PaymentInsApi
      *
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentInMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createPaymentInMetadataAttributeRequest($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInMetadataAttribute'][0])
+    public function createPaymentInMetadataAttributeRequest($attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPaymentInMetadataAttribute'][0])
     {
 
         // verify the required parameter 'attribute_meta_info' is set
@@ -1754,7 +1980,7 @@ class PaymentInsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -1768,7 +1994,7 @@ class PaymentInsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1819,10 +2045,21 @@ class PaymentInsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -1842,7 +2079,7 @@ class PaymentInsApi
      *
      * @param  \OpenAPI\Client\Model\State $state state (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentInMetadataState'] to see the possible values for this operation
      *
@@ -1850,7 +2087,7 @@ class PaymentInsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors
      */
-    public function createPaymentInMetadataState($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInMetadataState'][0])
+    public function createPaymentInMetadataState($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPaymentInMetadataState'][0])
     {
         list($response) = $this->createPaymentInMetadataStateWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -1863,7 +2100,7 @@ class PaymentInsApi
      *
      * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentInMetadataState'] to see the possible values for this operation
      *
@@ -1871,11 +2108,14 @@ class PaymentInsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createPaymentInMetadataStateWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInMetadataState'][0])
+    public function createPaymentInMetadataStateWithHttpInfo($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPaymentInMetadataState'][0])
     {
         $request = $this->createPaymentInMetadataStateRequest($state, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1896,6 +2136,13 @@ class PaymentInsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\State',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -1934,6 +2181,9 @@ class PaymentInsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -1964,14 +2214,14 @@ class PaymentInsApi
      *
      * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentInMetadataState'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPaymentInMetadataStateAsync($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInMetadataState'][0])
+    public function createPaymentInMetadataStateAsync($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPaymentInMetadataState'][0])
     {
         return $this->createPaymentInMetadataStateAsyncWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -1988,23 +2238,33 @@ class PaymentInsApi
      *
      * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentInMetadataState'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPaymentInMetadataStateAsyncWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInMetadataState'][0])
+    public function createPaymentInMetadataStateAsyncWithHttpInfo($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPaymentInMetadataState'][0])
     {
         $returnType = '\OpenAPI\Client\Model\State';
         $request = $this->createPaymentInMetadataStateRequest($state, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2042,14 +2302,14 @@ class PaymentInsApi
      *
      * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentInMetadataState'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createPaymentInMetadataStateRequest($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInMetadataState'][0])
+    public function createPaymentInMetadataStateRequest($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPaymentInMetadataState'][0])
     {
 
         // verify the required parameter 'state' is set
@@ -2073,7 +2333,7 @@ class PaymentInsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -2087,7 +2347,7 @@ class PaymentInsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -2138,10 +2398,21 @@ class PaymentInsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -2161,7 +2432,7 @@ class PaymentInsApi
      *
      * @param  \OpenAPI\Client\Model\State[] $state state (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentInMetadataStatesBatch'] to see the possible values for this operation
      *
@@ -2169,7 +2440,7 @@ class PaymentInsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\StateRowResult[]|\OpenAPI\Client\Model\Errors
      */
-    public function createPaymentInMetadataStatesBatch($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInMetadataStatesBatch'][0])
+    public function createPaymentInMetadataStatesBatch($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPaymentInMetadataStatesBatch'][0])
     {
         list($response) = $this->createPaymentInMetadataStatesBatchWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -2182,7 +2453,7 @@ class PaymentInsApi
      *
      * @param  \OpenAPI\Client\Model\State[] $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentInMetadataStatesBatch'] to see the possible values for this operation
      *
@@ -2190,11 +2461,14 @@ class PaymentInsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\StateRowResult[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createPaymentInMetadataStatesBatchWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInMetadataStatesBatch'][0])
+    public function createPaymentInMetadataStatesBatchWithHttpInfo($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPaymentInMetadataStatesBatch'][0])
     {
         $request = $this->createPaymentInMetadataStatesBatchRequest($state, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\StateRowResult[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -2215,6 +2489,13 @@ class PaymentInsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\StateRowResult[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\StateRowResult[]',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -2253,6 +2534,9 @@ class PaymentInsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\StateRowResult[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -2283,14 +2567,14 @@ class PaymentInsApi
      *
      * @param  \OpenAPI\Client\Model\State[] $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentInMetadataStatesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPaymentInMetadataStatesBatchAsync($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInMetadataStatesBatch'][0])
+    public function createPaymentInMetadataStatesBatchAsync($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPaymentInMetadataStatesBatch'][0])
     {
         return $this->createPaymentInMetadataStatesBatchAsyncWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -2307,23 +2591,33 @@ class PaymentInsApi
      *
      * @param  \OpenAPI\Client\Model\State[] $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentInMetadataStatesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPaymentInMetadataStatesBatchAsyncWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInMetadataStatesBatch'][0])
+    public function createPaymentInMetadataStatesBatchAsyncWithHttpInfo($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPaymentInMetadataStatesBatch'][0])
     {
         $returnType = '\OpenAPI\Client\Model\StateRowResult[]';
         $request = $this->createPaymentInMetadataStatesBatchRequest($state, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\StateRowResult[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2361,14 +2655,14 @@ class PaymentInsApi
      *
      * @param  \OpenAPI\Client\Model\State[] $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentInMetadataStatesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createPaymentInMetadataStatesBatchRequest($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPaymentInMetadataStatesBatch'][0])
+    public function createPaymentInMetadataStatesBatchRequest($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPaymentInMetadataStatesBatch'][0])
     {
 
         // verify the required parameter 'state' is set
@@ -2398,7 +2692,7 @@ class PaymentInsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -2412,7 +2706,7 @@ class PaymentInsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -2463,10 +2757,21 @@ class PaymentInsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -2486,14 +2791,14 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentIn'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deletePaymentIn($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentIn'][0])
+    public function deletePaymentIn($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePaymentIn'][0])
     {
         $this->deletePaymentInWithHttpInfo($id, $accept, $accept_encoding, $contentType);
     }
@@ -2505,18 +2810,21 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentIn'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deletePaymentInWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentIn'][0])
+    public function deletePaymentInWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePaymentIn'][0])
     {
         $request = $this->deletePaymentInRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -2540,6 +2848,9 @@ class PaymentInsApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -2562,13 +2873,13 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentIn'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePaymentInAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentIn'][0])
+    public function deletePaymentInAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePaymentIn'][0])
     {
         return $this->deletePaymentInAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -2585,17 +2896,20 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentIn'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePaymentInAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentIn'][0])
+    public function deletePaymentInAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePaymentIn'][0])
     {
         $returnType = '';
         $request = $this->deletePaymentInRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -2625,13 +2939,13 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentIn'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deletePaymentInRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentIn'][0])
+    public function deletePaymentInRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePaymentIn'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -2654,7 +2968,7 @@ class PaymentInsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -2672,7 +2986,7 @@ class PaymentInsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -2716,10 +3030,18 @@ class PaymentInsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -2739,14 +3061,14 @@ class PaymentInsApi
      *
      * @param  \OpenAPI\Client\Model\PaymentIn[] $payment_in payment_in (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentInBatch'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\Errors
+     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\BatchDeleteErrorResponse|\OpenAPI\Client\Model\BatchDeleteErrorResponse|\OpenAPI\Client\Model\Errors
      */
-    public function deletePaymentInBatch($payment_in, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentInBatch'][0])
+    public function deletePaymentInBatch($payment_in, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePaymentInBatch'][0])
     {
         list($response) = $this->deletePaymentInBatchWithHttpInfo($payment_in, $accept, $accept_encoding, $contentType);
         return $response;
@@ -2759,18 +3081,21 @@ class PaymentInsApi
      *
      * @param  \OpenAPI\Client\Model\PaymentIn[] $payment_in (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentInBatch'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\BatchDeleteErrorResponse|\OpenAPI\Client\Model\BatchDeleteErrorResponse|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deletePaymentInBatchWithHttpInfo($payment_in, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentInBatch'][0])
+    public function deletePaymentInBatchWithHttpInfo($payment_in, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePaymentInBatch'][0])
     {
         $request = $this->deletePaymentInBatchRequest($payment_in, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DeleteRowResult[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -2791,12 +3116,31 @@ class PaymentInsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DeleteRowResult[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\DeleteRowResult[]',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\DeleteRowResult[]',
+                        $request,
+                        $response
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchDeleteErrorResponse',
+                        $request,
+                        $response
+                    );
+                case 412:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchDeleteErrorResponse',
                         $request,
                         $response
                     );
@@ -2829,11 +3173,30 @@ class PaymentInsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DeleteRowResult[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\OpenAPI\Client\Model\DeleteRowResult[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchDeleteErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 412:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchDeleteErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2859,13 +3222,13 @@ class PaymentInsApi
      *
      * @param  \OpenAPI\Client\Model\PaymentIn[] $payment_in (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentInBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePaymentInBatchAsync($payment_in, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentInBatch'][0])
+    public function deletePaymentInBatchAsync($payment_in, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePaymentInBatch'][0])
     {
         return $this->deletePaymentInBatchAsyncWithHttpInfo($payment_in, $accept, $accept_encoding, $contentType)
             ->then(
@@ -2882,22 +3245,32 @@ class PaymentInsApi
      *
      * @param  \OpenAPI\Client\Model\PaymentIn[] $payment_in (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentInBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePaymentInBatchAsyncWithHttpInfo($payment_in, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentInBatch'][0])
+    public function deletePaymentInBatchAsyncWithHttpInfo($payment_in, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePaymentInBatch'][0])
     {
         $returnType = '\OpenAPI\Client\Model\DeleteRowResult[]';
         $request = $this->deletePaymentInBatchRequest($payment_in, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\DeleteRowResult[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2935,13 +3308,13 @@ class PaymentInsApi
      *
      * @param  \OpenAPI\Client\Model\PaymentIn[] $payment_in (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentInBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deletePaymentInBatchRequest($payment_in, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentInBatch'][0])
+    public function deletePaymentInBatchRequest($payment_in, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePaymentInBatch'][0])
     {
 
         // verify the required parameter 'payment_in' is set
@@ -2970,7 +3343,7 @@ class PaymentInsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -2980,7 +3353,7 @@ class PaymentInsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -3031,10 +3404,18 @@ class PaymentInsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -3055,14 +3436,14 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  string $file_id ID файла (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentInFile'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deletePaymentInFile($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentInFile'][0])
+    public function deletePaymentInFile($id, $file_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePaymentInFile'][0])
     {
         $this->deletePaymentInFileWithHttpInfo($id, $file_id, $accept, $accept_encoding, $contentType);
     }
@@ -3075,18 +3456,21 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  string $file_id ID файла (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentInFile'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deletePaymentInFileWithHttpInfo($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentInFile'][0])
+    public function deletePaymentInFileWithHttpInfo($id, $file_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePaymentInFile'][0])
     {
         $request = $this->deletePaymentInFileRequest($id, $file_id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -3110,6 +3494,9 @@ class PaymentInsApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -3133,13 +3520,13 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  string $file_id ID файла (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentInFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePaymentInFileAsync($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentInFile'][0])
+    public function deletePaymentInFileAsync($id, $file_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePaymentInFile'][0])
     {
         return $this->deletePaymentInFileAsyncWithHttpInfo($id, $file_id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -3157,17 +3544,20 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  string $file_id ID файла (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentInFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePaymentInFileAsyncWithHttpInfo($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentInFile'][0])
+    public function deletePaymentInFileAsyncWithHttpInfo($id, $file_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePaymentInFile'][0])
     {
         $returnType = '';
         $request = $this->deletePaymentInFileRequest($id, $file_id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -3198,13 +3588,13 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  string $file_id ID файла (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentInFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deletePaymentInFileRequest($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentInFile'][0])
+    public function deletePaymentInFileRequest($id, $file_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePaymentInFile'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -3234,7 +3624,7 @@ class PaymentInsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -3260,7 +3650,7 @@ class PaymentInsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -3304,10 +3694,18 @@ class PaymentInsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -3327,14 +3725,14 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentInMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deletePaymentInMetadataAttributeById($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentInMetadataAttributeById'][0])
+    public function deletePaymentInMetadataAttributeById($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePaymentInMetadataAttributeById'][0])
     {
         $this->deletePaymentInMetadataAttributeByIdWithHttpInfo($id, $accept, $accept_encoding, $contentType);
     }
@@ -3346,18 +3744,21 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentInMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deletePaymentInMetadataAttributeByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentInMetadataAttributeById'][0])
+    public function deletePaymentInMetadataAttributeByIdWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePaymentInMetadataAttributeById'][0])
     {
         $request = $this->deletePaymentInMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -3381,6 +3782,9 @@ class PaymentInsApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -3403,13 +3807,13 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentInMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePaymentInMetadataAttributeByIdAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentInMetadataAttributeById'][0])
+    public function deletePaymentInMetadataAttributeByIdAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePaymentInMetadataAttributeById'][0])
     {
         return $this->deletePaymentInMetadataAttributeByIdAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -3426,17 +3830,20 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentInMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePaymentInMetadataAttributeByIdAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentInMetadataAttributeById'][0])
+    public function deletePaymentInMetadataAttributeByIdAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePaymentInMetadataAttributeById'][0])
     {
         $returnType = '';
         $request = $this->deletePaymentInMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -3466,13 +3873,13 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentInMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deletePaymentInMetadataAttributeByIdRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentInMetadataAttributeById'][0])
+    public function deletePaymentInMetadataAttributeByIdRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePaymentInMetadataAttributeById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -3495,7 +3902,7 @@ class PaymentInsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -3513,7 +3920,7 @@ class PaymentInsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -3557,10 +3964,18 @@ class PaymentInsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -3580,14 +3995,14 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentInMetadataStateById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deletePaymentInMetadataStateById($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentInMetadataStateById'][0])
+    public function deletePaymentInMetadataStateById($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePaymentInMetadataStateById'][0])
     {
         $this->deletePaymentInMetadataStateByIdWithHttpInfo($id, $accept, $accept_encoding, $contentType);
     }
@@ -3599,18 +4014,21 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentInMetadataStateById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deletePaymentInMetadataStateByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentInMetadataStateById'][0])
+    public function deletePaymentInMetadataStateByIdWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePaymentInMetadataStateById'][0])
     {
         $request = $this->deletePaymentInMetadataStateByIdRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -3634,6 +4052,9 @@ class PaymentInsApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -3656,13 +4077,13 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentInMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePaymentInMetadataStateByIdAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentInMetadataStateById'][0])
+    public function deletePaymentInMetadataStateByIdAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePaymentInMetadataStateById'][0])
     {
         return $this->deletePaymentInMetadataStateByIdAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -3679,17 +4100,20 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentInMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePaymentInMetadataStateByIdAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentInMetadataStateById'][0])
+    public function deletePaymentInMetadataStateByIdAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePaymentInMetadataStateById'][0])
     {
         $returnType = '';
         $request = $this->deletePaymentInMetadataStateByIdRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -3719,13 +4143,13 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentInMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deletePaymentInMetadataStateByIdRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePaymentInMetadataStateById'][0])
+    public function deletePaymentInMetadataStateByIdRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePaymentInMetadataStateById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -3748,7 +4172,7 @@ class PaymentInsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -3766,7 +4190,7 @@ class PaymentInsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -3810,10 +4234,18 @@ class PaymentInsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -3834,14 +4266,14 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\PaymentIn|\OpenAPI\Client\Model\Errors
      */
-    public function getPaymentInById($id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInById'][0])
+    public function getPaymentInById($id, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInById'][0])
     {
         list($response) = $this->getPaymentInByIdWithHttpInfo($id, $expand, $accept, $accept_encoding, $contentType);
         return $response;
@@ -3855,18 +4287,21 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\PaymentIn|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPaymentInByIdWithHttpInfo($id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInById'][0])
+    public function getPaymentInByIdWithHttpInfo($id, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInById'][0])
     {
         $request = $this->getPaymentInByIdRequest($id, $expand, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PaymentIn')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -3887,6 +4322,13 @@ class PaymentInsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PaymentIn')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\PaymentIn',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -3925,6 +4367,9 @@ class PaymentInsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PaymentIn')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -3956,13 +4401,13 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPaymentInByIdAsync($id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInById'][0])
+    public function getPaymentInByIdAsync($id, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInById'][0])
     {
         return $this->getPaymentInByIdAsyncWithHttpInfo($id, $expand, $accept, $accept_encoding, $contentType)
             ->then(
@@ -3980,22 +4425,32 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPaymentInByIdAsyncWithHttpInfo($id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInById'][0])
+    public function getPaymentInByIdAsyncWithHttpInfo($id, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInById'][0])
     {
         $returnType = '\OpenAPI\Client\Model\PaymentIn';
         $request = $this->getPaymentInByIdRequest($id, $expand, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\PaymentIn')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4034,13 +4489,13 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPaymentInByIdRequest($id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInById'][0])
+    public function getPaymentInByIdRequest($id, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -4073,7 +4528,7 @@ class PaymentInsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -4091,7 +4546,7 @@ class PaymentInsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -4135,10 +4590,18 @@ class PaymentInsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -4159,14 +4622,14 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  string $file_id ID файла (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInFile'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\File|\OpenAPI\Client\Model\Errors
      */
-    public function getPaymentInFile($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInFile'][0])
+    public function getPaymentInFile($id, $file_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInFile'][0])
     {
         list($response) = $this->getPaymentInFileWithHttpInfo($id, $file_id, $accept, $accept_encoding, $contentType);
         return $response;
@@ -4180,18 +4643,21 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  string $file_id ID файла (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInFile'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\File|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPaymentInFileWithHttpInfo($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInFile'][0])
+    public function getPaymentInFileWithHttpInfo($id, $file_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInFile'][0])
     {
         $request = $this->getPaymentInFileRequest($id, $file_id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\File')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -4212,6 +4678,13 @@ class PaymentInsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\File')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\File',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -4250,6 +4723,9 @@ class PaymentInsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\File')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -4281,13 +4757,13 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  string $file_id ID файла (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPaymentInFileAsync($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInFile'][0])
+    public function getPaymentInFileAsync($id, $file_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInFile'][0])
     {
         return $this->getPaymentInFileAsyncWithHttpInfo($id, $file_id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -4305,22 +4781,32 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  string $file_id ID файла (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPaymentInFileAsyncWithHttpInfo($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInFile'][0])
+    public function getPaymentInFileAsyncWithHttpInfo($id, $file_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInFile'][0])
     {
         $returnType = '\OpenAPI\Client\Model\File';
         $request = $this->getPaymentInFileRequest($id, $file_id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\File')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4359,13 +4845,13 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  string $file_id ID файла (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPaymentInFileRequest($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInFile'][0])
+    public function getPaymentInFileRequest($id, $file_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInFile'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -4395,7 +4881,7 @@ class PaymentInsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -4421,7 +4907,7 @@ class PaymentInsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -4465,10 +4951,18 @@ class PaymentInsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -4490,14 +4984,14 @@ class PaymentInsApi
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInFiles'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\GetTaskFiles200Response|\OpenAPI\Client\Model\Errors
      */
-    public function getPaymentInFiles($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInFiles'][0])
+    public function getPaymentInFiles($id, $limit = 1000, $offset = 0, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInFiles'][0])
     {
         list($response) = $this->getPaymentInFilesWithHttpInfo($id, $limit, $offset, $accept, $accept_encoding, $contentType);
         return $response;
@@ -4512,18 +5006,21 @@ class PaymentInsApi
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInFiles'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\GetTaskFiles200Response|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPaymentInFilesWithHttpInfo($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInFiles'][0])
+    public function getPaymentInFilesWithHttpInfo($id, $limit = 1000, $offset = 0, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInFiles'][0])
     {
         $request = $this->getPaymentInFilesRequest($id, $limit, $offset, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\GetTaskFiles200Response')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -4544,6 +5041,13 @@ class PaymentInsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\GetTaskFiles200Response')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\GetTaskFiles200Response',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -4582,6 +5086,9 @@ class PaymentInsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\GetTaskFiles200Response')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -4614,13 +5121,13 @@ class PaymentInsApi
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInFiles'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPaymentInFilesAsync($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInFiles'][0])
+    public function getPaymentInFilesAsync($id, $limit = 1000, $offset = 0, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInFiles'][0])
     {
         return $this->getPaymentInFilesAsyncWithHttpInfo($id, $limit, $offset, $accept, $accept_encoding, $contentType)
             ->then(
@@ -4639,22 +5146,32 @@ class PaymentInsApi
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInFiles'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPaymentInFilesAsyncWithHttpInfo($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInFiles'][0])
+    public function getPaymentInFilesAsyncWithHttpInfo($id, $limit = 1000, $offset = 0, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInFiles'][0])
     {
         $returnType = '\OpenAPI\Client\Model\GetTaskFiles200Response';
         $request = $this->getPaymentInFilesRequest($id, $limit, $offset, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\GetTaskFiles200Response')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4694,13 +5211,13 @@ class PaymentInsApi
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInFiles'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPaymentInFilesRequest($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInFiles'][0])
+    public function getPaymentInFilesRequest($id, $limit = 1000, $offset = 0, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInFiles'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -4752,7 +5269,7 @@ class PaymentInsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -4770,7 +5287,7 @@ class PaymentInsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -4814,10 +5331,18 @@ class PaymentInsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -4840,14 +5365,14 @@ class PaymentInsApi
      * @param  string|null $search Контекстный поиск по строковым полям сущностей (optional)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInList'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\PaymentInList|\OpenAPI\Client\Model\Errors
      */
-    public function getPaymentInList($limit = 1000, $offset = 0, $search = null, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInList'][0])
+    public function getPaymentInList($limit = 1000, $offset = 0, $search = null, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInList'][0])
     {
         list($response) = $this->getPaymentInListWithHttpInfo($limit, $offset, $search, $expand, $accept, $accept_encoding, $contentType);
         return $response;
@@ -4863,18 +5388,21 @@ class PaymentInsApi
      * @param  string|null $search Контекстный поиск по строковым полям сущностей (optional)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInList'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\PaymentInList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPaymentInListWithHttpInfo($limit = 1000, $offset = 0, $search = null, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInList'][0])
+    public function getPaymentInListWithHttpInfo($limit = 1000, $offset = 0, $search = null, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInList'][0])
     {
         $request = $this->getPaymentInListRequest($limit, $offset, $search, $expand, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PaymentInList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -4895,6 +5423,13 @@ class PaymentInsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PaymentInList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\PaymentInList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -4933,6 +5468,9 @@ class PaymentInsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PaymentInList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -4966,13 +5504,13 @@ class PaymentInsApi
      * @param  string|null $search Контекстный поиск по строковым полям сущностей (optional)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPaymentInListAsync($limit = 1000, $offset = 0, $search = null, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInList'][0])
+    public function getPaymentInListAsync($limit = 1000, $offset = 0, $search = null, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInList'][0])
     {
         return $this->getPaymentInListAsyncWithHttpInfo($limit, $offset, $search, $expand, $accept, $accept_encoding, $contentType)
             ->then(
@@ -4992,22 +5530,32 @@ class PaymentInsApi
      * @param  string|null $search Контекстный поиск по строковым полям сущностей (optional)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPaymentInListAsyncWithHttpInfo($limit = 1000, $offset = 0, $search = null, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInList'][0])
+    public function getPaymentInListAsyncWithHttpInfo($limit = 1000, $offset = 0, $search = null, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInList'][0])
     {
         $returnType = '\OpenAPI\Client\Model\PaymentInList';
         $request = $this->getPaymentInListRequest($limit, $offset, $search, $expand, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\PaymentInList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -5048,13 +5596,13 @@ class PaymentInsApi
      * @param  string|null $search Контекстный поиск по строковым полям сущностей (optional)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPaymentInListRequest($limit = 1000, $offset = 0, $search = null, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInList'][0])
+    public function getPaymentInListRequest($limit = 1000, $offset = 0, $search = null, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInList'][0])
     {
 
         if ($limit !== null && $limit > 1000) {
@@ -5119,7 +5667,7 @@ class PaymentInsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -5129,7 +5677,7 @@ class PaymentInsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -5173,10 +5721,18 @@ class PaymentInsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -5195,14 +5751,14 @@ class PaymentInsApi
      * Метаданные PaymentIn
      *
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInMetadata'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\DocumentMetadata|\OpenAPI\Client\Model\Errors
      */
-    public function getPaymentInMetadata($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadata'][0])
+    public function getPaymentInMetadata($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInMetadata'][0])
     {
         list($response) = $this->getPaymentInMetadataWithHttpInfo($accept, $accept_encoding, $contentType);
         return $response;
@@ -5214,18 +5770,21 @@ class PaymentInsApi
      * Метаданные PaymentIn
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInMetadata'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\DocumentMetadata|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPaymentInMetadataWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadata'][0])
+    public function getPaymentInMetadataWithHttpInfo($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInMetadata'][0])
     {
         $request = $this->getPaymentInMetadataRequest($accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DocumentMetadata')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -5246,6 +5805,13 @@ class PaymentInsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DocumentMetadata')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\DocumentMetadata',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -5284,6 +5850,9 @@ class PaymentInsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DocumentMetadata')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -5313,13 +5882,13 @@ class PaymentInsApi
      * Метаданные PaymentIn
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInMetadata'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPaymentInMetadataAsync($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadata'][0])
+    public function getPaymentInMetadataAsync($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInMetadata'][0])
     {
         return $this->getPaymentInMetadataAsyncWithHttpInfo($accept, $accept_encoding, $contentType)
             ->then(
@@ -5335,22 +5904,32 @@ class PaymentInsApi
      * Метаданные PaymentIn
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInMetadata'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPaymentInMetadataAsyncWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadata'][0])
+    public function getPaymentInMetadataAsyncWithHttpInfo($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInMetadata'][0])
     {
         $returnType = '\OpenAPI\Client\Model\DocumentMetadata';
         $request = $this->getPaymentInMetadataRequest($accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\DocumentMetadata')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -5387,13 +5966,13 @@ class PaymentInsApi
      * Create request for operation 'getPaymentInMetadata'
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInMetadata'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPaymentInMetadataRequest($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadata'][0])
+    public function getPaymentInMetadataRequest($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInMetadata'][0])
     {
 
 
@@ -5409,7 +5988,7 @@ class PaymentInsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -5419,7 +5998,7 @@ class PaymentInsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -5463,10 +6042,18 @@ class PaymentInsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -5487,14 +6074,14 @@ class PaymentInsApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AttributeMetaInfoList|\OpenAPI\Client\Model\Errors
      */
-    public function getPaymentInMetadataAttribute($offset = 0, $limit = 1000, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadataAttribute'][0])
+    public function getPaymentInMetadataAttribute($offset = 0, $limit = 1000, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInMetadataAttribute'][0])
     {
         list($response) = $this->getPaymentInMetadataAttributeWithHttpInfo($offset, $limit, $accept, $accept_encoding, $contentType);
         return $response;
@@ -5508,18 +6095,21 @@ class PaymentInsApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AttributeMetaInfoList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPaymentInMetadataAttributeWithHttpInfo($offset = 0, $limit = 1000, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadataAttribute'][0])
+    public function getPaymentInMetadataAttributeWithHttpInfo($offset = 0, $limit = 1000, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInMetadataAttribute'][0])
     {
         $request = $this->getPaymentInMetadataAttributeRequest($offset, $limit, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfoList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -5540,6 +6130,13 @@ class PaymentInsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfoList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\AttributeMetaInfoList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -5578,6 +6175,9 @@ class PaymentInsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfoList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -5609,13 +6209,13 @@ class PaymentInsApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPaymentInMetadataAttributeAsync($offset = 0, $limit = 1000, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadataAttribute'][0])
+    public function getPaymentInMetadataAttributeAsync($offset = 0, $limit = 1000, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInMetadataAttribute'][0])
     {
         return $this->getPaymentInMetadataAttributeAsyncWithHttpInfo($offset, $limit, $accept, $accept_encoding, $contentType)
             ->then(
@@ -5633,22 +6233,32 @@ class PaymentInsApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPaymentInMetadataAttributeAsyncWithHttpInfo($offset = 0, $limit = 1000, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadataAttribute'][0])
+    public function getPaymentInMetadataAttributeAsyncWithHttpInfo($offset = 0, $limit = 1000, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInMetadataAttribute'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfoList';
         $request = $this->getPaymentInMetadataAttributeRequest($offset, $limit, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfoList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -5687,13 +6297,13 @@ class PaymentInsApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPaymentInMetadataAttributeRequest($offset = 0, $limit = 1000, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadataAttribute'][0])
+    public function getPaymentInMetadataAttributeRequest($offset = 0, $limit = 1000, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInMetadataAttribute'][0])
     {
 
         if ($offset !== null && $offset < 0) {
@@ -5738,7 +6348,7 @@ class PaymentInsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -5748,7 +6358,7 @@ class PaymentInsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -5792,10 +6402,18 @@ class PaymentInsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -5815,14 +6433,14 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors
      */
-    public function getPaymentInMetadataAttributeById($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadataAttributeById'][0])
+    public function getPaymentInMetadataAttributeById($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInMetadataAttributeById'][0])
     {
         list($response) = $this->getPaymentInMetadataAttributeByIdWithHttpInfo($id, $accept, $accept_encoding, $contentType);
         return $response;
@@ -5835,18 +6453,21 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPaymentInMetadataAttributeByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadataAttributeById'][0])
+    public function getPaymentInMetadataAttributeByIdWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInMetadataAttributeById'][0])
     {
         $request = $this->getPaymentInMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -5867,6 +6488,13 @@ class PaymentInsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\AttributeMetaInfo',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -5905,6 +6533,9 @@ class PaymentInsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -5935,13 +6566,13 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPaymentInMetadataAttributeByIdAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadataAttributeById'][0])
+    public function getPaymentInMetadataAttributeByIdAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInMetadataAttributeById'][0])
     {
         return $this->getPaymentInMetadataAttributeByIdAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -5958,22 +6589,32 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPaymentInMetadataAttributeByIdAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadataAttributeById'][0])
+    public function getPaymentInMetadataAttributeByIdAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInMetadataAttributeById'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfo';
         $request = $this->getPaymentInMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -6011,13 +6652,13 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPaymentInMetadataAttributeByIdRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadataAttributeById'][0])
+    public function getPaymentInMetadataAttributeByIdRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInMetadataAttributeById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -6040,7 +6681,7 @@ class PaymentInsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -6058,7 +6699,7 @@ class PaymentInsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -6102,10 +6743,18 @@ class PaymentInsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -6125,14 +6774,14 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInMetadataStateById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors
      */
-    public function getPaymentInMetadataStateById($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadataStateById'][0])
+    public function getPaymentInMetadataStateById($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInMetadataStateById'][0])
     {
         list($response) = $this->getPaymentInMetadataStateByIdWithHttpInfo($id, $accept, $accept_encoding, $contentType);
         return $response;
@@ -6145,18 +6794,21 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInMetadataStateById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPaymentInMetadataStateByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadataStateById'][0])
+    public function getPaymentInMetadataStateByIdWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInMetadataStateById'][0])
     {
         $request = $this->getPaymentInMetadataStateByIdRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -6177,6 +6829,13 @@ class PaymentInsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\State',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -6215,6 +6874,9 @@ class PaymentInsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -6245,13 +6907,13 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPaymentInMetadataStateByIdAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadataStateById'][0])
+    public function getPaymentInMetadataStateByIdAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInMetadataStateById'][0])
     {
         return $this->getPaymentInMetadataStateByIdAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -6268,22 +6930,32 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPaymentInMetadataStateByIdAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadataStateById'][0])
+    public function getPaymentInMetadataStateByIdAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInMetadataStateById'][0])
     {
         $returnType = '\OpenAPI\Client\Model\State';
         $request = $this->getPaymentInMetadataStateByIdRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -6321,13 +6993,13 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPaymentInMetadataStateByIdRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPaymentInMetadataStateById'][0])
+    public function getPaymentInMetadataStateByIdRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPaymentInMetadataStateById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -6350,7 +7022,7 @@ class PaymentInsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -6368,7 +7040,7 @@ class PaymentInsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -6412,10 +7084,18 @@ class PaymentInsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -6434,7 +7114,7 @@ class PaymentInsApi
      * Шаблон PaymentIns
      *
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  object|null $body body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInTemplate'] to see the possible values for this operation
@@ -6443,7 +7123,7 @@ class PaymentInsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\PaymentIn|\OpenAPI\Client\Model\Errors
      */
-    public function getPaymentInTemplate($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $body = null, string $contentType = self::contentTypes['getPaymentInTemplate'][0])
+    public function getPaymentInTemplate($accept = null, $accept_encoding = null, $content_type = null, $body = null, string $contentType = self::contentTypes['getPaymentInTemplate'][0])
     {
         list($response) = $this->getPaymentInTemplateWithHttpInfo($accept, $accept_encoding, $content_type, $body, $contentType);
         return $response;
@@ -6455,7 +7135,7 @@ class PaymentInsApi
      * Шаблон PaymentIns
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  object|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInTemplate'] to see the possible values for this operation
@@ -6464,11 +7144,14 @@ class PaymentInsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\PaymentIn|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPaymentInTemplateWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $body = null, string $contentType = self::contentTypes['getPaymentInTemplate'][0])
+    public function getPaymentInTemplateWithHttpInfo($accept = null, $accept_encoding = null, $content_type = null, $body = null, string $contentType = self::contentTypes['getPaymentInTemplate'][0])
     {
         $request = $this->getPaymentInTemplateRequest($accept, $accept_encoding, $content_type, $body, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PaymentIn')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -6489,6 +7172,13 @@ class PaymentInsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PaymentIn')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\PaymentIn',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -6527,6 +7217,9 @@ class PaymentInsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PaymentIn')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -6556,7 +7249,7 @@ class PaymentInsApi
      * Шаблон PaymentIns
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  object|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInTemplate'] to see the possible values for this operation
@@ -6564,7 +7257,7 @@ class PaymentInsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPaymentInTemplateAsync($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $body = null, string $contentType = self::contentTypes['getPaymentInTemplate'][0])
+    public function getPaymentInTemplateAsync($accept = null, $accept_encoding = null, $content_type = null, $body = null, string $contentType = self::contentTypes['getPaymentInTemplate'][0])
     {
         return $this->getPaymentInTemplateAsyncWithHttpInfo($accept, $accept_encoding, $content_type, $body, $contentType)
             ->then(
@@ -6580,7 +7273,7 @@ class PaymentInsApi
      * Шаблон PaymentIns
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  object|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInTemplate'] to see the possible values for this operation
@@ -6588,16 +7281,26 @@ class PaymentInsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPaymentInTemplateAsyncWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $body = null, string $contentType = self::contentTypes['getPaymentInTemplate'][0])
+    public function getPaymentInTemplateAsyncWithHttpInfo($accept = null, $accept_encoding = null, $content_type = null, $body = null, string $contentType = self::contentTypes['getPaymentInTemplate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\PaymentIn';
         $request = $this->getPaymentInTemplateRequest($accept, $accept_encoding, $content_type, $body, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\PaymentIn')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -6634,7 +7337,7 @@ class PaymentInsApi
      * Create request for operation 'getPaymentInTemplate'
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  object|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentInTemplate'] to see the possible values for this operation
@@ -6642,7 +7345,7 @@ class PaymentInsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPaymentInTemplateRequest($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $body = null, string $contentType = self::contentTypes['getPaymentInTemplate'][0])
+    public function getPaymentInTemplateRequest($accept = null, $accept_encoding = null, $content_type = null, $body = null, string $contentType = self::contentTypes['getPaymentInTemplate'][0])
     {
 
 
@@ -6660,7 +7363,7 @@ class PaymentInsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -6674,7 +7377,7 @@ class PaymentInsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -6725,10 +7428,21 @@ class PaymentInsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -6748,16 +7462,17 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
+     * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['movePaymentInToTrash'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function movePaymentInToTrash($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['movePaymentInToTrash'][0])
+    public function movePaymentInToTrash($id, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['movePaymentInToTrash'][0])
     {
-        $this->movePaymentInToTrashWithHttpInfo($id, $accept, $accept_encoding, $contentType);
+        $this->movePaymentInToTrashWithHttpInfo($id, $accept, $accept_encoding, $content_type, $contentType);
     }
 
     /**
@@ -6767,18 +7482,22 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
+     * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['movePaymentInToTrash'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function movePaymentInToTrashWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['movePaymentInToTrash'][0])
+    public function movePaymentInToTrashWithHttpInfo($id, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['movePaymentInToTrash'][0])
     {
-        $request = $this->movePaymentInToTrashRequest($id, $accept, $accept_encoding, $contentType);
+        $request = $this->movePaymentInToTrashRequest($id, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -6802,6 +7521,9 @@ class PaymentInsApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -6824,15 +7546,16 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
+     * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['movePaymentInToTrash'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function movePaymentInToTrashAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['movePaymentInToTrash'][0])
+    public function movePaymentInToTrashAsync($id, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['movePaymentInToTrash'][0])
     {
-        return $this->movePaymentInToTrashAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
+        return $this->movePaymentInToTrashAsyncWithHttpInfo($id, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -6847,17 +7570,21 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
+     * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['movePaymentInToTrash'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function movePaymentInToTrashAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['movePaymentInToTrash'][0])
+    public function movePaymentInToTrashAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['movePaymentInToTrash'][0])
     {
         $returnType = '';
-        $request = $this->movePaymentInToTrashRequest($id, $accept, $accept_encoding, $contentType);
+        $request = $this->movePaymentInToTrashRequest($id, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -6887,13 +7614,14 @@ class PaymentInsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
+     * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['movePaymentInToTrash'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function movePaymentInToTrashRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['movePaymentInToTrash'][0])
+    public function movePaymentInToTrashRequest($id, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['movePaymentInToTrash'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -6902,6 +7630,7 @@ class PaymentInsApi
                 'Missing the required parameter $id when calling movePaymentInToTrash'
             );
         }
+
 
 
 
@@ -6916,11 +7645,15 @@ class PaymentInsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
             $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+        // header params
+        if ($content_type !== null) {
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
         }
 
         // path params
@@ -6934,7 +7667,7 @@ class PaymentInsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -6978,10 +7711,21 @@ class PaymentInsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -7003,7 +7747,7 @@ class PaymentInsApi
      * @param  \OpenAPI\Client\Model\PaymentIn $payment_in payment_in (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePaymentIn'] to see the possible values for this operation
      *
@@ -7011,7 +7755,7 @@ class PaymentInsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\PaymentIn|\OpenAPI\Client\Model\Errors
      */
-    public function updatePaymentIn($id, $payment_in, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePaymentIn'][0])
+    public function updatePaymentIn($id, $payment_in, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePaymentIn'][0])
     {
         list($response) = $this->updatePaymentInWithHttpInfo($id, $payment_in, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -7026,7 +7770,7 @@ class PaymentInsApi
      * @param  \OpenAPI\Client\Model\PaymentIn $payment_in (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePaymentIn'] to see the possible values for this operation
      *
@@ -7034,11 +7778,14 @@ class PaymentInsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\PaymentIn|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updatePaymentInWithHttpInfo($id, $payment_in, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePaymentIn'][0])
+    public function updatePaymentInWithHttpInfo($id, $payment_in, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePaymentIn'][0])
     {
         $request = $this->updatePaymentInRequest($id, $payment_in, $expand, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PaymentIn')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -7059,6 +7806,13 @@ class PaymentInsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PaymentIn')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\PaymentIn',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -7097,6 +7851,9 @@ class PaymentInsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PaymentIn')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -7129,14 +7886,14 @@ class PaymentInsApi
      * @param  \OpenAPI\Client\Model\PaymentIn $payment_in (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePaymentIn'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePaymentInAsync($id, $payment_in, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePaymentIn'][0])
+    public function updatePaymentInAsync($id, $payment_in, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePaymentIn'][0])
     {
         return $this->updatePaymentInAsyncWithHttpInfo($id, $payment_in, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -7155,23 +7912,33 @@ class PaymentInsApi
      * @param  \OpenAPI\Client\Model\PaymentIn $payment_in (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePaymentIn'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePaymentInAsyncWithHttpInfo($id, $payment_in, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePaymentIn'][0])
+    public function updatePaymentInAsyncWithHttpInfo($id, $payment_in, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePaymentIn'][0])
     {
         $returnType = '\OpenAPI\Client\Model\PaymentIn';
         $request = $this->updatePaymentInRequest($id, $payment_in, $expand, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\PaymentIn')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -7211,14 +7978,14 @@ class PaymentInsApi
      * @param  \OpenAPI\Client\Model\PaymentIn $payment_in (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePaymentIn'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updatePaymentInRequest($id, $payment_in, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePaymentIn'][0])
+    public function updatePaymentInRequest($id, $payment_in, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePaymentIn'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -7259,7 +8026,7 @@ class PaymentInsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -7281,7 +8048,7 @@ class PaymentInsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -7332,10 +8099,21 @@ class PaymentInsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -7356,7 +8134,7 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info attribute_meta_info (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePaymentInMetadataAttributeById'] to see the possible values for this operation
      *
@@ -7364,7 +8142,7 @@ class PaymentInsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors
      */
-    public function updatePaymentInMetadataAttributeById($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePaymentInMetadataAttributeById'][0])
+    public function updatePaymentInMetadataAttributeById($id, $attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePaymentInMetadataAttributeById'][0])
     {
         list($response) = $this->updatePaymentInMetadataAttributeByIdWithHttpInfo($id, $attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -7378,7 +8156,7 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePaymentInMetadataAttributeById'] to see the possible values for this operation
      *
@@ -7386,11 +8164,14 @@ class PaymentInsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updatePaymentInMetadataAttributeByIdWithHttpInfo($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePaymentInMetadataAttributeById'][0])
+    public function updatePaymentInMetadataAttributeByIdWithHttpInfo($id, $attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePaymentInMetadataAttributeById'][0])
     {
         $request = $this->updatePaymentInMetadataAttributeByIdRequest($id, $attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -7411,6 +8192,13 @@ class PaymentInsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\AttributeMetaInfo',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -7449,6 +8237,9 @@ class PaymentInsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -7480,14 +8271,14 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePaymentInMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePaymentInMetadataAttributeByIdAsync($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePaymentInMetadataAttributeById'][0])
+    public function updatePaymentInMetadataAttributeByIdAsync($id, $attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePaymentInMetadataAttributeById'][0])
     {
         return $this->updatePaymentInMetadataAttributeByIdAsyncWithHttpInfo($id, $attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -7505,23 +8296,33 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePaymentInMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePaymentInMetadataAttributeByIdAsyncWithHttpInfo($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePaymentInMetadataAttributeById'][0])
+    public function updatePaymentInMetadataAttributeByIdAsyncWithHttpInfo($id, $attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePaymentInMetadataAttributeById'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfo';
         $request = $this->updatePaymentInMetadataAttributeByIdRequest($id, $attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -7560,14 +8361,14 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePaymentInMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updatePaymentInMetadataAttributeByIdRequest($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePaymentInMetadataAttributeById'][0])
+    public function updatePaymentInMetadataAttributeByIdRequest($id, $attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePaymentInMetadataAttributeById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -7598,7 +8399,7 @@ class PaymentInsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -7620,7 +8421,7 @@ class PaymentInsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -7671,10 +8472,21 @@ class PaymentInsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -7695,7 +8507,7 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\State $state state (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePaymentInMetadataStateById'] to see the possible values for this operation
      *
@@ -7703,7 +8515,7 @@ class PaymentInsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors
      */
-    public function updatePaymentInMetadataStateById($id, $state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePaymentInMetadataStateById'][0])
+    public function updatePaymentInMetadataStateById($id, $state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePaymentInMetadataStateById'][0])
     {
         list($response) = $this->updatePaymentInMetadataStateByIdWithHttpInfo($id, $state, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -7717,7 +8529,7 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePaymentInMetadataStateById'] to see the possible values for this operation
      *
@@ -7725,11 +8537,14 @@ class PaymentInsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updatePaymentInMetadataStateByIdWithHttpInfo($id, $state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePaymentInMetadataStateById'][0])
+    public function updatePaymentInMetadataStateByIdWithHttpInfo($id, $state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePaymentInMetadataStateById'][0])
     {
         $request = $this->updatePaymentInMetadataStateByIdRequest($id, $state, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -7750,6 +8565,13 @@ class PaymentInsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\State',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -7788,6 +8610,9 @@ class PaymentInsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -7819,14 +8644,14 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePaymentInMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePaymentInMetadataStateByIdAsync($id, $state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePaymentInMetadataStateById'][0])
+    public function updatePaymentInMetadataStateByIdAsync($id, $state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePaymentInMetadataStateById'][0])
     {
         return $this->updatePaymentInMetadataStateByIdAsyncWithHttpInfo($id, $state, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -7844,23 +8669,33 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePaymentInMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePaymentInMetadataStateByIdAsyncWithHttpInfo($id, $state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePaymentInMetadataStateById'][0])
+    public function updatePaymentInMetadataStateByIdAsyncWithHttpInfo($id, $state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePaymentInMetadataStateById'][0])
     {
         $returnType = '\OpenAPI\Client\Model\State';
         $request = $this->updatePaymentInMetadataStateByIdRequest($id, $state, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -7899,14 +8734,14 @@ class PaymentInsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePaymentInMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updatePaymentInMetadataStateByIdRequest($id, $state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePaymentInMetadataStateById'][0])
+    public function updatePaymentInMetadataStateByIdRequest($id, $state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePaymentInMetadataStateById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -7937,7 +8772,7 @@ class PaymentInsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -7959,7 +8794,7 @@ class PaymentInsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -8010,10 +8845,21 @@ class PaymentInsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -8078,13 +8924,22 @@ class PaymentInsApi
         ];
     }
 
+    private function isBatchResponseType(string $dataType): bool
+    {
+        return in_array($dataType, [
+            '\OpenAPI\Client\Model\BatchResponseEntity[]',
+            '\OpenAPI\Client\Model\DeleteRowResult[]',
+        ], true);
+    }
+
     private function handleResponseMassWithDataType(
         string $dataType,
         RequestInterface $request,
         ResponseInterface $response
     ): array {
         $rawContent = (string) $response->getBody();
-        if ($rawContent === '') {
+        $statusCode = $response->getStatusCode();
+        if ($rawContent === '' && $statusCode >= 200 && $statusCode <= 299) {
             return [null, $response->getStatusCode(), $response->getHeaders()];
         }
 
@@ -8102,37 +8957,44 @@ class PaymentInsApi
             );
         }
 
-        if ($response->getStatusCode() < 200 || $response->getStatusCode() > 299) {
-            if (is_object($content)) {
-                $errorsClass = '\OpenAPI\Client\Model\Errors';
-                $error = ObjectSerializer::deserialize($content, $errorsClass, $response->getHeaders());
-                throw new ApiException(
-                    (string) $error,
-                    $response->getStatusCode(),
-                    $response->getHeaders(),
-                    $rawContent
-                );
+        if (($statusCode < 200 || $statusCode > 299)
+            && !(in_array($statusCode, [404, 412], true) && is_array($content))
+        ) {
+            $exception = new ApiException(
+                sprintf('[%d] Error connecting to the API (%s)', $statusCode, $request->getUri()),
+                $statusCode,
+                $response->getHeaders(),
+                $rawContent
+            );
+            if (is_object($content) && property_exists($content, 'errors')) {
+                try {
+                    $exception->setResponseObject(ObjectSerializer::deserialize(
+                        $content,
+                        '\OpenAPI\Client\Model\Errors',
+                        $response->getHeaders()
+                    ));
+                } catch (\InvalidArgumentException | \TypeError $deserializationException) {
+                    // Preserve the HTTP exception and raw response even if Errors is malformed.
+                }
             }
-
-            if (!is_array($content)) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $response->getStatusCode(),
-                    $response->getHeaders(),
-                    $rawContent
-                );
-            }
+            throw $exception;
         }
 
-        return [
-            ObjectSerializer::deserialize($content, $dataType, []),
-            $response->getStatusCode(),
-            $response->getHeaders()
-        ];
+        try {
+            $result = ObjectSerializer::deserialize($content, $dataType, $response->getHeaders());
+        } catch (\InvalidArgumentException | \TypeError $exception) {
+            if ($statusCode >= 200 && $statusCode <= 299) {
+                throw $exception;
+            }
+            throw new ApiException(
+                sprintf('Error deserializing batch response (%s): %s', $request->getUri(), $exception->getMessage()),
+                $statusCode,
+                $response->getHeaders(),
+                $rawContent
+            );
+        }
+
+        return [$result, $statusCode, $response->getHeaders()];
     }
 
     private function responseWithinRangeCode(

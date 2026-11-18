@@ -82,4 +82,40 @@ class PrepaymentsApiTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test case for deletePrepaymentMetadataAttributeById
+     *
+     * Удалить отдельное доп. поле Предоплаты.
+     *
+     */
+    public function testDeletePrepaymentMetadataAttributeById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getPrepaymentMetadataAttributeById
+     *
+     * Отдельное доп. поле Предоплаты.
+     *
+     */
+    public function testGetPrepaymentMetadataAttributeById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updatePrepaymentMetadataAttributeById
+     *
+     * Обновить отдельное доп. поле Предоплаты.
+     *
+     */
+    public function testUpdatePrepaymentMetadataAttributeById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

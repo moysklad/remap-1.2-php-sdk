@@ -84,12 +84,48 @@ class ProductionTasksApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteProductionTaskMetadataAttributeById
+     *
+     * Удалить отдельное доп. поле Производственного задания.
+     *
+     */
+    public function testDeleteProductionTaskMetadataAttributeById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getProductionTaskMetadataAttribute
      *
      * Доп. поля ProductionTask.
      *
      */
     public function testGetProductionTaskMetadataAttribute()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getProductionTaskMetadataAttributeById
+     *
+     * Отдельное доп. поле Производственного задания.
+     *
+     */
+    public function testGetProductionTaskMetadataAttributeById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateProductionTaskMetadataAttributeById
+     *
+     * Обновить отдельное доп. поле Производственного задания.
+     *
+     */
+    public function testUpdateProductionTaskMetadataAttributeById()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

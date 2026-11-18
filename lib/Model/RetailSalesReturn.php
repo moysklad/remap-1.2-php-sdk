@@ -41,9 +41,37 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class RetailSalesReturn implements ModelInterface, ArrayAccess, \JsonSerializable
+class RetailSalesReturn extends EntityWithMeta 
 {
     public const DISCRIMINATOR = null;
+    public const ENTITY_TYPE = 'retailsalesreturn';
+
+    /** @return string[] Model alternatives in oneOf/anyOf, including those nested in allOf. */
+    public static function openAPIComposedTypes(): array
+    {
+        return [
+
+        ];
+    }
+
+    /** @var array<string, string> Fields declared by a composed schema outside this model. */
+    protected array $composedSchemaNames = [];
+
+    public function setComposedSchemaValue(string $property, string $jsonProperty, $value): void
+    {
+        $this->composedSchemaNames[$property] = $jsonProperty;
+        $this->container[$property] = $value;
+    }
+
+    public function getComposedSchemaValues(): array
+    {
+        $values = [];
+        foreach ($this->composedSchemaNames as $property => $jsonProperty) {
+            $values[$jsonProperty] = $this->container[$property];
+        }
+        return $values;
+    }
+
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
     protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
@@ -231,7 +259,7 @@ class RetailSalesReturn implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -241,7 +269,7 @@ class RetailSalesReturn implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -259,13 +287,14 @@ class RetailSalesReturn implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @return array
      */
-    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    public static function openAPIPolymorphicDiscriminatorMappings(string $href = ''): array
     {
-        return self::$openAPIPolymorphicDiscriminatorMappings;
+        $mappings = self::$openAPIPolymorphicDiscriminatorMappings;
+        return $mappings;
     }
 
     /**
-     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * Whether batch-error-shaped payloads should resolve to Errors when nested
      * discriminator mappings do not match.
      *
      * @return bool
@@ -282,7 +311,7 @@ class RetailSalesReturn implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables;
+        return self::$openAPINullables + parent::openAPINullables();
     }
 
     /**
@@ -477,7 +506,7 @@ class RetailSalesReturn implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -487,7 +516,7 @@ class RetailSalesReturn implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -497,7 +526,7 @@ class RetailSalesReturn implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -512,13 +541,6 @@ class RetailSalesReturn implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-    
 
     /**
      * Constructor
@@ -528,6 +550,9 @@ class RetailSalesReturn implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(?array $data = null)
     {
+        
+        parent::__construct($data);
+
         
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -596,8 +621,8 @@ class RetailSalesReturn implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function listInvalidProperties()
     {
         
+        $invalidProperties = parent::listInvalidProperties();
         
-        $invalidProperties = [];
         
 
         if (!is_null($this->container['cash_sum']) && ($this->container['cash_sum'] < 0)) {
@@ -1847,7 +1872,7 @@ class RetailSalesReturn implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function offsetUnset($offset): void
     {
-        unset($this->container[$offset]);
+        unset($this->container[$offset], $this->composedSchemaNames[$offset]);
     }
 
     /**

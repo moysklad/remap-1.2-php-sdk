@@ -244,7 +244,7 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload $file_upload file_upload (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addPurchaseReturnFile'] to see the possible values for this operation
      *
@@ -252,7 +252,7 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\File[]|\OpenAPI\Client\Model\Errors
      */
-    public function addPurchaseReturnFile($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addPurchaseReturnFile'][0])
+    public function addPurchaseReturnFile($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addPurchaseReturnFile'][0])
     {
         list($response) = $this->addPurchaseReturnFileWithHttpInfo($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -266,7 +266,7 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addPurchaseReturnFile'] to see the possible values for this operation
      *
@@ -274,11 +274,14 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\File[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function addPurchaseReturnFileWithHttpInfo($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addPurchaseReturnFile'][0])
+    public function addPurchaseReturnFileWithHttpInfo($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addPurchaseReturnFile'][0])
     {
         $request = $this->addPurchaseReturnFileRequest($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\File[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -299,6 +302,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\File[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\File[]',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -337,6 +347,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\File[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -368,14 +381,14 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addPurchaseReturnFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addPurchaseReturnFileAsync($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addPurchaseReturnFile'][0])
+    public function addPurchaseReturnFileAsync($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addPurchaseReturnFile'][0])
     {
         return $this->addPurchaseReturnFileAsyncWithHttpInfo($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -393,23 +406,33 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addPurchaseReturnFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addPurchaseReturnFileAsyncWithHttpInfo($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addPurchaseReturnFile'][0])
+    public function addPurchaseReturnFileAsyncWithHttpInfo($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addPurchaseReturnFile'][0])
     {
         $returnType = '\OpenAPI\Client\Model\File[]';
         $request = $this->addPurchaseReturnFileRequest($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\File[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -448,14 +471,14 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addPurchaseReturnFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function addPurchaseReturnFileRequest($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addPurchaseReturnFile'][0])
+    public function addPurchaseReturnFileRequest($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addPurchaseReturnFile'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -486,7 +509,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -508,7 +531,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -559,10 +582,21 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -583,7 +617,7 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload[] $file_upload file_upload (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addPurchaseReturnFiles'] to see the possible values for this operation
      *
@@ -591,7 +625,7 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\File[]|\OpenAPI\Client\Model\Errors
      */
-    public function addPurchaseReturnFiles($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addPurchaseReturnFiles'][0])
+    public function addPurchaseReturnFiles($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addPurchaseReturnFiles'][0])
     {
         list($response) = $this->addPurchaseReturnFilesWithHttpInfo($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -605,7 +639,7 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload[] $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addPurchaseReturnFiles'] to see the possible values for this operation
      *
@@ -613,11 +647,14 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\File[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function addPurchaseReturnFilesWithHttpInfo($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addPurchaseReturnFiles'][0])
+    public function addPurchaseReturnFilesWithHttpInfo($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addPurchaseReturnFiles'][0])
     {
         $request = $this->addPurchaseReturnFilesRequest($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\File[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -638,6 +675,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\File[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\File[]',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -676,6 +720,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\File[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -707,14 +754,14 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload[] $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addPurchaseReturnFiles'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addPurchaseReturnFilesAsync($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addPurchaseReturnFiles'][0])
+    public function addPurchaseReturnFilesAsync($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addPurchaseReturnFiles'][0])
     {
         return $this->addPurchaseReturnFilesAsyncWithHttpInfo($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -732,23 +779,33 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload[] $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addPurchaseReturnFiles'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addPurchaseReturnFilesAsyncWithHttpInfo($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addPurchaseReturnFiles'][0])
+    public function addPurchaseReturnFilesAsyncWithHttpInfo($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addPurchaseReturnFiles'][0])
     {
         $returnType = '\OpenAPI\Client\Model\File[]';
         $request = $this->addPurchaseReturnFilesRequest($id, $file_upload, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\File[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -787,14 +844,14 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\FileUpload[] $file_upload (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addPurchaseReturnFiles'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function addPurchaseReturnFilesRequest($id, $file_upload, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['addPurchaseReturnFiles'][0])
+    public function addPurchaseReturnFilesRequest($id, $file_upload, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['addPurchaseReturnFiles'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -831,7 +888,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -853,7 +910,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -904,10 +961,21 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -928,7 +996,7 @@ class PurchaseReturnsApi
      * @param  \OpenAPI\Client\Model\PurchaseReturn $purchase_return purchase_return (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturn'] to see the possible values for this operation
      *
@@ -936,7 +1004,7 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\PurchaseReturn|\OpenAPI\Client\Model\Errors
      */
-    public function createPurchaseReturn($purchase_return, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturn'][0])
+    public function createPurchaseReturn($purchase_return, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturn'][0])
     {
         list($response) = $this->createPurchaseReturnWithHttpInfo($purchase_return, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -950,7 +1018,7 @@ class PurchaseReturnsApi
      * @param  \OpenAPI\Client\Model\PurchaseReturn $purchase_return (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturn'] to see the possible values for this operation
      *
@@ -958,11 +1026,14 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\PurchaseReturn|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createPurchaseReturnWithHttpInfo($purchase_return, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturn'][0])
+    public function createPurchaseReturnWithHttpInfo($purchase_return, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturn'][0])
     {
         $request = $this->createPurchaseReturnRequest($purchase_return, $expand, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturn')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -983,6 +1054,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturn')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\PurchaseReturn',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -1021,6 +1099,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturn')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -1052,14 +1133,14 @@ class PurchaseReturnsApi
      * @param  \OpenAPI\Client\Model\PurchaseReturn $purchase_return (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturn'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPurchaseReturnAsync($purchase_return, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturn'][0])
+    public function createPurchaseReturnAsync($purchase_return, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturn'][0])
     {
         return $this->createPurchaseReturnAsyncWithHttpInfo($purchase_return, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -1077,23 +1158,33 @@ class PurchaseReturnsApi
      * @param  \OpenAPI\Client\Model\PurchaseReturn $purchase_return (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturn'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPurchaseReturnAsyncWithHttpInfo($purchase_return, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturn'][0])
+    public function createPurchaseReturnAsyncWithHttpInfo($purchase_return, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturn'][0])
     {
         $returnType = '\OpenAPI\Client\Model\PurchaseReturn';
         $request = $this->createPurchaseReturnRequest($purchase_return, $expand, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturn')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1132,14 +1223,14 @@ class PurchaseReturnsApi
      * @param  \OpenAPI\Client\Model\PurchaseReturn $purchase_return (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturn'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createPurchaseReturnRequest($purchase_return, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturn'][0])
+    public function createPurchaseReturnRequest($purchase_return, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturn'][0])
     {
 
         // verify the required parameter 'purchase_return' is set
@@ -1173,7 +1264,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -1187,7 +1278,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1238,10 +1329,21 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -1262,15 +1364,15 @@ class PurchaseReturnsApi
      * @param  \OpenAPI\Client\Model\PurchaseReturn[] $purchase_return purchase_return (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnBatch'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\BatchEntityErrorResponse|\OpenAPI\Client\Model\BatchEntityErrorResponse|\OpenAPI\Client\Model\Errors
      */
-    public function createPurchaseReturnBatch($purchase_return, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnBatch'][0])
+    public function createPurchaseReturnBatch($purchase_return, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnBatch'][0])
     {
         list($response) = $this->createPurchaseReturnBatchWithHttpInfo($purchase_return, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -1284,20 +1386,22 @@ class PurchaseReturnsApi
      * @param  \OpenAPI\Client\Model\PurchaseReturn[] $purchase_return (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnBatch'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\BatchEntityErrorResponse|\OpenAPI\Client\Model\BatchEntityErrorResponse|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createPurchaseReturnBatchWithHttpInfo($purchase_return, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnBatch'][0])
+    public function createPurchaseReturnBatchWithHttpInfo($purchase_return, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnBatch'][0])
     {
         $request = $this->createPurchaseReturnBatchRequest($purchase_return, $expand, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
-            $options[RequestOptions::HTTP_ERRORS] = false;
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\BatchResponseEntity[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1318,17 +1422,87 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
-            return $this->handleResponseMassWithDataType(
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\BatchResponseEntity[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                    $request,
+                    $response
+                );
+            }
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                        $request,
+                        $response
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchEntityErrorResponse',
+                        $request,
+                        $response
+                    );
+                case 412:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchEntityErrorResponse',
+                        $request,
+                        $response
+                    );
+                default:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\Errors',
+                        $request,
+                        $response
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\BatchResponseEntity[]',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\BatchResponseEntity[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchEntityErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 412:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchEntityErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1355,14 +1529,14 @@ class PurchaseReturnsApi
      * @param  \OpenAPI\Client\Model\PurchaseReturn[] $purchase_return (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPurchaseReturnBatchAsync($purchase_return, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnBatch'][0])
+    public function createPurchaseReturnBatchAsync($purchase_return, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnBatch'][0])
     {
         return $this->createPurchaseReturnBatchAsyncWithHttpInfo($purchase_return, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -1380,29 +1554,47 @@ class PurchaseReturnsApi
      * @param  \OpenAPI\Client\Model\PurchaseReturn[] $purchase_return (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPurchaseReturnBatchAsyncWithHttpInfo($purchase_return, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnBatch'][0])
+    public function createPurchaseReturnBatchAsyncWithHttpInfo($purchase_return, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnBatch'][0])
     {
         $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
         $request = $this->createPurchaseReturnBatchRequest($purchase_return, $expand, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
-        $options[RequestOptions::HTTP_ERRORS] = false;
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\BatchResponseEntity[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
-                    return $this->handleResponseMassWithDataType(
-                        $returnType,
-                        $request,
-                        $response,
-                    );
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -1427,14 +1619,14 @@ class PurchaseReturnsApi
      * @param  \OpenAPI\Client\Model\PurchaseReturn[] $purchase_return (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createPurchaseReturnBatchRequest($purchase_return, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnBatch'][0])
+    public function createPurchaseReturnBatchRequest($purchase_return, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnBatch'][0])
     {
 
         // verify the required parameter 'purchase_return' is set
@@ -1474,7 +1666,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -1488,7 +1680,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1539,10 +1731,21 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -1562,7 +1765,7 @@ class PurchaseReturnsApi
      *
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info attribute_meta_info (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnMetadataAttribute'] to see the possible values for this operation
      *
@@ -1570,7 +1773,7 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors
      */
-    public function createPurchaseReturnMetadataAttribute($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnMetadataAttribute'][0])
+    public function createPurchaseReturnMetadataAttribute($attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnMetadataAttribute'][0])
     {
         list($response) = $this->createPurchaseReturnMetadataAttributeWithHttpInfo($attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -1583,7 +1786,7 @@ class PurchaseReturnsApi
      *
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnMetadataAttribute'] to see the possible values for this operation
      *
@@ -1591,11 +1794,14 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createPurchaseReturnMetadataAttributeWithHttpInfo($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnMetadataAttribute'][0])
+    public function createPurchaseReturnMetadataAttributeWithHttpInfo($attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnMetadataAttribute'][0])
     {
         $request = $this->createPurchaseReturnMetadataAttributeRequest($attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1616,6 +1822,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\AttributeMetaInfo',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -1654,6 +1867,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -1684,14 +1900,14 @@ class PurchaseReturnsApi
      *
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPurchaseReturnMetadataAttributeAsync($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnMetadataAttribute'][0])
+    public function createPurchaseReturnMetadataAttributeAsync($attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnMetadataAttribute'][0])
     {
         return $this->createPurchaseReturnMetadataAttributeAsyncWithHttpInfo($attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -1708,23 +1924,33 @@ class PurchaseReturnsApi
      *
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPurchaseReturnMetadataAttributeAsyncWithHttpInfo($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnMetadataAttribute'][0])
+    public function createPurchaseReturnMetadataAttributeAsyncWithHttpInfo($attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnMetadataAttribute'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfo';
         $request = $this->createPurchaseReturnMetadataAttributeRequest($attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1762,14 +1988,14 @@ class PurchaseReturnsApi
      *
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createPurchaseReturnMetadataAttributeRequest($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnMetadataAttribute'][0])
+    public function createPurchaseReturnMetadataAttributeRequest($attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnMetadataAttribute'][0])
     {
 
         // verify the required parameter 'attribute_meta_info' is set
@@ -1793,7 +2019,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -1807,7 +2033,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1858,10 +2084,21 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -1881,7 +2118,7 @@ class PurchaseReturnsApi
      *
      * @param  \OpenAPI\Client\Model\State $state state (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnMetadataState'] to see the possible values for this operation
      *
@@ -1889,7 +2126,7 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors
      */
-    public function createPurchaseReturnMetadataState($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnMetadataState'][0])
+    public function createPurchaseReturnMetadataState($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnMetadataState'][0])
     {
         list($response) = $this->createPurchaseReturnMetadataStateWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -1902,7 +2139,7 @@ class PurchaseReturnsApi
      *
      * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnMetadataState'] to see the possible values for this operation
      *
@@ -1910,11 +2147,14 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createPurchaseReturnMetadataStateWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnMetadataState'][0])
+    public function createPurchaseReturnMetadataStateWithHttpInfo($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnMetadataState'][0])
     {
         $request = $this->createPurchaseReturnMetadataStateRequest($state, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1935,6 +2175,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\State',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -1973,6 +2220,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -2003,14 +2253,14 @@ class PurchaseReturnsApi
      *
      * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnMetadataState'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPurchaseReturnMetadataStateAsync($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnMetadataState'][0])
+    public function createPurchaseReturnMetadataStateAsync($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnMetadataState'][0])
     {
         return $this->createPurchaseReturnMetadataStateAsyncWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -2027,23 +2277,33 @@ class PurchaseReturnsApi
      *
      * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnMetadataState'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPurchaseReturnMetadataStateAsyncWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnMetadataState'][0])
+    public function createPurchaseReturnMetadataStateAsyncWithHttpInfo($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnMetadataState'][0])
     {
         $returnType = '\OpenAPI\Client\Model\State';
         $request = $this->createPurchaseReturnMetadataStateRequest($state, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2081,14 +2341,14 @@ class PurchaseReturnsApi
      *
      * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnMetadataState'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createPurchaseReturnMetadataStateRequest($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnMetadataState'][0])
+    public function createPurchaseReturnMetadataStateRequest($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnMetadataState'][0])
     {
 
         // verify the required parameter 'state' is set
@@ -2112,7 +2372,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -2126,7 +2386,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -2177,10 +2437,21 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -2200,7 +2471,7 @@ class PurchaseReturnsApi
      *
      * @param  \OpenAPI\Client\Model\State[] $state state (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnMetadataStatesBatch'] to see the possible values for this operation
      *
@@ -2208,7 +2479,7 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\StateRowResult[]|\OpenAPI\Client\Model\Errors
      */
-    public function createPurchaseReturnMetadataStatesBatch($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnMetadataStatesBatch'][0])
+    public function createPurchaseReturnMetadataStatesBatch($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnMetadataStatesBatch'][0])
     {
         list($response) = $this->createPurchaseReturnMetadataStatesBatchWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -2221,7 +2492,7 @@ class PurchaseReturnsApi
      *
      * @param  \OpenAPI\Client\Model\State[] $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnMetadataStatesBatch'] to see the possible values for this operation
      *
@@ -2229,11 +2500,14 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\StateRowResult[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createPurchaseReturnMetadataStatesBatchWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnMetadataStatesBatch'][0])
+    public function createPurchaseReturnMetadataStatesBatchWithHttpInfo($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnMetadataStatesBatch'][0])
     {
         $request = $this->createPurchaseReturnMetadataStatesBatchRequest($state, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\StateRowResult[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -2254,6 +2528,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\StateRowResult[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\StateRowResult[]',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -2292,6 +2573,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\StateRowResult[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -2322,14 +2606,14 @@ class PurchaseReturnsApi
      *
      * @param  \OpenAPI\Client\Model\State[] $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnMetadataStatesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPurchaseReturnMetadataStatesBatchAsync($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnMetadataStatesBatch'][0])
+    public function createPurchaseReturnMetadataStatesBatchAsync($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnMetadataStatesBatch'][0])
     {
         return $this->createPurchaseReturnMetadataStatesBatchAsyncWithHttpInfo($state, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -2346,23 +2630,33 @@ class PurchaseReturnsApi
      *
      * @param  \OpenAPI\Client\Model\State[] $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnMetadataStatesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPurchaseReturnMetadataStatesBatchAsyncWithHttpInfo($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnMetadataStatesBatch'][0])
+    public function createPurchaseReturnMetadataStatesBatchAsyncWithHttpInfo($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnMetadataStatesBatch'][0])
     {
         $returnType = '\OpenAPI\Client\Model\StateRowResult[]';
         $request = $this->createPurchaseReturnMetadataStatesBatchRequest($state, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\StateRowResult[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2400,14 +2694,14 @@ class PurchaseReturnsApi
      *
      * @param  \OpenAPI\Client\Model\State[] $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnMetadataStatesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createPurchaseReturnMetadataStatesBatchRequest($state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnMetadataStatesBatch'][0])
+    public function createPurchaseReturnMetadataStatesBatchRequest($state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnMetadataStatesBatch'][0])
     {
 
         // verify the required parameter 'state' is set
@@ -2437,7 +2731,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -2451,7 +2745,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -2502,10 +2796,21 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -2526,7 +2831,7 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EventNote $event_note event_note (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnNote'] to see the possible values for this operation
      *
@@ -2534,7 +2839,7 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\EventNote[]|\OpenAPI\Client\Model\Errors
      */
-    public function createPurchaseReturnNote($id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnNote'][0])
+    public function createPurchaseReturnNote($id, $event_note, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnNote'][0])
     {
         list($response) = $this->createPurchaseReturnNoteWithHttpInfo($id, $event_note, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -2548,7 +2853,7 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EventNote $event_note (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnNote'] to see the possible values for this operation
      *
@@ -2556,11 +2861,14 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\EventNote[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createPurchaseReturnNoteWithHttpInfo($id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnNote'][0])
+    public function createPurchaseReturnNoteWithHttpInfo($id, $event_note, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnNote'][0])
     {
         $request = $this->createPurchaseReturnNoteRequest($id, $event_note, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EventNote[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -2581,6 +2889,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EventNote[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\EventNote[]',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -2619,6 +2934,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EventNote[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 201:
                     $data = ObjectSerializer::deserialize(
@@ -2650,14 +2968,14 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EventNote $event_note (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnNote'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPurchaseReturnNoteAsync($id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnNote'][0])
+    public function createPurchaseReturnNoteAsync($id, $event_note, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnNote'][0])
     {
         return $this->createPurchaseReturnNoteAsyncWithHttpInfo($id, $event_note, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -2675,23 +2993,33 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EventNote $event_note (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnNote'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPurchaseReturnNoteAsyncWithHttpInfo($id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnNote'][0])
+    public function createPurchaseReturnNoteAsyncWithHttpInfo($id, $event_note, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnNote'][0])
     {
         $returnType = '\OpenAPI\Client\Model\EventNote[]';
         $request = $this->createPurchaseReturnNoteRequest($id, $event_note, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\EventNote[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2730,14 +3058,14 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EventNote $event_note (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnNote'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createPurchaseReturnNoteRequest($id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnNote'][0])
+    public function createPurchaseReturnNoteRequest($id, $event_note, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnNote'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -2768,7 +3096,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -2790,7 +3118,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -2841,10 +3169,21 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -2865,7 +3204,7 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EventNote[] $event_note event_note (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnNotesBatch'] to see the possible values for this operation
      *
@@ -2873,7 +3212,7 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\EventNote[]|\OpenAPI\Client\Model\Errors
      */
-    public function createPurchaseReturnNotesBatch($id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnNotesBatch'][0])
+    public function createPurchaseReturnNotesBatch($id, $event_note, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnNotesBatch'][0])
     {
         list($response) = $this->createPurchaseReturnNotesBatchWithHttpInfo($id, $event_note, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -2887,7 +3226,7 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EventNote[] $event_note (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnNotesBatch'] to see the possible values for this operation
      *
@@ -2895,11 +3234,14 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\EventNote[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createPurchaseReturnNotesBatchWithHttpInfo($id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnNotesBatch'][0])
+    public function createPurchaseReturnNotesBatchWithHttpInfo($id, $event_note, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnNotesBatch'][0])
     {
         $request = $this->createPurchaseReturnNotesBatchRequest($id, $event_note, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EventNote[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -2920,6 +3262,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EventNote[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\EventNote[]',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -2958,6 +3307,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EventNote[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 201:
                     $data = ObjectSerializer::deserialize(
@@ -2989,14 +3341,14 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EventNote[] $event_note (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnNotesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPurchaseReturnNotesBatchAsync($id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnNotesBatch'][0])
+    public function createPurchaseReturnNotesBatchAsync($id, $event_note, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnNotesBatch'][0])
     {
         return $this->createPurchaseReturnNotesBatchAsyncWithHttpInfo($id, $event_note, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -3014,23 +3366,33 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EventNote[] $event_note (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnNotesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPurchaseReturnNotesBatchAsyncWithHttpInfo($id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnNotesBatch'][0])
+    public function createPurchaseReturnNotesBatchAsyncWithHttpInfo($id, $event_note, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnNotesBatch'][0])
     {
         $returnType = '\OpenAPI\Client\Model\EventNote[]';
         $request = $this->createPurchaseReturnNotesBatchRequest($id, $event_note, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\EventNote[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3069,14 +3431,14 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EventNote[] $event_note (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnNotesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createPurchaseReturnNotesBatchRequest($id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnNotesBatch'][0])
+    public function createPurchaseReturnNotesBatchRequest($id, $event_note, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnNotesBatch'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -3113,7 +3475,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -3135,7 +3497,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -3186,10 +3548,21 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -3211,7 +3584,7 @@ class PurchaseReturnsApi
      * @param  \OpenAPI\Client\Model\PurchaseReturnPosition $purchase_return_position purchase_return_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnPosition'] to see the possible values for this operation
      *
@@ -3219,7 +3592,7 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\PurchaseReturnPosition[]|\OpenAPI\Client\Model\Errors
      */
-    public function createPurchaseReturnPosition($id, $purchase_return_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnPosition'][0])
+    public function createPurchaseReturnPosition($id, $purchase_return_position, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnPosition'][0])
     {
         list($response) = $this->createPurchaseReturnPositionWithHttpInfo($id, $purchase_return_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -3234,7 +3607,7 @@ class PurchaseReturnsApi
      * @param  \OpenAPI\Client\Model\PurchaseReturnPosition $purchase_return_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnPosition'] to see the possible values for this operation
      *
@@ -3242,11 +3615,14 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\PurchaseReturnPosition[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createPurchaseReturnPositionWithHttpInfo($id, $purchase_return_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnPosition'][0])
+    public function createPurchaseReturnPositionWithHttpInfo($id, $purchase_return_position, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnPosition'][0])
     {
         $request = $this->createPurchaseReturnPositionRequest($id, $purchase_return_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturnPosition[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -3267,6 +3643,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturnPosition[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\PurchaseReturnPosition[]',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -3305,6 +3688,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturnPosition[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -3337,14 +3723,14 @@ class PurchaseReturnsApi
      * @param  \OpenAPI\Client\Model\PurchaseReturnPosition $purchase_return_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPurchaseReturnPositionAsync($id, $purchase_return_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnPosition'][0])
+    public function createPurchaseReturnPositionAsync($id, $purchase_return_position, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnPosition'][0])
     {
         return $this->createPurchaseReturnPositionAsyncWithHttpInfo($id, $purchase_return_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -3363,23 +3749,33 @@ class PurchaseReturnsApi
      * @param  \OpenAPI\Client\Model\PurchaseReturnPosition $purchase_return_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPurchaseReturnPositionAsyncWithHttpInfo($id, $purchase_return_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnPosition'][0])
+    public function createPurchaseReturnPositionAsyncWithHttpInfo($id, $purchase_return_position, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnPosition'][0])
     {
         $returnType = '\OpenAPI\Client\Model\PurchaseReturnPosition[]';
         $request = $this->createPurchaseReturnPositionRequest($id, $purchase_return_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturnPosition[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3419,14 +3815,14 @@ class PurchaseReturnsApi
      * @param  \OpenAPI\Client\Model\PurchaseReturnPosition $purchase_return_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createPurchaseReturnPositionRequest($id, $purchase_return_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnPosition'][0])
+    public function createPurchaseReturnPositionRequest($id, $purchase_return_position, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnPosition'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -3467,7 +3863,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -3489,7 +3885,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -3540,10 +3936,21 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -3565,15 +3972,15 @@ class PurchaseReturnsApi
      * @param  \OpenAPI\Client\Model\PurchaseReturnPosition[] $purchase_return_position purchase_return_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnPositions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreatePurchaseReturnPositions200ResponseInner[]|\OpenAPI\Client\Model\Errors
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\BatchEntityErrorResponse|\OpenAPI\Client\Model\BatchEntityErrorResponse|\OpenAPI\Client\Model\Errors
      */
-    public function createPurchaseReturnPositions($id, $purchase_return_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnPositions'][0])
+    public function createPurchaseReturnPositions($id, $purchase_return_position, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnPositions'][0])
     {
         list($response) = $this->createPurchaseReturnPositionsWithHttpInfo($id, $purchase_return_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -3588,19 +3995,22 @@ class PurchaseReturnsApi
      * @param  \OpenAPI\Client\Model\PurchaseReturnPosition[] $purchase_return_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnPositions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreatePurchaseReturnPositions200ResponseInner[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\BatchEntityErrorResponse|\OpenAPI\Client\Model\BatchEntityErrorResponse|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createPurchaseReturnPositionsWithHttpInfo($id, $purchase_return_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnPositions'][0])
+    public function createPurchaseReturnPositionsWithHttpInfo($id, $purchase_return_position, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnPositions'][0])
     {
         $request = $this->createPurchaseReturnPositionsRequest($id, $purchase_return_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\BatchResponseEntity[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -3621,12 +4031,31 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\BatchResponseEntity[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\CreatePurchaseReturnPositions200ResponseInner[]',
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                        $request,
+                        $response
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchEntityErrorResponse',
+                        $request,
+                        $response
+                    );
+                case 412:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchEntityErrorResponse',
                         $request,
                         $response
                     );
@@ -3654,16 +4083,35 @@ class PurchaseReturnsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\CreatePurchaseReturnPositions200ResponseInner[]',
+                '\OpenAPI\Client\Model\BatchResponseEntity[]',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\BatchResponseEntity[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreatePurchaseReturnPositions200ResponseInner[]',
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchEntityErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 412:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchEntityErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3691,14 +4139,14 @@ class PurchaseReturnsApi
      * @param  \OpenAPI\Client\Model\PurchaseReturnPosition[] $purchase_return_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPurchaseReturnPositionsAsync($id, $purchase_return_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnPositions'][0])
+    public function createPurchaseReturnPositionsAsync($id, $purchase_return_position, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnPositions'][0])
     {
         return $this->createPurchaseReturnPositionsAsyncWithHttpInfo($id, $purchase_return_position, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -3717,23 +4165,33 @@ class PurchaseReturnsApi
      * @param  \OpenAPI\Client\Model\PurchaseReturnPosition[] $purchase_return_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPurchaseReturnPositionsAsyncWithHttpInfo($id, $purchase_return_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnPositions'][0])
+    public function createPurchaseReturnPositionsAsyncWithHttpInfo($id, $purchase_return_position, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnPositions'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CreatePurchaseReturnPositions200ResponseInner[]';
+        $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
         $request = $this->createPurchaseReturnPositionsRequest($id, $purchase_return_position, $expand, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\BatchResponseEntity[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3773,14 +4231,14 @@ class PurchaseReturnsApi
      * @param  \OpenAPI\Client\Model\PurchaseReturnPosition[] $purchase_return_position (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPurchaseReturnPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createPurchaseReturnPositionsRequest($id, $purchase_return_position, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPurchaseReturnPositions'][0])
+    public function createPurchaseReturnPositionsRequest($id, $purchase_return_position, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPurchaseReturnPositions'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -3827,7 +4285,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -3849,7 +4307,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -3900,10 +4358,21 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -3923,14 +4392,14 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturn'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deletePurchaseReturn($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturn'][0])
+    public function deletePurchaseReturn($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturn'][0])
     {
         $this->deletePurchaseReturnWithHttpInfo($id, $accept, $accept_encoding, $contentType);
     }
@@ -3942,18 +4411,21 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturn'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deletePurchaseReturnWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturn'][0])
+    public function deletePurchaseReturnWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturn'][0])
     {
         $request = $this->deletePurchaseReturnRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -3977,6 +4449,9 @@ class PurchaseReturnsApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -3999,13 +4474,13 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturn'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePurchaseReturnAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturn'][0])
+    public function deletePurchaseReturnAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturn'][0])
     {
         return $this->deletePurchaseReturnAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -4022,17 +4497,20 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturn'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePurchaseReturnAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturn'][0])
+    public function deletePurchaseReturnAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturn'][0])
     {
         $returnType = '';
         $request = $this->deletePurchaseReturnRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -4062,13 +4540,13 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturn'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deletePurchaseReturnRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturn'][0])
+    public function deletePurchaseReturnRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturn'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -4091,7 +4569,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -4109,7 +4587,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -4153,10 +4631,18 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -4176,15 +4662,15 @@ class PurchaseReturnsApi
      *
      * @param  \OpenAPI\Client\Model\PurchaseReturn[] $purchase_return purchase_return (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnBatch'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\Errors
+     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\BatchDeleteErrorResponse|\OpenAPI\Client\Model\BatchDeleteErrorResponse|\OpenAPI\Client\Model\Errors
      */
-    public function deletePurchaseReturnBatch($purchase_return, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deletePurchaseReturnBatch'][0])
+    public function deletePurchaseReturnBatch($purchase_return, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deletePurchaseReturnBatch'][0])
     {
         list($response) = $this->deletePurchaseReturnBatchWithHttpInfo($purchase_return, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -4197,19 +4683,22 @@ class PurchaseReturnsApi
      *
      * @param  \OpenAPI\Client\Model\PurchaseReturn[] $purchase_return (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnBatch'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\BatchDeleteErrorResponse|\OpenAPI\Client\Model\BatchDeleteErrorResponse|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deletePurchaseReturnBatchWithHttpInfo($purchase_return, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deletePurchaseReturnBatch'][0])
+    public function deletePurchaseReturnBatchWithHttpInfo($purchase_return, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deletePurchaseReturnBatch'][0])
     {
         $request = $this->deletePurchaseReturnBatchRequest($purchase_return, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DeleteRowResult[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -4230,12 +4719,31 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DeleteRowResult[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\DeleteRowResult[]',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\DeleteRowResult[]',
+                        $request,
+                        $response
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchDeleteErrorResponse',
+                        $request,
+                        $response
+                    );
+                case 412:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchDeleteErrorResponse',
                         $request,
                         $response
                     );
@@ -4268,11 +4776,30 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DeleteRowResult[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\OpenAPI\Client\Model\DeleteRowResult[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchDeleteErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 412:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchDeleteErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4298,14 +4825,14 @@ class PurchaseReturnsApi
      *
      * @param  \OpenAPI\Client\Model\PurchaseReturn[] $purchase_return (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePurchaseReturnBatchAsync($purchase_return, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deletePurchaseReturnBatch'][0])
+    public function deletePurchaseReturnBatchAsync($purchase_return, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deletePurchaseReturnBatch'][0])
     {
         return $this->deletePurchaseReturnBatchAsyncWithHttpInfo($purchase_return, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -4322,23 +4849,33 @@ class PurchaseReturnsApi
      *
      * @param  \OpenAPI\Client\Model\PurchaseReturn[] $purchase_return (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePurchaseReturnBatchAsyncWithHttpInfo($purchase_return, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deletePurchaseReturnBatch'][0])
+    public function deletePurchaseReturnBatchAsyncWithHttpInfo($purchase_return, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deletePurchaseReturnBatch'][0])
     {
         $returnType = '\OpenAPI\Client\Model\DeleteRowResult[]';
         $request = $this->deletePurchaseReturnBatchRequest($purchase_return, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\DeleteRowResult[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4376,14 +4913,14 @@ class PurchaseReturnsApi
      *
      * @param  \OpenAPI\Client\Model\PurchaseReturn[] $purchase_return (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deletePurchaseReturnBatchRequest($purchase_return, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deletePurchaseReturnBatch'][0])
+    public function deletePurchaseReturnBatchRequest($purchase_return, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deletePurchaseReturnBatch'][0])
     {
 
         // verify the required parameter 'purchase_return' is set
@@ -4413,7 +4950,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -4427,7 +4964,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -4478,10 +5015,21 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -4502,14 +5050,14 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  string $file_id ID файла (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnFile'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deletePurchaseReturnFile($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturnFile'][0])
+    public function deletePurchaseReturnFile($id, $file_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturnFile'][0])
     {
         $this->deletePurchaseReturnFileWithHttpInfo($id, $file_id, $accept, $accept_encoding, $contentType);
     }
@@ -4522,18 +5070,21 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  string $file_id ID файла (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnFile'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deletePurchaseReturnFileWithHttpInfo($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturnFile'][0])
+    public function deletePurchaseReturnFileWithHttpInfo($id, $file_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturnFile'][0])
     {
         $request = $this->deletePurchaseReturnFileRequest($id, $file_id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -4557,6 +5108,9 @@ class PurchaseReturnsApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -4580,13 +5134,13 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  string $file_id ID файла (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePurchaseReturnFileAsync($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturnFile'][0])
+    public function deletePurchaseReturnFileAsync($id, $file_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturnFile'][0])
     {
         return $this->deletePurchaseReturnFileAsyncWithHttpInfo($id, $file_id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -4604,17 +5158,20 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  string $file_id ID файла (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePurchaseReturnFileAsyncWithHttpInfo($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturnFile'][0])
+    public function deletePurchaseReturnFileAsyncWithHttpInfo($id, $file_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturnFile'][0])
     {
         $returnType = '';
         $request = $this->deletePurchaseReturnFileRequest($id, $file_id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -4645,13 +5202,13 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  string $file_id ID файла (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deletePurchaseReturnFileRequest($id, $file_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturnFile'][0])
+    public function deletePurchaseReturnFileRequest($id, $file_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturnFile'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -4681,7 +5238,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -4707,7 +5264,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -4751,10 +5308,18 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -4774,14 +5339,14 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deletePurchaseReturnMetadataAttributeById($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturnMetadataAttributeById'][0])
+    public function deletePurchaseReturnMetadataAttributeById($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturnMetadataAttributeById'][0])
     {
         $this->deletePurchaseReturnMetadataAttributeByIdWithHttpInfo($id, $accept, $accept_encoding, $contentType);
     }
@@ -4793,18 +5358,21 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deletePurchaseReturnMetadataAttributeByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturnMetadataAttributeById'][0])
+    public function deletePurchaseReturnMetadataAttributeByIdWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturnMetadataAttributeById'][0])
     {
         $request = $this->deletePurchaseReturnMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -4828,6 +5396,9 @@ class PurchaseReturnsApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -4850,13 +5421,13 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePurchaseReturnMetadataAttributeByIdAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturnMetadataAttributeById'][0])
+    public function deletePurchaseReturnMetadataAttributeByIdAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturnMetadataAttributeById'][0])
     {
         return $this->deletePurchaseReturnMetadataAttributeByIdAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -4873,17 +5444,20 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePurchaseReturnMetadataAttributeByIdAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturnMetadataAttributeById'][0])
+    public function deletePurchaseReturnMetadataAttributeByIdAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturnMetadataAttributeById'][0])
     {
         $returnType = '';
         $request = $this->deletePurchaseReturnMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -4913,13 +5487,13 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deletePurchaseReturnMetadataAttributeByIdRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturnMetadataAttributeById'][0])
+    public function deletePurchaseReturnMetadataAttributeByIdRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturnMetadataAttributeById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -4942,7 +5516,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -4960,7 +5534,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -5004,10 +5578,18 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -5027,14 +5609,14 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnMetadataStateById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deletePurchaseReturnMetadataStateById($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturnMetadataStateById'][0])
+    public function deletePurchaseReturnMetadataStateById($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturnMetadataStateById'][0])
     {
         $this->deletePurchaseReturnMetadataStateByIdWithHttpInfo($id, $accept, $accept_encoding, $contentType);
     }
@@ -5046,18 +5628,21 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnMetadataStateById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deletePurchaseReturnMetadataStateByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturnMetadataStateById'][0])
+    public function deletePurchaseReturnMetadataStateByIdWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturnMetadataStateById'][0])
     {
         $request = $this->deletePurchaseReturnMetadataStateByIdRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -5081,6 +5666,9 @@ class PurchaseReturnsApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -5103,13 +5691,13 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePurchaseReturnMetadataStateByIdAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturnMetadataStateById'][0])
+    public function deletePurchaseReturnMetadataStateByIdAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturnMetadataStateById'][0])
     {
         return $this->deletePurchaseReturnMetadataStateByIdAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -5126,17 +5714,20 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePurchaseReturnMetadataStateByIdAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturnMetadataStateById'][0])
+    public function deletePurchaseReturnMetadataStateByIdAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturnMetadataStateById'][0])
     {
         $returnType = '';
         $request = $this->deletePurchaseReturnMetadataStateByIdRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -5166,13 +5757,13 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deletePurchaseReturnMetadataStateByIdRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturnMetadataStateById'][0])
+    public function deletePurchaseReturnMetadataStateByIdRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturnMetadataStateById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -5195,7 +5786,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -5213,7 +5804,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -5257,10 +5848,18 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -5281,14 +5880,14 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  string $note_id ID События (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnNote'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deletePurchaseReturnNote($id, $note_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturnNote'][0])
+    public function deletePurchaseReturnNote($id, $note_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturnNote'][0])
     {
         $this->deletePurchaseReturnNoteWithHttpInfo($id, $note_id, $accept, $accept_encoding, $contentType);
     }
@@ -5301,18 +5900,21 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  string $note_id ID События (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnNote'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deletePurchaseReturnNoteWithHttpInfo($id, $note_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturnNote'][0])
+    public function deletePurchaseReturnNoteWithHttpInfo($id, $note_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturnNote'][0])
     {
         $request = $this->deletePurchaseReturnNoteRequest($id, $note_id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -5336,6 +5938,9 @@ class PurchaseReturnsApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -5359,13 +5964,13 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  string $note_id ID События (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnNote'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePurchaseReturnNoteAsync($id, $note_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturnNote'][0])
+    public function deletePurchaseReturnNoteAsync($id, $note_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturnNote'][0])
     {
         return $this->deletePurchaseReturnNoteAsyncWithHttpInfo($id, $note_id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -5383,17 +5988,20 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  string $note_id ID События (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnNote'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePurchaseReturnNoteAsyncWithHttpInfo($id, $note_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturnNote'][0])
+    public function deletePurchaseReturnNoteAsyncWithHttpInfo($id, $note_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturnNote'][0])
     {
         $returnType = '';
         $request = $this->deletePurchaseReturnNoteRequest($id, $note_id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -5424,13 +6032,13 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  string $note_id ID События (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnNote'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deletePurchaseReturnNoteRequest($id, $note_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturnNote'][0])
+    public function deletePurchaseReturnNoteRequest($id, $note_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturnNote'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -5460,7 +6068,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -5486,7 +6094,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -5530,10 +6138,18 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -5554,7 +6170,7 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EventNote[] $event_note event_note (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnNotesBatch'] to see the possible values for this operation
      *
@@ -5562,7 +6178,7 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deletePurchaseReturnNotesBatch($id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deletePurchaseReturnNotesBatch'][0])
+    public function deletePurchaseReturnNotesBatch($id, $event_note, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deletePurchaseReturnNotesBatch'][0])
     {
         $this->deletePurchaseReturnNotesBatchWithHttpInfo($id, $event_note, $accept, $accept_encoding, $content_type, $contentType);
     }
@@ -5575,7 +6191,7 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EventNote[] $event_note (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnNotesBatch'] to see the possible values for this operation
      *
@@ -5583,11 +6199,14 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deletePurchaseReturnNotesBatchWithHttpInfo($id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deletePurchaseReturnNotesBatch'][0])
+    public function deletePurchaseReturnNotesBatchWithHttpInfo($id, $event_note, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deletePurchaseReturnNotesBatch'][0])
     {
         $request = $this->deletePurchaseReturnNotesBatchRequest($id, $event_note, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -5611,6 +6230,9 @@ class PurchaseReturnsApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -5634,14 +6256,14 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EventNote[] $event_note (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnNotesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePurchaseReturnNotesBatchAsync($id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deletePurchaseReturnNotesBatch'][0])
+    public function deletePurchaseReturnNotesBatchAsync($id, $event_note, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deletePurchaseReturnNotesBatch'][0])
     {
         return $this->deletePurchaseReturnNotesBatchAsyncWithHttpInfo($id, $event_note, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -5659,18 +6281,21 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EventNote[] $event_note (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnNotesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePurchaseReturnNotesBatchAsyncWithHttpInfo($id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deletePurchaseReturnNotesBatch'][0])
+    public function deletePurchaseReturnNotesBatchAsyncWithHttpInfo($id, $event_note, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deletePurchaseReturnNotesBatch'][0])
     {
         $returnType = '';
         $request = $this->deletePurchaseReturnNotesBatchRequest($id, $event_note, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -5701,14 +6326,14 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EventNote[] $event_note (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnNotesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deletePurchaseReturnNotesBatchRequest($id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deletePurchaseReturnNotesBatch'][0])
+    public function deletePurchaseReturnNotesBatchRequest($id, $event_note, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deletePurchaseReturnNotesBatch'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -5745,7 +6370,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -5767,7 +6392,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -5818,10 +6443,21 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -5843,14 +6479,14 @@ class PurchaseReturnsApi
      * @param  string $position_id ID позиции (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnPosition'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deletePurchaseReturnPosition($id, $position_id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturnPosition'][0])
+    public function deletePurchaseReturnPosition($id, $position_id, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturnPosition'][0])
     {
         $this->deletePurchaseReturnPositionWithHttpInfo($id, $position_id, $expand, $accept, $accept_encoding, $contentType);
     }
@@ -5864,18 +6500,21 @@ class PurchaseReturnsApi
      * @param  string $position_id ID позиции (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnPosition'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deletePurchaseReturnPositionWithHttpInfo($id, $position_id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturnPosition'][0])
+    public function deletePurchaseReturnPositionWithHttpInfo($id, $position_id, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturnPosition'][0])
     {
         $request = $this->deletePurchaseReturnPositionRequest($id, $position_id, $expand, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -5899,6 +6538,9 @@ class PurchaseReturnsApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -5923,13 +6565,13 @@ class PurchaseReturnsApi
      * @param  string $position_id ID позиции (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePurchaseReturnPositionAsync($id, $position_id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturnPosition'][0])
+    public function deletePurchaseReturnPositionAsync($id, $position_id, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturnPosition'][0])
     {
         return $this->deletePurchaseReturnPositionAsyncWithHttpInfo($id, $position_id, $expand, $accept, $accept_encoding, $contentType)
             ->then(
@@ -5948,17 +6590,20 @@ class PurchaseReturnsApi
      * @param  string $position_id ID позиции (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePurchaseReturnPositionAsyncWithHttpInfo($id, $position_id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturnPosition'][0])
+    public function deletePurchaseReturnPositionAsyncWithHttpInfo($id, $position_id, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturnPosition'][0])
     {
         $returnType = '';
         $request = $this->deletePurchaseReturnPositionRequest($id, $position_id, $expand, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -5990,13 +6635,13 @@ class PurchaseReturnsApi
      * @param  string $position_id ID позиции (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deletePurchaseReturnPositionRequest($id, $position_id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePurchaseReturnPosition'][0])
+    public function deletePurchaseReturnPositionRequest($id, $position_id, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePurchaseReturnPosition'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -6036,7 +6681,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -6062,7 +6707,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -6106,10 +6751,18 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -6130,15 +6783,15 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\PurchaseReturnPosition[] $purchase_return_position purchase_return_position (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnPositions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\Errors
+     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\BatchDeleteErrorResponse|\OpenAPI\Client\Model\BatchDeleteErrorResponse|\OpenAPI\Client\Model\Errors
      */
-    public function deletePurchaseReturnPositions($id, $purchase_return_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deletePurchaseReturnPositions'][0])
+    public function deletePurchaseReturnPositions($id, $purchase_return_position, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deletePurchaseReturnPositions'][0])
     {
         list($response) = $this->deletePurchaseReturnPositionsWithHttpInfo($id, $purchase_return_position, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -6152,19 +6805,22 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\PurchaseReturnPosition[] $purchase_return_position (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnPositions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\BatchDeleteErrorResponse|\OpenAPI\Client\Model\BatchDeleteErrorResponse|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deletePurchaseReturnPositionsWithHttpInfo($id, $purchase_return_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deletePurchaseReturnPositions'][0])
+    public function deletePurchaseReturnPositionsWithHttpInfo($id, $purchase_return_position, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deletePurchaseReturnPositions'][0])
     {
         $request = $this->deletePurchaseReturnPositionsRequest($id, $purchase_return_position, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DeleteRowResult[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -6185,12 +6841,31 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DeleteRowResult[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\DeleteRowResult[]',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\DeleteRowResult[]',
+                        $request,
+                        $response
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchDeleteErrorResponse',
+                        $request,
+                        $response
+                    );
+                case 412:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchDeleteErrorResponse',
                         $request,
                         $response
                     );
@@ -6223,11 +6898,30 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DeleteRowResult[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\OpenAPI\Client\Model\DeleteRowResult[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchDeleteErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 412:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchDeleteErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6254,14 +6948,14 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\PurchaseReturnPosition[] $purchase_return_position (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePurchaseReturnPositionsAsync($id, $purchase_return_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deletePurchaseReturnPositions'][0])
+    public function deletePurchaseReturnPositionsAsync($id, $purchase_return_position, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deletePurchaseReturnPositions'][0])
     {
         return $this->deletePurchaseReturnPositionsAsyncWithHttpInfo($id, $purchase_return_position, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -6279,23 +6973,33 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\PurchaseReturnPosition[] $purchase_return_position (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePurchaseReturnPositionsAsyncWithHttpInfo($id, $purchase_return_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deletePurchaseReturnPositions'][0])
+    public function deletePurchaseReturnPositionsAsyncWithHttpInfo($id, $purchase_return_position, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deletePurchaseReturnPositions'][0])
     {
         $returnType = '\OpenAPI\Client\Model\DeleteRowResult[]';
         $request = $this->deletePurchaseReturnPositionsRequest($id, $purchase_return_position, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\DeleteRowResult[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -6334,14 +7038,14 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\PurchaseReturnPosition[] $purchase_return_position (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePurchaseReturnPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deletePurchaseReturnPositionsRequest($id, $purchase_return_position, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deletePurchaseReturnPositions'][0])
+    public function deletePurchaseReturnPositionsRequest($id, $purchase_return_position, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deletePurchaseReturnPositions'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -6378,7 +7082,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -6400,7 +7104,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -6451,10 +7155,21 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -6476,14 +7191,14 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\PurchaseReturn|\OpenAPI\Client\Model\Errors
      */
-    public function getPurchaseReturnById($id, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnById'][0])
+    public function getPurchaseReturnById($id, $expand = null, $fields = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnById'][0])
     {
         list($response) = $this->getPurchaseReturnByIdWithHttpInfo($id, $expand, $fields, $accept, $accept_encoding, $contentType);
         return $response;
@@ -6498,18 +7213,21 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\PurchaseReturn|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPurchaseReturnByIdWithHttpInfo($id, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnById'][0])
+    public function getPurchaseReturnByIdWithHttpInfo($id, $expand = null, $fields = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnById'][0])
     {
         $request = $this->getPurchaseReturnByIdRequest($id, $expand, $fields, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturn')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -6530,6 +7248,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturn')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\PurchaseReturn',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -6568,6 +7293,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturn')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -6600,13 +7328,13 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnByIdAsync($id, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnById'][0])
+    public function getPurchaseReturnByIdAsync($id, $expand = null, $fields = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnById'][0])
     {
         return $this->getPurchaseReturnByIdAsyncWithHttpInfo($id, $expand, $fields, $accept, $accept_encoding, $contentType)
             ->then(
@@ -6625,22 +7353,32 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnByIdAsyncWithHttpInfo($id, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnById'][0])
+    public function getPurchaseReturnByIdAsyncWithHttpInfo($id, $expand = null, $fields = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnById'][0])
     {
         $returnType = '\OpenAPI\Client\Model\PurchaseReturn';
         $request = $this->getPurchaseReturnByIdRequest($id, $expand, $fields, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturn')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -6680,13 +7418,13 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPurchaseReturnByIdRequest($id, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnById'][0])
+    public function getPurchaseReturnByIdRequest($id, $expand = null, $fields = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -6729,7 +7467,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -6747,7 +7485,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -6791,10 +7529,18 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -6816,14 +7562,14 @@ class PurchaseReturnsApi
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnFiles'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\GetTaskFiles200Response|\OpenAPI\Client\Model\Errors
      */
-    public function getPurchaseReturnFiles($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnFiles'][0])
+    public function getPurchaseReturnFiles($id, $limit = 1000, $offset = 0, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnFiles'][0])
     {
         list($response) = $this->getPurchaseReturnFilesWithHttpInfo($id, $limit, $offset, $accept, $accept_encoding, $contentType);
         return $response;
@@ -6838,18 +7584,21 @@ class PurchaseReturnsApi
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnFiles'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\GetTaskFiles200Response|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPurchaseReturnFilesWithHttpInfo($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnFiles'][0])
+    public function getPurchaseReturnFilesWithHttpInfo($id, $limit = 1000, $offset = 0, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnFiles'][0])
     {
         $request = $this->getPurchaseReturnFilesRequest($id, $limit, $offset, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\GetTaskFiles200Response')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -6870,6 +7619,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\GetTaskFiles200Response')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\GetTaskFiles200Response',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -6908,6 +7664,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\GetTaskFiles200Response')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -6940,13 +7699,13 @@ class PurchaseReturnsApi
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnFiles'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnFilesAsync($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnFiles'][0])
+    public function getPurchaseReturnFilesAsync($id, $limit = 1000, $offset = 0, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnFiles'][0])
     {
         return $this->getPurchaseReturnFilesAsyncWithHttpInfo($id, $limit, $offset, $accept, $accept_encoding, $contentType)
             ->then(
@@ -6965,22 +7724,32 @@ class PurchaseReturnsApi
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnFiles'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnFilesAsyncWithHttpInfo($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnFiles'][0])
+    public function getPurchaseReturnFilesAsyncWithHttpInfo($id, $limit = 1000, $offset = 0, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnFiles'][0])
     {
         $returnType = '\OpenAPI\Client\Model\GetTaskFiles200Response';
         $request = $this->getPurchaseReturnFilesRequest($id, $limit, $offset, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\GetTaskFiles200Response')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -7020,13 +7789,13 @@ class PurchaseReturnsApi
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnFiles'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPurchaseReturnFilesRequest($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnFiles'][0])
+    public function getPurchaseReturnFilesRequest($id, $limit = 1000, $offset = 0, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnFiles'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -7078,7 +7847,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -7096,7 +7865,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -7140,10 +7909,18 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -7167,14 +7944,14 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnList'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\PurchaseReturnList|\OpenAPI\Client\Model\Errors
      */
-    public function getPurchaseReturnList($limit = 1000, $offset = 0, $search = null, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnList'][0])
+    public function getPurchaseReturnList($limit = 1000, $offset = 0, $search = null, $expand = null, $fields = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnList'][0])
     {
         list($response) = $this->getPurchaseReturnListWithHttpInfo($limit, $offset, $search, $expand, $fields, $accept, $accept_encoding, $contentType);
         return $response;
@@ -7191,18 +7968,21 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnList'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\PurchaseReturnList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPurchaseReturnListWithHttpInfo($limit = 1000, $offset = 0, $search = null, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnList'][0])
+    public function getPurchaseReturnListWithHttpInfo($limit = 1000, $offset = 0, $search = null, $expand = null, $fields = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnList'][0])
     {
         $request = $this->getPurchaseReturnListRequest($limit, $offset, $search, $expand, $fields, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturnList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -7223,6 +8003,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturnList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\PurchaseReturnList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -7261,6 +8048,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturnList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -7295,13 +8085,13 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnListAsync($limit = 1000, $offset = 0, $search = null, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnList'][0])
+    public function getPurchaseReturnListAsync($limit = 1000, $offset = 0, $search = null, $expand = null, $fields = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnList'][0])
     {
         return $this->getPurchaseReturnListAsyncWithHttpInfo($limit, $offset, $search, $expand, $fields, $accept, $accept_encoding, $contentType)
             ->then(
@@ -7322,22 +8112,32 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnListAsyncWithHttpInfo($limit = 1000, $offset = 0, $search = null, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnList'][0])
+    public function getPurchaseReturnListAsyncWithHttpInfo($limit = 1000, $offset = 0, $search = null, $expand = null, $fields = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnList'][0])
     {
         $returnType = '\OpenAPI\Client\Model\PurchaseReturnList';
         $request = $this->getPurchaseReturnListRequest($limit, $offset, $search, $expand, $fields, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturnList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -7379,13 +8179,13 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPurchaseReturnListRequest($limit = 1000, $offset = 0, $search = null, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnList'][0])
+    public function getPurchaseReturnListRequest($limit = 1000, $offset = 0, $search = null, $expand = null, $fields = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnList'][0])
     {
 
         if ($limit !== null && $limit > 1000) {
@@ -7460,7 +8260,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -7470,7 +8270,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -7514,10 +8314,18 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -7536,7 +8344,7 @@ class PurchaseReturnsApi
      * Метаданные Возвратов поставщикам
      *
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnMetadata'] to see the possible values for this operation
      *
@@ -7544,7 +8352,7 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\DocumentMetadata|\OpenAPI\Client\Model\Errors
      */
-    public function getPurchaseReturnMetadata($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, string $contentType = self::contentTypes['getPurchaseReturnMetadata'][0])
+    public function getPurchaseReturnMetadata($accept = null, $accept_encoding = null, $expand = null, string $contentType = self::contentTypes['getPurchaseReturnMetadata'][0])
     {
         list($response) = $this->getPurchaseReturnMetadataWithHttpInfo($accept, $accept_encoding, $expand, $contentType);
         return $response;
@@ -7556,7 +8364,7 @@ class PurchaseReturnsApi
      * Метаданные Возвратов поставщикам
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnMetadata'] to see the possible values for this operation
      *
@@ -7564,11 +8372,14 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\DocumentMetadata|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPurchaseReturnMetadataWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, string $contentType = self::contentTypes['getPurchaseReturnMetadata'][0])
+    public function getPurchaseReturnMetadataWithHttpInfo($accept = null, $accept_encoding = null, $expand = null, string $contentType = self::contentTypes['getPurchaseReturnMetadata'][0])
     {
         $request = $this->getPurchaseReturnMetadataRequest($accept, $accept_encoding, $expand, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DocumentMetadata')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -7589,6 +8400,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DocumentMetadata')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\DocumentMetadata',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -7627,6 +8445,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DocumentMetadata')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -7656,14 +8477,14 @@ class PurchaseReturnsApi
      * Метаданные Возвратов поставщикам
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnMetadata'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnMetadataAsync($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, string $contentType = self::contentTypes['getPurchaseReturnMetadata'][0])
+    public function getPurchaseReturnMetadataAsync($accept = null, $accept_encoding = null, $expand = null, string $contentType = self::contentTypes['getPurchaseReturnMetadata'][0])
     {
         return $this->getPurchaseReturnMetadataAsyncWithHttpInfo($accept, $accept_encoding, $expand, $contentType)
             ->then(
@@ -7679,23 +8500,33 @@ class PurchaseReturnsApi
      * Метаданные Возвратов поставщикам
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnMetadata'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnMetadataAsyncWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, string $contentType = self::contentTypes['getPurchaseReturnMetadata'][0])
+    public function getPurchaseReturnMetadataAsyncWithHttpInfo($accept = null, $accept_encoding = null, $expand = null, string $contentType = self::contentTypes['getPurchaseReturnMetadata'][0])
     {
         $returnType = '\OpenAPI\Client\Model\DocumentMetadata';
         $request = $this->getPurchaseReturnMetadataRequest($accept, $accept_encoding, $expand, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\DocumentMetadata')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -7732,14 +8563,14 @@ class PurchaseReturnsApi
      * Create request for operation 'getPurchaseReturnMetadata'
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnMetadata'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPurchaseReturnMetadataRequest($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, string $contentType = self::contentTypes['getPurchaseReturnMetadata'][0])
+    public function getPurchaseReturnMetadataRequest($accept = null, $accept_encoding = null, $expand = null, string $contentType = self::contentTypes['getPurchaseReturnMetadata'][0])
     {
 
 
@@ -7765,7 +8596,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -7775,7 +8606,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -7819,10 +8650,18 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -7843,14 +8682,14 @@ class PurchaseReturnsApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AttributeMetaInfoList|\OpenAPI\Client\Model\Errors
      */
-    public function getPurchaseReturnMetadataAttribute($offset = 0, $limit = 1000, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnMetadataAttribute'][0])
+    public function getPurchaseReturnMetadataAttribute($offset = 0, $limit = 1000, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnMetadataAttribute'][0])
     {
         list($response) = $this->getPurchaseReturnMetadataAttributeWithHttpInfo($offset, $limit, $accept, $accept_encoding, $contentType);
         return $response;
@@ -7864,18 +8703,21 @@ class PurchaseReturnsApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AttributeMetaInfoList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPurchaseReturnMetadataAttributeWithHttpInfo($offset = 0, $limit = 1000, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnMetadataAttribute'][0])
+    public function getPurchaseReturnMetadataAttributeWithHttpInfo($offset = 0, $limit = 1000, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnMetadataAttribute'][0])
     {
         $request = $this->getPurchaseReturnMetadataAttributeRequest($offset, $limit, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfoList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -7896,6 +8738,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfoList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\AttributeMetaInfoList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -7934,6 +8783,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfoList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -7965,13 +8817,13 @@ class PurchaseReturnsApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnMetadataAttributeAsync($offset = 0, $limit = 1000, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnMetadataAttribute'][0])
+    public function getPurchaseReturnMetadataAttributeAsync($offset = 0, $limit = 1000, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnMetadataAttribute'][0])
     {
         return $this->getPurchaseReturnMetadataAttributeAsyncWithHttpInfo($offset, $limit, $accept, $accept_encoding, $contentType)
             ->then(
@@ -7989,22 +8841,32 @@ class PurchaseReturnsApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnMetadataAttributeAsyncWithHttpInfo($offset = 0, $limit = 1000, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnMetadataAttribute'][0])
+    public function getPurchaseReturnMetadataAttributeAsyncWithHttpInfo($offset = 0, $limit = 1000, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnMetadataAttribute'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfoList';
         $request = $this->getPurchaseReturnMetadataAttributeRequest($offset, $limit, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfoList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -8043,13 +8905,13 @@ class PurchaseReturnsApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPurchaseReturnMetadataAttributeRequest($offset = 0, $limit = 1000, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnMetadataAttribute'][0])
+    public function getPurchaseReturnMetadataAttributeRequest($offset = 0, $limit = 1000, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnMetadataAttribute'][0])
     {
 
         if ($offset !== null && $offset < 0) {
@@ -8094,7 +8956,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -8104,7 +8966,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -8148,10 +9010,18 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -8171,7 +9041,7 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnMetadataAttributeById'] to see the possible values for this operation
      *
@@ -8179,7 +9049,7 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors
      */
-    public function getPurchaseReturnMetadataAttributeById($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getPurchaseReturnMetadataAttributeById'][0])
+    public function getPurchaseReturnMetadataAttributeById($id, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['getPurchaseReturnMetadataAttributeById'][0])
     {
         list($response) = $this->getPurchaseReturnMetadataAttributeByIdWithHttpInfo($id, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -8192,7 +9062,7 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnMetadataAttributeById'] to see the possible values for this operation
      *
@@ -8200,11 +9070,14 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPurchaseReturnMetadataAttributeByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getPurchaseReturnMetadataAttributeById'][0])
+    public function getPurchaseReturnMetadataAttributeByIdWithHttpInfo($id, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['getPurchaseReturnMetadataAttributeById'][0])
     {
         $request = $this->getPurchaseReturnMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -8225,6 +9098,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\AttributeMetaInfo',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -8263,6 +9143,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -8293,14 +9176,14 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnMetadataAttributeByIdAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getPurchaseReturnMetadataAttributeById'][0])
+    public function getPurchaseReturnMetadataAttributeByIdAsync($id, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['getPurchaseReturnMetadataAttributeById'][0])
     {
         return $this->getPurchaseReturnMetadataAttributeByIdAsyncWithHttpInfo($id, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -8317,23 +9200,33 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnMetadataAttributeByIdAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getPurchaseReturnMetadataAttributeById'][0])
+    public function getPurchaseReturnMetadataAttributeByIdAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['getPurchaseReturnMetadataAttributeById'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfo';
         $request = $this->getPurchaseReturnMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -8371,14 +9264,14 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPurchaseReturnMetadataAttributeByIdRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['getPurchaseReturnMetadataAttributeById'][0])
+    public function getPurchaseReturnMetadataAttributeByIdRequest($id, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['getPurchaseReturnMetadataAttributeById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -8402,7 +9295,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -8424,7 +9317,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -8468,10 +9361,21 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -8491,14 +9395,14 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnMetadataStateById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors
      */
-    public function getPurchaseReturnMetadataStateById($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnMetadataStateById'][0])
+    public function getPurchaseReturnMetadataStateById($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnMetadataStateById'][0])
     {
         list($response) = $this->getPurchaseReturnMetadataStateByIdWithHttpInfo($id, $accept, $accept_encoding, $contentType);
         return $response;
@@ -8511,18 +9415,21 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnMetadataStateById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPurchaseReturnMetadataStateByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnMetadataStateById'][0])
+    public function getPurchaseReturnMetadataStateByIdWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnMetadataStateById'][0])
     {
         $request = $this->getPurchaseReturnMetadataStateByIdRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -8543,6 +9450,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\State',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -8581,6 +9495,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -8611,13 +9528,13 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnMetadataStateByIdAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnMetadataStateById'][0])
+    public function getPurchaseReturnMetadataStateByIdAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnMetadataStateById'][0])
     {
         return $this->getPurchaseReturnMetadataStateByIdAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -8634,22 +9551,32 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnMetadataStateByIdAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnMetadataStateById'][0])
+    public function getPurchaseReturnMetadataStateByIdAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnMetadataStateById'][0])
     {
         $returnType = '\OpenAPI\Client\Model\State';
         $request = $this->getPurchaseReturnMetadataStateByIdRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -8687,13 +9614,13 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPurchaseReturnMetadataStateByIdRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnMetadataStateById'][0])
+    public function getPurchaseReturnMetadataStateByIdRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnMetadataStateById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -8716,7 +9643,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -8734,7 +9661,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -8778,10 +9705,18 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -8802,14 +9737,14 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  string $note_id ID События (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnNoteById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\EventNote|\OpenAPI\Client\Model\Errors
      */
-    public function getPurchaseReturnNoteById($id, $note_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnNoteById'][0])
+    public function getPurchaseReturnNoteById($id, $note_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnNoteById'][0])
     {
         list($response) = $this->getPurchaseReturnNoteByIdWithHttpInfo($id, $note_id, $accept, $accept_encoding, $contentType);
         return $response;
@@ -8823,18 +9758,21 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  string $note_id ID События (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnNoteById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\EventNote|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPurchaseReturnNoteByIdWithHttpInfo($id, $note_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnNoteById'][0])
+    public function getPurchaseReturnNoteByIdWithHttpInfo($id, $note_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnNoteById'][0])
     {
         $request = $this->getPurchaseReturnNoteByIdRequest($id, $note_id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EventNote')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -8855,6 +9793,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EventNote')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\EventNote',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -8893,6 +9838,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EventNote')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -8924,13 +9872,13 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  string $note_id ID События (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnNoteById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnNoteByIdAsync($id, $note_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnNoteById'][0])
+    public function getPurchaseReturnNoteByIdAsync($id, $note_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnNoteById'][0])
     {
         return $this->getPurchaseReturnNoteByIdAsyncWithHttpInfo($id, $note_id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -8948,22 +9896,32 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  string $note_id ID События (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnNoteById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnNoteByIdAsyncWithHttpInfo($id, $note_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnNoteById'][0])
+    public function getPurchaseReturnNoteByIdAsyncWithHttpInfo($id, $note_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnNoteById'][0])
     {
         $returnType = '\OpenAPI\Client\Model\EventNote';
         $request = $this->getPurchaseReturnNoteByIdRequest($id, $note_id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\EventNote')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -9002,13 +9960,13 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  string $note_id ID События (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnNoteById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPurchaseReturnNoteByIdRequest($id, $note_id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnNoteById'][0])
+    public function getPurchaseReturnNoteByIdRequest($id, $note_id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnNoteById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -9038,7 +9996,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -9064,7 +10022,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -9108,10 +10066,18 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -9134,14 +10100,14 @@ class PurchaseReturnsApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnNotes'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\EventNoteList|\OpenAPI\Client\Model\Errors
      */
-    public function getPurchaseReturnNotes($id, $limit = 1000, $offset = 0, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnNotes'][0])
+    public function getPurchaseReturnNotes($id, $limit = 1000, $offset = 0, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnNotes'][0])
     {
         list($response) = $this->getPurchaseReturnNotesWithHttpInfo($id, $limit, $offset, $expand, $accept, $accept_encoding, $contentType);
         return $response;
@@ -9157,18 +10123,21 @@ class PurchaseReturnsApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnNotes'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\EventNoteList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPurchaseReturnNotesWithHttpInfo($id, $limit = 1000, $offset = 0, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnNotes'][0])
+    public function getPurchaseReturnNotesWithHttpInfo($id, $limit = 1000, $offset = 0, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnNotes'][0])
     {
         $request = $this->getPurchaseReturnNotesRequest($id, $limit, $offset, $expand, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EventNoteList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -9189,6 +10158,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EventNoteList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\EventNoteList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -9227,6 +10203,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EventNoteList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -9260,13 +10239,13 @@ class PurchaseReturnsApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnNotes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnNotesAsync($id, $limit = 1000, $offset = 0, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnNotes'][0])
+    public function getPurchaseReturnNotesAsync($id, $limit = 1000, $offset = 0, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnNotes'][0])
     {
         return $this->getPurchaseReturnNotesAsyncWithHttpInfo($id, $limit, $offset, $expand, $accept, $accept_encoding, $contentType)
             ->then(
@@ -9286,22 +10265,32 @@ class PurchaseReturnsApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnNotes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnNotesAsyncWithHttpInfo($id, $limit = 1000, $offset = 0, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnNotes'][0])
+    public function getPurchaseReturnNotesAsyncWithHttpInfo($id, $limit = 1000, $offset = 0, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnNotes'][0])
     {
         $returnType = '\OpenAPI\Client\Model\EventNoteList';
         $request = $this->getPurchaseReturnNotesRequest($id, $limit, $offset, $expand, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\EventNoteList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -9342,13 +10331,13 @@ class PurchaseReturnsApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnNotes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPurchaseReturnNotesRequest($id, $limit = 1000, $offset = 0, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnNotes'][0])
+    public function getPurchaseReturnNotesRequest($id, $limit = 1000, $offset = 0, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnNotes'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -9410,7 +10399,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -9428,7 +10417,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -9472,10 +10461,18 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -9498,14 +10495,14 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnPositionById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\PurchaseReturnPosition|\OpenAPI\Client\Model\Errors
      */
-    public function getPurchaseReturnPositionById($id, $position_id, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnPositionById'][0])
+    public function getPurchaseReturnPositionById($id, $position_id, $expand = null, $fields = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnPositionById'][0])
     {
         list($response) = $this->getPurchaseReturnPositionByIdWithHttpInfo($id, $position_id, $expand, $fields, $accept, $accept_encoding, $contentType);
         return $response;
@@ -9521,18 +10518,21 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnPositionById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\PurchaseReturnPosition|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPurchaseReturnPositionByIdWithHttpInfo($id, $position_id, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnPositionById'][0])
+    public function getPurchaseReturnPositionByIdWithHttpInfo($id, $position_id, $expand = null, $fields = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnPositionById'][0])
     {
         $request = $this->getPurchaseReturnPositionByIdRequest($id, $position_id, $expand, $fields, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturnPosition')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -9553,6 +10553,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturnPosition')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\PurchaseReturnPosition',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -9591,6 +10598,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturnPosition')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -9624,13 +10634,13 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnPositionById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnPositionByIdAsync($id, $position_id, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnPositionById'][0])
+    public function getPurchaseReturnPositionByIdAsync($id, $position_id, $expand = null, $fields = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnPositionById'][0])
     {
         return $this->getPurchaseReturnPositionByIdAsyncWithHttpInfo($id, $position_id, $expand, $fields, $accept, $accept_encoding, $contentType)
             ->then(
@@ -9650,22 +10660,32 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnPositionById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnPositionByIdAsyncWithHttpInfo($id, $position_id, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnPositionById'][0])
+    public function getPurchaseReturnPositionByIdAsyncWithHttpInfo($id, $position_id, $expand = null, $fields = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnPositionById'][0])
     {
         $returnType = '\OpenAPI\Client\Model\PurchaseReturnPosition';
         $request = $this->getPurchaseReturnPositionByIdRequest($id, $position_id, $expand, $fields, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturnPosition')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -9706,13 +10726,13 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnPositionById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPurchaseReturnPositionByIdRequest($id, $position_id, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnPositionById'][0])
+    public function getPurchaseReturnPositionByIdRequest($id, $position_id, $expand = null, $fields = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnPositionById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -9762,7 +10782,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -9788,7 +10808,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -9832,10 +10852,18 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -9859,14 +10887,14 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnPositions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\PurchaseReturnPositionList|\OpenAPI\Client\Model\Errors
      */
-    public function getPurchaseReturnPositions($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnPositions'][0])
+    public function getPurchaseReturnPositions($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnPositions'][0])
     {
         list($response) = $this->getPurchaseReturnPositionsWithHttpInfo($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $contentType);
         return $response;
@@ -9883,18 +10911,21 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnPositions'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\PurchaseReturnPositionList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPurchaseReturnPositionsWithHttpInfo($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnPositions'][0])
+    public function getPurchaseReturnPositionsWithHttpInfo($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnPositions'][0])
     {
         $request = $this->getPurchaseReturnPositionsRequest($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturnPositionList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -9915,6 +10946,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturnPositionList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\PurchaseReturnPositionList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -9953,6 +10991,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturnPositionList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -9987,13 +11028,13 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnPositionsAsync($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnPositions'][0])
+    public function getPurchaseReturnPositionsAsync($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnPositions'][0])
     {
         return $this->getPurchaseReturnPositionsAsyncWithHttpInfo($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $contentType)
             ->then(
@@ -10014,22 +11055,32 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnPositionsAsyncWithHttpInfo($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnPositions'][0])
+    public function getPurchaseReturnPositionsAsyncWithHttpInfo($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnPositions'][0])
     {
         $returnType = '\OpenAPI\Client\Model\PurchaseReturnPositionList';
         $request = $this->getPurchaseReturnPositionsRequest($id, $limit, $offset, $expand, $fields, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturnPositionList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -10071,13 +11122,13 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPurchaseReturnPositionsRequest($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPurchaseReturnPositions'][0])
+    public function getPurchaseReturnPositionsRequest($id, $limit = 1000, $offset = 0, $expand = null, $fields = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPurchaseReturnPositions'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -10149,7 +11200,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -10167,7 +11218,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -10211,10 +11262,18 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -10233,7 +11292,7 @@ class PurchaseReturnsApi
      * Шаблон Возврата поставщику
      *
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  object|null $body body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnTemplate'] to see the possible values for this operation
@@ -10242,7 +11301,7 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\PurchaseReturn|\OpenAPI\Client\Model\Errors
      */
-    public function getPurchaseReturnTemplate($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $body = null, string $contentType = self::contentTypes['getPurchaseReturnTemplate'][0])
+    public function getPurchaseReturnTemplate($accept = null, $accept_encoding = null, $content_type = null, $body = null, string $contentType = self::contentTypes['getPurchaseReturnTemplate'][0])
     {
         list($response) = $this->getPurchaseReturnTemplateWithHttpInfo($accept, $accept_encoding, $content_type, $body, $contentType);
         return $response;
@@ -10254,7 +11313,7 @@ class PurchaseReturnsApi
      * Шаблон Возврата поставщику
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  object|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnTemplate'] to see the possible values for this operation
@@ -10263,11 +11322,14 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\PurchaseReturn|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPurchaseReturnTemplateWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $body = null, string $contentType = self::contentTypes['getPurchaseReturnTemplate'][0])
+    public function getPurchaseReturnTemplateWithHttpInfo($accept = null, $accept_encoding = null, $content_type = null, $body = null, string $contentType = self::contentTypes['getPurchaseReturnTemplate'][0])
     {
         $request = $this->getPurchaseReturnTemplateRequest($accept, $accept_encoding, $content_type, $body, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturn')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -10288,6 +11350,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturn')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\PurchaseReturn',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -10326,6 +11395,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturn')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -10355,7 +11427,7 @@ class PurchaseReturnsApi
      * Шаблон Возврата поставщику
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  object|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnTemplate'] to see the possible values for this operation
@@ -10363,7 +11435,7 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnTemplateAsync($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $body = null, string $contentType = self::contentTypes['getPurchaseReturnTemplate'][0])
+    public function getPurchaseReturnTemplateAsync($accept = null, $accept_encoding = null, $content_type = null, $body = null, string $contentType = self::contentTypes['getPurchaseReturnTemplate'][0])
     {
         return $this->getPurchaseReturnTemplateAsyncWithHttpInfo($accept, $accept_encoding, $content_type, $body, $contentType)
             ->then(
@@ -10379,7 +11451,7 @@ class PurchaseReturnsApi
      * Шаблон Возврата поставщику
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  object|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnTemplate'] to see the possible values for this operation
@@ -10387,16 +11459,26 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPurchaseReturnTemplateAsyncWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $body = null, string $contentType = self::contentTypes['getPurchaseReturnTemplate'][0])
+    public function getPurchaseReturnTemplateAsyncWithHttpInfo($accept = null, $accept_encoding = null, $content_type = null, $body = null, string $contentType = self::contentTypes['getPurchaseReturnTemplate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\PurchaseReturn';
         $request = $this->getPurchaseReturnTemplateRequest($accept, $accept_encoding, $content_type, $body, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturn')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -10433,7 +11515,7 @@ class PurchaseReturnsApi
      * Create request for operation 'getPurchaseReturnTemplate'
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  object|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPurchaseReturnTemplate'] to see the possible values for this operation
@@ -10441,7 +11523,7 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPurchaseReturnTemplateRequest($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $body = null, string $contentType = self::contentTypes['getPurchaseReturnTemplate'][0])
+    public function getPurchaseReturnTemplateRequest($accept = null, $accept_encoding = null, $content_type = null, $body = null, string $contentType = self::contentTypes['getPurchaseReturnTemplate'][0])
     {
 
 
@@ -10459,7 +11541,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -10473,7 +11555,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -10524,10 +11606,21 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -10547,16 +11640,17 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
+     * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['movePurchaseReturnToTrash'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function movePurchaseReturnToTrash($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['movePurchaseReturnToTrash'][0])
+    public function movePurchaseReturnToTrash($id, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['movePurchaseReturnToTrash'][0])
     {
-        $this->movePurchaseReturnToTrashWithHttpInfo($id, $accept, $accept_encoding, $contentType);
+        $this->movePurchaseReturnToTrashWithHttpInfo($id, $accept, $accept_encoding, $content_type, $contentType);
     }
 
     /**
@@ -10566,18 +11660,22 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
+     * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['movePurchaseReturnToTrash'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function movePurchaseReturnToTrashWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['movePurchaseReturnToTrash'][0])
+    public function movePurchaseReturnToTrashWithHttpInfo($id, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['movePurchaseReturnToTrash'][0])
     {
-        $request = $this->movePurchaseReturnToTrashRequest($id, $accept, $accept_encoding, $contentType);
+        $request = $this->movePurchaseReturnToTrashRequest($id, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -10601,6 +11699,9 @@ class PurchaseReturnsApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -10623,15 +11724,16 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
+     * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['movePurchaseReturnToTrash'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function movePurchaseReturnToTrashAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['movePurchaseReturnToTrash'][0])
+    public function movePurchaseReturnToTrashAsync($id, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['movePurchaseReturnToTrash'][0])
     {
-        return $this->movePurchaseReturnToTrashAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
+        return $this->movePurchaseReturnToTrashAsyncWithHttpInfo($id, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -10646,17 +11748,21 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
+     * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['movePurchaseReturnToTrash'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function movePurchaseReturnToTrashAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['movePurchaseReturnToTrash'][0])
+    public function movePurchaseReturnToTrashAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['movePurchaseReturnToTrash'][0])
     {
         $returnType = '';
-        $request = $this->movePurchaseReturnToTrashRequest($id, $accept, $accept_encoding, $contentType);
+        $request = $this->movePurchaseReturnToTrashRequest($id, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -10686,13 +11792,14 @@ class PurchaseReturnsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
+     * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['movePurchaseReturnToTrash'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function movePurchaseReturnToTrashRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['movePurchaseReturnToTrash'][0])
+    public function movePurchaseReturnToTrashRequest($id, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['movePurchaseReturnToTrash'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -10701,6 +11808,7 @@ class PurchaseReturnsApi
                 'Missing the required parameter $id when calling movePurchaseReturnToTrash'
             );
         }
+
 
 
 
@@ -10715,11 +11823,15 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
             $headerParams['Accept-Encoding'] = ObjectSerializer::toHeaderValue($accept_encoding);
+        }
+        // header params
+        if ($content_type !== null) {
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
         }
 
         // path params
@@ -10733,7 +11845,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -10777,10 +11889,21 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -10803,7 +11926,7 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePurchaseReturn'] to see the possible values for this operation
      *
@@ -10811,7 +11934,7 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\PurchaseReturn|\OpenAPI\Client\Model\Errors
      */
-    public function updatePurchaseReturn($id, $purchase_return, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePurchaseReturn'][0])
+    public function updatePurchaseReturn($id, $purchase_return, $expand = null, $fields = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePurchaseReturn'][0])
     {
         list($response) = $this->updatePurchaseReturnWithHttpInfo($id, $purchase_return, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -10827,7 +11950,7 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePurchaseReturn'] to see the possible values for this operation
      *
@@ -10835,11 +11958,14 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\PurchaseReturn|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updatePurchaseReturnWithHttpInfo($id, $purchase_return, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePurchaseReturn'][0])
+    public function updatePurchaseReturnWithHttpInfo($id, $purchase_return, $expand = null, $fields = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePurchaseReturn'][0])
     {
         $request = $this->updatePurchaseReturnRequest($id, $purchase_return, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturn')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -10860,6 +11986,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturn')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\PurchaseReturn',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -10898,6 +12031,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturn')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -10931,14 +12067,14 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePurchaseReturn'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePurchaseReturnAsync($id, $purchase_return, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePurchaseReturn'][0])
+    public function updatePurchaseReturnAsync($id, $purchase_return, $expand = null, $fields = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePurchaseReturn'][0])
     {
         return $this->updatePurchaseReturnAsyncWithHttpInfo($id, $purchase_return, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -10958,23 +12094,33 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePurchaseReturn'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePurchaseReturnAsyncWithHttpInfo($id, $purchase_return, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePurchaseReturn'][0])
+    public function updatePurchaseReturnAsyncWithHttpInfo($id, $purchase_return, $expand = null, $fields = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePurchaseReturn'][0])
     {
         $returnType = '\OpenAPI\Client\Model\PurchaseReturn';
         $request = $this->updatePurchaseReturnRequest($id, $purchase_return, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturn')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -11015,14 +12161,14 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePurchaseReturn'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updatePurchaseReturnRequest($id, $purchase_return, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePurchaseReturn'][0])
+    public function updatePurchaseReturnRequest($id, $purchase_return, $expand = null, $fields = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePurchaseReturn'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -11073,7 +12219,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -11095,7 +12241,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -11146,10 +12292,21 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -11170,7 +12327,7 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info attribute_meta_info (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePurchaseReturnMetadataAttributeById'] to see the possible values for this operation
      *
@@ -11178,7 +12335,7 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors
      */
-    public function updatePurchaseReturnMetadataAttributeById($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePurchaseReturnMetadataAttributeById'][0])
+    public function updatePurchaseReturnMetadataAttributeById($id, $attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePurchaseReturnMetadataAttributeById'][0])
     {
         list($response) = $this->updatePurchaseReturnMetadataAttributeByIdWithHttpInfo($id, $attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -11192,7 +12349,7 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePurchaseReturnMetadataAttributeById'] to see the possible values for this operation
      *
@@ -11200,11 +12357,14 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updatePurchaseReturnMetadataAttributeByIdWithHttpInfo($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePurchaseReturnMetadataAttributeById'][0])
+    public function updatePurchaseReturnMetadataAttributeByIdWithHttpInfo($id, $attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePurchaseReturnMetadataAttributeById'][0])
     {
         $request = $this->updatePurchaseReturnMetadataAttributeByIdRequest($id, $attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -11225,6 +12385,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\AttributeMetaInfo',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -11263,6 +12430,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -11294,14 +12464,14 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePurchaseReturnMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePurchaseReturnMetadataAttributeByIdAsync($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePurchaseReturnMetadataAttributeById'][0])
+    public function updatePurchaseReturnMetadataAttributeByIdAsync($id, $attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePurchaseReturnMetadataAttributeById'][0])
     {
         return $this->updatePurchaseReturnMetadataAttributeByIdAsyncWithHttpInfo($id, $attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -11319,23 +12489,33 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePurchaseReturnMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePurchaseReturnMetadataAttributeByIdAsyncWithHttpInfo($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePurchaseReturnMetadataAttributeById'][0])
+    public function updatePurchaseReturnMetadataAttributeByIdAsyncWithHttpInfo($id, $attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePurchaseReturnMetadataAttributeById'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfo';
         $request = $this->updatePurchaseReturnMetadataAttributeByIdRequest($id, $attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -11374,14 +12554,14 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePurchaseReturnMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updatePurchaseReturnMetadataAttributeByIdRequest($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePurchaseReturnMetadataAttributeById'][0])
+    public function updatePurchaseReturnMetadataAttributeByIdRequest($id, $attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePurchaseReturnMetadataAttributeById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -11412,7 +12592,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -11434,7 +12614,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -11485,10 +12665,21 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -11509,7 +12700,7 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\State $state state (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePurchaseReturnMetadataStateById'] to see the possible values for this operation
      *
@@ -11517,7 +12708,7 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors
      */
-    public function updatePurchaseReturnMetadataStateById($id, $state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePurchaseReturnMetadataStateById'][0])
+    public function updatePurchaseReturnMetadataStateById($id, $state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePurchaseReturnMetadataStateById'][0])
     {
         list($response) = $this->updatePurchaseReturnMetadataStateByIdWithHttpInfo($id, $state, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -11531,7 +12722,7 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePurchaseReturnMetadataStateById'] to see the possible values for this operation
      *
@@ -11539,11 +12730,14 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\State|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updatePurchaseReturnMetadataStateByIdWithHttpInfo($id, $state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePurchaseReturnMetadataStateById'][0])
+    public function updatePurchaseReturnMetadataStateByIdWithHttpInfo($id, $state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePurchaseReturnMetadataStateById'][0])
     {
         $request = $this->updatePurchaseReturnMetadataStateByIdRequest($id, $state, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -11564,6 +12758,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\State',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -11602,6 +12803,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -11633,14 +12837,14 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePurchaseReturnMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePurchaseReturnMetadataStateByIdAsync($id, $state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePurchaseReturnMetadataStateById'][0])
+    public function updatePurchaseReturnMetadataStateByIdAsync($id, $state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePurchaseReturnMetadataStateById'][0])
     {
         return $this->updatePurchaseReturnMetadataStateByIdAsyncWithHttpInfo($id, $state, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -11658,23 +12862,33 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePurchaseReturnMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePurchaseReturnMetadataStateByIdAsyncWithHttpInfo($id, $state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePurchaseReturnMetadataStateById'][0])
+    public function updatePurchaseReturnMetadataStateByIdAsyncWithHttpInfo($id, $state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePurchaseReturnMetadataStateById'][0])
     {
         $returnType = '\OpenAPI\Client\Model\State';
         $request = $this->updatePurchaseReturnMetadataStateByIdRequest($id, $state, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\State')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -11713,14 +12927,14 @@ class PurchaseReturnsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\State $state (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePurchaseReturnMetadataStateById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updatePurchaseReturnMetadataStateByIdRequest($id, $state, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePurchaseReturnMetadataStateById'][0])
+    public function updatePurchaseReturnMetadataStateByIdRequest($id, $state, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePurchaseReturnMetadataStateById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -11751,7 +12965,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -11773,7 +12987,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -11824,10 +13038,21 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -11849,7 +13074,7 @@ class PurchaseReturnsApi
      * @param  string $note_id ID События (required)
      * @param  \OpenAPI\Client\Model\EventNote $event_note event_note (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePurchaseReturnNote'] to see the possible values for this operation
      *
@@ -11857,7 +13082,7 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\EventNote|\OpenAPI\Client\Model\Errors
      */
-    public function updatePurchaseReturnNote($id, $note_id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePurchaseReturnNote'][0])
+    public function updatePurchaseReturnNote($id, $note_id, $event_note, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePurchaseReturnNote'][0])
     {
         list($response) = $this->updatePurchaseReturnNoteWithHttpInfo($id, $note_id, $event_note, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -11872,7 +13097,7 @@ class PurchaseReturnsApi
      * @param  string $note_id ID События (required)
      * @param  \OpenAPI\Client\Model\EventNote $event_note (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePurchaseReturnNote'] to see the possible values for this operation
      *
@@ -11880,11 +13105,14 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\EventNote|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updatePurchaseReturnNoteWithHttpInfo($id, $note_id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePurchaseReturnNote'][0])
+    public function updatePurchaseReturnNoteWithHttpInfo($id, $note_id, $event_note, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePurchaseReturnNote'][0])
     {
         $request = $this->updatePurchaseReturnNoteRequest($id, $note_id, $event_note, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EventNote')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -11905,6 +13133,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EventNote')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\EventNote',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -11943,6 +13178,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EventNote')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -11975,14 +13213,14 @@ class PurchaseReturnsApi
      * @param  string $note_id ID События (required)
      * @param  \OpenAPI\Client\Model\EventNote $event_note (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePurchaseReturnNote'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePurchaseReturnNoteAsync($id, $note_id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePurchaseReturnNote'][0])
+    public function updatePurchaseReturnNoteAsync($id, $note_id, $event_note, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePurchaseReturnNote'][0])
     {
         return $this->updatePurchaseReturnNoteAsyncWithHttpInfo($id, $note_id, $event_note, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -12001,23 +13239,33 @@ class PurchaseReturnsApi
      * @param  string $note_id ID События (required)
      * @param  \OpenAPI\Client\Model\EventNote $event_note (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePurchaseReturnNote'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePurchaseReturnNoteAsyncWithHttpInfo($id, $note_id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePurchaseReturnNote'][0])
+    public function updatePurchaseReturnNoteAsyncWithHttpInfo($id, $note_id, $event_note, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePurchaseReturnNote'][0])
     {
         $returnType = '\OpenAPI\Client\Model\EventNote';
         $request = $this->updatePurchaseReturnNoteRequest($id, $note_id, $event_note, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\EventNote')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -12057,14 +13305,14 @@ class PurchaseReturnsApi
      * @param  string $note_id ID События (required)
      * @param  \OpenAPI\Client\Model\EventNote $event_note (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePurchaseReturnNote'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updatePurchaseReturnNoteRequest($id, $note_id, $event_note, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePurchaseReturnNote'][0])
+    public function updatePurchaseReturnNoteRequest($id, $note_id, $event_note, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePurchaseReturnNote'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -12102,7 +13350,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -12132,7 +13380,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -12183,10 +13431,21 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -12210,7 +13469,7 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePurchaseReturnPosition'] to see the possible values for this operation
      *
@@ -12218,7 +13477,7 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\PurchaseReturnPosition|\OpenAPI\Client\Model\Errors
      */
-    public function updatePurchaseReturnPosition($id, $position_id, $purchase_return_position, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePurchaseReturnPosition'][0])
+    public function updatePurchaseReturnPosition($id, $position_id, $purchase_return_position, $expand = null, $fields = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePurchaseReturnPosition'][0])
     {
         list($response) = $this->updatePurchaseReturnPositionWithHttpInfo($id, $position_id, $purchase_return_position, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -12235,7 +13494,7 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePurchaseReturnPosition'] to see the possible values for this operation
      *
@@ -12243,11 +13502,14 @@ class PurchaseReturnsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\PurchaseReturnPosition|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updatePurchaseReturnPositionWithHttpInfo($id, $position_id, $purchase_return_position, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePurchaseReturnPosition'][0])
+    public function updatePurchaseReturnPositionWithHttpInfo($id, $position_id, $purchase_return_position, $expand = null, $fields = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePurchaseReturnPosition'][0])
     {
         $request = $this->updatePurchaseReturnPositionRequest($id, $position_id, $purchase_return_position, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturnPosition')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -12268,6 +13530,13 @@ class PurchaseReturnsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturnPosition')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\PurchaseReturnPosition',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -12306,6 +13575,9 @@ class PurchaseReturnsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturnPosition')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -12340,14 +13612,14 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePurchaseReturnPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePurchaseReturnPositionAsync($id, $position_id, $purchase_return_position, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePurchaseReturnPosition'][0])
+    public function updatePurchaseReturnPositionAsync($id, $position_id, $purchase_return_position, $expand = null, $fields = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePurchaseReturnPosition'][0])
     {
         return $this->updatePurchaseReturnPositionAsyncWithHttpInfo($id, $position_id, $purchase_return_position, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -12368,23 +13640,33 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePurchaseReturnPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePurchaseReturnPositionAsyncWithHttpInfo($id, $position_id, $purchase_return_position, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePurchaseReturnPosition'][0])
+    public function updatePurchaseReturnPositionAsyncWithHttpInfo($id, $position_id, $purchase_return_position, $expand = null, $fields = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePurchaseReturnPosition'][0])
     {
         $returnType = '\OpenAPI\Client\Model\PurchaseReturnPosition';
         $request = $this->updatePurchaseReturnPositionRequest($id, $position_id, $purchase_return_position, $expand, $fields, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\PurchaseReturnPosition')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -12426,14 +13708,14 @@ class PurchaseReturnsApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $fields Включить в ответ скрытые поля, не выводимые по умолчанию. В одном запросе можно передать только одно значение. - &#x60;minimumStock&#x60; — неснижаемый остаток (товар, модификация) - &#x60;downloadPermanentHref&#x60; — постоянная ссылка на изображение (платный тариф) - &#x60;stock&#x60; — остатки и себестоимость в позициях документов - &#x60;declaration&#x60; — прослеживаемость импортных товаров в позициях документов (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePurchaseReturnPosition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updatePurchaseReturnPositionRequest($id, $position_id, $purchase_return_position, $expand = null, $fields = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePurchaseReturnPosition'][0])
+    public function updatePurchaseReturnPositionRequest($id, $position_id, $purchase_return_position, $expand = null, $fields = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePurchaseReturnPosition'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -12491,7 +13773,7 @@ class PurchaseReturnsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -12521,7 +13803,7 @@ class PurchaseReturnsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -12572,10 +13854,21 @@ class PurchaseReturnsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -12640,13 +13933,22 @@ class PurchaseReturnsApi
         ];
     }
 
+    private function isBatchResponseType(string $dataType): bool
+    {
+        return in_array($dataType, [
+            '\OpenAPI\Client\Model\BatchResponseEntity[]',
+            '\OpenAPI\Client\Model\DeleteRowResult[]',
+        ], true);
+    }
+
     private function handleResponseMassWithDataType(
         string $dataType,
         RequestInterface $request,
         ResponseInterface $response
     ): array {
         $rawContent = (string) $response->getBody();
-        if ($rawContent === '') {
+        $statusCode = $response->getStatusCode();
+        if ($rawContent === '' && $statusCode >= 200 && $statusCode <= 299) {
             return [null, $response->getStatusCode(), $response->getHeaders()];
         }
 
@@ -12664,37 +13966,44 @@ class PurchaseReturnsApi
             );
         }
 
-        if ($response->getStatusCode() < 200 || $response->getStatusCode() > 299) {
-            if (is_object($content)) {
-                $errorsClass = '\OpenAPI\Client\Model\Errors';
-                $error = ObjectSerializer::deserialize($content, $errorsClass, $response->getHeaders());
-                throw new ApiException(
-                    (string) $error,
-                    $response->getStatusCode(),
-                    $response->getHeaders(),
-                    $rawContent
-                );
+        if (($statusCode < 200 || $statusCode > 299)
+            && !(in_array($statusCode, [404, 412], true) && is_array($content))
+        ) {
+            $exception = new ApiException(
+                sprintf('[%d] Error connecting to the API (%s)', $statusCode, $request->getUri()),
+                $statusCode,
+                $response->getHeaders(),
+                $rawContent
+            );
+            if (is_object($content) && property_exists($content, 'errors')) {
+                try {
+                    $exception->setResponseObject(ObjectSerializer::deserialize(
+                        $content,
+                        '\OpenAPI\Client\Model\Errors',
+                        $response->getHeaders()
+                    ));
+                } catch (\InvalidArgumentException | \TypeError $deserializationException) {
+                    // Preserve the HTTP exception and raw response even if Errors is malformed.
+                }
             }
-
-            if (!is_array($content)) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $response->getStatusCode(),
-                    $response->getHeaders(),
-                    $rawContent
-                );
-            }
+            throw $exception;
         }
 
-        return [
-            ObjectSerializer::deserialize($content, $dataType, []),
-            $response->getStatusCode(),
-            $response->getHeaders()
-        ];
+        try {
+            $result = ObjectSerializer::deserialize($content, $dataType, $response->getHeaders());
+        } catch (\InvalidArgumentException | \TypeError $exception) {
+            if ($statusCode >= 200 && $statusCode <= 299) {
+                throw $exception;
+            }
+            throw new ApiException(
+                sprintf('Error deserializing batch response (%s): %s', $request->getUri(), $exception->getMessage()),
+                $statusCode,
+                $response->getHeaders(),
+                $rawContent
+            );
+        }
+
+        return [$result, $statusCode, $response->getHeaders()];
     }
 
     private function responseWithinRangeCode(

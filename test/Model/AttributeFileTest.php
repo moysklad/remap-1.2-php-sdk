@@ -98,6 +98,15 @@ class AttributeFileTest extends TestCase
     }
 
     /**
+     * Test attribute "file"
+     */
+    public function testPropertyFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "download"
      */
     public function testPropertyDownload()

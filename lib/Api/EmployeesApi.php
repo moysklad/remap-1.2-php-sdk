@@ -198,7 +198,7 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  \OpenAPI\Client\Model\ActivateEmployeeRequest|null $activate_employee_request activate_employee_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['activateEmployee'] to see the possible values for this operation
@@ -207,7 +207,7 @@ class EmployeesApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\ActivateEmployee200Response|\OpenAPI\Client\Model\Errors
      */
-    public function activateEmployee($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $activate_employee_request = null, string $contentType = self::contentTypes['activateEmployee'][0])
+    public function activateEmployee($id, $accept = null, $accept_encoding = null, $content_type = null, $activate_employee_request = null, string $contentType = self::contentTypes['activateEmployee'][0])
     {
         list($response) = $this->activateEmployeeWithHttpInfo($id, $accept, $accept_encoding, $content_type, $activate_employee_request, $contentType);
         return $response;
@@ -220,7 +220,7 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  \OpenAPI\Client\Model\ActivateEmployeeRequest|null $activate_employee_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['activateEmployee'] to see the possible values for this operation
@@ -229,11 +229,14 @@ class EmployeesApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ActivateEmployee200Response|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function activateEmployeeWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $activate_employee_request = null, string $contentType = self::contentTypes['activateEmployee'][0])
+    public function activateEmployeeWithHttpInfo($id, $accept = null, $accept_encoding = null, $content_type = null, $activate_employee_request = null, string $contentType = self::contentTypes['activateEmployee'][0])
     {
         $request = $this->activateEmployeeRequest($id, $accept, $accept_encoding, $content_type, $activate_employee_request, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ActivateEmployee200Response')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -254,6 +257,13 @@ class EmployeesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ActivateEmployee200Response')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\ActivateEmployee200Response',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -292,6 +302,9 @@ class EmployeesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ActivateEmployee200Response')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -322,7 +335,7 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  \OpenAPI\Client\Model\ActivateEmployeeRequest|null $activate_employee_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['activateEmployee'] to see the possible values for this operation
@@ -330,7 +343,7 @@ class EmployeesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function activateEmployeeAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $activate_employee_request = null, string $contentType = self::contentTypes['activateEmployee'][0])
+    public function activateEmployeeAsync($id, $accept = null, $accept_encoding = null, $content_type = null, $activate_employee_request = null, string $contentType = self::contentTypes['activateEmployee'][0])
     {
         return $this->activateEmployeeAsyncWithHttpInfo($id, $accept, $accept_encoding, $content_type, $activate_employee_request, $contentType)
             ->then(
@@ -347,7 +360,7 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  \OpenAPI\Client\Model\ActivateEmployeeRequest|null $activate_employee_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['activateEmployee'] to see the possible values for this operation
@@ -355,16 +368,26 @@ class EmployeesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function activateEmployeeAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $activate_employee_request = null, string $contentType = self::contentTypes['activateEmployee'][0])
+    public function activateEmployeeAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, $content_type = null, $activate_employee_request = null, string $contentType = self::contentTypes['activateEmployee'][0])
     {
         $returnType = '\OpenAPI\Client\Model\ActivateEmployee200Response';
         $request = $this->activateEmployeeRequest($id, $accept, $accept_encoding, $content_type, $activate_employee_request, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\ActivateEmployee200Response')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -402,7 +425,7 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  \OpenAPI\Client\Model\ActivateEmployeeRequest|null $activate_employee_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['activateEmployee'] to see the possible values for this operation
@@ -410,7 +433,7 @@ class EmployeesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function activateEmployeeRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', $activate_employee_request = null, string $contentType = self::contentTypes['activateEmployee'][0])
+    public function activateEmployeeRequest($id, $accept = null, $accept_encoding = null, $content_type = null, $activate_employee_request = null, string $contentType = self::contentTypes['activateEmployee'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -435,7 +458,7 @@ class EmployeesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -457,7 +480,7 @@ class EmployeesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -508,10 +531,21 @@ class EmployeesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -532,7 +566,7 @@ class EmployeesApi
      * @param  \OpenAPI\Client\Model\Employee $employee employee (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmployee'] to see the possible values for this operation
      *
@@ -540,7 +574,7 @@ class EmployeesApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Employee|\OpenAPI\Client\Model\Errors
      */
-    public function createEmployee($employee, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmployee'][0])
+    public function createEmployee($employee, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createEmployee'][0])
     {
         list($response) = $this->createEmployeeWithHttpInfo($employee, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -554,7 +588,7 @@ class EmployeesApi
      * @param  \OpenAPI\Client\Model\Employee $employee (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmployee'] to see the possible values for this operation
      *
@@ -562,11 +596,14 @@ class EmployeesApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Employee|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createEmployeeWithHttpInfo($employee, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmployee'][0])
+    public function createEmployeeWithHttpInfo($employee, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createEmployee'][0])
     {
         $request = $this->createEmployeeRequest($employee, $expand, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Employee')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -587,6 +624,13 @@ class EmployeesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Employee')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\Employee',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -625,6 +669,9 @@ class EmployeesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Employee')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -656,14 +703,14 @@ class EmployeesApi
      * @param  \OpenAPI\Client\Model\Employee $employee (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmployee'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createEmployeeAsync($employee, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmployee'][0])
+    public function createEmployeeAsync($employee, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createEmployee'][0])
     {
         return $this->createEmployeeAsyncWithHttpInfo($employee, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -681,23 +728,33 @@ class EmployeesApi
      * @param  \OpenAPI\Client\Model\Employee $employee (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmployee'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createEmployeeAsyncWithHttpInfo($employee, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmployee'][0])
+    public function createEmployeeAsyncWithHttpInfo($employee, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createEmployee'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Employee';
         $request = $this->createEmployeeRequest($employee, $expand, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\Employee')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -736,14 +793,14 @@ class EmployeesApi
      * @param  \OpenAPI\Client\Model\Employee $employee (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmployee'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createEmployeeRequest($employee, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmployee'][0])
+    public function createEmployeeRequest($employee, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createEmployee'][0])
     {
 
         // verify the required parameter 'employee' is set
@@ -777,7 +834,7 @@ class EmployeesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -791,7 +848,7 @@ class EmployeesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -842,10 +899,21 @@ class EmployeesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -865,7 +933,7 @@ class EmployeesApi
      *
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info attribute_meta_info (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmployeeMetadataAttribute'] to see the possible values for this operation
      *
@@ -873,7 +941,7 @@ class EmployeesApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors
      */
-    public function createEmployeeMetadataAttribute($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmployeeMetadataAttribute'][0])
+    public function createEmployeeMetadataAttribute($attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createEmployeeMetadataAttribute'][0])
     {
         list($response) = $this->createEmployeeMetadataAttributeWithHttpInfo($attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -886,7 +954,7 @@ class EmployeesApi
      *
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmployeeMetadataAttribute'] to see the possible values for this operation
      *
@@ -894,11 +962,14 @@ class EmployeesApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createEmployeeMetadataAttributeWithHttpInfo($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmployeeMetadataAttribute'][0])
+    public function createEmployeeMetadataAttributeWithHttpInfo($attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createEmployeeMetadataAttribute'][0])
     {
         $request = $this->createEmployeeMetadataAttributeRequest($attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -919,6 +990,13 @@ class EmployeesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\AttributeMetaInfo',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -957,6 +1035,9 @@ class EmployeesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -987,14 +1068,14 @@ class EmployeesApi
      *
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmployeeMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createEmployeeMetadataAttributeAsync($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmployeeMetadataAttribute'][0])
+    public function createEmployeeMetadataAttributeAsync($attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createEmployeeMetadataAttribute'][0])
     {
         return $this->createEmployeeMetadataAttributeAsyncWithHttpInfo($attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -1011,23 +1092,33 @@ class EmployeesApi
      *
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmployeeMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createEmployeeMetadataAttributeAsyncWithHttpInfo($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmployeeMetadataAttribute'][0])
+    public function createEmployeeMetadataAttributeAsyncWithHttpInfo($attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createEmployeeMetadataAttribute'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfo';
         $request = $this->createEmployeeMetadataAttributeRequest($attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1065,14 +1156,14 @@ class EmployeesApi
      *
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmployeeMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createEmployeeMetadataAttributeRequest($attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmployeeMetadataAttribute'][0])
+    public function createEmployeeMetadataAttributeRequest($attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createEmployeeMetadataAttribute'][0])
     {
 
         // verify the required parameter 'attribute_meta_info' is set
@@ -1096,7 +1187,7 @@ class EmployeesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -1110,7 +1201,7 @@ class EmployeesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1161,10 +1252,21 @@ class EmployeesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -1185,15 +1287,15 @@ class EmployeesApi
      * @param  \OpenAPI\Client\Model\Employee[] $employee employee (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmployeesBatch'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors
+     * @return \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\BatchEntityErrorResponse|\OpenAPI\Client\Model\BatchEntityErrorResponse|\OpenAPI\Client\Model\Errors
      */
-    public function createEmployeesBatch($employee, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmployeesBatch'][0])
+    public function createEmployeesBatch($employee, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createEmployeesBatch'][0])
     {
         list($response) = $this->createEmployeesBatchWithHttpInfo($employee, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -1207,20 +1309,22 @@ class EmployeesApi
      * @param  \OpenAPI\Client\Model\Employee[] $employee (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmployeesBatch'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\BatchResponseEntity[]|\OpenAPI\Client\Model\BatchEntityErrorResponse|\OpenAPI\Client\Model\BatchEntityErrorResponse|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createEmployeesBatchWithHttpInfo($employee, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmployeesBatch'][0])
+    public function createEmployeesBatchWithHttpInfo($employee, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createEmployeesBatch'][0])
     {
         $request = $this->createEmployeesBatchRequest($employee, $expand, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
-            $options[RequestOptions::HTTP_ERRORS] = false;
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\BatchResponseEntity[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1241,17 +1345,87 @@ class EmployeesApi
 
             $statusCode = $response->getStatusCode();
 
-            return $this->handleResponseMassWithDataType(
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\BatchResponseEntity[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                    $request,
+                    $response
+                );
+            }
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                        $request,
+                        $response
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchEntityErrorResponse',
+                        $request,
+                        $response
+                    );
+                case 412:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchEntityErrorResponse',
+                        $request,
+                        $response
+                    );
+                default:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\Errors',
+                        $request,
+                        $response
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
                 '\OpenAPI\Client\Model\BatchResponseEntity[]',
                 $request,
-                $response,
+                $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\BatchResponseEntity[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\OpenAPI\Client\Model\BatchResponseEntity[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchEntityErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 412:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchEntityErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1278,14 +1452,14 @@ class EmployeesApi
      * @param  \OpenAPI\Client\Model\Employee[] $employee (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmployeesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createEmployeesBatchAsync($employee, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmployeesBatch'][0])
+    public function createEmployeesBatchAsync($employee, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createEmployeesBatch'][0])
     {
         return $this->createEmployeesBatchAsyncWithHttpInfo($employee, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -1303,29 +1477,47 @@ class EmployeesApi
      * @param  \OpenAPI\Client\Model\Employee[] $employee (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmployeesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createEmployeesBatchAsyncWithHttpInfo($employee, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmployeesBatch'][0])
+    public function createEmployeesBatchAsyncWithHttpInfo($employee, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createEmployeesBatch'][0])
     {
         $returnType = '\OpenAPI\Client\Model\BatchResponseEntity[]';
         $request = $this->createEmployeesBatchRequest($employee, $expand, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
-        $options[RequestOptions::HTTP_ERRORS] = false;
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\BatchResponseEntity[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
-                    return $this->handleResponseMassWithDataType(
-                        $returnType,
-                        $request,
-                        $response,
-                    );
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -1350,14 +1542,14 @@ class EmployeesApi
      * @param  \OpenAPI\Client\Model\Employee[] $employee (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEmployeesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createEmployeesBatchRequest($employee, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createEmployeesBatch'][0])
+    public function createEmployeesBatchRequest($employee, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createEmployeesBatch'][0])
     {
 
         // verify the required parameter 'employee' is set
@@ -1397,7 +1589,7 @@ class EmployeesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -1411,7 +1603,7 @@ class EmployeesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1462,10 +1654,21 @@ class EmployeesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -1485,14 +1688,14 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deactivateEmployee'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deactivateEmployee($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deactivateEmployee'][0])
+    public function deactivateEmployee($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deactivateEmployee'][0])
     {
         $this->deactivateEmployeeWithHttpInfo($id, $accept, $accept_encoding, $contentType);
     }
@@ -1504,18 +1707,21 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deactivateEmployee'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deactivateEmployeeWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deactivateEmployee'][0])
+    public function deactivateEmployeeWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deactivateEmployee'][0])
     {
         $request = $this->deactivateEmployeeRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1539,6 +1745,9 @@ class EmployeesApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -1561,13 +1770,13 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deactivateEmployee'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deactivateEmployeeAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deactivateEmployee'][0])
+    public function deactivateEmployeeAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deactivateEmployee'][0])
     {
         return $this->deactivateEmployeeAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -1584,17 +1793,20 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deactivateEmployee'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deactivateEmployeeAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deactivateEmployee'][0])
+    public function deactivateEmployeeAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deactivateEmployee'][0])
     {
         $returnType = '';
         $request = $this->deactivateEmployeeRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -1624,13 +1836,13 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deactivateEmployee'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deactivateEmployeeRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deactivateEmployee'][0])
+    public function deactivateEmployeeRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deactivateEmployee'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -1653,7 +1865,7 @@ class EmployeesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -1671,7 +1883,7 @@ class EmployeesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1715,10 +1927,18 @@ class EmployeesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -1738,14 +1958,14 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEmployee'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deleteEmployee($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteEmployee'][0])
+    public function deleteEmployee($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteEmployee'][0])
     {
         $this->deleteEmployeeWithHttpInfo($id, $accept, $accept_encoding, $contentType);
     }
@@ -1757,18 +1977,21 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEmployee'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteEmployeeWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteEmployee'][0])
+    public function deleteEmployeeWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteEmployee'][0])
     {
         $request = $this->deleteEmployeeRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1792,6 +2015,9 @@ class EmployeesApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -1814,13 +2040,13 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEmployee'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteEmployeeAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteEmployee'][0])
+    public function deleteEmployeeAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteEmployee'][0])
     {
         return $this->deleteEmployeeAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -1837,17 +2063,20 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEmployee'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteEmployeeAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteEmployee'][0])
+    public function deleteEmployeeAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteEmployee'][0])
     {
         $returnType = '';
         $request = $this->deleteEmployeeRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -1877,13 +2106,13 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEmployee'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteEmployeeRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteEmployee'][0])
+    public function deleteEmployeeRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteEmployee'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -1906,7 +2135,7 @@ class EmployeesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -1924,7 +2153,7 @@ class EmployeesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1968,10 +2197,18 @@ class EmployeesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -1991,14 +2228,14 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEmployeeMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deleteEmployeeMetadataAttribute($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteEmployeeMetadataAttribute'][0])
+    public function deleteEmployeeMetadataAttribute($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteEmployeeMetadataAttribute'][0])
     {
         $this->deleteEmployeeMetadataAttributeWithHttpInfo($id, $accept, $accept_encoding, $contentType);
     }
@@ -2010,18 +2247,21 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEmployeeMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteEmployeeMetadataAttributeWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteEmployeeMetadataAttribute'][0])
+    public function deleteEmployeeMetadataAttributeWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteEmployeeMetadataAttribute'][0])
     {
         $request = $this->deleteEmployeeMetadataAttributeRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -2045,6 +2285,9 @@ class EmployeesApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -2067,13 +2310,13 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEmployeeMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteEmployeeMetadataAttributeAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteEmployeeMetadataAttribute'][0])
+    public function deleteEmployeeMetadataAttributeAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteEmployeeMetadataAttribute'][0])
     {
         return $this->deleteEmployeeMetadataAttributeAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -2090,17 +2333,20 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEmployeeMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteEmployeeMetadataAttributeAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteEmployeeMetadataAttribute'][0])
+    public function deleteEmployeeMetadataAttributeAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteEmployeeMetadataAttribute'][0])
     {
         $returnType = '';
         $request = $this->deleteEmployeeMetadataAttributeRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -2130,13 +2376,13 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEmployeeMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteEmployeeMetadataAttributeRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteEmployeeMetadataAttribute'][0])
+    public function deleteEmployeeMetadataAttributeRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteEmployeeMetadataAttribute'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -2159,7 +2405,7 @@ class EmployeesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -2177,7 +2423,7 @@ class EmployeesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -2221,10 +2467,18 @@ class EmployeesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -2244,15 +2498,15 @@ class EmployeesApi
      *
      * @param  \OpenAPI\Client\Model\Employee[] $employee employee (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEmployeesBatch'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\Errors
+     * @return \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\BatchDeleteErrorResponse|\OpenAPI\Client\Model\BatchDeleteErrorResponse|\OpenAPI\Client\Model\Errors
      */
-    public function deleteEmployeesBatch($employee, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteEmployeesBatch'][0])
+    public function deleteEmployeesBatch($employee, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deleteEmployeesBatch'][0])
     {
         list($response) = $this->deleteEmployeesBatchWithHttpInfo($employee, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -2265,19 +2519,22 @@ class EmployeesApi
      *
      * @param  \OpenAPI\Client\Model\Employee[] $employee (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEmployeesBatch'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DeleteRowResult[]|\OpenAPI\Client\Model\BatchDeleteErrorResponse|\OpenAPI\Client\Model\BatchDeleteErrorResponse|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteEmployeesBatchWithHttpInfo($employee, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteEmployeesBatch'][0])
+    public function deleteEmployeesBatchWithHttpInfo($employee, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deleteEmployeesBatch'][0])
     {
         $request = $this->deleteEmployeesBatchRequest($employee, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DeleteRowResult[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -2298,12 +2555,31 @@ class EmployeesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DeleteRowResult[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\DeleteRowResult[]',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\DeleteRowResult[]',
+                        $request,
+                        $response
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchDeleteErrorResponse',
+                        $request,
+                        $response
+                    );
+                case 412:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\BatchDeleteErrorResponse',
                         $request,
                         $response
                     );
@@ -2336,11 +2612,30 @@ class EmployeesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DeleteRowResult[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\OpenAPI\Client\Model\DeleteRowResult[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchDeleteErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 412:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\BatchDeleteErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2366,14 +2661,14 @@ class EmployeesApi
      *
      * @param  \OpenAPI\Client\Model\Employee[] $employee (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEmployeesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteEmployeesBatchAsync($employee, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteEmployeesBatch'][0])
+    public function deleteEmployeesBatchAsync($employee, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deleteEmployeesBatch'][0])
     {
         return $this->deleteEmployeesBatchAsyncWithHttpInfo($employee, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -2390,23 +2685,33 @@ class EmployeesApi
      *
      * @param  \OpenAPI\Client\Model\Employee[] $employee (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEmployeesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteEmployeesBatchAsyncWithHttpInfo($employee, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteEmployeesBatch'][0])
+    public function deleteEmployeesBatchAsyncWithHttpInfo($employee, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deleteEmployeesBatch'][0])
     {
         $returnType = '\OpenAPI\Client\Model\DeleteRowResult[]';
         $request = $this->deleteEmployeesBatchRequest($employee, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\DeleteRowResult[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2444,14 +2749,14 @@ class EmployeesApi
      *
      * @param  \OpenAPI\Client\Model\Employee[] $employee (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEmployeesBatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteEmployeesBatchRequest($employee, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['deleteEmployeesBatch'][0])
+    public function deleteEmployeesBatchRequest($employee, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['deleteEmployeesBatch'][0])
     {
 
         // verify the required parameter 'employee' is set
@@ -2481,7 +2786,7 @@ class EmployeesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -2495,7 +2800,7 @@ class EmployeesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -2546,10 +2851,21 @@ class EmployeesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -2570,14 +2886,14 @@ class EmployeesApi
      * @param  string $id ID сущности (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployeeById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Employee|\OpenAPI\Client\Model\Errors
      */
-    public function getEmployeeById($id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployeeById'][0])
+    public function getEmployeeById($id, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployeeById'][0])
     {
         list($response) = $this->getEmployeeByIdWithHttpInfo($id, $expand, $accept, $accept_encoding, $contentType);
         return $response;
@@ -2591,18 +2907,21 @@ class EmployeesApi
      * @param  string $id ID сущности (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployeeById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Employee|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getEmployeeByIdWithHttpInfo($id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployeeById'][0])
+    public function getEmployeeByIdWithHttpInfo($id, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployeeById'][0])
     {
         $request = $this->getEmployeeByIdRequest($id, $expand, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Employee')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -2623,6 +2942,13 @@ class EmployeesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Employee')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\Employee',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -2661,6 +2987,9 @@ class EmployeesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Employee')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -2692,13 +3021,13 @@ class EmployeesApi
      * @param  string $id ID сущности (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployeeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEmployeeByIdAsync($id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployeeById'][0])
+    public function getEmployeeByIdAsync($id, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployeeById'][0])
     {
         return $this->getEmployeeByIdAsyncWithHttpInfo($id, $expand, $accept, $accept_encoding, $contentType)
             ->then(
@@ -2716,22 +3045,32 @@ class EmployeesApi
      * @param  string $id ID сущности (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployeeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEmployeeByIdAsyncWithHttpInfo($id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployeeById'][0])
+    public function getEmployeeByIdAsyncWithHttpInfo($id, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployeeById'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Employee';
         $request = $this->getEmployeeByIdRequest($id, $expand, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\Employee')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2770,13 +3109,13 @@ class EmployeesApi
      * @param  string $id ID сущности (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployeeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getEmployeeByIdRequest($id, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployeeById'][0])
+    public function getEmployeeByIdRequest($id, $expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployeeById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -2809,7 +3148,7 @@ class EmployeesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -2827,7 +3166,7 @@ class EmployeesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -2871,10 +3210,18 @@ class EmployeesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -2894,14 +3241,14 @@ class EmployeesApi
      *
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployeeMetadata'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Metadata|\OpenAPI\Client\Model\Errors
      */
-    public function getEmployeeMetadata($expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployeeMetadata'][0])
+    public function getEmployeeMetadata($expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployeeMetadata'][0])
     {
         list($response) = $this->getEmployeeMetadataWithHttpInfo($expand, $accept, $accept_encoding, $contentType);
         return $response;
@@ -2914,18 +3261,21 @@ class EmployeesApi
      *
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployeeMetadata'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Metadata|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getEmployeeMetadataWithHttpInfo($expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployeeMetadata'][0])
+    public function getEmployeeMetadataWithHttpInfo($expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployeeMetadata'][0])
     {
         $request = $this->getEmployeeMetadataRequest($expand, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Metadata')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -2946,6 +3296,13 @@ class EmployeesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Metadata')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\Metadata',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -2984,6 +3341,9 @@ class EmployeesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Metadata')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -3014,13 +3374,13 @@ class EmployeesApi
      *
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployeeMetadata'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEmployeeMetadataAsync($expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployeeMetadata'][0])
+    public function getEmployeeMetadataAsync($expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployeeMetadata'][0])
     {
         return $this->getEmployeeMetadataAsyncWithHttpInfo($expand, $accept, $accept_encoding, $contentType)
             ->then(
@@ -3037,22 +3397,32 @@ class EmployeesApi
      *
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployeeMetadata'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEmployeeMetadataAsyncWithHttpInfo($expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployeeMetadata'][0])
+    public function getEmployeeMetadataAsyncWithHttpInfo($expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployeeMetadata'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Metadata';
         $request = $this->getEmployeeMetadataRequest($expand, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\Metadata')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3090,13 +3460,13 @@ class EmployeesApi
      *
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployeeMetadata'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getEmployeeMetadataRequest($expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployeeMetadata'][0])
+    public function getEmployeeMetadataRequest($expand = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployeeMetadata'][0])
     {
 
 
@@ -3122,7 +3492,7 @@ class EmployeesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -3132,7 +3502,7 @@ class EmployeesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -3176,10 +3546,18 @@ class EmployeesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -3199,14 +3577,14 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployeeMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors
      */
-    public function getEmployeeMetadataAttributeById($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployeeMetadataAttributeById'][0])
+    public function getEmployeeMetadataAttributeById($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployeeMetadataAttributeById'][0])
     {
         list($response) = $this->getEmployeeMetadataAttributeByIdWithHttpInfo($id, $accept, $accept_encoding, $contentType);
         return $response;
@@ -3219,18 +3597,21 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployeeMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getEmployeeMetadataAttributeByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployeeMetadataAttributeById'][0])
+    public function getEmployeeMetadataAttributeByIdWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployeeMetadataAttributeById'][0])
     {
         $request = $this->getEmployeeMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -3251,6 +3632,13 @@ class EmployeesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\AttributeMetaInfo',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -3289,6 +3677,9 @@ class EmployeesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -3319,13 +3710,13 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployeeMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEmployeeMetadataAttributeByIdAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployeeMetadataAttributeById'][0])
+    public function getEmployeeMetadataAttributeByIdAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployeeMetadataAttributeById'][0])
     {
         return $this->getEmployeeMetadataAttributeByIdAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -3342,22 +3733,32 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployeeMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEmployeeMetadataAttributeByIdAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployeeMetadataAttributeById'][0])
+    public function getEmployeeMetadataAttributeByIdAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployeeMetadataAttributeById'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfo';
         $request = $this->getEmployeeMetadataAttributeByIdRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3395,13 +3796,13 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployeeMetadataAttributeById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getEmployeeMetadataAttributeByIdRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployeeMetadataAttributeById'][0])
+    public function getEmployeeMetadataAttributeByIdRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployeeMetadataAttributeById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -3424,7 +3825,7 @@ class EmployeesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -3442,7 +3843,7 @@ class EmployeesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -3486,10 +3887,18 @@ class EmployeesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -3508,14 +3917,14 @@ class EmployeesApi
      * Получить доп. поля сотрудников
      *
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployeeMetadataAttributes'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AttributeMetaInfoList|\OpenAPI\Client\Model\Errors
      */
-    public function getEmployeeMetadataAttributes($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployeeMetadataAttributes'][0])
+    public function getEmployeeMetadataAttributes($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployeeMetadataAttributes'][0])
     {
         list($response) = $this->getEmployeeMetadataAttributesWithHttpInfo($accept, $accept_encoding, $contentType);
         return $response;
@@ -3527,18 +3936,21 @@ class EmployeesApi
      * Получить доп. поля сотрудников
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployeeMetadataAttributes'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AttributeMetaInfoList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getEmployeeMetadataAttributesWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployeeMetadataAttributes'][0])
+    public function getEmployeeMetadataAttributesWithHttpInfo($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployeeMetadataAttributes'][0])
     {
         $request = $this->getEmployeeMetadataAttributesRequest($accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfoList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -3559,6 +3971,13 @@ class EmployeesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfoList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\AttributeMetaInfoList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -3597,6 +4016,9 @@ class EmployeesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfoList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -3626,13 +4048,13 @@ class EmployeesApi
      * Получить доп. поля сотрудников
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployeeMetadataAttributes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEmployeeMetadataAttributesAsync($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployeeMetadataAttributes'][0])
+    public function getEmployeeMetadataAttributesAsync($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployeeMetadataAttributes'][0])
     {
         return $this->getEmployeeMetadataAttributesAsyncWithHttpInfo($accept, $accept_encoding, $contentType)
             ->then(
@@ -3648,22 +4070,32 @@ class EmployeesApi
      * Получить доп. поля сотрудников
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployeeMetadataAttributes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEmployeeMetadataAttributesAsyncWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployeeMetadataAttributes'][0])
+    public function getEmployeeMetadataAttributesAsyncWithHttpInfo($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployeeMetadataAttributes'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfoList';
         $request = $this->getEmployeeMetadataAttributesRequest($accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfoList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3700,13 +4132,13 @@ class EmployeesApi
      * Create request for operation 'getEmployeeMetadataAttributes'
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployeeMetadataAttributes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getEmployeeMetadataAttributesRequest($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployeeMetadataAttributes'][0])
+    public function getEmployeeMetadataAttributesRequest($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployeeMetadataAttributes'][0])
     {
 
 
@@ -3722,7 +4154,7 @@ class EmployeesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -3732,7 +4164,7 @@ class EmployeesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -3776,10 +4208,18 @@ class EmployeesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -3799,14 +4239,14 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployeeSecurity'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\EmployeeSecurity|\OpenAPI\Client\Model\Errors
      */
-    public function getEmployeeSecurity($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployeeSecurity'][0])
+    public function getEmployeeSecurity($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployeeSecurity'][0])
     {
         list($response) = $this->getEmployeeSecurityWithHttpInfo($id, $accept, $accept_encoding, $contentType);
         return $response;
@@ -3819,18 +4259,21 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployeeSecurity'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\EmployeeSecurity|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getEmployeeSecurityWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployeeSecurity'][0])
+    public function getEmployeeSecurityWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployeeSecurity'][0])
     {
         $request = $this->getEmployeeSecurityRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeSecurity')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -3851,6 +4294,13 @@ class EmployeesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeSecurity')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\EmployeeSecurity',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -3889,6 +4339,9 @@ class EmployeesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeSecurity')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -3919,13 +4372,13 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployeeSecurity'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEmployeeSecurityAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployeeSecurity'][0])
+    public function getEmployeeSecurityAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployeeSecurity'][0])
     {
         return $this->getEmployeeSecurityAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -3942,22 +4395,32 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployeeSecurity'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEmployeeSecurityAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployeeSecurity'][0])
+    public function getEmployeeSecurityAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployeeSecurity'][0])
     {
         $returnType = '\OpenAPI\Client\Model\EmployeeSecurity';
         $request = $this->getEmployeeSecurityRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeSecurity')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3995,13 +4458,13 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployeeSecurity'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getEmployeeSecurityRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployeeSecurity'][0])
+    public function getEmployeeSecurityRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployeeSecurity'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -4024,7 +4487,7 @@ class EmployeesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -4042,7 +4505,7 @@ class EmployeesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -4086,10 +4549,18 @@ class EmployeesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -4114,14 +4585,14 @@ class EmployeesApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $order Сортировка (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployees'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\EmployeeList|\OpenAPI\Client\Model\Errors
      */
-    public function getEmployees($limit = 1000, $offset = 0, $search = null, $filter = null, $expand = null, $order = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployees'][0])
+    public function getEmployees($limit = 1000, $offset = 0, $search = null, $filter = null, $expand = null, $order = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployees'][0])
     {
         list($response) = $this->getEmployeesWithHttpInfo($limit, $offset, $search, $filter, $expand, $order, $accept, $accept_encoding, $contentType);
         return $response;
@@ -4139,18 +4610,21 @@ class EmployeesApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $order Сортировка (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployees'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\EmployeeList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getEmployeesWithHttpInfo($limit = 1000, $offset = 0, $search = null, $filter = null, $expand = null, $order = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployees'][0])
+    public function getEmployeesWithHttpInfo($limit = 1000, $offset = 0, $search = null, $filter = null, $expand = null, $order = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployees'][0])
     {
         $request = $this->getEmployeesRequest($limit, $offset, $search, $filter, $expand, $order, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -4171,6 +4645,13 @@ class EmployeesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\EmployeeList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -4209,6 +4690,9 @@ class EmployeesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -4244,13 +4728,13 @@ class EmployeesApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $order Сортировка (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployees'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEmployeesAsync($limit = 1000, $offset = 0, $search = null, $filter = null, $expand = null, $order = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployees'][0])
+    public function getEmployeesAsync($limit = 1000, $offset = 0, $search = null, $filter = null, $expand = null, $order = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployees'][0])
     {
         return $this->getEmployeesAsyncWithHttpInfo($limit, $offset, $search, $filter, $expand, $order, $accept, $accept_encoding, $contentType)
             ->then(
@@ -4272,22 +4756,32 @@ class EmployeesApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $order Сортировка (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployees'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEmployeesAsyncWithHttpInfo($limit = 1000, $offset = 0, $search = null, $filter = null, $expand = null, $order = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployees'][0])
+    public function getEmployeesAsyncWithHttpInfo($limit = 1000, $offset = 0, $search = null, $filter = null, $expand = null, $order = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployees'][0])
     {
         $returnType = '\OpenAPI\Client\Model\EmployeeList';
         $request = $this->getEmployeesRequest($limit, $offset, $search, $filter, $expand, $order, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4330,13 +4824,13 @@ class EmployeesApi
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $order Сортировка (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmployees'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getEmployeesRequest($limit = 1000, $offset = 0, $search = null, $filter = null, $expand = null, $order = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEmployees'][0])
+    public function getEmployeesRequest($limit = 1000, $offset = 0, $search = null, $filter = null, $expand = null, $order = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEmployees'][0])
     {
 
         if ($limit !== null && $limit > 1000) {
@@ -4421,7 +4915,7 @@ class EmployeesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -4431,7 +4925,7 @@ class EmployeesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -4475,10 +4969,18 @@ class EmployeesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -4497,14 +4999,14 @@ class EmployeesApi
      * Получить роль администратора
      *
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoleAdmin'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\EmployeeRole|\OpenAPI\Client\Model\Errors
      */
-    public function getRoleAdmin($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRoleAdmin'][0])
+    public function getRoleAdmin($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getRoleAdmin'][0])
     {
         list($response) = $this->getRoleAdminWithHttpInfo($accept, $accept_encoding, $contentType);
         return $response;
@@ -4516,18 +5018,21 @@ class EmployeesApi
      * Получить роль администратора
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoleAdmin'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\EmployeeRole|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getRoleAdminWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRoleAdmin'][0])
+    public function getRoleAdminWithHttpInfo($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getRoleAdmin'][0])
     {
         $request = $this->getRoleAdminRequest($accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeRole')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -4548,6 +5053,13 @@ class EmployeesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeRole')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\EmployeeRole',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -4586,6 +5098,9 @@ class EmployeesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeRole')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -4615,13 +5130,13 @@ class EmployeesApi
      * Получить роль администратора
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoleAdmin'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getRoleAdminAsync($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRoleAdmin'][0])
+    public function getRoleAdminAsync($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getRoleAdmin'][0])
     {
         return $this->getRoleAdminAsyncWithHttpInfo($accept, $accept_encoding, $contentType)
             ->then(
@@ -4637,22 +5152,32 @@ class EmployeesApi
      * Получить роль администратора
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoleAdmin'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getRoleAdminAsyncWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRoleAdmin'][0])
+    public function getRoleAdminAsyncWithHttpInfo($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getRoleAdmin'][0])
     {
         $returnType = '\OpenAPI\Client\Model\EmployeeRole';
         $request = $this->getRoleAdminRequest($accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeRole')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4689,13 +5214,13 @@ class EmployeesApi
      * Create request for operation 'getRoleAdmin'
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoleAdmin'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getRoleAdminRequest($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRoleAdmin'][0])
+    public function getRoleAdminRequest($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getRoleAdmin'][0])
     {
 
 
@@ -4711,7 +5236,7 @@ class EmployeesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -4721,7 +5246,7 @@ class EmployeesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -4765,10 +5290,18 @@ class EmployeesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -4787,14 +5320,14 @@ class EmployeesApi
      * Получить роль кассира
      *
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoleCashier'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\EmployeeRole|\OpenAPI\Client\Model\Errors
      */
-    public function getRoleCashier($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRoleCashier'][0])
+    public function getRoleCashier($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getRoleCashier'][0])
     {
         list($response) = $this->getRoleCashierWithHttpInfo($accept, $accept_encoding, $contentType);
         return $response;
@@ -4806,18 +5339,21 @@ class EmployeesApi
      * Получить роль кассира
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoleCashier'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\EmployeeRole|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getRoleCashierWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRoleCashier'][0])
+    public function getRoleCashierWithHttpInfo($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getRoleCashier'][0])
     {
         $request = $this->getRoleCashierRequest($accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeRole')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -4838,6 +5374,13 @@ class EmployeesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeRole')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\EmployeeRole',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -4876,6 +5419,9 @@ class EmployeesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeRole')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -4905,13 +5451,13 @@ class EmployeesApi
      * Получить роль кассира
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoleCashier'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getRoleCashierAsync($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRoleCashier'][0])
+    public function getRoleCashierAsync($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getRoleCashier'][0])
     {
         return $this->getRoleCashierAsyncWithHttpInfo($accept, $accept_encoding, $contentType)
             ->then(
@@ -4927,22 +5473,32 @@ class EmployeesApi
      * Получить роль кассира
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoleCashier'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getRoleCashierAsyncWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRoleCashier'][0])
+    public function getRoleCashierAsyncWithHttpInfo($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getRoleCashier'][0])
     {
         $returnType = '\OpenAPI\Client\Model\EmployeeRole';
         $request = $this->getRoleCashierRequest($accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeRole')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4979,13 +5535,13 @@ class EmployeesApi
      * Create request for operation 'getRoleCashier'
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoleCashier'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getRoleCashierRequest($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRoleCashier'][0])
+    public function getRoleCashierRequest($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getRoleCashier'][0])
     {
 
 
@@ -5001,7 +5557,7 @@ class EmployeesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -5011,7 +5567,7 @@ class EmployeesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -5055,10 +5611,18 @@ class EmployeesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -5077,14 +5641,14 @@ class EmployeesApi
      * Получить индивидуальную роль
      *
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoleIndividual'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\EmployeeRole|\OpenAPI\Client\Model\Errors
      */
-    public function getRoleIndividual($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRoleIndividual'][0])
+    public function getRoleIndividual($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getRoleIndividual'][0])
     {
         list($response) = $this->getRoleIndividualWithHttpInfo($accept, $accept_encoding, $contentType);
         return $response;
@@ -5096,18 +5660,21 @@ class EmployeesApi
      * Получить индивидуальную роль
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoleIndividual'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\EmployeeRole|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getRoleIndividualWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRoleIndividual'][0])
+    public function getRoleIndividualWithHttpInfo($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getRoleIndividual'][0])
     {
         $request = $this->getRoleIndividualRequest($accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeRole')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -5128,6 +5695,13 @@ class EmployeesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeRole')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\EmployeeRole',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -5166,6 +5740,9 @@ class EmployeesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeRole')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -5195,13 +5772,13 @@ class EmployeesApi
      * Получить индивидуальную роль
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoleIndividual'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getRoleIndividualAsync($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRoleIndividual'][0])
+    public function getRoleIndividualAsync($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getRoleIndividual'][0])
     {
         return $this->getRoleIndividualAsyncWithHttpInfo($accept, $accept_encoding, $contentType)
             ->then(
@@ -5217,22 +5794,32 @@ class EmployeesApi
      * Получить индивидуальную роль
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoleIndividual'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getRoleIndividualAsyncWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRoleIndividual'][0])
+    public function getRoleIndividualAsyncWithHttpInfo($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getRoleIndividual'][0])
     {
         $returnType = '\OpenAPI\Client\Model\EmployeeRole';
         $request = $this->getRoleIndividualRequest($accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeRole')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -5269,13 +5856,13 @@ class EmployeesApi
      * Create request for operation 'getRoleIndividual'
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoleIndividual'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getRoleIndividualRequest($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRoleIndividual'][0])
+    public function getRoleIndividualRequest($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getRoleIndividual'][0])
     {
 
 
@@ -5291,7 +5878,7 @@ class EmployeesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -5301,7 +5888,7 @@ class EmployeesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -5345,10 +5932,18 @@ class EmployeesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -5367,14 +5962,14 @@ class EmployeesApi
      * Получить роль владельца аккаунта
      *
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoleOwner'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\EmployeeRole|\OpenAPI\Client\Model\Errors
      */
-    public function getRoleOwner($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRoleOwner'][0])
+    public function getRoleOwner($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getRoleOwner'][0])
     {
         list($response) = $this->getRoleOwnerWithHttpInfo($accept, $accept_encoding, $contentType);
         return $response;
@@ -5386,18 +5981,21 @@ class EmployeesApi
      * Получить роль владельца аккаунта
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoleOwner'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\EmployeeRole|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getRoleOwnerWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRoleOwner'][0])
+    public function getRoleOwnerWithHttpInfo($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getRoleOwner'][0])
     {
         $request = $this->getRoleOwnerRequest($accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeRole')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -5418,6 +6016,13 @@ class EmployeesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeRole')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\EmployeeRole',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -5456,6 +6061,9 @@ class EmployeesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeRole')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -5485,13 +6093,13 @@ class EmployeesApi
      * Получить роль владельца аккаунта
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoleOwner'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getRoleOwnerAsync($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRoleOwner'][0])
+    public function getRoleOwnerAsync($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getRoleOwner'][0])
     {
         return $this->getRoleOwnerAsyncWithHttpInfo($accept, $accept_encoding, $contentType)
             ->then(
@@ -5507,22 +6115,32 @@ class EmployeesApi
      * Получить роль владельца аккаунта
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoleOwner'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getRoleOwnerAsyncWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRoleOwner'][0])
+    public function getRoleOwnerAsyncWithHttpInfo($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getRoleOwner'][0])
     {
         $returnType = '\OpenAPI\Client\Model\EmployeeRole';
         $request = $this->getRoleOwnerRequest($accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeRole')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -5559,13 +6177,13 @@ class EmployeesApi
      * Create request for operation 'getRoleOwner'
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoleOwner'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getRoleOwnerRequest($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRoleOwner'][0])
+    public function getRoleOwnerRequest($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getRoleOwner'][0])
     {
 
 
@@ -5581,7 +6199,7 @@ class EmployeesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -5591,7 +6209,7 @@ class EmployeesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -5635,10 +6253,18 @@ class EmployeesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -5657,14 +6283,14 @@ class EmployeesApi
      * Получить роль сотрудника производства
      *
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoleWorker'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\EmployeeRole|\OpenAPI\Client\Model\Errors
      */
-    public function getRoleWorker($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRoleWorker'][0])
+    public function getRoleWorker($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getRoleWorker'][0])
     {
         list($response) = $this->getRoleWorkerWithHttpInfo($accept, $accept_encoding, $contentType);
         return $response;
@@ -5676,18 +6302,21 @@ class EmployeesApi
      * Получить роль сотрудника производства
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoleWorker'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\EmployeeRole|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getRoleWorkerWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRoleWorker'][0])
+    public function getRoleWorkerWithHttpInfo($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getRoleWorker'][0])
     {
         $request = $this->getRoleWorkerRequest($accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeRole')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -5708,6 +6337,13 @@ class EmployeesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeRole')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\EmployeeRole',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -5746,6 +6382,9 @@ class EmployeesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeRole')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -5775,13 +6414,13 @@ class EmployeesApi
      * Получить роль сотрудника производства
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoleWorker'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getRoleWorkerAsync($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRoleWorker'][0])
+    public function getRoleWorkerAsync($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getRoleWorker'][0])
     {
         return $this->getRoleWorkerAsyncWithHttpInfo($accept, $accept_encoding, $contentType)
             ->then(
@@ -5797,22 +6436,32 @@ class EmployeesApi
      * Получить роль сотрудника производства
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoleWorker'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getRoleWorkerAsyncWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRoleWorker'][0])
+    public function getRoleWorkerAsyncWithHttpInfo($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getRoleWorker'][0])
     {
         $returnType = '\OpenAPI\Client\Model\EmployeeRole';
         $request = $this->getRoleWorkerRequest($accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeRole')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -5849,13 +6498,13 @@ class EmployeesApi
      * Create request for operation 'getRoleWorker'
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRoleWorker'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getRoleWorkerRequest($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getRoleWorker'][0])
+    public function getRoleWorkerRequest($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getRoleWorker'][0])
     {
 
 
@@ -5871,7 +6520,7 @@ class EmployeesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -5881,7 +6530,7 @@ class EmployeesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -5925,10 +6574,18 @@ class EmployeesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -5948,14 +6605,14 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resetEmployeePassword'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function resetEmployeePassword($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['resetEmployeePassword'][0])
+    public function resetEmployeePassword($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['resetEmployeePassword'][0])
     {
         $this->resetEmployeePasswordWithHttpInfo($id, $accept, $accept_encoding, $contentType);
     }
@@ -5967,18 +6624,21 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resetEmployeePassword'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function resetEmployeePasswordWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['resetEmployeePassword'][0])
+    public function resetEmployeePasswordWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['resetEmployeePassword'][0])
     {
         $request = $this->resetEmployeePasswordRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -6002,6 +6662,9 @@ class EmployeesApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -6024,13 +6687,13 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resetEmployeePassword'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function resetEmployeePasswordAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['resetEmployeePassword'][0])
+    public function resetEmployeePasswordAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['resetEmployeePassword'][0])
     {
         return $this->resetEmployeePasswordAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -6047,17 +6710,20 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resetEmployeePassword'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function resetEmployeePasswordAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['resetEmployeePassword'][0])
+    public function resetEmployeePasswordAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['resetEmployeePassword'][0])
     {
         $returnType = '';
         $request = $this->resetEmployeePasswordRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -6087,13 +6753,13 @@ class EmployeesApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resetEmployeePassword'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function resetEmployeePasswordRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['resetEmployeePassword'][0])
+    public function resetEmployeePasswordRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['resetEmployeePassword'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -6116,7 +6782,7 @@ class EmployeesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -6134,7 +6800,7 @@ class EmployeesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -6178,10 +6844,18 @@ class EmployeesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -6203,7 +6877,7 @@ class EmployeesApi
      * @param  \OpenAPI\Client\Model\Employee $employee employee (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEmployee'] to see the possible values for this operation
      *
@@ -6211,7 +6885,7 @@ class EmployeesApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Employee|\OpenAPI\Client\Model\Errors
      */
-    public function updateEmployee($id, $employee, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateEmployee'][0])
+    public function updateEmployee($id, $employee, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateEmployee'][0])
     {
         list($response) = $this->updateEmployeeWithHttpInfo($id, $employee, $expand, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -6226,7 +6900,7 @@ class EmployeesApi
      * @param  \OpenAPI\Client\Model\Employee $employee (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEmployee'] to see the possible values for this operation
      *
@@ -6234,11 +6908,14 @@ class EmployeesApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Employee|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateEmployeeWithHttpInfo($id, $employee, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateEmployee'][0])
+    public function updateEmployeeWithHttpInfo($id, $employee, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateEmployee'][0])
     {
         $request = $this->updateEmployeeRequest($id, $employee, $expand, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Employee')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -6259,6 +6936,13 @@ class EmployeesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Employee')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\Employee',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -6297,6 +6981,9 @@ class EmployeesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Employee')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -6329,14 +7016,14 @@ class EmployeesApi
      * @param  \OpenAPI\Client\Model\Employee $employee (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEmployee'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateEmployeeAsync($id, $employee, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateEmployee'][0])
+    public function updateEmployeeAsync($id, $employee, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateEmployee'][0])
     {
         return $this->updateEmployeeAsyncWithHttpInfo($id, $employee, $expand, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -6355,23 +7042,33 @@ class EmployeesApi
      * @param  \OpenAPI\Client\Model\Employee $employee (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEmployee'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateEmployeeAsyncWithHttpInfo($id, $employee, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateEmployee'][0])
+    public function updateEmployeeAsyncWithHttpInfo($id, $employee, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateEmployee'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Employee';
         $request = $this->updateEmployeeRequest($id, $employee, $expand, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\Employee')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -6411,14 +7108,14 @@ class EmployeesApi
      * @param  \OpenAPI\Client\Model\Employee $employee (required)
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEmployee'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateEmployeeRequest($id, $employee, $expand = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateEmployee'][0])
+    public function updateEmployeeRequest($id, $employee, $expand = null, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateEmployee'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -6459,7 +7156,7 @@ class EmployeesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -6481,7 +7178,7 @@ class EmployeesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -6532,10 +7229,21 @@ class EmployeesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -6556,7 +7264,7 @@ class EmployeesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info attribute_meta_info (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEmployeeMetadataAttribute'] to see the possible values for this operation
      *
@@ -6564,7 +7272,7 @@ class EmployeesApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors
      */
-    public function updateEmployeeMetadataAttribute($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateEmployeeMetadataAttribute'][0])
+    public function updateEmployeeMetadataAttribute($id, $attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateEmployeeMetadataAttribute'][0])
     {
         list($response) = $this->updateEmployeeMetadataAttributeWithHttpInfo($id, $attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -6578,7 +7286,7 @@ class EmployeesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEmployeeMetadataAttribute'] to see the possible values for this operation
      *
@@ -6586,11 +7294,14 @@ class EmployeesApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AttributeMetaInfo|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateEmployeeMetadataAttributeWithHttpInfo($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateEmployeeMetadataAttribute'][0])
+    public function updateEmployeeMetadataAttributeWithHttpInfo($id, $attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateEmployeeMetadataAttribute'][0])
     {
         $request = $this->updateEmployeeMetadataAttributeRequest($id, $attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -6611,6 +7322,13 @@ class EmployeesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\AttributeMetaInfo',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -6649,6 +7367,9 @@ class EmployeesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -6680,14 +7401,14 @@ class EmployeesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEmployeeMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateEmployeeMetadataAttributeAsync($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateEmployeeMetadataAttribute'][0])
+    public function updateEmployeeMetadataAttributeAsync($id, $attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateEmployeeMetadataAttribute'][0])
     {
         return $this->updateEmployeeMetadataAttributeAsyncWithHttpInfo($id, $attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -6705,23 +7426,33 @@ class EmployeesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEmployeeMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateEmployeeMetadataAttributeAsyncWithHttpInfo($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateEmployeeMetadataAttribute'][0])
+    public function updateEmployeeMetadataAttributeAsyncWithHttpInfo($id, $attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateEmployeeMetadataAttribute'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AttributeMetaInfo';
         $request = $this->updateEmployeeMetadataAttributeRequest($id, $attribute_meta_info, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\AttributeMetaInfo')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -6760,14 +7491,14 @@ class EmployeesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\AttributeMetaInfo $attribute_meta_info (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEmployeeMetadataAttribute'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateEmployeeMetadataAttributeRequest($id, $attribute_meta_info, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateEmployeeMetadataAttribute'][0])
+    public function updateEmployeeMetadataAttributeRequest($id, $attribute_meta_info, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateEmployeeMetadataAttribute'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -6798,7 +7529,7 @@ class EmployeesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -6820,7 +7551,7 @@ class EmployeesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -6871,10 +7602,21 @@ class EmployeesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -6895,7 +7637,7 @@ class EmployeesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EmployeeSecurity $employee_security employee_security (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEmployeeSecurity'] to see the possible values for this operation
      *
@@ -6903,7 +7645,7 @@ class EmployeesApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\EmployeeSecurity|\OpenAPI\Client\Model\Errors
      */
-    public function updateEmployeeSecurity($id, $employee_security, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateEmployeeSecurity'][0])
+    public function updateEmployeeSecurity($id, $employee_security, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateEmployeeSecurity'][0])
     {
         list($response) = $this->updateEmployeeSecurityWithHttpInfo($id, $employee_security, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -6917,7 +7659,7 @@ class EmployeesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EmployeeSecurity $employee_security (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEmployeeSecurity'] to see the possible values for this operation
      *
@@ -6925,11 +7667,14 @@ class EmployeesApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\EmployeeSecurity|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateEmployeeSecurityWithHttpInfo($id, $employee_security, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateEmployeeSecurity'][0])
+    public function updateEmployeeSecurityWithHttpInfo($id, $employee_security, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateEmployeeSecurity'][0])
     {
         $request = $this->updateEmployeeSecurityRequest($id, $employee_security, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeSecurity')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -6950,6 +7695,13 @@ class EmployeesApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeSecurity')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\EmployeeSecurity',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -6988,6 +7740,9 @@ class EmployeesApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeSecurity')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -7019,14 +7774,14 @@ class EmployeesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EmployeeSecurity $employee_security (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEmployeeSecurity'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateEmployeeSecurityAsync($id, $employee_security, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateEmployeeSecurity'][0])
+    public function updateEmployeeSecurityAsync($id, $employee_security, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateEmployeeSecurity'][0])
     {
         return $this->updateEmployeeSecurityAsyncWithHttpInfo($id, $employee_security, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -7044,23 +7799,33 @@ class EmployeesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EmployeeSecurity $employee_security (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEmployeeSecurity'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateEmployeeSecurityAsyncWithHttpInfo($id, $employee_security, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateEmployeeSecurity'][0])
+    public function updateEmployeeSecurityAsyncWithHttpInfo($id, $employee_security, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateEmployeeSecurity'][0])
     {
         $returnType = '\OpenAPI\Client\Model\EmployeeSecurity';
         $request = $this->updateEmployeeSecurityRequest($id, $employee_security, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\EmployeeSecurity')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -7099,14 +7864,14 @@ class EmployeesApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\EmployeeSecurity $employee_security (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEmployeeSecurity'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateEmployeeSecurityRequest($id, $employee_security, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateEmployeeSecurity'][0])
+    public function updateEmployeeSecurityRequest($id, $employee_security, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateEmployeeSecurity'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -7137,7 +7902,7 @@ class EmployeesApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -7159,7 +7924,7 @@ class EmployeesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -7210,10 +7975,21 @@ class EmployeesApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -7278,13 +8054,22 @@ class EmployeesApi
         ];
     }
 
+    private function isBatchResponseType(string $dataType): bool
+    {
+        return in_array($dataType, [
+            '\OpenAPI\Client\Model\BatchResponseEntity[]',
+            '\OpenAPI\Client\Model\DeleteRowResult[]',
+        ], true);
+    }
+
     private function handleResponseMassWithDataType(
         string $dataType,
         RequestInterface $request,
         ResponseInterface $response
     ): array {
         $rawContent = (string) $response->getBody();
-        if ($rawContent === '') {
+        $statusCode = $response->getStatusCode();
+        if ($rawContent === '' && $statusCode >= 200 && $statusCode <= 299) {
             return [null, $response->getStatusCode(), $response->getHeaders()];
         }
 
@@ -7302,37 +8087,44 @@ class EmployeesApi
             );
         }
 
-        if ($response->getStatusCode() < 200 || $response->getStatusCode() > 299) {
-            if (is_object($content)) {
-                $errorsClass = '\OpenAPI\Client\Model\Errors';
-                $error = ObjectSerializer::deserialize($content, $errorsClass, $response->getHeaders());
-                throw new ApiException(
-                    (string) $error,
-                    $response->getStatusCode(),
-                    $response->getHeaders(),
-                    $rawContent
-                );
+        if (($statusCode < 200 || $statusCode > 299)
+            && !(in_array($statusCode, [404, 412], true) && is_array($content))
+        ) {
+            $exception = new ApiException(
+                sprintf('[%d] Error connecting to the API (%s)', $statusCode, $request->getUri()),
+                $statusCode,
+                $response->getHeaders(),
+                $rawContent
+            );
+            if (is_object($content) && property_exists($content, 'errors')) {
+                try {
+                    $exception->setResponseObject(ObjectSerializer::deserialize(
+                        $content,
+                        '\OpenAPI\Client\Model\Errors',
+                        $response->getHeaders()
+                    ));
+                } catch (\InvalidArgumentException | \TypeError $deserializationException) {
+                    // Preserve the HTTP exception and raw response even if Errors is malformed.
+                }
             }
-
-            if (!is_array($content)) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $response->getStatusCode(),
-                    $response->getHeaders(),
-                    $rawContent
-                );
-            }
+            throw $exception;
         }
 
-        return [
-            ObjectSerializer::deserialize($content, $dataType, []),
-            $response->getStatusCode(),
-            $response->getHeaders()
-        ];
+        try {
+            $result = ObjectSerializer::deserialize($content, $dataType, $response->getHeaders());
+        } catch (\InvalidArgumentException | \TypeError $exception) {
+            if ($statusCode >= 200 && $statusCode <= 299) {
+                throw $exception;
+            }
+            throw new ApiException(
+                sprintf('Error deserializing batch response (%s): %s', $request->getUri(), $exception->getMessage()),
+                $statusCode,
+                $response->getHeaders(),
+                $rawContent
+            );
+        }
+
+        return [$result, $statusCode, $response->getHeaders()];
     }
 
     private function responseWithinRangeCode(

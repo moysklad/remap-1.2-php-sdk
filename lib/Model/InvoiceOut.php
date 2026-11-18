@@ -41,9 +41,37 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class InvoiceOut implements ModelInterface, ArrayAccess, \JsonSerializable
+class InvoiceOut extends EntityWithMeta 
 {
     public const DISCRIMINATOR = null;
+    public const ENTITY_TYPE = 'invoiceout';
+
+    /** @return string[] Model alternatives in oneOf/anyOf, including those nested in allOf. */
+    public static function openAPIComposedTypes(): array
+    {
+        return [
+
+        ];
+    }
+
+    /** @var array<string, string> Fields declared by a composed schema outside this model. */
+    protected array $composedSchemaNames = [];
+
+    public function setComposedSchemaValue(string $property, string $jsonProperty, $value): void
+    {
+        $this->composedSchemaNames[$property] = $jsonProperty;
+        $this->container[$property] = $value;
+    }
+
+    public function getComposedSchemaValues(): array
+    {
+        $values = [];
+        foreach ($this->composedSchemaNames as $property => $jsonProperty) {
+            $values[$jsonProperty] = $this->container[$property];
+        }
+        return $values;
+    }
+
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
     protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
@@ -120,7 +148,7 @@ class InvoiceOut implements ModelInterface, ArrayAccess, \JsonSerializable
         'sales_channel' => '\OpenAPI\Client\Model\SalesChannel',
         'customer_order' => '\OpenAPI\Client\Model\CustomerOrder',
         'demands' => '\OpenAPI\Client\Model\Demand[]',
-        'payments' => '\OpenAPI\Client\Model\RetailShiftPaymentsInner[]'
+        'payments' => '\OpenAPI\Client\Model\InvoiceOutPayment[]'
     ];
 
     /**
@@ -237,7 +265,7 @@ class InvoiceOut implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -247,7 +275,7 @@ class InvoiceOut implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -265,13 +293,14 @@ class InvoiceOut implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return array
      */
-    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    public static function openAPIPolymorphicDiscriminatorMappings(string $href = ''): array
     {
-        return self::$openAPIPolymorphicDiscriminatorMappings;
+        $mappings = self::$openAPIPolymorphicDiscriminatorMappings;
+        return $mappings;
     }
 
     /**
-     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * Whether batch-error-shaped payloads should resolve to Errors when nested
      * discriminator mappings do not match.
      *
      * @return bool
@@ -288,7 +317,7 @@ class InvoiceOut implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables;
+        return self::$openAPINullables + parent::openAPINullables();
     }
 
     /**
@@ -489,7 +518,7 @@ class InvoiceOut implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -499,7 +528,7 @@ class InvoiceOut implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -509,7 +538,7 @@ class InvoiceOut implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -524,13 +553,6 @@ class InvoiceOut implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-    
 
     /**
      * Constructor
@@ -540,6 +562,9 @@ class InvoiceOut implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        
+        parent::__construct($data);
+
         
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -610,8 +635,8 @@ class InvoiceOut implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties()
     {
         
+        $invalidProperties = parent::listInvalidProperties();
         
-        $invalidProperties = [];
         
 
         if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 255)) {
@@ -1849,7 +1874,7 @@ class InvoiceOut implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets payments
      *
-     * @return \OpenAPI\Client\Model\RetailShiftPaymentsInner[]|null
+     * @return \OpenAPI\Client\Model\InvoiceOutPayment[]|null
      */
     public function getPayments()
     {
@@ -1859,7 +1884,7 @@ class InvoiceOut implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets payments
      *
-     * @param \OpenAPI\Client\Model\RetailShiftPaymentsInner[]|null $payments Массив ссылок на связанные операции
+     * @param \OpenAPI\Client\Model\InvoiceOutPayment[]|null $payments Массив ссылок на связанные операции
      *
      * @return self
      */
@@ -1930,7 +1955,7 @@ class InvoiceOut implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function offsetUnset($offset): void
     {
-        unset($this->container[$offset]);
+        unset($this->container[$offset], $this->composedSchemaNames[$offset]);
     }
 
     /**

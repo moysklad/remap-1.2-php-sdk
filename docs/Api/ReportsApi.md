@@ -60,7 +60,7 @@ $limit = 1000; // int | Максимальное количество элеме
 $offset = 0; // int | Отступ в выданном списке
 $filter = 'filter_example'; // string | Фильтрация выборки
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getReportCounterparty($limit, $offset, $filter, $accept, $accept_encoding);
@@ -78,7 +78,7 @@ try {
 | **offset** | **int**| Отступ в выданном списке | [optional] [default to 0] |
 | **filter** | **string**| Фильтрация выборки | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -91,7 +91,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -131,7 +131,7 @@ $apiInstance = new OpenAPI\Client\Api\ReportsApi(
 );
 $id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getReportCounterpartyById($id, $accept, $accept_encoding);
@@ -147,7 +147,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -160,7 +160,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -199,7 +199,7 @@ $apiInstance = new OpenAPI\Client\Api\ReportsApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getReportDashboardDay($accept, $accept_encoding);
@@ -214,7 +214,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -227,7 +227,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -266,7 +266,7 @@ $apiInstance = new OpenAPI\Client\Api\ReportsApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getReportDashboardMonth($accept, $accept_encoding);
@@ -281,7 +281,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -294,7 +294,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -333,7 +333,7 @@ $apiInstance = new OpenAPI\Client\Api\ReportsApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getReportDashboardWeek($accept, $accept_encoding);
@@ -348,7 +348,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -361,7 +361,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -400,7 +400,7 @@ $apiInstance = new OpenAPI\Client\Api\ReportsApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getReportMoneyByAccount($accept, $accept_encoding);
@@ -415,7 +415,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -428,7 +428,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -471,7 +471,7 @@ $moment_to = 'moment_to_example'; // string | Конец периода отче
 $interval = 'interval_example'; // string | Интервал построения отчета
 $filter = 'filter_example'; // string | Фильтрация выборки
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $x_lognex_accept_timezone = 'x_lognex_accept_timezone_example'; // string | Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: `Wed, 16 Aug 2017 23:07:01 +0700`. При подсчете показателей даты операций смещаются в таймзону клиента.
 
 try {
@@ -491,7 +491,7 @@ try {
 | **interval** | **string**| Интервал построения отчета | |
 | **filter** | **string**| Фильтрация выборки | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **x_lognex_accept_timezone** | **string**| Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. | [optional] |
 
 ### Return type
@@ -505,7 +505,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -548,7 +548,7 @@ $moment_to = 'moment_to_example'; // string | Конец периода отче
 $interval = 'interval_example'; // string | Интервал построения отчета
 $filter = 'filter_example'; // string | Фильтрация показателей заказов. Доступные поля: `organization`, `store`, `project`. Можно указать несколько значений; пустые значения недопустимы.
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $x_lognex_accept_timezone = 'x_lognex_accept_timezone_example'; // string | Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: `Wed, 16 Aug 2017 23:07:01 +0700`. При подсчете показателей даты операций смещаются в таймзону клиента.
 
 try {
@@ -568,7 +568,7 @@ try {
 | **interval** | **string**| Интервал построения отчета | |
 | **filter** | **string**| Фильтрация показателей заказов. Доступные поля: &#x60;organization&#x60;, &#x60;store&#x60;, &#x60;project&#x60;. Можно указать несколько значений; пустые значения недопустимы. | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **x_lognex_accept_timezone** | **string**| Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. | [optional] |
 
 ### Return type
@@ -582,7 +582,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -626,7 +626,7 @@ $filter = 'filter_example'; // string | Фильтрация выборки
 $moment_from = 'moment_from_example'; // string | Начало периода отчета в формате YYYY-MM-DD HH:MM:SS
 $moment_to = 'moment_to_example'; // string | Конец периода отчета в формате YYYY-MM-DD HH:MM:SS
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $x_lognex_accept_timezone = 'x_lognex_accept_timezone_example'; // string | Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: `Wed, 16 Aug 2017 23:07:01 +0700`. При подсчете показателей даты операций смещаются в таймзону клиента.
 
 try {
@@ -647,7 +647,7 @@ try {
 | **moment_from** | **string**| Начало периода отчета в формате YYYY-MM-DD HH:MM:SS | [optional] |
 | **moment_to** | **string**| Конец периода отчета в формате YYYY-MM-DD HH:MM:SS | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **x_lognex_accept_timezone** | **string**| Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. | [optional] |
 
 ### Return type
@@ -661,7 +661,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -705,7 +705,7 @@ $filter = 'filter_example'; // string | Фильтрация выборки
 $moment_from = 'moment_from_example'; // string | Начало периода отчета в формате YYYY-MM-DD HH:MM:SS
 $moment_to = 'moment_to_example'; // string | Конец периода отчета в формате YYYY-MM-DD HH:MM:SS
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $x_lognex_accept_timezone = 'x_lognex_accept_timezone_example'; // string | Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: `Wed, 16 Aug 2017 23:07:01 +0700`. При подсчете показателей даты операций смещаются в таймзону клиента.
 
 try {
@@ -726,7 +726,7 @@ try {
 | **moment_from** | **string**| Начало периода отчета в формате YYYY-MM-DD HH:MM:SS | [optional] |
 | **moment_to** | **string**| Конец периода отчета в формате YYYY-MM-DD HH:MM:SS | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **x_lognex_accept_timezone** | **string**| Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. | [optional] |
 
 ### Return type
@@ -740,7 +740,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -784,7 +784,7 @@ $filter = 'filter_example'; // string | Фильтрация выборки
 $moment_from = 'moment_from_example'; // string | Начало периода отчета в формате YYYY-MM-DD HH:MM:SS
 $moment_to = 'moment_to_example'; // string | Конец периода отчета в формате YYYY-MM-DD HH:MM:SS
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $x_lognex_accept_timezone = 'x_lognex_accept_timezone_example'; // string | Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: `Wed, 16 Aug 2017 23:07:01 +0700`. При подсчете показателей даты операций смещаются в таймзону клиента.
 
 try {
@@ -805,7 +805,7 @@ try {
 | **moment_from** | **string**| Начало периода отчета в формате YYYY-MM-DD HH:MM:SS | [optional] |
 | **moment_to** | **string**| Конец периода отчета в формате YYYY-MM-DD HH:MM:SS | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **x_lognex_accept_timezone** | **string**| Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. | [optional] |
 
 ### Return type
@@ -819,7 +819,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -863,7 +863,7 @@ $filter = 'filter_example'; // string | Фильтрация выборки
 $moment_from = 'moment_from_example'; // string | Начало периода отчета в формате YYYY-MM-DD HH:MM:SS
 $moment_to = 'moment_to_example'; // string | Конец периода отчета в формате YYYY-MM-DD HH:MM:SS
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $x_lognex_accept_timezone = 'x_lognex_accept_timezone_example'; // string | Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: `Wed, 16 Aug 2017 23:07:01 +0700`. При подсчете показателей даты операций смещаются в таймзону клиента.
 
 try {
@@ -884,7 +884,7 @@ try {
 | **moment_from** | **string**| Начало периода отчета в формате YYYY-MM-DD HH:MM:SS | [optional] |
 | **moment_to** | **string**| Конец периода отчета в формате YYYY-MM-DD HH:MM:SS | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **x_lognex_accept_timezone** | **string**| Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. | [optional] |
 
 ### Return type
@@ -898,7 +898,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -942,7 +942,7 @@ $filter = 'filter_example'; // string | Фильтрация выборки
 $moment_from = 'moment_from_example'; // string | Начало периода отчета в формате YYYY-MM-DD HH:MM:SS
 $moment_to = 'moment_to_example'; // string | Конец периода отчета в формате YYYY-MM-DD HH:MM:SS
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $x_lognex_accept_timezone = 'x_lognex_accept_timezone_example'; // string | Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: `Wed, 16 Aug 2017 23:07:01 +0700`. При подсчете показателей даты операций смещаются в таймзону клиента.
 
 try {
@@ -963,7 +963,7 @@ try {
 | **moment_from** | **string**| Начало периода отчета в формате YYYY-MM-DD HH:MM:SS | [optional] |
 | **moment_to** | **string**| Конец периода отчета в формате YYYY-MM-DD HH:MM:SS | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **x_lognex_accept_timezone** | **string**| Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. | [optional] |
 
 ### Return type
@@ -977,7 +977,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -1020,7 +1020,7 @@ $moment_to = 'moment_to_example'; // string | Конец периода отче
 $interval = 'interval_example'; // string | Интервал построения отчета
 $filter = 'filter_example'; // string | Фильтрация показателей продаж. Доступные поля: `organization`, `store`, `project`, `retailStore`. Можно указать несколько значений; пустые значения недопустимы.
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $x_lognex_accept_timezone = 'x_lognex_accept_timezone_example'; // string | Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: `Wed, 16 Aug 2017 23:07:01 +0700`. При подсчете показателей даты операций смещаются в таймзону клиента.
 
 try {
@@ -1040,7 +1040,7 @@ try {
 | **interval** | **string**| Интервал построения отчета | |
 | **filter** | **string**| Фильтрация показателей продаж. Доступные поля: &#x60;organization&#x60;, &#x60;store&#x60;, &#x60;project&#x60;, &#x60;retailStore&#x60;. Можно указать несколько значений; пустые значения недопустимы. | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **x_lognex_accept_timezone** | **string**| Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. | [optional] |
 
 ### Return type
@@ -1054,7 +1054,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -1099,7 +1099,7 @@ $moment_from = 'moment_from_example'; // string | Начало периода о
 $moment_to = 'moment_to_example'; // string | Конец периода отчета в формате YYYY-MM-DD HH:MM:SS
 $group_by = 'product'; // string | Тип, по которому нужно сгруппировать выдачу. Значение по умолчанию `product`.
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $x_lognex_accept_timezone = 'x_lognex_accept_timezone_example'; // string | Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: `Wed, 16 Aug 2017 23:07:01 +0700`. При подсчете показателей даты операций смещаются в таймзону клиента.
 
 try {
@@ -1121,7 +1121,7 @@ try {
 | **moment_to** | **string**| Конец периода отчета в формате YYYY-MM-DD HH:MM:SS | [optional] |
 | **group_by** | **string**| Тип, по которому нужно сгруппировать выдачу. Значение по умолчанию &#x60;product&#x60;. | [optional] [default to &#39;product&#39;] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **x_lognex_accept_timezone** | **string**| Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. | [optional] |
 
 ### Return type
@@ -1135,7 +1135,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -1177,7 +1177,7 @@ $filter = 'filter_example'; // string | Фильтрация выборки
 $moment_from = 'moment_from_example'; // string | Начало периода отчета в формате YYYY-MM-DD HH:MM:SS
 $moment_to = 'moment_to_example'; // string | Конец периода отчета в формате YYYY-MM-DD HH:MM:SS
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $x_lognex_accept_timezone = 'x_lognex_accept_timezone_example'; // string | Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: `Wed, 16 Aug 2017 23:07:01 +0700`. При подсчете показателей даты операций смещаются в таймзону клиента.
 
 try {
@@ -1196,7 +1196,7 @@ try {
 | **moment_from** | **string**| Начало периода отчета в формате YYYY-MM-DD HH:MM:SS | [optional] |
 | **moment_to** | **string**| Конец периода отчета в формате YYYY-MM-DD HH:MM:SS | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **x_lognex_accept_timezone** | **string**| Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. | [optional] |
 
 ### Return type
@@ -1210,7 +1210,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -1252,7 +1252,7 @@ $filter = 'filter_example'; // string | Фильтрация выборки
 $moment_from = 'moment_from_example'; // string | Начало периода отчета в формате YYYY-MM-DD HH:MM:SS
 $moment_to = 'moment_to_example'; // string | Конец периода отчета в формате YYYY-MM-DD HH:MM:SS
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $x_lognex_accept_timezone = 'x_lognex_accept_timezone_example'; // string | Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: `Wed, 16 Aug 2017 23:07:01 +0700`. При подсчете показателей даты операций смещаются в таймзону клиента.
 
 try {
@@ -1271,7 +1271,7 @@ try {
 | **moment_from** | **string**| Начало периода отчета в формате YYYY-MM-DD HH:MM:SS | [optional] |
 | **moment_to** | **string**| Конец периода отчета в формате YYYY-MM-DD HH:MM:SS | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **x_lognex_accept_timezone** | **string**| Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. | [optional] |
 
 ### Return type
@@ -1285,7 +1285,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -1325,7 +1325,7 @@ $apiInstance = new OpenAPI\Client\Api\ReportsApi(
 );
 $report_counterparty_query = new \OpenAPI\Client\Model\ReportCounterpartyQuery(); // \OpenAPI\Client\Model\ReportCounterpartyQuery
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1342,7 +1342,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **report_counterparty_query** | [**\OpenAPI\Client\Model\ReportCounterpartyQuery**](../Model/ReportCounterpartyQuery.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -1356,7 +1356,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

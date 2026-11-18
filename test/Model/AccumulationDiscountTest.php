@@ -114,4 +114,13 @@ class AccumulationDiscountTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "assortment"
+     */
+    public function testPropertyAssortment()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

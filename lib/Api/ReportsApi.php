@@ -185,14 +185,14 @@ class ReportsApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $filter Фильтрация выборки (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportCounterparty'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\ReportCounterpartyList|\OpenAPI\Client\Model\Errors
      */
-    public function getReportCounterparty($limit = 1000, $offset = 0, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportCounterparty'][0])
+    public function getReportCounterparty($limit = 1000, $offset = 0, $filter = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportCounterparty'][0])
     {
         list($response) = $this->getReportCounterpartyWithHttpInfo($limit, $offset, $filter, $accept, $accept_encoding, $contentType);
         return $response;
@@ -207,18 +207,21 @@ class ReportsApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $filter Фильтрация выборки (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportCounterparty'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ReportCounterpartyList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getReportCounterpartyWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportCounterparty'][0])
+    public function getReportCounterpartyWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportCounterparty'][0])
     {
         $request = $this->getReportCounterpartyRequest($limit, $offset, $filter, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportCounterpartyList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -239,6 +242,13 @@ class ReportsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportCounterpartyList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\ReportCounterpartyList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -277,6 +287,9 @@ class ReportsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportCounterpartyList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -309,13 +322,13 @@ class ReportsApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $filter Фильтрация выборки (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportCounterparty'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportCounterpartyAsync($limit = 1000, $offset = 0, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportCounterparty'][0])
+    public function getReportCounterpartyAsync($limit = 1000, $offset = 0, $filter = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportCounterparty'][0])
     {
         return $this->getReportCounterpartyAsyncWithHttpInfo($limit, $offset, $filter, $accept, $accept_encoding, $contentType)
             ->then(
@@ -334,22 +347,32 @@ class ReportsApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $filter Фильтрация выборки (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportCounterparty'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportCounterpartyAsyncWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportCounterparty'][0])
+    public function getReportCounterpartyAsyncWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportCounterparty'][0])
     {
         $returnType = '\OpenAPI\Client\Model\ReportCounterpartyList';
         $request = $this->getReportCounterpartyRequest($limit, $offset, $filter, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportCounterpartyList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -389,13 +412,13 @@ class ReportsApi
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $filter Фильтрация выборки (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportCounterparty'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getReportCounterpartyRequest($limit = 1000, $offset = 0, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportCounterparty'][0])
+    public function getReportCounterpartyRequest($limit = 1000, $offset = 0, $filter = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportCounterparty'][0])
     {
 
         if ($limit !== null && $limit > 1000) {
@@ -450,7 +473,7 @@ class ReportsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -460,7 +483,7 @@ class ReportsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -504,10 +527,18 @@ class ReportsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -527,14 +558,14 @@ class ReportsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportCounterpartyById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\ReportCounterparty|\OpenAPI\Client\Model\Errors
      */
-    public function getReportCounterpartyById($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportCounterpartyById'][0])
+    public function getReportCounterpartyById($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportCounterpartyById'][0])
     {
         list($response) = $this->getReportCounterpartyByIdWithHttpInfo($id, $accept, $accept_encoding, $contentType);
         return $response;
@@ -547,18 +578,21 @@ class ReportsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportCounterpartyById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ReportCounterparty|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getReportCounterpartyByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportCounterpartyById'][0])
+    public function getReportCounterpartyByIdWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportCounterpartyById'][0])
     {
         $request = $this->getReportCounterpartyByIdRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportCounterparty')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -579,6 +613,13 @@ class ReportsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportCounterparty')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\ReportCounterparty',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -617,6 +658,9 @@ class ReportsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportCounterparty')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -647,13 +691,13 @@ class ReportsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportCounterpartyById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportCounterpartyByIdAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportCounterpartyById'][0])
+    public function getReportCounterpartyByIdAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportCounterpartyById'][0])
     {
         return $this->getReportCounterpartyByIdAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -670,22 +714,32 @@ class ReportsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportCounterpartyById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportCounterpartyByIdAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportCounterpartyById'][0])
+    public function getReportCounterpartyByIdAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportCounterpartyById'][0])
     {
         $returnType = '\OpenAPI\Client\Model\ReportCounterparty';
         $request = $this->getReportCounterpartyByIdRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportCounterparty')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -723,13 +777,13 @@ class ReportsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportCounterpartyById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getReportCounterpartyByIdRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportCounterpartyById'][0])
+    public function getReportCounterpartyByIdRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportCounterpartyById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -752,7 +806,7 @@ class ReportsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -770,7 +824,7 @@ class ReportsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -814,10 +868,18 @@ class ReportsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -836,14 +898,14 @@ class ReportsApi
      * Получить показатели за день
      *
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportDashboardDay'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\ReportDashboard|\OpenAPI\Client\Model\Errors
      */
-    public function getReportDashboardDay($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportDashboardDay'][0])
+    public function getReportDashboardDay($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportDashboardDay'][0])
     {
         list($response) = $this->getReportDashboardDayWithHttpInfo($accept, $accept_encoding, $contentType);
         return $response;
@@ -855,18 +917,21 @@ class ReportsApi
      * Получить показатели за день
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportDashboardDay'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ReportDashboard|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getReportDashboardDayWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportDashboardDay'][0])
+    public function getReportDashboardDayWithHttpInfo($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportDashboardDay'][0])
     {
         $request = $this->getReportDashboardDayRequest($accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportDashboard')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -887,6 +952,13 @@ class ReportsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportDashboard')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\ReportDashboard',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -925,6 +997,9 @@ class ReportsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportDashboard')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -954,13 +1029,13 @@ class ReportsApi
      * Получить показатели за день
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportDashboardDay'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportDashboardDayAsync($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportDashboardDay'][0])
+    public function getReportDashboardDayAsync($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportDashboardDay'][0])
     {
         return $this->getReportDashboardDayAsyncWithHttpInfo($accept, $accept_encoding, $contentType)
             ->then(
@@ -976,22 +1051,32 @@ class ReportsApi
      * Получить показатели за день
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportDashboardDay'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportDashboardDayAsyncWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportDashboardDay'][0])
+    public function getReportDashboardDayAsyncWithHttpInfo($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportDashboardDay'][0])
     {
         $returnType = '\OpenAPI\Client\Model\ReportDashboard';
         $request = $this->getReportDashboardDayRequest($accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportDashboard')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1028,13 +1113,13 @@ class ReportsApi
      * Create request for operation 'getReportDashboardDay'
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportDashboardDay'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getReportDashboardDayRequest($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportDashboardDay'][0])
+    public function getReportDashboardDayRequest($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportDashboardDay'][0])
     {
 
 
@@ -1050,7 +1135,7 @@ class ReportsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -1060,7 +1145,7 @@ class ReportsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1104,10 +1189,18 @@ class ReportsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -1126,14 +1219,14 @@ class ReportsApi
      * Получить показатели за месяц
      *
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportDashboardMonth'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\ReportDashboard|\OpenAPI\Client\Model\Errors
      */
-    public function getReportDashboardMonth($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportDashboardMonth'][0])
+    public function getReportDashboardMonth($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportDashboardMonth'][0])
     {
         list($response) = $this->getReportDashboardMonthWithHttpInfo($accept, $accept_encoding, $contentType);
         return $response;
@@ -1145,18 +1238,21 @@ class ReportsApi
      * Получить показатели за месяц
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportDashboardMonth'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ReportDashboard|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getReportDashboardMonthWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportDashboardMonth'][0])
+    public function getReportDashboardMonthWithHttpInfo($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportDashboardMonth'][0])
     {
         $request = $this->getReportDashboardMonthRequest($accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportDashboard')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1177,6 +1273,13 @@ class ReportsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportDashboard')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\ReportDashboard',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -1215,6 +1318,9 @@ class ReportsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportDashboard')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -1244,13 +1350,13 @@ class ReportsApi
      * Получить показатели за месяц
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportDashboardMonth'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportDashboardMonthAsync($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportDashboardMonth'][0])
+    public function getReportDashboardMonthAsync($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportDashboardMonth'][0])
     {
         return $this->getReportDashboardMonthAsyncWithHttpInfo($accept, $accept_encoding, $contentType)
             ->then(
@@ -1266,22 +1372,32 @@ class ReportsApi
      * Получить показатели за месяц
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportDashboardMonth'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportDashboardMonthAsyncWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportDashboardMonth'][0])
+    public function getReportDashboardMonthAsyncWithHttpInfo($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportDashboardMonth'][0])
     {
         $returnType = '\OpenAPI\Client\Model\ReportDashboard';
         $request = $this->getReportDashboardMonthRequest($accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportDashboard')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1318,13 +1434,13 @@ class ReportsApi
      * Create request for operation 'getReportDashboardMonth'
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportDashboardMonth'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getReportDashboardMonthRequest($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportDashboardMonth'][0])
+    public function getReportDashboardMonthRequest($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportDashboardMonth'][0])
     {
 
 
@@ -1340,7 +1456,7 @@ class ReportsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -1350,7 +1466,7 @@ class ReportsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1394,10 +1510,18 @@ class ReportsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -1416,14 +1540,14 @@ class ReportsApi
      * Получить показатели за неделю
      *
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportDashboardWeek'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\ReportDashboard|\OpenAPI\Client\Model\Errors
      */
-    public function getReportDashboardWeek($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportDashboardWeek'][0])
+    public function getReportDashboardWeek($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportDashboardWeek'][0])
     {
         list($response) = $this->getReportDashboardWeekWithHttpInfo($accept, $accept_encoding, $contentType);
         return $response;
@@ -1435,18 +1559,21 @@ class ReportsApi
      * Получить показатели за неделю
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportDashboardWeek'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ReportDashboard|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getReportDashboardWeekWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportDashboardWeek'][0])
+    public function getReportDashboardWeekWithHttpInfo($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportDashboardWeek'][0])
     {
         $request = $this->getReportDashboardWeekRequest($accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportDashboard')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1467,6 +1594,13 @@ class ReportsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportDashboard')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\ReportDashboard',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -1505,6 +1639,9 @@ class ReportsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportDashboard')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -1534,13 +1671,13 @@ class ReportsApi
      * Получить показатели за неделю
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportDashboardWeek'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportDashboardWeekAsync($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportDashboardWeek'][0])
+    public function getReportDashboardWeekAsync($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportDashboardWeek'][0])
     {
         return $this->getReportDashboardWeekAsyncWithHttpInfo($accept, $accept_encoding, $contentType)
             ->then(
@@ -1556,22 +1693,32 @@ class ReportsApi
      * Получить показатели за неделю
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportDashboardWeek'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportDashboardWeekAsyncWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportDashboardWeek'][0])
+    public function getReportDashboardWeekAsyncWithHttpInfo($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportDashboardWeek'][0])
     {
         $returnType = '\OpenAPI\Client\Model\ReportDashboard';
         $request = $this->getReportDashboardWeekRequest($accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportDashboard')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1608,13 +1755,13 @@ class ReportsApi
      * Create request for operation 'getReportDashboardWeek'
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportDashboardWeek'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getReportDashboardWeekRequest($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportDashboardWeek'][0])
+    public function getReportDashboardWeekRequest($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportDashboardWeek'][0])
     {
 
 
@@ -1630,7 +1777,7 @@ class ReportsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -1640,7 +1787,7 @@ class ReportsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1684,10 +1831,18 @@ class ReportsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -1706,14 +1861,14 @@ class ReportsApi
      * Получить остатки денежных средств по кассам и счетам
      *
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportMoneyByAccount'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\ReportMoneyByAccountList|\OpenAPI\Client\Model\Errors
      */
-    public function getReportMoneyByAccount($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportMoneyByAccount'][0])
+    public function getReportMoneyByAccount($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportMoneyByAccount'][0])
     {
         list($response) = $this->getReportMoneyByAccountWithHttpInfo($accept, $accept_encoding, $contentType);
         return $response;
@@ -1725,18 +1880,21 @@ class ReportsApi
      * Получить остатки денежных средств по кассам и счетам
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportMoneyByAccount'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ReportMoneyByAccountList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getReportMoneyByAccountWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportMoneyByAccount'][0])
+    public function getReportMoneyByAccountWithHttpInfo($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportMoneyByAccount'][0])
     {
         $request = $this->getReportMoneyByAccountRequest($accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportMoneyByAccountList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1757,6 +1915,13 @@ class ReportsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportMoneyByAccountList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\ReportMoneyByAccountList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -1795,6 +1960,9 @@ class ReportsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportMoneyByAccountList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -1824,13 +1992,13 @@ class ReportsApi
      * Получить остатки денежных средств по кассам и счетам
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportMoneyByAccount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportMoneyByAccountAsync($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportMoneyByAccount'][0])
+    public function getReportMoneyByAccountAsync($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportMoneyByAccount'][0])
     {
         return $this->getReportMoneyByAccountAsyncWithHttpInfo($accept, $accept_encoding, $contentType)
             ->then(
@@ -1846,22 +2014,32 @@ class ReportsApi
      * Получить остатки денежных средств по кассам и счетам
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportMoneyByAccount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportMoneyByAccountAsyncWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportMoneyByAccount'][0])
+    public function getReportMoneyByAccountAsyncWithHttpInfo($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportMoneyByAccount'][0])
     {
         $returnType = '\OpenAPI\Client\Model\ReportMoneyByAccountList';
         $request = $this->getReportMoneyByAccountRequest($accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportMoneyByAccountList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1898,13 +2076,13 @@ class ReportsApi
      * Create request for operation 'getReportMoneyByAccount'
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportMoneyByAccount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getReportMoneyByAccountRequest($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getReportMoneyByAccount'][0])
+    public function getReportMoneyByAccountRequest($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getReportMoneyByAccount'][0])
     {
 
 
@@ -1920,7 +2098,7 @@ class ReportsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -1930,7 +2108,7 @@ class ReportsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1974,10 +2152,18 @@ class ReportsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -2000,7 +2186,7 @@ class ReportsApi
      * @param  string $interval Интервал построения отчета (required)
      * @param  string|null $filter Фильтрация выборки (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportMoneyPlotSeries'] to see the possible values for this operation
      *
@@ -2008,7 +2194,7 @@ class ReportsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\ReportMoneyPlotSeries|\OpenAPI\Client\Model\Errors
      */
-    public function getReportMoneyPlotSeries($moment_from, $moment_to, $interval, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportMoneyPlotSeries'][0])
+    public function getReportMoneyPlotSeries($moment_from, $moment_to, $interval, $filter = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportMoneyPlotSeries'][0])
     {
         list($response) = $this->getReportMoneyPlotSeriesWithHttpInfo($moment_from, $moment_to, $interval, $filter, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         return $response;
@@ -2024,7 +2210,7 @@ class ReportsApi
      * @param  string $interval Интервал построения отчета (required)
      * @param  string|null $filter Фильтрация выборки (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportMoneyPlotSeries'] to see the possible values for this operation
      *
@@ -2032,11 +2218,14 @@ class ReportsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ReportMoneyPlotSeries|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getReportMoneyPlotSeriesWithHttpInfo($moment_from, $moment_to, $interval, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportMoneyPlotSeries'][0])
+    public function getReportMoneyPlotSeriesWithHttpInfo($moment_from, $moment_to, $interval, $filter = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportMoneyPlotSeries'][0])
     {
         $request = $this->getReportMoneyPlotSeriesRequest($moment_from, $moment_to, $interval, $filter, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportMoneyPlotSeries')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -2057,6 +2246,13 @@ class ReportsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportMoneyPlotSeries')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\ReportMoneyPlotSeries',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -2095,6 +2291,9 @@ class ReportsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportMoneyPlotSeries')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -2128,14 +2327,14 @@ class ReportsApi
      * @param  string $interval Интервал построения отчета (required)
      * @param  string|null $filter Фильтрация выборки (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportMoneyPlotSeries'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportMoneyPlotSeriesAsync($moment_from, $moment_to, $interval, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportMoneyPlotSeries'][0])
+    public function getReportMoneyPlotSeriesAsync($moment_from, $moment_to, $interval, $filter = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportMoneyPlotSeries'][0])
     {
         return $this->getReportMoneyPlotSeriesAsyncWithHttpInfo($moment_from, $moment_to, $interval, $filter, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType)
             ->then(
@@ -2155,23 +2354,33 @@ class ReportsApi
      * @param  string $interval Интервал построения отчета (required)
      * @param  string|null $filter Фильтрация выборки (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportMoneyPlotSeries'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportMoneyPlotSeriesAsyncWithHttpInfo($moment_from, $moment_to, $interval, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportMoneyPlotSeries'][0])
+    public function getReportMoneyPlotSeriesAsyncWithHttpInfo($moment_from, $moment_to, $interval, $filter = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportMoneyPlotSeries'][0])
     {
         $returnType = '\OpenAPI\Client\Model\ReportMoneyPlotSeries';
         $request = $this->getReportMoneyPlotSeriesRequest($moment_from, $moment_to, $interval, $filter, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportMoneyPlotSeries')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2212,14 +2421,14 @@ class ReportsApi
      * @param  string $interval Интервал построения отчета (required)
      * @param  string|null $filter Фильтрация выборки (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportMoneyPlotSeries'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getReportMoneyPlotSeriesRequest($moment_from, $moment_to, $interval, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportMoneyPlotSeries'][0])
+    public function getReportMoneyPlotSeriesRequest($moment_from, $moment_to, $interval, $filter = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportMoneyPlotSeries'][0])
     {
 
         // verify the required parameter 'moment_from' is set
@@ -2294,7 +2503,7 @@ class ReportsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -2308,7 +2517,7 @@ class ReportsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -2352,10 +2561,18 @@ class ReportsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -2378,7 +2595,7 @@ class ReportsApi
      * @param  string $interval Интервал построения отчета (required)
      * @param  string|null $filter Фильтрация показателей заказов. Доступные поля: &#x60;organization&#x60;, &#x60;store&#x60;, &#x60;project&#x60;. Можно указать несколько значений; пустые значения недопустимы. (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportOrdersPlotSeries'] to see the possible values for this operation
      *
@@ -2386,7 +2603,7 @@ class ReportsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\ReportOrdersPlotSeriesList|\OpenAPI\Client\Model\Errors
      */
-    public function getReportOrdersPlotSeries($moment_from, $moment_to, $interval, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportOrdersPlotSeries'][0])
+    public function getReportOrdersPlotSeries($moment_from, $moment_to, $interval, $filter = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportOrdersPlotSeries'][0])
     {
         list($response) = $this->getReportOrdersPlotSeriesWithHttpInfo($moment_from, $moment_to, $interval, $filter, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         return $response;
@@ -2402,7 +2619,7 @@ class ReportsApi
      * @param  string $interval Интервал построения отчета (required)
      * @param  string|null $filter Фильтрация показателей заказов. Доступные поля: &#x60;organization&#x60;, &#x60;store&#x60;, &#x60;project&#x60;. Можно указать несколько значений; пустые значения недопустимы. (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportOrdersPlotSeries'] to see the possible values for this operation
      *
@@ -2410,11 +2627,14 @@ class ReportsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ReportOrdersPlotSeriesList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getReportOrdersPlotSeriesWithHttpInfo($moment_from, $moment_to, $interval, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportOrdersPlotSeries'][0])
+    public function getReportOrdersPlotSeriesWithHttpInfo($moment_from, $moment_to, $interval, $filter = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportOrdersPlotSeries'][0])
     {
         $request = $this->getReportOrdersPlotSeriesRequest($moment_from, $moment_to, $interval, $filter, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportOrdersPlotSeriesList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -2435,6 +2655,13 @@ class ReportsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportOrdersPlotSeriesList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\ReportOrdersPlotSeriesList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -2473,6 +2700,9 @@ class ReportsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportOrdersPlotSeriesList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -2506,14 +2736,14 @@ class ReportsApi
      * @param  string $interval Интервал построения отчета (required)
      * @param  string|null $filter Фильтрация показателей заказов. Доступные поля: &#x60;organization&#x60;, &#x60;store&#x60;, &#x60;project&#x60;. Можно указать несколько значений; пустые значения недопустимы. (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportOrdersPlotSeries'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportOrdersPlotSeriesAsync($moment_from, $moment_to, $interval, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportOrdersPlotSeries'][0])
+    public function getReportOrdersPlotSeriesAsync($moment_from, $moment_to, $interval, $filter = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportOrdersPlotSeries'][0])
     {
         return $this->getReportOrdersPlotSeriesAsyncWithHttpInfo($moment_from, $moment_to, $interval, $filter, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType)
             ->then(
@@ -2533,23 +2763,33 @@ class ReportsApi
      * @param  string $interval Интервал построения отчета (required)
      * @param  string|null $filter Фильтрация показателей заказов. Доступные поля: &#x60;organization&#x60;, &#x60;store&#x60;, &#x60;project&#x60;. Можно указать несколько значений; пустые значения недопустимы. (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportOrdersPlotSeries'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportOrdersPlotSeriesAsyncWithHttpInfo($moment_from, $moment_to, $interval, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportOrdersPlotSeries'][0])
+    public function getReportOrdersPlotSeriesAsyncWithHttpInfo($moment_from, $moment_to, $interval, $filter = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportOrdersPlotSeries'][0])
     {
         $returnType = '\OpenAPI\Client\Model\ReportOrdersPlotSeriesList';
         $request = $this->getReportOrdersPlotSeriesRequest($moment_from, $moment_to, $interval, $filter, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportOrdersPlotSeriesList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2590,14 +2830,14 @@ class ReportsApi
      * @param  string $interval Интервал построения отчета (required)
      * @param  string|null $filter Фильтрация показателей заказов. Доступные поля: &#x60;organization&#x60;, &#x60;store&#x60;, &#x60;project&#x60;. Можно указать несколько значений; пустые значения недопустимы. (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportOrdersPlotSeries'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getReportOrdersPlotSeriesRequest($moment_from, $moment_to, $interval, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportOrdersPlotSeries'][0])
+    public function getReportOrdersPlotSeriesRequest($moment_from, $moment_to, $interval, $filter = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportOrdersPlotSeries'][0])
     {
 
         // verify the required parameter 'moment_from' is set
@@ -2672,7 +2912,7 @@ class ReportsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -2686,7 +2926,7 @@ class ReportsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -2730,10 +2970,18 @@ class ReportsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -2757,7 +3005,7 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportProfitByCounterparty'] to see the possible values for this operation
      *
@@ -2765,7 +3013,7 @@ class ReportsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\ReportProfitByCounterpartyList|\OpenAPI\Client\Model\Errors
      */
-    public function getReportProfitByCounterparty($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByCounterparty'][0])
+    public function getReportProfitByCounterparty($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByCounterparty'][0])
     {
         list($response) = $this->getReportProfitByCounterpartyWithHttpInfo($limit, $offset, $filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         return $response;
@@ -2782,7 +3030,7 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportProfitByCounterparty'] to see the possible values for this operation
      *
@@ -2790,11 +3038,14 @@ class ReportsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ReportProfitByCounterpartyList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getReportProfitByCounterpartyWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByCounterparty'][0])
+    public function getReportProfitByCounterpartyWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByCounterparty'][0])
     {
         $request = $this->getReportProfitByCounterpartyRequest($limit, $offset, $filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportProfitByCounterpartyList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -2815,6 +3066,13 @@ class ReportsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportProfitByCounterpartyList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\ReportProfitByCounterpartyList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -2853,6 +3111,9 @@ class ReportsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportProfitByCounterpartyList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -2887,14 +3148,14 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportProfitByCounterparty'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportProfitByCounterpartyAsync($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByCounterparty'][0])
+    public function getReportProfitByCounterpartyAsync($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByCounterparty'][0])
     {
         return $this->getReportProfitByCounterpartyAsyncWithHttpInfo($limit, $offset, $filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType)
             ->then(
@@ -2915,23 +3176,33 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportProfitByCounterparty'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportProfitByCounterpartyAsyncWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByCounterparty'][0])
+    public function getReportProfitByCounterpartyAsyncWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByCounterparty'][0])
     {
         $returnType = '\OpenAPI\Client\Model\ReportProfitByCounterpartyList';
         $request = $this->getReportProfitByCounterpartyRequest($limit, $offset, $filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportProfitByCounterpartyList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2973,14 +3244,14 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportProfitByCounterparty'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getReportProfitByCounterpartyRequest($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByCounterparty'][0])
+    public function getReportProfitByCounterpartyRequest($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByCounterparty'][0])
     {
 
         if ($limit !== null && $limit > 1000) {
@@ -3056,7 +3327,7 @@ class ReportsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -3070,7 +3341,7 @@ class ReportsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -3114,10 +3385,18 @@ class ReportsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -3141,7 +3420,7 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportProfitByEmployee'] to see the possible values for this operation
      *
@@ -3149,7 +3428,7 @@ class ReportsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\ReportProfitByEmployeeList|\OpenAPI\Client\Model\Errors
      */
-    public function getReportProfitByEmployee($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByEmployee'][0])
+    public function getReportProfitByEmployee($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByEmployee'][0])
     {
         list($response) = $this->getReportProfitByEmployeeWithHttpInfo($limit, $offset, $filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         return $response;
@@ -3166,7 +3445,7 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportProfitByEmployee'] to see the possible values for this operation
      *
@@ -3174,11 +3453,14 @@ class ReportsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ReportProfitByEmployeeList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getReportProfitByEmployeeWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByEmployee'][0])
+    public function getReportProfitByEmployeeWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByEmployee'][0])
     {
         $request = $this->getReportProfitByEmployeeRequest($limit, $offset, $filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportProfitByEmployeeList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -3199,6 +3481,13 @@ class ReportsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportProfitByEmployeeList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\ReportProfitByEmployeeList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -3237,6 +3526,9 @@ class ReportsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportProfitByEmployeeList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -3271,14 +3563,14 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportProfitByEmployee'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportProfitByEmployeeAsync($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByEmployee'][0])
+    public function getReportProfitByEmployeeAsync($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByEmployee'][0])
     {
         return $this->getReportProfitByEmployeeAsyncWithHttpInfo($limit, $offset, $filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType)
             ->then(
@@ -3299,23 +3591,33 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportProfitByEmployee'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportProfitByEmployeeAsyncWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByEmployee'][0])
+    public function getReportProfitByEmployeeAsyncWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByEmployee'][0])
     {
         $returnType = '\OpenAPI\Client\Model\ReportProfitByEmployeeList';
         $request = $this->getReportProfitByEmployeeRequest($limit, $offset, $filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportProfitByEmployeeList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3357,14 +3659,14 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportProfitByEmployee'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getReportProfitByEmployeeRequest($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByEmployee'][0])
+    public function getReportProfitByEmployeeRequest($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByEmployee'][0])
     {
 
         if ($limit !== null && $limit > 1000) {
@@ -3440,7 +3742,7 @@ class ReportsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -3454,7 +3756,7 @@ class ReportsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -3498,10 +3800,18 @@ class ReportsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -3525,7 +3835,7 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportProfitByProduct'] to see the possible values for this operation
      *
@@ -3533,7 +3843,7 @@ class ReportsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\ReportProfitByProductList|\OpenAPI\Client\Model\Errors
      */
-    public function getReportProfitByProduct($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByProduct'][0])
+    public function getReportProfitByProduct($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByProduct'][0])
     {
         list($response) = $this->getReportProfitByProductWithHttpInfo($limit, $offset, $filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         return $response;
@@ -3550,7 +3860,7 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportProfitByProduct'] to see the possible values for this operation
      *
@@ -3558,11 +3868,14 @@ class ReportsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ReportProfitByProductList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getReportProfitByProductWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByProduct'][0])
+    public function getReportProfitByProductWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByProduct'][0])
     {
         $request = $this->getReportProfitByProductRequest($limit, $offset, $filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportProfitByProductList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -3583,6 +3896,13 @@ class ReportsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportProfitByProductList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\ReportProfitByProductList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -3621,6 +3941,9 @@ class ReportsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportProfitByProductList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -3655,14 +3978,14 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportProfitByProduct'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportProfitByProductAsync($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByProduct'][0])
+    public function getReportProfitByProductAsync($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByProduct'][0])
     {
         return $this->getReportProfitByProductAsyncWithHttpInfo($limit, $offset, $filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType)
             ->then(
@@ -3683,23 +4006,33 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportProfitByProduct'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportProfitByProductAsyncWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByProduct'][0])
+    public function getReportProfitByProductAsyncWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByProduct'][0])
     {
         $returnType = '\OpenAPI\Client\Model\ReportProfitByProductList';
         $request = $this->getReportProfitByProductRequest($limit, $offset, $filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportProfitByProductList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3741,14 +4074,14 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportProfitByProduct'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getReportProfitByProductRequest($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByProduct'][0])
+    public function getReportProfitByProductRequest($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByProduct'][0])
     {
 
         if ($limit !== null && $limit > 1000) {
@@ -3824,7 +4157,7 @@ class ReportsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -3838,7 +4171,7 @@ class ReportsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -3882,10 +4215,18 @@ class ReportsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -3909,7 +4250,7 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportProfitBySalesChannel'] to see the possible values for this operation
      *
@@ -3917,7 +4258,7 @@ class ReportsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\ReportProfitBySalesChannelList|\OpenAPI\Client\Model\Errors
      */
-    public function getReportProfitBySalesChannel($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitBySalesChannel'][0])
+    public function getReportProfitBySalesChannel($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitBySalesChannel'][0])
     {
         list($response) = $this->getReportProfitBySalesChannelWithHttpInfo($limit, $offset, $filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         return $response;
@@ -3934,7 +4275,7 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportProfitBySalesChannel'] to see the possible values for this operation
      *
@@ -3942,11 +4283,14 @@ class ReportsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ReportProfitBySalesChannelList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getReportProfitBySalesChannelWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitBySalesChannel'][0])
+    public function getReportProfitBySalesChannelWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitBySalesChannel'][0])
     {
         $request = $this->getReportProfitBySalesChannelRequest($limit, $offset, $filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportProfitBySalesChannelList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -3967,6 +4311,13 @@ class ReportsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportProfitBySalesChannelList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\ReportProfitBySalesChannelList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -4005,6 +4356,9 @@ class ReportsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportProfitBySalesChannelList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -4039,14 +4393,14 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportProfitBySalesChannel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportProfitBySalesChannelAsync($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitBySalesChannel'][0])
+    public function getReportProfitBySalesChannelAsync($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitBySalesChannel'][0])
     {
         return $this->getReportProfitBySalesChannelAsyncWithHttpInfo($limit, $offset, $filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType)
             ->then(
@@ -4067,23 +4421,33 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportProfitBySalesChannel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportProfitBySalesChannelAsyncWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitBySalesChannel'][0])
+    public function getReportProfitBySalesChannelAsyncWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitBySalesChannel'][0])
     {
         $returnType = '\OpenAPI\Client\Model\ReportProfitBySalesChannelList';
         $request = $this->getReportProfitBySalesChannelRequest($limit, $offset, $filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportProfitBySalesChannelList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4125,14 +4489,14 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportProfitBySalesChannel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getReportProfitBySalesChannelRequest($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitBySalesChannel'][0])
+    public function getReportProfitBySalesChannelRequest($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitBySalesChannel'][0])
     {
 
         if ($limit !== null && $limit > 1000) {
@@ -4208,7 +4572,7 @@ class ReportsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -4222,7 +4586,7 @@ class ReportsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -4266,10 +4630,18 @@ class ReportsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -4293,7 +4665,7 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportProfitByVariant'] to see the possible values for this operation
      *
@@ -4301,7 +4673,7 @@ class ReportsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\ReportProfitByVariantList|\OpenAPI\Client\Model\Errors
      */
-    public function getReportProfitByVariant($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByVariant'][0])
+    public function getReportProfitByVariant($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByVariant'][0])
     {
         list($response) = $this->getReportProfitByVariantWithHttpInfo($limit, $offset, $filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         return $response;
@@ -4318,7 +4690,7 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportProfitByVariant'] to see the possible values for this operation
      *
@@ -4326,11 +4698,14 @@ class ReportsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ReportProfitByVariantList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getReportProfitByVariantWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByVariant'][0])
+    public function getReportProfitByVariantWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByVariant'][0])
     {
         $request = $this->getReportProfitByVariantRequest($limit, $offset, $filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportProfitByVariantList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -4351,6 +4726,13 @@ class ReportsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportProfitByVariantList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\ReportProfitByVariantList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -4389,6 +4771,9 @@ class ReportsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportProfitByVariantList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -4423,14 +4808,14 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportProfitByVariant'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportProfitByVariantAsync($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByVariant'][0])
+    public function getReportProfitByVariantAsync($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByVariant'][0])
     {
         return $this->getReportProfitByVariantAsyncWithHttpInfo($limit, $offset, $filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType)
             ->then(
@@ -4451,23 +4836,33 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportProfitByVariant'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportProfitByVariantAsyncWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByVariant'][0])
+    public function getReportProfitByVariantAsyncWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByVariant'][0])
     {
         $returnType = '\OpenAPI\Client\Model\ReportProfitByVariantList';
         $request = $this->getReportProfitByVariantRequest($limit, $offset, $filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportProfitByVariantList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4509,14 +4904,14 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportProfitByVariant'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getReportProfitByVariantRequest($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByVariant'][0])
+    public function getReportProfitByVariantRequest($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportProfitByVariant'][0])
     {
 
         if ($limit !== null && $limit > 1000) {
@@ -4592,7 +4987,7 @@ class ReportsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -4606,7 +5001,7 @@ class ReportsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -4650,10 +5045,18 @@ class ReportsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -4676,7 +5079,7 @@ class ReportsApi
      * @param  string $interval Интервал построения отчета (required)
      * @param  string|null $filter Фильтрация показателей продаж. Доступные поля: &#x60;organization&#x60;, &#x60;store&#x60;, &#x60;project&#x60;, &#x60;retailStore&#x60;. Можно указать несколько значений; пустые значения недопустимы. (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportSalesPlotSeries'] to see the possible values for this operation
      *
@@ -4684,7 +5087,7 @@ class ReportsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\ReportSalesPlotSeriesList|\OpenAPI\Client\Model\Errors
      */
-    public function getReportSalesPlotSeries($moment_from, $moment_to, $interval, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportSalesPlotSeries'][0])
+    public function getReportSalesPlotSeries($moment_from, $moment_to, $interval, $filter = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportSalesPlotSeries'][0])
     {
         list($response) = $this->getReportSalesPlotSeriesWithHttpInfo($moment_from, $moment_to, $interval, $filter, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         return $response;
@@ -4700,7 +5103,7 @@ class ReportsApi
      * @param  string $interval Интервал построения отчета (required)
      * @param  string|null $filter Фильтрация показателей продаж. Доступные поля: &#x60;organization&#x60;, &#x60;store&#x60;, &#x60;project&#x60;, &#x60;retailStore&#x60;. Можно указать несколько значений; пустые значения недопустимы. (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportSalesPlotSeries'] to see the possible values for this operation
      *
@@ -4708,11 +5111,14 @@ class ReportsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ReportSalesPlotSeriesList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getReportSalesPlotSeriesWithHttpInfo($moment_from, $moment_to, $interval, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportSalesPlotSeries'][0])
+    public function getReportSalesPlotSeriesWithHttpInfo($moment_from, $moment_to, $interval, $filter = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportSalesPlotSeries'][0])
     {
         $request = $this->getReportSalesPlotSeriesRequest($moment_from, $moment_to, $interval, $filter, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportSalesPlotSeriesList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -4733,6 +5139,13 @@ class ReportsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportSalesPlotSeriesList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\ReportSalesPlotSeriesList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -4771,6 +5184,9 @@ class ReportsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportSalesPlotSeriesList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -4804,14 +5220,14 @@ class ReportsApi
      * @param  string $interval Интервал построения отчета (required)
      * @param  string|null $filter Фильтрация показателей продаж. Доступные поля: &#x60;organization&#x60;, &#x60;store&#x60;, &#x60;project&#x60;, &#x60;retailStore&#x60;. Можно указать несколько значений; пустые значения недопустимы. (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportSalesPlotSeries'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportSalesPlotSeriesAsync($moment_from, $moment_to, $interval, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportSalesPlotSeries'][0])
+    public function getReportSalesPlotSeriesAsync($moment_from, $moment_to, $interval, $filter = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportSalesPlotSeries'][0])
     {
         return $this->getReportSalesPlotSeriesAsyncWithHttpInfo($moment_from, $moment_to, $interval, $filter, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType)
             ->then(
@@ -4831,23 +5247,33 @@ class ReportsApi
      * @param  string $interval Интервал построения отчета (required)
      * @param  string|null $filter Фильтрация показателей продаж. Доступные поля: &#x60;organization&#x60;, &#x60;store&#x60;, &#x60;project&#x60;, &#x60;retailStore&#x60;. Можно указать несколько значений; пустые значения недопустимы. (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportSalesPlotSeries'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportSalesPlotSeriesAsyncWithHttpInfo($moment_from, $moment_to, $interval, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportSalesPlotSeries'][0])
+    public function getReportSalesPlotSeriesAsyncWithHttpInfo($moment_from, $moment_to, $interval, $filter = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportSalesPlotSeries'][0])
     {
         $returnType = '\OpenAPI\Client\Model\ReportSalesPlotSeriesList';
         $request = $this->getReportSalesPlotSeriesRequest($moment_from, $moment_to, $interval, $filter, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportSalesPlotSeriesList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4888,14 +5314,14 @@ class ReportsApi
      * @param  string $interval Интервал построения отчета (required)
      * @param  string|null $filter Фильтрация показателей продаж. Доступные поля: &#x60;organization&#x60;, &#x60;store&#x60;, &#x60;project&#x60;, &#x60;retailStore&#x60;. Можно указать несколько значений; пустые значения недопустимы. (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportSalesPlotSeries'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getReportSalesPlotSeriesRequest($moment_from, $moment_to, $interval, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportSalesPlotSeries'][0])
+    public function getReportSalesPlotSeriesRequest($moment_from, $moment_to, $interval, $filter = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportSalesPlotSeries'][0])
     {
 
         // verify the required parameter 'moment_from' is set
@@ -4970,7 +5396,7 @@ class ReportsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -4984,7 +5410,7 @@ class ReportsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -5028,10 +5454,18 @@ class ReportsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -5056,7 +5490,7 @@ class ReportsApi
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $group_by Тип, по которому нужно сгруппировать выдачу. Значение по умолчанию &#x60;product&#x60;. (optional, default to 'product')
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportTurnoverAll'] to see the possible values for this operation
      *
@@ -5064,7 +5498,7 @@ class ReportsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\ReportTurnoverList|\OpenAPI\Client\Model\Errors
      */
-    public function getReportTurnoverAll($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $group_by = 'product', $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverAll'][0])
+    public function getReportTurnoverAll($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $group_by = 'product', $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverAll'][0])
     {
         list($response) = $this->getReportTurnoverAllWithHttpInfo($limit, $offset, $filter, $moment_from, $moment_to, $group_by, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         return $response;
@@ -5082,7 +5516,7 @@ class ReportsApi
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $group_by Тип, по которому нужно сгруппировать выдачу. Значение по умолчанию &#x60;product&#x60;. (optional, default to 'product')
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportTurnoverAll'] to see the possible values for this operation
      *
@@ -5090,11 +5524,14 @@ class ReportsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ReportTurnoverList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getReportTurnoverAllWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $group_by = 'product', $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverAll'][0])
+    public function getReportTurnoverAllWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $group_by = 'product', $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverAll'][0])
     {
         $request = $this->getReportTurnoverAllRequest($limit, $offset, $filter, $moment_from, $moment_to, $group_by, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportTurnoverList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -5115,6 +5552,13 @@ class ReportsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportTurnoverList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\ReportTurnoverList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -5153,6 +5597,9 @@ class ReportsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportTurnoverList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -5188,14 +5635,14 @@ class ReportsApi
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $group_by Тип, по которому нужно сгруппировать выдачу. Значение по умолчанию &#x60;product&#x60;. (optional, default to 'product')
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportTurnoverAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportTurnoverAllAsync($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $group_by = 'product', $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverAll'][0])
+    public function getReportTurnoverAllAsync($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $group_by = 'product', $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverAll'][0])
     {
         return $this->getReportTurnoverAllAsyncWithHttpInfo($limit, $offset, $filter, $moment_from, $moment_to, $group_by, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType)
             ->then(
@@ -5217,23 +5664,33 @@ class ReportsApi
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $group_by Тип, по которому нужно сгруппировать выдачу. Значение по умолчанию &#x60;product&#x60;. (optional, default to 'product')
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportTurnoverAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportTurnoverAllAsyncWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $group_by = 'product', $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverAll'][0])
+    public function getReportTurnoverAllAsyncWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $group_by = 'product', $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\ReportTurnoverList';
         $request = $this->getReportTurnoverAllRequest($limit, $offset, $filter, $moment_from, $moment_to, $group_by, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportTurnoverList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -5276,14 +5733,14 @@ class ReportsApi
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $group_by Тип, по которому нужно сгруппировать выдачу. Значение по умолчанию &#x60;product&#x60;. (optional, default to 'product')
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportTurnoverAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getReportTurnoverAllRequest($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $group_by = 'product', $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverAll'][0])
+    public function getReportTurnoverAllRequest($limit = 1000, $offset = 0, $filter = null, $moment_from = null, $moment_to = null, $group_by = 'product', $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverAll'][0])
     {
 
         if ($limit !== null && $limit > 1000) {
@@ -5369,7 +5826,7 @@ class ReportsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -5383,7 +5840,7 @@ class ReportsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -5427,10 +5884,18 @@ class ReportsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -5452,7 +5917,7 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportTurnoverByOperations'] to see the possible values for this operation
      *
@@ -5460,7 +5925,7 @@ class ReportsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\ReportTurnoverByOperationList|\OpenAPI\Client\Model\Errors
      */
-    public function getReportTurnoverByOperations($filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverByOperations'][0])
+    public function getReportTurnoverByOperations($filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverByOperations'][0])
     {
         list($response) = $this->getReportTurnoverByOperationsWithHttpInfo($filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         return $response;
@@ -5475,7 +5940,7 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportTurnoverByOperations'] to see the possible values for this operation
      *
@@ -5483,11 +5948,14 @@ class ReportsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ReportTurnoverByOperationList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getReportTurnoverByOperationsWithHttpInfo($filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverByOperations'][0])
+    public function getReportTurnoverByOperationsWithHttpInfo($filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverByOperations'][0])
     {
         $request = $this->getReportTurnoverByOperationsRequest($filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportTurnoverByOperationList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -5508,6 +5976,13 @@ class ReportsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportTurnoverByOperationList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\ReportTurnoverByOperationList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -5546,6 +6021,9 @@ class ReportsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportTurnoverByOperationList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -5578,14 +6056,14 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportTurnoverByOperations'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportTurnoverByOperationsAsync($filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverByOperations'][0])
+    public function getReportTurnoverByOperationsAsync($filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverByOperations'][0])
     {
         return $this->getReportTurnoverByOperationsAsyncWithHttpInfo($filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType)
             ->then(
@@ -5604,23 +6082,33 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportTurnoverByOperations'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportTurnoverByOperationsAsyncWithHttpInfo($filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverByOperations'][0])
+    public function getReportTurnoverByOperationsAsyncWithHttpInfo($filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverByOperations'][0])
     {
         $returnType = '\OpenAPI\Client\Model\ReportTurnoverByOperationList';
         $request = $this->getReportTurnoverByOperationsRequest($filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportTurnoverByOperationList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -5660,14 +6148,14 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportTurnoverByOperations'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getReportTurnoverByOperationsRequest($filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverByOperations'][0])
+    public function getReportTurnoverByOperationsRequest($filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverByOperations'][0])
     {
 
 
@@ -5714,7 +6202,7 @@ class ReportsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -5728,7 +6216,7 @@ class ReportsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -5772,10 +6260,18 @@ class ReportsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -5797,7 +6293,7 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportTurnoverByStore'] to see the possible values for this operation
      *
@@ -5805,7 +6301,7 @@ class ReportsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\ReportTurnoverByStoreList|\OpenAPI\Client\Model\Errors
      */
-    public function getReportTurnoverByStore($filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverByStore'][0])
+    public function getReportTurnoverByStore($filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverByStore'][0])
     {
         list($response) = $this->getReportTurnoverByStoreWithHttpInfo($filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         return $response;
@@ -5820,7 +6316,7 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportTurnoverByStore'] to see the possible values for this operation
      *
@@ -5828,11 +6324,14 @@ class ReportsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ReportTurnoverByStoreList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getReportTurnoverByStoreWithHttpInfo($filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverByStore'][0])
+    public function getReportTurnoverByStoreWithHttpInfo($filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverByStore'][0])
     {
         $request = $this->getReportTurnoverByStoreRequest($filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportTurnoverByStoreList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -5853,6 +6352,13 @@ class ReportsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportTurnoverByStoreList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\ReportTurnoverByStoreList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -5891,6 +6397,9 @@ class ReportsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportTurnoverByStoreList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -5923,14 +6432,14 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportTurnoverByStore'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportTurnoverByStoreAsync($filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverByStore'][0])
+    public function getReportTurnoverByStoreAsync($filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverByStore'][0])
     {
         return $this->getReportTurnoverByStoreAsyncWithHttpInfo($filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType)
             ->then(
@@ -5949,23 +6458,33 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportTurnoverByStore'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getReportTurnoverByStoreAsyncWithHttpInfo($filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverByStore'][0])
+    public function getReportTurnoverByStoreAsyncWithHttpInfo($filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverByStore'][0])
     {
         $returnType = '\OpenAPI\Client\Model\ReportTurnoverByStoreList';
         $request = $this->getReportTurnoverByStoreRequest($filter, $moment_from, $moment_to, $accept, $accept_encoding, $x_lognex_accept_timezone, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportTurnoverByStoreList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -6005,14 +6524,14 @@ class ReportsApi
      * @param  string|null $moment_from Начало периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $moment_to Конец периода отчета в формате YYYY-MM-DD HH:MM:SS (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $x_lognex_accept_timezone Опциональный заголовок, в котором указана текущая дата на клиенте в RFC 3522. Таймзону обязательно указывать в формате знак и 4 символа. Пример: &#x60;Wed, 16 Aug 2017 23:07:01 +0700&#x60;. При подсчете показателей даты операций смещаются в таймзону клиента. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReportTurnoverByStore'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getReportTurnoverByStoreRequest($filter = null, $moment_from = null, $moment_to = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverByStore'][0])
+    public function getReportTurnoverByStoreRequest($filter = null, $moment_from = null, $moment_to = null, $accept = null, $accept_encoding = null, $x_lognex_accept_timezone = null, string $contentType = self::contentTypes['getReportTurnoverByStore'][0])
     {
 
 
@@ -6059,7 +6578,7 @@ class ReportsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -6073,7 +6592,7 @@ class ReportsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -6117,10 +6636,18 @@ class ReportsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -6140,7 +6667,7 @@ class ReportsApi
      *
      * @param  \OpenAPI\Client\Model\ReportCounterpartyQuery $report_counterparty_query report_counterparty_query (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['queryReportCounterparty'] to see the possible values for this operation
      *
@@ -6148,7 +6675,7 @@ class ReportsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\ReportCounterpartyList|\OpenAPI\Client\Model\Errors
      */
-    public function queryReportCounterparty($report_counterparty_query, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['queryReportCounterparty'][0])
+    public function queryReportCounterparty($report_counterparty_query, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['queryReportCounterparty'][0])
     {
         list($response) = $this->queryReportCounterpartyWithHttpInfo($report_counterparty_query, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -6161,7 +6688,7 @@ class ReportsApi
      *
      * @param  \OpenAPI\Client\Model\ReportCounterpartyQuery $report_counterparty_query (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['queryReportCounterparty'] to see the possible values for this operation
      *
@@ -6169,11 +6696,14 @@ class ReportsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ReportCounterpartyList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function queryReportCounterpartyWithHttpInfo($report_counterparty_query, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['queryReportCounterparty'][0])
+    public function queryReportCounterpartyWithHttpInfo($report_counterparty_query, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['queryReportCounterparty'][0])
     {
         $request = $this->queryReportCounterpartyRequest($report_counterparty_query, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportCounterpartyList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -6194,6 +6724,13 @@ class ReportsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportCounterpartyList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\ReportCounterpartyList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -6232,6 +6769,9 @@ class ReportsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportCounterpartyList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -6262,14 +6802,14 @@ class ReportsApi
      *
      * @param  \OpenAPI\Client\Model\ReportCounterpartyQuery $report_counterparty_query (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['queryReportCounterparty'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function queryReportCounterpartyAsync($report_counterparty_query, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['queryReportCounterparty'][0])
+    public function queryReportCounterpartyAsync($report_counterparty_query, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['queryReportCounterparty'][0])
     {
         return $this->queryReportCounterpartyAsyncWithHttpInfo($report_counterparty_query, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -6286,23 +6826,33 @@ class ReportsApi
      *
      * @param  \OpenAPI\Client\Model\ReportCounterpartyQuery $report_counterparty_query (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['queryReportCounterparty'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function queryReportCounterpartyAsyncWithHttpInfo($report_counterparty_query, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['queryReportCounterparty'][0])
+    public function queryReportCounterpartyAsyncWithHttpInfo($report_counterparty_query, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['queryReportCounterparty'][0])
     {
         $returnType = '\OpenAPI\Client\Model\ReportCounterpartyList';
         $request = $this->queryReportCounterpartyRequest($report_counterparty_query, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\ReportCounterpartyList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -6340,14 +6890,14 @@ class ReportsApi
      *
      * @param  \OpenAPI\Client\Model\ReportCounterpartyQuery $report_counterparty_query (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['queryReportCounterparty'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function queryReportCounterpartyRequest($report_counterparty_query, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['queryReportCounterparty'][0])
+    public function queryReportCounterpartyRequest($report_counterparty_query, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['queryReportCounterparty'][0])
     {
 
         // verify the required parameter 'report_counterparty_query' is set
@@ -6371,7 +6921,7 @@ class ReportsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -6385,7 +6935,7 @@ class ReportsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -6436,10 +6986,21 @@ class ReportsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -6504,13 +7065,22 @@ class ReportsApi
         ];
     }
 
+    private function isBatchResponseType(string $dataType): bool
+    {
+        return in_array($dataType, [
+            '\OpenAPI\Client\Model\BatchResponseEntity[]',
+            '\OpenAPI\Client\Model\DeleteRowResult[]',
+        ], true);
+    }
+
     private function handleResponseMassWithDataType(
         string $dataType,
         RequestInterface $request,
         ResponseInterface $response
     ): array {
         $rawContent = (string) $response->getBody();
-        if ($rawContent === '') {
+        $statusCode = $response->getStatusCode();
+        if ($rawContent === '' && $statusCode >= 200 && $statusCode <= 299) {
             return [null, $response->getStatusCode(), $response->getHeaders()];
         }
 
@@ -6528,37 +7098,44 @@ class ReportsApi
             );
         }
 
-        if ($response->getStatusCode() < 200 || $response->getStatusCode() > 299) {
-            if (is_object($content)) {
-                $errorsClass = '\OpenAPI\Client\Model\Errors';
-                $error = ObjectSerializer::deserialize($content, $errorsClass, $response->getHeaders());
-                throw new ApiException(
-                    (string) $error,
-                    $response->getStatusCode(),
-                    $response->getHeaders(),
-                    $rawContent
-                );
+        if (($statusCode < 200 || $statusCode > 299)
+            && !(in_array($statusCode, [404, 412], true) && is_array($content))
+        ) {
+            $exception = new ApiException(
+                sprintf('[%d] Error connecting to the API (%s)', $statusCode, $request->getUri()),
+                $statusCode,
+                $response->getHeaders(),
+                $rawContent
+            );
+            if (is_object($content) && property_exists($content, 'errors')) {
+                try {
+                    $exception->setResponseObject(ObjectSerializer::deserialize(
+                        $content,
+                        '\OpenAPI\Client\Model\Errors',
+                        $response->getHeaders()
+                    ));
+                } catch (\InvalidArgumentException | \TypeError $deserializationException) {
+                    // Preserve the HTTP exception and raw response even if Errors is malformed.
+                }
             }
-
-            if (!is_array($content)) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $response->getStatusCode(),
-                    $response->getHeaders(),
-                    $rawContent
-                );
-            }
+            throw $exception;
         }
 
-        return [
-            ObjectSerializer::deserialize($content, $dataType, []),
-            $response->getStatusCode(),
-            $response->getHeaders()
-        ];
+        try {
+            $result = ObjectSerializer::deserialize($content, $dataType, $response->getHeaders());
+        } catch (\InvalidArgumentException | \TypeError $exception) {
+            if ($statusCode >= 200 && $statusCode <= 299) {
+                throw $exception;
+            }
+            throw new ApiException(
+                sprintf('Error deserializing batch response (%s): %s', $request->getUri(), $exception->getMessage()),
+                $statusCode,
+                $response->getHeaders(),
+                $rawContent
+            );
+        }
+
+        return [$result, $statusCode, $response->getHeaders()];
     }
 
     private function responseWithinRangeCode(

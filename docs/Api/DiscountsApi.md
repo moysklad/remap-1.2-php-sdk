@@ -52,9 +52,9 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$accumulation_discount = {name=accumulationDiscountExample, active=true, allProducts=true, allAgents=true, agentTags=[]}; // \OpenAPI\Client\Model\AccumulationDiscount
+$accumulation_discount = {name=accumulationDiscountExample, active=true, allProducts=true, allAgents=true, agentTags=[], levels=[{amount=100000.0, discount=10.0}]}; // \OpenAPI\Client\Model\AccumulationDiscount
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -71,7 +71,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **accumulation_discount** | [**\OpenAPI\Client\Model\AccumulationDiscount**](../Model/AccumulationDiscount.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -85,7 +85,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -125,7 +125,7 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
 );
 $personal_discount = {name=personalDiscountExample, active=true, allProducts=true, allAgents=true}; // \OpenAPI\Client\Model\PersonalDiscount
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -142,7 +142,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **personal_discount** | [**\OpenAPI\Client\Model\PersonalDiscount**](../Model/PersonalDiscount.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -156,7 +156,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -194,9 +194,9 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$special_price_discount = new \OpenAPI\Client\Model\SpecialPriceDiscount(); // \OpenAPI\Client\Model\SpecialPriceDiscount
+$special_price_discount = {name=specialPriceDiscountExample, active=true, allProducts=true, allAgents=true, usePriceType=false, discount=10.0}; // \OpenAPI\Client\Model\SpecialPriceDiscount
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -213,7 +213,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **special_price_discount** | [**\OpenAPI\Client\Model\SpecialPriceDiscount**](../Model/SpecialPriceDiscount.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -227,7 +227,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -267,7 +267,7 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
 );
 $id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $apiInstance->deleteAccumulationDiscount($id, $accept, $accept_encoding);
@@ -282,7 +282,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -295,7 +295,7 @@ void (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -335,7 +335,7 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
 );
 $id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $apiInstance->deletePersonalDiscount($id, $accept, $accept_encoding);
@@ -350,7 +350,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -363,7 +363,7 @@ void (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -403,7 +403,7 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
 );
 $id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $apiInstance->deleteSpecialPriceDiscount($id, $accept, $accept_encoding);
@@ -418,7 +418,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -431,7 +431,7 @@ void (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -471,7 +471,7 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
 );
 $id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getAccumulationDiscountById($id, $accept, $accept_encoding);
@@ -487,7 +487,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -500,7 +500,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -541,7 +541,7 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 
 try {
@@ -559,7 +559,7 @@ try {
 | **limit** | **int**| Максимальное количество элементов в выданном списке (максимум 1000) | [optional] [default to 1000] |
 | **offset** | **int**| Отступ в выданном списке | [optional] [default to 0] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 
 ### Return type
@@ -573,7 +573,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -613,7 +613,7 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
 );
 $id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getPersonalDiscountById($id, $accept, $accept_encoding);
@@ -629,7 +629,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -642,7 +642,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -682,7 +682,7 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
 );
 $id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getSpecialPriceDiscountById($id, $accept, $accept_encoding);
@@ -698,7 +698,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -711,7 +711,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -752,7 +752,7 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
 $id = 'id_example'; // string | ID сущности
 $accumulation_discount = new \OpenAPI\Client\Model\AccumulationDiscount(); // \OpenAPI\Client\Model\AccumulationDiscount
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -770,7 +770,7 @@ try {
 | **id** | **string**| ID сущности | |
 | **accumulation_discount** | [**\OpenAPI\Client\Model\AccumulationDiscount**](../Model/AccumulationDiscount.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -784,7 +784,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -825,7 +825,7 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
 $id = 'id_example'; // string | ID сущности
 $discount = new \OpenAPI\Client\Model\Discount(); // \OpenAPI\Client\Model\Discount
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -843,7 +843,7 @@ try {
 | **id** | **string**| ID сущности | |
 | **discount** | [**\OpenAPI\Client\Model\Discount**](../Model/Discount.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -857,7 +857,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -898,7 +898,7 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
 $id = 'id_example'; // string | ID сущности
 $personal_discount = new \OpenAPI\Client\Model\PersonalDiscount(); // \OpenAPI\Client\Model\PersonalDiscount
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -916,7 +916,7 @@ try {
 | **id** | **string**| ID сущности | |
 | **personal_discount** | [**\OpenAPI\Client\Model\PersonalDiscount**](../Model/PersonalDiscount.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -930,7 +930,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -971,7 +971,7 @@ $apiInstance = new OpenAPI\Client\Api\DiscountsApi(
 $id = 'id_example'; // string | ID сущности
 $special_price_discount = new \OpenAPI\Client\Model\SpecialPriceDiscount(); // \OpenAPI\Client\Model\SpecialPriceDiscount
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -989,7 +989,7 @@ try {
 | **id** | **string**| ID сущности | |
 | **special_price_discount** | [**\OpenAPI\Client\Model\SpecialPriceDiscount**](../Model/SpecialPriceDiscount.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -1003,7 +1003,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

@@ -386,27 +386,9 @@ class BundleTest extends TestCase
     }
 
     /**
-     * Test attribute "packs"
-     */
-    public function testPropertyPacks()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "sale_prices"
      */
     public function testPropertySalePrices()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "buy_price"
-     */
-    public function testPropertyBuyPrice()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -54,7 +54,7 @@ $apiInstance = new OpenAPI\Client\Api\ProjectsApi(
 $project = {name=Проект из примера OpenAPI, code=openapi-project, description=Проект для примера OpenAPI, shared=true}; // \OpenAPI\Client\Model\Project
 $expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -72,7 +72,7 @@ try {
 | **project** | [**\OpenAPI\Client\Model\Project**](../Model/Project.md)|  | |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -86,7 +86,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -126,7 +126,7 @@ $apiInstance = new OpenAPI\Client\Api\ProjectsApi(
 );
 $attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -143,7 +143,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **attribute_meta_info** | [**\OpenAPI\Client\Model\AttributeMetaInfo**](../Model/AttributeMetaInfo.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -157,7 +157,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -198,7 +198,7 @@ $apiInstance = new OpenAPI\Client\Api\ProjectsApi(
 $project = [{name=Проект batch из примера OpenAPI, code=openapi-project-batch, description=Проект batch для примера OpenAPI, shared=true}]; // \OpenAPI\Client\Model\Project[]
 $expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -216,7 +216,7 @@ try {
 | **project** | [**\OpenAPI\Client\Model\Project[]**](../Model/Project.md)|  | |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -230,7 +230,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -270,7 +270,7 @@ $apiInstance = new OpenAPI\Client\Api\ProjectsApi(
 );
 $id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $apiInstance->deleteProject($id, $accept, $accept_encoding);
@@ -285,7 +285,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -298,7 +298,7 @@ void (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -338,7 +338,7 @@ $apiInstance = new OpenAPI\Client\Api\ProjectsApi(
 );
 $id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $apiInstance->deleteProjectMetadataAttribute($id, $accept, $accept_encoding);
@@ -353,7 +353,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -366,7 +366,7 @@ void (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -406,7 +406,7 @@ $apiInstance = new OpenAPI\Client\Api\ProjectsApi(
 );
 $project = array(new \OpenAPI\Client\Model\Project()); // \OpenAPI\Client\Model\Project[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -423,7 +423,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **project** | [**\OpenAPI\Client\Model\Project[]**](../Model/Project.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -437,7 +437,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -478,7 +478,7 @@ $apiInstance = new OpenAPI\Client\Api\ProjectsApi(
 $id = 'id_example'; // string | ID сущности
 $expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getProjectById($id, $expand, $accept, $accept_encoding);
@@ -495,7 +495,7 @@ try {
 | **id** | **string**| ID сущности | |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -508,7 +508,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -547,7 +547,7 @@ $apiInstance = new OpenAPI\Client\Api\ProjectsApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getProjectMetadata($accept, $accept_encoding);
@@ -562,7 +562,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -575,7 +575,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -615,7 +615,7 @@ $apiInstance = new OpenAPI\Client\Api\ProjectsApi(
 );
 $id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getProjectMetadataAttributeById($id, $accept, $accept_encoding);
@@ -631,7 +631,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -644,7 +644,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -683,7 +683,7 @@ $apiInstance = new OpenAPI\Client\Api\ProjectsApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getProjectMetadataAttributes($accept, $accept_encoding);
@@ -698,7 +698,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -711,7 +711,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -756,7 +756,7 @@ $filter = 'filter_example'; // string | Фильтрация выборки
 $expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $order = 'order_example'; // string | Сортировка
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getProjects($limit, $offset, $search, $filter, $expand, $order, $accept, $accept_encoding);
@@ -777,7 +777,7 @@ try {
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **order** | **string**| Сортировка | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -790,7 +790,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -832,7 +832,7 @@ $id = 'id_example'; // string | ID сущности
 $project = new \OpenAPI\Client\Model\Project(); // \OpenAPI\Client\Model\Project
 $expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -851,7 +851,7 @@ try {
 | **project** | [**\OpenAPI\Client\Model\Project**](../Model/Project.md)|  | |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -865,7 +865,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -906,7 +906,7 @@ $apiInstance = new OpenAPI\Client\Api\ProjectsApi(
 $id = 'id_example'; // string | ID сущности
 $attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -924,7 +924,7 @@ try {
 | **id** | **string**| ID сущности | |
 | **attribute_meta_info** | [**\OpenAPI\Client\Model\AttributeMetaInfo**](../Model/AttributeMetaInfo.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -938,7 +938,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

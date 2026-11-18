@@ -73,7 +73,7 @@ $apiInstance = new OpenAPI\Client\Api\PayrollsApi(
 $id = 'id_example'; // string | ID сущности
 $file_upload = new \OpenAPI\Client\Model\FileUpload(); // \OpenAPI\Client\Model\FileUpload
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -91,7 +91,7 @@ try {
 | **id** | **string**| ID сущности | |
 | **file_upload** | [**\OpenAPI\Client\Model\FileUpload**](../Model/FileUpload.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -105,7 +105,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -146,7 +146,7 @@ $apiInstance = new OpenAPI\Client\Api\PayrollsApi(
 $id = 'id_example'; // string | ID сущности
 $file_upload = array(new \OpenAPI\Client\Model\FileUpload()); // \OpenAPI\Client\Model\FileUpload[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -164,7 +164,7 @@ try {
 | **id** | **string**| ID сущности | |
 | **file_upload** | [**\OpenAPI\Client\Model\FileUpload[]**](../Model/FileUpload.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -178,7 +178,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -219,7 +219,7 @@ $apiInstance = new OpenAPI\Client\Api\PayrollsApi(
 $payroll = new \OpenAPI\Client\Model\Payroll(); // \OpenAPI\Client\Model\Payroll
 $expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -237,7 +237,7 @@ try {
 | **payroll** | [**\OpenAPI\Client\Model\Payroll**](../Model/Payroll.md)|  | |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -251,7 +251,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -289,7 +289,7 @@ $apiInstance = new OpenAPI\Client\Api\PayrollsApi(
 );
 $attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -306,7 +306,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **attribute_meta_info** | [**\OpenAPI\Client\Model\AttributeMetaInfo**](../Model/AttributeMetaInfo.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -320,7 +320,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -358,7 +358,7 @@ $apiInstance = new OpenAPI\Client\Api\PayrollsApi(
 );
 $state = {name=Одобрено, color=69446, stateType=Regular}; // \OpenAPI\Client\Model\State
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -375,7 +375,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **state** | [**\OpenAPI\Client\Model\State**](../Model/State.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -389,7 +389,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -427,7 +427,7 @@ $apiInstance = new OpenAPI\Client\Api\PayrollsApi(
 );
 $state = array(new \OpenAPI\Client\Model\State()); // \OpenAPI\Client\Model\State[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -444,7 +444,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **state** | [**\OpenAPI\Client\Model\State[]**](../Model/State.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -458,7 +458,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -498,7 +498,7 @@ $id = 'id_example'; // string | ID сущности
 $payroll_position = new \OpenAPI\Client\Model\PayrollPosition(); // \OpenAPI\Client\Model\PayrollPosition
 $expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -517,7 +517,7 @@ try {
 | **payroll_position** | [**\OpenAPI\Client\Model\PayrollPosition**](../Model/PayrollPosition.md)|  | |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -531,7 +531,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -571,7 +571,7 @@ $id = 'id_example'; // string | ID сущности
 $payroll_position = array(new \OpenAPI\Client\Model\PayrollPosition()); // \OpenAPI\Client\Model\PayrollPosition[]
 $expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -590,7 +590,7 @@ try {
 | **payroll_position** | [**\OpenAPI\Client\Model\PayrollPosition[]**](../Model/PayrollPosition.md)|  | |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -604,7 +604,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -645,7 +645,7 @@ $apiInstance = new OpenAPI\Client\Api\PayrollsApi(
 $payroll = array(new \OpenAPI\Client\Model\Payroll()); // \OpenAPI\Client\Model\Payroll[]
 $expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -663,7 +663,7 @@ try {
 | **payroll** | [**\OpenAPI\Client\Model\Payroll[]**](../Model/Payroll.md)|  | |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -677,7 +677,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -717,7 +717,7 @@ $apiInstance = new OpenAPI\Client\Api\PayrollsApi(
 );
 $id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $apiInstance->deletePayroll($id, $accept, $accept_encoding);
@@ -732,7 +732,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -745,7 +745,7 @@ void (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -786,7 +786,7 @@ $apiInstance = new OpenAPI\Client\Api\PayrollsApi(
 $id = 'id_example'; // string | ID сущности
 $file_id = 'file_id_example'; // string | ID файла
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $apiInstance->deletePayrollFile($id, $file_id, $accept, $accept_encoding);
@@ -802,7 +802,7 @@ try {
 | **id** | **string**| ID сущности | |
 | **file_id** | **string**| ID файла | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -815,7 +815,7 @@ void (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -853,7 +853,7 @@ $apiInstance = new OpenAPI\Client\Api\PayrollsApi(
 );
 $id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $apiInstance->deletePayrollMetadataAttributeById($id, $accept, $accept_encoding);
@@ -868,7 +868,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -881,7 +881,7 @@ void (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -919,7 +919,7 @@ $apiInstance = new OpenAPI\Client\Api\PayrollsApi(
 );
 $id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $apiInstance->deletePayrollMetadataStateById($id, $accept, $accept_encoding);
@@ -934,7 +934,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -947,7 +947,7 @@ void (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -986,7 +986,7 @@ $apiInstance = new OpenAPI\Client\Api\PayrollsApi(
 $id = 'id_example'; // string | ID сущности
 $position_id = 'position_id_example'; // string | ID позиции
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $apiInstance->deletePayrollPosition($id, $position_id, $accept, $accept_encoding);
@@ -1002,7 +1002,7 @@ try {
 | **id** | **string**| ID сущности | |
 | **position_id** | **string**| ID позиции | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -1015,7 +1015,7 @@ void (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -1054,7 +1054,7 @@ $apiInstance = new OpenAPI\Client\Api\PayrollsApi(
 $id = 'id_example'; // string | ID сущности
 $payroll_position = array(new \OpenAPI\Client\Model\PayrollPosition()); // \OpenAPI\Client\Model\PayrollPosition[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1072,7 +1072,7 @@ try {
 | **id** | **string**| ID сущности | |
 | **payroll_position** | [**\OpenAPI\Client\Model\PayrollPosition[]**](../Model/PayrollPosition.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -1086,7 +1086,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -1126,7 +1126,7 @@ $apiInstance = new OpenAPI\Client\Api\PayrollsApi(
 );
 $payroll = array(new \OpenAPI\Client\Model\Payroll()); // \OpenAPI\Client\Model\Payroll[]
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1143,7 +1143,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **payroll** | [**\OpenAPI\Client\Model\Payroll[]**](../Model/Payroll.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -1157,7 +1157,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -1198,7 +1198,7 @@ $apiInstance = new OpenAPI\Client\Api\PayrollsApi(
 $id = 'id_example'; // string | ID сущности
 $expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getPayrollById($id, $expand, $accept, $accept_encoding);
@@ -1215,7 +1215,7 @@ try {
 | **id** | **string**| ID сущности | |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -1228,7 +1228,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -1269,7 +1269,7 @@ $apiInstance = new OpenAPI\Client\Api\PayrollsApi(
 $id = 'id_example'; // string | ID сущности
 $file_id = 'file_id_example'; // string | ID файла
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getPayrollFile($id, $file_id, $accept, $accept_encoding);
@@ -1286,7 +1286,7 @@ try {
 | **id** | **string**| ID сущности | |
 | **file_id** | **string**| ID файла | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -1299,7 +1299,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -1341,7 +1341,7 @@ $id = 'id_example'; // string | ID сущности
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $offset = 0; // int | Отступ в выданном списке
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getPayrollFiles($id, $limit, $offset, $accept, $accept_encoding);
@@ -1359,7 +1359,7 @@ try {
 | **limit** | **int**| Максимальное количество элементов в выданном списке (максимум 1000) | [optional] [default to 1000] |
 | **offset** | **int**| Отступ в выданном списке | [optional] [default to 0] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -1372,7 +1372,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -1409,7 +1409,7 @@ $apiInstance = new OpenAPI\Client\Api\PayrollsApi(
     $config
 );
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 
 try {
@@ -1425,7 +1425,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 
 ### Return type
@@ -1439,7 +1439,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -1478,7 +1478,7 @@ $apiInstance = new OpenAPI\Client\Api\PayrollsApi(
 $offset = 0; // int | Отступ в выданном списке
 $limit = 1000; // int | Максимальное количество элементов в выданном списке (максимум 1000)
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getPayrollMetadataAttribute($offset, $limit, $accept, $accept_encoding);
@@ -1495,7 +1495,7 @@ try {
 | **offset** | **int**| Отступ в выданном списке | [optional] [default to 0] |
 | **limit** | **int**| Максимальное количество элементов в выданном списке (максимум 1000) | [optional] [default to 1000] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -1508,7 +1508,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -1546,7 +1546,7 @@ $apiInstance = new OpenAPI\Client\Api\PayrollsApi(
 );
 $id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1563,7 +1563,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -1577,7 +1577,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -1615,7 +1615,7 @@ $apiInstance = new OpenAPI\Client\Api\PayrollsApi(
 );
 $id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getPayrollMetadataStateById($id, $accept, $accept_encoding);
@@ -1631,7 +1631,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -1644,7 +1644,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -1684,7 +1684,7 @@ $id = 'id_example'; // string | ID сущности
 $position_id = 'position_id_example'; // string | ID позиции
 $expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getPayrollPositionById($id, $position_id, $expand, $accept, $accept_encoding);
@@ -1702,7 +1702,7 @@ try {
 | **position_id** | **string**| ID позиции | |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -1715,7 +1715,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -1756,7 +1756,7 @@ $limit = 1000; // int | Максимальное количество элеме
 $offset = 0; // int | Отступ в выданном списке
 $expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getPayrollPositions($id, $limit, $offset, $expand, $accept, $accept_encoding);
@@ -1775,7 +1775,7 @@ try {
 | **offset** | **int**| Отступ в выданном списке | [optional] [default to 0] |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -1788,7 +1788,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -1828,7 +1828,7 @@ $apiInstance = new OpenAPI\Client\Api\PayrollsApi(
 );
 $body = array('key' => new \stdClass); // object
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -1845,7 +1845,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **body** | **object**|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -1859,7 +1859,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -1904,7 +1904,7 @@ $filter = 'filter_example'; // string | Фильтрация выборки
 $expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $order = 'order_example'; // string | Сортировка
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getPayrolls($limit, $offset, $search, $filter, $expand, $order, $accept, $accept_encoding);
@@ -1925,7 +1925,7 @@ try {
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **order** | **string**| Сортировка | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -1938,7 +1938,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -1947,7 +1947,7 @@ try {
 ## `movePayrollToTrash()`
 
 ```php
-movePayrollToTrash($id, $accept, $accept_encoding)
+movePayrollToTrash($id, $accept, $accept_encoding, $content_type)
 ```
 
 Удалить Начисление зарплаты в корзину
@@ -1976,10 +1976,11 @@ $apiInstance = new OpenAPI\Client\Api\PayrollsApi(
 );
 $id = 'id_example'; // string | ID сущности
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
+$content_type = 'application/json'; // string
 
 try {
-    $apiInstance->movePayrollToTrash($id, $accept, $accept_encoding);
+    $apiInstance->movePayrollToTrash($id, $accept, $accept_encoding, $content_type);
 } catch (Exception $e) {
     echo 'Exception when calling PayrollsApi->movePayrollToTrash: ', $e->getMessage(), PHP_EOL;
 }
@@ -1991,7 +1992,8 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID сущности | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
+| **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
 
@@ -2004,7 +2006,7 @@ void (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -2046,7 +2048,7 @@ $id = 'id_example'; // string | ID сущности
 $payroll = new \OpenAPI\Client\Model\Payroll(); // \OpenAPI\Client\Model\Payroll
 $expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -2065,7 +2067,7 @@ try {
 | **payroll** | [**\OpenAPI\Client\Model\Payroll**](../Model/Payroll.md)|  | |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -2079,7 +2081,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -2118,7 +2120,7 @@ $apiInstance = new OpenAPI\Client\Api\PayrollsApi(
 $id = 'id_example'; // string | ID сущности
 $attribute_meta_info = new \OpenAPI\Client\Model\AttributeMetaInfo(); // \OpenAPI\Client\Model\AttributeMetaInfo
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -2136,7 +2138,7 @@ try {
 | **id** | **string**| ID сущности | |
 | **attribute_meta_info** | [**\OpenAPI\Client\Model\AttributeMetaInfo**](../Model/AttributeMetaInfo.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -2150,7 +2152,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -2189,7 +2191,7 @@ $apiInstance = new OpenAPI\Client\Api\PayrollsApi(
 $id = 'id_example'; // string | ID сущности
 $state = new \OpenAPI\Client\Model\State(); // \OpenAPI\Client\Model\State
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -2207,7 +2209,7 @@ try {
 | **id** | **string**| ID сущности | |
 | **state** | [**\OpenAPI\Client\Model\State**](../Model/State.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -2221,7 +2223,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -2262,7 +2264,7 @@ $position_id = 'position_id_example'; // string | ID позиции
 $payroll_position = new \OpenAPI\Client\Model\PayrollPosition(); // \OpenAPI\Client\Model\PayrollPosition
 $expand = 'expand_example'; // string | Замена ссылок объектами с помощью expand
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -2282,7 +2284,7 @@ try {
 | **payroll_position** | [**\OpenAPI\Client\Model\PayrollPosition**](../Model/PayrollPosition.md)|  | |
 | **expand** | **string**| Замена ссылок объектами с помощью expand | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -2296,7 +2298,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

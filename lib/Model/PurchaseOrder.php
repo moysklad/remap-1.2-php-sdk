@@ -44,6 +44,34 @@ use \OpenAPI\Client\ObjectSerializer;
 class PurchaseOrder extends EntityWithMeta 
 {
     public const DISCRIMINATOR = null;
+    public const ENTITY_TYPE = 'purchaseorder';
+
+    /** @return string[] Model alternatives in oneOf/anyOf, including those nested in allOf. */
+    public static function openAPIComposedTypes(): array
+    {
+        return [
+
+        ];
+    }
+
+    /** @var array<string, string> Fields declared by a composed schema outside this model. */
+    protected array $composedSchemaNames = [];
+
+    public function setComposedSchemaValue(string $property, string $jsonProperty, $value): void
+    {
+        $this->composedSchemaNames[$property] = $jsonProperty;
+        $this->container[$property] = $value;
+    }
+
+    public function getComposedSchemaValues(): array
+    {
+        $values = [];
+        foreach ($this->composedSchemaNames as $property => $jsonProperty) {
+            $values[$jsonProperty] = $this->container[$property];
+        }
+        return $values;
+    }
+
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
     protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
@@ -123,7 +151,7 @@ class PurchaseOrder extends EntityWithMeta
         'customer_orders' => '\OpenAPI\Client\Model\CustomerOrder[]',
         'invoices_in' => '\OpenAPI\Client\Model\InvoiceIn[]',
         'supplies' => '\OpenAPI\Client\Model\Supply[]',
-        'payments' => '\OpenAPI\Client\Model\SalesReturnPaymentsInner[]',
+        'payments' => '\OpenAPI\Client\Model\PurchaseOrderPayment[]',
         'production_tasks' => '\OpenAPI\Client\Model\ProductionTask[]'
     ];
 
@@ -277,13 +305,14 @@ class PurchaseOrder extends EntityWithMeta
      *
      * @return array
      */
-    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    public static function openAPIPolymorphicDiscriminatorMappings(string $href = ''): array
     {
-        return self::$openAPIPolymorphicDiscriminatorMappings;
+        $mappings = self::$openAPIPolymorphicDiscriminatorMappings;
+        return $mappings;
     }
 
     /**
-     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * Whether batch-error-shaped payloads should resolve to Errors when nested
      * discriminator mappings do not match.
      *
      * @return bool
@@ -1961,7 +1990,7 @@ class PurchaseOrder extends EntityWithMeta
     /**
      * Gets payments
      *
-     * @return \OpenAPI\Client\Model\SalesReturnPaymentsInner[]|null
+     * @return \OpenAPI\Client\Model\PurchaseOrderPayment[]|null
      */
     public function getPayments()
     {
@@ -1971,7 +2000,7 @@ class PurchaseOrder extends EntityWithMeta
     /**
      * Sets payments
      *
-     * @param \OpenAPI\Client\Model\SalesReturnPaymentsInner[]|null $payments Массив ссылок на связанные платежи
+     * @param \OpenAPI\Client\Model\PurchaseOrderPayment[]|null $payments Массив ссылок на связанные платежи
      *
      * @return self
      */
@@ -2076,7 +2105,7 @@ class PurchaseOrder extends EntityWithMeta
      */
     public function offsetUnset($offset): void
     {
-        unset($this->container[$offset]);
+        unset($this->container[$offset], $this->composedSchemaNames[$offset]);
     }
 
     /**

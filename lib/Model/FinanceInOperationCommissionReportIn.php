@@ -44,6 +44,35 @@ use \OpenAPI\Client\ObjectSerializer;
 class FinanceInOperationCommissionReportIn extends FinanceInOperationAbstract 
 {
     public const DISCRIMINATOR = null;
+    public const ENTITY_TYPE = null;
+
+    /** @return string[] Model alternatives in oneOf/anyOf, including those nested in allOf. */
+    public static function openAPIComposedTypes(): array
+    {
+        return [
+
+
+        ];
+    }
+
+    /** @var array<string, string> Fields declared by a composed schema outside this model. */
+    protected array $composedSchemaNames = [];
+
+    public function setComposedSchemaValue(string $property, string $jsonProperty, $value): void
+    {
+        $this->composedSchemaNames[$property] = $jsonProperty;
+        $this->container[$property] = $value;
+    }
+
+    public function getComposedSchemaValues(): array
+    {
+        $values = [];
+        foreach ($this->composedSchemaNames as $property => $jsonProperty) {
+            $values[$jsonProperty] = $this->container[$property];
+        }
+        return $values;
+    }
+
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
     protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
@@ -111,7 +140,7 @@ class FinanceInOperationCommissionReportIn extends FinanceInOperationAbstract
         'vat_enabled' => 'bool',
         'vat_included' => 'bool',
         'vat_sum' => 'float',
-        'payments' => '\OpenAPI\Client\Model\RetailShiftPaymentsInner[]'
+        'payments' => '\OpenAPI\Client\Model\CommissionReportInPayment[]'
     ];
 
     /**
@@ -260,13 +289,14 @@ class FinanceInOperationCommissionReportIn extends FinanceInOperationAbstract
      *
      * @return array
      */
-    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    public static function openAPIPolymorphicDiscriminatorMappings(string $href = ''): array
     {
-        return self::$openAPIPolymorphicDiscriminatorMappings;
+        $mappings = self::$openAPIPolymorphicDiscriminatorMappings;
+        return $mappings;
     }
 
     /**
-     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * Whether batch-error-shaped payloads should resolve to Errors when nested
      * discriminator mappings do not match.
      *
      * @return bool
@@ -1905,7 +1935,7 @@ class FinanceInOperationCommissionReportIn extends FinanceInOperationAbstract
     /**
      * Gets payments
      *
-     * @return \OpenAPI\Client\Model\RetailShiftPaymentsInner[]|null
+     * @return \OpenAPI\Client\Model\CommissionReportInPayment[]|null
      */
     public function getPayments()
     {
@@ -1915,7 +1945,7 @@ class FinanceInOperationCommissionReportIn extends FinanceInOperationAbstract
     /**
      * Sets payments
      *
-     * @param \OpenAPI\Client\Model\RetailShiftPaymentsInner[]|null $payments Массив ссылок на связанные платежи
+     * @param \OpenAPI\Client\Model\CommissionReportInPayment[]|null $payments Массив ссылок на связанные платежи
      *
      * @return self
      */
@@ -1986,7 +2016,7 @@ class FinanceInOperationCommissionReportIn extends FinanceInOperationAbstract
      */
     public function offsetUnset($offset): void
     {
-        unset($this->container[$offset]);
+        unset($this->container[$offset], $this->composedSchemaNames[$offset]);
     }
 
     /**

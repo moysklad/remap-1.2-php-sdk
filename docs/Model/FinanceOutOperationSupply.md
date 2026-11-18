@@ -45,8 +45,8 @@ Name | Type | Description | Notes
 **purchase_order** | [**\OpenAPI\Client\Model\PurchaseOrder**](PurchaseOrder.md) | Заказ поставщику, с которым связана Приемка | [optional]
 **facture_in** | [**\OpenAPI\Client\Model\FactureIn**](FactureIn.md) | Счет-фактура полученный, с которым связана эта Приемка | [optional]
 **invoices_in** | [**\OpenAPI\Client\Model\InvoiceIn[]**](InvoiceIn.md) | Массив ссылок на связанные счета поставщиков | [optional]
-**payments** | [**\OpenAPI\Client\Model\SupplyPaymentsInner[]**](SupplyPaymentsInner.md) | Массив ссылок на связанные платежи | [optional]
+**payments** | [**\OpenAPI\Client\Model\SupplyPayment[]**](SupplyPayment.md) | Массив ссылок на связанные платежи | [optional]
 **production_task** | [**\OpenAPI\Client\Model\ProductionTask**](ProductionTask.md) | Связанное производственное задание | [optional]
-**returns** | [**\OpenAPI\Client\Model\SupplyReturnsInner[]**](SupplyReturnsInner.md) | Массив ссылок на связанные возвраты | [optional]
+**returns** | [**\OpenAPI\Client\Model\PurchaseReturn[]**](PurchaseReturn.md) | Массив ссылок на связанные возвраты поставщику | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

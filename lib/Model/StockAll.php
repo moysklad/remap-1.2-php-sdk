@@ -44,6 +44,34 @@ use \OpenAPI\Client\ObjectSerializer;
 class StockAll implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const ENTITY_TYPE = null;
+
+    /** @return string[] Model alternatives in oneOf/anyOf, including those nested in allOf. */
+    public static function openAPIComposedTypes(): array
+    {
+        return [
+
+        ];
+    }
+
+    /** @var array<string, string> Fields declared by a composed schema outside this model. */
+    protected array $composedSchemaNames = [];
+
+    public function setComposedSchemaValue(string $property, string $jsonProperty, $value): void
+    {
+        $this->composedSchemaNames[$property] = $jsonProperty;
+        $this->container[$property] = $value;
+    }
+
+    public function getComposedSchemaValues(): array
+    {
+        $values = [];
+        foreach ($this->composedSchemaNames as $property => $jsonProperty) {
+            $values[$jsonProperty] = $this->container[$property];
+        }
+        return $values;
+    }
+
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
     protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
@@ -81,7 +109,7 @@ class StockAll implements ModelInterface, ArrayAccess, \JsonSerializable
         'in_transit' => 'float',
         'reserve' => 'float',
         'quantity' => 'float',
-        'stock_days' => 'int',
+        'stock_days' => 'float',
         'price' => 'float',
         'sale_price' => 'float'
     ];
@@ -106,7 +134,7 @@ class StockAll implements ModelInterface, ArrayAccess, \JsonSerializable
         'in_transit' => 'double',
         'reserve' => 'double',
         'quantity' => 'double',
-        'stock_days' => null,
+        'stock_days' => 'double',
         'price' => 'double',
         'sale_price' => 'double'
     ];
@@ -176,13 +204,14 @@ class StockAll implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return array
      */
-    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    public static function openAPIPolymorphicDiscriminatorMappings(string $href = ''): array
     {
-        return self::$openAPIPolymorphicDiscriminatorMappings;
+        $mappings = self::$openAPIPolymorphicDiscriminatorMappings;
+        return $mappings;
     }
 
     /**
-     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * Whether batch-error-shaped payloads should resolve to Errors when nested
      * discriminator mappings do not match.
      *
      * @return bool
@@ -795,7 +824,7 @@ class StockAll implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets stock_days
      *
-     * @return int|null
+     * @return float|null
      */
     public function getStockDays()
     {
@@ -805,7 +834,7 @@ class StockAll implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets stock_days
      *
-     * @param int|null $stock_days Количество дней на складе
+     * @param float|null $stock_days Количество дней на складе
      *
      * @return self
      */
@@ -923,7 +952,7 @@ class StockAll implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function offsetUnset($offset): void
     {
-        unset($this->container[$offset]);
+        unset($this->container[$offset], $this->composedSchemaNames[$offset]);
     }
 
     /**

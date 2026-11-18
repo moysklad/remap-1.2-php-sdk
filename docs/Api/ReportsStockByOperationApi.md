@@ -41,7 +41,7 @@ $apiInstance = new OpenAPI\Client\Api\ReportsStockByOperationApi(
 );
 $operation_id = 'operation_id_example'; // string | ID документа, по которому нужно получить остатки
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getStockByOperation($operation_id, $accept, $accept_encoding);
@@ -57,7 +57,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **operation_id** | **string**| ID документа, по которому нужно получить остатки | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -70,7 +70,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

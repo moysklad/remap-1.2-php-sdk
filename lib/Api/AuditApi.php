@@ -140,17 +140,17 @@ class AuditApi
      * Получить события по контексту аудита
      *
      * @param  string $id ID контекста аудита (required)
-     * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
+     * @param  int|null $limit Максимальное количество событий аудита в выданном списке (максимум 100) (optional, default to 25)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAuditContextEvents'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AuditEventList|\OpenAPI\Client\Model\Errors
      */
-    public function getAuditContextEvents($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getAuditContextEvents'][0])
+    public function getAuditContextEvents($id, $limit = 25, $offset = 0, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getAuditContextEvents'][0])
     {
         list($response) = $this->getAuditContextEventsWithHttpInfo($id, $limit, $offset, $accept, $accept_encoding, $contentType);
         return $response;
@@ -162,21 +162,24 @@ class AuditApi
      * Получить события по контексту аудита
      *
      * @param  string $id ID контекста аудита (required)
-     * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
+     * @param  int|null $limit Максимальное количество событий аудита в выданном списке (максимум 100) (optional, default to 25)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAuditContextEvents'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AuditEventList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getAuditContextEventsWithHttpInfo($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getAuditContextEvents'][0])
+    public function getAuditContextEventsWithHttpInfo($id, $limit = 25, $offset = 0, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getAuditContextEvents'][0])
     {
         $request = $this->getAuditContextEventsRequest($id, $limit, $offset, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AuditEventList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -197,6 +200,13 @@ class AuditApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AuditEventList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\AuditEventList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -235,6 +245,9 @@ class AuditApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AuditEventList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -264,16 +277,16 @@ class AuditApi
      * Получить события по контексту аудита
      *
      * @param  string $id ID контекста аудита (required)
-     * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
+     * @param  int|null $limit Максимальное количество событий аудита в выданном списке (максимум 100) (optional, default to 25)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAuditContextEvents'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAuditContextEventsAsync($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getAuditContextEvents'][0])
+    public function getAuditContextEventsAsync($id, $limit = 25, $offset = 0, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getAuditContextEvents'][0])
     {
         return $this->getAuditContextEventsAsyncWithHttpInfo($id, $limit, $offset, $accept, $accept_encoding, $contentType)
             ->then(
@@ -289,25 +302,35 @@ class AuditApi
      * Получить события по контексту аудита
      *
      * @param  string $id ID контекста аудита (required)
-     * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
+     * @param  int|null $limit Максимальное количество событий аудита в выданном списке (максимум 100) (optional, default to 25)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAuditContextEvents'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAuditContextEventsAsyncWithHttpInfo($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getAuditContextEvents'][0])
+    public function getAuditContextEventsAsyncWithHttpInfo($id, $limit = 25, $offset = 0, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getAuditContextEvents'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AuditEventList';
         $request = $this->getAuditContextEventsRequest($id, $limit, $offset, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\AuditEventList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -344,16 +367,16 @@ class AuditApi
      * Create request for operation 'getAuditContextEvents'
      *
      * @param  string $id ID контекста аудита (required)
-     * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
+     * @param  int|null $limit Максимальное количество событий аудита в выданном списке (максимум 100) (optional, default to 25)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAuditContextEvents'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getAuditContextEventsRequest($id, $limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getAuditContextEvents'][0])
+    public function getAuditContextEventsRequest($id, $limit = 25, $offset = 0, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getAuditContextEvents'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -363,8 +386,8 @@ class AuditApi
             );
         }
 
-        if ($limit !== null && $limit > 1000) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling AuditApi.getAuditContextEvents, must be smaller than or equal to 1000.');
+        if ($limit !== null && $limit > 100) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling AuditApi.getAuditContextEvents, must be smaller than or equal to 100.');
         }
         if ($limit !== null && $limit < 1) {
             throw new \InvalidArgumentException('invalid value for "$limit" when calling AuditApi.getAuditContextEvents, must be bigger than or equal to 1.');
@@ -405,7 +428,7 @@ class AuditApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -423,7 +446,7 @@ class AuditApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -467,10 +490,18 @@ class AuditApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -488,18 +519,18 @@ class AuditApi
      *
      * Получить контексты аудита
      *
-     * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
+     * @param  int|null $limit Максимальное количество событий аудита в выданном списке (максимум 100) (optional, default to 25)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $filter Фильтрация выборки (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAuditContexts'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AuditList|\OpenAPI\Client\Model\Errors
      */
-    public function getAuditContexts($limit = 1000, $offset = 0, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getAuditContexts'][0])
+    public function getAuditContexts($limit = 25, $offset = 0, $filter = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getAuditContexts'][0])
     {
         list($response) = $this->getAuditContextsWithHttpInfo($limit, $offset, $filter, $accept, $accept_encoding, $contentType);
         return $response;
@@ -510,22 +541,25 @@ class AuditApi
      *
      * Получить контексты аудита
      *
-     * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
+     * @param  int|null $limit Максимальное количество событий аудита в выданном списке (максимум 100) (optional, default to 25)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $filter Фильтрация выборки (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAuditContexts'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AuditList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getAuditContextsWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getAuditContexts'][0])
+    public function getAuditContextsWithHttpInfo($limit = 25, $offset = 0, $filter = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getAuditContexts'][0])
     {
         $request = $this->getAuditContextsRequest($limit, $offset, $filter, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AuditList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -546,6 +580,13 @@ class AuditApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AuditList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\AuditList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -584,6 +625,9 @@ class AuditApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AuditList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -612,17 +656,17 @@ class AuditApi
      *
      * Получить контексты аудита
      *
-     * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
+     * @param  int|null $limit Максимальное количество событий аудита в выданном списке (максимум 100) (optional, default to 25)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $filter Фильтрация выборки (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAuditContexts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAuditContextsAsync($limit = 1000, $offset = 0, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getAuditContexts'][0])
+    public function getAuditContextsAsync($limit = 25, $offset = 0, $filter = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getAuditContexts'][0])
     {
         return $this->getAuditContextsAsyncWithHttpInfo($limit, $offset, $filter, $accept, $accept_encoding, $contentType)
             ->then(
@@ -637,26 +681,36 @@ class AuditApi
      *
      * Получить контексты аудита
      *
-     * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
+     * @param  int|null $limit Максимальное количество событий аудита в выданном списке (максимум 100) (optional, default to 25)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $filter Фильтрация выборки (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAuditContexts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAuditContextsAsyncWithHttpInfo($limit = 1000, $offset = 0, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getAuditContexts'][0])
+    public function getAuditContextsAsyncWithHttpInfo($limit = 25, $offset = 0, $filter = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getAuditContexts'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AuditList';
         $request = $this->getAuditContextsRequest($limit, $offset, $filter, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\AuditList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -692,21 +746,21 @@ class AuditApi
     /**
      * Create request for operation 'getAuditContexts'
      *
-     * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
+     * @param  int|null $limit Максимальное количество событий аудита в выданном списке (максимум 100) (optional, default to 25)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $filter Фильтрация выборки (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAuditContexts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getAuditContextsRequest($limit = 1000, $offset = 0, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getAuditContexts'][0])
+    public function getAuditContextsRequest($limit = 25, $offset = 0, $filter = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getAuditContexts'][0])
     {
 
-        if ($limit !== null && $limit > 1000) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling AuditApi.getAuditContexts, must be smaller than or equal to 1000.');
+        if ($limit !== null && $limit > 100) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling AuditApi.getAuditContexts, must be smaller than or equal to 100.');
         }
         if ($limit !== null && $limit < 1) {
             throw new \InvalidArgumentException('invalid value for "$limit" when calling AuditApi.getAuditContexts, must be bigger than or equal to 1.');
@@ -757,7 +811,7 @@ class AuditApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -767,7 +821,7 @@ class AuditApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -811,10 +865,18 @@ class AuditApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -833,14 +895,14 @@ class AuditApi
      * Получить доступные фильтры аудита
      *
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAuditMetadataFilters'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AuditFilters|\OpenAPI\Client\Model\Errors
      */
-    public function getAuditMetadataFilters($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getAuditMetadataFilters'][0])
+    public function getAuditMetadataFilters($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getAuditMetadataFilters'][0])
     {
         list($response) = $this->getAuditMetadataFiltersWithHttpInfo($accept, $accept_encoding, $contentType);
         return $response;
@@ -852,18 +914,21 @@ class AuditApi
      * Получить доступные фильтры аудита
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAuditMetadataFilters'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AuditFilters|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getAuditMetadataFiltersWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getAuditMetadataFilters'][0])
+    public function getAuditMetadataFiltersWithHttpInfo($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getAuditMetadataFilters'][0])
     {
         $request = $this->getAuditMetadataFiltersRequest($accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AuditFilters')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -884,6 +949,13 @@ class AuditApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AuditFilters')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\AuditFilters',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -922,6 +994,9 @@ class AuditApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AuditFilters')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -951,13 +1026,13 @@ class AuditApi
      * Получить доступные фильтры аудита
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAuditMetadataFilters'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAuditMetadataFiltersAsync($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getAuditMetadataFilters'][0])
+    public function getAuditMetadataFiltersAsync($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getAuditMetadataFilters'][0])
     {
         return $this->getAuditMetadataFiltersAsyncWithHttpInfo($accept, $accept_encoding, $contentType)
             ->then(
@@ -973,22 +1048,32 @@ class AuditApi
      * Получить доступные фильтры аудита
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAuditMetadataFilters'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAuditMetadataFiltersAsyncWithHttpInfo($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getAuditMetadataFilters'][0])
+    public function getAuditMetadataFiltersAsyncWithHttpInfo($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getAuditMetadataFilters'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AuditFilters';
         $request = $this->getAuditMetadataFiltersRequest($accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\AuditFilters')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1025,13 +1110,13 @@ class AuditApi
      * Create request for operation 'getAuditMetadataFilters'
      *
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAuditMetadataFilters'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getAuditMetadataFiltersRequest($accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getAuditMetadataFilters'][0])
+    public function getAuditMetadataFiltersRequest($accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getAuditMetadataFilters'][0])
     {
 
 
@@ -1047,7 +1132,7 @@ class AuditApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -1057,7 +1142,7 @@ class AuditApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1101,10 +1186,18 @@ class AuditApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -1127,14 +1220,14 @@ class AuditApi
      * @param  int|null $limit Максимальное количество событий аудита в выданном списке (максимум 100) (optional, default to 25)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEntityAuditEvents'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AuditEventList|\OpenAPI\Client\Model\Errors
      */
-    public function getEntityAuditEvents($type, $id, $limit = 25, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEntityAuditEvents'][0])
+    public function getEntityAuditEvents($type, $id, $limit = 25, $offset = 0, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEntityAuditEvents'][0])
     {
         list($response) = $this->getEntityAuditEventsWithHttpInfo($type, $id, $limit, $offset, $accept, $accept_encoding, $contentType);
         return $response;
@@ -1150,18 +1243,21 @@ class AuditApi
      * @param  int|null $limit Максимальное количество событий аудита в выданном списке (максимум 100) (optional, default to 25)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEntityAuditEvents'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AuditEventList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getEntityAuditEventsWithHttpInfo($type, $id, $limit = 25, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEntityAuditEvents'][0])
+    public function getEntityAuditEventsWithHttpInfo($type, $id, $limit = 25, $offset = 0, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEntityAuditEvents'][0])
     {
         $request = $this->getEntityAuditEventsRequest($type, $id, $limit, $offset, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AuditEventList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1182,6 +1278,13 @@ class AuditApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AuditEventList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\AuditEventList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -1220,6 +1323,9 @@ class AuditApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AuditEventList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -1253,13 +1359,13 @@ class AuditApi
      * @param  int|null $limit Максимальное количество событий аудита в выданном списке (максимум 100) (optional, default to 25)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEntityAuditEvents'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEntityAuditEventsAsync($type, $id, $limit = 25, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEntityAuditEvents'][0])
+    public function getEntityAuditEventsAsync($type, $id, $limit = 25, $offset = 0, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEntityAuditEvents'][0])
     {
         return $this->getEntityAuditEventsAsyncWithHttpInfo($type, $id, $limit, $offset, $accept, $accept_encoding, $contentType)
             ->then(
@@ -1279,22 +1385,32 @@ class AuditApi
      * @param  int|null $limit Максимальное количество событий аудита в выданном списке (максимум 100) (optional, default to 25)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEntityAuditEvents'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEntityAuditEventsAsyncWithHttpInfo($type, $id, $limit = 25, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEntityAuditEvents'][0])
+    public function getEntityAuditEventsAsyncWithHttpInfo($type, $id, $limit = 25, $offset = 0, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEntityAuditEvents'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AuditEventList';
         $request = $this->getEntityAuditEventsRequest($type, $id, $limit, $offset, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\AuditEventList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1335,13 +1451,13 @@ class AuditApi
      * @param  int|null $limit Максимальное количество событий аудита в выданном списке (максимум 100) (optional, default to 25)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEntityAuditEvents'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getEntityAuditEventsRequest($type, $id, $limit = 25, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getEntityAuditEvents'][0])
+    public function getEntityAuditEventsRequest($type, $id, $limit = 25, $offset = 0, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getEntityAuditEvents'][0])
     {
 
         // verify the required parameter 'type' is set
@@ -1400,7 +1516,7 @@ class AuditApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -1426,7 +1542,7 @@ class AuditApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1470,10 +1586,18 @@ class AuditApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -1538,13 +1662,22 @@ class AuditApi
         ];
     }
 
+    private function isBatchResponseType(string $dataType): bool
+    {
+        return in_array($dataType, [
+            '\OpenAPI\Client\Model\BatchResponseEntity[]',
+            '\OpenAPI\Client\Model\DeleteRowResult[]',
+        ], true);
+    }
+
     private function handleResponseMassWithDataType(
         string $dataType,
         RequestInterface $request,
         ResponseInterface $response
     ): array {
         $rawContent = (string) $response->getBody();
-        if ($rawContent === '') {
+        $statusCode = $response->getStatusCode();
+        if ($rawContent === '' && $statusCode >= 200 && $statusCode <= 299) {
             return [null, $response->getStatusCode(), $response->getHeaders()];
         }
 
@@ -1562,37 +1695,44 @@ class AuditApi
             );
         }
 
-        if ($response->getStatusCode() < 200 || $response->getStatusCode() > 299) {
-            if (is_object($content)) {
-                $errorsClass = '\OpenAPI\Client\Model\Errors';
-                $error = ObjectSerializer::deserialize($content, $errorsClass, $response->getHeaders());
-                throw new ApiException(
-                    (string) $error,
-                    $response->getStatusCode(),
-                    $response->getHeaders(),
-                    $rawContent
-                );
+        if (($statusCode < 200 || $statusCode > 299)
+            && !(in_array($statusCode, [404, 412], true) && is_array($content))
+        ) {
+            $exception = new ApiException(
+                sprintf('[%d] Error connecting to the API (%s)', $statusCode, $request->getUri()),
+                $statusCode,
+                $response->getHeaders(),
+                $rawContent
+            );
+            if (is_object($content) && property_exists($content, 'errors')) {
+                try {
+                    $exception->setResponseObject(ObjectSerializer::deserialize(
+                        $content,
+                        '\OpenAPI\Client\Model\Errors',
+                        $response->getHeaders()
+                    ));
+                } catch (\InvalidArgumentException | \TypeError $deserializationException) {
+                    // Preserve the HTTP exception and raw response even if Errors is malformed.
+                }
             }
-
-            if (!is_array($content)) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $response->getStatusCode(),
-                    $response->getHeaders(),
-                    $rawContent
-                );
-            }
+            throw $exception;
         }
 
-        return [
-            ObjectSerializer::deserialize($content, $dataType, []),
-            $response->getStatusCode(),
-            $response->getHeaders()
-        ];
+        try {
+            $result = ObjectSerializer::deserialize($content, $dataType, $response->getHeaders());
+        } catch (\InvalidArgumentException | \TypeError $exception) {
+            if ($statusCode >= 200 && $statusCode <= 299) {
+                throw $exception;
+            }
+            throw new ApiException(
+                sprintf('Error deserializing batch response (%s): %s', $request->getUri(), $exception->getMessage()),
+                $statusCode,
+                $response->getHeaders(),
+                $rawContent
+            );
+        }
+
+        return [$result, $statusCode, $response->getHeaders()];
     }
 
     private function responseWithinRangeCode(

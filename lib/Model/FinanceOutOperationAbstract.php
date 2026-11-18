@@ -44,6 +44,35 @@ use \OpenAPI\Client\ObjectSerializer;
 class FinanceOutOperationAbstract implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const ENTITY_TYPE = null;
+
+    /** @return string[] Model alternatives in oneOf/anyOf, including those nested in allOf. */
+    public static function openAPIComposedTypes(): array
+    {
+        return [
+
+
+        ];
+    }
+
+    /** @var array<string, string> Fields declared by a composed schema outside this model. */
+    protected array $composedSchemaNames = [];
+
+    public function setComposedSchemaValue(string $property, string $jsonProperty, $value): void
+    {
+        $this->composedSchemaNames[$property] = $jsonProperty;
+        $this->container[$property] = $value;
+    }
+
+    public function getComposedSchemaValues(): array
+    {
+        $values = [];
+        foreach ($this->composedSchemaNames as $property => $jsonProperty) {
+            $values[$jsonProperty] = $this->container[$property];
+        }
+        return $values;
+    }
+
     protected static ?string $openAPIPolymorphicDiscriminatorPath = 'meta.type';
     protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
@@ -58,7 +87,8 @@ class FinanceOutOperationAbstract implements ModelInterface, ArrayAccess, \JsonS
         'invoicein' => 'FinanceOutOperationInvoiceIn',
         'purchaseorder' => 'FinanceOutOperationPurchaseOrder',
         'commissionreportout' => 'FinanceOutOperationCommissionReportOut',
-        'payroll' => 'FinanceOutOperationPayroll'
+        'payroll' => 'FinanceOutOperationPayroll',
+        
     ];
 
     /**
@@ -74,6 +104,7 @@ class FinanceOutOperationAbstract implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
+        'meta' => '\OpenAPI\Client\Model\Meta',
         'linked_sum' => 'float'
     ];
 
@@ -85,6 +116,7 @@ class FinanceOutOperationAbstract implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'meta' => null,
         'linked_sum' => 'double'
     ];
 
@@ -94,6 +126,7 @@ class FinanceOutOperationAbstract implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'meta' => false,
         'linked_sum' => false
     ];
 
@@ -139,13 +172,14 @@ class FinanceOutOperationAbstract implements ModelInterface, ArrayAccess, \JsonS
      *
      * @return array
      */
-    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    public static function openAPIPolymorphicDiscriminatorMappings(string $href = ''): array
     {
-        return self::$openAPIPolymorphicDiscriminatorMappings;
+        $mappings = self::$openAPIPolymorphicDiscriminatorMappings;
+        return $mappings;
     }
 
     /**
-     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * Whether batch-error-shaped payloads should resolve to Errors when nested
      * discriminator mappings do not match.
      *
      * @return bool
@@ -214,6 +248,7 @@ class FinanceOutOperationAbstract implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
+        'meta' => 'meta',
         'linked_sum' => 'linkedSum'
     ];
 
@@ -223,6 +258,7 @@ class FinanceOutOperationAbstract implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
+        'meta' => 'setMeta',
         'linked_sum' => 'setLinkedSum'
     ];
 
@@ -232,6 +268,7 @@ class FinanceOutOperationAbstract implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
+        'meta' => 'getMeta',
         'linked_sum' => 'getLinkedSum'
     ];
 
@@ -295,6 +332,7 @@ class FinanceOutOperationAbstract implements ModelInterface, ArrayAccess, \JsonS
     public function __construct(?array $data = null)
     {
         
+        $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('linked_sum', $data ?? [], null);
     }
 
@@ -328,6 +366,9 @@ class FinanceOutOperationAbstract implements ModelInterface, ArrayAccess, \JsonS
         $invalidProperties = [];
         
 
+        if ($this->container['meta'] === null) {
+            $invalidProperties[] = "'meta' can't be null";
+        }
         if ($this->container['linked_sum'] === null) {
             $invalidProperties[] = "'linked_sum' can't be null";
         }
@@ -345,6 +386,33 @@ class FinanceOutOperationAbstract implements ModelInterface, ArrayAccess, \JsonS
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets meta
+     *
+     * @return \OpenAPI\Client\Model\Meta
+     */
+    public function getMeta()
+    {
+        return $this->container['meta'];
+    }
+
+    /**
+     * Sets meta
+     *
+     * @param \OpenAPI\Client\Model\Meta $meta meta
+     *
+     * @return self
+     */
+    public function setMeta($meta)
+    {
+        if (is_null($meta)) {
+            throw new \InvalidArgumentException('non-nullable meta cannot be null');
+        }
+        $this->container['meta'] = $meta;
+
+        return $this;
+    }
 
     /**
      * Gets linked_sum
@@ -423,7 +491,7 @@ class FinanceOutOperationAbstract implements ModelInterface, ArrayAccess, \JsonS
      */
     public function offsetUnset($offset): void
     {
-        unset($this->container[$offset]);
+        unset($this->container[$offset], $this->composedSchemaNames[$offset]);
     }
 
     /**

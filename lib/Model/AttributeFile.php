@@ -41,6 +41,35 @@ use \OpenAPI\Client\ObjectSerializer;
 class AttributeFile extends AttributeAbstract 
 {
     public const DISCRIMINATOR = null;
+    public const ENTITY_TYPE = null;
+
+    /** @return string[] Model alternatives in oneOf/anyOf, including those nested in allOf. */
+    public static function openAPIComposedTypes(): array
+    {
+        return [
+
+
+        ];
+    }
+
+    /** @var array<string, string> Fields declared by a composed schema outside this model. */
+    protected array $composedSchemaNames = [];
+
+    public function setComposedSchemaValue(string $property, string $jsonProperty, $value): void
+    {
+        $this->composedSchemaNames[$property] = $jsonProperty;
+        $this->container[$property] = $value;
+    }
+
+    public function getComposedSchemaValues(): array
+    {
+        $values = [];
+        foreach ($this->composedSchemaNames as $property => $jsonProperty) {
+            $values[$jsonProperty] = $this->container[$property];
+        }
+        return $values;
+    }
+
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
     protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
@@ -68,6 +97,7 @@ class AttributeFile extends AttributeAbstract
     protected static $openAPITypes = [
         'type' => 'string',
         'value' => 'string',
+        'file' => '\OpenAPI\Client\Model\FileUpload',
         'download' => 'object'
     ];
 
@@ -81,6 +111,7 @@ class AttributeFile extends AttributeAbstract
     protected static $openAPIFormats = [
         'type' => null,
         'value' => null,
+        'file' => null,
         'download' => null
     ];
 
@@ -92,6 +123,7 @@ class AttributeFile extends AttributeAbstract
     protected static array $openAPINullables = [
         'type' => false,
         'value' => false,
+        'file' => true,
         'download' => false
     ];
 
@@ -137,13 +169,14 @@ class AttributeFile extends AttributeAbstract
      *
      * @return array
      */
-    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    public static function openAPIPolymorphicDiscriminatorMappings(string $href = ''): array
     {
-        return self::$openAPIPolymorphicDiscriminatorMappings;
+        $mappings = self::$openAPIPolymorphicDiscriminatorMappings;
+        return $mappings;
     }
 
     /**
-     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * Whether batch-error-shaped payloads should resolve to Errors when nested
      * discriminator mappings do not match.
      *
      * @return bool
@@ -214,6 +247,7 @@ class AttributeFile extends AttributeAbstract
     protected static $attributeMap = [
         'type' => 'type',
         'value' => 'value',
+        'file' => 'file',
         'download' => 'download'
     ];
 
@@ -225,6 +259,7 @@ class AttributeFile extends AttributeAbstract
     protected static $setters = [
         'type' => 'setType',
         'value' => 'setValue',
+        'file' => 'setFile',
         'download' => 'setDownload'
     ];
 
@@ -236,6 +271,7 @@ class AttributeFile extends AttributeAbstract
     protected static $getters = [
         'type' => 'getType',
         'value' => 'getValue',
+        'file' => 'getFile',
         'download' => 'getDownload'
     ];
 
@@ -309,6 +345,7 @@ class AttributeFile extends AttributeAbstract
         
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('file', $data ?? [], null);
         $this->setIfExists('download', $data ?? [], null);
     }
 
@@ -430,6 +467,40 @@ class AttributeFile extends AttributeAbstract
     }
 
     /**
+     * Gets file
+     *
+     * @return \OpenAPI\Client\Model\FileUpload|null
+     */
+    public function getFile()
+    {
+        return $this->container['file'];
+    }
+
+    /**
+     * Sets file
+     *
+     * @param \OpenAPI\Client\Model\FileUpload|null $file Файл для загрузки. Для очистки передается null.
+     *
+     * @return self
+     */
+    public function setFile($file)
+    {
+        if (is_null($file)) {
+            array_push($this->openAPINullablesSetToNull, 'file');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('file', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['file'] = $file;
+
+        return $this;
+    }
+
+    /**
      * Gets download
      *
      * @return object|null
@@ -506,7 +577,7 @@ class AttributeFile extends AttributeAbstract
      */
     public function offsetUnset($offset): void
     {
-        unset($this->container[$offset]);
+        unset($this->container[$offset], $this->composedSchemaNames[$offset]);
     }
 
     /**

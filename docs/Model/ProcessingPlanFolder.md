@@ -17,6 +17,6 @@ Name | Type | Description | Notes
 **updated** | **string** | Момент последнего обновления сущности | [optional] [readonly]
 **group** | [**\OpenAPI\Client\Model\Group**](Group.md) |  | [optional]
 **owner** | [**\OpenAPI\Client\Model\Employee**](Employee.md) | Метаданные владельца (сотрудника) | [optional]
-**processingplanfolder** | [**\OpenAPI\Client\Model\ProcessingPlanFolder**](ProcessingPlanFolder.md) | Родительская Группа техкарт. Для смены иерархии и поля pathName обновите эту ссылку | [optional]
+**parent** | [**\OpenAPI\Client\Model\ProcessingPlanFolder**](ProcessingPlanFolder.md) | Родительская Группа техкарт. Для смены иерархии и поля pathName обновите эту ссылку | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

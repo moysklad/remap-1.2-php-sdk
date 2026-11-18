@@ -171,7 +171,7 @@ class DiscountsApi
      *
      * @param  \OpenAPI\Client\Model\AccumulationDiscount $accumulation_discount accumulation_discount (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createAccumulationDiscount'] to see the possible values for this operation
      *
@@ -179,7 +179,7 @@ class DiscountsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AccumulationDiscount|\OpenAPI\Client\Model\Errors
      */
-    public function createAccumulationDiscount($accumulation_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createAccumulationDiscount'][0])
+    public function createAccumulationDiscount($accumulation_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createAccumulationDiscount'][0])
     {
         list($response) = $this->createAccumulationDiscountWithHttpInfo($accumulation_discount, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -192,7 +192,7 @@ class DiscountsApi
      *
      * @param  \OpenAPI\Client\Model\AccumulationDiscount $accumulation_discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createAccumulationDiscount'] to see the possible values for this operation
      *
@@ -200,11 +200,14 @@ class DiscountsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AccumulationDiscount|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createAccumulationDiscountWithHttpInfo($accumulation_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createAccumulationDiscount'][0])
+    public function createAccumulationDiscountWithHttpInfo($accumulation_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createAccumulationDiscount'][0])
     {
         $request = $this->createAccumulationDiscountRequest($accumulation_discount, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AccumulationDiscount')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -225,6 +228,13 @@ class DiscountsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AccumulationDiscount')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\AccumulationDiscount',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -263,6 +273,9 @@ class DiscountsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AccumulationDiscount')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -293,14 +306,14 @@ class DiscountsApi
      *
      * @param  \OpenAPI\Client\Model\AccumulationDiscount $accumulation_discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createAccumulationDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createAccumulationDiscountAsync($accumulation_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createAccumulationDiscount'][0])
+    public function createAccumulationDiscountAsync($accumulation_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createAccumulationDiscount'][0])
     {
         return $this->createAccumulationDiscountAsyncWithHttpInfo($accumulation_discount, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -317,23 +330,33 @@ class DiscountsApi
      *
      * @param  \OpenAPI\Client\Model\AccumulationDiscount $accumulation_discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createAccumulationDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createAccumulationDiscountAsyncWithHttpInfo($accumulation_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createAccumulationDiscount'][0])
+    public function createAccumulationDiscountAsyncWithHttpInfo($accumulation_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createAccumulationDiscount'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AccumulationDiscount';
         $request = $this->createAccumulationDiscountRequest($accumulation_discount, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\AccumulationDiscount')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -371,14 +394,14 @@ class DiscountsApi
      *
      * @param  \OpenAPI\Client\Model\AccumulationDiscount $accumulation_discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createAccumulationDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createAccumulationDiscountRequest($accumulation_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createAccumulationDiscount'][0])
+    public function createAccumulationDiscountRequest($accumulation_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createAccumulationDiscount'][0])
     {
 
         // verify the required parameter 'accumulation_discount' is set
@@ -402,7 +425,7 @@ class DiscountsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -416,7 +439,7 @@ class DiscountsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -467,10 +490,21 @@ class DiscountsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -490,7 +524,7 @@ class DiscountsApi
      *
      * @param  \OpenAPI\Client\Model\PersonalDiscount $personal_discount personal_discount (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPersonalDiscount'] to see the possible values for this operation
      *
@@ -498,7 +532,7 @@ class DiscountsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\PersonalDiscount|\OpenAPI\Client\Model\Errors
      */
-    public function createPersonalDiscount($personal_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPersonalDiscount'][0])
+    public function createPersonalDiscount($personal_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPersonalDiscount'][0])
     {
         list($response) = $this->createPersonalDiscountWithHttpInfo($personal_discount, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -511,7 +545,7 @@ class DiscountsApi
      *
      * @param  \OpenAPI\Client\Model\PersonalDiscount $personal_discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPersonalDiscount'] to see the possible values for this operation
      *
@@ -519,11 +553,14 @@ class DiscountsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\PersonalDiscount|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createPersonalDiscountWithHttpInfo($personal_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPersonalDiscount'][0])
+    public function createPersonalDiscountWithHttpInfo($personal_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPersonalDiscount'][0])
     {
         $request = $this->createPersonalDiscountRequest($personal_discount, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PersonalDiscount')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -544,6 +581,13 @@ class DiscountsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PersonalDiscount')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\PersonalDiscount',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -582,6 +626,9 @@ class DiscountsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PersonalDiscount')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -612,14 +659,14 @@ class DiscountsApi
      *
      * @param  \OpenAPI\Client\Model\PersonalDiscount $personal_discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPersonalDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPersonalDiscountAsync($personal_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPersonalDiscount'][0])
+    public function createPersonalDiscountAsync($personal_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPersonalDiscount'][0])
     {
         return $this->createPersonalDiscountAsyncWithHttpInfo($personal_discount, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -636,23 +683,33 @@ class DiscountsApi
      *
      * @param  \OpenAPI\Client\Model\PersonalDiscount $personal_discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPersonalDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPersonalDiscountAsyncWithHttpInfo($personal_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPersonalDiscount'][0])
+    public function createPersonalDiscountAsyncWithHttpInfo($personal_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPersonalDiscount'][0])
     {
         $returnType = '\OpenAPI\Client\Model\PersonalDiscount';
         $request = $this->createPersonalDiscountRequest($personal_discount, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\PersonalDiscount')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -690,14 +747,14 @@ class DiscountsApi
      *
      * @param  \OpenAPI\Client\Model\PersonalDiscount $personal_discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPersonalDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createPersonalDiscountRequest($personal_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createPersonalDiscount'][0])
+    public function createPersonalDiscountRequest($personal_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createPersonalDiscount'][0])
     {
 
         // verify the required parameter 'personal_discount' is set
@@ -721,7 +778,7 @@ class DiscountsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -735,7 +792,7 @@ class DiscountsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -786,10 +843,21 @@ class DiscountsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -809,7 +877,7 @@ class DiscountsApi
      *
      * @param  \OpenAPI\Client\Model\SpecialPriceDiscount $special_price_discount special_price_discount (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSpecialPriceDiscount'] to see the possible values for this operation
      *
@@ -817,7 +885,7 @@ class DiscountsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\SpecialPriceDiscount|\OpenAPI\Client\Model\Errors
      */
-    public function createSpecialPriceDiscount($special_price_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSpecialPriceDiscount'][0])
+    public function createSpecialPriceDiscount($special_price_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createSpecialPriceDiscount'][0])
     {
         list($response) = $this->createSpecialPriceDiscountWithHttpInfo($special_price_discount, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -830,7 +898,7 @@ class DiscountsApi
      *
      * @param  \OpenAPI\Client\Model\SpecialPriceDiscount $special_price_discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSpecialPriceDiscount'] to see the possible values for this operation
      *
@@ -838,11 +906,14 @@ class DiscountsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\SpecialPriceDiscount|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createSpecialPriceDiscountWithHttpInfo($special_price_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSpecialPriceDiscount'][0])
+    public function createSpecialPriceDiscountWithHttpInfo($special_price_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createSpecialPriceDiscount'][0])
     {
         $request = $this->createSpecialPriceDiscountRequest($special_price_discount, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\SpecialPriceDiscount')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -863,6 +934,13 @@ class DiscountsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\SpecialPriceDiscount')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\SpecialPriceDiscount',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -901,6 +979,9 @@ class DiscountsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\SpecialPriceDiscount')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -931,14 +1012,14 @@ class DiscountsApi
      *
      * @param  \OpenAPI\Client\Model\SpecialPriceDiscount $special_price_discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSpecialPriceDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createSpecialPriceDiscountAsync($special_price_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSpecialPriceDiscount'][0])
+    public function createSpecialPriceDiscountAsync($special_price_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createSpecialPriceDiscount'][0])
     {
         return $this->createSpecialPriceDiscountAsyncWithHttpInfo($special_price_discount, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -955,23 +1036,33 @@ class DiscountsApi
      *
      * @param  \OpenAPI\Client\Model\SpecialPriceDiscount $special_price_discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSpecialPriceDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createSpecialPriceDiscountAsyncWithHttpInfo($special_price_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSpecialPriceDiscount'][0])
+    public function createSpecialPriceDiscountAsyncWithHttpInfo($special_price_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createSpecialPriceDiscount'][0])
     {
         $returnType = '\OpenAPI\Client\Model\SpecialPriceDiscount';
         $request = $this->createSpecialPriceDiscountRequest($special_price_discount, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\SpecialPriceDiscount')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1009,14 +1100,14 @@ class DiscountsApi
      *
      * @param  \OpenAPI\Client\Model\SpecialPriceDiscount $special_price_discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createSpecialPriceDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createSpecialPriceDiscountRequest($special_price_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['createSpecialPriceDiscount'][0])
+    public function createSpecialPriceDiscountRequest($special_price_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['createSpecialPriceDiscount'][0])
     {
 
         // verify the required parameter 'special_price_discount' is set
@@ -1040,7 +1131,7 @@ class DiscountsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -1054,7 +1145,7 @@ class DiscountsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1105,10 +1196,21 @@ class DiscountsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -1128,14 +1230,14 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAccumulationDiscount'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deleteAccumulationDiscount($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteAccumulationDiscount'][0])
+    public function deleteAccumulationDiscount($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteAccumulationDiscount'][0])
     {
         $this->deleteAccumulationDiscountWithHttpInfo($id, $accept, $accept_encoding, $contentType);
     }
@@ -1147,18 +1249,21 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAccumulationDiscount'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteAccumulationDiscountWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteAccumulationDiscount'][0])
+    public function deleteAccumulationDiscountWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteAccumulationDiscount'][0])
     {
         $request = $this->deleteAccumulationDiscountRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1182,6 +1287,9 @@ class DiscountsApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -1204,13 +1312,13 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAccumulationDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteAccumulationDiscountAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteAccumulationDiscount'][0])
+    public function deleteAccumulationDiscountAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteAccumulationDiscount'][0])
     {
         return $this->deleteAccumulationDiscountAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -1227,17 +1335,20 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAccumulationDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteAccumulationDiscountAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteAccumulationDiscount'][0])
+    public function deleteAccumulationDiscountAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteAccumulationDiscount'][0])
     {
         $returnType = '';
         $request = $this->deleteAccumulationDiscountRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -1267,13 +1378,13 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAccumulationDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteAccumulationDiscountRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteAccumulationDiscount'][0])
+    public function deleteAccumulationDiscountRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteAccumulationDiscount'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -1296,7 +1407,7 @@ class DiscountsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -1314,7 +1425,7 @@ class DiscountsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1358,10 +1469,18 @@ class DiscountsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -1381,14 +1500,14 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePersonalDiscount'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deletePersonalDiscount($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePersonalDiscount'][0])
+    public function deletePersonalDiscount($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePersonalDiscount'][0])
     {
         $this->deletePersonalDiscountWithHttpInfo($id, $accept, $accept_encoding, $contentType);
     }
@@ -1400,18 +1519,21 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePersonalDiscount'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deletePersonalDiscountWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePersonalDiscount'][0])
+    public function deletePersonalDiscountWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePersonalDiscount'][0])
     {
         $request = $this->deletePersonalDiscountRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1435,6 +1557,9 @@ class DiscountsApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -1457,13 +1582,13 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePersonalDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePersonalDiscountAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePersonalDiscount'][0])
+    public function deletePersonalDiscountAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePersonalDiscount'][0])
     {
         return $this->deletePersonalDiscountAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -1480,17 +1605,20 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePersonalDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePersonalDiscountAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePersonalDiscount'][0])
+    public function deletePersonalDiscountAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePersonalDiscount'][0])
     {
         $returnType = '';
         $request = $this->deletePersonalDiscountRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -1520,13 +1648,13 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePersonalDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deletePersonalDiscountRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deletePersonalDiscount'][0])
+    public function deletePersonalDiscountRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deletePersonalDiscount'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -1549,7 +1677,7 @@ class DiscountsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -1567,7 +1695,7 @@ class DiscountsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1611,10 +1739,18 @@ class DiscountsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -1634,14 +1770,14 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSpecialPriceDiscount'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deleteSpecialPriceDiscount($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteSpecialPriceDiscount'][0])
+    public function deleteSpecialPriceDiscount($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteSpecialPriceDiscount'][0])
     {
         $this->deleteSpecialPriceDiscountWithHttpInfo($id, $accept, $accept_encoding, $contentType);
     }
@@ -1653,18 +1789,21 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSpecialPriceDiscount'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteSpecialPriceDiscountWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteSpecialPriceDiscount'][0])
+    public function deleteSpecialPriceDiscountWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteSpecialPriceDiscount'][0])
     {
         $request = $this->deleteSpecialPriceDiscountRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1688,6 +1827,9 @@ class DiscountsApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 default:
                     $data = ObjectSerializer::deserialize(
@@ -1710,13 +1852,13 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSpecialPriceDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteSpecialPriceDiscountAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteSpecialPriceDiscount'][0])
+    public function deleteSpecialPriceDiscountAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteSpecialPriceDiscount'][0])
     {
         return $this->deleteSpecialPriceDiscountAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -1733,17 +1875,20 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSpecialPriceDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteSpecialPriceDiscountAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteSpecialPriceDiscount'][0])
+    public function deleteSpecialPriceDiscountAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteSpecialPriceDiscount'][0])
     {
         $returnType = '';
         $request = $this->deleteSpecialPriceDiscountRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
@@ -1773,13 +1918,13 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSpecialPriceDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteSpecialPriceDiscountRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['deleteSpecialPriceDiscount'][0])
+    public function deleteSpecialPriceDiscountRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['deleteSpecialPriceDiscount'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -1802,7 +1947,7 @@ class DiscountsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -1820,7 +1965,7 @@ class DiscountsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1864,10 +2009,18 @@ class DiscountsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -1887,14 +2040,14 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccumulationDiscountById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AccumulationDiscount|\OpenAPI\Client\Model\Errors
      */
-    public function getAccumulationDiscountById($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getAccumulationDiscountById'][0])
+    public function getAccumulationDiscountById($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getAccumulationDiscountById'][0])
     {
         list($response) = $this->getAccumulationDiscountByIdWithHttpInfo($id, $accept, $accept_encoding, $contentType);
         return $response;
@@ -1907,18 +2060,21 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccumulationDiscountById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AccumulationDiscount|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getAccumulationDiscountByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getAccumulationDiscountById'][0])
+    public function getAccumulationDiscountByIdWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getAccumulationDiscountById'][0])
     {
         $request = $this->getAccumulationDiscountByIdRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AccumulationDiscount')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1939,6 +2095,13 @@ class DiscountsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AccumulationDiscount')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\AccumulationDiscount',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -1977,6 +2140,9 @@ class DiscountsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AccumulationDiscount')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -2007,13 +2173,13 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccumulationDiscountById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAccumulationDiscountByIdAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getAccumulationDiscountById'][0])
+    public function getAccumulationDiscountByIdAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getAccumulationDiscountById'][0])
     {
         return $this->getAccumulationDiscountByIdAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -2030,22 +2196,32 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccumulationDiscountById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAccumulationDiscountByIdAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getAccumulationDiscountById'][0])
+    public function getAccumulationDiscountByIdAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getAccumulationDiscountById'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AccumulationDiscount';
         $request = $this->getAccumulationDiscountByIdRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\AccumulationDiscount')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2083,13 +2259,13 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccumulationDiscountById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getAccumulationDiscountByIdRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getAccumulationDiscountById'][0])
+    public function getAccumulationDiscountByIdRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getAccumulationDiscountById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -2112,7 +2288,7 @@ class DiscountsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -2130,7 +2306,7 @@ class DiscountsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -2174,10 +2350,18 @@ class DiscountsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -2198,7 +2382,7 @@ class DiscountsApi
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDiscounts'] to see the possible values for this operation
      *
@@ -2206,7 +2390,7 @@ class DiscountsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\DiscountList|\OpenAPI\Client\Model\Errors
      */
-    public function getDiscounts($limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, string $contentType = self::contentTypes['getDiscounts'][0])
+    public function getDiscounts($limit = 1000, $offset = 0, $accept = null, $accept_encoding = null, $expand = null, string $contentType = self::contentTypes['getDiscounts'][0])
     {
         list($response) = $this->getDiscountsWithHttpInfo($limit, $offset, $accept, $accept_encoding, $expand, $contentType);
         return $response;
@@ -2220,7 +2404,7 @@ class DiscountsApi
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDiscounts'] to see the possible values for this operation
      *
@@ -2228,11 +2412,14 @@ class DiscountsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\DiscountList|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getDiscountsWithHttpInfo($limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, string $contentType = self::contentTypes['getDiscounts'][0])
+    public function getDiscountsWithHttpInfo($limit = 1000, $offset = 0, $accept = null, $accept_encoding = null, $expand = null, string $contentType = self::contentTypes['getDiscounts'][0])
     {
         $request = $this->getDiscountsRequest($limit, $offset, $accept, $accept_encoding, $expand, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DiscountList')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -2253,6 +2440,13 @@ class DiscountsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DiscountList')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\DiscountList',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -2291,6 +2485,9 @@ class DiscountsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\DiscountList')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -2322,14 +2519,14 @@ class DiscountsApi
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDiscounts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getDiscountsAsync($limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, string $contentType = self::contentTypes['getDiscounts'][0])
+    public function getDiscountsAsync($limit = 1000, $offset = 0, $accept = null, $accept_encoding = null, $expand = null, string $contentType = self::contentTypes['getDiscounts'][0])
     {
         return $this->getDiscountsAsyncWithHttpInfo($limit, $offset, $accept, $accept_encoding, $expand, $contentType)
             ->then(
@@ -2347,23 +2544,33 @@ class DiscountsApi
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDiscounts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getDiscountsAsyncWithHttpInfo($limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, string $contentType = self::contentTypes['getDiscounts'][0])
+    public function getDiscountsAsyncWithHttpInfo($limit = 1000, $offset = 0, $accept = null, $accept_encoding = null, $expand = null, string $contentType = self::contentTypes['getDiscounts'][0])
     {
         $returnType = '\OpenAPI\Client\Model\DiscountList';
         $request = $this->getDiscountsRequest($limit, $offset, $accept, $accept_encoding, $expand, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\DiscountList')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2402,14 +2609,14 @@ class DiscountsApi
      * @param  int|null $limit Максимальное количество элементов в выданном списке (максимум 1000) (optional, default to 1000)
      * @param  int|null $offset Отступ в выданном списке (optional, default to 0)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $expand Замена ссылок объектами с помощью expand (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDiscounts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getDiscountsRequest($limit = 1000, $offset = 0, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $expand = null, string $contentType = self::contentTypes['getDiscounts'][0])
+    public function getDiscountsRequest($limit = 1000, $offset = 0, $accept = null, $accept_encoding = null, $expand = null, string $contentType = self::contentTypes['getDiscounts'][0])
     {
 
         if ($limit !== null && $limit > 1000) {
@@ -2464,7 +2671,7 @@ class DiscountsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -2474,7 +2681,7 @@ class DiscountsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -2518,10 +2725,18 @@ class DiscountsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -2541,14 +2756,14 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPersonalDiscountById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\PersonalDiscount|\OpenAPI\Client\Model\Errors
      */
-    public function getPersonalDiscountById($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPersonalDiscountById'][0])
+    public function getPersonalDiscountById($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPersonalDiscountById'][0])
     {
         list($response) = $this->getPersonalDiscountByIdWithHttpInfo($id, $accept, $accept_encoding, $contentType);
         return $response;
@@ -2561,18 +2776,21 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPersonalDiscountById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\PersonalDiscount|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPersonalDiscountByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPersonalDiscountById'][0])
+    public function getPersonalDiscountByIdWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPersonalDiscountById'][0])
     {
         $request = $this->getPersonalDiscountByIdRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PersonalDiscount')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -2593,6 +2811,13 @@ class DiscountsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PersonalDiscount')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\PersonalDiscount',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -2631,6 +2856,9 @@ class DiscountsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PersonalDiscount')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -2661,13 +2889,13 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPersonalDiscountById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPersonalDiscountByIdAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPersonalDiscountById'][0])
+    public function getPersonalDiscountByIdAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPersonalDiscountById'][0])
     {
         return $this->getPersonalDiscountByIdAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -2684,22 +2912,32 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPersonalDiscountById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPersonalDiscountByIdAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPersonalDiscountById'][0])
+    public function getPersonalDiscountByIdAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPersonalDiscountById'][0])
     {
         $returnType = '\OpenAPI\Client\Model\PersonalDiscount';
         $request = $this->getPersonalDiscountByIdRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\PersonalDiscount')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2737,13 +2975,13 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPersonalDiscountById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPersonalDiscountByIdRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getPersonalDiscountById'][0])
+    public function getPersonalDiscountByIdRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getPersonalDiscountById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -2766,7 +3004,7 @@ class DiscountsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -2784,7 +3022,7 @@ class DiscountsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -2828,10 +3066,18 @@ class DiscountsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -2851,14 +3097,14 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSpecialPriceDiscountById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\SpecialPriceDiscount|\OpenAPI\Client\Model\Errors
      */
-    public function getSpecialPriceDiscountById($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getSpecialPriceDiscountById'][0])
+    public function getSpecialPriceDiscountById($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getSpecialPriceDiscountById'][0])
     {
         list($response) = $this->getSpecialPriceDiscountByIdWithHttpInfo($id, $accept, $accept_encoding, $contentType);
         return $response;
@@ -2871,18 +3117,21 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSpecialPriceDiscountById'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\SpecialPriceDiscount|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getSpecialPriceDiscountByIdWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getSpecialPriceDiscountById'][0])
+    public function getSpecialPriceDiscountByIdWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getSpecialPriceDiscountById'][0])
     {
         $request = $this->getSpecialPriceDiscountByIdRequest($id, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\SpecialPriceDiscount')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -2903,6 +3152,13 @@ class DiscountsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\SpecialPriceDiscount')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\SpecialPriceDiscount',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -2941,6 +3197,9 @@ class DiscountsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\SpecialPriceDiscount')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -2971,13 +3230,13 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSpecialPriceDiscountById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSpecialPriceDiscountByIdAsync($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getSpecialPriceDiscountById'][0])
+    public function getSpecialPriceDiscountByIdAsync($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getSpecialPriceDiscountById'][0])
     {
         return $this->getSpecialPriceDiscountByIdAsyncWithHttpInfo($id, $accept, $accept_encoding, $contentType)
             ->then(
@@ -2994,22 +3253,32 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSpecialPriceDiscountById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSpecialPriceDiscountByIdAsyncWithHttpInfo($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getSpecialPriceDiscountById'][0])
+    public function getSpecialPriceDiscountByIdAsyncWithHttpInfo($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getSpecialPriceDiscountById'][0])
     {
         $returnType = '\OpenAPI\Client\Model\SpecialPriceDiscount';
         $request = $this->getSpecialPriceDiscountByIdRequest($id, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\SpecialPriceDiscount')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3047,13 +3316,13 @@ class DiscountsApi
      *
      * @param  string $id ID сущности (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSpecialPriceDiscountById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSpecialPriceDiscountByIdRequest($id, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getSpecialPriceDiscountById'][0])
+    public function getSpecialPriceDiscountByIdRequest($id, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getSpecialPriceDiscountById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -3076,7 +3345,7 @@ class DiscountsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -3094,7 +3363,7 @@ class DiscountsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -3138,10 +3407,18 @@ class DiscountsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -3162,7 +3439,7 @@ class DiscountsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\AccumulationDiscount $accumulation_discount accumulation_discount (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateAccumulationDiscount'] to see the possible values for this operation
      *
@@ -3170,7 +3447,7 @@ class DiscountsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AccumulationDiscount|\OpenAPI\Client\Model\Errors
      */
-    public function updateAccumulationDiscount($id, $accumulation_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateAccumulationDiscount'][0])
+    public function updateAccumulationDiscount($id, $accumulation_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateAccumulationDiscount'][0])
     {
         list($response) = $this->updateAccumulationDiscountWithHttpInfo($id, $accumulation_discount, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -3184,7 +3461,7 @@ class DiscountsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\AccumulationDiscount $accumulation_discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateAccumulationDiscount'] to see the possible values for this operation
      *
@@ -3192,11 +3469,14 @@ class DiscountsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AccumulationDiscount|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateAccumulationDiscountWithHttpInfo($id, $accumulation_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateAccumulationDiscount'][0])
+    public function updateAccumulationDiscountWithHttpInfo($id, $accumulation_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateAccumulationDiscount'][0])
     {
         $request = $this->updateAccumulationDiscountRequest($id, $accumulation_discount, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AccumulationDiscount')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -3217,6 +3497,13 @@ class DiscountsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AccumulationDiscount')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\AccumulationDiscount',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -3255,6 +3542,9 @@ class DiscountsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\AccumulationDiscount')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -3286,14 +3576,14 @@ class DiscountsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\AccumulationDiscount $accumulation_discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateAccumulationDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateAccumulationDiscountAsync($id, $accumulation_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateAccumulationDiscount'][0])
+    public function updateAccumulationDiscountAsync($id, $accumulation_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateAccumulationDiscount'][0])
     {
         return $this->updateAccumulationDiscountAsyncWithHttpInfo($id, $accumulation_discount, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -3311,23 +3601,33 @@ class DiscountsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\AccumulationDiscount $accumulation_discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateAccumulationDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateAccumulationDiscountAsyncWithHttpInfo($id, $accumulation_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateAccumulationDiscount'][0])
+    public function updateAccumulationDiscountAsyncWithHttpInfo($id, $accumulation_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateAccumulationDiscount'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AccumulationDiscount';
         $request = $this->updateAccumulationDiscountRequest($id, $accumulation_discount, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\AccumulationDiscount')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3366,14 +3666,14 @@ class DiscountsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\AccumulationDiscount $accumulation_discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateAccumulationDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateAccumulationDiscountRequest($id, $accumulation_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateAccumulationDiscount'][0])
+    public function updateAccumulationDiscountRequest($id, $accumulation_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateAccumulationDiscount'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -3404,7 +3704,7 @@ class DiscountsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -3426,7 +3726,7 @@ class DiscountsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -3477,10 +3777,21 @@ class DiscountsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -3501,7 +3812,7 @@ class DiscountsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\Discount $discount discount (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateDiscountRoundingById'] to see the possible values for this operation
      *
@@ -3509,7 +3820,7 @@ class DiscountsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Discount|\OpenAPI\Client\Model\Errors
      */
-    public function updateDiscountRoundingById($id, $discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateDiscountRoundingById'][0])
+    public function updateDiscountRoundingById($id, $discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateDiscountRoundingById'][0])
     {
         list($response) = $this->updateDiscountRoundingByIdWithHttpInfo($id, $discount, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -3523,7 +3834,7 @@ class DiscountsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\Discount $discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateDiscountRoundingById'] to see the possible values for this operation
      *
@@ -3531,11 +3842,14 @@ class DiscountsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Discount|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateDiscountRoundingByIdWithHttpInfo($id, $discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateDiscountRoundingById'][0])
+    public function updateDiscountRoundingByIdWithHttpInfo($id, $discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateDiscountRoundingById'][0])
     {
         $request = $this->updateDiscountRoundingByIdRequest($id, $discount, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Discount')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -3556,6 +3870,13 @@ class DiscountsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Discount')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\Discount',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -3594,6 +3915,9 @@ class DiscountsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\Discount')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -3625,14 +3949,14 @@ class DiscountsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\Discount $discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateDiscountRoundingById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateDiscountRoundingByIdAsync($id, $discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateDiscountRoundingById'][0])
+    public function updateDiscountRoundingByIdAsync($id, $discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateDiscountRoundingById'][0])
     {
         return $this->updateDiscountRoundingByIdAsyncWithHttpInfo($id, $discount, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -3650,23 +3974,33 @@ class DiscountsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\Discount $discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateDiscountRoundingById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateDiscountRoundingByIdAsyncWithHttpInfo($id, $discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateDiscountRoundingById'][0])
+    public function updateDiscountRoundingByIdAsyncWithHttpInfo($id, $discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateDiscountRoundingById'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Discount';
         $request = $this->updateDiscountRoundingByIdRequest($id, $discount, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\Discount')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3705,14 +4039,14 @@ class DiscountsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\Discount $discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateDiscountRoundingById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateDiscountRoundingByIdRequest($id, $discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateDiscountRoundingById'][0])
+    public function updateDiscountRoundingByIdRequest($id, $discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateDiscountRoundingById'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -3743,7 +4077,7 @@ class DiscountsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -3765,7 +4099,7 @@ class DiscountsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -3816,10 +4150,21 @@ class DiscountsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -3840,7 +4185,7 @@ class DiscountsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\PersonalDiscount $personal_discount personal_discount (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePersonalDiscount'] to see the possible values for this operation
      *
@@ -3848,7 +4193,7 @@ class DiscountsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\PersonalDiscount|\OpenAPI\Client\Model\Errors
      */
-    public function updatePersonalDiscount($id, $personal_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePersonalDiscount'][0])
+    public function updatePersonalDiscount($id, $personal_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePersonalDiscount'][0])
     {
         list($response) = $this->updatePersonalDiscountWithHttpInfo($id, $personal_discount, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -3862,7 +4207,7 @@ class DiscountsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\PersonalDiscount $personal_discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePersonalDiscount'] to see the possible values for this operation
      *
@@ -3870,11 +4215,14 @@ class DiscountsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\PersonalDiscount|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updatePersonalDiscountWithHttpInfo($id, $personal_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePersonalDiscount'][0])
+    public function updatePersonalDiscountWithHttpInfo($id, $personal_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePersonalDiscount'][0])
     {
         $request = $this->updatePersonalDiscountRequest($id, $personal_discount, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PersonalDiscount')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -3895,6 +4243,13 @@ class DiscountsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PersonalDiscount')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\PersonalDiscount',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -3933,6 +4288,9 @@ class DiscountsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\PersonalDiscount')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -3964,14 +4322,14 @@ class DiscountsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\PersonalDiscount $personal_discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePersonalDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePersonalDiscountAsync($id, $personal_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePersonalDiscount'][0])
+    public function updatePersonalDiscountAsync($id, $personal_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePersonalDiscount'][0])
     {
         return $this->updatePersonalDiscountAsyncWithHttpInfo($id, $personal_discount, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -3989,23 +4347,33 @@ class DiscountsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\PersonalDiscount $personal_discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePersonalDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePersonalDiscountAsyncWithHttpInfo($id, $personal_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePersonalDiscount'][0])
+    public function updatePersonalDiscountAsyncWithHttpInfo($id, $personal_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePersonalDiscount'][0])
     {
         $returnType = '\OpenAPI\Client\Model\PersonalDiscount';
         $request = $this->updatePersonalDiscountRequest($id, $personal_discount, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\PersonalDiscount')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4044,14 +4412,14 @@ class DiscountsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\PersonalDiscount $personal_discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePersonalDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updatePersonalDiscountRequest($id, $personal_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updatePersonalDiscount'][0])
+    public function updatePersonalDiscountRequest($id, $personal_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updatePersonalDiscount'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -4082,7 +4450,7 @@ class DiscountsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -4104,7 +4472,7 @@ class DiscountsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -4155,10 +4523,21 @@ class DiscountsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -4179,7 +4558,7 @@ class DiscountsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\SpecialPriceDiscount $special_price_discount special_price_discount (required)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSpecialPriceDiscount'] to see the possible values for this operation
      *
@@ -4187,7 +4566,7 @@ class DiscountsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\SpecialPriceDiscount|\OpenAPI\Client\Model\Errors
      */
-    public function updateSpecialPriceDiscount($id, $special_price_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateSpecialPriceDiscount'][0])
+    public function updateSpecialPriceDiscount($id, $special_price_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateSpecialPriceDiscount'][0])
     {
         list($response) = $this->updateSpecialPriceDiscountWithHttpInfo($id, $special_price_discount, $accept, $accept_encoding, $content_type, $contentType);
         return $response;
@@ -4201,7 +4580,7 @@ class DiscountsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\SpecialPriceDiscount $special_price_discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSpecialPriceDiscount'] to see the possible values for this operation
      *
@@ -4209,11 +4588,14 @@ class DiscountsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\SpecialPriceDiscount|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateSpecialPriceDiscountWithHttpInfo($id, $special_price_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateSpecialPriceDiscount'][0])
+    public function updateSpecialPriceDiscountWithHttpInfo($id, $special_price_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateSpecialPriceDiscount'][0])
     {
         $request = $this->updateSpecialPriceDiscountRequest($id, $special_price_discount, $accept, $accept_encoding, $content_type, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\SpecialPriceDiscount')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -4234,6 +4616,13 @@ class DiscountsApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\SpecialPriceDiscount')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\SpecialPriceDiscount',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -4272,6 +4661,9 @@ class DiscountsApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\SpecialPriceDiscount')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -4303,14 +4695,14 @@ class DiscountsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\SpecialPriceDiscount $special_price_discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSpecialPriceDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateSpecialPriceDiscountAsync($id, $special_price_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateSpecialPriceDiscount'][0])
+    public function updateSpecialPriceDiscountAsync($id, $special_price_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateSpecialPriceDiscount'][0])
     {
         return $this->updateSpecialPriceDiscountAsyncWithHttpInfo($id, $special_price_discount, $accept, $accept_encoding, $content_type, $contentType)
             ->then(
@@ -4328,23 +4720,33 @@ class DiscountsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\SpecialPriceDiscount $special_price_discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSpecialPriceDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateSpecialPriceDiscountAsyncWithHttpInfo($id, $special_price_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateSpecialPriceDiscount'][0])
+    public function updateSpecialPriceDiscountAsyncWithHttpInfo($id, $special_price_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateSpecialPriceDiscount'][0])
     {
         $returnType = '\OpenAPI\Client\Model\SpecialPriceDiscount';
         $request = $this->updateSpecialPriceDiscountRequest($id, $special_price_discount, $accept, $accept_encoding, $content_type, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\SpecialPriceDiscount')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4383,14 +4785,14 @@ class DiscountsApi
      * @param  string $id ID сущности (required)
      * @param  \OpenAPI\Client\Model\SpecialPriceDiscount $special_price_discount (required)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string|null $content_type (optional, default to 'application/json')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateSpecialPriceDiscount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateSpecialPriceDiscountRequest($id, $special_price_discount, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', $content_type = 'application/json', string $contentType = self::contentTypes['updateSpecialPriceDiscount'][0])
+    public function updateSpecialPriceDiscountRequest($id, $special_price_discount, $accept = null, $accept_encoding = null, $content_type = null, string $contentType = self::contentTypes['updateSpecialPriceDiscount'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -4421,7 +4823,7 @@ class DiscountsApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -4443,7 +4845,7 @@ class DiscountsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -4494,10 +4896,21 @@ class DiscountsApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        if ($content_type === null && !array_key_exists(strtolower('Content-Type'), $clientHeaders)) {
+            $headerParams['Content-Type'] = 'application/json';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -4562,13 +4975,22 @@ class DiscountsApi
         ];
     }
 
+    private function isBatchResponseType(string $dataType): bool
+    {
+        return in_array($dataType, [
+            '\OpenAPI\Client\Model\BatchResponseEntity[]',
+            '\OpenAPI\Client\Model\DeleteRowResult[]',
+        ], true);
+    }
+
     private function handleResponseMassWithDataType(
         string $dataType,
         RequestInterface $request,
         ResponseInterface $response
     ): array {
         $rawContent = (string) $response->getBody();
-        if ($rawContent === '') {
+        $statusCode = $response->getStatusCode();
+        if ($rawContent === '' && $statusCode >= 200 && $statusCode <= 299) {
             return [null, $response->getStatusCode(), $response->getHeaders()];
         }
 
@@ -4586,37 +5008,44 @@ class DiscountsApi
             );
         }
 
-        if ($response->getStatusCode() < 200 || $response->getStatusCode() > 299) {
-            if (is_object($content)) {
-                $errorsClass = '\OpenAPI\Client\Model\Errors';
-                $error = ObjectSerializer::deserialize($content, $errorsClass, $response->getHeaders());
-                throw new ApiException(
-                    (string) $error,
-                    $response->getStatusCode(),
-                    $response->getHeaders(),
-                    $rawContent
-                );
+        if (($statusCode < 200 || $statusCode > 299)
+            && !(in_array($statusCode, [404, 412], true) && is_array($content))
+        ) {
+            $exception = new ApiException(
+                sprintf('[%d] Error connecting to the API (%s)', $statusCode, $request->getUri()),
+                $statusCode,
+                $response->getHeaders(),
+                $rawContent
+            );
+            if (is_object($content) && property_exists($content, 'errors')) {
+                try {
+                    $exception->setResponseObject(ObjectSerializer::deserialize(
+                        $content,
+                        '\OpenAPI\Client\Model\Errors',
+                        $response->getHeaders()
+                    ));
+                } catch (\InvalidArgumentException | \TypeError $deserializationException) {
+                    // Preserve the HTTP exception and raw response even if Errors is malformed.
+                }
             }
-
-            if (!is_array($content)) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $response->getStatusCode(),
-                    $response->getHeaders(),
-                    $rawContent
-                );
-            }
+            throw $exception;
         }
 
-        return [
-            ObjectSerializer::deserialize($content, $dataType, []),
-            $response->getStatusCode(),
-            $response->getHeaders()
-        ];
+        try {
+            $result = ObjectSerializer::deserialize($content, $dataType, $response->getHeaders());
+        } catch (\InvalidArgumentException | \TypeError $exception) {
+            if ($statusCode >= 200 && $statusCode <= 299) {
+                throw $exception;
+            }
+            throw new ApiException(
+                sprintf('Error deserializing batch response (%s): %s', $request->getUri(), $exception->getMessage()),
+                $statusCode,
+                $response->getHeaders(),
+                $rawContent
+            );
+        }
+
+        return [$result, $statusCode, $response->getHeaders()];
     }
 
     private function responseWithinRangeCode(

@@ -44,6 +44,35 @@ use \OpenAPI\Client\ObjectSerializer;
 class FinanceOutOperationSupply extends FinanceOutOperationAbstract 
 {
     public const DISCRIMINATOR = null;
+    public const ENTITY_TYPE = null;
+
+    /** @return string[] Model alternatives in oneOf/anyOf, including those nested in allOf. */
+    public static function openAPIComposedTypes(): array
+    {
+        return [
+
+
+        ];
+    }
+
+    /** @var array<string, string> Fields declared by a composed schema outside this model. */
+    protected array $composedSchemaNames = [];
+
+    public function setComposedSchemaValue(string $property, string $jsonProperty, $value): void
+    {
+        $this->composedSchemaNames[$property] = $jsonProperty;
+        $this->container[$property] = $value;
+    }
+
+    public function getComposedSchemaValues(): array
+    {
+        $values = [];
+        foreach ($this->composedSchemaNames as $property => $jsonProperty) {
+            $values[$jsonProperty] = $this->container[$property];
+        }
+        return $values;
+    }
+
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
     protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
@@ -110,9 +139,9 @@ class FinanceOutOperationSupply extends FinanceOutOperationAbstract
         'purchase_order' => '\OpenAPI\Client\Model\PurchaseOrder',
         'facture_in' => '\OpenAPI\Client\Model\FactureIn',
         'invoices_in' => '\OpenAPI\Client\Model\InvoiceIn[]',
-        'payments' => '\OpenAPI\Client\Model\SupplyPaymentsInner[]',
+        'payments' => '\OpenAPI\Client\Model\SupplyPayment[]',
         'production_task' => '\OpenAPI\Client\Model\ProductionTask',
-        'returns' => '\OpenAPI\Client\Model\SupplyReturnsInner[]'
+        'returns' => '\OpenAPI\Client\Model\PurchaseReturn[]'
     ];
 
     /**
@@ -263,13 +292,14 @@ class FinanceOutOperationSupply extends FinanceOutOperationAbstract
      *
      * @return array
      */
-    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    public static function openAPIPolymorphicDiscriminatorMappings(string $href = ''): array
     {
-        return self::$openAPIPolymorphicDiscriminatorMappings;
+        $mappings = self::$openAPIPolymorphicDiscriminatorMappings;
+        return $mappings;
     }
 
     /**
-     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * Whether batch-error-shaped payloads should resolve to Errors when nested
      * discriminator mappings do not match.
      *
      * @return bool
@@ -1904,7 +1934,7 @@ class FinanceOutOperationSupply extends FinanceOutOperationAbstract
     /**
      * Gets payments
      *
-     * @return \OpenAPI\Client\Model\SupplyPaymentsInner[]|null
+     * @return \OpenAPI\Client\Model\SupplyPayment[]|null
      */
     public function getPayments()
     {
@@ -1914,7 +1944,7 @@ class FinanceOutOperationSupply extends FinanceOutOperationAbstract
     /**
      * Sets payments
      *
-     * @param \OpenAPI\Client\Model\SupplyPaymentsInner[]|null $payments Массив ссылок на связанные платежи
+     * @param \OpenAPI\Client\Model\SupplyPayment[]|null $payments Массив ссылок на связанные платежи
      *
      * @return self
      */
@@ -1972,7 +2002,7 @@ class FinanceOutOperationSupply extends FinanceOutOperationAbstract
     /**
      * Gets returns
      *
-     * @return \OpenAPI\Client\Model\SupplyReturnsInner[]|null
+     * @return \OpenAPI\Client\Model\PurchaseReturn[]|null
      */
     public function getReturns()
     {
@@ -1982,7 +2012,7 @@ class FinanceOutOperationSupply extends FinanceOutOperationAbstract
     /**
      * Sets returns
      *
-     * @param \OpenAPI\Client\Model\SupplyReturnsInner[]|null $returns Массив ссылок на связанные возвраты
+     * @param \OpenAPI\Client\Model\PurchaseReturn[]|null $returns Массив ссылок на связанные возвраты поставщику
      *
      * @return self
      */
@@ -2053,7 +2083,7 @@ class FinanceOutOperationSupply extends FinanceOutOperationAbstract
      */
     public function offsetUnset($offset): void
     {
-        unset($this->container[$offset]);
+        unset($this->container[$offset], $this->composedSchemaNames[$offset]);
     }
 
     /**

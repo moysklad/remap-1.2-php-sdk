@@ -44,6 +44,34 @@ use \OpenAPI\Client\ObjectSerializer;
 class SpecialPriceDiscount extends DiscountAbstract 
 {
     public const DISCRIMINATOR = null;
+    public const ENTITY_TYPE = 'specialpricediscount';
+
+    /** @return string[] Model alternatives in oneOf/anyOf, including those nested in allOf. */
+    public static function openAPIComposedTypes(): array
+    {
+        return [
+
+        ];
+    }
+
+    /** @var array<string, string> Fields declared by a composed schema outside this model. */
+    protected array $composedSchemaNames = [];
+
+    public function setComposedSchemaValue(string $property, string $jsonProperty, $value): void
+    {
+        $this->composedSchemaNames[$property] = $jsonProperty;
+        $this->container[$property] = $value;
+    }
+
+    public function getComposedSchemaValues(): array
+    {
+        $values = [];
+        foreach ($this->composedSchemaNames as $property => $jsonProperty) {
+            $values[$jsonProperty] = $this->container[$property];
+        }
+        return $values;
+    }
+
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
     protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
@@ -85,7 +113,8 @@ class SpecialPriceDiscount extends DiscountAbstract
         'product_folders' => '\OpenAPI\Client\Model\ProductFolder[]',
         'use_price_type' => 'bool',
         'discount' => 'float',
-        'special_price' => '\OpenAPI\Client\Model\SpecialPriceDiscountSpecialPrice'
+        'special_price' => '\OpenAPI\Client\Model\SpecialPriceDiscountSpecialPrice',
+        'assortment' => '\OpenAPI\Client\Model\DiscountAssortmentItem[]'
     ];
 
     /**
@@ -101,7 +130,8 @@ class SpecialPriceDiscount extends DiscountAbstract
         'product_folders' => null,
         'use_price_type' => null,
         'discount' => 'double',
-        'special_price' => null
+        'special_price' => null,
+        'assortment' => null
     ];
 
     /**
@@ -115,7 +145,8 @@ class SpecialPriceDiscount extends DiscountAbstract
         'product_folders' => false,
         'use_price_type' => false,
         'discount' => true,
-        'special_price' => true
+        'special_price' => true,
+        'assortment' => true
     ];
 
     /**
@@ -160,13 +191,14 @@ class SpecialPriceDiscount extends DiscountAbstract
      *
      * @return array
      */
-    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    public static function openAPIPolymorphicDiscriminatorMappings(string $href = ''): array
     {
-        return self::$openAPIPolymorphicDiscriminatorMappings;
+        $mappings = self::$openAPIPolymorphicDiscriminatorMappings;
+        return $mappings;
     }
 
     /**
-     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * Whether batch-error-shaped payloads should resolve to Errors when nested
      * discriminator mappings do not match.
      *
      * @return bool
@@ -240,7 +272,8 @@ class SpecialPriceDiscount extends DiscountAbstract
         'product_folders' => 'productFolders',
         'use_price_type' => 'usePriceType',
         'discount' => 'discount',
-        'special_price' => 'specialPrice'
+        'special_price' => 'specialPrice',
+        'assortment' => 'assortment'
     ];
 
     /**
@@ -254,7 +287,8 @@ class SpecialPriceDiscount extends DiscountAbstract
         'product_folders' => 'setProductFolders',
         'use_price_type' => 'setUsePriceType',
         'discount' => 'setDiscount',
-        'special_price' => 'setSpecialPrice'
+        'special_price' => 'setSpecialPrice',
+        'assortment' => 'setAssortment'
     ];
 
     /**
@@ -268,7 +302,8 @@ class SpecialPriceDiscount extends DiscountAbstract
         'product_folders' => 'getProductFolders',
         'use_price_type' => 'getUsePriceType',
         'discount' => 'getDiscount',
-        'special_price' => 'getSpecialPrice'
+        'special_price' => 'getSpecialPrice',
+        'assortment' => 'getAssortment'
     ];
 
     /**
@@ -333,6 +368,7 @@ class SpecialPriceDiscount extends DiscountAbstract
         $this->setIfExists('use_price_type', $data ?? [], null);
         $this->setIfExists('discount', $data ?? [], null);
         $this->setIfExists('special_price', $data ?? [], null);
+        $this->setIfExists('assortment', $data ?? [], null);
     }
 
     /**
@@ -555,6 +591,40 @@ class SpecialPriceDiscount extends DiscountAbstract
 
         return $this;
     }
+
+    /**
+     * Gets assortment
+     *
+     * @return \OpenAPI\Client\Model\DiscountAssortmentItem[]|null
+     */
+    public function getAssortment()
+    {
+        return $this->container['assortment'];
+    }
+
+    /**
+     * Sets assortment
+     *
+     * @param \OpenAPI\Client\Model\DiscountAssortmentItem[]|null $assortment Массив метаданных товаров, услуг и модификаций
+     *
+     * @return self
+     */
+    public function setAssortment($assortment)
+    {
+        if (is_null($assortment)) {
+            array_push($this->openAPINullablesSetToNull, 'assortment');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('assortment', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['assortment'] = $assortment;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      *
@@ -606,7 +676,7 @@ class SpecialPriceDiscount extends DiscountAbstract
      */
     public function offsetUnset($offset): void
     {
-        unset($this->container[$offset]);
+        unset($this->container[$offset], $this->composedSchemaNames[$offset]);
     }
 
     /**

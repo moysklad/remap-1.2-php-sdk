@@ -141,14 +141,14 @@ class ReportsStockCurrentApi
      * @param  string|null $stock_type Тип рассчитываемого значения остатка. По умолчанию &#x60;stock&#x60;. (optional, default to 'stock')
      * @param  string|null $filter Фильтрация отчета по ID сущностей. Поддерживаемые поля: &#x60;assortmentId&#x60;, &#x60;storeId&#x60;. (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStockAllCurrent'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\StockCurrentAll[]|\OpenAPI\Client\Model\Errors
      */
-    public function getStockAllCurrent($include = null, $changed_since = null, $stock_type = 'stock', $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getStockAllCurrent'][0])
+    public function getStockAllCurrent($include = null, $changed_since = null, $stock_type = 'stock', $filter = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getStockAllCurrent'][0])
     {
         list($response) = $this->getStockAllCurrentWithHttpInfo($include, $changed_since, $stock_type, $filter, $accept, $accept_encoding, $contentType);
         return $response;
@@ -164,18 +164,21 @@ class ReportsStockCurrentApi
      * @param  string|null $stock_type Тип рассчитываемого значения остатка. По умолчанию &#x60;stock&#x60;. (optional, default to 'stock')
      * @param  string|null $filter Фильтрация отчета по ID сущностей. Поддерживаемые поля: &#x60;assortmentId&#x60;, &#x60;storeId&#x60;. (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStockAllCurrent'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\StockCurrentAll[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getStockAllCurrentWithHttpInfo($include = null, $changed_since = null, $stock_type = 'stock', $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getStockAllCurrent'][0])
+    public function getStockAllCurrentWithHttpInfo($include = null, $changed_since = null, $stock_type = 'stock', $filter = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getStockAllCurrent'][0])
     {
         $request = $this->getStockAllCurrentRequest($include, $changed_since, $stock_type, $filter, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\StockCurrentAll[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -196,6 +199,13 @@ class ReportsStockCurrentApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\StockCurrentAll[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\StockCurrentAll[]',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -234,6 +244,9 @@ class ReportsStockCurrentApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\StockCurrentAll[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -267,13 +280,13 @@ class ReportsStockCurrentApi
      * @param  string|null $stock_type Тип рассчитываемого значения остатка. По умолчанию &#x60;stock&#x60;. (optional, default to 'stock')
      * @param  string|null $filter Фильтрация отчета по ID сущностей. Поддерживаемые поля: &#x60;assortmentId&#x60;, &#x60;storeId&#x60;. (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStockAllCurrent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getStockAllCurrentAsync($include = null, $changed_since = null, $stock_type = 'stock', $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getStockAllCurrent'][0])
+    public function getStockAllCurrentAsync($include = null, $changed_since = null, $stock_type = 'stock', $filter = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getStockAllCurrent'][0])
     {
         return $this->getStockAllCurrentAsyncWithHttpInfo($include, $changed_since, $stock_type, $filter, $accept, $accept_encoding, $contentType)
             ->then(
@@ -293,22 +306,32 @@ class ReportsStockCurrentApi
      * @param  string|null $stock_type Тип рассчитываемого значения остатка. По умолчанию &#x60;stock&#x60;. (optional, default to 'stock')
      * @param  string|null $filter Фильтрация отчета по ID сущностей. Поддерживаемые поля: &#x60;assortmentId&#x60;, &#x60;storeId&#x60;. (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStockAllCurrent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getStockAllCurrentAsyncWithHttpInfo($include = null, $changed_since = null, $stock_type = 'stock', $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getStockAllCurrent'][0])
+    public function getStockAllCurrentAsyncWithHttpInfo($include = null, $changed_since = null, $stock_type = 'stock', $filter = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getStockAllCurrent'][0])
     {
         $returnType = '\OpenAPI\Client\Model\StockCurrentAll[]';
         $request = $this->getStockAllCurrentRequest($include, $changed_since, $stock_type, $filter, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\StockCurrentAll[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -349,13 +372,13 @@ class ReportsStockCurrentApi
      * @param  string|null $stock_type Тип рассчитываемого значения остатка. По умолчанию &#x60;stock&#x60;. (optional, default to 'stock')
      * @param  string|null $filter Фильтрация отчета по ID сущностей. Поддерживаемые поля: &#x60;assortmentId&#x60;, &#x60;storeId&#x60;. (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStockAllCurrent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getStockAllCurrentRequest($include = null, $changed_since = null, $stock_type = 'stock', $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getStockAllCurrent'][0])
+    public function getStockAllCurrentRequest($include = null, $changed_since = null, $stock_type = 'stock', $filter = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getStockAllCurrent'][0])
     {
 
 
@@ -411,7 +434,7 @@ class ReportsStockCurrentApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -421,7 +444,7 @@ class ReportsStockCurrentApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -465,10 +488,18 @@ class ReportsStockCurrentApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -490,14 +521,14 @@ class ReportsStockCurrentApi
      * @param  string|null $stock_type Тип рассчитываемого значения остатка. По умолчанию &#x60;stock&#x60;. (optional, default to 'stock')
      * @param  string|null $filter Фильтрация отчета по ID сущностей. Поддерживаемые поля: &#x60;assortmentId&#x60;, &#x60;storeId&#x60;. (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStockBySlotCurrent'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\StockCurrentBySlot[]|\OpenAPI\Client\Model\Errors
      */
-    public function getStockBySlotCurrent($include = null, $stock_type = 'stock', $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getStockBySlotCurrent'][0])
+    public function getStockBySlotCurrent($include = null, $stock_type = 'stock', $filter = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getStockBySlotCurrent'][0])
     {
         list($response) = $this->getStockBySlotCurrentWithHttpInfo($include, $stock_type, $filter, $accept, $accept_encoding, $contentType);
         return $response;
@@ -512,18 +543,21 @@ class ReportsStockCurrentApi
      * @param  string|null $stock_type Тип рассчитываемого значения остатка. По умолчанию &#x60;stock&#x60;. (optional, default to 'stock')
      * @param  string|null $filter Фильтрация отчета по ID сущностей. Поддерживаемые поля: &#x60;assortmentId&#x60;, &#x60;storeId&#x60;. (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStockBySlotCurrent'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\StockCurrentBySlot[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getStockBySlotCurrentWithHttpInfo($include = null, $stock_type = 'stock', $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getStockBySlotCurrent'][0])
+    public function getStockBySlotCurrentWithHttpInfo($include = null, $stock_type = 'stock', $filter = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getStockBySlotCurrent'][0])
     {
         $request = $this->getStockBySlotCurrentRequest($include, $stock_type, $filter, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\StockCurrentBySlot[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -544,6 +578,13 @@ class ReportsStockCurrentApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\StockCurrentBySlot[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\StockCurrentBySlot[]',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -582,6 +623,9 @@ class ReportsStockCurrentApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\StockCurrentBySlot[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -614,13 +658,13 @@ class ReportsStockCurrentApi
      * @param  string|null $stock_type Тип рассчитываемого значения остатка. По умолчанию &#x60;stock&#x60;. (optional, default to 'stock')
      * @param  string|null $filter Фильтрация отчета по ID сущностей. Поддерживаемые поля: &#x60;assortmentId&#x60;, &#x60;storeId&#x60;. (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStockBySlotCurrent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getStockBySlotCurrentAsync($include = null, $stock_type = 'stock', $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getStockBySlotCurrent'][0])
+    public function getStockBySlotCurrentAsync($include = null, $stock_type = 'stock', $filter = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getStockBySlotCurrent'][0])
     {
         return $this->getStockBySlotCurrentAsyncWithHttpInfo($include, $stock_type, $filter, $accept, $accept_encoding, $contentType)
             ->then(
@@ -639,22 +683,32 @@ class ReportsStockCurrentApi
      * @param  string|null $stock_type Тип рассчитываемого значения остатка. По умолчанию &#x60;stock&#x60;. (optional, default to 'stock')
      * @param  string|null $filter Фильтрация отчета по ID сущностей. Поддерживаемые поля: &#x60;assortmentId&#x60;, &#x60;storeId&#x60;. (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStockBySlotCurrent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getStockBySlotCurrentAsyncWithHttpInfo($include = null, $stock_type = 'stock', $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getStockBySlotCurrent'][0])
+    public function getStockBySlotCurrentAsyncWithHttpInfo($include = null, $stock_type = 'stock', $filter = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getStockBySlotCurrent'][0])
     {
         $returnType = '\OpenAPI\Client\Model\StockCurrentBySlot[]';
         $request = $this->getStockBySlotCurrentRequest($include, $stock_type, $filter, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\StockCurrentBySlot[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -694,13 +748,13 @@ class ReportsStockCurrentApi
      * @param  string|null $stock_type Тип рассчитываемого значения остатка. По умолчанию &#x60;stock&#x60;. (optional, default to 'stock')
      * @param  string|null $filter Фильтрация отчета по ID сущностей. Поддерживаемые поля: &#x60;assortmentId&#x60;, &#x60;storeId&#x60;. (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStockBySlotCurrent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getStockBySlotCurrentRequest($include = null, $stock_type = 'stock', $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getStockBySlotCurrent'][0])
+    public function getStockBySlotCurrentRequest($include = null, $stock_type = 'stock', $filter = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getStockBySlotCurrent'][0])
     {
 
 
@@ -746,7 +800,7 @@ class ReportsStockCurrentApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -756,7 +810,7 @@ class ReportsStockCurrentApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -800,10 +854,18 @@ class ReportsStockCurrentApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -827,14 +889,14 @@ class ReportsStockCurrentApi
      * @param  bool|null $with_recalculate Включает позиции, по которым остаток пересчитывается. Для таких позиций значение остатка может быть &#x60;null&#x60;. (optional)
      * @param  string|null $filter Фильтрация отчета по ID сущностей. Поддерживаемые поля: &#x60;assortmentId&#x60;, &#x60;storeId&#x60;. (optional)
      * @param  string|null $accept accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStockByStoreCurrent'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\StockCurrentByStore[]|\OpenAPI\Client\Model\Errors
      */
-    public function getStockByStoreCurrent($include = null, $changed_since = null, $stock_type = 'stock', $with_recalculate = null, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getStockByStoreCurrent'][0])
+    public function getStockByStoreCurrent($include = null, $changed_since = null, $stock_type = 'stock', $with_recalculate = null, $filter = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getStockByStoreCurrent'][0])
     {
         list($response) = $this->getStockByStoreCurrentWithHttpInfo($include, $changed_since, $stock_type, $with_recalculate, $filter, $accept, $accept_encoding, $contentType);
         return $response;
@@ -851,18 +913,21 @@ class ReportsStockCurrentApi
      * @param  bool|null $with_recalculate Включает позиции, по которым остаток пересчитывается. Для таких позиций значение остатка может быть &#x60;null&#x60;. (optional)
      * @param  string|null $filter Фильтрация отчета по ID сущностей. Поддерживаемые поля: &#x60;assortmentId&#x60;, &#x60;storeId&#x60;. (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStockByStoreCurrent'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\StockCurrentByStore[]|\OpenAPI\Client\Model\Errors, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getStockByStoreCurrentWithHttpInfo($include = null, $changed_since = null, $stock_type = 'stock', $with_recalculate = null, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getStockByStoreCurrent'][0])
+    public function getStockByStoreCurrentWithHttpInfo($include = null, $changed_since = null, $stock_type = 'stock', $with_recalculate = null, $filter = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getStockByStoreCurrent'][0])
     {
         $request = $this->getStockByStoreCurrentRequest($include, $changed_since, $stock_type, $with_recalculate, $filter, $accept, $accept_encoding, $contentType);
         try {
             $options = $this->createHttpClientOption();
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\StockCurrentByStore[]')) {
+                $options[RequestOptions::HTTP_ERRORS] = false;
+            }
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -883,6 +948,13 @@ class ReportsStockCurrentApi
 
             $statusCode = $response->getStatusCode();
 
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\StockCurrentByStore[]')) {
+                return $this->handleResponseMassWithDataType(
+                    '\OpenAPI\Client\Model\StockCurrentByStore[]',
+                    $request,
+                    $response
+                );
+            }
 
 
             switch($statusCode) {
@@ -921,6 +993,9 @@ class ReportsStockCurrentApi
                 $response
             );
         } catch (ApiException $e) {
+            if ($this->isBatchResponseType('\OpenAPI\Client\Model\StockCurrentByStore[]')) {
+                throw $e;
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -955,13 +1030,13 @@ class ReportsStockCurrentApi
      * @param  bool|null $with_recalculate Включает позиции, по которым остаток пересчитывается. Для таких позиций значение остатка может быть &#x60;null&#x60;. (optional)
      * @param  string|null $filter Фильтрация отчета по ID сущностей. Поддерживаемые поля: &#x60;assortmentId&#x60;, &#x60;storeId&#x60;. (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStockByStoreCurrent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getStockByStoreCurrentAsync($include = null, $changed_since = null, $stock_type = 'stock', $with_recalculate = null, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getStockByStoreCurrent'][0])
+    public function getStockByStoreCurrentAsync($include = null, $changed_since = null, $stock_type = 'stock', $with_recalculate = null, $filter = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getStockByStoreCurrent'][0])
     {
         return $this->getStockByStoreCurrentAsyncWithHttpInfo($include, $changed_since, $stock_type, $with_recalculate, $filter, $accept, $accept_encoding, $contentType)
             ->then(
@@ -982,22 +1057,32 @@ class ReportsStockCurrentApi
      * @param  bool|null $with_recalculate Включает позиции, по которым остаток пересчитывается. Для таких позиций значение остатка может быть &#x60;null&#x60;. (optional)
      * @param  string|null $filter Фильтрация отчета по ID сущностей. Поддерживаемые поля: &#x60;assortmentId&#x60;, &#x60;storeId&#x60;. (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStockByStoreCurrent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getStockByStoreCurrentAsyncWithHttpInfo($include = null, $changed_since = null, $stock_type = 'stock', $with_recalculate = null, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getStockByStoreCurrent'][0])
+    public function getStockByStoreCurrentAsyncWithHttpInfo($include = null, $changed_since = null, $stock_type = 'stock', $with_recalculate = null, $filter = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getStockByStoreCurrent'][0])
     {
         $returnType = '\OpenAPI\Client\Model\StockCurrentByStore[]';
         $request = $this->getStockByStoreCurrentRequest($include, $changed_since, $stock_type, $with_recalculate, $filter, $accept, $accept_encoding, $contentType);
         $options = $this->createHttpClientOption();
+        if ($this->isBatchResponseType('\OpenAPI\Client\Model\StockCurrentByStore[]')) {
+            $options[RequestOptions::HTTP_ERRORS] = false;
+        }
 
         return $this->client
             ->sendAsync($request, $options)
             ->then(
                 function ($response) use ($returnType, $request) {
+                    if ($this->isBatchResponseType($returnType)) {
+                        return $this->handleResponseMassWithDataType(
+                            $returnType,
+                            $request,
+                            $response
+                        );
+                    }
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1039,13 +1124,13 @@ class ReportsStockCurrentApi
      * @param  bool|null $with_recalculate Включает позиции, по которым остаток пересчитывается. Для таких позиций значение остатка может быть &#x60;null&#x60;. (optional)
      * @param  string|null $filter Фильтрация отчета по ID сущностей. Поддерживаемые поля: &#x60;assortmentId&#x60;, &#x60;storeId&#x60;. (optional)
      * @param  string|null $accept (optional, default to 'application/json;charset=utf-8')
-     * @param  string|null $accept_encoding (optional, default to 'gzip, deflate, br')
+     * @param  string|null $accept_encoding (optional, default to 'gzip')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStockByStoreCurrent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getStockByStoreCurrentRequest($include = null, $changed_since = null, $stock_type = 'stock', $with_recalculate = null, $filter = null, $accept = 'application/json;charset=utf-8', $accept_encoding = 'gzip, deflate, br', string $contentType = self::contentTypes['getStockByStoreCurrent'][0])
+    public function getStockByStoreCurrentRequest($include = null, $changed_since = null, $stock_type = 'stock', $with_recalculate = null, $filter = null, $accept = null, $accept_encoding = null, string $contentType = self::contentTypes['getStockByStoreCurrent'][0])
     {
 
 
@@ -1111,7 +1196,7 @@ class ReportsStockCurrentApi
 
         // header params
         if ($accept !== null) {
-            $headerParams['accept'] = ObjectSerializer::toHeaderValue($accept);
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
         }
         // header params
         if ($accept_encoding !== null) {
@@ -1121,7 +1206,7 @@ class ReportsStockCurrentApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'text/html;charset=UTF-8', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1165,10 +1250,18 @@ class ReportsStockCurrentApi
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
+        $clientHeaders = array_change_key_case($this->client->getConfig('headers') ?? [], CASE_LOWER);
+        if ($accept === null && !array_key_exists(strtolower('Accept'), $clientHeaders)) {
+            $headerParams['Accept'] = 'application/json;charset=utf-8';
+        }
+        if ($accept_encoding === null && !array_key_exists(strtolower('Accept-Encoding'), $clientHeaders)) {
+            $headerParams['Accept-Encoding'] = 'gzip';
+        }
+        // Method parameters override client headers; defaults apply only when neither is set.
+        $headers = array_replace(
+            array_change_key_case(array_merge($defaultHeaders, $headers), CASE_LOWER),
+            $clientHeaders,
+            array_change_key_case($headerParams, CASE_LOWER)
         );
 
         $operationHost = $this->config->getHost();
@@ -1233,13 +1326,22 @@ class ReportsStockCurrentApi
         ];
     }
 
+    private function isBatchResponseType(string $dataType): bool
+    {
+        return in_array($dataType, [
+            '\OpenAPI\Client\Model\BatchResponseEntity[]',
+            '\OpenAPI\Client\Model\DeleteRowResult[]',
+        ], true);
+    }
+
     private function handleResponseMassWithDataType(
         string $dataType,
         RequestInterface $request,
         ResponseInterface $response
     ): array {
         $rawContent = (string) $response->getBody();
-        if ($rawContent === '') {
+        $statusCode = $response->getStatusCode();
+        if ($rawContent === '' && $statusCode >= 200 && $statusCode <= 299) {
             return [null, $response->getStatusCode(), $response->getHeaders()];
         }
 
@@ -1257,37 +1359,44 @@ class ReportsStockCurrentApi
             );
         }
 
-        if ($response->getStatusCode() < 200 || $response->getStatusCode() > 299) {
-            if (is_object($content)) {
-                $errorsClass = '\OpenAPI\Client\Model\Errors';
-                $error = ObjectSerializer::deserialize($content, $errorsClass, $response->getHeaders());
-                throw new ApiException(
-                    (string) $error,
-                    $response->getStatusCode(),
-                    $response->getHeaders(),
-                    $rawContent
-                );
+        if (($statusCode < 200 || $statusCode > 299)
+            && !(in_array($statusCode, [404, 412], true) && is_array($content))
+        ) {
+            $exception = new ApiException(
+                sprintf('[%d] Error connecting to the API (%s)', $statusCode, $request->getUri()),
+                $statusCode,
+                $response->getHeaders(),
+                $rawContent
+            );
+            if (is_object($content) && property_exists($content, 'errors')) {
+                try {
+                    $exception->setResponseObject(ObjectSerializer::deserialize(
+                        $content,
+                        '\OpenAPI\Client\Model\Errors',
+                        $response->getHeaders()
+                    ));
+                } catch (\InvalidArgumentException | \TypeError $deserializationException) {
+                    // Preserve the HTTP exception and raw response even if Errors is malformed.
+                }
             }
-
-            if (!is_array($content)) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $response->getStatusCode(),
-                    $response->getHeaders(),
-                    $rawContent
-                );
-            }
+            throw $exception;
         }
 
-        return [
-            ObjectSerializer::deserialize($content, $dataType, []),
-            $response->getStatusCode(),
-            $response->getHeaders()
-        ];
+        try {
+            $result = ObjectSerializer::deserialize($content, $dataType, $response->getHeaders());
+        } catch (\InvalidArgumentException | \TypeError $exception) {
+            if ($statusCode >= 200 && $statusCode <= 299) {
+                throw $exception;
+            }
+            throw new ApiException(
+                sprintf('Error deserializing batch response (%s): %s', $request->getUri(), $exception->getMessage()),
+                $statusCode,
+                $response->getHeaders(),
+                $rawContent
+            );
+        }
+
+        return [$result, $statusCode, $response->getHeaders()];
     }
 
     private function responseWithinRangeCode(

@@ -31,7 +31,7 @@ Name | Type | Description | Notes
 **sync_id** | **string** | ID синхронизации | [optional]
 **updated** | **string** | Момент последнего обновления Счета-фактуры полученного | [optional] [readonly]
 **supplies** | [**\OpenAPI\Client\Model\Supply[]**](Supply.md) | Массив ссылок на связанные приемки | [optional]
-**payments** | [**\OpenAPI\Client\Model\PaymentOut[]**](PaymentOut.md) | Массив ссылок на связанные исходящие платежи | [optional]
+**payments** | [**\OpenAPI\Client\Model\FactureInPayment[]**](FactureInPayment.md) | Массив ссылок на связанные исходящие платежи | [optional]
 **incoming_number** | **string** | Входящий номер | [optional]
 **incoming_date** | **string** | Входящая дата | [optional]
 

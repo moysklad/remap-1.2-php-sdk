@@ -46,7 +46,7 @@ $order = 'order_example'; // string | Сортировка
 $group_by = 'group_by_example'; // string | Тип, по которому нужно сгруппировать выдачу. Значение по умолчанию `variant`. - `product` — выдает только товары - `variant` — выдает товары и модификации - `consignment` — выдает товары, модификации, партии
 $include_related = True; // bool | Вывод остатков по модификациям и партиям товаров. Обязательное условие применения — наличие фильтрации по товарам или модификациям или их комбинации. При использовании параметра устанавливается группировка `groupBy=consignment`, переданные значения `groupBy` игнорируются.
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getStockAll($limit, $offset, $filter, $order, $group_by, $include_related, $accept, $accept_encoding);
@@ -67,7 +67,7 @@ try {
 | **group_by** | **string**| Тип, по которому нужно сгруппировать выдачу. Значение по умолчанию &#x60;variant&#x60;. - &#x60;product&#x60; — выдает только товары - &#x60;variant&#x60; — выдает товары и модификации - &#x60;consignment&#x60; — выдает товары, модификации, партии | [optional] |
 | **include_related** | **bool**| Вывод остатков по модификациям и партиям товаров. Обязательное условие применения — наличие фильтрации по товарам или модификациям или их комбинации. При использовании параметра устанавливается группировка &#x60;groupBy&#x3D;consignment&#x60;, переданные значения &#x60;groupBy&#x60; игнорируются. | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -80,7 +80,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

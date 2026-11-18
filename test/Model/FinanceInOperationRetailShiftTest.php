@@ -206,15 +206,6 @@ class FinanceInOperationRetailShiftTest extends TestCase
     }
 
     /**
-     * Test attribute "contract"
-     */
-    public function testPropertyContract()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "created"
      */
     public function testPropertyCreated()
@@ -425,24 +416,6 @@ class FinanceInOperationRetailShiftTest extends TestCase
      * Test attribute "updated"
      */
     public function testPropertyUpdated()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "vat_enabled"
-     */
-    public function testPropertyVatEnabled()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "vat_included"
-     */
-    public function testPropertyVatIncluded()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

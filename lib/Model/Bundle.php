@@ -44,6 +44,34 @@ use \OpenAPI\Client\ObjectSerializer;
 class Bundle extends ProductMarker 
 {
     public const DISCRIMINATOR = null;
+    public const ENTITY_TYPE = 'bundle';
+
+    /** @return string[] Model alternatives in oneOf/anyOf, including those nested in allOf. */
+    public static function openAPIComposedTypes(): array
+    {
+        return [
+
+        ];
+    }
+
+    /** @var array<string, string> Fields declared by a composed schema outside this model. */
+    protected array $composedSchemaNames = [];
+
+    public function setComposedSchemaValue(string $property, string $jsonProperty, $value): void
+    {
+        $this->composedSchemaNames[$property] = $jsonProperty;
+        $this->container[$property] = $value;
+    }
+
+    public function getComposedSchemaValues(): array
+    {
+        $values = [];
+        foreach ($this->composedSchemaNames as $property => $jsonProperty) {
+            $values[$jsonProperty] = $this->container[$property];
+        }
+        return $values;
+    }
+
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
     protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
@@ -114,9 +142,7 @@ class Bundle extends ProductMarker
         'images' => '\OpenAPI\Client\Model\ImageList',
         'files' => '\OpenAPI\Client\Model\FileList',
         'barcodes' => '\OpenAPI\Client\Model\Barcode[]',
-        'packs' => '\OpenAPI\Client\Model\Pack[]',
         'sale_prices' => '\OpenAPI\Client\Model\SalePrice[]',
-        'buy_price' => '\OpenAPI\Client\Model\Price',
         'min_price' => '\OpenAPI\Client\Model\Price',
         'overhead' => '\OpenAPI\Client\Model\BundleOverhead',
         'attributes' => '\OpenAPI\Client\Model\AttributeAbstract[]',
@@ -165,9 +191,7 @@ class Bundle extends ProductMarker
         'images' => null,
         'files' => null,
         'barcodes' => null,
-        'packs' => null,
         'sale_prices' => null,
-        'buy_price' => null,
         'min_price' => null,
         'overhead' => null,
         'attributes' => null,
@@ -214,9 +238,7 @@ class Bundle extends ProductMarker
         'images' => true,
         'files' => true,
         'barcodes' => true,
-        'packs' => true,
         'sale_prices' => true,
-        'buy_price' => false,
         'min_price' => false,
         'overhead' => false,
         'attributes' => true,
@@ -265,13 +287,14 @@ class Bundle extends ProductMarker
      *
      * @return array
      */
-    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    public static function openAPIPolymorphicDiscriminatorMappings(string $href = ''): array
     {
-        return self::$openAPIPolymorphicDiscriminatorMappings;
+        $mappings = self::$openAPIPolymorphicDiscriminatorMappings;
+        return $mappings;
     }
 
     /**
-     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * Whether batch-error-shaped payloads should resolve to Errors when nested
      * discriminator mappings do not match.
      *
      * @return bool
@@ -374,9 +397,7 @@ class Bundle extends ProductMarker
         'images' => 'images',
         'files' => 'files',
         'barcodes' => 'barcodes',
-        'packs' => 'packs',
         'sale_prices' => 'salePrices',
-        'buy_price' => 'buyPrice',
         'min_price' => 'minPrice',
         'overhead' => 'overhead',
         'attributes' => 'attributes',
@@ -423,9 +444,7 @@ class Bundle extends ProductMarker
         'images' => 'setImages',
         'files' => 'setFiles',
         'barcodes' => 'setBarcodes',
-        'packs' => 'setPacks',
         'sale_prices' => 'setSalePrices',
-        'buy_price' => 'setBuyPrice',
         'min_price' => 'setMinPrice',
         'overhead' => 'setOverhead',
         'attributes' => 'setAttributes',
@@ -472,9 +491,7 @@ class Bundle extends ProductMarker
         'images' => 'getImages',
         'files' => 'getFiles',
         'barcodes' => 'getBarcodes',
-        'packs' => 'getPacks',
         'sale_prices' => 'getSalePrices',
-        'buy_price' => 'getBuyPrice',
         'min_price' => 'getMinPrice',
         'overhead' => 'getOverhead',
         'attributes' => 'getAttributes',
@@ -571,9 +588,7 @@ class Bundle extends ProductMarker
         $this->setIfExists('images', $data ?? [], null);
         $this->setIfExists('files', $data ?? [], null);
         $this->setIfExists('barcodes', $data ?? [], null);
-        $this->setIfExists('packs', $data ?? [], null);
         $this->setIfExists('sale_prices', $data ?? [], null);
-        $this->setIfExists('buy_price', $data ?? [], null);
         $this->setIfExists('min_price', $data ?? [], null);
         $this->setIfExists('overhead', $data ?? [], null);
         $this->setIfExists('attributes', $data ?? [], null);
@@ -1648,40 +1663,6 @@ class Bundle extends ProductMarker
     }
 
     /**
-     * Gets packs
-     *
-     * @return \OpenAPI\Client\Model\Pack[]|null
-     */
-    public function getPacks()
-    {
-        return $this->container['packs'];
-    }
-
-    /**
-     * Sets packs
-     *
-     * @param \OpenAPI\Client\Model\Pack[]|null $packs Упаковки Комплекта
-     *
-     * @return self
-     */
-    public function setPacks($packs)
-    {
-        if (is_null($packs)) {
-            array_push($this->openAPINullablesSetToNull, 'packs');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('packs', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['packs'] = $packs;
-
-        return $this;
-    }
-
-    /**
      * Gets sale_prices
      *
      * @return \OpenAPI\Client\Model\SalePrice[]|null
@@ -1711,33 +1692,6 @@ class Bundle extends ProductMarker
             }
         }
         $this->container['sale_prices'] = $sale_prices;
-
-        return $this;
-    }
-
-    /**
-     * Gets buy_price
-     *
-     * @return \OpenAPI\Client\Model\Price|null
-     */
-    public function getBuyPrice()
-    {
-        return $this->container['buy_price'];
-    }
-
-    /**
-     * Sets buy_price
-     *
-     * @param \OpenAPI\Client\Model\Price|null $buy_price buy_price
-     *
-     * @return self
-     */
-    public function setBuyPrice($buy_price)
-    {
-        if (is_null($buy_price)) {
-            throw new \InvalidArgumentException('non-nullable buy_price cannot be null');
-        }
-        $this->container['buy_price'] = $buy_price;
 
         return $this;
     }
@@ -1843,7 +1797,7 @@ class Bundle extends ProductMarker
     /**
      * Sets components
      *
-     * @param \OpenAPI\Client\Model\BundleComponentList|null $components Массив компонентов Комплекта
+     * @param \OpenAPI\Client\Model\BundleComponentList|null $components components
      *
      * @return self
      */
@@ -1907,7 +1861,7 @@ class Bundle extends ProductMarker
      */
     public function offsetUnset($offset): void
     {
-        unset($this->container[$offset]);
+        unset($this->container[$offset], $this->composedSchemaNames[$offset]);
     }
 
     /**

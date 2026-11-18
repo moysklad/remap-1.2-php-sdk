@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * BonusTransactionParentDocumentTest Class Doc Comment
  *
  * @category    Class
- * @description Метаданные связанного документа бонусной операции
+ * @description Документ бонусной операции: розничная продажа или розничный возврат.
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

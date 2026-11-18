@@ -44,6 +44,35 @@ use \OpenAPI\Client\ObjectSerializer;
 class PayrollPaymentAbstract implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const ENTITY_TYPE = null;
+
+    /** @return string[] Model alternatives in oneOf/anyOf, including those nested in allOf. */
+    public static function openAPIComposedTypes(): array
+    {
+        return [
+
+
+        ];
+    }
+
+    /** @var array<string, string> Fields declared by a composed schema outside this model. */
+    protected array $composedSchemaNames = [];
+
+    public function setComposedSchemaValue(string $property, string $jsonProperty, $value): void
+    {
+        $this->composedSchemaNames[$property] = $jsonProperty;
+        $this->container[$property] = $value;
+    }
+
+    public function getComposedSchemaValues(): array
+    {
+        $values = [];
+        foreach ($this->composedSchemaNames as $property => $jsonProperty) {
+            $values[$jsonProperty] = $this->container[$property];
+        }
+        return $values;
+    }
+
     protected static ?string $openAPIPolymorphicDiscriminatorPath = 'meta.type';
     protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
@@ -54,7 +83,8 @@ class PayrollPaymentAbstract implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static array $openAPIPolymorphicDiscriminatorMappings = [
         'paymentout' => 'PayrollPaymentPaymentOut',
-        'cashout' => 'PayrollPaymentCashOut'
+        'cashout' => 'PayrollPaymentCashOut',
+        
     ];
 
     /**
@@ -70,6 +100,7 @@ class PayrollPaymentAbstract implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
+        'meta' => '\OpenAPI\Client\Model\Meta',
         'linked_sum' => 'float'
     ];
 
@@ -81,6 +112,7 @@ class PayrollPaymentAbstract implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'meta' => null,
         'linked_sum' => 'double'
     ];
 
@@ -90,6 +122,7 @@ class PayrollPaymentAbstract implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'meta' => false,
         'linked_sum' => false
     ];
 
@@ -135,13 +168,14 @@ class PayrollPaymentAbstract implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @return array
      */
-    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    public static function openAPIPolymorphicDiscriminatorMappings(string $href = ''): array
     {
-        return self::$openAPIPolymorphicDiscriminatorMappings;
+        $mappings = self::$openAPIPolymorphicDiscriminatorMappings;
+        return $mappings;
     }
 
     /**
-     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * Whether batch-error-shaped payloads should resolve to Errors when nested
      * discriminator mappings do not match.
      *
      * @return bool
@@ -210,6 +244,7 @@ class PayrollPaymentAbstract implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
+        'meta' => 'meta',
         'linked_sum' => 'linkedSum'
     ];
 
@@ -219,6 +254,7 @@ class PayrollPaymentAbstract implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
+        'meta' => 'setMeta',
         'linked_sum' => 'setLinkedSum'
     ];
 
@@ -228,6 +264,7 @@ class PayrollPaymentAbstract implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
+        'meta' => 'getMeta',
         'linked_sum' => 'getLinkedSum'
     ];
 
@@ -291,6 +328,7 @@ class PayrollPaymentAbstract implements ModelInterface, ArrayAccess, \JsonSerial
     public function __construct(?array $data = null)
     {
         
+        $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('linked_sum', $data ?? [], null);
     }
 
@@ -324,6 +362,9 @@ class PayrollPaymentAbstract implements ModelInterface, ArrayAccess, \JsonSerial
         $invalidProperties = [];
         
 
+        if ($this->container['meta'] === null) {
+            $invalidProperties[] = "'meta' can't be null";
+        }
         if ($this->container['linked_sum'] === null) {
             $invalidProperties[] = "'linked_sum' can't be null";
         }
@@ -341,6 +382,33 @@ class PayrollPaymentAbstract implements ModelInterface, ArrayAccess, \JsonSerial
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets meta
+     *
+     * @return \OpenAPI\Client\Model\Meta
+     */
+    public function getMeta()
+    {
+        return $this->container['meta'];
+    }
+
+    /**
+     * Sets meta
+     *
+     * @param \OpenAPI\Client\Model\Meta $meta meta
+     *
+     * @return self
+     */
+    public function setMeta($meta)
+    {
+        if (is_null($meta)) {
+            throw new \InvalidArgumentException('non-nullable meta cannot be null');
+        }
+        $this->container['meta'] = $meta;
+
+        return $this;
+    }
 
     /**
      * Gets linked_sum
@@ -419,7 +487,7 @@ class PayrollPaymentAbstract implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function offsetUnset($offset): void
     {
-        unset($this->container[$offset]);
+        unset($this->container[$offset], $this->composedSchemaNames[$offset]);
     }
 
     /**

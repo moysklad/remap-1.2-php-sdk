@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **name** | **string** | Наименование смены | [optional]
 **moment** | **string** | Дата смены | [optional]
 **retail_store** | [**\OpenAPI\Client\Model\RetailStore**](RetailStore.md) | Метаданные точки продаж | [optional]
-**payments** | [**\OpenAPI\Client\Model\RetailShiftPaymentsInner[]**](RetailShiftPaymentsInner.md) | Связанные платежи | [optional]
+**payments** | [**\OpenAPI\Client\Model\RetailShiftPayment[]**](RetailShiftPayment.md) | Связанные платежи | [optional]
 **acquire** | [**\OpenAPI\Client\Model\Agent**](Agent.md) | Метаданные Банка-эквайера по операциям по карте | [optional]
 **agent_account** | [**\OpenAPI\Client\Model\Account**](Account.md) | Метаданные счета контрагента | [optional] [readonly]
 **attributes** | [**\OpenAPI\Client\Model\AttributeAbstract[]**](AttributeAbstract.md) | Коллекция метаданных доп. полей | [optional]
@@ -18,7 +18,6 @@ Name | Type | Description | Notes
 **bank_percent** | **float** | Комиссия банка-эквайера по операциям по карте (в процентах) | [optional]
 **cheque** | [**\OpenAPI\Client\Model\RetailShiftCheque**](RetailShiftCheque.md) | Информация о смене ККТ | [optional]
 **close_date** | **string** | Дата закрытия смены | [optional]
-**contract** | [**\OpenAPI\Client\Model\Contract**](Contract.md) | Метаданные договора | [optional] [readonly]
 **created** | **string** | Дата создания | [optional] [readonly]
 **deleted** | **string** | Момент последнего удаления Розничной смены | [optional] [readonly]
 **description** | **string** | Комментарий Розничной смены | [optional]
@@ -43,7 +42,5 @@ Name | Type | Description | Notes
 **store** | [**\OpenAPI\Client\Model\Store**](Store.md) |  | [optional]
 **sync_id** | **string** | ID синхронизации | [optional]
 **updated** | **string** | Момент последнего обновления Розничной смены | [optional] [readonly]
-**vat_enabled** | **bool** | Учитывается ли НДС | [optional] [readonly]
-**vat_included** | **bool** | Включен ли НДС в цену | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

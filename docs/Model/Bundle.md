@@ -38,12 +38,10 @@ Name | Type | Description | Notes
 **images** | [**\OpenAPI\Client\Model\ImageList**](ImageList.md) | Массив метаданных Изображений | [optional]
 **files** | [**\OpenAPI\Client\Model\FileList**](FileList.md) | Метаданные массива Файлов | [optional]
 **barcodes** | [**\OpenAPI\Client\Model\Barcode[]**](Barcode.md) | Штрихкоды Комплекта | [optional]
-**packs** | [**\OpenAPI\Client\Model\Pack[]**](Pack.md) | Упаковки Комплекта | [optional]
 **sale_prices** | [**\OpenAPI\Client\Model\SalePrice[]**](SalePrice.md) | Цены продажи | [optional]
-**buy_price** | [**\OpenAPI\Client\Model\Price**](Price.md) |  | [optional]
 **min_price** | [**\OpenAPI\Client\Model\Price**](Price.md) |  | [optional]
 **overhead** | [**\OpenAPI\Client\Model\BundleOverhead**](BundleOverhead.md) |  | [optional]
 **attributes** | [**\OpenAPI\Client\Model\AttributeAbstract[]**](AttributeAbstract.md) | Коллекция метаданных доп. полей | [optional]
-**components** | [**\OpenAPI\Client\Model\BundleComponentList**](.md) | Массив компонентов Комплекта | [optional]
+**components** | [**\OpenAPI\Client\Model\BundleComponentList**](BundleComponentList.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

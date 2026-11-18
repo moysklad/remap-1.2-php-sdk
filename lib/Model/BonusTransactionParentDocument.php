@@ -35,7 +35,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * BonusTransactionParentDocument Class Doc Comment
  *
  * @category Class
- * @description Метаданные связанного документа бонусной операции
+ * @description Документ бонусной операции: розничная продажа или розничный возврат.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -44,7 +44,35 @@ use \OpenAPI\Client\ObjectSerializer;
 class BonusTransactionParentDocument implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
-    protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
+    public const ENTITY_TYPE = null;
+
+    /** @return string[] Model alternatives in oneOf/anyOf, including those nested in allOf. */
+    public static function openAPIComposedTypes(): array
+    {
+        return [
+
+        ];
+    }
+
+    /** @var array<string, string> Fields declared by a composed schema outside this model. */
+    protected array $composedSchemaNames = [];
+
+    public function setComposedSchemaValue(string $property, string $jsonProperty, $value): void
+    {
+        $this->composedSchemaNames[$property] = $jsonProperty;
+        $this->container[$property] = $value;
+    }
+
+    public function getComposedSchemaValues(): array
+    {
+        $values = [];
+        foreach ($this->composedSchemaNames as $property => $jsonProperty) {
+            $values[$jsonProperty] = $this->container[$property];
+        }
+        return $values;
+    }
+
+    protected static ?string $openAPIPolymorphicDiscriminatorPath = 'meta.type';
     protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
     /**
@@ -53,6 +81,8 @@ class BonusTransactionParentDocument implements ModelInterface, ArrayAccess, \Js
       * @var string[]
       */
     protected static array $openAPIPolymorphicDiscriminatorMappings = [
+        'retaildemand' => 'BonusTransactionParentRetailDemand',
+        'retailsalesreturn' => 'BonusTransactionParentRetailSalesReturn',
         
     ];
 
@@ -61,7 +91,7 @@ class BonusTransactionParentDocument implements ModelInterface, ArrayAccess, \Js
       *
       * @var string
       */
-    protected static $openAPIModelName = 'BonusTransaction_parentDocument';
+    protected static $openAPIModelName = 'BonusTransactionParentDocument';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -134,13 +164,14 @@ class BonusTransactionParentDocument implements ModelInterface, ArrayAccess, \Js
      *
      * @return array
      */
-    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    public static function openAPIPolymorphicDiscriminatorMappings(string $href = ''): array
     {
-        return self::$openAPIPolymorphicDiscriminatorMappings;
+        $mappings = self::$openAPIPolymorphicDiscriminatorMappings;
+        return $mappings;
     }
 
     /**
-     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * Whether batch-error-shaped payloads should resolve to Errors when nested
      * discriminator mappings do not match.
      *
      * @return bool
@@ -323,6 +354,9 @@ class BonusTransactionParentDocument implements ModelInterface, ArrayAccess, \Js
         $invalidProperties = [];
         
 
+        if ($this->container['meta'] === null) {
+            $invalidProperties[] = "'meta' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -341,7 +375,7 @@ class BonusTransactionParentDocument implements ModelInterface, ArrayAccess, \Js
     /**
      * Gets meta
      *
-     * @return \OpenAPI\Client\Model\Meta|null
+     * @return \OpenAPI\Client\Model\Meta
      */
     public function getMeta()
     {
@@ -351,7 +385,7 @@ class BonusTransactionParentDocument implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets meta
      *
-     * @param \OpenAPI\Client\Model\Meta|null $meta meta
+     * @param \OpenAPI\Client\Model\Meta $meta meta
      *
      * @return self
      */
@@ -415,7 +449,7 @@ class BonusTransactionParentDocument implements ModelInterface, ArrayAccess, \Js
      */
     public function offsetUnset($offset): void
     {
-        unset($this->container[$offset]);
+        unset($this->container[$offset], $this->composedSchemaNames[$offset]);
     }
 
     /**

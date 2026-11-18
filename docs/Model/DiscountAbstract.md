@@ -12,6 +12,5 @@ Name | Type | Description | Notes
 **all_agents** | **bool** | Для всех ли агентов скидка | [optional]
 **agent_tags** | **string[]** | Тэги агентов | [optional]
 **all_products** | **bool** | Действует ли скидка на все товары | [optional]
-**assortment** | [**\OpenAPI\Client\Model\DiscountAssortmentItem[]**](DiscountAssortmentItem.md) | Массив метаданных товаров, услуг и модификаций | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

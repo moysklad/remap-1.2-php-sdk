@@ -44,6 +44,35 @@ use \OpenAPI\Client\ObjectSerializer;
 class FinanceInOperationRetailShift extends FinanceInOperationAbstract 
 {
     public const DISCRIMINATOR = null;
+    public const ENTITY_TYPE = null;
+
+    /** @return string[] Model alternatives in oneOf/anyOf, including those nested in allOf. */
+    public static function openAPIComposedTypes(): array
+    {
+        return [
+
+
+        ];
+    }
+
+    /** @var array<string, string> Fields declared by a composed schema outside this model. */
+    protected array $composedSchemaNames = [];
+
+    public function setComposedSchemaValue(string $property, string $jsonProperty, $value): void
+    {
+        $this->composedSchemaNames[$property] = $jsonProperty;
+        $this->container[$property] = $value;
+    }
+
+    public function getComposedSchemaValues(): array
+    {
+        $values = [];
+        foreach ($this->composedSchemaNames as $property => $jsonProperty) {
+            $values[$jsonProperty] = $this->container[$property];
+        }
+        return $values;
+    }
+
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
     protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
@@ -75,7 +104,7 @@ class FinanceInOperationRetailShift extends FinanceInOperationAbstract
         'name' => 'string',
         'moment' => 'string',
         'retail_store' => '\OpenAPI\Client\Model\RetailStore',
-        'payments' => '\OpenAPI\Client\Model\RetailShiftPaymentsInner[]',
+        'payments' => '\OpenAPI\Client\Model\RetailShiftPayment[]',
         'acquire' => '\OpenAPI\Client\Model\Agent',
         'agent_account' => '\OpenAPI\Client\Model\Account',
         'attributes' => '\OpenAPI\Client\Model\AttributeAbstract[]',
@@ -83,7 +112,6 @@ class FinanceInOperationRetailShift extends FinanceInOperationAbstract
         'bank_percent' => 'float',
         'cheque' => '\OpenAPI\Client\Model\RetailShiftCheque',
         'close_date' => 'string',
-        'contract' => '\OpenAPI\Client\Model\Contract',
         'created' => 'string',
         'deleted' => 'string',
         'description' => 'string',
@@ -107,9 +135,7 @@ class FinanceInOperationRetailShift extends FinanceInOperationAbstract
         'shared' => 'bool',
         'store' => '\OpenAPI\Client\Model\Store',
         'sync_id' => 'string',
-        'updated' => 'string',
-        'vat_enabled' => 'bool',
-        'vat_included' => 'bool'
+        'updated' => 'string'
     ];
 
     /**
@@ -134,7 +160,6 @@ class FinanceInOperationRetailShift extends FinanceInOperationAbstract
         'bank_percent' => 'double',
         'cheque' => null,
         'close_date' => null,
-        'contract' => null,
         'created' => null,
         'deleted' => null,
         'description' => null,
@@ -158,9 +183,7 @@ class FinanceInOperationRetailShift extends FinanceInOperationAbstract
         'shared' => null,
         'store' => null,
         'sync_id' => 'uuid',
-        'updated' => null,
-        'vat_enabled' => null,
-        'vat_included' => null
+        'updated' => null
     ];
 
     /**
@@ -183,7 +206,6 @@ class FinanceInOperationRetailShift extends FinanceInOperationAbstract
         'bank_percent' => false,
         'cheque' => true,
         'close_date' => true,
-        'contract' => true,
         'created' => false,
         'deleted' => true,
         'description' => true,
@@ -207,9 +229,7 @@ class FinanceInOperationRetailShift extends FinanceInOperationAbstract
         'shared' => false,
         'store' => false,
         'sync_id' => false,
-        'updated' => false,
-        'vat_enabled' => false,
-        'vat_included' => false
+        'updated' => false
     ];
 
     /**
@@ -254,13 +274,14 @@ class FinanceInOperationRetailShift extends FinanceInOperationAbstract
      *
      * @return array
      */
-    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    public static function openAPIPolymorphicDiscriminatorMappings(string $href = ''): array
     {
-        return self::$openAPIPolymorphicDiscriminatorMappings;
+        $mappings = self::$openAPIPolymorphicDiscriminatorMappings;
+        return $mappings;
     }
 
     /**
-     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * Whether batch-error-shaped payloads should resolve to Errors when nested
      * discriminator mappings do not match.
      *
      * @return bool
@@ -343,7 +364,6 @@ class FinanceInOperationRetailShift extends FinanceInOperationAbstract
         'bank_percent' => 'bankPercent',
         'cheque' => 'cheque',
         'close_date' => 'closeDate',
-        'contract' => 'contract',
         'created' => 'created',
         'deleted' => 'deleted',
         'description' => 'description',
@@ -367,9 +387,7 @@ class FinanceInOperationRetailShift extends FinanceInOperationAbstract
         'shared' => 'shared',
         'store' => 'store',
         'sync_id' => 'syncId',
-        'updated' => 'updated',
-        'vat_enabled' => 'vatEnabled',
-        'vat_included' => 'vatIncluded'
+        'updated' => 'updated'
     ];
 
     /**
@@ -392,7 +410,6 @@ class FinanceInOperationRetailShift extends FinanceInOperationAbstract
         'bank_percent' => 'setBankPercent',
         'cheque' => 'setCheque',
         'close_date' => 'setCloseDate',
-        'contract' => 'setContract',
         'created' => 'setCreated',
         'deleted' => 'setDeleted',
         'description' => 'setDescription',
@@ -416,9 +433,7 @@ class FinanceInOperationRetailShift extends FinanceInOperationAbstract
         'shared' => 'setShared',
         'store' => 'setStore',
         'sync_id' => 'setSyncId',
-        'updated' => 'setUpdated',
-        'vat_enabled' => 'setVatEnabled',
-        'vat_included' => 'setVatIncluded'
+        'updated' => 'setUpdated'
     ];
 
     /**
@@ -441,7 +456,6 @@ class FinanceInOperationRetailShift extends FinanceInOperationAbstract
         'bank_percent' => 'getBankPercent',
         'cheque' => 'getCheque',
         'close_date' => 'getCloseDate',
-        'contract' => 'getContract',
         'created' => 'getCreated',
         'deleted' => 'getDeleted',
         'description' => 'getDescription',
@@ -465,9 +479,7 @@ class FinanceInOperationRetailShift extends FinanceInOperationAbstract
         'shared' => 'getShared',
         'store' => 'getStore',
         'sync_id' => 'getSyncId',
-        'updated' => 'getUpdated',
-        'vat_enabled' => 'getVatEnabled',
-        'vat_included' => 'getVatIncluded'
+        'updated' => 'getUpdated'
     ];
 
     /**
@@ -540,7 +552,6 @@ class FinanceInOperationRetailShift extends FinanceInOperationAbstract
         $this->setIfExists('bank_percent', $data ?? [], null);
         $this->setIfExists('cheque', $data ?? [], null);
         $this->setIfExists('close_date', $data ?? [], null);
-        $this->setIfExists('contract', $data ?? [], null);
         $this->setIfExists('created', $data ?? [], null);
         $this->setIfExists('deleted', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
@@ -565,8 +576,6 @@ class FinanceInOperationRetailShift extends FinanceInOperationAbstract
         $this->setIfExists('store', $data ?? [], null);
         $this->setIfExists('sync_id', $data ?? [], null);
         $this->setIfExists('updated', $data ?? [], null);
-        $this->setIfExists('vat_enabled', $data ?? [], null);
-        $this->setIfExists('vat_included', $data ?? [], null);
     }
 
     /**
@@ -818,7 +827,7 @@ class FinanceInOperationRetailShift extends FinanceInOperationAbstract
     /**
      * Gets payments
      *
-     * @return \OpenAPI\Client\Model\RetailShiftPaymentsInner[]|null
+     * @return \OpenAPI\Client\Model\RetailShiftPayment[]|null
      */
     public function getPayments()
     {
@@ -828,7 +837,7 @@ class FinanceInOperationRetailShift extends FinanceInOperationAbstract
     /**
      * Sets payments
      *
-     * @param \OpenAPI\Client\Model\RetailShiftPaymentsInner[]|null $payments Связанные платежи
+     * @param \OpenAPI\Client\Model\RetailShiftPayment[]|null $payments Связанные платежи
      *
      * @return self
      */
@@ -1091,40 +1100,6 @@ class FinanceInOperationRetailShift extends FinanceInOperationAbstract
             }
         }
         $this->container['close_date'] = $close_date;
-
-        return $this;
-    }
-
-    /**
-     * Gets contract
-     *
-     * @return \OpenAPI\Client\Model\Contract|null
-     */
-    public function getContract()
-    {
-        return $this->container['contract'];
-    }
-
-    /**
-     * Sets contract
-     *
-     * @param \OpenAPI\Client\Model\Contract|null $contract Метаданные договора
-     *
-     * @return self
-     */
-    public function setContract($contract)
-    {
-        if (is_null($contract)) {
-            array_push($this->openAPINullablesSetToNull, 'contract');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('contract', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['contract'] = $contract;
 
         return $this;
     }
@@ -1862,60 +1837,6 @@ class FinanceInOperationRetailShift extends FinanceInOperationAbstract
 
         return $this;
     }
-
-    /**
-     * Gets vat_enabled
-     *
-     * @return bool|null
-     */
-    public function getVatEnabled()
-    {
-        return $this->container['vat_enabled'];
-    }
-
-    /**
-     * Sets vat_enabled
-     *
-     * @param bool|null $vat_enabled Учитывается ли НДС
-     *
-     * @return self
-     */
-    public function setVatEnabled($vat_enabled)
-    {
-        if (is_null($vat_enabled)) {
-            throw new \InvalidArgumentException('non-nullable vat_enabled cannot be null');
-        }
-        $this->container['vat_enabled'] = $vat_enabled;
-
-        return $this;
-    }
-
-    /**
-     * Gets vat_included
-     *
-     * @return bool|null
-     */
-    public function getVatIncluded()
-    {
-        return $this->container['vat_included'];
-    }
-
-    /**
-     * Sets vat_included
-     *
-     * @param bool|null $vat_included Включен ли НДС в цену
-     *
-     * @return self
-     */
-    public function setVatIncluded($vat_included)
-    {
-        if (is_null($vat_included)) {
-            throw new \InvalidArgumentException('non-nullable vat_included cannot be null');
-        }
-        $this->container['vat_included'] = $vat_included;
-
-        return $this;
-    }
     /**
      * Returns true if offset exists. False otherwise.
      *
@@ -1967,7 +1888,7 @@ class FinanceInOperationRetailShift extends FinanceInOperationAbstract
      */
     public function offsetUnset($offset): void
     {
-        unset($this->container[$offset]);
+        unset($this->container[$offset], $this->composedSchemaNames[$offset]);
     }
 
     /**

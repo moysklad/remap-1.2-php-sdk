@@ -44,6 +44,37 @@ use \OpenAPI\Client\ObjectSerializer;
 class DiscountAssortmentItem implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const ENTITY_TYPE = null;
+
+    /** @return string[] Model alternatives in oneOf/anyOf, including those nested in allOf. */
+    public static function openAPIComposedTypes(): array
+    {
+        return [
+            '\OpenAPI\Client\Model\Product',
+            '\OpenAPI\Client\Model\Service',
+            '\OpenAPI\Client\Model\Variant',
+
+        ];
+    }
+
+    /** @var array<string, string> Fields declared by a composed schema outside this model. */
+    protected array $composedSchemaNames = [];
+
+    public function setComposedSchemaValue(string $property, string $jsonProperty, $value): void
+    {
+        $this->composedSchemaNames[$property] = $jsonProperty;
+        $this->container[$property] = $value;
+    }
+
+    public function getComposedSchemaValues(): array
+    {
+        $values = [];
+        foreach ($this->composedSchemaNames as $property => $jsonProperty) {
+            $values[$jsonProperty] = $this->container[$property];
+        }
+        return $values;
+    }
+
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
     protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
@@ -110,6 +141,7 @@ class DiscountAssortmentItem implements ModelInterface, ArrayAccess, \JsonSerial
         'payment_item_type' => 'string',
         'tax_system' => 'string',
         'attributes' => '\OpenAPI\Client\Model\AttributeAbstract[]',
+        'minimum_balance' => 'float',
         'minimum_stock' => '\OpenAPI\Client\Model\MinimumStockAbstract',
         'min_price' => '\OpenAPI\Client\Model\Price',
         'weighed' => 'bool',
@@ -171,6 +203,7 @@ class DiscountAssortmentItem implements ModelInterface, ArrayAccess, \JsonSerial
         'payment_item_type' => null,
         'tax_system' => null,
         'attributes' => null,
+        'minimum_balance' => 'double',
         'minimum_stock' => null,
         'min_price' => null,
         'weighed' => null,
@@ -230,6 +263,7 @@ class DiscountAssortmentItem implements ModelInterface, ArrayAccess, \JsonSerial
         'payment_item_type' => false,
         'tax_system' => false,
         'attributes' => true,
+        'minimum_balance' => true,
         'minimum_stock' => true,
         'min_price' => false,
         'weighed' => false,
@@ -284,13 +318,14 @@ class DiscountAssortmentItem implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @return array
      */
-    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    public static function openAPIPolymorphicDiscriminatorMappings(string $href = ''): array
     {
-        return self::$openAPIPolymorphicDiscriminatorMappings;
+        $mappings = self::$openAPIPolymorphicDiscriminatorMappings;
+        return $mappings;
     }
 
     /**
-     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * Whether batch-error-shaped payloads should resolve to Errors when nested
      * discriminator mappings do not match.
      *
      * @return bool
@@ -400,6 +435,7 @@ class DiscountAssortmentItem implements ModelInterface, ArrayAccess, \JsonSerial
         'payment_item_type' => 'paymentItemType',
         'tax_system' => 'taxSystem',
         'attributes' => 'attributes',
+        'minimum_balance' => 'minimumBalance',
         'minimum_stock' => 'minimumStock',
         'min_price' => 'minPrice',
         'weighed' => 'weighed',
@@ -459,6 +495,7 @@ class DiscountAssortmentItem implements ModelInterface, ArrayAccess, \JsonSerial
         'payment_item_type' => 'setPaymentItemType',
         'tax_system' => 'setTaxSystem',
         'attributes' => 'setAttributes',
+        'minimum_balance' => 'setMinimumBalance',
         'minimum_stock' => 'setMinimumStock',
         'min_price' => 'setMinPrice',
         'weighed' => 'setWeighed',
@@ -518,6 +555,7 @@ class DiscountAssortmentItem implements ModelInterface, ArrayAccess, \JsonSerial
         'payment_item_type' => 'getPaymentItemType',
         'tax_system' => 'getTaxSystem',
         'attributes' => 'getAttributes',
+        'minimum_balance' => 'getMinimumBalance',
         'minimum_stock' => 'getMinimumStock',
         'min_price' => 'getMinPrice',
         'weighed' => 'getWeighed',
@@ -631,6 +669,7 @@ class DiscountAssortmentItem implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('payment_item_type', $data ?? [], null);
         $this->setIfExists('tax_system', $data ?? [], null);
         $this->setIfExists('attributes', $data ?? [], null);
+        $this->setIfExists('minimum_balance', $data ?? [], null);
         $this->setIfExists('minimum_stock', $data ?? [], null);
         $this->setIfExists('min_price', $data ?? [], null);
         $this->setIfExists('weighed', $data ?? [], null);
@@ -1976,6 +2015,40 @@ class DiscountAssortmentItem implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
+     * Gets minimum_balance
+     *
+     * @return float|null
+     */
+    public function getMinimumBalance()
+    {
+        return $this->container['minimum_balance'];
+    }
+
+    /**
+     * Sets minimum_balance
+     *
+     * @param float|null $minimum_balance Неснижаемый остаток. Для очистки передайте null.
+     *
+     * @return self
+     */
+    public function setMinimumBalance($minimum_balance)
+    {
+        if (is_null($minimum_balance)) {
+            array_push($this->openAPINullablesSetToNull, 'minimum_balance');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('minimum_balance', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['minimum_balance'] = $minimum_balance;
+
+        return $this;
+    }
+
+    /**
      * Gets minimum_stock
      *
      * @return \OpenAPI\Client\Model\MinimumStockAbstract|null
@@ -2316,7 +2389,7 @@ class DiscountAssortmentItem implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function offsetUnset($offset): void
     {
-        unset($this->container[$offset]);
+        unset($this->container[$offset], $this->composedSchemaNames[$offset]);
     }
 
     /**

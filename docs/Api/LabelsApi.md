@@ -43,7 +43,7 @@ $id = 'id_example'; // string | ID сущности
 $type = 'type_example'; // string | Тип сущности, для которой запрашивается печать
 $label_print_request = new \OpenAPI\Client\Model\LabelPrintRequest(); // \OpenAPI\Client\Model\LabelPrintRequest
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 $content_type = 'application/json'; // string
 
 try {
@@ -61,7 +61,7 @@ try {
 | **type** | **string**| Тип сущности, для которой запрашивается печать | |
 | **label_print_request** | [**\OpenAPI\Client\Model\LabelPrintRequest**](../Model/LabelPrintRequest.md)|  | |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 | **content_type** | **string**|  | [optional] [default to &#39;application/json&#39;] |
 
 ### Return type
@@ -75,7 +75,7 @@ void (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

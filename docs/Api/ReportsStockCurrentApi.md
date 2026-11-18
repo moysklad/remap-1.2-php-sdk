@@ -46,7 +46,7 @@ $changed_since = 'changed_since_example'; // string | Выводит факти�
 $stock_type = 'stock'; // string | Тип рассчитываемого значения остатка. По умолчанию `stock`.
 $filter = 'filter_example'; // string | Фильтрация отчета по ID сущностей. Поддерживаемые поля: `assortmentId`, `storeId`.
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getStockAllCurrent($include, $changed_since, $stock_type, $filter, $accept, $accept_encoding);
@@ -65,7 +65,7 @@ try {
 | **stock_type** | **string**| Тип рассчитываемого значения остатка. По умолчанию &#x60;stock&#x60;. | [optional] [default to &#39;stock&#39;] |
 | **filter** | **string**| Фильтрация отчета по ID сущностей. Поддерживаемые поля: &#x60;assortmentId&#x60;, &#x60;storeId&#x60;. | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -78,7 +78,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -120,7 +120,7 @@ $include = 'include_example'; // string | Управляет включение�
 $stock_type = 'stock'; // string | Тип рассчитываемого значения остатка. По умолчанию `stock`.
 $filter = 'filter_example'; // string | Фильтрация отчета по ID сущностей. Поддерживаемые поля: `assortmentId`, `storeId`.
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getStockBySlotCurrent($include, $stock_type, $filter, $accept, $accept_encoding);
@@ -138,7 +138,7 @@ try {
 | **stock_type** | **string**| Тип рассчитываемого значения остатка. По умолчанию &#x60;stock&#x60;. | [optional] [default to &#39;stock&#39;] |
 | **filter** | **string**| Фильтрация отчета по ID сущностей. Поддерживаемые поля: &#x60;assortmentId&#x60;, &#x60;storeId&#x60;. | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -151,7 +151,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -195,7 +195,7 @@ $stock_type = 'stock'; // string | Тип рассчитываемого зна�
 $with_recalculate = True; // bool | Включает позиции, по которым остаток пересчитывается. Для таких позиций значение остатка может быть `null`.
 $filter = 'filter_example'; // string | Фильтрация отчета по ID сущностей. Поддерживаемые поля: `assortmentId`, `storeId`.
 $accept = 'application/json;charset=utf-8'; // string
-$accept_encoding = 'gzip, deflate, br'; // string
+$accept_encoding = 'gzip'; // string
 
 try {
     $result = $apiInstance->getStockByStoreCurrent($include, $changed_since, $stock_type, $with_recalculate, $filter, $accept, $accept_encoding);
@@ -215,7 +215,7 @@ try {
 | **with_recalculate** | **bool**| Включает позиции, по которым остаток пересчитывается. Для таких позиций значение остатка может быть &#x60;null&#x60;. | [optional] |
 | **filter** | **string**| Фильтрация отчета по ID сущностей. Поддерживаемые поля: &#x60;assortmentId&#x60;, &#x60;storeId&#x60;. | [optional] |
 | **accept** | **string**|  | [optional] [default to &#39;application/json;charset&#x3D;utf-8&#39;] |
-| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip, deflate, br&#39;] |
+| **accept_encoding** | **string**|  | [optional] [default to &#39;gzip&#39;] |
 
 ### Return type
 
@@ -228,7 +228,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`, `text/html;charset=UTF-8`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

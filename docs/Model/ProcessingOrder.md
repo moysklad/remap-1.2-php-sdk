@@ -30,7 +30,7 @@ Name | Type | Description | Notes
 **group** | [**\OpenAPI\Client\Model\Group**](Group.md) |  | [optional]
 **attributes** | [**\OpenAPI\Client\Model\AttributeAbstract[]**](AttributeAbstract.md) | Коллекция метаданных доп. полей | [optional]
 **files** | [**\OpenAPI\Client\Model\FileList**](FileList.md) | Метаданные массива Файлов | [optional]
-**positions** | [**\OpenAPI\Client\Model\ProcessingOrderPositionList**](.md) | Позиции Заказа на производство | [optional]
+**positions** | [**\OpenAPI\Client\Model\ProcessingOrderPositionList**](ProcessingOrderPositionList.md) |  | [optional]
 **quantity** | **float** | Объем производства | [optional]
 **processings** | [**\OpenAPI\Client\Model\Processing[]**](Processing.md) | Массив ссылок на связанные техоперации | [optional]
 

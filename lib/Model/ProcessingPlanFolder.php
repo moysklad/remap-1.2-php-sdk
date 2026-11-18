@@ -44,6 +44,34 @@ use \OpenAPI\Client\ObjectSerializer;
 class ProcessingPlanFolder extends EntityWithMeta 
 {
     public const DISCRIMINATOR = null;
+    public const ENTITY_TYPE = 'processingplanfolder';
+
+    /** @return string[] Model alternatives in oneOf/anyOf, including those nested in allOf. */
+    public static function openAPIComposedTypes(): array
+    {
+        return [
+
+        ];
+    }
+
+    /** @var array<string, string> Fields declared by a composed schema outside this model. */
+    protected array $composedSchemaNames = [];
+
+    public function setComposedSchemaValue(string $property, string $jsonProperty, $value): void
+    {
+        $this->composedSchemaNames[$property] = $jsonProperty;
+        $this->container[$property] = $value;
+    }
+
+    public function getComposedSchemaValues(): array
+    {
+        $values = [];
+        foreach ($this->composedSchemaNames as $property => $jsonProperty) {
+            $values[$jsonProperty] = $this->container[$property];
+        }
+        return $values;
+    }
+
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
     protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
@@ -93,7 +121,7 @@ class ProcessingPlanFolder extends EntityWithMeta
         'updated' => 'string',
         'group' => '\OpenAPI\Client\Model\Group',
         'owner' => '\OpenAPI\Client\Model\Employee',
-        'processingplanfolder' => '\OpenAPI\Client\Model\ProcessingPlanFolder'
+        'parent' => '\OpenAPI\Client\Model\ProcessingPlanFolder'
     ];
 
     /**
@@ -117,7 +145,7 @@ class ProcessingPlanFolder extends EntityWithMeta
         'updated' => null,
         'group' => null,
         'owner' => null,
-        'processingplanfolder' => null
+        'parent' => null
     ];
 
     /**
@@ -139,7 +167,7 @@ class ProcessingPlanFolder extends EntityWithMeta
         'updated' => false,
         'group' => false,
         'owner' => true,
-        'processingplanfolder' => true
+        'parent' => true
     ];
 
     /**
@@ -184,13 +212,14 @@ class ProcessingPlanFolder extends EntityWithMeta
      *
      * @return array
      */
-    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    public static function openAPIPolymorphicDiscriminatorMappings(string $href = ''): array
     {
-        return self::$openAPIPolymorphicDiscriminatorMappings;
+        $mappings = self::$openAPIPolymorphicDiscriminatorMappings;
+        return $mappings;
     }
 
     /**
-     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * Whether batch-error-shaped payloads should resolve to Errors when nested
      * discriminator mappings do not match.
      *
      * @return bool
@@ -272,7 +301,7 @@ class ProcessingPlanFolder extends EntityWithMeta
         'updated' => 'updated',
         'group' => 'group',
         'owner' => 'owner',
-        'processingplanfolder' => 'processingplanfolder'
+        'parent' => 'parent'
     ];
 
     /**
@@ -294,7 +323,7 @@ class ProcessingPlanFolder extends EntityWithMeta
         'updated' => 'setUpdated',
         'group' => 'setGroup',
         'owner' => 'setOwner',
-        'processingplanfolder' => 'setProcessingplanfolder'
+        'parent' => 'setParent'
     ];
 
     /**
@@ -316,7 +345,7 @@ class ProcessingPlanFolder extends EntityWithMeta
         'updated' => 'getUpdated',
         'group' => 'getGroup',
         'owner' => 'getOwner',
-        'processingplanfolder' => 'getProcessingplanfolder'
+        'parent' => 'getParent'
     ];
 
     /**
@@ -388,7 +417,7 @@ class ProcessingPlanFolder extends EntityWithMeta
         $this->setIfExists('updated', $data ?? [], null);
         $this->setIfExists('group', $data ?? [], null);
         $this->setIfExists('owner', $data ?? [], null);
-        $this->setIfExists('processingplanfolder', $data ?? [], null);
+        $this->setIfExists('parent', $data ?? [], null);
     }
 
     /**
@@ -834,35 +863,35 @@ class ProcessingPlanFolder extends EntityWithMeta
     }
 
     /**
-     * Gets processingplanfolder
+     * Gets parent
      *
      * @return \OpenAPI\Client\Model\ProcessingPlanFolder|null
      */
-    public function getProcessingplanfolder()
+    public function getParent()
     {
-        return $this->container['processingplanfolder'];
+        return $this->container['parent'];
     }
 
     /**
-     * Sets processingplanfolder
+     * Sets parent
      *
-     * @param \OpenAPI\Client\Model\ProcessingPlanFolder|null $processingplanfolder Родительская Группа техкарт. Для смены иерархии и поля pathName обновите эту ссылку
+     * @param \OpenAPI\Client\Model\ProcessingPlanFolder|null $parent Родительская Группа техкарт. Для смены иерархии и поля pathName обновите эту ссылку
      *
      * @return self
      */
-    public function setProcessingplanfolder($processingplanfolder)
+    public function setParent($parent)
     {
-        if (is_null($processingplanfolder)) {
-            array_push($this->openAPINullablesSetToNull, 'processingplanfolder');
+        if (is_null($parent)) {
+            array_push($this->openAPINullablesSetToNull, 'parent');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('processingplanfolder', $nullablesSetToNull);
+            $index = array_search('parent', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['processingplanfolder'] = $processingplanfolder;
+        $this->container['parent'] = $parent;
 
         return $this;
     }
@@ -917,7 +946,7 @@ class ProcessingPlanFolder extends EntityWithMeta
      */
     public function offsetUnset($offset): void
     {
-        unset($this->container[$offset]);
+        unset($this->container[$offset], $this->composedSchemaNames[$offset]);
     }
 
     /**

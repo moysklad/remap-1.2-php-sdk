@@ -168,6 +168,18 @@ class StoresApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteStoreMetadataAttributeById
+     *
+     * Удалить доп. поле склада.
+     *
+     */
+    public function testDeleteStoreMetadataAttributeById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteStoreSlot
      *
      * Удалить ячейку склада.
@@ -266,7 +278,7 @@ class StoresApiTest extends TestCase
     /**
      * Test case for getStoreMetadataAttributeById
      *
-     * Отдельное доп. поле Склада.
+     * Получить доп. поле склада по ID.
      *
      */
     public function testGetStoreMetadataAttributeById()
@@ -342,6 +354,18 @@ class StoresApiTest extends TestCase
      *
      */
     public function testUpdateStore()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateStoreMetadataAttributeById
+     *
+     * Обновить доп. поле склада.
+     *
+     */
+    public function testUpdateStoreMetadataAttributeById()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

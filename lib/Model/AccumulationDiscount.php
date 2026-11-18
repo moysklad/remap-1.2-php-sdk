@@ -43,6 +43,34 @@ use \OpenAPI\Client\ObjectSerializer;
 class AccumulationDiscount extends DiscountAbstract 
 {
     public const DISCRIMINATOR = null;
+    public const ENTITY_TYPE = 'accumulationdiscount';
+
+    /** @return string[] Model alternatives in oneOf/anyOf, including those nested in allOf. */
+    public static function openAPIComposedTypes(): array
+    {
+        return [
+
+        ];
+    }
+
+    /** @var array<string, string> Fields declared by a composed schema outside this model. */
+    protected array $composedSchemaNames = [];
+
+    public function setComposedSchemaValue(string $property, string $jsonProperty, $value): void
+    {
+        $this->composedSchemaNames[$property] = $jsonProperty;
+        $this->container[$property] = $value;
+    }
+
+    public function getComposedSchemaValues(): array
+    {
+        $values = [];
+        foreach ($this->composedSchemaNames as $property => $jsonProperty) {
+            $values[$jsonProperty] = $this->container[$property];
+        }
+        return $values;
+    }
+
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
     protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
@@ -82,7 +110,8 @@ class AccumulationDiscount extends DiscountAbstract
         'id' => 'string',
         'meta' => '\OpenAPI\Client\Model\Meta',
         'product_folders' => '\OpenAPI\Client\Model\ProductFolder[]',
-        'levels' => '\OpenAPI\Client\Model\AccumulationDiscountLevelsInner[]'
+        'levels' => '\OpenAPI\Client\Model\AccumulationDiscountLevelsInner[]',
+        'assortment' => '\OpenAPI\Client\Model\DiscountAssortmentItem[]'
     ];
 
     /**
@@ -96,7 +125,8 @@ class AccumulationDiscount extends DiscountAbstract
         'id' => 'uuid',
         'meta' => null,
         'product_folders' => null,
-        'levels' => null
+        'levels' => null,
+        'assortment' => null
     ];
 
     /**
@@ -108,7 +138,8 @@ class AccumulationDiscount extends DiscountAbstract
         'id' => false,
         'meta' => false,
         'product_folders' => false,
-        'levels' => false
+        'levels' => false,
+        'assortment' => true
     ];
 
     /**
@@ -153,13 +184,14 @@ class AccumulationDiscount extends DiscountAbstract
      *
      * @return array
      */
-    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    public static function openAPIPolymorphicDiscriminatorMappings(string $href = ''): array
     {
-        return self::$openAPIPolymorphicDiscriminatorMappings;
+        $mappings = self::$openAPIPolymorphicDiscriminatorMappings;
+        return $mappings;
     }
 
     /**
-     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * Whether batch-error-shaped payloads should resolve to Errors when nested
      * discriminator mappings do not match.
      *
      * @return bool
@@ -231,7 +263,8 @@ class AccumulationDiscount extends DiscountAbstract
         'id' => 'id',
         'meta' => 'meta',
         'product_folders' => 'productFolders',
-        'levels' => 'levels'
+        'levels' => 'levels',
+        'assortment' => 'assortment'
     ];
 
     /**
@@ -243,7 +276,8 @@ class AccumulationDiscount extends DiscountAbstract
         'id' => 'setId',
         'meta' => 'setMeta',
         'product_folders' => 'setProductFolders',
-        'levels' => 'setLevels'
+        'levels' => 'setLevels',
+        'assortment' => 'setAssortment'
     ];
 
     /**
@@ -255,7 +289,8 @@ class AccumulationDiscount extends DiscountAbstract
         'id' => 'getId',
         'meta' => 'getMeta',
         'product_folders' => 'getProductFolders',
-        'levels' => 'getLevels'
+        'levels' => 'getLevels',
+        'assortment' => 'getAssortment'
     ];
 
     /**
@@ -318,6 +353,7 @@ class AccumulationDiscount extends DiscountAbstract
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('product_folders', $data ?? [], null);
         $this->setIfExists('levels', $data ?? [], null);
+        $this->setIfExists('assortment', $data ?? [], null);
     }
 
     /**
@@ -472,6 +508,40 @@ class AccumulationDiscount extends DiscountAbstract
 
         return $this;
     }
+
+    /**
+     * Gets assortment
+     *
+     * @return \OpenAPI\Client\Model\DiscountAssortmentItem[]|null
+     */
+    public function getAssortment()
+    {
+        return $this->container['assortment'];
+    }
+
+    /**
+     * Sets assortment
+     *
+     * @param \OpenAPI\Client\Model\DiscountAssortmentItem[]|null $assortment Массив метаданных товаров, услуг и модификаций
+     *
+     * @return self
+     */
+    public function setAssortment($assortment)
+    {
+        if (is_null($assortment)) {
+            array_push($this->openAPINullablesSetToNull, 'assortment');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('assortment', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['assortment'] = $assortment;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      *
@@ -523,7 +593,7 @@ class AccumulationDiscount extends DiscountAbstract
      */
     public function offsetUnset($offset): void
     {
-        unset($this->container[$offset]);
+        unset($this->container[$offset], $this->composedSchemaNames[$offset]);
     }
 
     /**

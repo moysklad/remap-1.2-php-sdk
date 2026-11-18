@@ -44,6 +44,35 @@ use \OpenAPI\Client\ObjectSerializer;
 class FinanceInOperationCustomerOrder extends FinanceInOperationAbstract 
 {
     public const DISCRIMINATOR = null;
+    public const ENTITY_TYPE = null;
+
+    /** @return string[] Model alternatives in oneOf/anyOf, including those nested in allOf. */
+    public static function openAPIComposedTypes(): array
+    {
+        return [
+
+
+        ];
+    }
+
+    /** @var array<string, string> Fields declared by a composed schema outside this model. */
+    protected array $composedSchemaNames = [];
+
+    public function setComposedSchemaValue(string $property, string $jsonProperty, $value): void
+    {
+        $this->composedSchemaNames[$property] = $jsonProperty;
+        $this->container[$property] = $value;
+    }
+
+    public function getComposedSchemaValues(): array
+    {
+        $values = [];
+        foreach ($this->composedSchemaNames as $property => $jsonProperty) {
+            $values[$jsonProperty] = $this->container[$property];
+        }
+        return $values;
+    }
+
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
     protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
@@ -114,7 +143,7 @@ class FinanceInOperationCustomerOrder extends FinanceInOperationAbstract
         'shipment_address_full' => '\OpenAPI\Client\Model\Address',
         'invoices_out' => '\OpenAPI\Client\Model\InvoiceOut[]',
         'demands' => '\OpenAPI\Client\Model\Demand[]',
-        'payments' => '\OpenAPI\Client\Model\RetailShiftPaymentsInner[]',
+        'payments' => '\OpenAPI\Client\Model\CustomerOrderPayment[]',
         'prepayments' => '\OpenAPI\Client\Model\Prepayment[]',
         'purchase_orders' => '\OpenAPI\Client\Model\PurchaseOrder[]',
         'moves' => '\OpenAPI\Client\Model\Move[]',
@@ -281,13 +310,14 @@ class FinanceInOperationCustomerOrder extends FinanceInOperationAbstract
      *
      * @return array
      */
-    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    public static function openAPIPolymorphicDiscriminatorMappings(string $href = ''): array
     {
-        return self::$openAPIPolymorphicDiscriminatorMappings;
+        $mappings = self::$openAPIPolymorphicDiscriminatorMappings;
+        return $mappings;
     }
 
     /**
-     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * Whether batch-error-shaped payloads should resolve to Errors when nested
      * discriminator mappings do not match.
      *
      * @return bool
@@ -2054,7 +2084,7 @@ class FinanceInOperationCustomerOrder extends FinanceInOperationAbstract
     /**
      * Gets payments
      *
-     * @return \OpenAPI\Client\Model\RetailShiftPaymentsInner[]|null
+     * @return \OpenAPI\Client\Model\CustomerOrderPayment[]|null
      */
     public function getPayments()
     {
@@ -2064,7 +2094,7 @@ class FinanceInOperationCustomerOrder extends FinanceInOperationAbstract
     /**
      * Sets payments
      *
-     * @param \OpenAPI\Client\Model\RetailShiftPaymentsInner[]|null $payments Массив ссылок на связанные платежи
+     * @param \OpenAPI\Client\Model\CustomerOrderPayment[]|null $payments Массив ссылок на связанные платежи
      *
      * @return self
      */
@@ -2271,7 +2301,7 @@ class FinanceInOperationCustomerOrder extends FinanceInOperationAbstract
      */
     public function offsetUnset($offset): void
     {
-        unset($this->container[$offset]);
+        unset($this->container[$offset], $this->composedSchemaNames[$offset]);
     }
 
     /**

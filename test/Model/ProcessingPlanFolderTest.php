@@ -197,9 +197,9 @@ class ProcessingPlanFolderTest extends TestCase
     }
 
     /**
-     * Test attribute "processingplanfolder"
+     * Test attribute "parent"
      */
-    public function testPropertyProcessingplanfolder()
+    public function testPropertyParent()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

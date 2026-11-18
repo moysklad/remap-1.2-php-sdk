@@ -47,7 +47,7 @@ Name | Type | Description | Notes
 **customer_orders** | [**\OpenAPI\Client\Model\CustomerOrder[]**](CustomerOrder.md) | Массив ссылок на связанные заказы покупателей | [optional]
 **invoices_in** | [**\OpenAPI\Client\Model\InvoiceIn[]**](InvoiceIn.md) | Массив ссылок на связанные счета поставщиков | [optional]
 **supplies** | [**\OpenAPI\Client\Model\Supply[]**](Supply.md) | Массив ссылок на связанные приемки | [optional]
-**payments** | [**\OpenAPI\Client\Model\SalesReturnPaymentsInner[]**](SalesReturnPaymentsInner.md) | Массив ссылок на связанные платежи | [optional]
+**payments** | [**\OpenAPI\Client\Model\PurchaseOrderPayment[]**](PurchaseOrderPayment.md) | Массив ссылок на связанные платежи | [optional]
 **production_tasks** | [**\OpenAPI\Client\Model\ProductionTask[]**](ProductionTask.md) | Массив ссылок на связанные производственные задания | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

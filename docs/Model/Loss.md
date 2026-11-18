@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **created** | **string** | Дата создания | [optional] [readonly]
 **deleted** | **string** | Момент последнего удаления Списания | [optional] [readonly]
 **description** | **string** | Комментарий Списания | [optional]
-**expense_item** | [**\OpenAPI\Client\Model\ExpenseItem**](ExpenseItem.md) | Метаданные Статьи расходов | [optional] [readonly]
+**expense_item** | [**\OpenAPI\Client\Model\ExpenseItem**](ExpenseItem.md) | Метаданные Статьи расходов | [optional]
 **external_code** | **string** | Внешний код Списания | [optional]
 **files** | [**\OpenAPI\Client\Model\FileList**](FileList.md) | Метаданные массива Файлов (Максимальное количество файлов - 100) | [optional]
 **group** | [**\OpenAPI\Client\Model\Group**](Group.md) |  | [optional]

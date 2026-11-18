@@ -43,6 +43,34 @@ use \OpenAPI\Client\ObjectSerializer;
 class PersonalDiscount extends DiscountAbstract 
 {
     public const DISCRIMINATOR = null;
+    public const ENTITY_TYPE = 'personaldiscount';
+
+    /** @return string[] Model alternatives in oneOf/anyOf, including those nested in allOf. */
+    public static function openAPIComposedTypes(): array
+    {
+        return [
+
+        ];
+    }
+
+    /** @var array<string, string> Fields declared by a composed schema outside this model. */
+    protected array $composedSchemaNames = [];
+
+    public function setComposedSchemaValue(string $property, string $jsonProperty, $value): void
+    {
+        $this->composedSchemaNames[$property] = $jsonProperty;
+        $this->container[$property] = $value;
+    }
+
+    public function getComposedSchemaValues(): array
+    {
+        $values = [];
+        foreach ($this->composedSchemaNames as $property => $jsonProperty) {
+            $values[$jsonProperty] = $this->container[$property];
+        }
+        return $values;
+    }
+
     protected static ?string $openAPIPolymorphicDiscriminatorPath = null;
     protected static bool $openAPIPolymorphicBatchErrorFallback = false;
 
@@ -81,7 +109,8 @@ class PersonalDiscount extends DiscountAbstract
     protected static $openAPITypes = [
         'id' => 'string',
         'meta' => '\OpenAPI\Client\Model\Meta',
-        'product_folders' => '\OpenAPI\Client\Model\ProductFolder[]'
+        'product_folders' => '\OpenAPI\Client\Model\ProductFolder[]',
+        'assortment' => '\OpenAPI\Client\Model\DiscountAssortmentItem[]'
     ];
 
     /**
@@ -94,7 +123,8 @@ class PersonalDiscount extends DiscountAbstract
     protected static $openAPIFormats = [
         'id' => 'uuid',
         'meta' => null,
-        'product_folders' => null
+        'product_folders' => null,
+        'assortment' => null
     ];
 
     /**
@@ -105,7 +135,8 @@ class PersonalDiscount extends DiscountAbstract
     protected static array $openAPINullables = [
         'id' => false,
         'meta' => false,
-        'product_folders' => false
+        'product_folders' => false,
+        'assortment' => true
     ];
 
     /**
@@ -150,13 +181,14 @@ class PersonalDiscount extends DiscountAbstract
      *
      * @return array
      */
-    public static function openAPIPolymorphicDiscriminatorMappings(): array
+    public static function openAPIPolymorphicDiscriminatorMappings(string $href = ''): array
     {
-        return self::$openAPIPolymorphicDiscriminatorMappings;
+        $mappings = self::$openAPIPolymorphicDiscriminatorMappings;
+        return $mappings;
     }
 
     /**
-     * Whether batch-error-shaped payloads should resolve to Error when nested
+     * Whether batch-error-shaped payloads should resolve to Errors when nested
      * discriminator mappings do not match.
      *
      * @return bool
@@ -227,7 +259,8 @@ class PersonalDiscount extends DiscountAbstract
     protected static $attributeMap = [
         'id' => 'id',
         'meta' => 'meta',
-        'product_folders' => 'productFolders'
+        'product_folders' => 'productFolders',
+        'assortment' => 'assortment'
     ];
 
     /**
@@ -238,7 +271,8 @@ class PersonalDiscount extends DiscountAbstract
     protected static $setters = [
         'id' => 'setId',
         'meta' => 'setMeta',
-        'product_folders' => 'setProductFolders'
+        'product_folders' => 'setProductFolders',
+        'assortment' => 'setAssortment'
     ];
 
     /**
@@ -249,7 +283,8 @@ class PersonalDiscount extends DiscountAbstract
     protected static $getters = [
         'id' => 'getId',
         'meta' => 'getMeta',
-        'product_folders' => 'getProductFolders'
+        'product_folders' => 'getProductFolders',
+        'assortment' => 'getAssortment'
     ];
 
     /**
@@ -311,6 +346,7 @@ class PersonalDiscount extends DiscountAbstract
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('product_folders', $data ?? [], null);
+        $this->setIfExists('assortment', $data ?? [], null);
     }
 
     /**
@@ -438,6 +474,40 @@ class PersonalDiscount extends DiscountAbstract
 
         return $this;
     }
+
+    /**
+     * Gets assortment
+     *
+     * @return \OpenAPI\Client\Model\DiscountAssortmentItem[]|null
+     */
+    public function getAssortment()
+    {
+        return $this->container['assortment'];
+    }
+
+    /**
+     * Sets assortment
+     *
+     * @param \OpenAPI\Client\Model\DiscountAssortmentItem[]|null $assortment Массив метаданных товаров, услуг и модификаций
+     *
+     * @return self
+     */
+    public function setAssortment($assortment)
+    {
+        if (is_null($assortment)) {
+            array_push($this->openAPINullablesSetToNull, 'assortment');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('assortment', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['assortment'] = $assortment;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      *
@@ -489,7 +559,7 @@ class PersonalDiscount extends DiscountAbstract
      */
     public function offsetUnset($offset): void
     {
-        unset($this->container[$offset]);
+        unset($this->container[$offset], $this->composedSchemaNames[$offset]);
     }
 
     /**
